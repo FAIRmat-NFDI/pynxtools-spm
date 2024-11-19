@@ -1,0 +1,60 @@
+experiment_technique: STM
+hardware:
+  vendor:
+    value: 'Nanonis'
+  model:
+    value: 'Generic 4.5'
+  model/@version:
+    value: 'Generic 4.5'
+software:
+  vendor:
+    value: 'Nanonis'
+  model:
+    value: 'Generic 4.5'
+  model/@version:
+    value: 'Generic 4.5'
+experiment_instrument:
+  lockin_amplifier:
+    modulation_frequency: null
+    modulation_signal_type: null
+  current_sensor:
+    current_calibration:
+      calibration_time:
+        value: null
+        unit: null
+      coefficients:
+        value: null
+        unit: null
+    current_offset:
+      value: null
+      unit: null
+  piezo_sensor:
+    piezo_configuration:
+      calibration:
+        calibration_name: '4K'
+        calibration_date: '2019-01-01'
+        calibration_type: 'Active'
+  scan_environment:
+    cryo_bottom_temp:
+      value: null
+      unit: null
+    cryo_shield_temp:
+      value: null
+      unit: null
+    tip_temp:
+      value: null
+      unit: null
+reproducibility_indicators:
+  bias_sweep: null
+  current: null
+  current_gain: null
+  current_offset: null
+  modulation_frequency: null
+  modulation_signal_type: null
+resolution_indicators:
+  bias_sweep: null
+  cryo_bottom_temp: null
+  cryo_shield_temp: null
+  modulation_frequency: null
+  modulation_signal_type: null
+  stm_head_temp: null
