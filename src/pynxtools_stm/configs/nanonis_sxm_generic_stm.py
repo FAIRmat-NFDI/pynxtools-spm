@@ -533,7 +533,7 @@ _nanonis_stm_sxm_generic_5e = {
                     "raw_path": "/Z/forward",
                     "@units": "@default:m",
                 },
-                # If axis will be provided use the following structure
+                # Syntax Note: If axis will be provided use the following structure
                 # "0": {
                 #     "name": "Bias Voltage",
                 #     "raw_path": [

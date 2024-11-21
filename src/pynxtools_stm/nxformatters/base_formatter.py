@@ -119,13 +119,15 @@ class SPMformatter(ABC):
         return eln_dict
 
     def work_though_config_nested_dict(self, config_dict: Dict, parent_path: str):
+        # This concept is just note where the group will be
+        # handeld or somthing like that.
         if "#note" in config_dict:
             return
         for key, val in config_dict.items():
             if val is None or val == "":
                 continue
-            # Special case, will be handled in a specific function registerd in
-            # self._grp_to_func
+            # Special case, will be handled in a specific function registerd
+            # in self._grp_to_func
             if key in self._grp_to_func:
                 # First fill the default values
                 self.work_though_config_nested_dict(
@@ -146,11 +148,18 @@ class SPMformatter(ABC):
                 if other_attrs:
                     for k, v in other_attrs.items():
                         self.template[f"{parent_path}/{key}/@{k}"] = v
+            # Handle to construct nxdata group that comes alon as a dict
+            elif ("@title" in val or "grp_name" in val) and "data" in val:
+                _ = self._NXdata_grp_from_conf_description(
+                    partial_conf_dict=val,
+                    parent_path=parent_path,
+                    group_name=key,
+                )
             # variadic fields that would have several values according to the dimentions
             elif isinstance(val, list) and isinstance(val[0], dict):
                 for item in val:
                     # Handle to construct nxdata group
-                    if "@title" in item or "grp_name" in item and "data" in item:
+                    if ("@title" in item or "grp_name" in item) and "data" in item:
                         _ = self._NXdata_grp_from_conf_description(
                             partial_conf_dict=item,
                             parent_path=parent_path,
@@ -195,9 +204,9 @@ class SPMformatter(ABC):
                 np.flip(data)
         elif self.NXScanControl.fast_axis == "-y":
             if self.NXScanControl.slow_axis == "x":
-                return np.flipud(data)
+                return np.transpose(np.flipud(data))
             elif self.NXScanControl.slow_axis == "-x":
-                return np.flip(data)
+                return np.transpose(data)
         elif self.NXScanControl.fast_axis == "y":
             if self.NXScanControl.slow_axis == "-x":
                 return np.fliplr(data)

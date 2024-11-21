@@ -560,7 +560,7 @@ _nanonis_afm_sxm_generic_5e = {
                     "@units": "/DATA/INFO/Excitation/Unit",
                 },
                 "@title": "Excitation Plot of AFM Experiment (Backward Direction)",
-                "grp_name": "excitation _backward",
+                "grp_name": "excitation_backward",
             },
             {
                 "data": {

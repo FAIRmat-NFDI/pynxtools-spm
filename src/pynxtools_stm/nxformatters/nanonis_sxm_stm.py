@@ -22,6 +22,7 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import copy
 from pynxtools_stm.nxformatters.base_formatter import SPMformatter
 from typing import Dict, Optional, Union
 from pathlib import Path
@@ -275,7 +276,7 @@ class NanonisSxmSTM(SPMformatter):
             data_dict=self.raw_data,
             end_dict=partial_conf_dict,
         )
-        # Example of data des and info and each column is separated by tab
+        ## Example of data des and info and each column is separated by tab
         # Channel	Name	Unit	Direction	Calibration	Offset
         # 14	Z	m	both	9.000E-9	0.000E+0
         # 0	Current	A	both	1.000E-9	-1.132E-13
@@ -403,3 +404,40 @@ class NanonisSxmSTM(SPMformatter):
                 parent_path=f"{parent_path}/{group_name}",
                 group_name=scan_pattern_grp,
             )
+
+    def _NXdata_grp_from_conf_description(
+        self, partial_conf_dict, parent_path, group_name, group_index=0
+    ):
+        """Specialization of the generic funciton to create NXdata group or plots."""
+        store_partial_dict = copy.deepcopy(partial_conf_dict)
+        super()._NXdata_grp_from_conf_description(
+            partial_conf_dict, parent_path, group_name, group_index
+        )
+        print(" ################### ", partial_conf_dict)
+        nxdata_group_nm = store_partial_dict["grp_name"]
+        axis_x = "x"
+        axis_y = "y"
+        print(" ######################### ", group_name)
+        self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
+            axis_x,
+            axis_y,
+        ]
+        self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
+        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
+            self.NXScanControl.x_start,
+            self.NXScanControl.x_end,
+            int(self.NXScanControl.x_points),
+        )
+        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}/@units"] = (
+            self.NXScanControl.x_start_unit
+        )
+
+        self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_y}_indices"] = 1
+        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}"] = np.linspace(
+            self.NXScanControl.y_start,
+            self.NXScanControl.y_end,
+            int(self.NXScanControl.y_points),
+        )
+        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}/@units"] = (
+            self.NXScanControl.y_start_unit
+        )
