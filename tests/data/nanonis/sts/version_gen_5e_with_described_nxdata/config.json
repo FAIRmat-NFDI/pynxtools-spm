@@ -1,5 +1,8 @@
 {
     "ENTRY[entry]": {
+        "@defaut": {
+            "raw_path": "@default:/entry/currrent_grad"
+        },
         "definition": {"@version": ""},
         "experiment_instrument": {
             "LOCKIN[lockin]": {

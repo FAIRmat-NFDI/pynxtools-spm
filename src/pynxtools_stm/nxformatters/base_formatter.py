@@ -129,12 +129,14 @@ class SPMformatter(ABC):
             # Special case, will be handled in a specific function registerd
             # in self._grp_to_func
             if key in self._grp_to_func:
-                # First fill the default values
+                # Fill special fields first
+                method = getattr(self, self._grp_to_func[key])
+                method(val, parent_path, key)
+
                 self.work_though_config_nested_dict(
                     config_dict=val, parent_path=f"{parent_path}/{key}"
                 )
-                method = getattr(self, self._grp_to_func[key])
-                method(val, parent_path, key)
+
 
             # end dict of the definition path that has raw_path key
             elif isinstance(val, dict) and "raw_path" in val:

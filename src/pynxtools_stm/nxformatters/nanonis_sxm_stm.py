@@ -22,7 +22,6 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import copy
 from pynxtools_stm.nxformatters.base_formatter import SPMformatter
 from typing import Dict, Optional, Union
 from pathlib import Path
@@ -105,11 +104,16 @@ class NanonisSxmSTM(SPMformatter):
             partial_conf_dict=partial_conf_dict,
             concept_field=backward_speed_k,
         )
+        fast_axis = (
+            self.NXScanControl.fast_axis[1:]
+            if self.NXScanControl.fast_axis.startswith("-")  # -ve direction
+            else self.NXScanControl.fast_axis
+        )
         self.template[
-            f"{parent_path}/{group_name}/backward_speed_N[backward_speed_{self.NXScanControl.fast_axis}]"
+            f"{parent_path}/{group_name}/backward_speed_N[backward_speed_{fast_axis}]"
         ] = to_intended_t(backward_speed)
         self.template[
-            f"{parent_path}/{group_name}/backward_speed_N[backward_speed_{self.NXScanControl.fast_axis}]/@units"
+            f"{parent_path}/{group_name}/backward_speed_N[backward_speed_{fast_axis}]/@units"
         ] = unit
 
         # scan_point fields
@@ -409,35 +413,33 @@ class NanonisSxmSTM(SPMformatter):
         self, partial_conf_dict, parent_path, group_name, group_index=0
     ):
         """Specialization of the generic funciton to create NXdata group or plots."""
-        store_partial_dict = copy.deepcopy(partial_conf_dict)
-        super()._NXdata_grp_from_conf_description(
+        nxdata_group_nm = super()._NXdata_grp_from_conf_description(
             partial_conf_dict, parent_path, group_name, group_index
         )
-        print(" ################### ", partial_conf_dict)
-        nxdata_group_nm = store_partial_dict["grp_name"]
-        axis_x = "x"
-        axis_y = "y"
-        print(" ######################### ", group_name)
-        self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
-            axis_x,
-            axis_y,
-        ]
-        self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
-        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
-            self.NXScanControl.x_start,
-            self.NXScanControl.x_end,
-            int(self.NXScanControl.x_points),
-        )
-        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}/@units"] = (
-            self.NXScanControl.x_start_unit
-        )
+        if "0" not in partial_conf_dict:
+            axis_x = "x"
+            axis_y = "y"
+            self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
+                axis_x,
+                axis_y,
+            ]
+            self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
+                self.NXScanControl.x_start,
+                self.NXScanControl.x_end,
+                int(self.NXScanControl.x_points),
+            )
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}/@units"] = (
+                self.NXScanControl.x_start_unit
+            )
 
-        self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_y}_indices"] = 1
-        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}"] = np.linspace(
-            self.NXScanControl.y_start,
-            self.NXScanControl.y_end,
-            int(self.NXScanControl.y_points),
-        )
-        self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}/@units"] = (
-            self.NXScanControl.y_start_unit
-        )
+            self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_y}_indices"] = 1
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}"] = np.linspace(
+                self.NXScanControl.y_start,
+                self.NXScanControl.y_end,
+                int(self.NXScanControl.y_points),
+            )
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}/@units"] = (
+                self.NXScanControl.y_start_unit
+            )
+        return nxdata_group_nm

@@ -23,6 +23,7 @@ A default configuration file for Nanonis STS data from dat file.
 
 _nanonis_sts_dat_generic_5e = {
     "ENTRY[entry]": {
+        "@defaut": {"raw_path": "@default:/entry/currrent_grad"},
         "definition": {"@version": ""},
         "experiment_instrument": {
             "LOCKIN[lockin]": {

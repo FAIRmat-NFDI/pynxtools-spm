@@ -147,6 +147,7 @@ class SPMParser:
                 pass
             if raw_data_dict is not None:
                 return raw_data_dict
+        raise ValueError(f"No valid parser found to parse the file: {file}")
 
     def parse(self, file):
         return self.get_raw_data_dict(file)

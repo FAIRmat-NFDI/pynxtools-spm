@@ -66,8 +66,8 @@ class NanonisDatSTS(SPMformatter):
         return _nanonis_sts_dat_generic_5e
 
     def get_nxformatted_template(self):
-        self._format_template_from_eln()
         self.work_though_config_nested_dict(self.config_dict, "")
+        self._format_template_from_eln()
 
     def construct_scan_region_grp(
         self,
@@ -77,18 +77,6 @@ class NanonisDatSTS(SPMformatter):
     ):
         # Note: This function is for 'scan_region' under the scan_control
         # and 'scan_region' from 'bias_spec_scan_control' group
-
-        # scan range e.g. raw data "3.11737E-9;29.1583E-9;15E-9;15E-9;0E+0"
-        # that consists [offset_x, offset_y, range_x, range_y, angle]
-        # if parent_path.endswith("bias_spec_scan_control"):
-        #     scan_range = "scan_range_N[scan_range_n]"
-        #     scan_ranges, unit, _ = _get_data_unit_and_others(
-        #         data_dict=self.raw_data,
-        #         partial_conf_dict=partial_conf_dict,
-        #         concept_field=scan_range,
-        #     )
-        # else:
-        #     return
 
         scan_range = "scan_range_N[scan_range_n]"
         scan_ranges, unit, _ = _get_data_unit_and_others(

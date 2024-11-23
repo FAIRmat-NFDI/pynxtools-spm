@@ -22,24 +22,15 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pynxtools_stm.nxformatters.base_formatter import SPMformatter
 from typing import Dict, Optional, Union, TYPE_CHECKING
 from pathlib import Path
-import itertools
 from pynxtools_stm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
-from dataclasses import dataclass
-import re
+
+from pynxtools_stm.nxformatters.base_formatter import SPMformatter
 from pynxtools_stm.configs.nanonis_sxm_generic_afm import _nanonis_afm_sxm_generic_5e
 import pynxtools_stm.nxformatters.helpers as fhs
-from pynxtools.dataconverter.template import Template
-from pynxtools_stm.nxformatters.helpers import (
-    _get_data_unit_and_others,
-    _scientific_num_pattern,
-    to_intended_t,
-    get_link_compatible_key,
-    replace_variadic_name_part,
-)
 import numpy as np
+from pynxtools.dataconverter.template import Template
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
@@ -104,11 +95,6 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             parent_path=parent_path,
             group_name=group_name,
         )
-        # self.nanonis_sxm_stm.construct_scan_pattern_grp(
-        #     partial_conf_dict=partial_conf_dict,
-        #     parent_path=parent_path,
-        #     group_name=group_name,
-        # )
 
     def construct_scan_region_grp(
         self,
@@ -123,12 +109,6 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             parent_path=parent_path,
             group_name=group_name,
         )
-        # # The config file for afm is exactly the same as for stm
-        # self.nanonis_sxm_stm.construct_scan_region_grp(
-        #     partial_conf_dict=partial_conf_dict,
-        #     parent_path=parent_path,
-        #     group_name=group_name,
-        # )
 
     def construct_single_scan_data_grp(self, parent_path, plot_data_info, group_name):
         """To construct the scan data like scan_data."""
@@ -138,11 +118,6 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             plot_data_info=plot_data_info,
             group_name=group_name,
         )
-        # self.nanonis_sxm_stm.construct_single_scan_data_grp(
-        #     parent_path=parent_path,
-        #     plot_data_info=plot_data_info,
-        #     group_name=group_name,
-        # )
 
     def construct_scan_data_grps(
         self,
@@ -159,12 +134,6 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             group_name=group_name,
         )
 
-        # self.nanonis_sxm_stm.construct_scan_data_grps(
-        #     partial_conf_dict=partial_conf_dict,
-        #     parent_path=parent_path,
-        #     group_name=group_name,
-        # )
-
     def _construct_nxscan_controllers(
         self,
         partial_conf_dict,
@@ -179,8 +148,36 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             group_name=group_name,
         )
 
-        # self.nanonis_sxm_stm._construct_nxscan_controllers(
-        #     partial_conf_dict=partial_conf_dict,
-        #     parent_path=parent_path,
-        #     group_name=group_name,
-        # )
+    def _NXdata_grp_from_conf_description(
+        self, partial_conf_dict, parent_path, group_name, group_index=0
+    ):
+        nxdata_group_nm = SPMformatter._NXdata_grp_from_conf_description(
+            self, partial_conf_dict, parent_path, group_name, group_index
+        )
+        if "0" not in partial_conf_dict:
+            axis_x = "x"
+            axis_y = "y"
+            self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
+                axis_x,
+                axis_y,
+            ]
+            self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
+                self.NXScanControl.x_start,
+                self.NXScanControl.x_end,
+                int(self.NXScanControl.x_points),
+            )
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}/@units"] = (
+                self.NXScanControl.x_start_unit
+            )
+
+            self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_y}_indices"] = 1
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}"] = np.linspace(
+                self.NXScanControl.y_start,
+                self.NXScanControl.y_end,
+                int(self.NXScanControl.y_points),
+            )
+            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}/@units"] = (
+                self.NXScanControl.y_start_unit
+            )
+        return nxdata_group_nm

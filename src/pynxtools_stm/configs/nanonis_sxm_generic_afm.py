@@ -345,6 +345,22 @@ _nanonis_afm_sxm_generic_5e = {
                 "scan_name": {"raw_path": "/Scan/series name"},
                 "SCAN_CONTROL[scan_control]": {
                     "scan_name": {"raw_path": "/Scan/series name"},
+                    "scan_region": {
+                        "scan_angle_N[scan_angle_n]": {
+                            "raw_path": "/SCAN/ANGLE",
+                            "@units": "@default:deg",
+                        },
+                        "scan_offset_N[scan_offset_n]": {
+                            "#note": "Derived in function 'construct_scan_region_grp'.",
+                            "raw_path": "/SCAN/OFFSET",
+                            "@units": "/Z-Controller/Z/@unit",
+                        },
+                        "scan_range_N[scan_range_n]": {
+                            "#note": "Derived in function 'construct_scan_region_grp'.",
+                            "raw_path": "/SCAN/RANGE",
+                            "@units": "/Z-Controller/Z/@unit",
+                        },
+                    },
                     "mesh_SCAN[mesh_scan]": {
                         "backward_speed_N[backward_speed_n]": {
                             "#note": "Derived in construct_scan_pattern_grp",
@@ -443,22 +459,6 @@ _nanonis_afm_sxm_generic_5e = {
                                 "grp_name": "frequency_shift_backward",
                             },
                         ],
-                    },
-                    "scan_region": {
-                        "scan_angle_N[scan_angle_n]": {
-                            "raw_path": "/SCAN/ANGLE",
-                            "@units": "@default:deg",
-                        },
-                        "scan_offset_N[scan_offset_n]": {
-                            "#note": "Derived in function 'construct_scan_region_grp'.",
-                            "raw_path": "/SCAN/OFFSET",
-                            "@units": "/Z-Controller/Z/@unit",
-                        },
-                        "scan_range_N[scan_range_n]": {
-                            "#note": "Derived in function 'construct_scan_region_grp'.",
-                            "raw_path": "/SCAN/RANGE",
-                            "@units": "/Z-Controller/Z/@unit",
-                        },
                     },
                     "independent_scan_axes": {"raw_path": "/SCAN/DIR", "@units": ""},
                     "scan_resolution_N": "",

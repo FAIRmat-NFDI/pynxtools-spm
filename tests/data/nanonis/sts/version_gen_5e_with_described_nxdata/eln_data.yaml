@@ -1,5 +1,6 @@
 definition:
   '@version': null
+default: 'current_grad'
 experiment_technique: STS
 hardware:
   vendor:
