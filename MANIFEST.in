@@ -1,1 +1,1 @@
-recursive-include pynxtools_spm/examples **
+recursive-include src/pynxtools_spm/examples **
