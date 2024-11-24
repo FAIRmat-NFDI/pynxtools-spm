@@ -1,9 +1,9 @@
-from pynxtools_stm.reader import SPMReader
+from pynxtools_spm.reader import SPMReader
 
 from pynxtools.dataconverter.convert import convert
 import os
 
-from pynxtools_stm.parsers import write_spm_raw_file_data
+from pynxtools_spm.parsers import write_spm_raw_file_data
 
 cwd = os.getcwd()
 
@@ -20,16 +20,16 @@ def run_converter():
     input_files = []
     if technique == "sts" and default_config:
         nxdl = "NXspm"
-        data_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-stm/tests/data/nanonis/sts/version_gen_5e_default_config/STS_nanonis_generic_5e_1.dat"
-        eln_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-stm/tests/data/nanonis/sts/version_gen_5e_default_config/eln_data.yaml"
+        data_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/tests/data/nanonis/sts/version_gen_5e_default_config/STS_nanonis_generic_5e_1.dat"
+        eln_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/tests/data/nanonis/sts/version_gen_5e_default_config/eln_data.yaml"
         reader = "spm"
         output = "sts_5e_default_config.nxs"
         input_files = [data_file, eln_file]
     elif technique == "sts" and not default_config:
         nxdl = "NXspm"
-        data_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-stm/tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/STS_nanonis_generic_5e_1.dat"
-        eln_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-stm/tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/eln_data.yaml"
-        config_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-stm/tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/config.json"
+        data_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/STS_nanonis_generic_5e_1.dat"
+        eln_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/eln_data.yaml"
+        config_file = "/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/config.json"
         reader = "spm"
         output = "sts_5e_default_config.nxs"
         input_files = [data_file, eln_file, config_file]
@@ -85,14 +85,14 @@ def run_converter():
 if __name__ == "__main__":
     run_converter()
 
-    # from pynxtools_stm.parsers import write_spm_raw_file_data
+    # from pynxtools_spm.parsers import write_spm_raw_file_data
     # data_file = (
     #     f"{cwd}/tests/data/nanonis/stm/version_gen_4_5/STM_nanonis_generic_4_5.sxm"
     # )
 
     # write_spm_raw_file_data(
     #     raw_file=data_file,
-    #     output_file="/home/rubel/NOMAD-FAIRmat/GH/pynxtools-stm/tests/data/nanonis/afm/version_gen_4/A151216.123306-02602.txt",
+    #     output_file="/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/tests/data/nanonis/afm/version_gen_4/A151216.123306-02602.txt",
     # )
 
 

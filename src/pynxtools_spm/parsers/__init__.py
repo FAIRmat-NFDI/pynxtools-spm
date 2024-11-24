@@ -22,9 +22,9 @@ TODO: Add simple description of the module
 #
 
 from typing import Dict, Union, Callable, Optional, Iterable, Any
-from pynxtools_stm.parsers.nanonis_sxm import SxmGenericNanonis
-from pynxtools_stm.parsers.nanonis_dat import DatGenericNanonis
-import pynxtools_stm.parsers.helpers as phs
+from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
+from pynxtools_spm.parsers.nanonis_dat import DatGenericNanonis
+import pynxtools_spm.parsers.helpers as phs
 import logging
 from pathlib import Path, PosixPath
 import os
@@ -166,7 +166,7 @@ def get_nanonis_sxm_parsed_data(file_path: str):
     Dict
         The parsed data from the Nanonis SXM file.
     """
-    # from pynxtools_stm.parsers.nanonis_sxm import SxmGenericNanonis
+    # from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
     #
     # nanonis_sxm = SxmGenericNanonis(file_path)
     # return nanonis_sxm.get_parsed_data()
@@ -207,7 +207,7 @@ def get_nanonis_dat_parsed_data(file_path: str):
     Dict
         The parsed data from the Nanonis DAT file.
     """
-    # from pynxtools_stm.parsers.nanonis_dat import DATGenericNanonis
+    # from pynxtools_spm.parsers.nanonis_dat import DATGenericNanonis
     #
     # nanonis_dat = DATGenericNanonis(file_path)
     # return nanonis_dat.get_parsed_data()
@@ -227,7 +227,7 @@ def get_bruker_spm_parsed_data(file_path: str):
     Dict
         The parsed data from the Bruker SPM file.
     """
-    # from pynxtools_stm.parsers.bruker_spm import BrukerSPM
+    # from pynxtools_spm.parsers.bruker_spm import BrukerSPM
     #
     # bruker_spm = BrukerSPM(file_path)
     # return bruker_spm.get_parsed_data()
@@ -247,7 +247,7 @@ def get_spm_parsed_data(file_path: str):
     Dict
         The parsed data from the SPM file.
     """
-    # from pynxtools_stm.parsers.spm import SPM
+    # from pynxtools_spm.parsers.spm import SPM
     #
     # spm = SPM(file_path)
     # return spm.get_parsed_data()

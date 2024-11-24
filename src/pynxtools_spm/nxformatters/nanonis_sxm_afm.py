@@ -24,11 +24,11 @@ to NeXus application definition NXstm.
 
 from typing import Dict, Optional, Union, TYPE_CHECKING
 from pathlib import Path
-from pynxtools_stm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
+from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
 
-from pynxtools_stm.nxformatters.base_formatter import SPMformatter
-from pynxtools_stm.configs.nanonis_sxm_generic_afm import _nanonis_afm_sxm_generic_5e
-import pynxtools_stm.nxformatters.helpers as fhs
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+from pynxtools_spm.configs.nanonis_sxm_generic_afm import _nanonis_afm_sxm_generic_5e
+import pynxtools_spm.nxformatters.helpers as fhs
 import numpy as np
 from pynxtools.dataconverter.template import Template
 

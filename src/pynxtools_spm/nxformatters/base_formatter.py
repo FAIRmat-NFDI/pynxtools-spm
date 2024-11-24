@@ -24,18 +24,18 @@ from abc import ABC, abstractmethod
 from typing import Dict, Union, List, Optional
 from pathlib import Path
 from dataclasses import dataclass
-from pynxtools_stm.parsers import SPMParser
+from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 import yaml
-from pynxtools_stm.nxformatters.helpers import (
+from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     to_intended_t,
     replace_variadic_name_part,
 )
 import numpy as np
 
-from pynxtools_stm.nxformatters.helpers import replace_variadic_name_part
+from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 
 REPLACE_NESTED: Dict[str, str] = {}
 

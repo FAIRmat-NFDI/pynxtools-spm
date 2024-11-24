@@ -29,7 +29,7 @@ from pynxtools.dataconverter.readers.base.reader import BaseReader
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
-# from pynxtools_stm.helper import set_default_attr_in_group
+# from pynxtools_spm.helper import set_default_attr_in_group
 
 
 # For flatened key-value pair from nested dict.
@@ -95,7 +95,7 @@ class SPMReader(BaseReader):
 
         # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
-            from pynxtools_stm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
+            from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
 
             nss = NanonisSxmSTM(
                 template=template,
@@ -106,7 +106,7 @@ class SPMReader(BaseReader):
             nss.get_nxformatted_template()
 
         elif experirment_technique == "AFM" and raw_file_ext == "sxm":
-            from pynxtools_stm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
+            from pynxtools_spm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
 
             nsa = NanonisSxmAFM(
                 template=template,
@@ -116,7 +116,7 @@ class SPMReader(BaseReader):
             )
             nsa.get_nxformatted_template()
         elif experirment_technique == "STS" and raw_file_ext == "dat":
-            from pynxtools_stm.nxformatters.nanonis_dat_sts import NanonisDatSTS
+            from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
 
             nds = NanonisDatSTS(
                 template=template,

@@ -27,7 +27,7 @@ from typing import Dict, Optional, Tuple, Union
 
 import numpy as np
 
-# from pynxtools_stm.helper import (
+# from pynxtools_spm.helper import (
 #     UNIT_TO_SKIP,
 #     fill_template_from_eln_data,
 #     link_seperation_from_hard_code,
@@ -36,9 +36,9 @@ import numpy as np
 #     work_out_overwriteable_field,
 #     convert_data_dict_path_to_hdf5_path,
 # )
-# from pynxtools_stm.analyticalplot import dY_by_dX as dI_by_dV
+# from pynxtools_spm.analyticalplot import dY_by_dX as dI_by_dV
 
-import pynxtools_stm.parsers.helpers as phs
+import pynxtools_spm.parsers.helpers as phs
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 

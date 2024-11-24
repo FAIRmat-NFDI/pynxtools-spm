@@ -2,7 +2,7 @@ site_name: Documentation
 site_description: |
   The documentation for NOMAD.
 site_author: The NOMAD Authors
-repo_url: https://github.com/FAIRmat-NFDI/pynxtools-stm
+repo_url: https://github.com/FAIRmat-NFDI/pynxtools-spm
 site_url: https://nomad-lab.eu/prod/v1/docs/index.html
 edit_uri: ""
 use_directory_urls: false

@@ -7,7 +7,7 @@ Run the followoing command step-by-step on your linux terminal
 ```bash
 <user>$ vitualenv --python=3.10 .pyenv
 <user>$ source activate .pyenv/bin/activate
-(.pyenv) <user>$ pip install pynxtools-stm
+(.pyenv) <user>$ pip install pynxtools-spm
 ```
 
 That's it! You can run the `STM` reader from command line.
@@ -17,8 +17,8 @@ Install `STM` reader to develop according to you own expectation
 ```bash
 <user>$ vitualenv --python=3.10 .pyenv
 <user>$ source activate .pyenv/bin/activate
-(.pyenv) <user>$ git clone https://github.com/FAIRmat-NFDI/pynxtools-stm
-(.pyenv) <user>$ cd pynxtools-stm
+(.pyenv) <user>$ git clone https://github.com/FAIRmat-NFDI/pynxtools-spm
+(.pyenv) <user>$ cd pynxtools-spm
 (.pyenv) <user>$ python -m pip install --upgrade pip
 (.pyenv) <user>$ pip install -e .
 (.pyenv) <user>$ pip install -e ".[dev]"

@@ -21,7 +21,7 @@ to NeXus application definition NXstm.
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from pynxtools_stm.nxformatters.base_formatter import (
+from pynxtools_spm.nxformatters.base_formatter import (
     SPMformatter,
     PINT_QUANTITY_MAPPING,
 )
@@ -29,14 +29,14 @@ from typing import Dict
 from pathlib import Path
 from pint import UnitRegistry
 import re
-from pynxtools_stm.configs.nanonis_dat_generic_sts import _nanonis_sts_dat_generic_5e
-import pynxtools_stm.nxformatters.helpers as fhs
+from pynxtools_spm.configs.nanonis_dat_generic_sts import _nanonis_sts_dat_generic_5e
+import pynxtools_spm.nxformatters.helpers as fhs
 from pynxtools.dataconverter.template import Template
-from pynxtools_stm.nxformatters.helpers import (
+from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _scientific_num_pattern,
 )
-from pynxtools_stm.nxformatters.helpers import cal_dx_by_dy
+from pynxtools_spm.nxformatters.helpers import cal_dx_by_dy
 import numpy as np
 
 ureg = UnitRegistry()

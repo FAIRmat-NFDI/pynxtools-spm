@@ -22,14 +22,14 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pynxtools_stm.nxformatters.base_formatter import SPMformatter
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 from typing import Dict, Optional, Union
 from pathlib import Path
 import re
-from pynxtools_stm.configs.nanonis_sxm_generic_stm import _nanonis_stm_sxm_generic_5e
-import pynxtools_stm.nxformatters.helpers as fhs
+from pynxtools_spm.configs.nanonis_sxm_generic_stm import _nanonis_stm_sxm_generic_5e
+import pynxtools_spm.nxformatters.helpers as fhs
 from typing import TYPE_CHECKING
-from pynxtools_stm.nxformatters.helpers import (
+from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _scientific_num_pattern,
     to_intended_t,

@@ -24,10 +24,10 @@ import os
 import re
 
 import numpy as np
-import pynxtools_stm.parsers.helpers as phs
-import pynxtools_stm.parsers.nanonispy as nap
-from pynxtools_stm.parsers.base_parser import SPMBase
-from pynxtools_stm.parsers.helpers import (
+import pynxtools_spm.parsers.helpers as phs
+import pynxtools_spm.parsers.nanonispy as nap
+from pynxtools_spm.parsers.base_parser import SPMBase
+from pynxtools_spm.parsers.helpers import (
     UNIT_TO_SKIP,
     # fill_template_from_eln_data,
     # link_seperation_from_hard_code,

@@ -1,4 +1,4 @@
-name: pynxtools-stm package
+name: pynxtools-spm package
 
 on:
   push:

@@ -50,6 +50,6 @@ The reader is the part of project [FAIRmat](https://www.fairmat-nfdi.eu/fairmat)
 
 - [FAIRmat project](https://gepris.dfg.de/gepris/projekt/460197019?language=en) which is funded by [NFDI](https://www.nfdi.de/)
 - Reach NOMAD via [MATSCI community discourse](https://matsci.org/c/nomad/32)
-- Reach reader developers via [GitHub issue tracker](https://github.com/FAIRmat-NFDI/pynxtools-stm/issues)
+- Reach reader developers via [GitHub issue tracker](https://github.com/FAIRmat-NFDI/pynxtools-spm/issues)
 - Reach pynxtools developers via [GitHub issue tracker](https://github.com/FAIRmat-NFDI/pynxtools/issues)
 - Reach the NeXus-FAIRmat community via the [webpage](https://fairmat-nfdi.github.io/nexus_definitions/) or the [GitHub issue tracker](https://fairmat-nfdi.github.io/nexus_definitions/) 

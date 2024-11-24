@@ -498,7 +498,7 @@ There are a few functions that you can utilize to make this reader compatible wi
 - **get_stm_raw_file_info()**: For `STM` experiments, the function can return the slash separated dict in a text file. This dict helps to write or modify the config file according to the raw data file. 
 
   ```python
-  from pynxtools_stm import get_stm_raw_file_info
+  from pynxtools_spm import get_stm_raw_file_info
 
   # for stm (.sxm) file
   get_stm_raw_file_info('STM_nanonis_generic_5e.sxm')
@@ -507,7 +507,7 @@ There are a few functions that you can utilize to make this reader compatible wi
 - **get_sts_raw_file_info**: For `STS` experiment to get the slash separated dict from the `STS` raw file one can use this function. It will write a txt file in the working directory.
 
   ```python
-  from pynxtools_stm import get_sts_raw_file_info
+  from pynxtools_spm import get_sts_raw_file_info
 
   # for sts (.dat) file
   get_sts_raw_file_info('STS_nanonis_generic_5e_1.dat')

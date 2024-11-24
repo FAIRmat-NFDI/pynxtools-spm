@@ -3,12 +3,12 @@ requires = ["setuptools>=64.0.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pynxtools-stm"
+name = "pynxtools-spm"
 dynamic = ["version"]
 authors = [
     { name = "The NOMAD Authors" },
 ]
-description = "A plugin for pynxtools to convert sts and stm files"
+description = "A plugin of pynxtools to convert exprimental file from STS, STM, and AFM to NeXus format."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
@@ -31,7 +31,7 @@ dependencies = [
 # TODO: Add acknowledgements to pySPM python package
 
 [project.urls]
-"GitHub page" = "https://github.com/FAIRmat-NFDI/pynxtools-stm"
+"GitHub page" = "https://github.com/FAIRmat-NFDI/pynxtools-spm"
 "Parent Project" =  "https://github.com/FAIRmat-NFDI"
 
 [project.optional-dependencies]
@@ -40,7 +40,6 @@ dev = [
     "ruff==0.3.4",
     "pytest",
     "pip-tools",
-
 ]
 
 docs = [
@@ -52,18 +51,18 @@ docs = [
 ]
 
 [project.entry-points."pynxtools.reader"]
-spm = "pynxtools_stm.reader:SPMReader"
+spm = "pynxtools_spm.reader:SPMReader"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-# include = ["src/pynxtools_stm"]
+# include = ["src/pynxtools_spm"]
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 
 [tool.ruff]
-include = ["src/pynxtools_stm/*.py", "tests/*.py"]
+include = ["src/pynxtools_spm/*.py", "tests/*.py"]
 lint.select = [
     "E", # pycodestyle
     "W", # pycodestyle
