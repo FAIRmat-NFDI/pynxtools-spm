@@ -37,7 +37,6 @@ from pynxtools_spm.nxformatters.helpers import (
     _scientific_num_pattern,
 )
 from pynxtools_spm.nxformatters.helpers import cal_dx_by_dy
-import numpy as np
 
 ureg = UnitRegistry()
 
@@ -211,7 +210,7 @@ class NanonisDatSTS(SPMformatter):
         if current and voltage:
             flip_number = None
             for key, val in self.eln.items():
-                if key.endswith("lockin_current_flip_value") and val is not None:
+                if key.endswith("lockin_current_flip_sign") and val is not None:
                     flip_number = val
             if flip_number is None:
                 raise ValueError(

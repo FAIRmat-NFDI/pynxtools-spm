@@ -33,7 +33,7 @@ experiment_instrument:
     reference_phase:
       value: null
       unit: null
-    lockin_current_flip_value:
+    lockin_current_flip_sign:
       value: -1.0
   Temperature:
     Channel_temp: null
