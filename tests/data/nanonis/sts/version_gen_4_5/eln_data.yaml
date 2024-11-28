@@ -35,8 +35,6 @@ experiment_instrument:
         unit: null
   bias_spectroscopy_environment:
     Bias_spectroscopy:
-      bias_flip_value:
-        value: null
       Positioner_spm:
         z_controller:
           record_final_z: null
