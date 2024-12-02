@@ -23,7 +23,7 @@ A default configuration file for Nanonis STS data from dat file.
 
 _nanonis_sts_dat_generic_5e = {
     "ENTRY[entry]": {
-        "@defaut": {"raw_path": "@default:/entry/currrent_grad"},
+        "@default": {"raw_path": "@default:current"},
         "definition": {"@version": ""},
         "experiment_instrument": {
             "LOCKIN[lockin]": {
@@ -39,7 +39,6 @@ _nanonis_sts_dat_generic_5e = {
                 },
                 "demodulated_signal": {
                     "raw_path": "@default:Current",
-                    "@units": "/Lock-in/Demodulated signal/Current/unit",
                 },
                 "reference_amplitude": {  # TODO: Modify amplitude unit to ANY in NXlockin
                     "raw_path": "/Lock-in/Amplitude/value",
@@ -447,44 +446,44 @@ _nanonis_sts_dat_generic_5e = {
                         "drift_N[drift_n]": [
                             {
                                 "x": {
-                                    "value": "/Piezo Configuration/Drift X/value",
+                                    "raw_path": "/Piezo Configuration/Drift X/value",
                                     "unit": "/Piezo Configuration/Drift X/unit",
                                 }
                             },
                             {
                                 "y": {
-                                    "value": "/Piezo Configuration/Drift Y/value",
+                                    "raw_path": "/Piezo Configuration/Drift Y/value",
                                     "unit": "/Piezo Configuration/Drift Y/unit",
                                 }
                             },
                             {
                                 "z": {
-                                    "value": "/Piezo Configuration/Drift Z/value",
+                                    "raw_path": "/Piezo Configuration/Drift Z/value",
                                     "unit": "/Piezo Configuration/Drift Z/unit",
                                 }
                             },
                         ],
                         "hv_gain_N[hv_gain_n]": [
-                            {"x": {"value": "/Piezo Configuration/HV Gain X/value"}},
-                            {"y": {"value": "/Piezo Configuration/HV Gain Y/value"}},
-                            {"z": {"value": "/Piezo Configuration/HV Gain Z/value"}},
+                            {"x": {"raw_path": "/Piezo Configuration/HV Gain X/value"}},
+                            {"y": {"raw_path": "/Piezo Configuration/HV Gain Y/value"}},
+                            {"z": {"raw_path": "/Piezo Configuration/HV Gain Z/value"}},
                         ],
                         "tilt_N[tilt_n]": [
                             {
                                 "x": {
-                                    "value": "/Piezo Configuration/Tilt X/value",
+                                    "raw_path": "/Piezo Configuration/Tilt X/value",
                                     "@units": "/Piezo Configuration/Tilt X/unit",
                                 }
                             },
                             {
                                 "y": {
-                                    "value": "/Piezo Configuration/Tilt Y/value",
+                                    "raw_path": "/Piezo Configuration/Tilt Y/value",
                                     "@units": "/Piezo Configuration/Tilt Y/unit",
                                 }
                             },
                             {
                                 "z": {
-                                    "value": "/Piezo Configuration/Tilt Z/value",
+                                    "raw_path": "/Piezo Configuration/Tilt Z/value",
                                     "@units": "/Piezo Configuration/Tilt Z/unit",
                                 }
                             },
@@ -529,7 +528,7 @@ _nanonis_sts_dat_generic_5e = {
                         },
                         "set_point": {
                             "raw_path": "/Z-Controller/Setpoint/value",
-                            "@units": "/Z-Controller/Setpoint/unit",
+                            "@units": "/Z-Controller/Setpoint unit/value",
                         },
                         "tip_lift": {
                             "raw_path": "/Z-Controller/TipLift/value",
@@ -563,17 +562,17 @@ _nanonis_sts_dat_generic_5e = {
                     "scan_name": {
                         "raw_path": "/Scan/series name/value",
                     },
+                    "scan_region": {
+                        "scan_angle_N[scan_angle_n]": "",
+                        "scan_offset_N[scan_offset_n]": "",
+                        "scan_range_N[scan_range_n]": "",
+                    },
                     "mesh_SCAN[mesh_scan]": {
                         "forward_speed_N[forward_speed_n]": "",
                         "backward_speed_N[backward_speed_n]": "",
                         "scan_speed": {"@units": ""},
                         "scan_time": {"@units": ""},
                         "SCAN_data[scan_data]": "",
-                    },
-                    "scan_region": {
-                        "scan_angle_N[scan_angle_n]": "",
-                        "scan_offset_N[scan_offset_n]": "",
-                        "scan_range_N[scan_range_n]": "",
                     },
                     "scan_type": "",
                 },

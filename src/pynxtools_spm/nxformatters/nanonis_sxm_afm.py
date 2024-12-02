@@ -73,7 +73,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         # self.nanonis_sxm_stm.config_dict = self.config_dict
 
     def get_nxformatted_template(self):
-        self.work_though_config_nested_dict(self.config_dict, "")
+        self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
 
     def _get_conf_dict(self, config_file: str = None):

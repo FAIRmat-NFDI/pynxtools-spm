@@ -31,6 +31,8 @@ from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 # from pynxtools_spm.helper import set_default_attr_in_group
 
+# import debugpy
+# debugpy.debug_this_thread()
 
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
@@ -55,7 +57,7 @@ def manually_filter_data_type(template):
 class SPMReader(BaseReader):
     """Reader for XPS."""
 
-    supported_nxdls = ["NXstm", "NXspm", "NXafm"]
+    supported_nxdls = ["NXspm", "NXsts", "NXstm", "NXafm"]
 
     def read(
         self,

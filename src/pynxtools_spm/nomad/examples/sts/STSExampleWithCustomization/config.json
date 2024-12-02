@@ -1,7 +1,7 @@
 {
     "ENTRY[entry]": {
-        "@defaut": {
-            "raw_path": "@default:/entry/currrent_grad"
+        "@default": {
+            "raw_path": "@default:current"
         },
         "definition": {"@version": ""},
         "experiment_instrument": {
@@ -426,44 +426,44 @@
                         "drift_N[drift_n]": [
                             {
                                 "x": {
-                                    "value": "/Piezo Configuration/Drift X/value",
-                                    "unit": "/Piezo Configuration/Drift X/unit"
+                                    "raw_path": "/Piezo Configuration/Drift X/value",
+                                    "@units": "/Piezo Configuration/Drift X/unit"
                                 }
                             },
                             {
                                 "y": {
-                                    "value": "/Piezo Configuration/Drift Y/value",
-                                    "unit": "/Piezo Configuration/Drift Y/unit"
+                                    "raw_path": "/Piezo Configuration/Drift Y/value",
+                                    "@units": "/Piezo Configuration/Drift Y/unit"
                                 }
                             },
                             {
                                 "z": {
-                                    "value": "/Piezo Configuration/Drift Z/value",
-                                    "unit": "/Piezo Configuration/Drift Z/unit"
+                                    "raw_path": "/Piezo Configuration/Drift Z/value",
+                                    "@units": "/Piezo Configuration/Drift Z/unit"
                                 }
                             }
                         ],
                         "hv_gain_N[hv_gain_n]": [
-                            {"x": {"value": "/Piezo Configuration/HV Gain X/value"}},
-                            {"y": {"value": "/Piezo Configuration/HV Gain Y/value"}},
-                            {"z": {"value": "/Piezo Configuration/HV Gain Z/value"}}
+                            {"x": {"raw_path": "/Piezo Configuration/HV Gain X/value"}},
+                            {"y": {"raw_path": "/Piezo Configuration/HV Gain Y/value"}},
+                            {"z": {"raw_path": "/Piezo Configuration/HV Gain Z/value"}}
                         ],
                         "tilt_N[tilt_n]": [
                             {
                                 "x": {
-                                    "value": "/Piezo Configuration/Tilt X/value",
+                                    "raw_path": "/Piezo Configuration/Tilt X/value",
                                     "@units": "/Piezo Configuration/Tilt X/unit"
                                 }
                             },
                             {
                                 "y": {
-                                    "value": "/Piezo Configuration/Tilt Y/value",
+                                    "raw_path": "/Piezo Configuration/Tilt Y/value",
                                     "@units": "/Piezo Configuration/Tilt Y/unit"
                                 }
                             },
                             {
                                 "z": {
-                                    "value": "/Piezo Configuration/Tilt Z/value",
+                                    "raw_path": "/Piezo Configuration/Tilt Z/value",
                                     "@units": "/Piezo Configuration/Tilt Z/unit"
                                 }
                             }

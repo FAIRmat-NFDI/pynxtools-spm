@@ -70,7 +70,7 @@ class NanonisSxmSTM(SPMformatter):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 
     def get_nxformatted_template(self):
-        self.work_though_config_nested_dict(self.config_dict, "")
+        self.walk_though_config_nested_dict(self.config_dict, "")
 
     def _get_conf_dict(self, config_file: str = None):
         if config_file is not None:
@@ -184,7 +184,13 @@ class NanonisSxmSTM(SPMformatter):
             partial_conf_dict=partial_conf_dict,
             concept_field=scan_angle,
         )
-        scan_angles = to_intended_t(re.findall(_scientific_num_pattern, scan_angles))
+        if isinstance(scan_angles, str):
+            scan_angles = to_intended_t(
+                re.findall(_scientific_num_pattern, scan_angles)
+            )
+        elif isinstance(scan_angles, (int, float)):
+            scan_angles = [scan_angles]
+
         for ind, angle in enumerate(scan_angles):
             ang_key = (
                 f"{parent_path}/{group_name}/scan_angle_N[scan_angle_{self._axes[ind]}]"

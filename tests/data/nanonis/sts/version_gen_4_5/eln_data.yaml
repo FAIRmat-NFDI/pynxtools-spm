@@ -77,7 +77,7 @@ experiment_instrument:
       '@version': null
     vendor: null
   piezo_sensor:
-    piezo_configuration::
+    piezo_configuration:
       calibration:
         calibration_type: 'Active'
         calibration_name: '4k'

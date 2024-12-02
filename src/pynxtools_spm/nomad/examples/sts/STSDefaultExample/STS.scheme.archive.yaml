@@ -31,6 +31,16 @@ definitions:
           description: |
             Name of the definitions from NeXus app def designed for STS experiments, one can use 
             NXsts or NXspm, but NXsts is recommended.
+        experiment_technique:
+          type:
+            type_kind: Enum
+            type_data:
+              - STS
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+          description: |
+            Name of the technique used for the experiment, e.g. STS.
         experiment_description:
           type: str
           m_annotations:
@@ -110,35 +120,48 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                quantities:
-                  name:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                      Name of the hardware. (e.g. Nanonis).
-                  model:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                        Version or model of the component named by the manufacturer (e.g. Nanonis).
-                
-                  model/@version:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                      If model has a distinquishable version (e.g. BP5e).
+                  quantities:
+                    name:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the hardware. (e.g. Nanonis).
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the manufacturer of the hardware (e.g. Nanonis).
+                    model:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                          Version or model of the component named by the manufacturer (e.g. Generic 5e).
+                    model/@version:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        If model has a distinquishable version (e.g. BP5e).
               software:
                 section:
                   m_annotations:
                     eln:
                       overview: true
                   quantities:
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the manufacturer of the software.
                     name:
                       type: str
                       m_annotations:
@@ -152,7 +175,9 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        Version or model of the component named by the manufacturer (e.g. Nanonis).
+                        Version or model, required to choose correct file parser, of the component named 
+                        by the manufacturer (e.g. Generic 5e).
+                        Note that model should be exactly the same as the one in the experiment file.
                     model/@version:
                       type: str
                       m_annotations:
@@ -165,26 +190,26 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                quantities:
-                  modulation_signal:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                      Type of the signal either in voltage or current.
-                  lockin_current_flip_sign:
-                    type: np.float64
-                    m_annotations:
-                      eln:
-                        component: NumberEditQuantity
-                    description: |
-                      The sign (1 or -1) that defines the sign of the lock-in current.
-                      The calibration procedure with retracted tip is normally performed
-                      to compensate for the signal phase delay in SPM. The procedure 
-                      yields two possible solutions, this number should be equal to 1 or -1
-                      depending on which solution is chosen (this concept mainly used in 
-                      STS experiments, e.g. in Nanonis machine).
+                  quantities:
+                    modulation_signal:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Type of the signal either in voltage or current.
+                    lockin_current_flip_sign:
+                      type: np.float64
+                      m_annotations:
+                        eln:
+                          component: NumberEditQuantity
+                      description: |
+                        The sign (1 or -1) that defines the sign of the lock-in current.
+                        The calibration procedure with retracted tip is normally performed
+                        to compensate for the signal phase delay in SPM. The procedure 
+                        yields two possible solutions, this number should be equal to 1 or -1
+                        depending on which solution is chosen (this concept mainly used in 
+                        STS experiments, e.g. in Nanonis machine).
               scan_environment:
                 section:
                   m_annotations:
@@ -193,6 +218,7 @@ definitions:
                   quantities:
                     tip_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -203,6 +229,7 @@ definitions:
                         At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
                     cryo_bottom_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -212,6 +239,7 @@ definitions:
                         At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
                     cryo_shield_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -277,11 +305,11 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                quantities:
-                  notes:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: RichTextEditQuantity
-                    description: |
-                      Notes about the sample history.
+                  quantities:
+                    notes:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: RichTextEditQuantity
+                      description: |
+                        Notes about the sample history.

@@ -88,8 +88,9 @@ def _get_data_unit_and_others(
             }
 
         partial_conf_dict : Dict[str, Any]
-            The dict that maps from nx concept field (or group especially for NXdata) to dict which explains
-            raw data path, units, and other attributes (if exists).
+            The dict is a map from nx concept field (or group especially for NXdata)
+            to dict which explains raw data path, units, and other attributes (
+            if exists).
 
             example for grp "scan_region"
             partial_conf_dict ={
@@ -110,14 +111,19 @@ def _get_data_unit_and_others(
             The name of the concept field which is a key in partial_conf_dict
 
             example: scan_angle_N[scan_angle_n]
+        end_dict : Dict[str, Any]
+            Tail dictionary of the config file. With this parameter the function does
+            not need any concept_field.
+            {
+                "raw_path": "/SCAN/ANGLE",
+                "@units": "@default:deg"
+            },
 
     Returns:
     --------
         tuple :
             The tuple contains components like raw data string, unit string, and dict that
             contains other attributes (if any attributes comes as a part of value dict).
-            See the example below.
-
     """
 
     if end_dict is None:
@@ -155,8 +161,9 @@ def _get_data_unit_and_others(
         unit = unit_path.split("@default:")[-1]
     else:
         unit = data_dict.get(unit_path, None)
-    # TODO: write a function that write other attributes in general and use that func where this function is used
-    return raw_data, _verify_unit(unit=unit), val_copy
+    if unit is None or unit == "":
+        return to_intended_t(raw_data), "", val_copy
+    return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
 
 
 # pylint: disable=too-many-return-statements
@@ -194,7 +201,15 @@ def to_intended_t(str_value):
         return str_value
 
     if isinstance(str_value, str):
-        if str_value in (
+        off_on = {
+            "off": "false",
+            "on": "true",
+            "OFF": "false",
+            "ON": "true",
+            "Off": "false",
+            "On": "true",
+        }
+        inf_nan = (
             "infinitiy",
             "-infinity",
             "Infinity",
@@ -209,8 +224,12 @@ def to_intended_t(str_value):
             "-INF",
             "NaN",
             "nan",
-        ):
+        )
+        if str_value in inf_nan:
             return None
+        elif str_value in off_on:
+            return off_on[str_value]
+
         try:
             transformed = int(str_value)
             return transformed

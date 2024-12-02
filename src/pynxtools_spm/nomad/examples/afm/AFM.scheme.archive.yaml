@@ -31,6 +31,16 @@ definitions:
           description: |
             Name of the definitions from NeXus app def designed for STS experiments, one can use 
             NXsts or NXspm, but NXsts is recommended.
+        experiment_technique:
+          type:
+            type_kind: Enum
+            type_data:
+              - AFM
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+          description: |
+            Name of the technique used for the experiment, e.g. AFM.
         scan_mode:
           type:
             type_kind: Enum
@@ -124,35 +134,48 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                quantities:
-                  name:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                      Name of the hardware. (e.g. Nanonis).
-                  model:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                        Version or model of the component named by the manufacturer (e.g. Nanonis).
-                
-                  model/@version:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: StringEditQuantity
-                    description: |
-                      If model has a distinquishable version (e.g. BP5e).
+                  quantities:
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the vendor of the hardware. (e.g. Nanonis).
+                    name:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the hardware. (e.g. Nanonis).
+                    model:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                          Version or model of the component named by the manufacturer (e.g. Nanonis).
+                    model/@version:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        If model has a distinquishable version (e.g. BP5e).
               software:
                 section:
                   m_annotations:
                     eln:
                       overview: true
                   quantities:
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the vendor of the software. (e.g. Nanonis).
                     name:
                       type: str
                       m_annotations:
@@ -166,7 +189,8 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        Version or model of the component named by the manufacturer (e.g. Nanonis).
+                        Version or model of the component named by the manufacturer (e.g. Generic 4).
+                        Note that this should be exacty the same as in experiment file.
                     model/@version:
                       type: str
                       m_annotations:
@@ -266,11 +290,11 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                quantities:
-                  notes:
-                    type: str
-                    m_annotations:
-                      eln:
-                        component: RichTextEditQuantity
-                    description: |
-                      Notes about the sample history.
+                  quantities:
+                    notes:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: RichTextEditQuantity
+                      description: |
+                        Notes about the sample history.

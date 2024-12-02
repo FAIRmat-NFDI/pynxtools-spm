@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TODO: Add simple description of the module
+Chosses the appropriate parser based on the file extension and the ELN data.
 """
 # -*- coding: utf-8 -*-
 #
@@ -52,14 +52,15 @@ class SPMParser:
     __parser_navigation: Dict[str, par_nav_t] = {
         "sxm": {
             "nanonis": {
-                "Generic 5e": SxmGenericNanonis,
-                "Generic 4.5": SxmGenericNanonis,
+                "generic5e": SxmGenericNanonis,
+                "generic4.5": SxmGenericNanonis,
+                "generic4": SxmGenericNanonis,
             }
         },
         "dat": {
             "nanonis": {
-                "Generic 5e": DatGenericNanonis,
-                "Generic 4.5": DatGenericNanonis,
+                "generic5e": DatGenericNanonis,
+                "generic4.5": DatGenericNanonis,
             }
         },
     }
@@ -74,10 +75,13 @@ class SPMParser:
 
         Parameters
         ----------
+        file : Union[str, Path]
+            File path to parse.
         eln : Dict
             User provided eln file (yaml) that must contain all the info about
             experiment, vendor's name and version of the vendor's software.
-
+        file_ext : Optional[str], optional
+            File extension (e.g. 'sxm'), by default None
         Returns
         -------
             Return callable function that has capability to run the correponding parser.
@@ -101,33 +105,27 @@ class SPMParser:
                 f" from {list(self.__parser_navigation.keys())}."
             ) from exc
 
-        vendor_key: str = "/ENTRY[entry]/INSTRUMENT[instrument]/software/vendor"
+        vendor_key: str = "/ENTRY[entry]/experiment_instrument/software/vendor"
         vendor_n: str = eln.get(vendor_key, None)
         try:
-            vendor_dict: SPMParser.par_nav_t = experiment_dict.get(vendor_n, {})  # type: ignore[assignment]
+            vendor_dict: SPMParser.par_nav_t = experiment_dict.get(vendor_n.lower(), {})  # type: ignore[assignment]
         except (KeyError, ValueError):
             pass
 
-        software_v_key: str = (
-            "/ENTRY[entry]/INSTRUMENT[instrument]/software/model/@version"
-        )
+        software_v_key: str = "/ENTRY[entry]/experiment_instrument/software/model"
         software_v: str = eln.get(software_v_key, None)
+        software_v = software_v.replace(" ", "").lower()
         try:
             parser_cls: Callable = vendor_dict.get(software_v, None)  # type: ignore[assignment]
-            if isinstance(parser_cls, Callable):
-                parser = parser_cls()
+            return iter([parser_cls])
         except (ValueError, KeyError):
             pass
-
         # collect all parsers
         if parser is None:
             flat_dict = {}
             phs.nested_path_to_slash_separated_path(experiment_dict, flat_dict)
 
             return flat_dict.values()
-
-        # Return callable function
-        return iter([parser])
 
     def get_raw_data_dict(
         self,
@@ -166,10 +164,6 @@ def get_nanonis_sxm_parsed_data(file_path: str):
     Dict
         The parsed data from the Nanonis SXM file.
     """
-    # from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
-    #
-    # nanonis_sxm = SxmGenericNanonis(file_path)
-    # return nanonis_sxm.get_parsed_data()
     return SPMParser().get_raw_data_dict(file_path)
 
 
@@ -207,10 +201,6 @@ def get_nanonis_dat_parsed_data(file_path: str):
     Dict
         The parsed data from the Nanonis DAT file.
     """
-    # from pynxtools_spm.parsers.nanonis_dat import DATGenericNanonis
-    #
-    # nanonis_dat = DATGenericNanonis(file_path)
-    # return nanonis_dat.get_parsed_data()
     raise NotImplementedError("This function is not implemented yet.")
 
 
@@ -227,10 +217,6 @@ def get_bruker_spm_parsed_data(file_path: str):
     Dict
         The parsed data from the Bruker SPM file.
     """
-    # from pynxtools_spm.parsers.bruker_spm import BrukerSPM
-    #
-    # bruker_spm = BrukerSPM(file_path)
-    # return bruker_spm.get_parsed_data()
     raise NotImplementedError("This function is not implemented yet.")
 
 
@@ -247,8 +233,4 @@ def get_spm_parsed_data(file_path: str):
     Dict
         The parsed data from the SPM file.
     """
-    # from pynxtools_spm.parsers.spm import SPM
-    #
-    # spm = SPM(file_path)
-    # return spm.get_parsed_data()
     raise NotImplementedError("This function is not implemented yet.")

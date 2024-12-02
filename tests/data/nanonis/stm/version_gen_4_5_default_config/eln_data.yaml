@@ -1,19 +1,19 @@
 experiment_technique: STM
-hardware:
-  vendor:
-    value: 'Nanonis'
-  model:
-    value: 'Generic 4.5'
-  model/@version:
-    value: 'Generic 4.5'
-software:
-  vendor:
-    value: 'Nanonis'
-  model:
-    value: 'Generic 4.5'
-  model/@version:
-    value: 'Generic 4.5'
 experiment_instrument:
+  hardware:
+    vendor:
+      value: 'Nanonis'
+    model:
+      value: 'Generic 4.5'
+    model/@version:
+      value: 'Generic 4.5'
+  software:
+    vendor:
+      value: 'Nanonis'
+    model:
+      value: 'Generic 4.5'
+    model/@version:
+      value: 'Generic 4.5'
   lockin_amplifier:
     modulation_frequency: null
     modulation_signal_type: null
