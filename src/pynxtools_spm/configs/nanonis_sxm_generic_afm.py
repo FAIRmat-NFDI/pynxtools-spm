@@ -23,8 +23,8 @@ A default configuration file for Nanonis STM data from SXM file.
 
 _nanonis_afm_sxm_generic_5e = {
     "ENTRY[entry]": {
-        "@defaut": {
-            "raw_path": "@default:/entry/experiment_instrument/scan_environment/scan_control/mesh_scan/amplitude_backward/amplitude_backward",
+        "@default": {
+            "raw_path": "@default:amplitude_backward",
         },
         "definition": {"@version": None},
         "collection_identifier": "",

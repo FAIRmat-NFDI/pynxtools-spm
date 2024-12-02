@@ -323,8 +323,8 @@ The config file is used to map the raw data coming from the STS experiment file 
 ```json
 {
     "ENTRY[entry]": {
-        "@defaut": {
-            "raw_path": "@default:/entry/experiment_instrument/scan_environment/scan_control/mesh_scan/current_backward"
+        "@default": {
+            "raw_path": "@default:current_backward"
         },
         "collection_identifier": "",
         "definition": "",
@@ -403,7 +403,6 @@ The config file is used to map the raw data coming from the STS experiment file 
             "LOCKIN[lockin]": {
                 "demodulated_signal": {
                     "raw_path": "/Lock-in/Demodulated signal",
-                    "@units": "/Lock-in/Demodulated signal/@unit"
                 },
                 "modulation_status": {"raw_path": "/Lock-in/Lock-in status"},
                 "low_pass_N": [

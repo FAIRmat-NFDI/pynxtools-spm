@@ -25,6 +25,7 @@ from pynxtools_spm.nxformatters.base_formatter import (
     SPMformatter,
     PINT_QUANTITY_MAPPING,
 )
+from dataclasses import dataclass
 from typing import Dict
 from pathlib import Path
 from pint import UnitRegistry
@@ -43,11 +44,30 @@ ureg = UnitRegistry()
 
 class NanonisDatSTS(SPMformatter):
     _grp_to_func = {
-        "scan_region": "construct_scan_region_grp",
-        # "TEMPERATURE_DATA[temperature_data]": "construct_temperature_data_grp",
-        # "SCAN_data[scan_data]": "construct_scan_data_grp",
+        "SCAN_CONTROL[bias_spec_scan_control]": "_construct_nxscan_controllers",
+        "bias_sweep": "_construct_bias_sweep_grp",
     }
     _axes = ["x", "y", "z"]
+
+    @dataclass
+    class TmpConceptsVal:
+        flip_number: int = None
+
+    @dataclass
+    class BiasSweep:
+        """Storage to store data from bias_sweep and reuse them"""
+
+        scan_offset_bias: float
+        scan_offset_bias_unit: str
+        scan_range_bias: float
+        scan_range_bias_unit: str
+        scan_start_bias: float
+        scan_start_bias_unit: str
+        scan_end_bias: float
+        scan_end_bias_unit: str
+        scan_points_bias: float
+        scan_size_bias: float
+        scan_size_bias_unit: str
 
     def __init__(
         self,
@@ -65,7 +85,7 @@ class NanonisDatSTS(SPMformatter):
         return _nanonis_sts_dat_generic_5e
 
     def get_nxformatted_template(self):
-        self.work_though_config_nested_dict(self.config_dict, "")
+        self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
 
     def construct_scan_region_grp(
@@ -74,6 +94,11 @@ class NanonisDatSTS(SPMformatter):
         parent_path: str,
         group_name="scan_region",
     ):
+        """Function for constructing the 'scan_region' group upder tree
+        scan_environment:
+            SCAN_CONTROL[bias_spec_scan_control]:
+                scan_region: {...}
+        """
         # Note: This function is for 'scan_region' under the scan_control
         # and 'scan_region' from 'bias_spec_scan_control' group
 
@@ -126,6 +151,20 @@ class NanonisDatSTS(SPMformatter):
                 self.NXScanControl.y_end = rng + off
                 self.NXScanControl.y_end_unit = unit
 
+    def _construct_nxscan_controllers(self, partial_conf_dict, parent_path, group_name):
+        scan_region = "scan_region"
+        mesh_scan = "mesh_SCAN[mesh_scan]"
+        for key, val in partial_conf_dict.items():
+            if scan_region == key:
+                self.construct_scan_region_grp(
+                    partial_conf_dict=val,
+                    parent_path=f"{parent_path}/{group_name}",
+                    group_name=scan_region,
+                )
+            if mesh_scan == key:
+                # Yet to iplement mesh scan
+                pass
+
     def construct_temperature_data_grp(
         self,
         partial_conf_dict,  # TODO rename partial_conf_dict to partial_conf_dict_or_list everywhere
@@ -138,15 +177,86 @@ class NanonisDatSTS(SPMformatter):
                     conf_dict, parent_path, group_name, ind
                 )
 
-    def construct_scan_data_grp(self, partial_conf_dict, parent_path: str, group_name):
-        if isinstance(partial_conf_dict, list):
-            for ind, conf_dict in enumerate(partial_conf_dict):
-                _ = self._NXdata_grp_from_conf_description(
-                    conf_dict, parent_path, group_name, group_index=ind
+    def _construct_linear_sweep_grp(self, partial_conf_dict, parent_path, group_name):
+        """Constructs the linear_sweep group under the group tree
+        BIAS_SPECTROSCOPY[bias_spectroscopy]:
+            bias_seep:
+                linear_sweep: {...}
+        """
+        scan_points = "scan_points_bias"
+        step_size = "step_size_bias"
+        for key, _ in partial_conf_dict.items():
+            if scan_points == key:
+                data, _, _ = _get_data_unit_and_others(
+                    data_dict=self.raw_data,
+                    partial_conf_dict=partial_conf_dict,
+                    concept_field=scan_points,
                 )
+                self.template[f"{parent_path}/{group_name}/{scan_points}"] = data
+                self.BiasSweep.scan_points_bias = data
+        self.template[f"{parent_path}/{group_name}/{step_size}"] = (
+            self.BiasSweep.scan_end_bias - self.BiasSweep.scan_start_bias
+        ) / self.BiasSweep.scan_points_bias
+        self.template[f"{parent_path}/{group_name}/{step_size}/@units"] = (
+            self.BiasSweep.scan_start_bias_unit
+        )
 
-    def _construct_nxscan_controllers(self, partial_conf_dict, parent_path, group_name):
-        pass
+    def _construct_scan_region_grp_in_bias_spec(
+        self, partial_conf_dict, parent_path, group_name
+    ):
+        """Constructs the scan_region group under the group tree
+        BIAS_SPECTROSCOPY[bias_spectroscopy]:
+            bias_seep:
+                linear_sweep: {...}
+        """
+        bias_start = "scan_start_bias"
+        bias_end = "scan_end_bias"
+
+        for key, _ in partial_conf_dict.items():
+            if bias_start == key:
+                data, unit, _ = _get_data_unit_and_others(
+                    data_dict=self.raw_data,
+                    partial_conf_dict=partial_conf_dict,
+                    concept_field=bias_start,
+                )
+                self.template[f"{parent_path}/{group_name}/{bias_start}"] = data
+                self.template[f"{parent_path}/{group_name}/{bias_start}/@units"] = unit
+                self.BiasSweep.scan_start_bias = data
+                self.BiasSweep.scan_start_bias_unit = unit
+            elif bias_end == key:
+                data, unit, _ = _get_data_unit_and_others(
+                    data_dict=self.raw_data,
+                    partial_conf_dict=partial_conf_dict,
+                    concept_field=bias_end,
+                )
+                self.template[f"{parent_path}/{group_name}/{bias_end}"] = data
+                self.template[f"{parent_path}/{group_name}/{bias_end}/@units"] = unit
+                self.BiasSweep.scan_end_bias = data
+                self.BiasSweep.scan_end_bias_unit = unit
+
+    def _construct_bias_sweep_grp(self, partial_conf_dict, parent_path, group_name):
+        """Constructs the bias_sweep group under the group tree
+        BIAS_SPECTROSCOPY[bias_spectroscopy]:
+            bias_seep: {...}
+        """
+        scan_region = "scan_region"
+        linear_sweep = "linear_sweep"
+        scan_region_dict = partial_conf_dict.get(scan_region, None)
+        if not scan_region_dict:
+            return
+        self._construct_scan_region_grp_in_bias_spec(
+            partial_conf_dict=scan_region_dict,
+            parent_path=f"{parent_path}/{group_name}",
+            group_name=scan_region,
+        )
+        linear_sweep_dict = partial_conf_dict.get(linear_sweep, None)
+        if not linear_sweep_dict:
+            return
+        self._construct_linear_sweep_grp(
+            partial_conf_dict=linear_sweep_dict,
+            parent_path=f"{parent_path}/{group_name}",
+            group_name=linear_sweep,
+        )
 
     def _construct_dI_dV_grp(self, IV_dict, parent_path, group_name):
         di_by_dv = cal_dx_by_dy(IV_dict["current_fld"], IV_dict["voltage_fld"])
@@ -172,7 +282,7 @@ class NanonisDatSTS(SPMformatter):
 
         if group_name is None:
             return
-        current_group = {
+        curnt_volt = {
             "current_fld": "",
             "current_unit": "",
             "current_fld_name": "",
@@ -184,6 +294,7 @@ class NanonisDatSTS(SPMformatter):
         current = False
         voltage = False
         for key, val in self.template.items():
+            # Find out current field
             if key.startswith(parent_path + "/" + group_name):
                 if key.endswith("@units"):
                     current = (
@@ -191,10 +302,10 @@ class NanonisDatSTS(SPMformatter):
                         == "current"
                         or current
                     )
-                    if current and not current_group["current_unit"]:
-                        current_group["current_unit"] = val
-                        current_group["current_fld"] = self.template[key[0:-7]]
-                        current_group["current_fld_name"] = key[0:-7].split("/")[-1]
+                    if current and not curnt_volt["current_unit"]:
+                        curnt_volt["current_unit"] = val
+                        curnt_volt["current_fld"] = self.template[key[0:-7]]
+                        curnt_volt["current_fld_name"] = key[0:-7].split("/")[-1]
                         current_field_to_data[key[0:-7]] = self.template[key[0:-7]]
 
                     voltage = (
@@ -202,16 +313,26 @@ class NanonisDatSTS(SPMformatter):
                         == "voltage"
                         or voltage
                     )
-                    if voltage and not current_group["voltage_unit"]:
-                        current_group["voltage_unit"] = val
-                        current_group["voltage_fld"] = self.template[key[0:-7]]
-                        current_group["voltage_fld_name"] = key[0:-7].split("/")[-1]
+                    if voltage and not curnt_volt["voltage_unit"]:
+                        curnt_volt["voltage_unit"] = val
+                        curnt_volt["voltage_fld"] = self.template[key[0:-7]]
+                        curnt_volt["voltage_fld_name"] = key[0:-7].split("/")[-1]
         # check if group is current group and calculatre dI/dV
         if current and voltage:
-            flip_number = None
-            for key, val in self.eln.items():
-                if key.endswith("lockin_current_flip_sign") and val is not None:
-                    flip_number = val
+            try:
+                self.TmpConceptsVal.flip_number = (
+                    self.TmpConceptsVal.flip_number
+                    or next(
+                        filter(
+                            lambda x: x[0].endswith("lockin_current_flip_sign"),
+                            self.eln.items(),
+                        )
+                    )[1]
+                )
+            except StopIteration:
+                pass
+            flip_number = self.TmpConceptsVal.flip_number or 1
+
             if flip_number is None:
                 raise ValueError(
                     "Flip number for lockin current must be suplied via eln."
@@ -225,6 +346,6 @@ class NanonisDatSTS(SPMformatter):
                 if group_name[-1] == "]"
                 else f"{group_name}_grad"
             )
-            self._construct_dI_dV_grp(current_group, parent_path, group_name_grad)
+            self._construct_dI_dV_grp(curnt_volt, parent_path, group_name_grad)
 
         return group_name

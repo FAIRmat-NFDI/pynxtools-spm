@@ -1,6 +1,6 @@
 {"ENTRY[entry]": {
-        "@defaut": {
-            "raw_path": "@default:/entry/currrent_grad"
+        "@default": {
+            "raw_path": "@default:current"
         },
         "definition": {"@version": ""},
         "collection_identifier": "",

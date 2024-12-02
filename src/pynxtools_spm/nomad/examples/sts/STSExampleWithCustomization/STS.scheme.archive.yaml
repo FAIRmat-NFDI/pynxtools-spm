@@ -1,5 +1,5 @@
 definitions:
-  name: An ELN example for STM ( Scanning Tunneling Microscopy).
+  name: An ELN example for STS ( Scanning Tunneling Spectroscopy).
   sections:
     sts:
       base_sections:
@@ -8,7 +8,7 @@ definitions:
       m_annotations:
         template:
           reader: spm
-          nxdl: NXstm
+          nxdl: NXsts
         eln:
           hide: []
       quantities:
@@ -24,35 +24,23 @@ definitions:
           type:
             type_kind: Enum
             type_data:
-              - NXstm
+              - NXsts
           m_annotations:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the definitions from NeXus app def designed for STM experiments,
-            e.g. NXstm.
+            Name of the definitions from NeXus app def designed for STS experiments, one can use 
+            NXsts or NXspm, but NXsts is recommended.
         experiment_technique:
           type:
             type_kind: Enum
             type_data:
-              - STM
+              - STS
           m_annotations:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the technique used for the experiment, e.g. STM. 
-        scan_mode:
-          type:
-            type_kind: Enum
-            type_data:
-              - constant height
-              - constant current
-          m_annotations:
-            eln:
-              component: EnumEditQuantity
-          description: |
-            Type of the scan mode to define the type of the interaction between 
-            the tip and the sample.
+            Name of the technique used for the experiment, e.g. STS.
         experiment_description:
           type: str
           m_annotations:
@@ -153,7 +141,7 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Nanonis).
+                          Version or model of the component named by the manufacturer (e.g. Generic 5e).
                     model/@version:
                       type: str
                       m_annotations:
@@ -167,6 +155,13 @@ definitions:
                     eln:
                       overview: true
                   quantities:
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the manufacturer of the software.
                     name:
                       type: str
                       m_annotations:
@@ -174,13 +169,6 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Name of the software. (e.g. Nanonis).
-                    vendor:
-                      type: str
-                      m_annotations:
-                        eln:
-                          component: StringEditQuantity
-                      description: |
-                        Name of the manufacturer of the software (e.g. Nanonis).
                     model:
                       type: str
                       m_annotations:
@@ -188,8 +176,8 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Version or model, required to choose correct file parser, of the component named 
-                        by the manufacturer (e.g. Generic 5e). 
-                        Note that the model should be exactly the same as in the experiment file.
+                        by the manufacturer (e.g. Generic 5e).
+                        Note that model should be exactly the same as the one in the experiment file.
                     model/@version:
                       type: str
                       m_annotations:
@@ -210,6 +198,18 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Type of the signal either in voltage or current.
+                    lockin_current_flip_sign:
+                      type: np.float64
+                      m_annotations:
+                        eln:
+                          component: NumberEditQuantity
+                      description: |
+                        The sign (1 or -1) that defines the sign of the lock-in current.
+                        The calibration procedure with retracted tip is normally performed
+                        to compensate for the signal phase delay in SPM. The procedure 
+                        yields two possible solutions, this number should be equal to 1 or -1
+                        depending on which solution is chosen (this concept mainly used in 
+                        STS experiments, e.g. in Nanonis machine).
               scan_environment:
                 section:
                   m_annotations:
@@ -218,6 +218,7 @@ definitions:
                   quantities:
                     tip_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -228,6 +229,7 @@ definitions:
                         At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
                     cryo_bottom_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -237,6 +239,7 @@ definitions:
                         At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
                     cryo_shield_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity

@@ -56,6 +56,9 @@ CONVERT_DICT = {
 
 PINT_QUANTITY_MAPPING = {
     "[mass] * [length] ** 2 / [time] ** 3 / [current]": "voltage",
+    "[mass] * [length] ** 2 / [current] / [time] ** 3" : "voltage",
+    "[length] ** 2 * [mass] / [time] ** 3 / [current]": "voltage",
+    "[length] ** 2 * [mass] / [current] / [time] ** 3" : "voltage",
     "[current]": "current",
 }
 
@@ -119,7 +122,9 @@ class SPMformatter(ABC):
             )
         return eln_dict
 
-    def work_though_config_nested_dict(self, config_dict: Dict, parent_path: str):
+    def walk_though_config_nested_dict(
+        self, config_dict: Dict, parent_path: str, use_custom_func_prior: bool = True
+    ):
         # This concept is just note where the group will be
         # handeld or somthing like that.
         if "#note" in config_dict:
@@ -130,14 +135,19 @@ class SPMformatter(ABC):
             # Special case, will be handled in a specific function registerd
             # in self._grp_to_func
             if key in self._grp_to_func:
-                # Fill special fields first
-                method = getattr(self, self._grp_to_func[key])
-                method(val, parent_path, key)
-
-                self.work_though_config_nested_dict(
-                    config_dict=val, parent_path=f"{parent_path}/{key}"
-                )
-
+                if not use_custom_func_prior:
+                    self.walk_though_config_nested_dict(
+                        config_dict=val, parent_path=f"{parent_path}/{key}"
+                    )
+                    # Fill special fields first
+                    method = getattr(self, self._grp_to_func[key])
+                    method(val, parent_path, key)
+                else:
+                    method = getattr(self, self._grp_to_func[key])
+                    method(val, parent_path, key)
+                    self.walk_though_config_nested_dict(
+                        config_dict=val, parent_path=f"{parent_path}/{key}"
+                    )
 
             # end dict of the definition path that has raw_path key
             elif isinstance(val, dict) and "raw_path" in val:
@@ -186,7 +196,7 @@ class SPMformatter(ABC):
                                 self.template[f"{temp_key}/@{k}"] = v
 
             else:
-                self.work_though_config_nested_dict(val, f"{parent_path}/{key}")
+                self.walk_though_config_nested_dict(val, f"{parent_path}/{key}")
 
     def rearrange_data_according_to_axes(self, data):
         """Rearrange array data according to the fast and slow axes.

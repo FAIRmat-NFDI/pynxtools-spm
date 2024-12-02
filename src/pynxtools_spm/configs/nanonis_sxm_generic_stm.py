@@ -23,9 +23,7 @@ A default configuration file for Nanonis STM data from SXM file.
 
 _nanonis_stm_sxm_generic_5e = {
     "ENTRY[entry]": {
-        "@defaut": {
-            "raw_path": "@default:/entry/experiment_instrument/scan_environment/scan_control/mesh_scan/current_backward"
-        },
+        "@default": {"raw_path": "@default:current_backward"},
         "collection_identifier": "",
         "definition": "",
         "end_time": "",
