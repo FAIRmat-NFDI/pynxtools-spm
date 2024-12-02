@@ -8,7 +8,7 @@ definitions:
       m_annotations:
         template:
           reader: spm
-          nxdl: NXsts
+          nxdl: NXspm
         eln:
           hide: []
       quantities:

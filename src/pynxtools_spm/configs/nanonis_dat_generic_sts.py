@@ -26,7 +26,7 @@ _nanonis_sts_dat_generic_5e = {
         "@default": {"raw_path": "@default:current"},
         "definition": {"@version": ""},
         "experiment_instrument": {
-            "LOCKIN[lockin]": {
+            "lockin_amplifier[lockin]": {
                 "modulation_status": {
                     "raw_path": "/Lock-in/Lock-in status/value",
                 },

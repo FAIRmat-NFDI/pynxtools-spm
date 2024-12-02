@@ -5,7 +5,7 @@
         },
         "definition": {"@version": ""},
         "experiment_instrument": {
-            "LOCKIN[lockin]": {
+            "lockin_amplifier[lockin]": {
                 "modulation_status": {
                     "raw_path": "/Lock-in/Lock-in status/value"
                 },
