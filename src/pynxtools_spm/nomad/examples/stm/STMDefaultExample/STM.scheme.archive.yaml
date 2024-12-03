@@ -1,7 +1,7 @@
 definitions:
   name: An ELN example for STM ( Scanning Tunneling Microscopy).
   sections:
-    sts:
+    stm:
       base_sections:
         - pynxtools.nomad.dataconverter.NexusDataConverter
         - nomad.datamodel.data.EntryData
@@ -218,6 +218,7 @@ definitions:
                   quantities:
                     tip_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -228,6 +229,7 @@ definitions:
                         At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
                     cryo_bottom_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
@@ -237,6 +239,7 @@ definitions:
                         At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
                     cryo_shield_temp:
                       type: np.float64
+                      unit: kelvin
                       m_annotations:
                         eln:
                           component: NumberEditQuantity

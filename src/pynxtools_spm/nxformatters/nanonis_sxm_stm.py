@@ -71,6 +71,7 @@ class NanonisSxmSTM(SPMformatter):
 
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
+        self._format_template_from_eln()
 
     def _get_conf_dict(self, config_file: str = None):
         if config_file is not None:

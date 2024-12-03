@@ -57,11 +57,7 @@ def manually_filter_data_type(template):
 class SPMReader(BaseReader):
     """Reader for XPS."""
 
-<<<<<<< HEAD
     supported_nxdls = ["NXspm", "NXsts", "NXstm", "NXafm"]
-=======
-    supported_nxdls = ["NXstm", "NXspm", "NXafm", "NXsts"]
->>>>>>> e1c1cf1 (Prepare nomad examples for sts-1)
 
     def read(
         self,
