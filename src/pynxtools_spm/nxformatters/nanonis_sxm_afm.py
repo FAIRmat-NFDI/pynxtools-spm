@@ -27,7 +27,7 @@ from pathlib import Path
 from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
-from pynxtools_spm.configs.nanonis_sxm_generic_afm import _nanonis_afm_sxm_generic_5e
+from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
 import numpy as np
 from pynxtools.dataconverter.template import Template
@@ -80,8 +80,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         if config_file is not None:
             return fhs.read_config_file(config_file)
         else:
-            return _nanonis_afm_sxm_generic_5e
-
+            # return _nanonis_afm_sxm_generic_5e
+            return load_default_config("nanonis_sxm_generic_afm")
     def construct_scan_pattern_grp(
         self,
         partial_conf_dict,
@@ -154,6 +154,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         nxdata_group_nm = SPMformatter._NXdata_grp_from_conf_description(
             self, partial_conf_dict, parent_path, group_name, group_index
         )
+        if nxdata_group_nm is None:
+            return None
         if "0" not in partial_conf_dict:
             axis_x = "x"
             axis_y = "y"

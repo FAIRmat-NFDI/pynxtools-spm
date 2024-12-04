@@ -107,17 +107,19 @@ class SPMParser:
 
         vendor_key: str = "/ENTRY[entry]/experiment_instrument/software/vendor"
         vendor_n: str = eln.get(vendor_key, None)
+        vendor_n = vendor_n.replace(" ", "").lower() if vendor_n else None
         try:
-            vendor_dict: SPMParser.par_nav_t = experiment_dict.get(vendor_n.lower(), {})  # type: ignore[assignment]
+            vendor_dict: SPMParser.par_nav_t = experiment_dict.get(vendor_n, {})  # type: ignore[assignment]
         except (KeyError, ValueError):
             pass
 
         software_v_key: str = "/ENTRY[entry]/experiment_instrument/software/model"
         software_v: str = eln.get(software_v_key, None)
-        software_v = software_v.replace(" ", "").lower()
+        software_v = software_v.replace(" ", "").lower() if software_v else None
         try:
             parser_cls: Callable = vendor_dict.get(software_v, None)  # type: ignore[assignment]
-            return iter([parser_cls])
+            if parser_cls is not None:
+                return iter([parser_cls])
         except (ValueError, KeyError):
             pass
         # collect all parsers

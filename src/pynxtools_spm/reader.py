@@ -29,10 +29,7 @@ from pynxtools.dataconverter.readers.base.reader import BaseReader
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
-# from pynxtools_spm.helper import set_default_attr_in_group
 
-# import debugpy
-# debugpy.debug_this_thread()
 
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}

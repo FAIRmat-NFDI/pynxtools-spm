@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TODO: Add simple description of the module
+Base formatter for SPM data.
 """
 
 # -*- coding: utf-8 -*-
@@ -162,7 +162,7 @@ class SPMformatter(ABC):
                     for k, v in other_attrs.items():
                         self.template[f"{parent_path}/{key}/@{k}"] = v
             # Handle to construct nxdata group that comes alon as a dict
-            elif ("@title" in val or "grp_name" in val) and "data" in val:
+            elif (isinstance(val, dict) and ("@title" in val or "grp_name" in val) and "data" in val):
                 _ = self._NXdata_grp_from_conf_description(
                     partial_conf_dict=val,
                     parent_path=parent_path,
@@ -172,7 +172,7 @@ class SPMformatter(ABC):
             elif isinstance(val, list) and isinstance(val[0], dict):
                 for item in val:
                     # Handle to construct nxdata group
-                    if ("@title" in item or "grp_name" in item) and "data" in item:
+                    if isinstance(item, dict) and ("@title" in item or "grp_name" in item) and "data" in item:
                         _ = self._NXdata_grp_from_conf_description(
                             partial_conf_dict=item,
                             parent_path=parent_path,
@@ -303,7 +303,7 @@ class SPMformatter(ABC):
             "data" -> Signal data of "temperature1(filter)" denoted by
                     the name key.
             "0" -> Index of the axis if "axis_ind" is not provided.
-                    Here both are same. Name of the axis is denotec
+                    Here both are same. Name of the axis is denoted
                     by the name key.
             "title" -> Title of the main plot.
             "grp_name" -> Name of the NXdata group.

@@ -20,3 +20,25 @@ TODO: Add simple description of the module
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+import os
+import json
+
+
+pwd = os.path.dirname(__file__)
+
+def load_default_config(config_type):
+    nanonis_dat_generic_sts = os.path.join(pwd, "nanonis_dat_generic_sts.json")
+    nanonis_sxm_generic_stm = os.path.join(pwd, "nanonis_sxm_generic_stm.json")
+    nanonis_sxm_generic_afm = os.path.join(pwd, "nanonis_sxm_generic_afm.json")
+
+    config_file = None
+    if config_type == "nanonis_dat_generic_sts":
+        config_file = nanonis_dat_generic_sts
+    elif config_type == "nanonis_sxm_generic_stm":
+        config_file = nanonis_sxm_generic_stm
+    elif config_type == "nanonis_sxm_generic_afm":
+        config_file = nanonis_sxm_generic_afm
+    if config_file is not None:
+        with open(config_file, "r", encoding="utf-8") as f:
+            return json.load(f)
