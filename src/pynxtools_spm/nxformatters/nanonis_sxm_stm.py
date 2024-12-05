@@ -26,7 +26,7 @@ from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 from typing import Dict, Optional, Union
 from pathlib import Path
 import re
-from pynxtools_spm.configs.nanonis_sxm_generic_stm import _nanonis_stm_sxm_generic_5e
+from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
 from typing import TYPE_CHECKING
 from pynxtools_spm.nxformatters.helpers import (
@@ -77,7 +77,7 @@ class NanonisSxmSTM(SPMformatter):
         if config_file is not None:
             return fhs.read_config_file(config_file)
         else:
-            return _nanonis_stm_sxm_generic_5e
+            return load_default_config("nanonis_sxm_generic_stm")
 
     def construct_scan_pattern_grp(
         self,

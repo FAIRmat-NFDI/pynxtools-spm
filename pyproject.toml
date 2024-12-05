@@ -31,13 +31,13 @@ dependencies = [
 # TODO: Add acknowledgements to pySPM python package
 
 [project.urls]
-"GitHub page" = "https://github.com/FAIRmat-NFDI/pynxtools-spm"
+"Homepage" = "https://github.com/FAIRmat-NFDI/pynxtools-spm"
 "Parent Project" =  "https://github.com/FAIRmat-NFDI"
 
 [project.optional-dependencies]
 dev = [
     "mypy",
-    "ruff==0.3.4",
+    "ruff>=0.6",
     "pytest",
     "pip-tools",
 ]

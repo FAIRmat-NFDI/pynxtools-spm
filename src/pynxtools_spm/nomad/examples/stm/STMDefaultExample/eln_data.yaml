@@ -1,26 +1,21 @@
 Sample:
   History:
-    notes: <p>The sample history goes here.</p>
-  description: <p>The Sample description goes here.</p>
+    notes: <p>Sample History goes here.</p>
+  description: <p>Sample description.</p>
   name: DemoSample
+  sample_component_set:
+    sample_component:
+      description: <p>Component Description goes here.</p>
+      name: DemoComponent
 collection_identifier:
-  identifier: DemoSTMCollectionIdentifier-1234
-default: z_backward
+  identifier: DemoCollectionIdentifier-1234
+default: current_forward
 definition: NXstm
-experiment_description: <p>Experiment desctiption goes here.</p>
+experiment_description: <p>Experiment Description</p>
 experiment_identifier:
-  identifier: DemoSTMExperimentIdentifier-1234
+  identifier: DemoExperimentIdentifier-1234
 experiment_instrument:
   hardware:
-    model: Generic 4.5
-    model/@version: '4.5'
-    name: Nanonis
-    vendor: Nanonis
-  scan_environment:
-    tip_temp:
-      unit: K
-      value: 100.0
-  software:
     model: Generic 4.5
     model/@version: '4.5'
     name: Nanonis
@@ -31,5 +26,5 @@ user:
   affiliation:
   - HU
   email:
-  - rubel.mozumder@physik.hu-berlin.de
-  name: Rubel
+  - rubel,.mozumder@physik.hu-berlin.de
+  name: Rubel Mozumder

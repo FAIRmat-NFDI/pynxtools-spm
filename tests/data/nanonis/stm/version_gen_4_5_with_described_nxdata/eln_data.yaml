@@ -1,19 +1,21 @@
 Sample:
   History:
-    notes: <p>The sample history goes here.</p>
+    notes: <p>Sample History goes here.</p>
   description: <p>The sample description goes here.</p>
-  name: DemoSampleName
+  name: DemoSample
+  sample_component_set:
+    sample_component:
+      description: <p>Sample component description goes here.</p>
+      name: DemoSample
 collection_identifier:
-  identifier: DemoSTMCollectionIdentifier-123
-default: z_backward
+  identifier: DemoCollectionIdentifier-12
+default: current_forward
 definition: NXstm
 experiment_description: <p>The experiment description goes here.</p>
 experiment_identifier:
-  identifier: DemoSTMExprimentIdentifier-123
+  identifier: DemoExperimentIdentifier-12
 experiment_instrument:
   hardware:
-    model: Generic 4.5
-    model/@version: '4.5'
     name: Nanonis
     vendor: Nanonis
   scan_environment:
