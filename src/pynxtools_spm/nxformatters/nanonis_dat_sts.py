@@ -30,7 +30,7 @@ from typing import Dict
 from pathlib import Path
 from pint import UnitRegistry
 import re
-from pynxtools_spm.configs.nanonis_dat_generic_sts import _nanonis_sts_dat_generic_5e
+from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
 from pynxtools.dataconverter.template import Template
 from pynxtools_spm.nxformatters.helpers import (
@@ -82,7 +82,7 @@ class NanonisDatSTS(SPMformatter):
     def _get_conf_dict(self, config_file: str = None):
         if config_file:
             return fhs.read_config_file(config_file)
-        return _nanonis_sts_dat_generic_5e
+        return load_default_config("nanonis_dat_generic_sts")
 
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")

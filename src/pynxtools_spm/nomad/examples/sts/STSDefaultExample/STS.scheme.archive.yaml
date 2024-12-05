@@ -8,7 +8,7 @@ definitions:
       m_annotations:
         template:
           reader: spm
-          nxdl: NXspm
+          nxdl: NXsts
         eln:
           hide: []
       quantities:
@@ -291,15 +291,67 @@ definitions:
                     component: RichTextEditQuantity
                 description: |
                   Description of the sample or sample preparation.
-              sample_component:
-                type: str
-                shape: "*"
-                m_annotations:
-                  eln:
-                    component: StringEditQuantity
-                description: |
-                  The components of the sample comes as a list of components.
             sub_sections:
+              sample_component_set:
+                section:
+                  m_annotations:
+                    eln:
+                      overview: true
+                  sub_sections:
+                    sample_component:
+                      section:
+                        m_annotations:
+                          eln:
+                            overview: true
+                        description: |
+                          A sample component is a part of the sample that is of interest.
+                          For example, a sample component could be a layer of a multilayer sample.
+                        quantities:
+                          name:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: StringEditQuantity
+                            description: |
+                              Name of the sample component.
+                          sample_id:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: StringEditQuantity
+                            description: |
+                              An unique identifier for the sample component.
+                          chemical_formula:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: StringEditQuantity
+                            description: |
+                              The chemical formula specified using CIF conventions.
+                              Abbreviated version of CIF standard:
+                              
+                              * Only recognized element symbols may be used.
+                              * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
+                              * A space or parenthesis must separate each cluster of (element symbol + count).
+                              * Where a group of elements is enclosed in parentheses, the multiplier for the
+                                group must follow the closing parentheses. That is, all element and group
+                                multipliers are assumed to be printed as subscripted numbers.
+                              * Unless the elements are ordered in a manner that corresponds to their chemical
+                                structure, the order of the elements within any group or moiety depends on
+                                whether or not carbon is present.
+                              * If carbon is present, the order should be:
+                              
+                                - C, then H, then the other elements in alphabetical order of their symbol.
+                                - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
+                                
+                              * This is the *Hill* system used by Chemical Abstracts.
+                          description:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: RichTextEditQuantity
+                            description: |
+                              Description of the sample component or sample preparation.
               History:
                 section:
                   m_annotations:
