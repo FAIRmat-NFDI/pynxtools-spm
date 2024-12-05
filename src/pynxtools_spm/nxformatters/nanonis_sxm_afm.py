@@ -82,6 +82,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         else:
             # return _nanonis_afm_sxm_generic_5e
             return load_default_config("nanonis_sxm_generic_afm")
+
     def construct_scan_pattern_grp(
         self,
         partial_conf_dict,

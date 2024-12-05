@@ -24,11 +24,23 @@ List of path for nomad exmaples to run test in nomad.
 import os
 
 
-STS_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(os.path.dirname(__file__), "examples", "sts", "STSDefaultExample")
-STS_CUSTOMIZED_EXAMPLE_PATH = os.path.join(os.path.dirname(__file__), "examples", "sts", "STSExampleWithCustomization")
+STS_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(
+    os.path.dirname(__file__), "examples", "sts", "STSDefaultExample"
+)
+STS_CUSTOMIZED_EXAMPLE_PATH = os.path.join(
+    os.path.dirname(__file__), "examples", "sts", "STSExampleWithCustomization"
+)
 
-STM_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(os.path.dirname(__file__), "examples", "stm", "STMDefaultExample")
-STM_CUSTOMIZED_EXAMPLE_PATH = os.path.join(os.path.dirname(__file__), "examples", "stm", "STMExampleWithCustomization")
+STM_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(
+    os.path.dirname(__file__), "examples", "stm", "STMDefaultExample"
+)
+STM_CUSTOMIZED_EXAMPLE_PATH = os.path.join(
+    os.path.dirname(__file__), "examples", "stm", "STMExampleWithCustomization"
+)
 
-AFM_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(os.path.dirname(__file__), "examples", "afm", "AFMDefaultExample")
-AFM_CUSTOMIZED_EXAMPLE_PATH = os.path.join(os.path.dirname(__file__), "examples", "afm", "AFMExampleWithCustomization")
+AFM_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(
+    os.path.dirname(__file__), "examples", "afm", "AFMDefaultExample"
+)
+AFM_CUSTOMIZED_EXAMPLE_PATH = os.path.join(
+    os.path.dirname(__file__), "examples", "afm", "AFMExampleWithCustomization"
+)

@@ -27,6 +27,7 @@ import json
 
 pwd = os.path.dirname(__file__)
 
+
 def load_default_config(config_type):
     nanonis_dat_generic_sts = os.path.join(pwd, "nanonis_dat_generic_sts.json")
     nanonis_sxm_generic_stm = os.path.join(pwd, "nanonis_sxm_generic_stm.json")

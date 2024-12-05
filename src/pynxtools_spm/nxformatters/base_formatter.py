@@ -56,9 +56,9 @@ CONVERT_DICT = {
 
 PINT_QUANTITY_MAPPING = {
     "[mass] * [length] ** 2 / [time] ** 3 / [current]": "voltage",
-    "[mass] * [length] ** 2 / [current] / [time] ** 3" : "voltage",
+    "[mass] * [length] ** 2 / [current] / [time] ** 3": "voltage",
     "[length] ** 2 * [mass] / [time] ** 3 / [current]": "voltage",
-    "[length] ** 2 * [mass] / [current] / [time] ** 3" : "voltage",
+    "[length] ** 2 * [mass] / [current] / [time] ** 3": "voltage",
     "[current]": "current",
 }
 
@@ -162,7 +162,11 @@ class SPMformatter(ABC):
                     for k, v in other_attrs.items():
                         self.template[f"{parent_path}/{key}/@{k}"] = v
             # Handle to construct nxdata group that comes alon as a dict
-            elif (isinstance(val, dict) and ("@title" in val or "grp_name" in val) and "data" in val):
+            elif (
+                isinstance(val, dict)
+                and ("@title" in val or "grp_name" in val)
+                and "data" in val
+            ):
                 _ = self._NXdata_grp_from_conf_description(
                     partial_conf_dict=val,
                     parent_path=parent_path,
@@ -172,7 +176,11 @@ class SPMformatter(ABC):
             elif isinstance(val, list) and isinstance(val[0], dict):
                 for item in val:
                     # Handle to construct nxdata group
-                    if isinstance(item, dict) and ("@title" in item or "grp_name" in item) and "data" in item:
+                    if (
+                        isinstance(item, dict)
+                        and ("@title" in item or "grp_name" in item)
+                        and "data" in item
+                    ):
                         _ = self._NXdata_grp_from_conf_description(
                             partial_conf_dict=item,
                             parent_path=parent_path,

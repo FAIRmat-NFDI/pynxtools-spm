@@ -11,5 +11,6 @@
         "python": true,
         "json": true
     },
-    "github.copilot.chat.temporalContext.enabled": true
+    "github.copilot.chat.temporalContext.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
