@@ -26,7 +26,6 @@ from pynxtools_spm.nxformatters.base_formatter import (
     PINT_QUANTITY_MAPPING,
 )
 from dataclasses import dataclass
-from typing import Dict
 from pathlib import Path
 from pint import UnitRegistry
 import re
@@ -73,13 +72,13 @@ class NanonisDatSTS(SPMformatter):
         self,
         template: Template,
         raw_file: str | Path,
-        eln_file: Dict,
-        config_file: str = None,
+        eln_file: str | Path,
+        config_file: str | Path | None = None,
         entry: str | None = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 
-    def _get_conf_dict(self, config_file: str = None):
+    def _get_conf_dict(self, config_file: str | Path = None):
         if config_file:
             return fhs.read_config_file(config_file)
         return load_default_config("nanonis_dat_generic_sts")
@@ -114,7 +113,7 @@ class NanonisDatSTS(SPMformatter):
         gbl_scan_ranges = re.findall(_scientific_num_pattern, scan_ranges)
         gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
         scan_offset = gbl_scan_ranges[:2]
-        scan_ranges = gbl_scan_ranges[2:4]
+        scan_ranges = gbl_scan_ranges[2:4]  # type: ignore
         scan_angles = gbl_scan_ranges[4:]
         if len(scan_angles) == 1:
             scan_angles = scan_angles * len(scan_ranges)
@@ -125,7 +124,9 @@ class NanonisDatSTS(SPMformatter):
             partial_conf_dict=partial_conf_dict,
             concept_field=scan_angle,
         )
-        for ind, off, rng, ang in enumerate(zip(scan_offset, scan_ranges, scan_angles)):
+        for ind, (off, rng, ang) in enumerate(
+            zip(scan_offset, scan_ranges, scan_angles)
+        ):
             off_key = f"{parent_path}/{group_name}/scan_offset_N[scan_offset_{self._axes[ind]}]"
             rng_key = (
                 f"{parent_path}/{group_name}/scan_range_N[scan_range_{self._axes[ind]}]"

@@ -21,8 +21,7 @@ Base formatter for SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from abc import ABC, abstractmethod
-from typing import Dict, Union, List, Optional
-from pathlib import Path
+from typing import Dict, Union, List, Optional, TYPE_CHECKING
 from dataclasses import dataclass
 from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
@@ -33,9 +32,15 @@ from pynxtools_spm.nxformatters.helpers import (
     to_intended_t,
     replace_variadic_name_part,
 )
+from pathlib import Path
 import numpy as np
 
 from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
+
+
+if TYPE_CHECKING:
+    from pint import Quantity
+
 
 REPLACE_NESTED: Dict[str, str] = {}
 
@@ -74,48 +79,48 @@ class NXdata:
 class SPMformatter(ABC):
     # Map function to deal specific group. Map key should be the same as it is
     # in config file
-    _grp_to_func = {}  # Placeholder
-    _axes = []  # Placeholder
+    _grp_to_func: dict[str, str] = {}  # Placeholder
+    _axes: list[str] = []  # Placeholder
 
     # Class used to colleted data from several subgroups of ScanControl and reuse them
     # in the subgroups
     @dataclass
     class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
         # Put the class in the base_formatter.py under BaseFormatter class
-        x_points = None
-        y_points = None
-        x_start = None
-        x_start_unit = None
-        y_start = None
-        y_start_unit = None
-        x_range = None
-        y_range = None
-        x_end = None
-        x_end_unit = None
-        y_end = None
-        y_end_unit = None
-        fast_axis = None  # lower case x, y
-        slow_axis = None  # lower case x, y
+        x_points: int
+        y_points: int
+        x_start: Union[int, float]
+        x_start_unit: Union[str, "Quantity"]
+        y_start: Union[int, float]
+        y_start_unit: Union[str, "Quantity"]
+        x_range: Union[int, float]
+        y_range: Union[int, float]
+        x_end: Union[int, float]
+        x_end_unit: Union[str, "Quantity"]
+        y_end: Union[int, float]
+        y_end_unit: Union[str, "Quantity"]
+        fast_axis: str  # lower case x, y
+        slow_axis: str  # lower case x, y
 
     def __init__(
         self,
         template: Template,
-        raw_file: Union[str, Path],
-        eln_file: str,
-        config_file: str = None,  # Incase it is not provided by users
+        raw_file: Union[str, "Path"],
+        eln_file: str | Path,
+        config_file: str | Path | None = None,  # Incase it is not provided by users
         entry: Optional[str] = None,
     ):
         self.template: Template = template
-        self.raw_file: Union[str, Path] = raw_file
+        self.raw_file: Union[str, "Path"] = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
         self.raw_data: Dict = self.get_raw_data_dict()
         self.entry: str = entry
         self.config_dict = self._get_conf_dict(config_file) or None  # Placeholder
 
     @abstractmethod
-    def _get_conf_dict(self, config_file: str = None): ...
+    def _get_conf_dict(self, config_file: str | Path = None): ...
 
-    def _get_eln_dict(self, eln_file: str):
+    def _get_eln_dict(self, eln_file: str | Path):
         with open(eln_file, mode="r", encoding="utf-8") as fl_obj:
             eln_dict = flatten_and_replace(
                 FlattenSettings(yaml.safe_load(fl_obj), CONVERT_DICT, REPLACE_NESTED)
@@ -237,7 +242,7 @@ class SPMformatter(ABC):
         return SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
 
     def _arange_axes(self, direction="down"):
-        fast_slow = None
+        fast_slow: List[str]
         if direction.lower() == "down":
             fast_slow = ["-Y", "X"]
             self.NXScanControl.fast_axis = fast_slow[0].lower()

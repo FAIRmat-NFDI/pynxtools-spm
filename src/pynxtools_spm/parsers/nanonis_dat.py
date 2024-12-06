@@ -23,7 +23,7 @@ Parse raw data of STS experiment from Nanonis dat file.
 
 import logging
 import os
-from typing import Dict, Optional, Tuple, Union
+from typing import Dict, Optional, Tuple, Union, Any
 
 import numpy as np
 
@@ -211,6 +211,8 @@ class DatGenericNanonis:
             String to check key, metadata and unit
         """
         metadata = ""
+        key: str
+        unit: Any
         key, unit = key_and_unit.split("(")
         unit, rest = unit.split(")", 1)
         # Some units have extra info e.g. Current (A) [filt]
@@ -284,15 +286,6 @@ class DatGenericNanonis:
                 dismentle_matrix_into_dict_key_value_list(
                     last_line, one_d_numpy_array, self.bias_spect_dict
                 )
-
-    # def choose_correct_function_to_extract_data(self) -> None:
-    #     """Choose correct function to extract data that data in organised format."""
-    #     if not os.path.isfile(self.raw_file):
-    #         raise ValueError("Provide correct file.")
-
-    #     ext = self.raw_file.rsplit(".", 1)[-1]
-    #     if ext == "dat":
-    #         self.extract_and_store_from_dat_file()
 
     def parse(self):
         flattened_dict = {}

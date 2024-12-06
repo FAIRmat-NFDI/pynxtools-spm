@@ -1,11 +1,12 @@
-from pathlib import PosixPath
 from typing import Dict, Optional, Tuple
 from pint import UnitRegistry
-from typing import Optional, Dict, Tuple
+from typing import Optional, Dict, Tuple, Union
+from pathlib import Path
 import logging
 from copy import deepcopy
 import numpy as np
 import json
+
 
 ureg = UnitRegistry()
 
@@ -16,7 +17,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 _scientific_num_pattern = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
 
 
-def read_config_file(config_file: str) -> Dict:
+def read_config_file(config_file: Union[str, Path]) -> Dict:
     """Read the config file and return the dictionary.
 
     Parameters
@@ -29,15 +30,15 @@ def read_config_file(config_file: str) -> Dict:
     Dict
         The dictionary from the config file.
     """
-    if isinstance(config_file, PosixPath):
-        config_file = str(config_file.absulute())
+    if isinstance(config_file, Path):
+        config_file = str(config_file.absolute())
 
     if config_file.endswith("json"):
         with open(config_file, mode="r", encoding="utf-8") as f_obj:
-            config_file = json.load(f_obj)
+            config_dict = json.load(f_obj)
+        return config_dict
     else:
         raise ValueError("The config file should be in JSON format.")
-    return config_file
 
 
 def _verify_unit(
@@ -67,7 +68,10 @@ def _verify_unit(
 
 
 def _get_data_unit_and_others(
-    data_dict, partial_conf_dict=None, concept_field=None, end_dict=None
+    data_dict: dict,
+    partial_conf_dict: dict = None,
+    concept_field: str = None,
+    end_dict: dict = None,
 ) -> Tuple[str, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
@@ -127,7 +131,7 @@ def _get_data_unit_and_others(
     """
 
     if end_dict is None:
-        end_dict: dict[str:any] = partial_conf_dict.get(concept_field, "")
+        end_dict = partial_conf_dict.get(concept_field, "")
         if not end_dict:
             return "", "", None
 

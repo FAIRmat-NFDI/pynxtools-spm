@@ -23,12 +23,11 @@ to NeXus application definition NXstm.
 # limitations under the License.
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
-from typing import Dict, Optional, Union
-from pathlib import Path
+from typing import TYPE_CHECKING, Optional, Union, Any
 import re
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
-from typing import TYPE_CHECKING
+from pathlib import Path
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _scientific_num_pattern,
@@ -38,6 +37,7 @@ import numpy as np
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
+
 
 # TODO: add test to check if user example config file is the same as given default
 # config file with this package.
@@ -52,6 +52,10 @@ if TYPE_CHECKING:
 
 # TODO: Add tests for both config files with described NXdata
 # and without described NXdata (for stm and afm)
+
+gbl_scan_ranges: list[float] = []
+
+
 class NanonisSxmSTM(SPMformatter):
     _grp_to_func = {
         "SCAN_CONTROL[scan_control]": "_construct_nxscan_controllers",
@@ -62,9 +66,9 @@ class NanonisSxmSTM(SPMformatter):
     def __init__(
         self,
         template: "Template",
-        raw_file: Union[str, Path],
-        eln_file: Dict,
-        config_file: str = None,  # Incase it is not provided by users
+        raw_file: str | Path,
+        eln_file: str | Path,
+        config_file: str | Path = None,  # Incase it is not provided by users
         entry: Optional[str] = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
@@ -73,7 +77,7 @@ class NanonisSxmSTM(SPMformatter):
         self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
 
-    def _get_conf_dict(self, config_file: str = None):
+    def _get_conf_dict(self, config_file: str | Path = None):
         if config_file is not None:
             return fhs.read_config_file(config_file)
         else:
@@ -106,7 +110,7 @@ class NanonisSxmSTM(SPMformatter):
             concept_field=backward_speed_k,
         )
         fast_axis = (
-            self.NXScanControl.fast_axis[1:]
+            self.NXScanControl.fast_axis
             if self.NXScanControl.fast_axis.startswith("-")  # -ve direction
             else self.NXScanControl.fast_axis
         )
@@ -171,10 +175,10 @@ class NanonisSxmSTM(SPMformatter):
             self.template[off_key] = offset
             self.template[f"{off_key}/@units"] = unit
             if self._axes[ind] == "x":
-                self.NXScanControl.x_start = offset
+                self.NXScanControl.x_start = offset  # type: ignore
                 self.NXScanControl.x_start_unit = unit
             elif self._axes[ind] == "y":
-                self.NXScanControl.y_start = offset
+                self.NXScanControl.y_start = offset  # type: ignore
                 self.NXScanControl.y_start_unit = unit
 
         # Scan Angle
@@ -301,7 +305,7 @@ class NanonisSxmSTM(SPMformatter):
             "Calibration",
             "Offset",
         ]
-        plot_data_list = []
+        plot_data_list: list[dict[str, Any]] = []
         for ind, row in enumerate(data_headers):
             if ind == 0 and expected_keys != row:
                 raise ValueError(

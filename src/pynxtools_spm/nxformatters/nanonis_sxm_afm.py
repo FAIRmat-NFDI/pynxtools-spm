@@ -22,10 +22,9 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Dict, Optional, Union, TYPE_CHECKING
-from pathlib import Path
+from typing import Optional, Union, TYPE_CHECKING
 from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
-
+from pathlib import Path
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
@@ -59,10 +58,9 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
 
     def __init__(
         self,
-        # TODO: fix the type of template
         template: "Template",
-        raw_file: Union[str, Path],
-        eln_file: Dict,
+        raw_file: Union[str, "Path"],
+        eln_file: str | Path,
         config_file: str = None,  # Incase it is not provided by users
         entry: Optional[str] = None,
     ):
@@ -76,7 +74,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
 
-    def _get_conf_dict(self, config_file: str = None):
+    def _get_conf_dict(self, config_file: str | Path = None):
         if config_file is not None:
             return fhs.read_config_file(config_file)
         else:

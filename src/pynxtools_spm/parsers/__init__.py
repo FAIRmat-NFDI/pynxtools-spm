@@ -84,7 +84,7 @@ class SPMParser:
             File extension (e.g. 'sxm'), by default None
         Returns
         -------
-            Return callable function that has capability to run the correponding parser.
+            Return Callable function that has capability to run the correponding parser.
         """
         if file_ext is None:
             if file is None:
@@ -117,16 +117,15 @@ class SPMParser:
         software_v: str = eln.get(software_v_key, None)
         software_v = software_v.replace(" ", "").lower() if software_v else None
         try:
-            parser_cls: Callable = vendor_dict.get(software_v, None)  # type: ignore[assignment]
-            if parser_cls is not None:
-                return iter([parser_cls])
+            parser = vendor_dict.get(software_v, None)  # type: ignore[assignment]
         except (ValueError, KeyError):
             pass
         # collect all parsers
-        if parser is None:
-            flat_dict = {}
+        if parser is not None:
+            return iter([parser])
+        else:
+            flat_dict: dict[str, Callable] = {}
             phs.nested_path_to_slash_separated_path(experiment_dict, flat_dict)
-
             return flat_dict.values()
 
     def get_raw_data_dict(
@@ -136,7 +135,7 @@ class SPMParser:
         file_ext: Optional[str] = None,
     ):
         """Get the raw data from the file."""
-        parsers: Iterable[callable] = self.__get_appropriate_parser(
+        parsers: Iterable[Callable] = self.__get_appropriate_parser(
             file=file, eln=eln or {}, file_ext=file_ext
         )
         raw_data_dict: Optional[Dict[str, Any]] = None
