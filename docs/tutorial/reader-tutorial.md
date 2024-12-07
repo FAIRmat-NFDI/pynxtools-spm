@@ -2,7 +2,7 @@
 
 !!! warning "Work in progress"
 
-Complete documentation of this reader is still in progress.
+<!-- Complete documentation of this reader is still in progress.
 
 ## Want to Contribute or Extend the Reader Functionality
 We appreciate any comments, extentions or improvements on the existing reader from users. Currently the reader supports the versions `4.5`, `5e` from `Generic` model of `Nanonis` vendor. To include the other versions of the `Generic` model, extend the class `StmNanonisGeneric` and `StsNanonisGeneric` by including versions in `__version__` attribute. Also include the model and version of the brand in `Spm` class. 
@@ -15,4 +15,4 @@ If you go for a completely different model (e.g., from a different brand), pleas
 
 Later on, please add the relevant tests in the plugin test.
 
-Done! Great, then please create a pull request.
+Done! Great, then please create a pull request. -->

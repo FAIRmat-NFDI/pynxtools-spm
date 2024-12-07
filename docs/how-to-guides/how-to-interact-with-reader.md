@@ -1,5 +1,6 @@
-# How to Use the STM Reader
-## How To Install the STM Reader
+# How to Use the SPM Reader
+!!! danger "Work in progress"
+<!-- ## How To Install the STM Reader
 The STM reader can be installed as a python package from PyPI. We recommend to install the reader in a python virtual environment.
 ### Installation of STM reader in python virtual envrironment
 Run the followoing command step-by-step on your linux terminal
@@ -48,4 +49,4 @@ Use the following command to run the `STM` reader from your python environment:
 <path-to STM_nanonis_generic_5e.sxm> \
 <path-to config_file_for_sxm.json> \
 <path-to Nanonis_Eln.yaml> \
-```
+``` -->

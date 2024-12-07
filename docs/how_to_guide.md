@@ -1,5 +1,6 @@
 # How-To-Guide
-## How-To Install STM Reader
+!!! danger "Work in progress"
+<!-- ## How-To Install STM Reader
 Installing STM reader is as simple as installing python package from PyPI. We recommend to install the reader in a python virtual environment.
 ### Installation of STM reader in python virtual envrironment
 Run the followoing command step-by-step on your linux terminal
@@ -60,4 +61,4 @@ If you go for a completely different model (e.g., from a different brand), pleas
 
 Later on, please add the relevant tests in the plugin test.
 
-Done! Great, then please create a pull request.
+Done! Great, then please create a pull request. -->
