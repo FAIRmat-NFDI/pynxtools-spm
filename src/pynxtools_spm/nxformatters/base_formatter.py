@@ -221,22 +221,24 @@ class SPMformatter(ABC):
         """
         if self.NXScanControl.fast_axis == "x":
             if self.NXScanControl.slow_axis == "-y":
-                return np.flipud(data)
-            return data
+                return data
+                # return np.flipud(data)
+            return np.flipud(data)
         elif self.NXScanControl.fast_axis == "-x":
             if self.NXScanControl.slow_axis == "y":
-                return np.fliplr(data)
+                return np.flip(data)
             elif self.NXScanControl.slow_axis == "-y":
-                np.flip(data)
+                # np.flip(data)
+                np.fliplr(data)
         elif self.NXScanControl.fast_axis == "-y":
             if self.NXScanControl.slow_axis == "x":
-                return np.transpose(np.flipud(data))
-            elif self.NXScanControl.slow_axis == "-x":
                 return np.transpose(data)
+            elif self.NXScanControl.slow_axis == "-x":
+                return np.flipud(np.fliplr(np.transpose(data)))
         elif self.NXScanControl.fast_axis == "y":
             if self.NXScanControl.slow_axis == "-x":
-                return np.fliplr(data)
-            return np.transpose(np.fliplr(np.flipud(data)))
+                return np.fliplr(np.transpose(data))
+            return np.flipud(data)
 
     def get_raw_data_dict(self):
         return SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
