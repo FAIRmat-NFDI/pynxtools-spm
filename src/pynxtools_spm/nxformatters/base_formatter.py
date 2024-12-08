@@ -236,7 +236,7 @@ class SPMformatter(ABC):
         elif self.NXScanControl.fast_axis == "y":
             if self.NXScanControl.slow_axis == "-x":
                 return np.fliplr(data)
-            return data
+            return np.transpose(np.fliplr(np.flipud(data)))
 
     def get_raw_data_dict(self):
         return SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
@@ -245,20 +245,16 @@ class SPMformatter(ABC):
         fast_slow: List[str]
         if direction.lower() == "down":
             fast_slow = ["-Y", "X"]
-            self.NXScanControl.fast_axis = fast_slow[0].lower()
-            self.NXScanControl.slow_axis = fast_slow[1].lower()
         elif direction.lower() == "up":
             fast_slow = ["Y", "X"]
-            self.NXScanControl.fast_axis = fast_slow[0].lower()
-            self.NXScanControl.slow_axis = fast_slow[1].lower()
         elif direction.lower() == "right":
             fast_slow = ["X", "Y"]
-            self.NXScanControl.fast_axis = fast_slow[0].lower()
-            self.NXScanControl.slow_axis = fast_slow[1].lower()
         elif direction.lower() == "left":
             fast_slow = ["-X", "Y"]
-            self.NXScanControl.fast_axis = fast_slow[0].lower()
-            self.NXScanControl.slow_axis = fast_slow[1].lower()
+        else:
+            fast_slow = ["X", "Y"]
+        self.NXScanControl.fast_axis = fast_slow[0].lower()
+        self.NXScanControl.slow_axis = fast_slow[1].lower()
 
         return fast_slow
 
