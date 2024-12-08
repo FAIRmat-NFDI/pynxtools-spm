@@ -52,6 +52,7 @@ from pynxtools_spm.nomad.nomad_example_paths import (
     AFM_CUSTOMIZED_EXAMPLE_PATH,
 )
 
+
 @pytest.mark.parametrize(
     "mainfile",
     list(get_file_parameter(STS_DEFAULT_CONF_EXAMPLE_PATH))
