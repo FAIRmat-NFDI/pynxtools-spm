@@ -187,8 +187,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             axis_x = "x"
             axis_y = "y"
             self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
-                axis_x,
                 axis_y,
+                axis_x,
             ]
             self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
             self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
