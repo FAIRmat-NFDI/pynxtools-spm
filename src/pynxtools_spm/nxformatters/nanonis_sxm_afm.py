@@ -89,7 +89,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     ):
         """To construct the scan pattern like scan_mesh, scan_spiral (group) etc."""
         # The config file for afm is exactly the same as for stm
-        super().construct_scan_pattern_grp(
+        NanonisSxmSTM.construct_scan_pattern_grp(
+            self,
             partial_conf_dict=partial_conf_dict,
             parent_path=parent_path,
             group_name=group_name,
@@ -103,7 +104,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     ):
         """To construct the scan region like scan_region."""
         # The config file for afm is exactly the same as for stm
-        super().construct_scan_region_grp(
+        NanonisSxmSTM.construct_scan_region_grp(
+            self,
             partial_conf_dict=partial_conf_dict,
             parent_path=parent_path,
             group_name=group_name,
@@ -112,7 +114,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     def construct_single_scan_data_grp(self, parent_path, plot_data_info, group_name):
         """To construct the scan data like scan_data."""
         # The config file for afm is exactly the same as for stm
-        super().construct_single_scan_data_grp(
+        NanonisSxmSTM.construct_single_scan_data_grp(
+            self,
             parent_path=parent_path,
             plot_data_info=plot_data_info,
             group_name=group_name,
@@ -127,7 +130,8 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         """To construct the scan data like scan_data."""
 
         # The config file for afm is exactly the same as for stm
-        super().construct_scan_data_grps(
+        NanonisSxmSTM.construct_scan_data_grps(
+            self,
             partial_conf_dict=partial_conf_dict,
             parent_path=parent_path,
             group_name=group_name,
@@ -141,17 +145,41 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     ):
         """To construct the scan control like scan_control."""
         # The config file for afm is exactly the same as for stm
-        super()._construct_nxscan_controllers(
+        NanonisSxmSTM._construct_nxscan_controllers(
+            self,
             partial_conf_dict=partial_conf_dict,
             parent_path=parent_path,
             group_name=group_name,
         )
 
     def _NXdata_grp_from_conf_description(
-        self, partial_conf_dict, parent_path, group_name, group_index=0
+        self,
+        partial_conf_dict,
+        parent_path,
+        group_name,
+        group_index=0,
+        is_forward: Optional[bool] = None,
     ):
+        if (
+            is_forward is None
+            and "data" in partial_conf_dict
+            and "raw_path" in partial_conf_dict["data"]
+        ):
+            is_forward = (
+                True
+                if "forward" in partial_conf_dict.get("data").get("raw_path").lower()
+                else False
+            )
+        else:
+            return
+
         nxdata_group_nm = SPMformatter._NXdata_grp_from_conf_description(
-            self, partial_conf_dict, parent_path, group_name, group_index
+            self,
+            partial_conf_dict,
+            parent_path,
+            group_name,
+            group_index,
+            is_forward,
         )
         if nxdata_group_nm is None:
             return None

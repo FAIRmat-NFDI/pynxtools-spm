@@ -211,14 +211,22 @@ class SPMformatter(ABC):
             else:
                 self.walk_though_config_nested_dict(val, f"{parent_path}/{key}")
 
-    def rearrange_data_according_to_axes(self, data, forward=True):
+    def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
         """Rearrange array data according to the fast and slow axes.
 
         Parameters
         ----------
         data : np.ndarray
             Two dimensional array data from scan.
+        is_forward : bool, optional
+            Default scan direction.
         """
+
+        # if NXcontrol is not defined (e.g. for Bias Spectroscopy)
+        if not hasattr(self.NXScanControl, "fast_axis") and not hasattr(
+            self.NXScanControl, "slow_axis"
+        ):
+            return data
         fast_axis, slow_axis = (
             self.NXScanControl.fast_axis,
             self.NXScanControl.slow_axis,
@@ -251,7 +259,8 @@ class SPMformatter(ABC):
                 rearraged = np.fliplr(rearraged)
         else:
             rearraged = data
-        if not forward:
+        # Consider backward scan
+        if is_forward is False:
             rearraged = np.fliplr(rearraged)
         return rearraged
 
@@ -299,7 +308,7 @@ class SPMformatter(ABC):
         parent_path: str,
         group_name: str,
         group_index=0,
-        forward_direction=True,
+        is_forward: Optional[bool] = None,
     ):
         """Example NXdata dict descrioption from config
         partial_conf_dict = {
@@ -334,6 +343,7 @@ class SPMformatter(ABC):
                     by the name key.
             "title" -> Title of the main plot.
             "grp_name" -> Name of the NXdata group.
+            is_forward -> Direction of the scan. Default is True.
 
         return:
         -------
@@ -377,9 +387,7 @@ class SPMformatter(ABC):
             f"Title Data Group {group_index}"
         )
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}"] = (
-            self.rearrange_data_according_to_axes(
-                nxdata_d_arr, forward=forward_direction
-            )
+            self.rearrange_data_according_to_axes(nxdata_d_arr, is_forward=is_forward)
         )
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@units"] = d_unit
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@long_name"] = (

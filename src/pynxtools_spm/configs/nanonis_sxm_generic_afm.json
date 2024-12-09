@@ -439,7 +439,11 @@
               }
             ]
           },
-          "independent_scan_axes": { "raw_path": "/SCAN/DIR", "@units": "" },
+          "independent_scan_axes": { 
+            "#note": "Derived in scan pattern group.",
+            "raw_path": "/SCAN/DIR", 
+            "@units": "" 
+          },
           "scan_resolution_N": "",
           "accuracy_N": "",
           "scan_type": { "raw_path": "@default:mesh", "@units": "" },

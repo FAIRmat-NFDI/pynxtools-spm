@@ -422,11 +422,20 @@ class NanonisSxmSTM(SPMformatter):
             )
 
     def _NXdata_grp_from_conf_description(
-        self, partial_conf_dict, parent_path, group_name, group_index=0
+        self,
+        partial_conf_dict,
+        parent_path,
+        group_name,
+        group_index=0,
+        is_forward: Optional[bool] = None,
     ):
         """Specialization of the generic funciton to create NXdata group or plots."""
-        if "data" in partial_conf_dict and "raw_path" in partial_conf_dict["data"]:
-            forward_dir = (
+        if (
+            is_forward is None
+            and "data" in partial_conf_dict
+            and "raw_path" in partial_conf_dict["data"]
+        ):
+            is_forward = (
                 True
                 if "forward" in partial_conf_dict.get("data").get("raw_path").lower()
                 else False
@@ -438,7 +447,7 @@ class NanonisSxmSTM(SPMformatter):
             parent_path,
             group_name,
             group_index,
-            forward_direction=forward_dir,
+            is_forward=is_forward,
         )
         if "0" not in partial_conf_dict:
             axis_x = "x"
