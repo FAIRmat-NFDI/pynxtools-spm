@@ -245,7 +245,7 @@ class SPMformatter(ABC):
             rearraged = data
         elif fast_axis == "-x":
             if slow_axis == "y":
-                rearraged = np.fliprl(data)
+                rearraged = np.fliplr(data)
             elif slow_axis == "-y":
                 # np.flip(data)
                 np.flip(data)
