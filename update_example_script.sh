@@ -23,4 +23,3 @@ find tests/data/nanonis/stm/version_gen_4_5_default_config -type f -name '*.nxs'
 
 find tests/data/nanonis/stm/version_gen_4_5_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_4_5_with_described_nxdata.nxs
 find tests/data/nanonis/stm/version_gen_4_5_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_4_5_with_described_nxdata.nxs
-

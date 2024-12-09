@@ -23,8 +23,7 @@ classifiers = [
 ]
 dependencies = [
     "findiff",
-    "pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@master#egg=pynxtools",
-    # "pynxtools>=0.3.3",
+    "pynxtools>=0.9.2",
     "pySPM==0.6.2",  # SPM file reader for Bruker files
     "pint"
 ]
