@@ -211,7 +211,7 @@ class SPMformatter(ABC):
             else:
                 self.walk_though_config_nested_dict(val, f"{parent_path}/{key}")
 
-    def rearrange_data_according_to_axes(self, data):
+    def rearrange_data_according_to_axes(self, data, forward=True):
         """Rearrange array data according to the fast and slow axes.
 
         Parameters
@@ -219,26 +219,41 @@ class SPMformatter(ABC):
         data : np.ndarray
             Two dimensional array data from scan.
         """
-        if self.NXScanControl.fast_axis == "x":
-            if self.NXScanControl.slow_axis == "-y":
-                return data
-                # return np.flipud(data)
-            return np.flipud(data)
-        elif self.NXScanControl.fast_axis == "-x":
-            if self.NXScanControl.slow_axis == "y":
-                return np.flip(data)
-            elif self.NXScanControl.slow_axis == "-y":
+        fast_axis, slow_axis = (
+            self.NXScanControl.fast_axis,
+            self.NXScanControl.slow_axis,
+        )
+
+        # TODO recheck the logic
+        # Coodinate of the data points exactly the same as the scan region
+        # is defined. E.g if the scan starts from the top left corner then
+        # that is the origin of the plot. In plot visualization the origin
+        # starts botoom left conrner.
+
+        rearraged = None
+        if fast_axis == "x":
+            if slow_axis == "-y":
+                rearraged = np.flipud(data)
+            rearraged = data
+        elif fast_axis == "-x":
+            if slow_axis == "y":
+                rearraged = np.fliprl(data)
+            elif slow_axis == "-y":
                 # np.flip(data)
-                np.fliplr(data)
-        elif self.NXScanControl.fast_axis == "-y":
-            if self.NXScanControl.slow_axis == "x":
-                return np.transpose(data)
-            elif self.NXScanControl.slow_axis == "-x":
-                return np.flipud(np.fliplr(np.transpose(data)))
-        elif self.NXScanControl.fast_axis == "y":
-            if self.NXScanControl.slow_axis == "-x":
-                return np.fliplr(np.transpose(data))
-            return np.flipud(data)
+                np.flip(data)
+        elif fast_axis == "-y":
+            rearraged = np.flipud(data)
+            if slow_axis == "-x":
+                rearraged = np.fliplr(rearraged)
+        elif fast_axis == "y":
+            rearraged = data
+            if slow_axis == "-x":
+                rearraged = np.fliplr(rearraged)
+        else:
+            rearraged = data
+        if not forward:
+            rearraged = np.fliplr(rearraged)
+        return rearraged
 
     def get_raw_data_dict(self):
         return SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
@@ -284,6 +299,7 @@ class SPMformatter(ABC):
         parent_path: str,
         group_name: str,
         group_index=0,
+        forward_direction=True,
     ):
         """Example NXdata dict descrioption from config
         partial_conf_dict = {
@@ -360,7 +376,11 @@ class SPMformatter(ABC):
         self.template[f"{parent_path}/{nxdata_group}/@title"] = (
             f"Title Data Group {group_index}"
         )
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}"] = nxdata_d_arr
+        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}"] = (
+            self.rearrange_data_according_to_axes(
+                nxdata_d_arr, forward=forward_direction
+            )
+        )
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@units"] = d_unit
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@long_name"] = (
             f"{nxdata_nm} ({d_unit})"
@@ -368,6 +388,9 @@ class SPMformatter(ABC):
         self.template[f"{parent_path}/{nxdata_group}/@signal"] = field_nm_fit
         if d_others:
             for k, v in d_others.items():
+                k = k.replace(" ", "_").lower()
+                # TODO check if k starts with @ or not
+                k = k[1:] if k.startswith("@") else k
                 self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@{k}"] = v
         if not (len(nxdata_axes) == len(nxdata_indices) == len(axdata_unit_other_list)):
             return

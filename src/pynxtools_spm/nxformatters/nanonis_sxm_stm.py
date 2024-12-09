@@ -97,22 +97,23 @@ class NanonisSxmSTM(SPMformatter):
             partial_conf_dict=partial_conf_dict,
             concept_field=forward_speed_k,
         )
+        fast_axis = (
+            self.NXScanControl.fast_axis[1:]
+            if self.NXScanControl.fast_axis.startswith("-")  # -ve direction
+            else self.NXScanControl.fast_axis
+        )
+        # TODO: chech fast_axis contains - sign and remove it
         self.template[
-            f"{parent_path}/{group_name}/forward_speed_N[forward_speed_{self.NXScanControl.fast_axis}]"
+            f"{parent_path}/{group_name}/forward_speed_N[forward_speed_{fast_axis}]"
         ] = to_intended_t(forward_speed)
         self.template[
-            f"{parent_path}/{group_name}/forward_speed_N[forward_speed_{self.NXScanControl.fast_axis}]/@units"
+            f"{parent_path}/{group_name}/forward_speed_N[forward_speed_{fast_axis}]/@units"
         ] = unit
         backward_speed_k = "backward_speed_N[backward_speed_n]"
         backward_speed, unit, _ = _get_data_unit_and_others(
             data_dict=self.raw_data,
             partial_conf_dict=partial_conf_dict,
             concept_field=backward_speed_k,
-        )
-        fast_axis = (
-            self.NXScanControl.fast_axis
-            if self.NXScanControl.fast_axis.startswith("-")  # -ve direction
-            else self.NXScanControl.fast_axis
         )
         self.template[
             f"{parent_path}/{group_name}/backward_speed_N[backward_speed_{fast_axis}]"
@@ -424,16 +425,25 @@ class NanonisSxmSTM(SPMformatter):
         self, partial_conf_dict, parent_path, group_name, group_index=0
     ):
         """Specialization of the generic funciton to create NXdata group or plots."""
+        if "data" in partial_conf_dict and "raw_path" in partial_conf_dict["data"]:
+            forward_dir = (
+                True
+                if "forward" in partial_conf_dict.get("data").get("raw_path").lower()
+                else False
+            )
+        else:
+            return
         nxdata_group_nm = super()._NXdata_grp_from_conf_description(
-            partial_conf_dict, parent_path, group_name, group_index
+            partial_conf_dict,
+            parent_path,
+            group_name,
+            group_index,
+            forward_direction=forward_dir,
         )
         if "0" not in partial_conf_dict:
             axis_x = "x"
             axis_y = "y"
-            self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
-                axis_x,
-                axis_y,
-            ]
+            self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [axis_y, axis_x]
             self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
             self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
                 self.NXScanControl.x_start,
