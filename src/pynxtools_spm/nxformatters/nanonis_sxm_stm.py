@@ -465,8 +465,8 @@ class NanonisSxmSTM(SPMformatter):
 
             self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_y}_indices"] = 1
             self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}"] = np.linspace(
-                self.NXScanControl.y_start,
                 self.NXScanControl.y_end,
+                self.NXScanControl.y_start,
                 int(self.NXScanControl.y_points),
             )
             self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}/@units"] = (
