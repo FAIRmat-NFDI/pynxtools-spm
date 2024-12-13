@@ -163,7 +163,7 @@
         "AMPLIFIER[amplifier]": { "current_gain": null },
         "current": { "@units": null },
         "current_calibration": {
-          "calibration_time": { "@units": null },
+          "calibration_interval": { "@units": null },
           "coefficients": { "@units": null }
         },
         "current_offset": { "@units": null }
@@ -492,7 +492,7 @@
             "raw_path": "/Bias/Calibration",
             "@units": "/Bias/Calibration/@unit"
           },
-          "calibration_time": ""
+          "calibration_interval": ""
         }
       }
     },

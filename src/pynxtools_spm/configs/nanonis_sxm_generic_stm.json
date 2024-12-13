@@ -78,12 +78,6 @@
             "@units": ""
           }
         },
-        "SENSOR[sensor]": {
-          "calibration_time": "",
-          "run_control": "",
-          "value": "",
-          "value_timestamp": ""
-        },
         "independent_controllers": "",
         "measurement_sensors": "",
         "cryo_shield_temp_sensor": {
