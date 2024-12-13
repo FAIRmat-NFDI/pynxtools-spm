@@ -116,7 +116,7 @@
           "calibration_time": ""
         },
         "AMPLIFIER[amplifier]": {
-          "current_gain": { "raw_path": "/Current/Gain" }
+          "current_gain": { "raw_path": "" }
         }
       },
       "LOCKIN[lockin]": {
