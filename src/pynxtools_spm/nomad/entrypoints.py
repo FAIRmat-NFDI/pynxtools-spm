@@ -20,7 +20,7 @@
 from nomad.config.models.plugins import ExampleUploadEntryPoint
 
 
-sts_example_with_customization = ExampleUploadEntryPoint(
+sts_example = ExampleUploadEntryPoint(
     title="Scanning Tunneling Spectroscopy (STS)",
     category="FAIRmat Examples",
     description="""This example (config.json file is an optional input) presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Spectroscopy (sts) data""",
@@ -29,7 +29,7 @@ sts_example_with_customization = ExampleUploadEntryPoint(
 )
 
 
-stm_example_with_customization = ExampleUploadEntryPoint(
+stm_example = ExampleUploadEntryPoint(
     title="Scanning Tunneling Microscopy (STM)",
     category="FAIRmat Examples",
     description="""This example (config.json file is an optional input) presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Microscopy (stm) data""",
@@ -38,7 +38,7 @@ stm_example_with_customization = ExampleUploadEntryPoint(
 )
 
 
-afm_example_with_customization = ExampleUploadEntryPoint(
+afm_example = ExampleUploadEntryPoint(
     title="Atomic Force Microscopy (AFM)",
     category="FAIRmat Examples",
     description="""This example (config.json file is an optional input) presents the capabilities of the NOMAD platform to store standardized Atomic Force Microscopy (afm) data""",

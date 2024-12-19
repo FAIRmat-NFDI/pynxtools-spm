@@ -35,9 +35,9 @@ from pynxtools.testing.nomad_example import (
 )
 
 from pynxtools_spm.nomad.entrypoints import (
-    sts_example_with_customization,
-    stm_example_with_customization,
-    afm_example_with_customization,
+    sts_example,
+    stm_example,
+    afm_example,
 )
 
 from pynxtools_spm.nomad.nomad_example_paths import (
@@ -55,7 +55,6 @@ from pynxtools_spm.nomad.nomad_example_paths import (
 )
 def test_parse_nomad_examples(mainfile):
     """Test if NOMAD examples work."""
-    print(mainfile)
     archive_dict = parse_nomad_examples(mainfile)
 
 
@@ -63,17 +62,17 @@ def test_parse_nomad_examples(mainfile):
     ("entrypoint", "example_path"),
     [
         pytest.param(
-            sts_example_with_customization,
+            sts_example,
             STS_CUSTOMIZED_EXAMPLE_PATH,
             id="sts_example_with_customization",
         ),
         pytest.param(
-            stm_example_with_customization,
+            stm_example,
             STM_CUSTOMIZED_EXAMPLE_PATH,
             id="stm_example_with_customization",
         ),
         pytest.param(
-            afm_example_with_customization,
+            afm_example,
             AFM_CUSTOMIZED_EXAMPLE_PATH,
             id="afm_example_with_customization",
         ),

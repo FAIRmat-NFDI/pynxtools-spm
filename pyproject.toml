@@ -52,9 +52,9 @@ docs = [
 spm = "pynxtools_spm.reader:SPMReader"
 
 [project.entry-points."nomad.plugin"]
-sts_example_with_customization = "pynxtools_spm.nomad.entrypoints:sts_example_with_customization"
-stm_example_with_customization = "pynxtools_spm.nomad.entrypoints:stm_example_with_customization"
-afm_example_with_customization = "pynxtools_spm.nomad.entrypoints:afm_example_with_customization"   
+sts_example_with_customization = "pynxtools_spm.nomad.entrypoints:sts_example"
+stm_example_with_customization = "pynxtools_spm.nomad.entrypoints:stm_example"
+afm_example_with_customization = "pynxtools_spm.nomad.entrypoints:afm_example"   
 
 
 [tool.setuptools.packages.find]
