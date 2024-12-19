@@ -35,31 +35,22 @@ from pynxtools.testing.nomad_example import (
 )
 
 from pynxtools_spm.nomad.entrypoints import (
-    sts_default_example,
     sts_example_with_customization,
-    stm_default_example,
     stm_example_with_customization,
-    afm_default_example,
     afm_example_with_customization,
 )
 
 from pynxtools_spm.nomad.nomad_example_paths import (
-    STS_DEFAULT_CONF_EXAMPLE_PATH,
     STS_CUSTOMIZED_EXAMPLE_PATH,
-    STM_DEFAULT_CONF_EXAMPLE_PATH,
     STM_CUSTOMIZED_EXAMPLE_PATH,
-    AFM_DEFAULT_CONF_EXAMPLE_PATH,
     AFM_CUSTOMIZED_EXAMPLE_PATH,
 )
 
 
 @pytest.mark.parametrize(
     "mainfile",
-    list(get_file_parameter(STS_DEFAULT_CONF_EXAMPLE_PATH))
-    + list(get_file_parameter(STS_CUSTOMIZED_EXAMPLE_PATH))
-    + list(get_file_parameter(STM_DEFAULT_CONF_EXAMPLE_PATH))
+    list(get_file_parameter(STS_CUSTOMIZED_EXAMPLE_PATH))
     + list(get_file_parameter(STM_CUSTOMIZED_EXAMPLE_PATH))
-    + list(get_file_parameter(AFM_DEFAULT_CONF_EXAMPLE_PATH))
     + list(get_file_parameter(AFM_CUSTOMIZED_EXAMPLE_PATH)),
 )
 def test_parse_nomad_examples(mainfile):
@@ -72,29 +63,14 @@ def test_parse_nomad_examples(mainfile):
     ("entrypoint", "example_path"),
     [
         pytest.param(
-            sts_default_example,
-            STS_DEFAULT_CONF_EXAMPLE_PATH,
-            id="sts_default_example",
-        ),
-        pytest.param(
             sts_example_with_customization,
             STS_CUSTOMIZED_EXAMPLE_PATH,
             id="sts_example_with_customization",
         ),
         pytest.param(
-            stm_default_example,
-            STM_DEFAULT_CONF_EXAMPLE_PATH,
-            id="stm_default_example",
-        ),
-        pytest.param(
             stm_example_with_customization,
             STM_CUSTOMIZED_EXAMPLE_PATH,
             id="stm_example_with_customization",
-        ),
-        pytest.param(
-            afm_default_example,
-            AFM_DEFAULT_CONF_EXAMPLE_PATH,
-            id="afm_default_example",
         ),
         pytest.param(
             afm_example_with_customization,
