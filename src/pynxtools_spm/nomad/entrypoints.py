@@ -31,7 +31,7 @@ sts_example = ExampleUploadEntryPoint(
 
 stm_example = ExampleUploadEntryPoint(
     title="Scanning Tunneling Microscopy (STM)",
-    category="FAIRmat Examples",
+    category="FAIRmat examples",
     description="""This example (config.json file is an optional input) presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Microscopy (stm) data""",
     plugin_package="pynxtools_spm",
     resources=["nomad/examples/stm/STMExampleWithCustomization/*"],
