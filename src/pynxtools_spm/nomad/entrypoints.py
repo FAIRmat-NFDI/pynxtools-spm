@@ -40,7 +40,7 @@ stm_example = ExampleUploadEntryPoint(
 
 afm_example = ExampleUploadEntryPoint(
     title="Atomic Force Microscopy (AFM)",
-    category="FAIRmat Examples",
+    category="FAIRmat examples",
     description="""This example (config.json file is an optional input) presents the capabilities of the NOMAD platform to store standardized Atomic Force Microscopy (afm) data""",
     plugin_package="pynxtools_spm",
     resources=["nomad/examples/afm/AFMExampleWithCustomization/*"],
