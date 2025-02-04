@@ -145,14 +145,13 @@ if __name__ == "__main__":
 
     indices = []
     zips_to_be_upload = []
+    # TODO: Get the input parameters rom the queue, on which we can delete the raw files.
     while not results_q.empty():
         zips_to_be_upload.append(results_q.get())
-    print("############# All processes are done!", zips_to_be_upload)
     upload_time_limit = datetime.now() + timedelta(seconds=time_out)
 
-    while len(zips_to_be_upload) != len(indices) and datetime.now() < upload_time_limit:
+    while len(zips_to_be_upload) > len(indices) and datetime.now() < upload_time_limit:
         for ind, zip_to_upload in enumerate(zips_to_be_upload):
-            print(f"######## zip file Processing {zip_to_upload}...")
             if ind in indices:  # already processed or failed
                 continue
             if not zip_to_upload:
@@ -185,8 +184,10 @@ if __name__ == "__main__":
                 not massage.startswith("Process process_upload completed successfully")
                 and attempt < max_attempt
             ):
+                # TODO: If upload is sucessfull, remove the zip and raw files
                 attempt += 1
                 massage = check_upload_status(nomad_url, token, upload_id)
                 time.sleep(4 / 60)  # 4 second
             print(f"Upload status: {massage}")
+
     print("All done!", indices)
