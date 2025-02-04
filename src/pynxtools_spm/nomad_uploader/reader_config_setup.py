@@ -78,7 +78,6 @@ def convert_spm_experiments(
             for file in input_params.input_file:
                 zipf.write(file, arcname=file.split("/")[-1])
         input_params.zip_file_path = zip_file
-        print(f"########### print from : ", input_params.zip_file_path)
         return zip_file
 
 
