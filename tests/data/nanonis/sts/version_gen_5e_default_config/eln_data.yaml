@@ -1,19 +1,24 @@
 Sample:
   History:
     notes: <p>Sample history goes here.</p>
-  description: <p>Sample description is here.</p>
-  name: DemoSample
+  chemical_formula: Au
+  name: Gold
   sample_component_set:
     sample_component:
       description: <p>Description of the sample component</p>
       name: DemoSampleComponent
 collection_identifier:
-  identifier: STSCollectionIdentifier-1234
+  identifier: C:\Users\SPM-PEEM\Desktop\DATA_Nanonis\20220711_CreaTec_Service_Benchmarks_LHe\Nanonis-Session-PMD100-HVHU_CreaTec_Service_PalmaLabBerlin220711
 default: current_grad
 definition: NXsts
-experiment_description: <p>The experiment description is here.</p>
+experiment_description: '<p>Experiment with<br />Setpoints: 50pA</p>
+
+  <p>Bias: 100mV</p>
+
+  <p>Comment: SYNC &amp; Filter LP 8order WITHDRAW 600 steps, locked Au(111), 50pA,
+  100 mV set point, 1mV DCA, 973Hz,138 1st H, -84 2nd H</p>'
 experiment_identifier:
-  identifier: STSExperimentIdentifier-1234
+  identifier: C:\Users\SPM-PEEM\Desktop\DATA_Nanonis\20220711_CreaTec_Service_Benchmarks_LHe\Nanonis-Session-PMD100-HVHU_CreaTec_Service_PalmaLabBerlin
 experiment_instrument:
   hardware:
     model: Generic 5e
