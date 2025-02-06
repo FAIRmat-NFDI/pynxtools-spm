@@ -115,7 +115,7 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": f"data.ENTRY.start_time__field#{schema}",
+                    "quantity": f"data.ENTRY.start_time__field#{schema}#datetime",
                     "title": "Start Time",
                     "layout": {
                         "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0}
@@ -135,7 +135,7 @@ spm_app = AppEntryPoint(
                     "type": "terms",
                     "show_input": False,
                     "scale": "linear",
-                    "quantity": f"data.ENTRY.definition__field#{schema}",
+                    "quantity": f"data.ENTRY.definition__field#{schema}#str",
                     "title": "Definition",
                     "layout": {
                         "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16}
@@ -153,3 +153,20 @@ spm_app = AppEntryPoint(
         },
     ),
 )
+
+# data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float
+
+## Some Resolution histogram path
+# data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float
+
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_average_time__field#pynxtools.nomad.schema.Root#int
+# data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.acquisition_time__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#pynxtools.nomad.schema.Root#float
