@@ -30,7 +30,9 @@ from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_r
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
+import debugpy
 
+debugpy.debug_this_thread()
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
 
@@ -87,6 +89,7 @@ class SPMReader(BaseReader):
                     experirment_technique = eln_dict.get("experiment_technique")
                 if experirment_technique is None:
                     raise ValueError("Experiment technique is not defined in ELN file.")
+        debugpy.breakpoint()
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:

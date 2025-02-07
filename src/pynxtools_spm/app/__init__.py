@@ -109,46 +109,345 @@ spm_app = AppEntryPoint(
         # Controls the default dashboard shown in the search interface
         dashboard={
             "widgets": [
+                # {
+                #     "type": "histogram",
+                #     "show_input": False,
+                #     "autorange": True,
+                #     "nbins": 30,
+                #     "scale": "linear",
+                #     "quantity": f"data.ENTRY.start_time__field#{schema}#datetime",
+                #     "title": "Start Time",
+                #     "layout": {
+                #         "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0}
+                #     },
+                # },
+                # {
+                #     "type": "terms",
+                #     "show_input": False,
+                #     "scale": "linear",
+                #     "quantity": "entry_type",
+                #     "title": "Entry Type",
+                #     "layout": {
+                #         "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12}
+                #     },
+                # },
+                # {
+                #     "type": "terms",
+                #     "show_input": False,
+                #     "scale": "linear",
+                #     "quantity": f"data.ENTRY.definition__field#{schema}#str",
+                #     "title": "Definition",
+                #     "layout": {
+                #         "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16}
+                #     },
+                # },
+                # {
+                #     "type": "periodic_table",
+                #     "scale": "linear",
+                #     "quantity": "results.material.elements",
+                #     "layout": {
+                #         "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0}
+                #     },
+                # },
                 {
                     "type": "histogram",
                     "show_input": False,
                     "autorange": True,
                     "nbins": 30,
-                    "scale": "linear",
-                    "quantity": f"data.ENTRY.start_time__field#{schema}#datetime",
+                    "y": {"scale": "linear"},
+                    "x": {
+                        "search_quantity": "data.ENTRY.start_time__field#pynxtools.nomad.schema.Root#datetime",
+                        "scale": "linear",
+                    },
                     "title": "Start Time",
                     "layout": {
-                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0}
+                        "xxl": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 16},
+                        "xl": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
+                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
+                        "md": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
+                        "sm": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
                     },
                 },
                 {
                     "type": "terms",
                     "show_input": False,
                     "scale": "linear",
-                    "quantity": "entry_type",
+                    "search_quantity": "entry_type",
                     "title": "Entry Type",
                     "layout": {
-                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12}
+                        "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 28},
+                        "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
+                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
+                        "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
+                        "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 46, "x": 0},
                     },
                 },
                 {
                     "type": "terms",
                     "show_input": False,
                     "scale": "linear",
-                    "quantity": f"data.ENTRY.definition__field#{schema}#str",
+                    "search_quantity": "data.ENTRY.definition__field#pynxtools.nomad.schema.Root#str",
                     "title": "Definition",
                     "layout": {
-                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16}
+                        "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 32},
+                        "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16},
+                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16},
+                        "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 38, "x": 0},
+                        "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 38, "x": 0},
                     },
                 },
                 {
                     "type": "periodic_table",
                     "scale": "linear",
-                    "quantity": "results.material.elements",
+                    "search_quantity": "results.material.elements",
                     "layout": {
-                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0}
+                        "xxl": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 16},
+                        "xl": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
+                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
+                        "md": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
+                        "sm": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
                     },
                 },
+                {
+                    "type": "histogram",
+                    "autorange": False,
+                    "nbins": 30,
+                    "scale": "linear",
+                    "quantity": "data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float",
+                    "show_input": False,
+                    "title": "Tip Temperature",
+                    "layout": {
+                        "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
+                        "xl": {
+                            "minH": 3,
+                            "minW": 3,
+                            "h": 3,
+                            "w": 8,
+                            "y": 0,
+                            "x": 0,
+                        },
+                        "lg": {
+                            "minH": 3,
+                            "minW": 3,
+                            "h": 3,
+                            "w": 8,
+                            "y": 0,
+                            "x": 0,
+                        },
+                        "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 35, "x": 0},
+                        "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 35, "x": 0},
+                    },
+                },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 3, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 32, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 32, "x": 0},
+                #     },
+                # },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 6, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 29, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 29, "x": 0},
+                #     },
+                # },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 21, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 0},
+                #     },
+                # },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 35, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 35, "x": 0},
+                #     },
+                # },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 3, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 32, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 32, "x": 0},
+                #     },
+                # },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 6, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 29, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 29, "x": 0},
+                #     },
+                # },
+                # {
+                #     "type": "histogram",
+                #     "autorange": False,
+                #     "nbins": 30,
+                #     "y": {"scale": "linear"},
+                #     "x": {
+                #         "search_quantity": "data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float"
+                #     },
+                #     "layout": {
+                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 21, "x": 0},
+                #         "xl": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "lg": {
+                #             "minH": 3,
+                #             "minW": 3,
+                #             "h": 3,
+                #             "w": 8,
+                #             "y": 0,
+                #             "x": ".inf",
+                #         },
+                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 0},
+                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 0},
+                #     },
+                # },
             ]
         },
     ),
@@ -170,3 +469,32 @@ spm_app = AppEntryPoint(
 # data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#pynxtools.nomad.schema.Root#float
 # data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#pynxtools.nomad.schema.Root#float
 # data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#pynxtools.nomad.schema.Root#float
+
+
+## Some Reproducibility histogram path
+# data.ENTRY.experiment_instrument.current_sensor.current__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.current_sensor.current_offset__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.current_sensor.amplifier.current_gain__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.current_sensor.current_calibration.coefficients__field#pynxtools.nomad.schema.Root#float
+
+# data.ENTRY.experiment_instrument.sample_bias_votage.bias_voltage__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.sample_bias_votage.bias_offset__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.sample_bias_votage.bias_calibration.coefficients__field#pynxtools.nomad.schema.Root#float
+
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.first_settling_time__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.end_settling_time__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.max_slew_rate__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_hold__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#pynxtools.nomad.schema.Root#float
+
+# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.switch_off_delay__field#pynxtools.nomad.schema.Root#float
+# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.tip_lift__field#pynxtools.nomad.schema.Root#float
+
+# Fix the type check why it does not work with str/string
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#pynxtools.nomad.schema.Root#string
+# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_status__field#pynxtools.nomad.schema.Root#str
+
