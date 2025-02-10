@@ -741,4 +741,3 @@ spm_app = AppEntryPoint(
 # Fix the type check why it does not work with str/string
 # data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#pynxtools.nomad.schema.Root#string
 # data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_status__field#pynxtools.nomad.schema.Root#str
-
