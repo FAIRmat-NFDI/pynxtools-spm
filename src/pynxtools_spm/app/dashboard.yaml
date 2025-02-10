@@ -12,9 +12,9 @@
     xxl:
       minH: 3
       minW: 3
-      h: 4
-      w: 12
-      y: 0
+      h: 5
+      w: 16
+      y: 11
       x: 16
     xl:
       minH: 3
@@ -55,8 +55,8 @@
       minW: 3
       h: 8
       w: 4
-      y: 0
-      x: 28
+      y: 8
+      x: 32
     xl:
       minH: 3
       minW: 3
@@ -129,13 +129,14 @@
 - type: periodic_table
   scale: linear
   search_quantity: results.material.elements
+  title: Periodic Table
   layout:
     xxl:
       minH: 3
       minW: 3
-      h: 4
-      w: 12
-      y: 4
+      h: 11
+      w: 16
+      y: 0
       x: 16
     xl:
       minH: 3
@@ -166,12 +167,15 @@
       y: 4
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Tip Temperature (Scan Environment)
   layout:
     xxl:
       minH: 3
@@ -186,14 +190,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -209,12 +213,15 @@
       y: 35
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Cryo Bottom Temperature (Scan Environment)
   layout:
     xxl:
       minH: 3
@@ -229,14 +236,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -252,12 +259,15 @@
       y: 32
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Cryo Shield Temperature (Scan Environment)
   layout:
     xxl:
       minH: 3
@@ -272,14 +282,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -295,12 +305,15 @@
       y: 29
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Reference Amplitude (Lockin Amplifier)
   layout:
     xxl:
       minH: 3
@@ -315,14 +328,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -338,12 +351,15 @@
       y: 26
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Scan Start Bias (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -358,14 +374,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -381,12 +397,15 @@
       y: 23
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Scan End Bias (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -401,14 +420,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -424,12 +443,15 @@
       y: 20
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Sweep Number (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -444,14 +466,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -467,12 +489,15 @@
       y: 17
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_average_time__field#pynxtools.nomad.schema.Root#int
+    scale: linear
+  title: Z Average Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -487,14 +512,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -510,12 +535,15 @@
       y: 14
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.acquisition_time__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Acquisition Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -530,14 +558,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -553,12 +581,15 @@
       y: 11
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Animation Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -573,14 +604,14 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
@@ -596,12 +627,15 @@
       y: 8
       x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.current_sensor.current__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Current (Current Sensor)
   layout:
     xxl:
       minH: 3
@@ -616,35 +650,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.sample_bias_votage.bias_voltage__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Bias Voltage (Sample Bias Voltage)
   layout:
     xxl:
       minH: 3
@@ -659,35 +696,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.sample_bias_votage.bias_offset__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Bias Offset (Sample Bias Voltage)
   layout:
     xxl:
       minH: 3
@@ -702,35 +742,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.sample_bias_votage.bias_calibration.coefficients__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Bias Calibration Coefficients (Sample Bias Voltage)
   layout:
     xxl:
       minH: 3
@@ -745,35 +788,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.current_sensor.current_offset__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Current Offset (Current Sensor)
   layout:
     xxl:
       minH: 3
@@ -788,35 +834,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.current_sensor.amplifier.current_gain__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Current Gain (Current Sensor)
   layout:
     xxl:
       minH: 3
@@ -831,35 +880,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.current_sensor.current_calibration.coefficients__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Current Calibration Coefficients (Current Sensor)
   layout:
     xxl:
       minH: 3
@@ -874,35 +926,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_offset__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Z Offset (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -917,35 +972,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.end_settling_time__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Bias Sweep End Settling Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -960,35 +1018,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.first_settling_time__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: First Settling Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -1003,35 +1064,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Final Z (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -1046,35 +1110,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_hold__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Z Controller Hold (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -1089,128 +1156,91 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Controller Name (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
       minW: 3
       h: 3
       w: 8
-      y: 14
-      x: 24
+      y: 26
+      x: 16
     xl:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#pynxtools.nomad.schema.Root#float
-  layout:
-    xxl:
-      minH: 3
-      minW: 3
-      h: 3
-      w: 8
-      y: 8
-      x: 16
-    xl:
-      minH: 3
-      minW: 3
-      h: 3
-      w: 8
-      y: 0
-      x: .inf
-    lg:
-      minH: 3
-      minW: 3
-      h: 3
-      w: 8
-      y: 0
-      x: .inf
-    md:
-      minH: 3
-      minW: 3
-      h: 3
-      w: 8
-      y: 0
-      x: .inf
-    sm:
-      minH: 3
-      minW: 3
-      h: 3
-      w: 8
-      y: 0
-      x: .inf
-- type: histogram
-  autorange: false
-  nbins: 30
-  y:
     scale: linear
-  x:
-    search_quantity: data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#pynxtools.nomad.schema.Root#float
+  title: K_I (Piezo PID Controller)
   layout:
     xxl:
       minH: 3
       minW: 3
       h: 3
       w: 8
-      y: 8
+      y: 23
       x: 24
     xl:
       minH: 3
@@ -1218,42 +1248,91 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
+  nbins: 30
+  y:
+    scale: linear
+  x:
+    search_quantity: data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: K_P (Piezo PID Controller)
+  layout:
+    xxl:
+      minH: 3
+      minW: 3
+      h: 3
+      w: 8
+      y: 20
+      x: 24
+    xl:
+      minH: 3
+      minW: 3
+      h: 3
+      w: 8
+      y: 0
+      x: 0
+    lg:
+      minH: 3
+      minW: 3
+      h: 3
+      w: 8
+      y: 0
+      x: 0
+    md:
+      minH: 3
+      minW: 3
+      h: 3
+      w: 8
+      y: 0
+      x: 0
+    sm:
+      minH: 3
+      minW: 3
+      h: 3
+      w: 8
+      y: 0
+      x: 0
+- type: histogram
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: K_T (Piezo PID Controller)
   layout:
     xxl:
       minH: 3
       minW: 3
       h: 3
       w: 8
-      y: 11
+      y: 23
       x: 16
     xl:
       minH: 3
@@ -1261,78 +1340,84 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.switch_off_delay__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Switch Off Delay (Piezo PID Controller)
   layout:
     xxl:
       minH: 3
       minW: 3
       h: 3
       w: 8
-      y: 14
-      x: 16
+      y: 17
+      x: 24
     xl:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.tip_lift__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Tip Lift (Piezo PID Controller)
   layout:
     xxl:
       minH: 3
@@ -1347,35 +1432,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Measurement Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -1390,35 +1478,38 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Indicators Period (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
@@ -1433,42 +1524,45 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.max_slew_rate__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Max Slew Rate (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
       minW: 3
       h: 3
       w: 8
-      y: 11
+      y: 26
       x: 24
     xl:
       minH: 3
@@ -1476,715 +1570,71 @@
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
 - type: histogram
-  autorange: false
+  show_input: false
+  autorange: true
   nbins: 30
   y:
     scale: linear
   x:
     search_quantity: data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#pynxtools.nomad.schema.Root#float
+    scale: linear
+  title: Z Controller Time (Bias Spectroscopy)
   layout:
     xxl:
       minH: 3
       minW: 3
       h: 3
       w: 8
-      y: 17
-      x: 24
+      y: 20
+      x: 16
     xl:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     lg:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     md:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
+      x: 0
     sm:
       minH: 3
       minW: 3
       h: 3
       w: 8
       y: 0
-      x: .inf
-
-
-## ####################################################
-xx = [
-  {
-    "type": "histogram",
-    "show_input": false,
-    "autorange": true,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.start_time__field#pynxtools.nomad.schema.Root#datetime",
-      "scale": "linear"
-    },
-    "title": "Start Time",
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 0,
-        "x": 16
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 0,
-        "x": 0
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 0,
-        "x": 0
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 0,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 0,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "terms",
-    "show_input": false,
-    "scale": "linear",
-    "search_quantity": "entry_type",
-    "title": "Entry Type",
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 28
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 12
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 12
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 12
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 46,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "terms",
-    "show_input": false,
-    "scale": "linear",
-    "search_quantity": "data.ENTRY.definition__field#pynxtools.nomad.schema.Root#str",
-    "title": "Definition",
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 32
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 16
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 0,
-        "x": 16
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 38,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 8,
-        "w": 4,
-        "y": 38,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "periodic_table",
-    "scale": "linear",
-    "search_quantity": "results.material.elements",
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 4,
-        "x": 16
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 4,
-        "x": 0
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 4,
-        "x": 0
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 4,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 4,
-        "w": 12,
-        "y": 4,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 35,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 35,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 3,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 32,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 32,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 6,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 29,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 29,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 21,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 26,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 26,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 35,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 35,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 3,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 32,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 32,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 6,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 29,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 29,
-        "x": 0
-      }
-    }
-  },
-  {
-    "type": "histogram",
-    "autorange": false,
-    "nbins": 30,
-    "y": {
-      "scale": "linear"
-    },
-    "x": {
-      "search_quantity": "data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float"
-    },
-    "layout": {
-      "xxl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 21,
-        "x": 0
-      },
-      "xl": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "lg": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 0,
-        "x": ".inf"
-      },
-      "md": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 26,
-        "x": 0
-      },
-      "sm": {
-        "minH": 3,
-        "minW": 3,
-        "h": 3,
-        "w": 8,
-        "y": 26,
-        "x": 0
-      }
-    }
-  },
-]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      x: 0
