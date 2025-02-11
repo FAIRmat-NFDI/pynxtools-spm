@@ -81,29 +81,142 @@ spm_app = AppEntryPoint(
         filters_locked={"section_defs.definition_qualified_name": [schema]},
         # Controls the menu shown on the left
         menu=Menu(
-            title="Material",
+            title="Filters",
+            show_header=True,
             items=[
                 Menu(
-                    title="elements",
+                    title="Material",
                     items=[
-                        MenuItemPeriodicTable(
-                            quantity="results.material.elements",
+                        Menu(
+                            title="elements",
+                            show_header=True,
+                            items=[
+                                MenuItemPeriodicTable(
+                                    quantity="results.material.elements",
+                                ),
+                                MenuItemTerms(
+                                    quantity="results.material.chemical_formula_hill",
+                                    width=6,
+                                    options=0,
+                                ),
+                                MenuItemTerms(
+                                    quantity="results.material.chemical_formula_iupac",
+                                    width=6,
+                                    options=0,
+                                ),
+                                MenuItemHistogram(
+                                    x="results.material.n_elements",
+                                ),
+                            ],
+                        )
+                    ],
+                ),
+                Menu(
+                    title="Reproducibilty Parameters",
+                ),
+                Menu(
+                    title="Temperature",
+                    show_header=True,
+                    indentation=1,
+                    items=[
+                        Menu(
+                            title="Tip Temperature",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
                         ),
-                        MenuItemTerms(
-                            quantity="results.material.chemical_formula_hill",
-                            width=6,
-                            options=0,
+                        Menu(
+                            title="Cryo Bottom Temperature",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
                         ),
-                        MenuItemTerms(
-                            quantity="results.material.chemical_formula_iupac",
-                            width=6,
-                            options=0,
-                        ),
-                        MenuItemHistogram(
-                            x="results.material.n_elements",
+                        Menu(
+                            title="Cryo Shield Temperature",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
                         ),
                     ],
-                )
+                ),
+                Menu(
+                    title="Lockin Amplifier",
+                    indentation=1,
+                    items=[
+                        Menu(
+                            title="Reference Amplitude",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Bias Spectroscopy",
+                    indentation=1,
+                    items=[
+                        Menu(
+                            title="Scan Bias (Start)",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
+                        ),
+                        Menu(
+                            title="Scan Bias (End)",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
+                        ),
+                        Menu(
+                            title="Sweep Number",
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Resolution Parameters",
+                ),
+                Menu(
+                    title="Temperature",
+                    show_header=True,
+                    # indentation with respect to the previous Menu Resolution Parameters
+                    indentation=1,
+                    items=[
+                        Menu(
+                            title="Tip Temperature",
+                            indentation=1,
+                            show_header=True,
+                            items=[
+                                MenuItemHistogram(
+                                    x="data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float",
+                                ),
+                            ],
+                        )
+                    ],
+                ),
             ],
         ),
         # Controls the default dashboard shown in the search interface
