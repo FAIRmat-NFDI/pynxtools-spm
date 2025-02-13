@@ -42,12 +42,6 @@ if TYPE_CHECKING:
 # TODO: add test to check if user example config file is the same as given default
 # config file with this package.
 # TODO: Check why link to NXdata does not work
-# # Create links for NXdata in entry level
-# entry = parent_path.split("/")[1]
-# print("##### NXdata]", f"/{entry}/DATA[{field_nm}]")
-# self.template[f"/{entry}/{field_nm}"] = {
-#     "link": get_link_compatible_key(f"{parent_path}/{group_name}")
-# }
 
 
 # TODO: Add tests for both config files with described NXdata
@@ -74,7 +68,7 @@ class NanonisSxmSTM(SPMformatter):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 
     def get_nxformatted_template(self):
-        self.walk_though_config_nested_dict(self.config_dict, "")
+        self.walk_though_config_nested_dict(self.config_dict, "", False)
         self._format_template_from_eln()
 
     def _get_conf_dict(self, config_file: str | Path = None):
