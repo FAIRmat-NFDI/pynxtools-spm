@@ -27,10 +27,49 @@ from nomad.config.models.ui import (
     SearchQuantities,
 )
 
-# schema = "pynxtools.nomad.schema.NeXus.Spm"
-# schema = "pynxtools.nomad.schema.Spm"
 
 schema = "pynxtools.nomad.schema.Root"
+
+map_concept_to_full_quantities = {
+    "Start Time": f"data.ENTRY.start_time__field#{schema}#datetime",
+    "Entry Type": "entry_type",
+    "Definition": f"data.ENTRY.definition__field#{schema}#str",
+    "Periodic Table": "results.material.elements",
+    "Tip Temperature (Scan Environment)": f"data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#{schema}#float",
+    "Cryo Bottom Temperature (Scan Environment)": f"data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#{schema}#float",
+    "Cryo Shield Temperature (Scan Environment)": f"data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#{schema}#float",
+    "Reference Amplitude (Lockin Amplifier)": f"data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#{schema}#float",
+    "Scan Start Bias (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#{schema}#float",
+    "Scan End Bias (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#{schema}#float",
+    "Sweep Number (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#{schema}#float",
+    "Z Average Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_average_time__field#{schema}#int",
+    "Acquisition Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.acquisition_time__field#{schema}#float",
+    "Animation Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#{schema}#float",
+    "Current (Current Sensor)": f"data.ENTRY.experiment_instrument.current_sensor.current__field#{schema}#float",
+    "Bias Voltage (Sample Bias Voltage)": f"data.ENTRY.experiment_instrument.sample_bias_votage.bias_voltage__field#{schema}#float",
+    "Bias Offset (Sample Bias Voltage)": f"data.ENTRY.experiment_instrument.sample_bias_votage.bias_offset__field#{schema}#float",
+    "Bias Calibration Coefficients (Sample Bias Voltage)": f"data.ENTRY.experiment_instrument.sample_bias_votage.bias_calibration.coefficients__field#{schema}#float",
+    "Current Offset (Current Sensor)": f"data.ENTRY.experiment_instrument.current_sensor.current_offset__field#{schema}#float",
+    "Current Gain (Current Sensor)": f"data.ENTRY.experiment_instrument.current_sensor.current_gain__field#{schema}#float",
+    "Current Calibration Coefficients (Current Sensor)": f"data.ENTRY.experiment_instrument.current_sensor.current_calibration.coefficients__field#{schema}#float",
+    "Z Offset (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_offset__field#{schema}#float",
+    "Bias Sweep End Settling Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.end_settling_time__field#{schema}#float",
+    "First Settling Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.first_settling_time__field#{schema}#float",
+    "Final Z (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#{schema}#float",
+    "Z Controller Hold (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller_hold__field#{schema}#float",
+    # Question check why str is not being accepted.
+    "Controller Name (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#{schema}#float",
+    "K_I (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#{schema}#float",
+    "K_P (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#{schema}#float",
+    "K_T (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#{schema}#float",
+    "Switch Off Delay (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.switch_off_delay__field#{schema}#float",
+    "Tip Lift (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.tip_lift__field#{schema}#float",
+    "Measurement Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#{schema}#float",
+    "Indicators Period (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#{schema}#float",
+    "Max Slew Rate (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.max_slew_rate__field#{schema}#float",
+    "Z Controller Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#{schema}#float",
+}
+
 
 spm_app = AppEntryPoint(
     name="SpmApp",
@@ -112,7 +151,7 @@ spm_app = AppEntryPoint(
                     ],
                 ),
                 Menu(
-                    title="Reproducibilty Parameters",
+                    title="Reproducibilty & Resolution Parameters",
                 ),
                 Menu(
                     title="Temperature",
@@ -124,7 +163,9 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Tip Temperature (Scan Environment)"
+                                    ],
                                 ),
                             ],
                         ),
@@ -133,7 +174,9 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Cryo Bottom Temperature (Scan Environment)"
+                                    ],
                                 ),
                             ],
                         ),
@@ -142,7 +185,9 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Cryo Shield Temperature (Scan Environment)"
+                                    ],
                                 ),
                             ],
                         ),
@@ -157,7 +202,9 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Reference Amplitude (Lockin Amplifier)"
+                                    ],
                                 ),
                             ],
                         ),
@@ -172,7 +219,9 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Scan Start Bias (Bias Spectroscopy)"
+                                    ],
                                 ),
                             ],
                         ),
@@ -181,7 +230,9 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Scan End Bias (Bias Spectroscopy)"
+                                    ],
                                 ),
                             ],
                         ),
@@ -190,31 +241,12 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#pynxtools.nomad.schema.Root#float",
+                                    x=map_concept_to_full_quantities[
+                                        "Sweep Number (Bias Spectroscopy)"
+                                    ],
                                 ),
                             ],
                         ),
-                    ],
-                ),
-                Menu(
-                    title="Resolution Parameters",
-                ),
-                Menu(
-                    title="Temperature",
-                    show_header=True,
-                    # indentation with respect to the previous Menu Resolution Parameters
-                    indentation=1,
-                    items=[
-                        Menu(
-                            title="Tip Temperature",
-                            indentation=1,
-                            show_header=True,
-                            items=[
-                                MenuItemHistogram(
-                                    x="data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float",
-                                ),
-                            ],
-                        )
                     ],
                 ),
             ],
@@ -228,8 +260,8 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.start_time__field#pynxtools.nomad.schema.Root#datetime",
                     "title": "Start Time",
+                    "quantity": map_concept_to_full_quantities["Start Time"],
                     "layout": {
                         "xxl": {
                             "minH": 3,
@@ -249,8 +281,8 @@ spm_app = AppEntryPoint(
                     "type": "terms",
                     "show_input": False,
                     "scale": "linear",
-                    "quantity": "entry_type",
                     "title": "Entry Type",
+                    "quantity": map_concept_to_full_quantities["Entry Type"],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 32},
                         "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
@@ -263,8 +295,8 @@ spm_app = AppEntryPoint(
                     "type": "terms",
                     "show_input": False,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.definition__field#pynxtools.nomad.schema.Root#str",
                     "title": "Definition",
+                    "quantity": "data.ENTRY.definition__field#pynxtools.nomad.schema.Root#str",
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 32},
                         "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16},
@@ -276,8 +308,8 @@ spm_app = AppEntryPoint(
                 {
                     "type": "periodic_table",
                     "scale": "linear",
-                    "quantity": "results.material.elements",
                     "title": "Periodic Table",
+                    "quantity": map_concept_to_full_quantities["Periodic Table"],
                     "layout": {
                         "xxl": {
                             "minH": 3,
@@ -299,8 +331,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float",
                     "title": "Tip Temperature (Scan Environment)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Tip Temperature (Scan Environment)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -315,8 +349,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float",
                     "title": "Cryo Bottom Temperature (Scan Environment)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Cryo Bottom Temperature (Scan Environment)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 3, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -331,8 +367,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float",
                     "title": "Cryo Shield Temperature (Scan Environment)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Cryo Shield Temperature (Scan Environment)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 6, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -347,8 +385,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float",
                     "title": "Reference Amplitude (Lockin Amplifier)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Reference Amplitude (Lockin Amplifier)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 21, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -363,8 +403,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#pynxtools.nomad.schema.Root#float",
                     "title": "Scan Start Bias (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Scan Start Bias (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 9, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -379,8 +421,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#pynxtools.nomad.schema.Root#float",
                     "title": "Scan End Bias (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Scan End Bias (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 12, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -395,8 +439,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#pynxtools.nomad.schema.Root#float",
                     "title": "Sweep Number (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Sweep Number (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 15, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -411,8 +457,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_average_time__field#pynxtools.nomad.schema.Root#int",
                     "title": "Z Average Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Z Average Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 18, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -427,8 +475,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.acquisition_time__field#pynxtools.nomad.schema.Root#float",
                     "title": "Acquisition Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Acquisition Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 27, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -443,8 +493,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#pynxtools.nomad.schema.Root#float",
                     "title": "Animation Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Animation Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 24, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -459,8 +511,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.current_sensor.current__field#pynxtools.nomad.schema.Root#float",
                     "title": "Current (Current Sensor)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Current (Current Sensor)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -475,8 +529,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.sample_bias_votage.bias_voltage__field#pynxtools.nomad.schema.Root#float",
                     "title": "Bias Voltage (Sample Bias Voltage)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Bias Voltage (Sample Bias Voltage)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 12, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -491,8 +547,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.sample_bias_votage.bias_offset__field#pynxtools.nomad.schema.Root#float",
                     "title": "Bias Offset (Sample Bias Voltage)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Bias Offset (Sample Bias Voltage)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 15, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -507,8 +565,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.sample_bias_votage.bias_calibration.coefficients__field#pynxtools.nomad.schema.Root#float",
                     "title": "Bias Calibration Coefficients (Sample Bias Voltage)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Bias Calibration Coefficients (Sample Bias Voltage)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 18, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -523,8 +583,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.current_sensor.current_offset__field#pynxtools.nomad.schema.Root#float",
                     "title": "Current Offset (Current Sensor)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Current Offset (Current Sensor)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 3, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -539,8 +601,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.current_sensor.amplifier.current_gain__field#pynxtools.nomad.schema.Root#float",
                     "title": "Current Gain (Current Sensor)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Current Gain (Current Sensor)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 6, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -555,8 +619,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.current_sensor.current_calibration.coefficients__field#pynxtools.nomad.schema.Root#float",
                     "title": "Current Calibration Coefficients (Current Sensor)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Current Calibration Coefficients (Current Sensor)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 9, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -565,14 +631,17 @@ spm_app = AppEntryPoint(
                         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
                     },
                 },
+                ###
                 {
                     "type": "histogram",
                     "show_input": False,
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_offset__field#pynxtools.nomad.schema.Root#float",
                     "title": "Z Offset (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Z Offset (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 30, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -587,8 +656,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.end_settling_time__field#pynxtools.nomad.schema.Root#float",
                     "title": "Bias Sweep End Settling Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Bias Sweep End Settling Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 24, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -603,8 +674,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.first_settling_time__field#pynxtools.nomad.schema.Root#float",
                     "title": "First Settling Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "First Settling Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 21, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -619,8 +692,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#pynxtools.nomad.schema.Root#float",
                     "title": "Final Z (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Final Z (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 27, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -635,8 +710,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_hold__field#pynxtools.nomad.schema.Root#float",
                     "title": "Z Controller Hold (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Z Controller Hold (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 33, "x": 8},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -651,8 +728,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#pynxtools.nomad.schema.Root#float",
                     "title": "Controller Name (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Controller Name (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 16},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -667,8 +746,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#pynxtools.nomad.schema.Root#float",
                     "title": "K_I (Piezo PID Controller)",
+                    "quantity": map_concept_to_full_quantities[
+                        "K_I (Piezo PID Controller)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 23, "x": 24},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -677,14 +758,17 @@ spm_app = AppEntryPoint(
                         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
                     },
                 },
+                ##
                 {
                     "type": "histogram",
                     "show_input": False,
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#pynxtools.nomad.schema.Root#float",
                     "title": "K_P (Piezo PID Controller)",
+                    "quantity": map_concept_to_full_quantities[
+                        "K_P (Piezo PID Controller)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 20, "x": 24},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -699,8 +783,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#pynxtools.nomad.schema.Root#float",
                     "title": "K_T (Piezo PID Controller)",
+                    "quantity": map_concept_to_full_quantities[
+                        "K_T (Piezo PID Controller)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 23, "x": 16},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -715,8 +801,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.switch_off_delay__field#pynxtools.nomad.schema.Root#float",
                     "title": "Switch Off Delay (Piezo PID Controller)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Switch Off Delay (Piezo PID Controller)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 17, "x": 24},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -731,8 +819,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.tip_lift__field#pynxtools.nomad.schema.Root#float",
                     "title": "Tip Lift (Piezo PID Controller)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Tip Lift (Piezo PID Controller)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 17, "x": 16},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -747,8 +837,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#pynxtools.nomad.schema.Root#float",
                     "title": "Measurement Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Measurement Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 30, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -757,14 +849,17 @@ spm_app = AppEntryPoint(
                         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
                     },
                 },
+                ##
                 {
                     "type": "histogram",
                     "show_input": False,
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#pynxtools.nomad.schema.Root#float",
                     "title": "Indicators Period (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Indicators Period (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 33, "x": 0},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -779,8 +874,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.max_slew_rate__field#pynxtools.nomad.schema.Root#float",
                     "title": "Max Slew Rate (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Max Slew Rate (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 24},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
@@ -795,8 +892,10 @@ spm_app = AppEntryPoint(
                     "autorange": True,
                     "nbins": 30,
                     "scale": "linear",
-                    "quantity": "data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#pynxtools.nomad.schema.Root#float",
                     "title": "Z Controller Time (Bias Spectroscopy)",
+                    "quantity": map_concept_to_full_quantities[
+                        "Z Controller Time (Bias Spectroscopy)"
+                    ],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 20, "x": 16},
                         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
