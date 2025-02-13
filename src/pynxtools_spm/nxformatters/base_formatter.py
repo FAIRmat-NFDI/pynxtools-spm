@@ -128,10 +128,11 @@ class SPMformatter(ABC):
         return eln_dict
 
     def walk_though_config_nested_dict(
-        self, config_dict: Dict, parent_path: str, use_custom_func_prior: bool = True
+        self, config_dict: Dict, parent_path: str, use_custom_func_in_prior: bool = True
     ):
         # This concept is just note where the group will be
-        # handeld or somthing like that.
+        # handeld name of the function regestered in the self._grp_to_func
+        # or somthing like that.
         if "#note" in config_dict:
             return
         for key, val in config_dict.items():
@@ -139,8 +140,8 @@ class SPMformatter(ABC):
                 continue
             # Special case, will be handled in a specific function registerd
             # in self._grp_to_func
-            if key in self._grp_to_func:
-                if not use_custom_func_prior:
+            if key in self._grp_to_func and isinstance(val, dict):
+                if not use_custom_func_in_prior:
                     self.walk_though_config_nested_dict(
                         config_dict=val, parent_path=f"{parent_path}/{key}"
                     )
@@ -166,7 +167,7 @@ class SPMformatter(ABC):
                 if other_attrs:
                     for k, v in other_attrs.items():
                         self.template[f"{parent_path}/{key}/@{k}"] = v
-            # Handle to construct nxdata group that comes alon as a dict
+            # Handle to construct nxdata group that comes along as a dict
             elif (
                 isinstance(val, dict)
                 and ("@title" in val or "grp_name" in val)
@@ -177,7 +178,7 @@ class SPMformatter(ABC):
                     parent_path=parent_path,
                     group_name=key,
                 )
-            # variadic fields that would have several values according to the dimentions
+            # variadic fields that would have several values according to the dimension as list
             elif isinstance(val, list) and isinstance(val[0], dict):
                 for item in val:
                     # Handle to construct nxdata group

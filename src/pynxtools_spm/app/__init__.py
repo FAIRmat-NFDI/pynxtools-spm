@@ -57,8 +57,8 @@ map_concept_to_full_quantities = {
     "First Settling Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.first_settling_time__field#{schema}#float",
     "Final Z (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#{schema}#float",
     "Z Controller Hold (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller_hold__field#{schema}#float",
-    # Question check why str is not being accepted.
-    "Controller Name (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#{schema}#float",
+    # TODO: Make the type str of the below quanity and check why its not working
+    "Controller Name (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.name__field#{schema}#float",
     "K_I (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#{schema}#float",
     "K_P (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#{schema}#float",
     "K_T (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#{schema}#float",
