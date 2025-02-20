@@ -28,7 +28,8 @@ jobs:
           python -m pip install coverage coveralls
       - name: Install pynxtools-spm
         run: |
-          pip install .[dev]
+          pip install .
+          pip install -r dev-requirements.txt
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
