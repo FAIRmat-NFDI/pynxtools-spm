@@ -63,7 +63,7 @@ def _verify_unit(
         # return "" if unit_derived == "dimensionless" else unit_derived
     except Exception as e:
         # TODO: add nomad logger here
-        logger.debug(f"Check the unit for nx concept {concept}.\n" f"Error : {e}")
+        logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
         return None
 
 
