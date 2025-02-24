@@ -13,29 +13,32 @@ jobs:
       fail-fast: false
       matrix:
         pynxtools_versions: ["master"]
+        python-versions: ["3.11"]
+ 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v2
+      - name: Install uv && Set up Python $${{ matrix.python-versions }}
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-versions }}
+          version: "0.6.2"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install coverage coveralls
       - name: Install pynxtools-spm
         run: |
-          pip install .[dev]
+          uv sync --all-extras --dev
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
-           pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+           uv run pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
          else
-          pip install pynxtools==${{ matrix.pynxtools_versions }}
+          uv run pip install pynxtools==${{ matrix.pynxtools_versions }}
          fi
       - name: Run tests
         run: |
-          pytest tests/.
+          uv run pytest tests/.
