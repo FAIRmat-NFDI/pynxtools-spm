@@ -8,5 +8,4 @@
 ![](https://coveralls.io/repos/github/FAIRmat-NFDI/pynxtools_spm/badge.svg?branch=master)
 
  # STS reader 
- 
  For proper docs please follow the link in [GitHub documentation page](https://FAIRmat-NFDI.github.io/pynxtools-spm/)
