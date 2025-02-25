@@ -54,7 +54,7 @@ jobs:
          echo "Pynxtools version: ${{ matrix.pynxtools_versions }}"
 
          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
-          echo "####### Installing pynxtools from master branch."
+           echo "####### Installing pynxtools from master branch."
            uv run pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
          else
           echo "####### released Installing pynxtools from master branch."
@@ -62,7 +62,7 @@ jobs:
          fi
          command -v python
          python --version
-         echo "### Running Check dep
+         echo "### Running Check dep"
 
       - name: Run Reader tests
         run: |
