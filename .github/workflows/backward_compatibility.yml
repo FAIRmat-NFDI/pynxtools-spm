@@ -59,6 +59,8 @@ jobs:
 
       - name: Run Reader tests
         run: |
+          echo "Running Check dependencies."
+          uv run pip list
           uv run pytest tests/test_reader.py
 
       - name: Run Nomad Examples tests
