@@ -37,24 +37,24 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv python -m pip install --upgrade pip
-          uv python -m pip install coverage coveralls
+          uv pip install --upgrade pip
+          uv pip install coverage coveralls
           
 
       - name: Install pynxtools-spm
         run: |
           
-          uv python -c "import sys; print(sys.executable)"
+          
           uv pip list | grep pynxtools
           uv pip install .[dev]
           
-          uv python -c "import sys; print(sys.executable)"
+          
           uv pip list | grep pynxtools
 
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
           
-          uv python -c "import sys; print(sys.executable)"
+          
           uv pip list | grep pynxtools
          
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
@@ -66,7 +66,7 @@ jobs:
           fi
           
           
-          uv python -c "import sys; print(sys.executable)"
+          
           uv pip list | grep pynxtools
 
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
@@ -78,7 +78,7 @@ jobs:
           fi
 
           
-          uv python -c "import sys; print(sys.executable)"
+          
           uv pip list | grep pynxtools
 
           uv pip uninstall -y pynxtools
@@ -92,7 +92,7 @@ jobs:
           fi
 
           
-          uv python -c "import sys; print(sys.executable)"
+          
           uv pip list | grep pynxtools
 
       - name: Run Reader tests
@@ -101,11 +101,11 @@ jobs:
           
           uv pip list | grep pynxtools
           echo "#####"
-          uv pytest tests/test_reader.py
+          pytest tests/test_reader.py
 
       - name: Run Nomad Examples tests
         run: |
           echo "Running Check dependencies."
           uv pip list
           echo "Running Check dependencies."
-          uv pytest tests/test_nomad_examples.py
+          pytest tests/test_nomad_examples.py
