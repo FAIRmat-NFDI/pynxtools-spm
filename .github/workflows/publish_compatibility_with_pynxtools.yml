@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  backward_compatibility:
+  publish_compatibility:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
