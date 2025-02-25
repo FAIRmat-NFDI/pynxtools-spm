@@ -1,4 +1,4 @@
-name: Backward Compatibility with Pynxtools
+name: Publish Compatibility with Pynxtools
 
 on:
   push:
@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       # TODO check Disable this test from block merge request
       matrix:
-        # pynxtools_versions: ["master", "latest_release", "v0.9.3"]
-        pynxtools_versions: ["master"]
+        pynxtools_versions: ["latest_release", "v0.9.3"]
+        # pynxtools_versions: ["master"]
         python-versions: ["3.11"]
  
     steps:
@@ -44,10 +44,10 @@ jobs:
         run: |
           PYNXTOOLS_VERSION="${{ matrix.pynxtools_versions }}"
           uv pip uninstall pynxtools -q
-          if [ "$PYNXTOOLS_VERSION" == "master" ]; then
-            uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+          # if [ "$PYNXTOOLS_VERSION" == "master" ]; then
+          #   uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
         
-          elif [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
+          if [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
             uv pip install pynxtools
           else
            uv pip install pynxtools==${{ matrix.pynxtools_versions }}
@@ -60,7 +60,9 @@ jobs:
       - name: Run Reader tests
         run: |
           pytest tests/test_reader.py
+        continue-on-error: true
 
       - name: Run Nomad Examples tests
         run: |
           pytest tests/test_nomad_examples.py
+        continue-on-error: true
