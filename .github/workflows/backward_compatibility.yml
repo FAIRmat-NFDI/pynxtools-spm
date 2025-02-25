@@ -31,73 +31,73 @@ jobs:
       - name: Install pip in the virtual environment
         run: |
           curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          uv run python get-pip.py
+          uv python get-pip.py
 
       - name: Install nomad
         if: "${{ matrix.python_version != '3.8'}}"
         run: |
-          uv run pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
-          uv run which python
-          uv run python --version
+          uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
+          uv which python
+          uv python --version
 
 
       - name: Install dependencies
         run: |
-          uv run python -m pip install --upgrade pip
-          uv run python -m pip install coverage coveralls
-          uv run which python
+          uv python -m pip install --upgrade pip
+          uv python -m pip install coverage coveralls
+          uv which python
 
       - name: Install pynxtools-spm
         run: |
-          uv run which python
-          uv run python -c "import sys; print(sys.executable)"
-          uv run pip list | grep pynxtools
-          uv run pip install .[dev]
-          uv run which python
-          uv run python -c "import sys; print(sys.executable)"
-          uv run pip list | grep pynxtools
+          uv which python
+          uv python -c "import sys; print(sys.executable)"
+          uv pip list | grep pynxtools
+          uv pip install .[dev]
+          uv which python
+          uv python -c "import sys; print(sys.executable)"
+          uv pip list | grep pynxtools
 
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
-          uv run which python
-          uv run python -c "import sys; print(sys.executable)"
-          uv run pip list | grep pynxtools
+          uv which python
+          uv python -c "import sys; print(sys.executable)"
+          uv pip list | grep pynxtools
          
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
             echo "####### Installing pynxtools from master branch."
-            uv run pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+            uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
           else
            echo "####### released Installing pynxtools from master branch."
-           uv run pip install pynxtools==${{ matrix.pynxtools_versions }}
+           uv pip install pynxtools==${{ matrix.pynxtools_versions }}
           fi
           
-          uv run which python
-          uv run python -c "import sys; print(sys.executable)"
-          uv run pip list | grep pynxtools
+          uv which python
+          uv python -c "import sys; print(sys.executable)"
+          uv pip list | grep pynxtools
 
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
             echo "####### Installing pynxtools from master branch."
-            uv run pip install --force-reinstall pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+            uv pip install --force-reinstall pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
           else
            echo "####### released Installing pynxtools from master branch."
-           uv run pip install --force-reinstall pynxtools==${{ matrix.pynxtools_versions }}
+           uv pip install --force-reinstall pynxtools==${{ matrix.pynxtools_versions }}
           fi
 
-          uv run which python
-          uv run python -c "import sys; print(sys.executable)"
-          uv run pip list | grep pynxtools
+          uv which python
+          uv python -c "import sys; print(sys.executable)"
+          uv pip list | grep pynxtools
 
       - name: Run Reader tests
         run: |
           echo "### Running Check dependencies."
-          uv run which python
-          uv run pip list | grep pynxtools
+          uv which python
+          uv pip list | grep pynxtools
           echo "#####"
-          uv run pytest tests/test_reader.py
+          uv pytest tests/test_reader.py
 
       - name: Run Nomad Examples tests
         run: |
           echo "Running Check dependencies."
-          uv run pip list
+          uv pip list
           echo "Running Check dependencies."
-          uv run pytest tests/test_nomad_examples.py
+          uv pytest tests/test_nomad_examples.py
