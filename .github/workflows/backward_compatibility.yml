@@ -49,23 +49,43 @@ jobs:
 
       - name: Install pynxtools-spm
         run: |
+          uv run which python
+          uv run python -c "import sys; print(sys.executable)"
+          uv run pip list | grep pynxtools
           uv run pip install .[dev]
           uv run which python
+          uv run python -c "import sys; print(sys.executable)"
           uv run pip list | grep pynxtools
 
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
-         echo "Pynxtools version: ${{ matrix.pynxtools_versions }}"
+          uv run which python
+          uv run python -c "import sys; print(sys.executable)"
+          uv run pip list | grep pynxtools
+         
+          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
+            echo "####### Installing pynxtools from master branch."
+            uv run pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+          else
+           echo "####### released Installing pynxtools from master branch."
+           uv run pip install pynxtools==${{ matrix.pynxtools_versions }}
+          fi
+          
+          uv run which python
+          uv run python -c "import sys; print(sys.executable)"
+          uv run pip list | grep pynxtools
 
-         if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
-           echo "####### Installing pynxtools from master branch."
-           uv run pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
-         else
-          echo "####### released Installing pynxtools from master branch."
-          uv run pip install pynxtools==${{ matrix.pynxtools_versions }}
-         fi
-         uv run which python
-         uv run pip list | grep pynxtools
+          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
+            echo "####### Installing pynxtools from master branch."
+            uv run pip install --force-reinstall pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+          else
+           echo "####### released Installing pynxtools from master branch."
+           uv run pip install --force-reinstall pynxtools==${{ matrix.pynxtools_versions }}
+          fi
+
+          uv run which python
+          uv run python -c "import sys; print(sys.executable)"
+          uv run pip list | grep pynxtools
 
       - name: Run Reader tests
         run: |
