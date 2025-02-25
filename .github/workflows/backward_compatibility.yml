@@ -45,17 +45,17 @@ jobs:
         run: |
           
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
           uv pip install .[dev]
           
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
 
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
           
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
          
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
             echo "####### Installing pynxtools from master branch."
@@ -67,7 +67,7 @@ jobs:
           
           
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
 
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
             echo "####### Installing pynxtools from master branch."
@@ -79,7 +79,7 @@ jobs:
 
           
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
 
           uv pip uninstall -y pynxtools
 
@@ -93,13 +93,13 @@ jobs:
 
           
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
 
       - name: Run Reader tests
         run: |
           echo "### Running Check dependencies."
           
-          uv pip list | grep pynxtools
+          uv pip list | grep pynxtools || echo "pynxtools not found"
           echo "#####"
           pytest tests/test_reader.py
 
