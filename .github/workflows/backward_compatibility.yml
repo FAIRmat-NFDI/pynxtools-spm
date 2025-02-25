@@ -84,13 +84,15 @@ jobs:
         run: |
           echo "### Running Check dependencies."
           
-          uv pip list | grep -E "pynxtools|noamd" || echo "pynxtools or noamd not found"
+          uv pip list | grep pynxtools || echo "pynxtools not found"
+          uv pip list | grep nomad || echo "nomad not found"
           echo "#####"
           pytest tests/test_reader.py
 
       - name: Run Nomad Examples tests
         run: |
           echo "Running Check dependencies."
-          uv pip list | grep -E "pynxtools|noamd" || echo "pynxtools or noamd not found"
+          uv pip list | grep pynxtools || echo "pynxtools not found"
+          uv pip list | grep nomad || echo "nomad not found"
           echo "Running Check dependencies."
           pytest tests/test_nomad_examples.py
