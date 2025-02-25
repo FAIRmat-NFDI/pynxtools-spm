@@ -62,4 +62,7 @@ jobs:
           uv run pytest tests/test_reader.py
       - name: Run Nomad Examples tests
         run: |
+          echo "Running Check dependencies."
+          uv run pip list
+          echo "Running Check dependencies."
           uv run pytest tests/test_nomad_examples.py
