@@ -39,7 +39,7 @@ jobs:
         if: "${{ matrix.python_version != '3.8'}}"
         run: |
           uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
-          
+
       - name: Install dependencies
         run: |
           uv run python -m pip install --upgrade pip
@@ -57,6 +57,9 @@ jobs:
           uv run pip install pynxtools==${{ matrix.pynxtools_versions }}
          fi
 
-      - name: Run tests
+      - name: Run Reader tests
         run: |
-          uv run pytest tests/.
+          uv run pytest tests/test_reader.py
+      - name: Run Nomad Examples tests
+        run: |
+          uv run pytest tests/test_nomad_examples.py
