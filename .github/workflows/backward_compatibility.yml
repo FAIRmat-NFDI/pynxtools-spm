@@ -27,12 +27,6 @@ jobs:
           python-version: ${{ matrix.python-versions }}
           version: "0.6.2"
 
-
-      - name: Install pip in the virtual environment
-        run: |
-          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          uv python get-pip.py
-
       - name: Install nomad
         if: "${{ matrix.python_version != '3.8'}}"
         run: |
@@ -75,6 +69,20 @@ jobs:
           uv python -c "import sys; print(sys.executable)"
           uv pip list | grep pynxtools
 
+          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
+            echo "####### Installing pynxtools from master branch."
+            uv pip install --force-reinstall pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+          else
+           echo "####### released Installing pynxtools from master branch."
+           uv pip install --force-reinstall pynxtools==${{ matrix.pynxtools_versions }}
+          fi
+
+          uv which python
+          uv python -c "import sys; print(sys.executable)"
+          uv pip list | grep pynxtools
+
+          uv pip uninstall -y pynxtools
+          
           if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
             echo "####### Installing pynxtools from master branch."
             uv pip install --force-reinstall pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
