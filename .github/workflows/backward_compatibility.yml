@@ -50,7 +50,7 @@ jobs:
       - name: Install pynxtools-spm
         run: |
           uv run pip install .[dev]
-          uv run wich python
+          uv run which python
           uv run pip list | grep pynxtools
 
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
