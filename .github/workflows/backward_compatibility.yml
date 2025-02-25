@@ -51,16 +51,27 @@ jobs:
 
       - name: Install pynxtools version ${{ matrix.pynxtools_versions }}
         run: |
+         echo "Pynxtools version: ${{ matrix.pynxtools_versions }}"
+
          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
+          echo "####### Installing pynxtools from master branch."
            uv run pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
          else
+          echo "####### released Installing pynxtools from master branch."
           uv run pip install pynxtools==${{ matrix.pynxtools_versions }}
          fi
+         command -v python
+         python --version
+         echo "### Running Check dep
 
       - name: Run Reader tests
         run: |
-          echo "Running Check dependencies."
+          echo "### Running Check dependencies."
+          command -v python
+          python --version
+          echo "### Running Check dependencies."
           uv run pip list
+          uv run which python
           uv run pytest tests/test_reader.py
 
       - name: Run Nomad Examples tests
