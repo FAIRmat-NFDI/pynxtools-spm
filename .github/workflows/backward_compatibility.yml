@@ -78,21 +78,6 @@ jobs:
           fi
 
           
-          
-          uv pip list | grep pynxtools || echo "pynxtools not found"
-
-          uv pip uninstall -y pynxtools
-
-          if [ "${{ matrix.pynxtools_versions }}" == "master" ]; then
-            echo "####### Installing pynxtools from master branch."
-            uv pip install --force-reinstall pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
-          else
-           echo "####### released Installing pynxtools from master branch."
-           uv pip install --force-reinstall pynxtools==${{ matrix.pynxtools_versions }}
-          fi
-
-          
-          
           uv pip list | grep pynxtools || echo "pynxtools not found"
 
       - name: Run Reader tests
