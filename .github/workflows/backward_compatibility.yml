@@ -21,7 +21,12 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Install uv && Set up Python $${{ matrix.python-versions }}
+      - name: Install nomad
+        if: "${{ matrix.python_version != '3.8'}}"
+        run: |
+          uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
+      
+      - name: Install uv && Set up Python ${{ matrix.python-versions }}
         uses: astral-sh/setup-uv@v5
         with:
           python-version: ${{ matrix.python-versions }}
@@ -30,10 +35,15 @@ jobs:
       - name: Install Python
         run: uv python install
 
+      - name: Install pip in the virtual environment
+        run: |
+          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+          uv run python get-pip.py
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install coverage coveralls
+          uv run python -m pip install --upgrade pip
+          uv run python -m pip install coverage coveralls
 
       - name: Install pynxtools-spm
         run: |
