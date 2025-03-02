@@ -7,7 +7,7 @@ import zipfile
 
 @dataclass
 class SPMConvertInputParameters:
-    input_file: tuple[str | Path]  # raw_file
+    input_file: tuple[Path]  # raw_files and eln (merged later)
     eln: str | Path
     expriement_type: str
     reader: str = "spm"
@@ -23,7 +23,19 @@ class SPMConvertInputParameters:
 def convert_spm_experiments(
     input_params: SPMConvertInputParameters,
 ):
-    """Convert SPM experirments."""
+    """Convert SPM (STS, STM and AFM) experirment data files to NeXus format.
+    Later, the input files and generated output file are zipped together to
+    upload to NOMAD.
+
+    Required input files:
+    - raw_file: SPM data file e.g. `sxm` for STM and AFM, `dat` for STS
+    - eln: ELN file
+    Output files:
+    - output: NeXus file, named from the raw file base name
+    - zip_file: Zipped file, named from the raw file base name
+    Required parameters in input_params:
+    - expriement_type: SPM experiment type (STM, AFM, STS)
+    """
 
     if not isinstance(input_params, SPMConvertInputParameters):
         raise ValueError(
@@ -65,12 +77,14 @@ def convert_spm_experiments(
         raise ValueError(
             "Valid raw files and extension is required to run an SPM experiment"
         )
-    # Fit to the reader convention
-    # input_params.input_file = (str(file) for file in input_params.input_file)
-    # TODO extract the convertrer arguments from input_params
+    # TODO Try with input_file as tuple of Path objects
     input_params.input_file = [str(file) for file in input_params.input_file]
     input_params.output = str(input_params.output)
     convert(**asdict(input_params))
+    input_params.input_file = tuple(
+        Path(file) if isinstance(file, str) else file
+        for file in input_params.input_file
+    )
 
     if input_params.create_zip:
         with zipfile.ZipFile(zip_file, "w") as zipf:
@@ -78,7 +92,8 @@ def convert_spm_experiments(
             for file in input_params.input_file:
                 zipf.write(file, arcname=file.split("/")[-1])
         input_params.zip_file_path = zip_file
-        return zip_file
+
+    return input_params
 
 
 # if __name__ == "__main__":
