@@ -20,13 +20,18 @@ from pynxtools_spm.nomad_uploader.files_movers import copy_directory_structure
 from multiprocessing import Process, Lock, Queue
 
 current_dir = Path(__file__).parent
-
+# File extensions
+available_file_extensions = (".dat", ".sxm")
+# Peseudo extension if upload is sucessfull
+done_extensions = (".done",)
 nomad_url = "https://nomad-lab.eu/prod/v1/test/api/v1/"
 username = "Mozumder"
 password = ""
 parallel_processing = True
 time_for_cron_job = 10 * 60  # seconds
-
+copy_file_elsewhere = False  # Copy files to another location
+# Mimic sucessfully uploaded raw file with `done` extension
+mimic = True
 exp_src_path = (
     current_dir.parent.parent.parent
     / "tests"
@@ -41,8 +46,29 @@ publish_to_nomad = False  # Publish the upload to the central NOMAD repository
 # List of SPMConvertInputParameters objects to run reader on each object
 SPM_PARAMS_OBJ_L = []
 
+def get_unprocessed_files(src_dir: Path) -> list:
+    """Filter out the files that are not processed yet.
 
-def set_and_get_prepare_parameters(file):
+    An input file `file.dat` will be denoted as `file.dat.done` after
+    successful upload to NOMAD.
+    """
+    process_status_map = {}
+    for file in src_dir.iterdir():
+        if file.is_file() and file.suffix in available_file_extensions:
+            process_status_map[file] = False
+    for file in src_dir.iterdir():
+        if file.is_file() and file.suffix in done_extensions:
+            # Remove the pseudo extension
+            process_status_map[file.with_suffix("")] = True
+
+    def get_non_processed_file(file, is_processed):
+        if not is_processed:
+            return file
+
+    return list(filter(get_non_processed_file, process_status_map.items()))
+
+
+def set_and_store_prepare_parameters(file):
     # sts exeriment
     sts_eln_file = exp_src_path / "sts" / "eln_data.yaml"
     sts_config_file = ""
@@ -98,9 +124,17 @@ if __name__ == "__main__":
     if not token:
         print("Authentication failed!")
         exit(1)
-    copy_directory_structure(
-        exp_src_path, exp_dst_path, run_action_on_files=set_and_get_prepare_parameters
-    )
+    # In case user wants to store the files elsewhere
+    if copy_file_elsewhere:
+        copy_directory_structure(
+            exp_src_path,
+            exp_dst_path,
+            run_action_on_files=set_and_store_prepare_parameters,
+        )
+    else:
+        file_list = get_unprocessed_files(exp_src_path)
+
+        _ = [set_and_store_prepare_parameters(file) for file in file_list]
 
     print("Files copied over to the destination directory.", SPM_PARAMS_OBJ_L)
     # TODO: We can use parallel processing here
@@ -115,8 +149,8 @@ if __name__ == "__main__":
     def queue_results(input_params, lock, results_q):
         lock.acquire()
         try:
-            input_params = convert_spm_experiments(input_params)
-            results_q.put(input_params)
+            result = convert_spm_experiments(input_params)
+            results_q.put(result)
         except Exception as e:
             print(f"Oops! Error in processing {input_params.input_file}: {e}")
             raise e
@@ -144,14 +178,17 @@ if __name__ == "__main__":
             p.join()
 
     indices = []
-    zips_to_be_upload = []
+    completed_param_objs = []
     # TODO: Get the input parameters rom the queue, on which we can delete the raw files.
     while not results_q.empty():
-        zips_to_be_upload.append(results_q.get())
+        completed_param_objs.append(results_q.get())
     upload_time_limit = datetime.now() + timedelta(seconds=time_out)
 
-    while len(zips_to_be_upload) > len(indices) and datetime.now() < upload_time_limit:
-        for ind, zip_to_upload in enumerate(zips_to_be_upload):
+    while (
+        len(completed_param_objs) > len(indices) and datetime.now() < upload_time_limit
+    ):
+        for ind, complete_param_obj in enumerate(completed_param_objs):
+            zip_to_upload = complete_param_obj.zip_file_path
             if ind in indices:  # already processed or failed
                 continue
             if not zip_to_upload:
@@ -188,6 +225,19 @@ if __name__ == "__main__":
                 attempt += 1
                 massage = check_upload_status(nomad_url, token, upload_id)
                 time.sleep(4 / 60)  # 4 second
-            print(f"Upload status: {massage}")
+
+            print(f"Info: Upload status: {massage}")
+
+            if (mimic or not copy_file_elsewhere) and massage.startswith(
+                "Process process_upload completed successfully"
+            ):
+                raw_file = list(
+                    filter(
+                        lambda x: x.suffix in available_file_extensions,
+                        input_params.input_file,
+                    )
+                )[0]
+                # Track if upload is sucessully done
+                mimicked_file = raw_file.with_suffix(f"{raw_file.suffix}.done").touch()
 
     print("All done!", indices)

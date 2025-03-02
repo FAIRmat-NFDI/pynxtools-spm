@@ -79,3 +79,4 @@ def copy_directory_structure(
                 shutil.copy2(source_file, target_file_path)
                 if run_action_on_files is not None and callable(run_action_on_files):
                     run_action_on_files(target_file_path)
+
