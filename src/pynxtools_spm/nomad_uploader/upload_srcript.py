@@ -22,7 +22,7 @@ from multiprocessing import Process, Lock, Queue
 
 
 debug = True
-
+current_dir = Path(__file__).parent
 
 @dataclass
 class NOMADSettings:
