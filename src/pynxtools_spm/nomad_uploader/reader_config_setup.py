@@ -14,7 +14,7 @@ class SPMConvertInputParameters:
     output: str = None
     nxdl: Optional[str] = None
     create_zip: Optional[bool] = True
-    zip_file_path: Optional[str] = None
+    zip_file_path: Optional[str | Path] = None
     skip_verify: Optional[bool] = False
     config: Optional[str | Path] = None
     raw_extension: Optional[str] = None
@@ -80,18 +80,25 @@ def convert_spm_experiments(
     # TODO Try with input_file as tuple of Path objects
     input_params.input_file = [str(file) for file in input_params.input_file]
     input_params.output = str(input_params.output)
-    convert(**asdict(input_params))
-    input_params.input_file = tuple(
-        Path(file) if isinstance(file, str) else file
-        for file in input_params.input_file
-    )
+    try:
+        convert(**asdict(input_params))
 
-    if input_params.create_zip:
-        with zipfile.ZipFile(zip_file, "w") as zipf:
-            zipf.write(input_params.output, arcname=input_params.output.split("/")[-1])
-            for file in input_params.input_file:
-                zipf.write(file, arcname=file.split("/")[-1])
-        input_params.zip_file_path = zip_file
+        if input_params.create_zip:
+            with zipfile.ZipFile(zip_file, "w") as zipf:
+                zipf.write(
+                    input_params.output, arcname=input_params.output.split("/")[-1]
+                )
+                for file in input_params.input_file:
+                    zipf.write(file, arcname=file.split("/")[-1])
+            input_params.zip_file_path = Path(zip_file)
+            input_params.output = Path(input_params.output)
+    except Exception as e:
+        print("NeXusConverterError:", e)
+    finally:
+        input_params.input_file = tuple(
+            Path(file) if isinstance(file, str) else file
+            for file in input_params.input_file
+        )
 
     return input_params
 
