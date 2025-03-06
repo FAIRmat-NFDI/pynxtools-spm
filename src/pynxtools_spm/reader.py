@@ -124,9 +124,10 @@ class SPMReader(BaseReader):
                 config_file=config_file,
             )
             nds.get_nxformatted_template()
+            print(" ######## ", template)
         # set_default_attr_in_group(template)
 
-        # manually_filter_data_type(template)
+        # manually_remove the empty data
         for key, val in template.items():
             if isinstance(val, np.ndarray):
                 filled_template[key] = val

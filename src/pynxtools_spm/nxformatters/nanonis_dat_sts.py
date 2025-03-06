@@ -47,6 +47,7 @@ class NanonisDatSTS(SPMformatter):
         "bias_sweep": "_construct_bias_sweep_grp",
     }
     _axes = ["x", "y", "z"]
+    links_to_concepts = {}
 
     @dataclass
     class TmpConceptsVal:
@@ -86,6 +87,11 @@ class NanonisDatSTS(SPMformatter):
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
+        print(
+            " ################### Start of the formatted template ################### "
+        )
+        self.template.keys()
+        print(" ################### End of the formatted template ################### ")
 
     def construct_scan_region_grp(
         self,

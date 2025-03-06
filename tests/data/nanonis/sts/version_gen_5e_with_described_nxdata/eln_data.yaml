@@ -7,13 +7,11 @@ Sample:
     sample_component:
       description: <p>Sample component description.</p>
       name: Sample Component
-collection_identifier:
-  identifier: STSCollectionIdentifier-1
+identifier_collection: STSCollectionIdentifier-1234
 default: current_grad
 definition: NXsts
 experiment_description: <p>Experiment description is here.</p>
-experiment_identifier:
-  identifier: STSExperimentIdentifier-1
+identifier_experiment: STSExperimentIdentifier-1234
 experiment_instrument:
   hardware:
     name: Nanonis

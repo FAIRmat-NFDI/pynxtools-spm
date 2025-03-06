@@ -347,36 +347,8 @@
           },
           "CIRCUIT[circuit]": ""
         },
-        "current_sensor": {
-          "AMPLIFIER[amplifier]": { "current_gain": "" },
-          "current": {
-            "raw_path": "/Current/Current/value",
-            "@units": "/Current/Current/unit"
-          },
-          "current_calibration": {
-            "calibration_interval": "",
-            "coefficients": {
-              "raw_path": "/Current/Calibration/value",
-              "@units": "/Current/Calibration/unit"
-            }
-          },
-          "current_offset": {
-            "raw_path": "/Current/Offset/value",
-            "@units": "/Current/Offset/unit"
-          },
-          "current_gain": { "raw_path": "/Current/Gain/value" }
-        },
         "independent_controllers": "",
         "measurement_sensors": ""
-      },
-      "current_sensor": {
-        "AMPLIFIER[amplifier]": { "current_gain": "" },
-        "current": { "@units": "" },
-        "current_calibration": {
-          "calibration_interval": { "@units": "" },
-          "coefficients": { "@units": "" }
-        },
-        "current_offset": { "@units": "" }
       },
       "piezo_sensor": {
         "piezo_configuration": {
@@ -513,13 +485,13 @@
               "raw_path": "/Z-Controller/Z/value",
               "@units": "/Z-Controller/Z/unit"
             },
-            "K_i_value[k_i_value]": {
+            "K_i_value[K_i_value]": {
               "raw_path": "/Z-Controller/I gain/value"
             },
-            "K_p_value[k_p_value]": {
+            "K_p_value[K_p_value]": {
               "raw_path": "/Z-Controller/P gain/value"
             },
-            "K_t_const[k_t_const]": {
+            "K_t_const[K_t_const]": {
               "raw_path": "/Z-Controller/Time const/value",
               "@units": "/Z-Controller/Time const/unit"
             }
@@ -630,6 +602,26 @@
             "grp_name": "temperature1(filter)"
           }
         ]
+      },
+      "current_sensor": {
+        "AMPLIFIER[amplifier]": {
+          "current_gain": { "raw_path": "/Current/Gain/value" }
+        },
+        "current": {
+          "raw_path": "/Current/Current/value",
+          "@units": "/Current/Current/unit"
+        },
+        "current_calibration": {
+          "calibration_interval": "",
+          "coefficients": {
+            "raw_path": "/Current/Calibration/value",
+            "@units": "/Current/Calibration/unit"
+          }
+        },
+        "current_offset": {
+          "raw_path": "/Current/Offset/value",
+          "@units": "/Current/Offset/unit"
+        }
       }
     },
     "DATA[data]": [
