@@ -7,7 +7,7 @@ scan_mode:
 definition:
   '@version': null
 experiment_description: null
-experiment_identifier: null
+identifier_experiment: null
 experiment_instrument:
   Lockin:
     modulation_status:
@@ -95,7 +95,7 @@ experiment_instrument:
         z: null
   real_time_controller:
     rcs_frequency: null
-  sample_bias_votage:
+  sample_bias_voltage:
     bias_calibration:
       calibration_time:
         value: null

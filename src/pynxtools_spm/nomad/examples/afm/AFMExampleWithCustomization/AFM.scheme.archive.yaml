@@ -66,7 +66,7 @@ definitions:
             600 steps, locked Au(111), 50pA, 100 mV set point, 1mV DCA, 973Hz,138
             1st H, -84 2nd H.
       sub_sections:
-        experiment_identifier:
+        identifier_experiment:
           section:
             m_annotations:
               eln:
@@ -80,7 +80,7 @@ definitions:
                 description: |
                   An unique identifier fot the experiment. e.g. the identifier
                   could be specific for a lab or experiment team.
-        collection_identifier:
+        identifier_collection:
           section:
             m_annotations:
               eln:
@@ -339,11 +339,19 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                  quantities:
-                    notes:
-                      type: str
-                      m_annotations:
-                        eln:
-                          component: RichTextEditQuantity
-                      description: |
-                        Notes about the sample history.
+                  sub_sections:
+                    Notes:
+                      section:
+                        m_annotations:
+                          eln:
+                            overview: true
+                        description: |
+                          Notes group about the sample history.
+                        quantities:
+                          description:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: RichTextEditQuantity
+                            description: |
+                              Notes about the sample history.

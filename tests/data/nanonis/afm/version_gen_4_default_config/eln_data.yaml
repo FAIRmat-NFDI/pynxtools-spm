@@ -1,19 +1,17 @@
 Sample:
   History:
-    notes: <p>Sample History</p>
-  description: <p>Sample Description.</p>
-  name: DemoName
+    Notes: 
+      description: <p>Sample history goes here.</p>
+  description: <p>Description.</p>
+  name: Demo Name
   sample_component_set:
     sample_component:
-      description: <p>Description</p>
-      name: DemoComponent
-collection_identifier:
-  identifier: DemoCollectionIdentifier-1234
+      name: ComponentName
+identifier_collection: DemoCollectionIdentifier-12345
 default: current_forward
 definition: NXafm
-experiment_description: <p>Experiment Description</p>
-experiment_identifier:
-  identifier: DemoExperimentIdentifier-1234
+experiment_description: <p>Experiment Description.</p>
+identifier_experiment: DemoExperimentIdentifier-12345
 experiment_instrument:
   hardware:
     name: Nanonis

@@ -327,11 +327,11 @@ The config file is used to map the raw data coming from the STS experiment file 
         "@default": {
             "raw_path": "@default:current_backward"
         },
-        "collection_identifier": "",
+        "identifier_collection": "",
         "definition": "",
         "end_time": "",
         "entry_identifier": "",
-        "experiment_identifier": {"identifier": ""},
+        "identifier_experiment": {"identifier": ""},
         "experiment_description": {"raw_path": "/COMMENT"},
         "experiment_instrument": {
             "scan_environment": {

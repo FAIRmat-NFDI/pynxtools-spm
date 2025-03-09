@@ -1,18 +1,17 @@
 Sample:
   History:
-    notes: <p>Sample History.</p>
+    Notes: 
+      description: <p>Sample history goes here.</p>
   description: <p>Description.</p>
   name: Demo Name
   sample_component_set:
     sample_component:
       name: ComponentName
-collection_identifier:
-  identifier: DemoCollectionIdentifier-12345
+identifier_collection: DemoCollectionIdentifier-12345
 default: current_forward
 definition: NXafm
 experiment_description: <p>Experiment Description.</p>
-experiment_identifier:
-  identifier: DemoExperimentIdentifier-12345
+identifier_experiment: DemoExperimentIdentifier-12345
 experiment_instrument:
   hardware:
     name: Nanonis
@@ -25,4 +24,8 @@ experiment_instrument:
 experiment_technique: AFM
 scan_mode: contact mode
 user:
+  affiliation:
+  - HU
+  email:
+  - rubel.mozumder@physik.hu-berlin.de
   name: Rubel Mozumder

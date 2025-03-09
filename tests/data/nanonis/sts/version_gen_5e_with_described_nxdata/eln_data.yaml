@@ -1,6 +1,7 @@
 Sample:
   History:
-    notes: <p>Sample history goes here.</p>
+    Notes: 
+      description: <p>Sample history goes here.</p>
   description: <p>Sample Description</p>
   name: DemoName
   sample_component_set:

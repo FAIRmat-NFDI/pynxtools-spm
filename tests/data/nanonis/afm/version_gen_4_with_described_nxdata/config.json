@@ -4,13 +4,13 @@
       "raw_path": "@default:amplitude_backward"
     },
     "definition": { "@version": null },
-    "collection_identifier": "",
+    "identifier_collection": "",
     "end_time": "",
     "entry_identifier": "",
     "start_time": "",
     "scan_mode": "",
     "scan_type": "",
-    "experiment_identifier": { "identifier": "" },
+    "identifier_experiment": { "identifier": "" },
     "experiment_description": { "raw_path": "/COMMENT" },
     "experiment_instrument": {
       "CANTILEVER_SPM[cantilever_spm]": {
@@ -439,10 +439,10 @@
               }
             ]
           },
-          "independent_scan_axes": { 
+          "independent_scan_axes": {
             "#note": "Derived in scan pattern group.",
-            "raw_path": "/SCAN/DIR", 
-            "@units": "" 
+            "raw_path": "/SCAN/DIR",
+            "@units": ""
           },
           "scan_resolution_N": "",
           "accuracy_N": "",
@@ -478,7 +478,7 @@
           "@units": "/NanonisMain/Indicators Period/@unit"
         }
       },
-      "sample_bias_votage": {
+      "sample_bias_voltage": {
         "bias_voltage": {
           "raw_path": "/Bias/Bias",
           "@units": "/Bias/Bias/@unit"

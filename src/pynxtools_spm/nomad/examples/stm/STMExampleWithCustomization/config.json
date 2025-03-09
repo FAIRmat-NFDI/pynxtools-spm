@@ -1,14 +1,14 @@
 {
   "ENTRY[entry]": {
     "@default": { "raw_path": "@default:current_backward" },
-    "collection_identifier": "",
+    "identifier_collection": "",
     "definition": "",
     "end_time": "",
     "entry_identifier": "",
     "start_time": "",
     "scan_mode": "",
     "scan_type": "",
-    "experiment_identifier": { "identifier": "" },
+    "identifier_experiment": { "identifier": "" },
     "experiment_description": { "raw_path": "/COMMENT" },
     "experiment_instrument": {
       "scan_environment": {
@@ -469,7 +469,7 @@
           "@units": "/NanonisMain/Indicators Period/@unit"
         }
       },
-      "sample_bias_votage": {
+      "sample_bias_voltage": {
         "bias_voltage": {
           "raw_path": "/Bias/Bias",
           "@units": "/Bias/Bias/@unit"

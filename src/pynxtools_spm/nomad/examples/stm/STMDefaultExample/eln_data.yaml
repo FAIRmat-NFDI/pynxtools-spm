@@ -7,12 +7,12 @@ Sample:
     sample_component:
       description: <p>Component Description goes here.</p>
       name: DemoComponent
-collection_identifier:
+identifier_collection:
   identifier: DemoCollectionIdentifier-1234
 default: current_forward
 definition: NXstm
 experiment_description: <p>Experiment Description</p>
-experiment_identifier:
+identifier_experiment:
   identifier: DemoExperimentIdentifier-1234
 experiment_instrument:
   hardware:

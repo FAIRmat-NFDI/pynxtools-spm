@@ -7,12 +7,12 @@ Sample:
     sample_component:
       description: <p>Description of the sample component</p>
       name: DemoSampleComponent
-collection_identifier:
+identifier_collection:
   identifier: STSCollectionIdentifier-1234
 default: current_grad
 definition: NXsts
 experiment_description: <p>The experiment description is here.</p>
-experiment_identifier:
+identifier_experiment:
   identifier: STSExperimentIdentifier-1234
 experiment_instrument:
   hardware:

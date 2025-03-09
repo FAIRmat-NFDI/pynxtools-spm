@@ -560,7 +560,7 @@
         "cryo_shield_temp_sensor": "",
         "cryo_temp_sensor": "",
         "tip_temp_sensor": "",
-        "sample_bias_votage": {
+        "sample_bias_voltage": {
           "bias_voltage": {
             "raw_path": "/Bias/Bias/value",
             "@units": "/Bias/Bias/unit"
