@@ -309,7 +309,7 @@
                 }
               }
             ],
-            "second_order_correction_N[2nd_order_correction_n]": [
+            "second_order_correction_N[second_order_correction_n]": [
               {
                 "X": {
                   "raw_path": "/Piezo Configuration/2nd order corr X",

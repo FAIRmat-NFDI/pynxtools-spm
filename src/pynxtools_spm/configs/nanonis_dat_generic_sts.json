@@ -350,6 +350,25 @@
         "independent_controllers": "",
         "measurement_sensors": ""
       },
+      "current_sensor": {
+        "AMPLIFIER[amplifier]": { "current_gain": "" },
+        "current": {
+          "raw_path": "/Current/Current/value",
+          "@units": "/Current/Current/unit"
+        },
+        "current_calibration": {
+          "calibration_interval": "",
+          "coefficients": {
+            "raw_path": "/Current/Calibration/value",
+            "@units": "/Current/Calibration/unit"
+          }
+        },
+        "current_offset": {
+          "raw_path": "/Current/Offset/value",
+          "@units": "/Current/Offset/unit"
+        },
+        "current_gain": { "raw_path": "/Current/Gain/value" }
+      },
       "piezo_sensor": {
         "piezo_configuration": {
           "calibration": {
@@ -602,26 +621,6 @@
             "grp_name": "temperature1(filter)"
           }
         ]
-      },
-      "current_sensor": {
-        "AMPLIFIER[amplifier]": {
-          "current_gain": { "raw_path": "/Current/Gain/value" }
-        },
-        "current": {
-          "raw_path": "/Current/Current/value",
-          "@units": "/Current/Current/unit"
-        },
-        "current_calibration": {
-          "calibration_interval": "",
-          "coefficients": {
-            "raw_path": "/Current/Calibration/value",
-            "@units": "/Current/Calibration/unit"
-          }
-        },
-        "current_offset": {
-          "raw_path": "/Current/Offset/value",
-          "@units": "/Current/Offset/unit"
-        }
       }
     },
     "DATA[data]": [
