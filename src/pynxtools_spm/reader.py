@@ -124,7 +124,6 @@ class SPMReader(BaseReader):
                 config_file=config_file,
             )
             nds.get_nxformatted_template()
-            print(" ######## ", template)
         # set_default_attr_in_group(template)
 
         # manually_remove the empty data

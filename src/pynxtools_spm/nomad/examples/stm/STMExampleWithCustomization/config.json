@@ -409,14 +409,14 @@
         },
         "POSITIONER_SPM[positioner_spm]": {
           "z_controller": {
-            "K_i_value[K_i_value]": { "raw_path": "/Z-Controller/P gain" },
-            "K_p_value[K_p_value]": { "raw_path": "/Z-Controller/I gain" },
+            "K_i_value": { "raw_path": "/Z-Controller/P gain" },
+            "K_p_value": { "raw_path": "/Z-Controller/I gain" },
             "setpoint": {
               "raw_path": "/Z-Controller/Setpoint",
               "@units": "/Z-Controller/Setpoint unit"
             },
             "switch_off_delay": "",
-            "K_t_const[K_t_const]": {
+            "K_t_const": {
               "raw_path": "/Z-Controller/Time const",
               "@units": "/Z-Controller/Time const/@unit"
             },

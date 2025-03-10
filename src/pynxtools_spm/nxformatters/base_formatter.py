@@ -25,6 +25,7 @@ from typing import Dict, Union, List, Optional, TYPE_CHECKING
 from dataclasses import dataclass
 from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
+from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 import yaml
 from pynxtools_spm.nxformatters.helpers import (
@@ -137,9 +138,12 @@ class SPMformatter(ABC):
         for key, val in config_dict.items():
             if val is None or val == "":
                 continue
-            # Special case, will be handled in a specific function registerd
+            # Handle links
+            if isinstance(val, str):
+                self._resolve_link_in_config(val, f"{parent_path}/{key}")
+            # Special case, will be handled in a specific function registered
             # in self._grp_to_func
-            if key in self._grp_to_func:
+            elif key in self._grp_to_func:
                 if not use_custom_func_prior:
                     self.walk_though_config_nested_dict(
                         config_dict=val, parent_path=f"{parent_path}/{key}"
@@ -290,6 +294,31 @@ class SPMformatter(ABC):
     def _format_template_from_eln(self):
         for key, val in self.eln.items():
             self.template[key] = to_intended_t(val)
+
+    def _resolve_link_in_config(self, val: str, path: str = "/"):
+        """Resolve the link in the config file.
+
+        Internal Link to an object in same file in config file is defined as:
+        "concept_path" "@default_link:/ENTRY[entry]/experiment_instrument/cryo_shield_temp_sensor",
+
+        External Link to an object in another file is defined as:
+        "concept_path" "@default_link:/path/to/another:file.h5
+        or,
+        "concept_path" "@default_link:/path/to/another:file.nxs
+
+        (Link to another has not been implemented yet)
+        """
+
+        if val.startswith("@default_link:"):
+            if val.count(":") == 1 and (ref_to := val.split(":")[1]):
+                self.template[f"{path}"] = {
+                    "link": convert_data_dict_path_to_hdf5_path(ref_to)
+                }
+
+            elif val.count(":") == 2:
+                raise NotImplementedError(
+                    "Link to another file has not been implemented yet."
+                )
 
     @abstractmethod
     def _construct_nxscan_controllers(

@@ -504,13 +504,13 @@
               "raw_path": "/Z-Controller/Z/value",
               "@units": "/Z-Controller/Z/unit"
             },
-            "K_i_value[K_i_value]": {
+            "K_i_value": {
               "raw_path": "/Z-Controller/I gain/value"
             },
-            "K_p_value[K_p_value]": {
+            "K_p_value": {
               "raw_path": "/Z-Controller/P gain/value"
             },
-            "K_t_const[K_t_const]": {
+            "K_t_const": {
               "raw_path": "/Z-Controller/Time const/value",
               "@units": "/Z-Controller/Time const/unit"
             }

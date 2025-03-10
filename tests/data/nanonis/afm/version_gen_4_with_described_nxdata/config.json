@@ -58,42 +58,42 @@
             "cantilever_phase_positioner": {
               "actuator": {
                 "feedback": {
-                  "K_p_value[K_p_value]": {
+                  "K_p_value": {
                     "raw_path": "/Oscillation Control/Phase P gain",
                     "@units": "/Oscillation Control/Phase P gain/@unit"
                   },
-                  "K_i_value[K_i_value]": {
+                  "K_i_value": {
                     "raw_path": "/Oscillation Control/Phase I gain",
                     "@units": "/Oscillation Control/Phase I gain/@unit"
                   },
-                  "K_d_value[k_d_value]": "",
-                  "K_t_const[K_t_const]": ""
+                  "K_d_value": "",
+                  "K_t_const": ""
                 }
               }
             },
             "cantilever_frequency_positioner": {
               "actuator": {
                 "feedback": {
-                  "K_p_value[K_p_value]": "",
-                  "K_i_value[K_i_value]": "",
-                  "K_d_value[k_d_value]": "",
-                  "K_t_const[K_t_const]": ""
+                  "K_p_value": "",
+                  "K_i_value": "",
+                  "K_d_value": "",
+                  "K_t_const": ""
                 }
               }
             },
             "cantilever_amplitude_positioner": {
               "actuator": {
                 "feedback": {
-                  "K_p_value[K_p_value]": {
+                  "K_p_value": {
                     "raw_path": "/Oscillation Control/Amplitude P gain",
                     "@units": "/Oscillation Control/Amplitude P gain/@unit"
                   },
-                  "K_i_value[K_i_value]": {
+                  "K_i_value": {
                     "raw_path": "/Oscillation Control/Amplitude I gain",
                     "@units": "/Oscillation Control/Amplitude I gain/@unit"
                   },
-                  "K_d_value[k_d_value]": "",
-                  "K_t_const[K_t_const]": ""
+                  "K_d_value": "",
+                  "K_t_const": ""
                 }
               }
             }
@@ -282,14 +282,14 @@
         },
         "POSITIONER_SPM[positioner_spm]": {
           "z_controller": {
-            "K_i_value[K_i_value]": { "raw_path": "/Z-Controller/P gain" },
-            "K_p_value[K_p_value]": { "raw_path": "/Z-Controller/I gain" },
+            "K_i_value": { "raw_path": "/Z-Controller/P gain" },
+            "K_p_value": { "raw_path": "/Z-Controller/I gain" },
             "setpoint": {
               "raw_path": "/Z-Controller/Setpoint",
               "@units": "/Z-Controller/Setpoint unit"
             },
             "switch_off_delay": "",
-            "K_t_const[K_t_const]": {
+            "K_t_const": {
               "raw_path": "/Z-Controller/Time const",
               "@units": "/Z-Controller/Time const/@unit"
             },
@@ -451,7 +451,10 @@
             "raw_path": "@default:continuous",
             "@units": ""
           }
-        }
+        },
+        "cryo_shield_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/cryo_shield_temp_sensor",
+        "cryo_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/cryo_temp_sensor",
+        "tip_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/tip_temp_sensor"
       },
       "real_time_controller": {
         "rcs_frequency": {
@@ -571,20 +574,17 @@
       }
     ],
     "reproducibility_indicators": {
-      "bias_sweep": null,
-      "current": null,
-      "current_gain": null,
-      "current_offset": null,
-      "reference_frequency": null,
-      "modulation_signal_type": null
+      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/tip_temp",
+      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_bottom_temp",
+      "cryo_shield_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_shield_temp",
+      "cantilever_oscillator": "@default_link:/ENTRY[entry]/experiment_instrument/cantilever_spm/cantilever_oscillator"
     },
     "resolution_indicators": {
-      "bias_sweep": null,
-      "cryo_bottom_temp": null,
-      "cryo_shield_temp": null,
-      "reference_frequency": null,
-      "modulation_signal_type": null,
-      "stm_head_temp": null
+      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/tip_temp",
+      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_bottom_temp",
+      "cryo_shield_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_shield_temp",
+      "oscillator_excitation": "@default_link:/ENTRY[entry]/experiment_instrument/cantilever_spm/cantilever_oscillator/oscillator_excitation",
+      "amplitude_excitation": "@default_link:/ENTRY[entry]/experiment_instrument/cantilever_spm/cantilever_oscillator/phase_lock_loop/amplitude_excitation"
     }
   }
 }

@@ -504,13 +504,13 @@
               "raw_path": "/Z-Controller/Z/value",
               "@units": "/Z-Controller/Z/unit"
             },
-            "K_i_value[K_i_value]": {
+            "K_i_value": {
               "raw_path": "/Z-Controller/I gain/value"
             },
-            "K_p_value[K_p_value]": {
+            "K_p_value": {
               "raw_path": "/Z-Controller/P gain/value"
             },
-            "K_t_const[K_t_const]": {
+            "K_t_const": {
               "raw_path": "/Z-Controller/Time const/value",
               "@units": "/Z-Controller/Time const/unit"
             }
@@ -548,9 +548,9 @@
           "raw_path": "/Temperature 1/Temperature 1/value",
           "@units": "/Temperature 1/Temperature 1/unit"
         },
-        "cryo_shield_temp_sensor": "",
-        "cryo_temp_sensor": "",
-        "tip_temp_sensor": "",
+        "cryo_shield_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/cryo_shield_temp_sensor",
+        "cryo_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/cryo_temp_sensor",
+        "tip_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/tip_temp_sensor",
         "sample_bias_voltage": {
           "bias_voltage": {
             "raw_path": "/Bias/Bias/value",
@@ -709,20 +709,20 @@
       }
     ],
     "reproducibility_indicators": {
-      "bias_sweep": "",
-      "current": "",
-      "current_gain": "",
-      "current_offset": "",
-      "reference_frequency": "",
-      "modulation_signal_type": ""
+      "current": "@default_link:/ENTRY[entry]/experiment_instrument/current_sensor/current",
+      "current_gain": "@default_link:/ENTRY[entry]/experiment_instrument/current_sensor/AMPLIFIER[amplifier]/current_gain",
+      "current_offset": "@default_link:/ENTRY[entry]/experiment_instrument/current_sensor/current_offset",
+      "bias_sweep": "@default_link:/ENTRY[entry]/experiment_instrument/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
+      "reference_frequency": "@default_link:/ENTRY[entry]/experiment_instrument/lockin_amplifier/reference_frequency",
+      "modulation_signal_type": "@default_link:/ENTRY[entry]/experiment_instrument/lockin_amplifier/modulation_signal"
     },
     "resolution_indicators": {
-      "bias_sweep": "",
-      "cryo_bottom_temp": "",
-      "cryo_shield_temp": "",
-      "reference_frequency": "",
-      "modulation_signal_type": "",
-      "stm_head_temp": ""
+      "stm_head_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/tip_temp",
+      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_bottom_temp",
+      "cryo_shield_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_shield_temp",
+      "bias_sweep": "@default_link:/ENTRY[entry]/experiment_instrument/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
+      "reference_frequency": "@default_link:/ENTRY[entry]/experiment_instrument/lockin_amplifier/reference_frequency",
+      "modulation_signal_type": "@default_link:/ENTRY[entry]/experiment_instrument/lockin_amplifier/modulation_signal"
     }
   }
 }
