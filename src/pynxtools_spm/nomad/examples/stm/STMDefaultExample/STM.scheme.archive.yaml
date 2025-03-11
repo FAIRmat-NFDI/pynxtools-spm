@@ -357,11 +357,19 @@ definitions:
                   m_annotations:
                     eln:
                       overview: true
-                  quantities:
-                    notes:
-                      type: str
-                      m_annotations:
-                        eln:
-                          component: RichTextEditQuantity
-                      description: |
-                        Notes about the sample history.
+                  sub_sections:
+                    Notes:
+                      section:
+                        m_annotations:
+                          eln:
+                            overview: true
+                        description: |
+                          Notes group about the sample history.
+                        quantities:
+                          description:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: RichTextEditQuantity
+                            description: |
+                              Notes about the sample history.
