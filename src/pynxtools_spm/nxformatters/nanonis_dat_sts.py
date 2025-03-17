@@ -36,6 +36,7 @@ from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _scientific_num_pattern,
 )
+from typing import Any, Dict
 from pynxtools_spm.nxformatters.helpers import cal_dx_by_dy
 
 ureg = UnitRegistry()
@@ -47,7 +48,7 @@ class NanonisDatSTS(SPMformatter):
         "bias_sweep": "_construct_bias_sweep_grp",
     }
     _axes = ["x", "y", "z"]
-    links_to_concepts = {}
+    links_to_concepts: Dict[str, Any] = {}
 
     @dataclass
     class TmpConceptsVal:
