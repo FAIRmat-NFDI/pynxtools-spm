@@ -12,15 +12,15 @@
     "identifier_collection": "D:\\Data\\123306",
     "Sample": {
       "name": "diPAMY",
-      "sample_component_set": {
-        "sample_component": {
+      "Sample_component_set": {
+        "Sample_component": {
           "name": "Au(Mica)",
           "chemical_formula": "Au(KAl3Si3012H2)",
           "description": "<p>The description could be anything in plain text, e.g., the orientation of sample and substrate and preparation process and so on .</p>"
         }
       },
       "History": {
-        "Notes": {
+        "Note": {
           "description": "<p>Substrate: Stack of two layers: Au(111) on Mica</p>\n<pre class=\"western\">name: Au(Mica)</pre>\n<p>&nbsp;</p>\n<p>Note: A sample description could be plain text or a book of text.</p>"
         }
       }
@@ -39,7 +39,7 @@
         "palma@physik.hu-berlin.de"
       ]
     },
-    "experiment_instrument": {
+    "INSTRUMENT[instrument]": {
       "hardware": {
         "vendor": "Nanonis",
         "name": "Nanonis",

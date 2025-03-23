@@ -1,19 +1,21 @@
 Sample:
   History:
-    Notes: 
+    Note: 
       description: <p>Sample history goes here.</p>
   description: <p>Description.</p>
   name: Demo Name
-  sample_component_set:
-    sample_component:
+  Sample_component_set:
+    Sample_component:
       name: ComponentName
 identifier_collection: DemoCollectionIdentifier-12345
 default: current_forward
 definition: NXafm
 experiment_description: <p>Experiment Description.</p>
 identifier_experiment: DemoExperimentIdentifier-12345
-experiment_instrument:
+Instrument:
   hardware:
+    model: Generic 4
+    model/@version: '4'
     name: Nanonis
     vendor: Nanonis
   software:
@@ -23,7 +25,7 @@ experiment_instrument:
     vendor: Nanonis
 experiment_technique: AFM
 scan_mode: tapping mode
-user:
+User:
   affiliation:
   - HU
   email:

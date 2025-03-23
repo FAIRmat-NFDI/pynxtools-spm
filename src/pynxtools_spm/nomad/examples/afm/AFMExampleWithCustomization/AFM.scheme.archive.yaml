@@ -112,7 +112,7 @@ definitions:
                     component: StringEditQuantity
                 description: |
                   List of emails from users who performed the experiment.
-        experiment_instrument:
+        Instrument:
           section:
             m_annotations:
               eln:
@@ -263,13 +263,13 @@ definitions:
                 description: |
                   Description of the sample or sample preparation.
             sub_sections:
-              sample_component_set:
+              Sample_component_set:
                 section:
                   m_annotations:
                     eln:
                       overview: true
                   sub_sections:
-                    sample_component:
+                    Sample_component:
                       section:
                         m_annotations:
                           eln:
@@ -329,7 +329,7 @@ definitions:
                     eln:
                       overview: true
                   quantities:
-                    notes:
+                    note:
                       type: str
                       m_annotations:
                         eln:

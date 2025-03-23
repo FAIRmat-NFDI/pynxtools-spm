@@ -58,6 +58,11 @@ CONVERT_DICT = {
     "Data": "DATA[data]",
     "Source": "SOURCE[source]",
     "Mesh_scan": "mesh_SCAN[mesh_scan]",
+    "Instrument": "INSTRUMENT[instrument]",
+    "Note": "NOTE[note]",
+    "Sample_component_set": "SAMPLE_COMPONENT_SET[sample_component_set]",
+    "Sample_component": "SAMPLE_COMPONENT[sample_component]",
+    "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
 }
 
 PINT_QUANTITY_MAPPING = {
@@ -173,7 +178,7 @@ class SPMformatter(ABC):
             # Handle to construct nxdata group that comes alon as a dict
             elif (
                 isinstance(val, dict)
-                and ("@title" in val or "grp_name" in val)
+                and ("title" in val or "grp_name" in val)
                 and "data" in val
             ):
                 _ = self._NXdata_grp_from_conf_description(
@@ -187,7 +192,7 @@ class SPMformatter(ABC):
                     # Handle to construct nxdata group
                     if (
                         isinstance(item, dict)
-                        and ("@title" in item or "grp_name" in item)
+                        and ("title" in item or "grp_name" in item)
                         and "data" in item
                     ):
                         _ = self._NXdata_grp_from_conf_description(
@@ -218,6 +223,8 @@ class SPMformatter(ABC):
     def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
         """Rearrange array data according to the fast and slow axes.
 
+        (NOTE: This tachnique is proved for NANONIS data only, for others it may
+        not work.)
         Parameters
         ----------
         data : np.ndarray
@@ -358,15 +365,18 @@ class SPMformatter(ABC):
                 ],
                 "axis_ind": 0,
             },
-            "@title": "Bias Spectroscopy Temperature1(filter)",
+            "@any_attr": "Actual attr value",
+            "any_field1": {
+                "raw_path": "@defalut:Any field name",}.
+            "any_field2": {
+                "raw_path": "/path/in/data/dict",}.
             "grp_name": "temperature1(filter)",
         }
         To get the proper relation please visit:
 
         args:
         -----
-            "data" -> Signal data of "temperature1(filter)" denoted by
-                    the name key.
+            "parent_path" -> Parent path for NXdata group in nexus tree.
             "0" -> Index of the axis if "axis_ind" is not provided.
                     Here both are same. Name of the axis is denoted
                     by the name key.
@@ -412,40 +422,50 @@ class SPMformatter(ABC):
                     _get_data_unit_and_others(self.raw_data, end_dict=val)
                 )
         field_nm_fit = nxdata_nm.replace(" ", "_").lower()
-        self.template[f"{parent_path}/{nxdata_group}/@title"] = (
+        field_nm_variadic = f"DATA[{field_nm_fit}]"
+        self.template[f"{parent_path}/{nxdata_group}/title"] = (
             f"Title Data Group {group_index}"
         )
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}"] = (
+        self.template[f"{parent_path}/{nxdata_group}/{field_nm_variadic}"] = (
             self.rearrange_data_according_to_axes(nxdata_d_arr, is_forward=is_forward)
         )
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@units"] = d_unit
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@long_name"] = (
-            f"{nxdata_nm} ({d_unit})"
+        self.template[f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@units"] = (
+            d_unit
         )
+        self.template[
+            f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@long_name"
+        ] = f"{nxdata_nm} ({d_unit})"
         self.template[f"{parent_path}/{nxdata_group}/@signal"] = field_nm_fit
         if d_others:
             for k, v in d_others.items():
                 k = k.replace(" ", "_").lower()
                 # TODO check if k starts with @ or not
                 k = k[1:] if k.startswith("@") else k
-                self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@{k}"] = v
+                self.template[
+                    f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@{k}"
+                ] = v
         if not (len(nxdata_axes) == len(nxdata_indices) == len(axdata_unit_other_list)):
             return
 
         for ind, (index, axis) in enumerate(zip(nxdata_indices, nxdata_axes)):
             axis_fit = axis.replace(" ", "_").lower()
-            self.template[f"{parent_path}/{nxdata_group}/@{axis_fit}_indices"] = index
-            self.template[f"{parent_path}/{nxdata_group}/{axis_fit}"] = (
+            axis_variadic = f"AXISNAME[{axis_fit}]"
+            self.template[
+                f"{parent_path}/{nxdata_group}/@AXISNAME_indices[{axis_fit}_indices]"
+            ] = index
+            self.template[f"{parent_path}/{nxdata_group}/{axis_variadic}"] = (
                 axdata_unit_other_list[ind][0]
             )
             unit = axdata_unit_other_list[ind][1]
-            self.template[f"{parent_path}/{nxdata_group}/{axis_fit}/@units"] = unit
-            self.template[f"{parent_path}/{nxdata_group}/{axis_fit}/@long_name"] = (
-                f"{axis} ({unit})"
-            )
+            self.template[f"{parent_path}/{nxdata_group}/{axis_variadic}/@units"] = unit
+            self.template[
+                f"{parent_path}/{nxdata_group}/{axis_variadic}/@long_name"
+            ] = f"{axis} ({unit})"
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
-                    self.template[f"{parent_path}/{nxdata_group}/{axis_fit}/{k}"] = v
+                    self.template[
+                        f"{parent_path}/{nxdata_group}/{axis_variadic}/{k}"
+                    ] = v
 
         self.template[f"{parent_path}/{nxdata_group}/@axes"] = [
             ax.replace(" ", "_").lower() for ax in nxdata_axes
@@ -456,5 +476,16 @@ class SPMformatter(ABC):
                 continue
             elif key.startswith("@"):
                 self.template[f"{parent_path}/{nxdata_group}/{key}"] = val
-
+            # NXdata field
+            elif isinstance(val, dict):
+                data, unit_, other_attrs = _get_data_unit_and_others(
+                    data_dict=self.raw_data, end_dict=val
+                )
+                self.template[f"{parent_path}/{nxdata_group}/{key}"] = data
+                if unit_:
+                    self.template[f"{parent_path}/{nxdata_group}/{key}/@units"] = unit_
+                    if other_attrs:
+                        self.template[
+                            f"{parent_path}/{nxdata_group}/{key}/@{other_attrs}"
+                        ] = other_attrs
         return nxdata_group

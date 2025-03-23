@@ -15,7 +15,7 @@
       "affiliation": ["Dr. Cojal González", "Dr. Carlos-Andres Palma"],
       "email": ["cojal@physik.hu-berlin.de", "palma@physik.hu-berlin.de"]
     },
-    "experiment_instrument": {
+    "INSTRUMENT[instrument]": {
       "hardware": {
         "model": "Generic5e",
         "model/@version": "5e",
@@ -36,15 +36,15 @@
     },
     "Sample": {
       "name": "diPAMY",
-      "sample_component_set": {
-        "sample_component": {
+      "Sample_component_set": {
+        "Sample_component": {
           "name": "Au(Mica)",
           "description": "<pre class=\"western\">Substrate:</pre>\n<pre class=\"western\">two-layer stack: Au-Mica.</pre>",
           "chemical_formula": "Au(KAi3Si3O12H2)"
         }
       },
       "History": {
-        "Notes": { "description": "<p>Demo history in plain text.</p>" }
+        "Note": { "description": "<p>Demo history in plain text.</p>" }
       }
     }
   }

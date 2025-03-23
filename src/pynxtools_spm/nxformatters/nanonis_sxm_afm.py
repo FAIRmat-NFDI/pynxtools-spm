@@ -44,7 +44,6 @@ if TYPE_CHECKING:
 # TODO: Check why link to NXdata does not work
 # # Create links for NXdata in entry level
 # entry = parent_path.split("/")[1]
-# print("##### NXdata]", f"/{entry}/DATA[{field_nm}]")
 # self.template[f"/{entry}/{field_nm}"] = {
 #     "link": get_link_compatible_key(f"{parent_path}/{group_name}")
 # }

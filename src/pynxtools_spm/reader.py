@@ -26,7 +26,6 @@ import yaml
 import copy
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
-from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
@@ -85,6 +84,7 @@ class SPMReader(BaseReader):
                 with open(file, mode="r", encoding="utf-8") as fl_obj:
                     eln_dict = yaml.safe_load(fl_obj)
                     experirment_technique = eln_dict.get("experiment_technique")
+                    # TODO get defition name
                 if experirment_technique is None:
                     raise ValueError("Experiment technique is not defined in ELN file.")
         if not eln_file:
@@ -137,7 +137,6 @@ class SPMReader(BaseReader):
             filled_template[key] = val
         # Set nexus def version
         filled_template["/ENTRY[entry]/definition/@version"] = get_nexus_version()
-
         if not filled_template.keys():
             raise ValueError(
                 "Reader could not read anything! Check for input files and the"

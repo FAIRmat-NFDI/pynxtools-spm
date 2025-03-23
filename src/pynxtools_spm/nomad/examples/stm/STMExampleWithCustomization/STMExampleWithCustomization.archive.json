@@ -15,7 +15,7 @@
       "affiliation": ["Dr. Cojal González", "palma@physik.hu-berlin.de"],
       "email": ["Dr. Cojal González", "Dr. Cojal González"]
     },
-    "experiment_instrument": {
+    "INSTRUMENT[instrument]": {
       "hardware": {
         "vendor": "Nanonis",
         "name": "Nanonis",
@@ -32,8 +32,8 @@
     },
     "Sample": {
       "name": "diPAMY",
-      "sample_component_set": {
-        "sample_component": {
+      "Sample_component_set": {
+        "Sample_component": {
           "chemical_formula": "Au(KAi3Si3O12H2)",
           "description": "<pre class=\"western\">Substrate:&amp;nbsp;</pre>\n<pre class=\"western\">Two-layer stack: Au-Mica.<br /><br />Note: Description could be anything in plain text.</pre>",
           "name": "Au(Mica)"

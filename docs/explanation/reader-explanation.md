@@ -401,7 +401,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     }
                 },
             },
-            "LOCKIN[lockin]": {
+            "lockin_amplifier": {
                 "demodulated_signal": {
                     "raw_path": "/Lock-in/Demodulated signal",
                 },
@@ -430,7 +430,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "@units": "@default:m"
                 },
   
-                "@title": "Height Plot of STM Experiment (Foward Direction)",
+                "title": {"raw_path": "@default:Height Plot of STM Experiment (Foward Direction)"},
                 "grp_name": "z_forward"
             },
             {
@@ -439,7 +439,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "raw_path": "/Z/backward",
                     "@units": "@default:m"
                 },
-                "@title": "Height Plot of STM Experiment (Backward Direction)",
+                "title": {"raw_path": "@default:Height Plot of STM Experiment (Backward Direction)"},
                 "grp_name": "z_backward"
             },
             {
@@ -448,7 +448,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "raw_path": "/Current/forward",
                     "@units": "@default:A"
                 },
-                "@title": "Current Plot of STM Experiment (Foward Direction)",
+                "title": {"raw_path": "@default:Current Plot of STM Experiment (Foward Direction)"},
                 "grp_name": "current_forward"
             },
             {
@@ -457,7 +457,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "raw_path": "/Current/backward",
                     "@units": "@default:A"
                 },
-                "@title": "Current Plot of STM Experiment (Backward Direction)",
+                "title": {"raw_path": "@default:Current Plot of STM Experiment (Backward Direction)"},
                 "grp_name": "current_backward"
             }
         ],

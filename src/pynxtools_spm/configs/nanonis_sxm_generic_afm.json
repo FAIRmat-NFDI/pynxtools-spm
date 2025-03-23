@@ -58,42 +58,42 @@
             "cantilever_phase_positioner": {
               "actuator": {
                 "feedback": {
-                  "K_p_value": {
+                  "K_p": {
                     "raw_path": "/Oscillation Control/Phase P gain",
                     "@units": "/Oscillation Control/Phase P gain/@unit"
                   },
-                  "K_i_value": {
+                  "K_i": {
                     "raw_path": "/Oscillation Control/Phase I gain",
                     "@units": "/Oscillation Control/Phase I gain/@unit"
                   },
                   "K_d_value": "",
-                  "K_t_const": ""
+                  "D_t": ""
                 }
               }
             },
             "cantilever_frequency_positioner": {
               "actuator": {
                 "feedback": {
-                  "K_p_value": "",
-                  "K_i_value": "",
+                  "K_p": "",
+                  "K_i": "",
                   "K_d_value": "",
-                  "K_t_const": ""
+                  "D_t": ""
                 }
               }
             },
             "cantilever_amplitude_positioner": {
               "actuator": {
                 "feedback": {
-                  "K_p_value": {
+                  "K_p": {
                     "raw_path": "/Oscillation Control/Amplitude P gain",
                     "@units": "/Oscillation Control/Amplitude P gain/@unit"
                   },
-                  "K_i_value": {
+                  "K_i": {
                     "raw_path": "/Oscillation Control/Amplitude I gain",
                     "@units": "/Oscillation Control/Amplitude I gain/@unit"
                   },
                   "K_d_value": "",
-                  "K_t_const": ""
+                  "D_t": ""
                 }
               }
             }
@@ -110,7 +110,7 @@
           "active_frequency": ""
         }
       },
-      "LOCKIN[lockin]": {
+      "lockin_amplifier": {
         "reference_frequency": {
           "raw_path": "/Lock-in/Frequency",
           "@units": "@default:Hz"
@@ -120,8 +120,7 @@
           "@units": "/Lock-in/Modulated signal/@unit"
         },
         "demodulated_signal": {
-          "raw_path": "/Lock-in/Demodulated signal",
-          "@units": "/Lock-in/Demodulated signal/@unit"
+          "raw_path": "/Lock-in/Demodulated signal"
         },
         "modulation_status": { "raw_path": "/Lock-in/Lock-in status" },
         "demodulated_frequency": "",
@@ -176,19 +175,19 @@
             },
             "calibration_coefficient_N[calibration_coefficient_n]": [
               {
-                "X": {
+                "x": {
                   "raw_path": "/Piezo Calibration/Calib. X",
                   "@units": "/Piezo Calibration/Calib. X/@unit"
                 }
               },
               {
-                "Y": {
+                "y": {
                   "raw_path": "/Piezo Calibration/Calib. Y",
                   "@units": "/Piezo Calibration/Calib. Y/@unit"
                 }
               },
               {
-                "Z": {
+                "z": {
                   "raw_path": "/Piezo Calibration/Calib. Z",
                   "@units": "/Piezo Calibration/Calib. Z/@unit"
                 }
@@ -196,19 +195,19 @@
             ],
             "second_order_correction_N[second_order_correction_n]": [
               {
-                "X": {
+                "x": {
                   "raw_path": "/Piezo Calibration/2nd order corr X",
                   "@units": "/Piezo Calibration/2nd order corr X/@unit"
                 }
               },
               {
-                "Y": {
+                "y": {
                   "raw_path": "/Piezo Calibration/2nd order corr Y",
                   "@units": "/Piezo Calibration/2nd order corr Y/@unit"
                 }
               },
               {
-                "Z": {
+                "z": {
                   "raw_path": "/Piezo Calibration/2nd order corr Z",
                   "@units": "/Piezo Calibration/2nd order corr Z/@unit"
                 }
@@ -219,19 +218,19 @@
             },
             "drift_N[drift_n]": [
               {
-                "X": {
+                "x": {
                   "raw_path": "/Piezo Calibration/Drift X",
                   "@units": "/Piezo Calibration/Drift X/@unit"
                 }
               },
               {
-                "Y": {
+                "y": {
                   "raw_path": "/Piezo Calibration/Drift Y",
                   "@units": "/Piezo Calibration/Drift Y/@unit"
                 }
               },
               {
-                "Z": {
+                "z": {
                   "raw_path": "/Piezo Calibration/Drift Z",
                   "@units": "/Piezo Calibration/Drift Z/@unit"
                 }
@@ -244,19 +243,19 @@
               ]
             },
             "hv_gain_N[hv_gain_n]": [
-              { "X": { "raw_path": "/Piezo Calibration/HV Gain X" } },
-              { "Y": { "raw_path": "/Piezo Calibration/HV Gain Y" } },
-              { "Z": { "raw_path": "/Piezo Calibration/HV Gain Z" } }
+              { "x": { "raw_path": "/Piezo Calibration/HV Gain X" } },
+              { "y": { "raw_path": "/Piezo Calibration/HV Gain Y" } },
+              { "z": { "raw_path": "/Piezo Calibration/HV Gain Z" } }
             ],
             "tilt_N[tilt_n]": [
               {
-                "X": {
+                "x": {
                   "raw_path": "/Piezo Calibration/Tilt X",
                   "@units": "/Piezo Calibration/Tilt X/@unit"
                 }
               },
               {
-                "Y": {
+                "y": {
                   "raw_path": "/Piezo Calibration/Tilt Y",
                   "@units": "/Piezo Calibration/Tilt X/@unit"
                 }
@@ -282,14 +281,20 @@
         },
         "POSITIONER_SPM[positioner_spm]": {
           "z_controller": {
-            "K_i_value": { "raw_path": "/Z-Controller/P gain" },
-            "K_p_value": { "raw_path": "/Z-Controller/I gain" },
-            "setpoint": {
+            "K_i": { "raw_path": "/Z-Controller/P gain" },
+            "K_p": { "raw_path": "/Z-Controller/I gain" },
+            "set_point": {
               "raw_path": "/Z-Controller/Setpoint",
               "@units": "/Z-Controller/Setpoint unit"
             },
-            "switch_off_delay": "",
-            "K_t_const": {
+            "controller_status": {
+              "raw_path": "/Z-Controller/Controller status"
+            },
+            "switch_off_delay": {
+              "raw_path": "/Z-Controller/Switch off delay",
+              "@units": "/Z-Controller/Switch off delay/@unit"
+            },
+            "D_t": {
               "raw_path": "/Z-Controller/Time const",
               "@units": "/Z-Controller/Time const/@unit"
             },
@@ -304,14 +309,7 @@
           },
           "z_offset": "",
           "tip_position_z": "",
-          "controller_name": { "raw_path": "/Z-Controller/Controller name" },
-          "controller_status": {
-            "raw_path": "/Z-Controller/Controller status"
-          },
-          "switch_off_delay": {
-            "raw_path": "/Z-Controller/Switch off delay",
-            "@units": "/Z-Controller/Switch off delay/@unit"
-          }
+          "controller_label": { "raw_path": "/Z-Controller/Controller name" }
         },
         "x": { "@units": null },
         "y": { "@units": null },
@@ -371,7 +369,9 @@
                   "raw_path": "/Input_4/forward",
                   "@units": "/DATA/INFO/Input_4/Unit"
                 },
-                "@title": "Input-4 Plot of AFM Experiment (Forward Direction)",
+                "title": {
+                  "@default": "Input-4 Plot of AFM Experiment (Forward Direction)"
+                },
                 "grp_name": "input_4_forward"
               },
               {
@@ -380,7 +380,9 @@
                   "raw_path": "/Input_4/backward",
                   "@units": "/DATA/INFO/Input_4/Unit"
                 },
-                "@title": "Input-4 Plot of AFM Experiment (Backward Direction)",
+                "title": {
+                  "@default": "Input-4 Plot of AFM Experiment (Backward Direction)"
+                },
                 "grp_name": "input_4_backward"
               },
               {
@@ -389,7 +391,9 @@
                   "raw_path": "/LIX_1_omega/forward",
                   "@units": "/DATA/INFO/LIX_1_omega/Unit"
                 },
-                "@title": "Lockin X-1 Plot of AFM Experiment (Forward Direction)",
+                "title": {
+                  "@default": "Lockin X-1 Plot of AFM Experiment (Forward Direction)"
+                },
                 "grp_name": "lix_1_omega_forward"
               },
               {
@@ -398,7 +402,9 @@
                   "raw_path": "/LIX_1_omega/backward",
                   "@units": "/DATA/INFO/LIX_1_omega/Unit"
                 },
-                "@title": "Lockin X-1 Plot of AFM Experiment (Backward Direction)",
+                "title": {
+                  "@default": "Lockin X-1 Plot of AFM Experiment (Backward Direction)"
+                },
                 "grp_name": "lix_1_omega_backward"
               },
               {
@@ -407,7 +413,9 @@
                   "raw_path": "/LIY_1_omega/forward",
                   "@units": "/DATA/INFO/LIY_1_omega/Unit"
                 },
-                "@title": "Lockin Y-1 Plot of AFM Experiment (Forward Direction)",
+                "title": {
+                  "@default": "Lockin Y-1 Plot of AFM Experiment (Forward Direction)"
+                },
                 "grp_name": "liy_1_omega_forward"
               },
               {
@@ -416,7 +424,9 @@
                   "raw_path": "/LIY_1_omega/backward",
                   "@units": "/DATA/INFO/LIY_1_omega/Unit"
                 },
-                "@title": "Lockin Y-1 Plot of AFM Experiment (Backward Direction)",
+                "title": {
+                  "@default": "Lockin Y-1 Plot of AFM Experiment (Backward Direction)"
+                },
                 "grp_name": "liy_1_omega_backward"
               },
               {
@@ -425,7 +435,9 @@
                   "raw_path": "/Frequency_Shift/forward",
                   "@units": "/DATA/INFO/Frequency_Shift/Unit"
                 },
-                "@title": "Frequency Shift Plot of AFM Experiment (Forward Direction)",
+                "title": {
+                  "@default": "Frequency Shift Plot of AFM Experiment (Forward Direction)"
+                },
                 "grp_name": "frequency_shift_forward"
               },
               {
@@ -434,7 +446,9 @@
                   "raw_path": "/Frequency_Shift/backward",
                   "@units": "/DATA/INFO/Frequency_Shift/Unit"
                 },
-                "@title": "Frequency Shift Plot of AFM Experiment (Backward Direction)",
+                "title": {
+                  "@default": "Frequency Shift Plot of AFM Experiment (Backward Direction)"
+                },
                 "grp_name": "frequency_shift_backward"
               }
             ]
@@ -457,26 +471,28 @@
         "tip_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/tip_temp_sensor"
       },
       "real_time_controller": {
+        "rcs_fabrication": {
+          "model": {
+            "raw_path": "/NanonisMain/RT Release/value"
+          }
+        },
         "rcs_frequency": {
           "raw_path": "/NanonisMain/RT Frequency",
           "@units": "/NanonisMain/RT Frequency/@unit"
         },
-        "rcs_model": {
-          "raw_path": "/NanonisMain/RT Release"
-        },
-        "acquisition_time": {
+        "rcs_acquisition_time": {
           "raw_path": "/NanonisMain/Acquisition Period",
           "@units": "/NanonisMain/Acquisition Period/@unit"
         },
-        "animation_time": {
+        "rcs_animation_time": {
           "raw_path": "/NanonisMain/Animations Period",
           "@units": "/NanonisMain/Animations Period/@unit"
         },
-        "measurement_time": {
+        "rcs_measurement_time": {
           "raw_path": "/NanonisMain/Measurements Period",
           "@units": "/NanonisMain/Measurements Period/@unit"
         },
-        "indicators_period": {
+        "rcs_indication_time": {
           "raw_path": "/NanonisMain/Indicators Period",
           "@units": "/NanonisMain/Indicators Period/@unit"
         }
@@ -506,7 +522,9 @@
           "raw_path": "/Z/forward",
           "@units": "/DATA/INFO/Z/Unit"
         },
-        "@title": "Height Plot of AFM Experiment (Foward Direction)",
+        "title": {
+          "raw_path": "@default:Height Plot of AFM Experiment (Foward Direction)"
+        },
         "grp_name": "z_forward"
       },
       {
@@ -515,7 +533,9 @@
           "raw_path": "/Z/backward",
           "@units": "/DATA/INFO/Z/Unit"
         },
-        "@title": "Height Plot of AFM Experiment (Backward Direction)",
+        "title": {
+          "raw_path": "@default:Height Plot of AFM Experiment (Backward Direction)"
+        },
         "grp_name": "z_backward"
       },
       {
@@ -524,7 +544,9 @@
           "raw_path": "/Excitation/forward",
           "@units": "/DATA/INFO/Excitation/Unit"
         },
-        "@title": "Excitation Plot of AFM Experiment (Forward Direction)",
+        "title": {
+          "raw_path": "@default:Excitation Plot of AFM Experiment (Forward Direction)"
+        },
         "grp_name": "excitation_forward"
       },
       {
@@ -533,7 +555,9 @@
           "raw_path": "/Excitation/backward",
           "@units": "/DATA/INFO/Excitation/Unit"
         },
-        "@title": "Excitation Plot of AFM Experiment (Backward Direction)",
+        "title": {
+          "raw_path": "@default:Excitation Plot of AFM Experiment (Backward Direction)"
+        },
         "grp_name": "excitation_backward"
       },
       {
@@ -542,7 +566,9 @@
           "raw_path": "/Phase/Forward",
           "@units": "/DATA/INFO/Phase/Unit"
         },
-        "@title": "Phase Plot of AFM Experiment (Forward Direction)",
+        "title": {
+          "raw_path": "@default:Phase Plot of AFM Experiment (Forward Direction)"
+        },
         "grp_name": "phase_forward"
       },
       {
@@ -551,7 +577,9 @@
           "raw_path": "/Phase/Backward",
           "@units": "/DATA/INFO/Phase/Unit"
         },
-        "@title": "Phase Plot of AFM Experiment (Backward Direction)",
+        "title": {
+          "raw_path": "@default:Phase Plot of AFM Experiment (Backward Direction)"
+        },
         "grp_name": "phase_backward"
       },
       {
@@ -560,7 +588,9 @@
           "raw_path": "/Current/forward",
           "@units": "/DATA/INFO/Current/Unit"
         },
-        "@title": "Current Plot of AFM Experiment (Forward Direction)",
+        "title": {
+          "raw_path": "@default:Current Plot of AFM Experiment (Forward Direction)"
+        },
         "grp_name": "current_forward"
       },
       {
@@ -569,7 +599,9 @@
           "raw_path": "/Current/backward",
           "@units": "/DATA/INFO/Current/Unit"
         },
-        "@title": "Current Plot of AFM Experiment (Backward Direction)",
+        "title": {
+          "raw_path": "@default:Current Plot of AFM Experiment (Backward Direction)"
+        },
         "grp_name": "current_backward"
       }
     ],

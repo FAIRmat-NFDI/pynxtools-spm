@@ -1,11 +1,11 @@
 Sample:
   History:
-    Notes: 
+    Note: 
       description: <p>Sample history goes here.</p>
   description: <p>Sample Description</p>
   name: DemoName
-  sample_component_set:
-    sample_component:
+  Sample_component_set:
+    Sample_component:
       description: <p>Sample component description.</p>
       name: Sample Component
 identifier_collection: STSCollectionIdentifier-1234
@@ -13,8 +13,10 @@ default: current_grad
 definition: NXsts
 experiment_description: <p>Experiment description is here.</p>
 identifier_experiment: STSExperimentIdentifier-1234
-experiment_instrument:
+Instrument:
   hardware:
+    model: Generic 5e
+    model/@version: 5e
     name: Nanonis
     vendor: Nanonis
   lockin_amplifier:
@@ -26,10 +28,11 @@ experiment_instrument:
       value: 100.0
   software:
     model: Generic 5e
+    model/@version: 5e
     name: Nanonis
     vendor: Nanonis
 experiment_technique: STS
-user:
+User:
   affiliation:
   - HU
   email:

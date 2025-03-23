@@ -2,9 +2,11 @@ from typing import Dict, Optional, Tuple
 from pint import UnitRegistry
 from typing import Optional, Dict, Tuple, Union
 from pathlib import Path
+from typing import Literal
 import logging
 from copy import deepcopy
 import numpy as np
+from findiff import Diff
 import json
 
 
@@ -170,8 +172,28 @@ def _get_data_unit_and_others(
     return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
 
 
+def get_actual_from_variadic_name(name: str) -> str:
+    """Get the actual name from the variadic name.
+
+    Parameters
+    ----------
+    name : str
+        The variadic name e.g. scan_angle_N_X[scan_angle_n_x]
+
+    Returns
+    -------
+    str
+        The actual name.
+    """
+    return name.split("[")[-1].split("]")[0]
+
+
 # pylint: disable=too-many-return-statements
-def to_intended_t(str_value):
+def to_intended_t(
+    str_value,
+    data_struc: Literal["list", "array"] = None,
+    data_type: Literal["str", "int", "float"] = None,
+):
     """
         Transform string to the intended data type, if not then return str_value.
     e.g '2.5E-2' will be transfor into 2.5E-2
@@ -188,6 +210,47 @@ def to_intended_t(str_value):
     Union[str, int, float, np.ndarray]
         Converted data type
     """
+    # data_struct_map = {
+    #     "list": list,
+    #     "array": np.ndarray,
+    # }
+    # data_type_map = {
+    #     "int": int,
+    #     "float": float,
+    #     "str": str,
+    # }
+
+    # def _array_from(data, dtype=None):
+    #     try:
+    #         transformed = np.array(str_value, dtype=dtype | np.float64)
+    #         return transformed
+    #     except ValueError as e:
+    #         print(
+    #             f"Warning: Data '{str_value}' can not be converted to an array"
+    #             f"and encounterd error {e}"
+    #         )
+    #     return data
+
+    # def _array_from_str(data):
+    #     if data.startswith("[") and data.endswith("]"):
+    #         transformed = json.loads(data)
+    #         return transformed
+    #     return data
+
+    # def _data_with_type(data_type, data):
+    #     try:
+    #         return data_type(data)
+    #     except Exception as e:
+    #         print(
+    #             f"Warnign: Data {str_value} can not be converted to type {data_type}"
+    #             f"encounterd error {e}"
+    #         )
+
+    # if not data_struc and data_type:
+    #     return _data_with_type(data_type_map[data_type], str_value)
+    # elif data_struc == "array":
+    #     return _array_from(str_value, data_type)
+
     symbol_list_for_data_seperation = [";"]
     transformed = ""
     if str_value is None:
@@ -316,12 +379,8 @@ def replace_variadic_name_part(name, part_to_embed):
 
 def cal_dx_by_dy(x_val: np.ndarray, y_val: np.ndarray) -> np.ndarray:
     """Calc conductance (dI/dV) or gradiant dx/dy for x-variable and y-variable also return the result."""
-    dx_ = x_val[0::2] - x_val[1::2]
-    dy_ = y_val[0::2] - y_val[1::2]
-
-    dx_by_dy = dx_ / dy_
-
-    return dx_by_dy
+    d_dy = Diff(axis=0, grid=x_val, acc=2)
+    return d_dy(y_val)
 
 
 def transfer_plain_template_to_nested_dict(template, nested_dict):

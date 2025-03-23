@@ -44,7 +44,6 @@ if TYPE_CHECKING:
 # TODO: Check why link to NXdata does not work
 # # Create links for NXdata in entry level
 # entry = parent_path.split("/")[1]
-# print("##### NXdata]", f"/{entry}/DATA[{field_nm}]")
 # self.template[f"/{entry}/{field_nm}"] = {
 #     "link": get_link_compatible_key(f"{parent_path}/{group_name}")
 # }
@@ -231,7 +230,7 @@ class NanonisSxmSTM(SPMformatter):
                 self.NXScanControl.y_end_unit = unit
 
             self.template[
-                f"{parent_path}/{group_name}/scan_range__N[scan_range_{self._axes[ind]}]/@units"
+                f"{parent_path}/{group_name}/scan_range_N[scan_range_{self._axes[ind]}]/@units"
             ] = unit
 
     def construct_single_scan_data_grp(self, parent_path, plot_data_info, group_name):
@@ -453,23 +452,31 @@ class NanonisSxmSTM(SPMformatter):
             axis_x = "x"
             axis_y = "y"
             self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [axis_y, axis_x]
-            self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_x}_indices"] = 0
-            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}"] = np.linspace(
-                self.NXScanControl.x_start,
-                self.NXScanControl.x_end,
-                int(self.NXScanControl.x_points),
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_x}_indices]"
+            ] = 0
+            self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
+                np.linspace(
+                    self.NXScanControl.x_start,
+                    self.NXScanControl.x_end,
+                    int(self.NXScanControl.x_points),
+                )
             )
-            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_x}/@units"] = (
-                self.NXScanControl.x_start_unit
-            )
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@units"
+            ] = self.NXScanControl.x_start_unit
 
-            self.template[f"{parent_path}/{nxdata_group_nm}/@{axis_y}_indices"] = 1
-            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}"] = np.linspace(
-                self.NXScanControl.y_end,
-                self.NXScanControl.y_start,
-                int(self.NXScanControl.y_points),
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_y}_indices]"
+            ] = 1
+            self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
+                np.linspace(
+                    self.NXScanControl.y_end,
+                    self.NXScanControl.y_start,
+                    int(self.NXScanControl.y_points),
+                )
             )
-            self.template[f"{parent_path}/{nxdata_group_nm}/{axis_y}/@units"] = (
-                self.NXScanControl.y_start_unit
-            )
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
+            ] = self.NXScanControl.y_start_unit
         return nxdata_group_nm
