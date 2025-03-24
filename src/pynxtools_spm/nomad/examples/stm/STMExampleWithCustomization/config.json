@@ -124,9 +124,8 @@
           "raw_path": "/Lock-in/Frequency",
           "@units": "@default:Hz"
         },
-        "modulation_signal_type": {
-          "raw_path": "/Lock-in/Modulated signal",
-          "@units": "/Lock-in/Modulated signal/@unit"
+        "modulation_signal": {
+          "raw_path": "/Lock-in/Modulated signal"
         },
         "demodulated_signal": {
           "raw_path": "/Lock-in/Demodulated signal"
@@ -551,11 +550,11 @@
       "current_gain": "",
       "current_offset": "",
       "reference_frequency": "",
-      "modulation_signal_type": ""
+      "modulation_signal": ""
     },
     "resolution_indicators": {
       "reference_frequency": "",
-      "modulation_signal_type": ""
+      "modulation_signal": ""
     }
   }
 }

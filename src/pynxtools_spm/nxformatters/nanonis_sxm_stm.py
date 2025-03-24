@@ -391,7 +391,7 @@ class NanonisSxmSTM(SPMformatter):
         group_name="scan_control",
     ):
         # find independent_scan_axes
-        # independent_axes = "/ENTRY[entry]/experiment_instrument/scan_environment/SCAN_CONTROL[scan_control]/independent_scan_axes"
+        # independent_axes = "/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/SCAN_CONTROL[scan_control]/independent_scan_axes"
         independent_axes = "independent_scan_axes"
         direction, _, _ = _get_data_unit_and_others(
             data_dict=self.raw_data,

@@ -306,7 +306,7 @@ class SPMformatter(ABC):
         """Resolve the link in the config file.
 
         Internal Link to an object in same file in config file is defined as:
-        "concept_path" "@default_link:/ENTRY[entry]/experiment_instrument/cryo_shield_temp_sensor",
+        "concept_path" "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
 
         External Link to an object in another file is defined as:
         "concept_path" "@default_link:/path/to/another:file.h5

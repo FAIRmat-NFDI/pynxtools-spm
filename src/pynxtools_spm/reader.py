@@ -38,15 +38,21 @@ def manually_filter_data_type(template):
     """Check for the data with key type and fix it"""
     nexus_key_to_dt = {
         "/ENTRY[entry]/INSTRUMENT[instrument]/ENVIRONMENT[environment]/current_sensor/current_gain": float,
+        "rcs_fabrication/model": str,
+        "hardware/mode": str,
+        "hardware/model/@version": str,
     }
     template_copy = copy.deepcopy(template)
     for key, val in template_copy.items():
-        dt = nexus_key_to_dt.get(key, None)
-        if dt:
-            try:
-                template[key] = dt(val)
-            except (ValueError, TypeError):
-                del template[key]
+        for manual_key, dt in nexus_key_to_dt.items():
+            if key.endswith(manual_key):
+                try:
+                    template[key] = dt(val)
+                except (ValueError, TypeError):
+                    print(
+                        f"Warning: Could not convert data {val} for field {key} to {dt}"
+                    )
+                    del template[key]
 
 
 # pylint: disable=invalid-name, too-few-public-methods
@@ -142,7 +148,6 @@ class SPMReader(BaseReader):
                 "Reader could not read anything! Check for input files and the"
                 " corresponding extention."
             )
-
         return filled_template
 
 

@@ -12,7 +12,7 @@
     "scan_type": "",
     "identifier_experiment": { "identifier": "" },
     "experiment_description": { "raw_path": "/COMMENT" },
-    "experiment_instrument": {
+    "INSTRUMENT[instrument]": {
       "CANTILEVER_SPM[cantilever_spm]": {
         "cantilever_oscillator": {
           "reference_amplitude": {
@@ -31,7 +31,9 @@
             "raw_path": "/Oscillation Control/Reference Phase",
             "@units": "/Oscillation Control/Reference Phase/@unit"
           },
-          "frequency_harmonic": { "raw_path": "/Oscillation Control/Harmonic" },
+          "frequency_harmonic": [
+            { "cantilever": { "raw_path": "/Oscillation Control/Harmonic" } }
+          ],
           "oscillator_excitation": {
             "raw_path": "//Oscillation Control/Excitation",
             "@units": "/Oscillation Control/Excitation/@unit"
@@ -66,7 +68,7 @@
                     "raw_path": "/Oscillation Control/Phase I gain",
                     "@units": "/Oscillation Control/Phase I gain/@unit"
                   },
-                  "K_d_value": "",
+                  "K_d": "",
                   "D_t": ""
                 }
               }
@@ -76,7 +78,7 @@
                 "feedback": {
                   "K_p": "",
                   "K_i": "",
-                  "K_d_value": "",
+                  "K_d": "",
                   "D_t": ""
                 }
               }
@@ -92,7 +94,7 @@
                     "raw_path": "/Oscillation Control/Amplitude I gain",
                     "@units": "/Oscillation Control/Amplitude I gain/@unit"
                   },
-                  "K_d_value": "",
+                  "K_d": "",
                   "D_t": ""
                 }
               }
@@ -115,9 +117,8 @@
           "raw_path": "/Lock-in/Frequency",
           "@units": "@default:Hz"
         },
-        "modulation_signal_type": {
-          "raw_path": "/Lock-in/Modulated signal",
-          "@units": "/Lock-in/Modulated signal/@unit"
+        "modulation_signal": {
+          "raw_path": "/Lock-in/Modulated signal"
         },
         "demodulated_signal": {
           "raw_path": "/Lock-in/Demodulated signal"
@@ -466,9 +467,9 @@
             "@units": ""
           }
         },
-        "cryo_shield_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/cryo_shield_temp_sensor",
-        "cryo_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/cryo_temp_sensor",
-        "tip_temp_sensor": "@default_link:/ENTRY[entry]/experiment_instrument/tip_temp_sensor"
+        "cryo_shield_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
+        "cryo_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_temp_sensor",
+        "tip_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/tip_temp_sensor"
       },
       "real_time_controller": {
         "rcs_fabrication": {
@@ -606,17 +607,17 @@
       }
     ],
     "reproducibility_indicators": {
-      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/tip_temp",
-      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_bottom_temp",
-      "cryo_shield_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_shield_temp",
-      "cantilever_oscillator": "@default_link:/ENTRY[entry]/experiment_instrument/cantilever_spm/cantilever_oscillator"
+      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
+      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temp",
+      "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
+      "cantilever_oscillator": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator"
     },
     "resolution_indicators": {
-      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/tip_temp",
-      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_bottom_temp",
-      "cryo_shield_temp": "@default_link:/ENTRY[entry]/experiment_instrument/scan_environment/cryo_shield_temp",
-      "oscillator_excitation": "@default_link:/ENTRY[entry]/experiment_instrument/cantilever_spm/cantilever_oscillator/oscillator_excitation",
-      "amplitude_excitation": "@default_link:/ENTRY[entry]/experiment_instrument/cantilever_spm/cantilever_oscillator/phase_lock_loop/amplitude_excitation"
+      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
+      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temp",
+      "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
+      "oscillator_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/oscillator_excitation",
+      "amplitude_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/phase_lock_loop/amplitude_excitation"
     }
   }
 }

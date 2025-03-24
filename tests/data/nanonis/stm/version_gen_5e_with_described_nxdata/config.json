@@ -106,9 +106,8 @@
           "raw_path": "/Lock-in/Frequency",
           "@units": "@default:Hz"
         },
-        "modulation_signal_type": {
-          "raw_path": "/Lock-in/Modulated signal",
-          "@units": "/Lock-in/Modulated signal/@unit"
+        "modulation_signal": {
+          "raw_path": "/Lock-in/Modulated signal"
         },
         "demodulated_signal": {
           "raw_path": "/Lock-in/Demodulated signal"
@@ -525,7 +524,7 @@
       "current_offset": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current_offset",
       "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
       "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
-      "modulation_signal_type": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
+      "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
     },
     "resolution_indicators": {
       "stm_head_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
@@ -533,7 +532,7 @@
       "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
       "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
       "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
-      "modulation_signal_type": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
+      "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
     }
   }
 }

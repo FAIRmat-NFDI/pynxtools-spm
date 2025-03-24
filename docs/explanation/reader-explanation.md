@@ -70,10 +70,10 @@ software:
     value: 'Generic 4.5'
   model/@version:
     value: 'Generic 4.5'
-experiment_instrument:
+INSTRUMENT[instrument]:
   lockin_amplifier:
     modulation_frequency: null
-    modulation_signal_type: null
+    modulation_signal: null
   current_sensor:
     current_calibration:
       calibration_time:
@@ -213,7 +213,7 @@ definitions:
                     component: StringEditQuantity
                 description: |
                   If model has a distinquishable version (e.g. BP5e).
-        experiment_instrument:
+        INSTRUMENT[instrument]:
           section:
             m_annotations:
               eln:
@@ -231,7 +231,7 @@ definitions:
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
-                    modulation_signal_type:
+                    modulation_signal:
                       type_kind: enum
                       type_data: 
                         - Voltage
@@ -333,7 +333,7 @@ The config file is used to map the raw data coming from the STS experiment file 
         "entry_identifier": "",
         "identifier_experiment": {"identifier": ""},
         "experiment_description": {"raw_path": "/COMMENT"},
-        "experiment_instrument": {
+        "INSTRUMENT[instrument]": {
             "scan_environment": {
                 "tip_temp": {
                     "raw_path": "/Temperature 1/Temperature 1",

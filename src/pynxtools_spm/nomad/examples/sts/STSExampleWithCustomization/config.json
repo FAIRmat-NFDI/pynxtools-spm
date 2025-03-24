@@ -3,7 +3,7 @@
     "@default": { "raw_path": "@default:current" },
     "definition": { "@version": "" },
     "INSTRUMENT[instrument]": {
-      "lockin_amplifier[lockin]": {
+      "lockin_amplifier": {
         "modulation_status": {
           "raw_path": "/Lock-in/Lock-in status/value"
         },
@@ -11,7 +11,7 @@
           "raw_path": "/Lock-in/Frequency/value",
           "@units": "/Lock-in/Frequency/unit"
         },
-        "modulation_signal_type": {
+        "modulation_signal": {
           "raw_path": "@default:Voltage"
         },
         "demodulated_signal": {
@@ -353,7 +353,9 @@
         "measurement_sensors": ""
       },
       "current_sensor": {
-        "AMPLIFIER[amplifier]": { "current_gain": "" },
+        "AMPLIFIER[amplifier]": {
+          "current_gain": { "raw_path": "/Current/Gain/value" }
+        },
         "current": {
           "raw_path": "/Current/Current/value",
           "@units": "/Current/Current/unit"
@@ -368,8 +370,7 @@
         "current_offset": {
           "raw_path": "/Current/Offset/value",
           "@units": "/Current/Offset/unit"
-        },
-        "current_gain": { "raw_path": "/Current/Gain/value" }
+        }
       },
       "piezo_sensor": {
         "piezo_configuration": {
@@ -718,14 +719,14 @@
       "current_gain": "",
       "current_offset": "",
       "reference_frequency": "",
-      "modulation_signal_type": ""
+      "modulation_signal": ""
     },
     "resolution_indicators": {
       "bias_sweep": "",
       "cryo_bottom_temp": "",
       "cryo_shield_temp": "",
       "reference_frequency": "",
-      "modulation_signal_type": "",
+      "modulation_signal": "",
       "stm_head_temp": ""
     }
   }
