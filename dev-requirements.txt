@@ -161,7 +161,7 @@ pymdown-extensions==10.14.3
     #   mkdocs-material
     #   mkdocs-mermaid2-plugin
     #   mkdocstrings
-pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@7fec6369917248838823efdede31cfdb4aaa5871#egg=pynxtools
+pynxtools==0.10.1
     # via pynxtools-spm (pyproject.toml)
 pyparsing==3.1.2
     # via matplotlib
