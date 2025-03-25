@@ -101,7 +101,7 @@
           "current_gain": { "raw_path": "" }
         }
       },
-      "lockin_amplifier": {
+      "LOCKIN[lockin_amplifier]": {
         "reference_frequency": {
           "raw_path": "/Lock-in/Frequency",
           "@units": "@default:Hz"
@@ -394,16 +394,16 @@
               "raw_path": "/Z-Controller/TipLift",
               "@units": "/Z-Controller/TipLift/@unit"
             },
+            "z": {
+              "raw_path": "/Z-Controller/Z",
+              "@units": "/Z-Controller/Z/@unit"
+            },
             "controller_status": {
               "raw_path": "/Z-Controller/Controller status"
             },
             "switch_off_delay": {
               "raw_path": "/Z-Controller/Switch off delay",
               "@units": "/Z-Controller/Switch off delay/@unit"
-            },
-            "z": {
-              "raw_path": "/Z-Controller/Z",
-              "@units": "/Z-Controller/Z/@unit"
             }
           },
           "z_offset": "",

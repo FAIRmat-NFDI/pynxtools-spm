@@ -105,7 +105,7 @@ class SPMParser:
                 f" from {list(self.__parser_navigation.keys())}."
             ) from exc
 
-        vendor_key: str = "/ENTRY[entry]/experiment_instrument/software/vendor"
+        vendor_key: str = "/ENTRY[entry]/INSTRUMENT[instrument]/software/vendor"
         vendor_n: str = eln.get(vendor_key, None)
         vendor_n = vendor_n.replace(" ", "").lower() if vendor_n else None
         try:
@@ -113,7 +113,7 @@ class SPMParser:
         except (KeyError, ValueError):
             pass
 
-        software_v_key: str = "/ENTRY[entry]/experiment_instrument/software/model"
+        software_v_key: str = "/ENTRY[entry]/INSTRUMENT[instrument]/software/model"
         software_v: str = eln.get(software_v_key, None)
         software_v = software_v.replace(" ", "").lower() if software_v else None
         try:

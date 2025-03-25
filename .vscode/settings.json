@@ -9,8 +9,8 @@
     "python": true,
     "json": true
   },
-  "github.copilot.chat.temporalContext.enabled": true,
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,
-  "CRS.OnSaveAlFileAction": "Reorganize"
+  "CRS.OnSaveAlFileAction": "Reorganize",
+  "github.copilot.chat.editor.temporalContext.enabled": true
 }

@@ -70,10 +70,10 @@ software:
     value: 'Generic 4.5'
   model/@version:
     value: 'Generic 4.5'
-experiment_instrument:
+INSTRUMENT[instrument]:
   lockin_amplifier:
     modulation_frequency: null
-    modulation_signal_type: null
+    modulation_signal: null
   current_sensor:
     current_calibration:
       calibration_time:
@@ -213,7 +213,7 @@ definitions:
                     component: StringEditQuantity
                 description: |
                   If model has a distinquishable version (e.g. BP5e).
-        experiment_instrument:
+        INSTRUMENT[instrument]:
           section:
             m_annotations:
               eln:
@@ -231,7 +231,7 @@ definitions:
                       m_annotations:
                         eln:
                           component: NumberEditQuantity
-                    modulation_signal_type:
+                    modulation_signal:
                       type_kind: enum
                       type_data: 
                         - Voltage
@@ -327,13 +327,13 @@ The config file is used to map the raw data coming from the STS experiment file 
         "@default": {
             "raw_path": "@default:current_backward"
         },
-        "collection_identifier": "",
+        "identifier_collection": "",
         "definition": "",
         "end_time": "",
         "entry_identifier": "",
-        "experiment_identifier": {"identifier": ""},
+        "identifier_experiment": {"identifier": ""},
         "experiment_description": {"raw_path": "/COMMENT"},
-        "experiment_instrument": {
+        "INSTRUMENT[instrument]": {
             "scan_environment": {
                 "tip_temp": {
                     "raw_path": "/Temperature 1/Temperature 1",
@@ -401,7 +401,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     }
                 },
             },
-            "LOCKIN[lockin]": {
+            "lockin_amplifier": {
                 "demodulated_signal": {
                     "raw_path": "/Lock-in/Demodulated signal",
                 },
@@ -430,7 +430,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "@units": "@default:m"
                 },
   
-                "@title": "Height Plot of STM Experiment (Foward Direction)",
+                "title": {"raw_path": "@default:Height Plot of STM Experiment (Foward Direction)"},
                 "grp_name": "z_forward"
             },
             {
@@ -439,7 +439,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "raw_path": "/Z/backward",
                     "@units": "@default:m"
                 },
-                "@title": "Height Plot of STM Experiment (Backward Direction)",
+                "title": {"raw_path": "@default:Height Plot of STM Experiment (Backward Direction)"},
                 "grp_name": "z_backward"
             },
             {
@@ -448,7 +448,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "raw_path": "/Current/forward",
                     "@units": "@default:A"
                 },
-                "@title": "Current Plot of STM Experiment (Foward Direction)",
+                "title": {"raw_path": "@default:Current Plot of STM Experiment (Foward Direction)"},
                 "grp_name": "current_forward"
             },
             {
@@ -457,7 +457,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                     "raw_path": "/Current/backward",
                     "@units": "@default:A"
                 },
-                "@title": "Current Plot of STM Experiment (Backward Direction)",
+                "title": {"raw_path": "@default:Current Plot of STM Experiment (Backward Direction)"},
                 "grp_name": "current_backward"
             }
         ],
