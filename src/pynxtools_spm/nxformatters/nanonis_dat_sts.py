@@ -36,7 +36,12 @@ from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _scientific_num_pattern,
 )
-from pynxtools_spm.nxformatters.helpers import cal_dx_by_dy
+from typing import Any, Dict
+from pynxtools_spm.nxformatters.helpers import (
+    cal_dx_by_dy,
+    get_actual_from_variadic_name,
+)
+import numpy as np
 
 ureg = UnitRegistry()
 
@@ -47,6 +52,7 @@ class NanonisDatSTS(SPMformatter):
         "bias_sweep": "_construct_bias_sweep_grp",
     }
     _axes = ["x", "y", "z"]
+    links_to_concepts: Dict[str, Any] = {}
 
     @dataclass
     class TmpConceptsVal:
@@ -260,19 +266,37 @@ class NanonisDatSTS(SPMformatter):
         )
 
     def _construct_dI_dV_grp(self, IV_dict, parent_path, group_name):
-        di_by_dv = cal_dx_by_dy(IV_dict["current_fld"], IV_dict["voltage_fld"])
-        self.template[f"{parent_path}/{group_name}/dI_by_dV"] = di_by_dv
-        self.template[f"{parent_path}/{group_name}/dI_by_dV/@units"] = str(
+        try:
+            di_by_dv = cal_dx_by_dy(IV_dict["current_fld"], IV_dict["voltage_fld"])
+        except Exception as e:
+            return
+
+        if not (
+            np.shape(di_by_dv)
+            == np.shape(IV_dict["voltage_fld"])
+            == np.shape(IV_dict["current_fld"])
+        ):
+            return
+
+        self.template[f"{parent_path}/{group_name}/DATA[dI_by_dV]"] = di_by_dv
+        self.template[f"{parent_path}/{group_name}/DATA[dI_by_dV]/@units"] = str(
             ureg(IV_dict["current_unit"] + "/" + IV_dict["voltage_unit"]).units
         )
+
         self.template[f"{parent_path}/{group_name}/@signal"] = "dI_by_dV"
         axis = IV_dict["voltage_fld_name"]
         self.template[f"{parent_path}/{group_name}/@axes"] = [axis]
-        self.template[f"{parent_path}/{group_name}/{axis}"] = IV_dict["voltage_fld"]
-        self.template[f"{parent_path}/{group_name}/{axis}/@units"] = IV_dict[
+        self.template[
+            f"{parent_path}/{group_name}/@AXISNAME_indices[{axis}_indices]"
+        ] = 0
+        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]"] = IV_dict[
+            "voltage_fld"
+        ]
+
+        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@units"] = IV_dict[
             "voltage_unit"
         ]
-        self.template[f"{parent_path}/{group_name}/@title"] = "dI by dV (Conductance)"
+        self.template[f"{parent_path}/{group_name}/title"] = "dI by dV (Conductance)"
 
     def _NXdata_grp_from_conf_description(
         self, partial_conf_dict, parent_path, group_name, group_index=0
@@ -306,7 +330,9 @@ class NanonisDatSTS(SPMformatter):
                     if current and not curnt_volt["current_unit"]:
                         curnt_volt["current_unit"] = val
                         curnt_volt["current_fld"] = self.template[key[0:-7]]
-                        curnt_volt["current_fld_name"] = key[0:-7].split("/")[-1]
+                        curnt_volt["current_fld_name"] = get_actual_from_variadic_name(
+                            key[0:-7].split("/")[-1]
+                        )
                         current_field_to_data[key[0:-7]] = self.template[key[0:-7]]
 
                     voltage = (
@@ -317,7 +343,9 @@ class NanonisDatSTS(SPMformatter):
                     if voltage and not curnt_volt["voltage_unit"]:
                         curnt_volt["voltage_unit"] = val
                         curnt_volt["voltage_fld"] = self.template[key[0:-7]]
-                        curnt_volt["voltage_fld_name"] = key[0:-7].split("/")[-1]
+                        curnt_volt["voltage_fld_name"] = get_actual_from_variadic_name(
+                            key[0:-7].split("/")[-1]
+                        )
         # check if group is current group and calculatre dI/dV
         if current and voltage:
             try:

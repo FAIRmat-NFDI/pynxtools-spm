@@ -13,18 +13,16 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
 @pytest.mark.parametrize(
     "nxdl,reader_name,files_or_dir",
     [
-        # ("NXstm", "spm", f"{module_dir}/data/nanonis/stm/version_gen_4_5"),
         (
-            "NXspm",
+            "NXsts",
             "spm",
             f"{module_dir}/data/nanonis/sts/version_gen_5e_with_described_nxdata",
         ),
         (
-            "NXspm",
+            "NXsts",
             "spm",
             f"{module_dir}/data/nanonis/sts/version_gen_5e_default_config",
         ),
-        # ("NXsts", "sts", f"{module_dir}/data/sts_nanonis_4_5"),
     ],
 )
 def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
@@ -38,7 +36,6 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
 @pytest.mark.parametrize(
     "nxdl,reader_name,files_or_dir",
     [
-        # ("NXstm", "spm", f"{module_dir}/data/nanonis/stm/version_gen_4_5"),
         (
             "NXstm",
             "spm",
@@ -49,7 +46,11 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
             "spm",
             f"{module_dir}/data/nanonis/stm/version_gen_4_5_default_config",
         ),
-        # ("NXsts", "sts", f"{module_dir}/data/sts_nanonis_4_5"),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/nanonis/stm/version_gen_5e_with_described_nxdata",
+        ),
     ],
 )
 def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):

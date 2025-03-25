@@ -25,6 +25,7 @@ from typing import Dict, Union, List, Optional, TYPE_CHECKING
 from dataclasses import dataclass
 from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
+from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 import yaml
 from pynxtools_spm.nxformatters.helpers import (
@@ -57,6 +58,11 @@ CONVERT_DICT = {
     "Data": "DATA[data]",
     "Source": "SOURCE[source]",
     "Mesh_scan": "mesh_SCAN[mesh_scan]",
+    "Instrument": "INSTRUMENT[instrument]",
+    "Note": "NOTE[note]",
+    "Sample_component_set": "SAMPLE_COMPONENT_SET[sample_component_set]",
+    "Sample_component": "SAMPLE_COMPONENT[sample_component]",
+    "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
 }
 
 PINT_QUANTITY_MAPPING = {
@@ -137,9 +143,12 @@ class SPMformatter(ABC):
         for key, val in config_dict.items():
             if val is None or val == "":
                 continue
-            # Special case, will be handled in a specific function registerd
+            # Handle links
+            if isinstance(val, str):
+                self._resolve_link_in_config(val, f"{parent_path}/{key}")
+            # Special case, will be handled in a specific function registered
             # in self._grp_to_func
-            if key in self._grp_to_func:
+            elif key in self._grp_to_func:
                 if not use_custom_func_prior:
                     self.walk_though_config_nested_dict(
                         config_dict=val, parent_path=f"{parent_path}/{key}"
@@ -169,7 +178,7 @@ class SPMformatter(ABC):
             # Handle to construct nxdata group that comes alon as a dict
             elif (
                 isinstance(val, dict)
-                and ("@title" in val or "grp_name" in val)
+                and ("title" in val or "grp_name" in val)
                 and "data" in val
             ):
                 _ = self._NXdata_grp_from_conf_description(
@@ -183,7 +192,7 @@ class SPMformatter(ABC):
                     # Handle to construct nxdata group
                     if (
                         isinstance(item, dict)
-                        and ("@title" in item or "grp_name" in item)
+                        and ("title" in item or "grp_name" in item)
                         and "data" in item
                     ):
                         _ = self._NXdata_grp_from_conf_description(
@@ -214,6 +223,8 @@ class SPMformatter(ABC):
     def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
         """Rearrange array data according to the fast and slow axes.
 
+        (NOTE: This tachnique is proved for NANONIS data only, for others it may
+        not work.)
         Parameters
         ----------
         data : np.ndarray
@@ -291,6 +302,31 @@ class SPMformatter(ABC):
         for key, val in self.eln.items():
             self.template[key] = to_intended_t(val)
 
+    def _resolve_link_in_config(self, val: str, path: str = "/"):
+        """Resolve the link in the config file.
+
+        Internal Link to an object in same file in config file is defined as:
+        "concept_path" "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
+
+        External Link to an object in another file is defined as:
+        "concept_path" "@default_link:/path/to/another:file.h5
+        or,
+        "concept_path" "@default_link:/path/to/another:file.nxs
+
+        (Link to another has not been implemented yet)
+        """
+
+        if val.startswith("@default_link:"):
+            if val.count(":") == 1 and (ref_to := val.split(":")[1]):
+                self.template[f"{path}"] = {
+                    "link": convert_data_dict_path_to_hdf5_path(ref_to)
+                }
+
+            elif val.count(":") == 2:
+                raise NotImplementedError(
+                    "Link to another file has not been implemented yet."
+                )
+
     @abstractmethod
     def _construct_nxscan_controllers(
         self,
@@ -329,15 +365,18 @@ class SPMformatter(ABC):
                 ],
                 "axis_ind": 0,
             },
-            "@title": "Bias Spectroscopy Temperature1(filter)",
+            "@any_attr": "Actual attr value",
+            "any_field1": {
+                "raw_path": "@defalut:Any field name",}.
+            "any_field2": {
+                "raw_path": "/path/in/data/dict",}.
             "grp_name": "temperature1(filter)",
         }
         To get the proper relation please visit:
 
         args:
         -----
-            "data" -> Signal data of "temperature1(filter)" denoted by
-                    the name key.
+            "parent_path" -> Parent path for NXdata group in nexus tree.
             "0" -> Index of the axis if "axis_ind" is not provided.
                     Here both are same. Name of the axis is denoted
                     by the name key.
@@ -383,40 +422,50 @@ class SPMformatter(ABC):
                     _get_data_unit_and_others(self.raw_data, end_dict=val)
                 )
         field_nm_fit = nxdata_nm.replace(" ", "_").lower()
-        self.template[f"{parent_path}/{nxdata_group}/@title"] = (
+        field_nm_variadic = f"DATA[{field_nm_fit}]"
+        self.template[f"{parent_path}/{nxdata_group}/title"] = (
             f"Title Data Group {group_index}"
         )
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}"] = (
+        self.template[f"{parent_path}/{nxdata_group}/{field_nm_variadic}"] = (
             self.rearrange_data_according_to_axes(nxdata_d_arr, is_forward=is_forward)
         )
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@units"] = d_unit
-        self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@long_name"] = (
-            f"{nxdata_nm} ({d_unit})"
+        self.template[f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@units"] = (
+            d_unit
         )
+        self.template[
+            f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@long_name"
+        ] = f"{nxdata_nm} ({d_unit})"
         self.template[f"{parent_path}/{nxdata_group}/@signal"] = field_nm_fit
         if d_others:
             for k, v in d_others.items():
                 k = k.replace(" ", "_").lower()
                 # TODO check if k starts with @ or not
                 k = k[1:] if k.startswith("@") else k
-                self.template[f"{parent_path}/{nxdata_group}/{field_nm_fit}/@{k}"] = v
+                self.template[
+                    f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@{k}"
+                ] = v
         if not (len(nxdata_axes) == len(nxdata_indices) == len(axdata_unit_other_list)):
             return
 
         for ind, (index, axis) in enumerate(zip(nxdata_indices, nxdata_axes)):
             axis_fit = axis.replace(" ", "_").lower()
-            self.template[f"{parent_path}/{nxdata_group}/@{axis_fit}_indices"] = index
-            self.template[f"{parent_path}/{nxdata_group}/{axis_fit}"] = (
+            axis_variadic = f"AXISNAME[{axis_fit}]"
+            self.template[
+                f"{parent_path}/{nxdata_group}/@AXISNAME_indices[{axis_fit}_indices]"
+            ] = index
+            self.template[f"{parent_path}/{nxdata_group}/{axis_variadic}"] = (
                 axdata_unit_other_list[ind][0]
             )
             unit = axdata_unit_other_list[ind][1]
-            self.template[f"{parent_path}/{nxdata_group}/{axis_fit}/@units"] = unit
-            self.template[f"{parent_path}/{nxdata_group}/{axis_fit}/@long_name"] = (
-                f"{axis} ({unit})"
-            )
+            self.template[f"{parent_path}/{nxdata_group}/{axis_variadic}/@units"] = unit
+            self.template[
+                f"{parent_path}/{nxdata_group}/{axis_variadic}/@long_name"
+            ] = f"{axis} ({unit})"
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
-                    self.template[f"{parent_path}/{nxdata_group}/{axis_fit}/{k}"] = v
+                    self.template[
+                        f"{parent_path}/{nxdata_group}/{axis_variadic}/{k}"
+                    ] = v
 
         self.template[f"{parent_path}/{nxdata_group}/@axes"] = [
             ax.replace(" ", "_").lower() for ax in nxdata_axes
@@ -427,5 +476,16 @@ class SPMformatter(ABC):
                 continue
             elif key.startswith("@"):
                 self.template[f"{parent_path}/{nxdata_group}/{key}"] = val
-
+            # NXdata field
+            elif isinstance(val, dict):
+                data, unit_, other_attrs = _get_data_unit_and_others(
+                    data_dict=self.raw_data, end_dict=val
+                )
+                self.template[f"{parent_path}/{nxdata_group}/{key}"] = data
+                if unit_:
+                    self.template[f"{parent_path}/{nxdata_group}/{key}/@units"] = unit_
+                    if other_attrs:
+                        self.template[
+                            f"{parent_path}/{nxdata_group}/{key}/@{other_attrs}"
+                        ] = other_attrs
         return nxdata_group

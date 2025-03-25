@@ -26,7 +26,6 @@ import yaml
 import copy
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
-from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
@@ -39,15 +38,21 @@ def manually_filter_data_type(template):
     """Check for the data with key type and fix it"""
     nexus_key_to_dt = {
         "/ENTRY[entry]/INSTRUMENT[instrument]/ENVIRONMENT[environment]/current_sensor/current_gain": float,
+        "rcs_fabrication/model": str,
+        "hardware/mode": str,
+        "hardware/model/@version": str,
     }
     template_copy = copy.deepcopy(template)
     for key, val in template_copy.items():
-        dt = nexus_key_to_dt.get(key, None)
-        if dt:
-            try:
-                template[key] = dt(val)
-            except (ValueError, TypeError):
-                del template[key]
+        for manual_key, dt in nexus_key_to_dt.items():
+            if key.endswith(manual_key):
+                try:
+                    template[key] = dt(val)
+                except (ValueError, TypeError):
+                    print(
+                        f"Warning: Could not convert data {val} for field {key} to {dt}"
+                    )
+                    del template[key]
 
 
 # pylint: disable=invalid-name, too-few-public-methods
@@ -85,6 +90,7 @@ class SPMReader(BaseReader):
                 with open(file, mode="r", encoding="utf-8") as fl_obj:
                     eln_dict = yaml.safe_load(fl_obj)
                     experirment_technique = eln_dict.get("experiment_technique")
+                    # TODO get defition name
                 if experirment_technique is None:
                     raise ValueError("Experiment technique is not defined in ELN file.")
         if not eln_file:
@@ -126,7 +132,7 @@ class SPMReader(BaseReader):
             nds.get_nxformatted_template()
         # set_default_attr_in_group(template)
 
-        # manually_filter_data_type(template)
+        # manually_remove the empty data
         for key, val in template.items():
             if isinstance(val, np.ndarray):
                 filled_template[key] = val
@@ -137,13 +143,12 @@ class SPMReader(BaseReader):
             filled_template[key] = val
         # Set nexus def version
         filled_template["/ENTRY[entry]/definition/@version"] = get_nexus_version()
-
         if not filled_template.keys():
             raise ValueError(
                 "Reader could not read anything! Check for input files and the"
                 " corresponding extention."
             )
-
+        manually_filter_data_type(filled_template)
         return filled_template
 
 

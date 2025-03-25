@@ -2,8 +2,8 @@
   "ENTRY[entry]": {
     "@default": { "raw_path": "@default:current" },
     "definition": { "@version": "" },
-    "experiment_instrument": {
-      "lockin_amplifier[lockin]": {
+    "INSTRUMENT[instrument]": {
+      "lockin_amplifier": {
         "modulation_status": {
           "raw_path": "/Lock-in/Lock-in status/value"
         },
@@ -11,7 +11,7 @@
           "raw_path": "/Lock-in/Frequency/value",
           "@units": "/Lock-in/Frequency/unit"
         },
-        "modulation_signal_type": {
+        "modulation_signal": {
           "raw_path": "@default:Voltage"
         },
         "demodulated_signal": {
@@ -79,26 +79,28 @@
         ]
       },
       "real_time_controller": {
+        "rcs_fabrication": {
+          "model": {
+            "raw_path": "/NanonisMain/RT Release/value"
+          }
+        },
         "rcs_frequency": {
           "raw_path": "/NanonisMain/RT Frequency/value",
           "@units": "/NanonisMain/RT Frequency/unit"
         },
-        "rcs_model": {
-          "raw_path": "/NanonisMain/RT Release/value"
-        },
-        "acquisition_time": {
+        "rcs_acquisition_time": {
           "raw_path": "/NanonisMain/Acquisition Period/value",
           "@units": "/NanonisMain/Acquisition Period/unit"
         },
-        "animation_time": {
+        "rcs_animation_time": {
           "raw_path": "/NanonisMain/Animations Period/value",
           "@units": "/NanonisMain/Animations Period/unit"
         },
-        "measurement_time": {
+        "rcs_measurement_time": {
           "raw_path": "/NanonisMain/Measurements Period/value",
           "@units": "/NanonisMain/Measurements Period/unit"
         },
-        "indicators_period": {
+        "rcs_indication_time": {
           "raw_path": "/NanonisMain/Indicators Period/value",
           "@units": "/NanonisMain/Indicators Period/unit"
         }
@@ -163,11 +165,11 @@
             "linear_sweep": {
               "scan_speed": "",
               "scan_time": "",
-              "forward_speed_bias": {
+              "forward_speed": {
                 "raw_path": "/Scan/speed forw./value",
                 "@units": "/Scan/speed forw./unit"
               },
-              "backward_speed_bias": {
+              "backward_speed": {
                 "raw_path": "/Scan/speed backw./value",
                 "@units": "/Scan/speed backw./unit"
               },
@@ -176,7 +178,7 @@
               },
               "step_size_bias": "",
               "reset_bias": "",
-              "backward_weep": "",
+              "backward_sweep": "",
               "SCAN_data[scan_data]": [
                 {
                   "data": {
@@ -195,7 +197,7 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Signal 1X",
+                  "title": { "raw_path": "@default:Lockin Signal 1X" },
                   "grp_name": "Lockin Demod 1X"
                 },
                 {
@@ -215,7 +217,7 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Signal 1Y",
+                  "title": { "raw_path": "@default:Lockin Signal 1Y" },
                   "grp_name": "Lockin Demod 1Y"
                 },
                 {
@@ -235,7 +237,7 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Signal 2X",
+                  "title": { "raw_path": "@default:Lockin Signal 2X" },
                   "grp_name": "Lockin Demod 2X"
                 },
                 {
@@ -255,12 +257,12 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Signal 2Y",
+                  "title": { "raw_path": "@default:Lockin Signal 2Y" },
                   "grp_name": "Lockin Demod 2Y"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 1X(filter)",
+                    "name": "Lockin Demod 1X__filter",
                     "raw_path": "/dat_mat_components/LI Demod 1 X [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 1 X [filt]/unit"
                   },
@@ -276,12 +278,12 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Demod 1X(filter)",
-                  "grp_name": "Lockin_Demod_1X(filter)"
+                  "title": { "raw_path": "@default:Lockin Demod 1X(filter)" },
+                  "grp_name": "Lockin_Demod_1X__filter"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 1Y(filter)",
+                    "name": "Lockin Demod 1Y__filter",
                     "raw_path": "/dat_mat_components/LI Demod 1 Y [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 1 Y [filt]/unit"
                   },
@@ -297,12 +299,12 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Demod 1Y(filter)",
-                  "grp_name": "Lockin_Demod_1Y(filter)"
+                  "title": { "raw_path": "@default:Lockin Demod 1Y(filter)" },
+                  "grp_name": "Lockin_Demod_1Y__filter"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 2X(filter)",
+                    "name": "Lockin Demod 2X__filter",
                     "raw_path": "/dat_mat_components/LI Demod 2 X [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 2 X [filt]/unit"
                   },
@@ -318,12 +320,12 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Demod 2X(filter)",
-                  "grp_name": "Lockin_Demod_2X(filter)"
+                  "title": { "raw_path": "@default:Lockin Demod 2X(filter)" },
+                  "grp_name": "Lockin_Demod_2X__filter"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 2Y(filter)",
+                    "name": "Lockin Demod 2Y__filter",
                     "raw_path": "/dat_mat_components/LI Demod 2 Y [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 2 Y [filt]/unit"
                   },
@@ -339,44 +341,36 @@
                       "/dat_mat_components/Bias/unit"
                     ]
                   },
-                  "@title": "Lockin Demod 2Y(filter)",
-                  "grp_name": "Lockin_Demod_2Y(filter)"
+                  "title": { "raw_path": "@default:Lockin Demod 2Y(filter)" },
+                  "grp_name": "Lockin_Demod_2Y__filter"
                 }
               ]
             }
           },
           "CIRCUIT[circuit]": ""
         },
-        "current_sensor": {
-          "AMPLIFIER[amplifier]": { "current_gain": "" },
-          "current": {
-            "raw_path": "/Current/Current/value",
-            "@units": "/Current/Current/unit"
-          },
-          "current_calibration": {
-            "calibration_interval": "",
-            "coefficients": {
-              "raw_path": "/Current/Calibration/value",
-              "@units": "/Current/Calibration/unit"
-            }
-          },
-          "current_offset": {
-            "raw_path": "/Current/Offset/value",
-            "@units": "/Current/Offset/unit"
-          },
-          "current_gain": { "raw_path": "/Current/Gain/value" }
-        },
         "independent_controllers": "",
         "measurement_sensors": ""
       },
       "current_sensor": {
-        "AMPLIFIER[amplifier]": { "current_gain": "" },
-        "current": { "@units": "" },
-        "current_calibration": {
-          "calibration_interval": { "@units": "" },
-          "coefficients": { "@units": "" }
+        "AMPLIFIER[amplifier]": {
+          "current_gain": { "raw_path": "/Current/Gain/value" }
         },
-        "current_offset": { "@units": "" }
+        "current": {
+          "raw_path": "/Current/Current/value",
+          "@units": "/Current/Current/unit"
+        },
+        "current_calibration": {
+          "calibration_interval": "",
+          "coefficients": {
+            "raw_path": "/Current/Calibration/value",
+            "@units": "/Current/Calibration/unit"
+          }
+        },
+        "current_offset": {
+          "raw_path": "/Current/Offset/value",
+          "@units": "/Current/Offset/unit"
+        }
       },
       "piezo_sensor": {
         "piezo_configuration": {
@@ -404,7 +398,7 @@
                 }
               }
             ],
-            "2nd_order_correction_N[2nd_order_correction_n]": [
+            "second_order_correction_N[second_order_correction_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Configuration/2nd order corr X/value",
@@ -494,10 +488,10 @@
           }
         },
         "POSITIONER_SPM[positioner_spm]": {
+          "controller_label": {
+            "raw_path": "/Z-Controller/Controller name/value"
+          },
           "z_controller": {
-            "controller_name": {
-              "raw_path": "/Z-Controller/Controller name/value"
-            },
             "controller_status": {
               "raw_path": "/Z-Controller/Controller status/value"
             },
@@ -513,13 +507,13 @@
               "raw_path": "/Z-Controller/Z/value",
               "@units": "/Z-Controller/Z/unit"
             },
-            "K_i_value[k_i_value]": {
+            "K_i": {
               "raw_path": "/Z-Controller/I gain/value"
             },
-            "K_p_value[k_p_value]": {
+            "K_p": {
               "raw_path": "/Z-Controller/P gain/value"
             },
-            "K_t_const[k_t_const]": {
+            "D_t": {
               "raw_path": "/Z-Controller/Time const/value",
               "@units": "/Z-Controller/Time const/unit"
             }
@@ -559,17 +553,17 @@
         },
         "cryo_shield_temp_sensor": "",
         "cryo_temp_sensor": "",
-        "tip_temp_sensor": "",
-        "sample_bias_votage": {
-          "bias_voltage": {
-            "raw_path": "/Bias/Bias/value",
-            "@units": "/Bias/Bias/unit"
-          },
-          "bias_calibration": {
-            "coefficients": {
-              "raw_path": "/Bias/Calibration/value",
-              "@units": "/Bias/Calibration/unit"
-            }
+        "tip_temp_sensor": ""
+      },
+      "sample_bias_voltage": {
+        "bias_voltage": {
+          "raw_path": "/Bias/Bias/value",
+          "@units": "/Bias/Bias/unit"
+        },
+        "bias_calibration": {
+          "coefficients": {
+            "raw_path": "/Bias/Calibration/value",
+            "@units": "/Bias/Calibration/unit"
           }
         }
       },
@@ -605,12 +599,12 @@
               ],
               "axis_ind": 0
             },
-            "@title": "Bias Spectroscopy Temperature1",
+            "title": { "raw_path": "@default:Bias Spectroscopy Temperature1" },
             "grp_name": "temperature1"
           },
           {
             "data": {
-              "name": "temperature1(filter)",
+              "name": "temperature1__filter",
               "raw_path": "/dat_mat_components/Temperature 1 [filt]/value",
               "@units": "/dat_mat_components/Temperature 1 [filt]/unit"
             },
@@ -626,8 +620,10 @@
               ],
               "axis_ind": 0
             },
-            "@title": "Bias Spectroscopy Temperature1(filter)",
-            "grp_name": "temperature1(filter)"
+            "title": {
+              "raw_path": "@default:Bias Spectroscopy Temperature1(filter)"
+            },
+            "grp_name": "temperature1__filter"
           }
         ]
       }
@@ -650,12 +646,12 @@
             "/dat_mat_components/Bias/unit"
           ]
         },
-        "@title": "Bias Spectroscopy",
+        "title": { "raw_path": "@default:Bias Spectroscopy" },
         "grp_name": "current"
       },
       {
         "data": {
-          "name": "Current(filter)",
+          "name": "Current__filter",
           "raw_path": "/dat_mat_components/Current [filt]/value",
           "@units": "/dat_mat_components/Current [filt]/unit"
         },
@@ -671,12 +667,12 @@
             "/dat_mat_components/Bias/unit"
           ]
         },
-        "@title": "Bias Spectroscopy(filter)",
-        "grp_name": "Current(filter)"
+        "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
+        "grp_name": "Current__filter"
       },
       {
         "data": {
-          "name": "Current(filter)",
+          "name": "Current__filter",
           "raw_path": "/dat_mat_components/Current [filt]/value",
           "@units": "/dat_mat_components/Current [filt]/unit"
         },
@@ -692,12 +688,12 @@
             "/dat_mat_components/Bias/unit"
           ]
         },
-        "@title": "Bias Spectroscopy(filter)",
-        "grp_name": "Current(filter)"
+        "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
+        "grp_name": "Current__filter"
       },
       {
         "data": {
-          "name": "Current(backward)",
+          "name": "Current__backward",
           "raw_path": "/dat_mat_components/Current [bwd]/value",
           "@units": "/dat_mat_components/Current [bwd]/unit"
         },
@@ -713,8 +709,8 @@
             "/dat_mat_components/Bias/unit"
           ]
         },
-        "@title": "Bias Spectroscopy(Backward)",
-        "grp_name": "Current(Backward)"
+        "title": { "raw_path": "@default:Bias Spectroscopy(Backward)" },
+        "grp_name": "Current__Backward"
       }
     ],
     "reproducibility_indicators": {
@@ -723,14 +719,14 @@
       "current_gain": "",
       "current_offset": "",
       "reference_frequency": "",
-      "modulation_signal_type": ""
+      "modulation_signal": ""
     },
     "resolution_indicators": {
       "bias_sweep": "",
       "cryo_bottom_temp": "",
       "cryo_shield_temp": "",
       "reference_frequency": "",
-      "modulation_signal_type": "",
+      "modulation_signal": "",
       "stm_head_temp": ""
     }
   }

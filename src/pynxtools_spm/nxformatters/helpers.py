@@ -1,10 +1,12 @@
 from typing import Dict, Optional, Tuple
 from pint import UnitRegistry
-from typing import Optional, Dict, Tuple, Union
+from typing import Optional, Dict, Tuple, Union, Any
 from pathlib import Path
+from typing import Literal
 import logging
 from copy import deepcopy
 import numpy as np
+from findiff import Diff
 import json
 
 
@@ -63,7 +65,7 @@ def _verify_unit(
         # return "" if unit_derived == "dimensionless" else unit_derived
     except Exception as e:
         # TODO: add nomad logger here
-        logger.debug(f"Check the unit for nx concept {concept}.\n" f"Error : {e}")
+        logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
         return None
 
 
@@ -170,17 +172,37 @@ def _get_data_unit_and_others(
     return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
 
 
-# pylint: disable=too-many-return-statements
-def to_intended_t(str_value):
+def get_actual_from_variadic_name(name: str) -> str:
+    """Get the actual name from the variadic name.
+
+    Parameters
+    ----------
+    name : str
+        The variadic name e.g. scan_angle_N_X[scan_angle_n_x]
+
+    Returns
+    -------
+    str
+        The actual name.
     """
-        Transform string to the intended data type, if not then return str_value.
+    return name.split("[")[-1].split("]")[0]
+
+
+# pylint: disable=too-many-return-statements
+def to_intended_t(
+    data: Any,
+    data_struc: Literal["list", "array"] = None,
+    data_type: Literal["str", "int", "float"] = None,
+):
+    """
+        Transform string to the intended data type, if not then return data.
     e.g '2.5E-2' will be transfor into 2.5E-2
     tested with: '2.4E-23', '28', '45.98', 'test', ['59', '3.00005', '498E-34'], None
     with result: 2.4e-23, 28, 45.98, test, [5.90000e+01 3.00005e+00 4.98000e-32], None
 
     Parameters
     ----------
-    str_value : _type_
+    data : _type_
         _description_
 
     Returns
@@ -188,23 +210,66 @@ def to_intended_t(str_value):
     Union[str, int, float, np.ndarray]
         Converted data type
     """
-    symbol_list_for_data_seperation = [";"]
-    transformed = ""
-    if str_value is None:
-        return str_value
+    data_struct_map = {
+        "list": list,
+        "array": np.ndarray,
+    }
+    # some example data type map
+    # data_type_map = {
+    #     "int": int,
+    #     "float": float,
+    #     "str": str,
+    #     "float64": np.float64,
+    # }
 
-    if isinstance(str_value, list):
-        str_value = list(str_value)
+    def _array_from(data, dtype=None):
         try:
-            transformed = np.array(str_value, dtype=np.float64)
+            transformed = np.array(
+                data,
+                dtype=np.dtype(dtype)
+                if isinstance(dtype, str) and dtype in np.sctypeDict
+                else np.float64,
+            )
             return transformed
-        except ValueError:
-            pass
+        except ValueError as e:
+            print(
+                f"Warning: Data '{data}' can not be converted to an array"
+                f"and encounterd error {e}"
+            )
+        return data
 
-    if isinstance(str_value, np.ndarray):
-        return str_value
+    def _array_from_str(data):
+        if data.startswith("[") and data.endswith("]"):
+            transformed = json.loads(data)
+            return transformed
+        return data
 
-    if isinstance(str_value, str):
+    # def _data_with_type(data_type, data):
+    #     try:
+    #         return data_type(data)
+    #     except Exception as e:
+    #         print(
+    #             f"Warnign: Data {data} can not be converted to type {data_type}"
+    #             f"encounterd error {e}"
+    #         )
+
+    # if not data_struc and data_type:
+    #     return _data_with_type(data_type_map[data_type], data)
+    # elif data_struc == "array":
+    #     return _array_from(data, data_type)
+
+    symbol_list_for_data_seperation = [";"]
+    transformed: Optional[Any]
+    if data is None:
+        return data
+
+    if isinstance(data, list):
+        return _array_from(data, dtype=data_type)
+
+    if isinstance(data, np.ndarray):
+        return data
+
+    if isinstance(data, str):
         off_on = {
             "off": "false",
             "on": "true",
@@ -229,32 +294,31 @@ def to_intended_t(str_value):
             "NaN",
             "nan",
         )
-        if str_value in inf_nan:
+        if data in inf_nan:
             return None
-        elif str_value in off_on:
-            return off_on[str_value]
+        elif data in off_on:
+            return off_on[data]
 
         try:
-            transformed = int(str_value)
+            transformed = int(data)
             return transformed
         except ValueError:
             try:
-                transformed = float(str_value)
+                transformed = float(data)
                 return transformed
             except ValueError:
-                if "[" in str_value and "]" in str_value:
-                    transformed = json.loads(str_value)
-                    return transformed
+                if "[" in data and "]" in data:
+                    return _array_from_str(data)
 
         for sym in symbol_list_for_data_seperation:
-            if sym in str_value:
-                parts = str_value.split(sym)
+            if sym in data:
+                parts = data.split(sym)
                 modified_parts = []
                 for part in parts:
                     modified_parts.append(to_intended_t(part))
                 return modified_parts
 
-    return str_value
+    return data
 
 
 def get_link_compatible_key(key):
@@ -316,12 +380,8 @@ def replace_variadic_name_part(name, part_to_embed):
 
 def cal_dx_by_dy(x_val: np.ndarray, y_val: np.ndarray) -> np.ndarray:
     """Calc conductance (dI/dV) or gradiant dx/dy for x-variable and y-variable also return the result."""
-    dx_ = x_val[0::2] - x_val[1::2]
-    dy_ = y_val[0::2] - y_val[1::2]
-
-    dx_by_dy = dx_ / dy_
-
-    return dx_by_dy
+    d_dy = Diff(axis=0, grid=x_val, acc=2)
+    return d_dy(y_val)
 
 
 def transfer_plain_template_to_nested_dict(template, nested_dict):
