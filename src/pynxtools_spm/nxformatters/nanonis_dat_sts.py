@@ -271,10 +271,10 @@ class NanonisDatSTS(SPMformatter):
         except Exception as e:
             return
 
-        if (
-            not np.shape(di_by_dv)
-            != np.shape(IV_dict["voltage_fld"])
-            != np.shape(IV_dict["current_fld"])
+        if not (
+            np.shape(di_by_dv)
+            == np.shape(IV_dict["voltage_fld"])
+            == np.shape(IV_dict["current_fld"])
         ):
             return
 

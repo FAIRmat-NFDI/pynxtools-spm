@@ -148,6 +148,7 @@ class SPMReader(BaseReader):
                 "Reader could not read anything! Check for input files and the"
                 " corresponding extention."
             )
+        manually_filter_data_type(filled_template)
         return filled_template
 
 
