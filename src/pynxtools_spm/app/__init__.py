@@ -70,6 +70,27 @@ map_concept_to_full_quantities = {
     "Z Controller Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#{schema}#float",
 }
 
+# import and times to add in search app
+# STS:
+# positoiner_spm.z_controller.set_point
+# positioner_spm.z_controller.z
+# positioner_spm.z_controller.z_offset
+# piezo_sensor.x
+# piezo_sensor.y
+# piezo_sensor.z
+# sample_bias_voltage.bias_voltage
+# user.name
+# user.affiliation
+# lockin_aplifier.reference_amplitude
+# lockin_amplifier.reference_frequency
+# loackin_current_flip_sign
+# current_sensor.current
+# current_sensor.current_offset
+# bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias
+# bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias
+# bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_offset_bias
+# bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.linear_sweep.backward_speed
+# bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.linear_sweep.forward_speed
 
 spm_app = AppEntryPoint(
     name="SpmApp",
@@ -125,30 +146,30 @@ spm_app = AppEntryPoint(
             items=[
                 Menu(
                     title="Material",
+                    # items=[
+                    #     Menu(
+                    #         title="elements",
+                    show_header=True,
                     items=[
-                        Menu(
-                            title="elements",
-                            show_header=True,
-                            items=[
-                                MenuItemPeriodicTable(
-                                    quantity="results.material.elements",
-                                ),
-                                MenuItemTerms(
-                                    quantity="results.material.chemical_formula_hill",
-                                    width=6,
-                                    options=0,
-                                ),
-                                MenuItemTerms(
-                                    quantity="results.material.chemical_formula_iupac",
-                                    width=6,
-                                    options=0,
-                                ),
-                                MenuItemHistogram(
-                                    x="results.material.n_elements",
-                                ),
-                            ],
-                        )
+                        MenuItemPeriodicTable(
+                            quantity="results.material.elements",
+                        ),
+                        MenuItemTerms(
+                            quantity="results.material.chemical_formula_hill",
+                            width=6,
+                            options=0,
+                        ),
+                        MenuItemTerms(
+                            quantity="results.material.chemical_formula_iupac",
+                            width=6,
+                            options=0,
+                        ),
+                        MenuItemHistogram(
+                            x="results.material.n_elements",
+                        ),
                     ],
+                    # )
+                    # ],
                 ),
                 Menu(
                     title="Reproducibilty & Resolution Parameters",
@@ -163,6 +184,7 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
+                                    title="Tip Temperature test",
                                     x=map_concept_to_full_quantities[
                                         "Tip Temperature (Scan Environment)"
                                     ],
@@ -174,6 +196,7 @@ spm_app = AppEntryPoint(
                             show_header=True,
                             items=[
                                 MenuItemHistogram(
+                                    title="Cryo Bottom Temperature test",
                                     x=map_concept_to_full_quantities[
                                         "Cryo Bottom Temperature (Scan Environment)"
                                     ],
