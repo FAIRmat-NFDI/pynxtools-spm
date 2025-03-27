@@ -316,6 +316,8 @@ def to_intended_t(
                 modified_parts = []
                 for part in parts:
                     modified_parts.append(to_intended_t(part))
+                if any(isinstance(part, str) for part in modified_parts):
+                    return str_value
                 return modified_parts
 
     return data
