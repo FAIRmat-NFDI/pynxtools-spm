@@ -110,18 +110,39 @@
         "BIAS_SPECTROSCOPY[bias_spectroscopy]": {
           "measurement_type": "",
           "POSITIONER_SPM[positioner_spm]": {
-            "z_controller": {
-              "z_average_time": {
-                "raw_path": "/Bias Spectroscopy/Z Avg time/value",
-                "@units": "/Bias Spectroscopy/Z Avg time/unit"
-              },
-              "z_controller_time": "",
-              "z_controller_hold": "",
-              "record_final_z": ""
+            "controller_label": {
+              "raw_path": "/Z-Controller/Controller name/value"
             },
             "z_offset": {
               "raw_path": "/Bias Spectroscopy/Z offset/value",
               "@units": "/Bias Spectroscopy/Z offset/unit"
+            },
+            "z_controller": {
+              "controller_status": {
+                "raw_path": "/Z-Controller/Controller status/value"
+              },
+              "set_point": {
+                "raw_path": "/Z-Controller/Setpoint/value",
+                "@units": "/Z-Controller/Setpoint unit/value"
+              },
+              "tip_lift": {
+                "raw_path": "/Z-Controller/TipLift/value",
+                "@units": "/Z-Controller/TipLift/unit"
+              },
+              "z": {
+                "raw_path": "/Z-Controller/Z/value",
+                "@units": "/Z-Controller/Z/unit"
+              },
+              "K_i": {
+                "raw_path": "/Z-Controller/I gain/value"
+              },
+              "K_p": {
+                "raw_path": "/Z-Controller/P gain/value"
+              },
+              "D_t": {
+                "raw_path": "/Z-Controller/Time const/value",
+                "@units": "/Z-Controller/Time const/unit"
+              }
             }
           },
           "bias_sweep": {
@@ -488,38 +509,7 @@
             ]
           }
         },
-        "POSITIONER_SPM[positioner_spm]": {
-          "controller_label": {
-            "raw_path": "/Z-Controller/Controller name/value"
-          },
-          "z_controller": {
-            "controller_status": {
-              "raw_path": "/Z-Controller/Controller status/value"
-            },
-            "set_point": {
-              "raw_path": "/Z-Controller/Setpoint/value",
-              "@units": "/Z-Controller/Setpoint unit/value"
-            },
-            "tip_lift": {
-              "raw_path": "/Z-Controller/TipLift/value",
-              "@units": "/Z-Controller/TipLift/unit"
-            },
-            "z": {
-              "raw_path": "/Z-Controller/Z/value",
-              "@units": "/Z-Controller/Z/unit"
-            },
-            "K_i": {
-              "raw_path": "/Z-Controller/I gain/value"
-            },
-            "K_p": {
-              "raw_path": "/Z-Controller/P gain/value"
-            },
-            "D_t": {
-              "raw_path": "/Z-Controller/Time const/value",
-              "@units": "/Z-Controller/Time const/unit"
-            }
-          }
-        },
+        "POSITIONER_SPM[positioner_spm]": "",
         "x": { "raw_path": "/X/value", "@units": "/X/unit" },
         "y": { "raw_path": "/Y/value", "@units": "/Y/unit" },
         "z": { "raw_path": "/Z/value", "@units": "/Z/unit" }
