@@ -29,11 +29,8 @@ from nomad.config.models.ui import (
 )
 
 
-# Try with SPM
 schema = "pynxtools.nomad.schema.Root"
-# data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_offset_x__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.instrument.scan_environment.scan_control.scan_region.scan_offset_x__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.phase_lock_loop.amplitude_excitation__field#pynxtools.nomad.schema.Root#float
+
 map_concept_to_full_quantities = {
     "Start Time": f"data.ENTRY.start_time__field#{schema}#datetime",
     "Entry Type": "entry_type",
@@ -41,10 +38,9 @@ map_concept_to_full_quantities = {
     "Periodic Table": "results.material.elements",
     # Scan Environment
     "Scan Mode": f"data.ENTRY.scan_mode__field#{schema}#str",
-    "Tip Temperature (Scan Environment)": f"data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#{schema}#float",
-    "Cryo Bottom Temperature (Scan Environment)": f"data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#{schema}#float",
-    "Cryo Shield Temperature (Scan Environment)": f"data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#{schema}#float",
-    "Reference Amplitude (Lockin Amplifier)": f"data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#{schema}#float",
+    "Tip Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.scan_environment.tip_temp__field#{schema}#float",
+    "Cryo Bottom Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.scan_environment.cryo_bottom_temp__field#{schema}#float",
+    "Cryo Shield Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.scan_environment.cryo_shield_temp__field#{schema}#float",
     # Scan Environment->Topographic scan
     "offset x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_offset_x__field#{schema}#float",
     "offset y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_offset_y__field#{schema}#float",
@@ -56,7 +52,7 @@ map_concept_to_full_quantities = {
     "scan points y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_points_y__field#{schema}#float",
     "step size x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.step_size_x__field#{schema}#float",
     "step size y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.step_size_y__field#{schema}#float",
-    # Scan Environment->Bias Scan
+    # Scan Environment -> Bias Scan
     "Bias Start (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_start_bias__field#{schema}#float",
     "Bias End (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_end_bias__field#{schema}#float",
     "Bias Offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_offset_bias__field#{schema}#float",
@@ -64,79 +60,42 @@ map_concept_to_full_quantities = {
     "Scan Points (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.linear_sweep.scan_points_bias__field#{schema}#float",
     "Step Size (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.linear_sweep.step_size_bias__field#{schema}#float",
     "z_offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.POSITIONER_SPM.z_offset__field#{schema}#float",
-    ####
-    # "Scan Start Bias (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#{schema}#float",
-    # "Scan End Bias (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#{schema}#float",
-    # "Sweep Number (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#{schema}#float",
-    # "Z Average Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_average_time__field#{schema}#int",
-    # "Acquisition Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.acquisition_time__field#{schema}#float",
-    # "Animation Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#{schema}#float",
-    # Instrument current_sensor
+    # Instrument -> Hardware
+    "Name (Hardware)": f"data.ENTRY.INSTRUMENT.hardware.name__field#{schema}#str",
+    "Model (Hardware)": f"data.ENTRY.INSTRUMENT.hardware.model__field#{schema}#str",
+    # Instrument -> Software
+    "Name (Software)": f"data.ENTRY.INSTRUMENT.software.name__field#{schema}#str",
+    "Model (Software)": f"data.ENTRY.INSTRUMENT.software.model__field#{schema}#str",
+    # Instrument -> current_sensor
     "Current (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensor.current__field#{schema}#float",
     "Current Offset (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensor.current_offset__field#{schema}#float",
-    # Instrument voltage_sensor
+    # Instrument -> voltage_sensor
     "Voltage (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensor.voltage__field#{schema}#float",
     "Voltage Offset (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensor.voltage_offset__field#{schema}#float",
-    #
-    "Bias Voltage (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_votage.bias_voltage__field#{schema}#float",
-    "Bias Offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_votage.bias_offset__field#{schema}#float",
-    "Z Offset (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_offset__field#{schema}#float",
-    "Bias Sweep End Settling Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.end_settling_time__field#{schema}#float",
-    "First Settling Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.first_settling_time__field#{schema}#float",
-    "Final Z (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#{schema}#float",
-    "Z Controller Hold (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller_hold__field#{schema}#float",
-    # TODO: Make the type str of the below quanity and check why its not working
-    "Controller Name (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.name__field#{schema}#float",
-    "K_I (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#{schema}#float",
-    "K_P (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#{schema}#float",
-    "K_T (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#{schema}#float",
-    "Switch Off Delay (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.switch_off_delay__field#{schema}#float",
-    "Tip Lift (Piezo PID Controller)": f"data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.tip_lift__field#{schema}#float",
-    "Measurement Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#{schema}#float",
-    "Indicators Period (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#{schema}#float",
-    "Max Slew Rate (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.max_slew_rate__field#{schema}#float",
-    "Z Controller Time (Bias Spectroscopy)": f"data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#{schema}#float",
+    # Instrument -> Sample Bias Voltage
+    "Bias voltage (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_voltage__field#{schema}#float",
+    "Bias offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_offset__field#{schema}#float",
+    # Insturument -> Piezo sensor
+    "Piezo X (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.x__field#{schema}#float",
+    "Piezo Y (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.y__field#{schema}#float",
+    "Piezo Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.z__field#{schema}#float",
+    # Instrument -> Piezo Sensor -> SPM Positioner
+    "controller lable": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.controller_label__field#{schema}#str",
+    "Z controller Set Point (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.z_controller.set_point__field#{schema}#float",
+    "Z controller Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.z_controller.z__field#{schema}#float",
+    # Instrument -> Lockin Amplifier
+    "Reference Frequency (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_frequency__field#{schema}#float",
+    "Reference Phase (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_phase__field#{schema}#float",
+    "Reference Amplitude (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_amplitude__field#{schema}#float",
+    "Demodulated signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.demodulated_signal__field#{schema}#str",
+    "Modulation signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.modulation_signal__field#{schema}#str",
+    "Lockin Current Flip Sign (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.lockin_current_flip_sign__field#{schema}#float",
+    # AFM: Instrument -> Cantilever SPM
+    "Oscillator excitation (Cantilever SPM)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.oscillator_excitation__field#{schema}#float",
+    "Reference Amplitude (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_amplitude__field#{schema}#float",
+    "Reference Frequency (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_frequency__field#{schema}#float",
+    "Reference Phase (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_phase__field#{schema}#float",
 }
-
-# import and times to add in search app
-# tip temperature
-# STS:
-# positoiner_spm.z_controller.set_point
-# positioner_spm.z_controller.z
-# positioner_spm.z_controller.z_offset
-# piezo_sensor.x
-# piezo_sensor.y
-# piezo_sensor.z
-# piezo_sensor.x
-# piezo_sensor.y
-# piezo_sensor.z
-# sample_bias_voltage.bias_voltage
-
-# lockin_aplifier.reference_amplitude
-# lockin_amplifier.reference_frequency
-# loackin_current_flip_sign
-# current_sensor.current
-# current_sensor.current_offset
-
-
-# STM & AFM:
-# scan_mode
-# cantilever_oscillator.oscillator_excitation
-# cantilever_oscillator.phase_lock_loop.reference_amplitude, reference_frequency, reference_phase
-
-# Piezo_sensor.positioner_spm.z_controller.z
-
-# General:
-# Sample_bias_voltage.bias_voltage, bias_offset
-# user.name
-# user.affiliation
-# Scan environment, lockin_amplifier,
-
-# SCAN environment:
-# SCAN_mode
-# Cantilever_oscillator.phase_lock_loop
-# Cantilever_oscillator.oscillator_excitation
-#
 
 spm_app = AppEntryPoint(
     name="SpmApp",
@@ -188,12 +147,12 @@ spm_app = AppEntryPoint(
         # Controls the menu shown on the left
         menu=Menu(
             title="Filters",
-            size=MenuSizeEnum.MD,
+            size=MenuSizeEnum.SM,
             show_header=True,
             items=[
                 Menu(
                     title="Material",
-                    size=MenuSizeEnum.MD,
+                    size=MenuSizeEnum.XXL,
                     show_header=True,
                     items=[
                         MenuItemPeriodicTable(
@@ -216,6 +175,42 @@ spm_app = AppEntryPoint(
                 ),
                 Menu(
                     title="Scan Environment",
+                ),
+                Menu(
+                    title="Temperature",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Tip Temperature",
+                            x=map_concept_to_full_quantities[
+                                "Tip Temperature (Scan Environment)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cryo Bottom Temperature",
+                            x=map_concept_to_full_quantities[
+                                "Cryo Bottom Temperature (Scan Environment)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cryo Shield Temperature",
+                            x=map_concept_to_full_quantities[
+                                "Cryo Shield Temperature (Scan Environment)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Scan Mode",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemTerms(
+                            title="Scan Mode",
+                            quantity=map_concept_to_full_quantities["Scan Mode"],
+                        ),
+                    ],
                 ),
                 Menu(
                     title="Topographic Scan",
@@ -322,6 +317,67 @@ spm_app = AppEntryPoint(
                     title="Instrument",
                 ),
                 Menu(
+                    title="Cantilever SPM",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Reference Amplitude (Oscillator)",
+                            x=map_concept_to_full_quantities[
+                                "Reference Amplitude (Oscillator)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Reference Frequency (Oscillator)",
+                            x=map_concept_to_full_quantities[
+                                "Reference Frequency (Oscillator)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Reference Phase (Oscillator)",
+                            x=map_concept_to_full_quantities[
+                                "Reference Phase (Oscillator)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Oscillator excitation",
+                            x=map_concept_to_full_quantities[
+                                "Oscillator excitation (Cantilever SPM)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Hardware",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemTerms(
+                            title="Name (Hardware)",
+                            quantity=map_concept_to_full_quantities["Name (Hardware)"],
+                        ),
+                        MenuItemTerms(
+                            title="Model (Hardware)",
+                            quantity=map_concept_to_full_quantities["Model (Hardware)"],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Software",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemTerms(
+                            title="Name (Software)",
+                            quantity=map_concept_to_full_quantities["Name (Software)"],
+                        ),
+                        MenuItemTerms(
+                            title="Model (Software)",
+                            quantity=map_concept_to_full_quantities["Model (Software)"],
+                        ),
+                    ],
+                ),
+                Menu(
                     title="Current Sensor",
                     indentation=1,
                     show_header=True,
@@ -340,132 +396,132 @@ spm_app = AppEntryPoint(
                         ),
                     ],
                 ),
-                # Menu(
-                #     title="Bias Scan",
-                #     show_header=True,
-                #     items=[
-                #         MenuItemHistogram(
-                #             x=map_concept_to_full_quantities[
-                #                 "Bias Start (Bias Spectroscopy)"
-                #             ],
-                #         ),
-                #         MenuItemHistogram(
-                #             x=map_concept_to_full_quantities[
-                #                 "Bias End (Bias Spectroscopy)"
-                #             ],
-                #         ),
-                #         MenuItemHistogram(
-                #             x=map_concept_to_full_quantities[
-                #                 "Bias Offset (Bias Spectroscopy)"
-                #             ],
-                #         ),
-                #     ],
-                # ),
-                ####
-                # Menu(
-                #     title="Reproducibilty & Resolution Parameters",
-                # ),
-                # Menu(
-                #     title="Temperature",
-                #     show_header=True,
-                #     indentation=1,
-                #     items=[
-                #         Menu(
-                #             title="Tip Temperature",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     title="Tip Temperature test",
-                #                     x=map_concept_to_full_quantities[
-                #                         "Tip Temperature (Scan Environment)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #         Menu(
-                #             title="Cryo Bottom Temperature",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     title="Cryo Bottom Temperature test",
-                #                     x=map_concept_to_full_quantities[
-                #                         "Cryo Bottom Temperature (Scan Environment)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #         Menu(
-                #             title="Cryo Shield Temperature",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     x=map_concept_to_full_quantities[
-                #                         "Cryo Shield Temperature (Scan Environment)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #     ],
-                # ),
-                # Menu(
-                #     title="Lockin Amplifier",
-                #     indentation=1,
-                #     items=[
-                #         Menu(
-                #             title="Reference Amplitude",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     x=map_concept_to_full_quantities[
-                #                         "Reference Amplitude (Lockin Amplifier)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #     ],
-                # ),
-                # Menu(
-                #     title="Bias Spectroscopy",
-                #     indentation=1,
-                #     items=[
-                #         Menu(
-                #             title="Scan Bias (Start)",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     x=map_concept_to_full_quantities[
-                #                         "Scan Start Bias (Bias Spectroscopy)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #         Menu(
-                #             title="Scan Bias (End)",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     x=map_concept_to_full_quantities[
-                #                         "Scan End Bias (Bias Spectroscopy)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #         Menu(
-                #             title="Sweep Number",
-                #             show_header=True,
-                #             items=[
-                #                 MenuItemHistogram(
-                #                     x=map_concept_to_full_quantities[
-                #                         "Sweep Number (Bias Spectroscopy)"
-                #                     ],
-                #                 ),
-                #             ],
-                #         ),
-                #     ],
-                # ),
+                Menu(
+                    title="Lockin Amplifier",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Reference Frequency",
+                            x=map_concept_to_full_quantities[
+                                "Reference Frequency (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Reference Phase",
+                            x=map_concept_to_full_quantities[
+                                "Reference Phase (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Reference Amplitude",
+                            x=map_concept_to_full_quantities[
+                                "Reference Amplitude (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemTerms(
+                            title="Demodulated signal",
+                            quantity=map_concept_to_full_quantities[
+                                "Demodulated signal (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemTerms(
+                            title="Modulation signal",
+                            quantity=map_concept_to_full_quantities[
+                                "Modulation signal (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Lockin Current Flip Sign",
+                            x=map_concept_to_full_quantities[
+                                "Lockin Current Flip Sign (Lockin Amplifier)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Voltage Sensor",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Voltage",
+                            x=map_concept_to_full_quantities[
+                                "Voltage (Voltage Sensor)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Voltage Offset",
+                            x=map_concept_to_full_quantities[
+                                "Voltage Offset (Voltage Sensor)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Sample Bias Voltage",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Bias Voltage",
+                            x=map_concept_to_full_quantities[
+                                "Bias voltage (Sample Bias Voltage)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Bias Offset",
+                            x=map_concept_to_full_quantities[
+                                "Bias offset (Sample Bias Voltage)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Piezo Sensor",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        Menu(
+                            title="SPM Positioner",
+                            show_header=True,
+                            items=[
+                                MenuItemTerms(
+                                    title="controller label",
+                                    quantity=map_concept_to_full_quantities[
+                                        "controller lable"
+                                    ],
+                                ),
+                                MenuItemHistogram(
+                                    title="Set Point (Z controller)",
+                                    x=map_concept_to_full_quantities[
+                                        "Z controller Set Point (Piezo Sensor)"
+                                    ],
+                                ),
+                                MenuItemHistogram(
+                                    title="Z (Z controller)",
+                                    x=map_concept_to_full_quantities[
+                                        "Z controller Z (Piezo Sensor)"
+                                    ],
+                                ),
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="x",
+                            x=map_concept_to_full_quantities["Piezo X (Piezo Sensor)"],
+                        ),
+                        MenuItemHistogram(
+                            title="y",
+                            x=map_concept_to_full_quantities["Piezo Y (Piezo Sensor)"],
+                        ),
+                        MenuItemHistogram(
+                            title="z",
+                            x=map_concept_to_full_quantities["Piezo Z (Piezo Sensor)"],
+                        ),
+                    ],
+                ),
             ],
         ),
-        # Controls the default dashboard shown in the search interface
         dashboard={
             "widgets": [
                 {
@@ -486,7 +542,7 @@ spm_app = AppEntryPoint(
                             "x": 16,
                         },
                         "xl": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
-                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
+                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 8, "x": 0},
                         "md": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
                         "sm": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 0, "x": 0},
                     },
@@ -500,7 +556,7 @@ spm_app = AppEntryPoint(
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 32},
                         "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
-                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
+                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 12},
                         "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
                         "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 46, "x": 0},
                     },
@@ -514,7 +570,7 @@ spm_app = AppEntryPoint(
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 32},
                         "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16},
-                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16},
+                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 16},
                         "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 38, "x": 0},
                         "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 38, "x": 0},
                     },
@@ -534,636 +590,12 @@ spm_app = AppEntryPoint(
                             "x": 16,
                         },
                         "xl": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
-                        "lg": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
+                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 18, "y": 0, "x": 0},
                         "md": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
                         "sm": {"minH": 3, "minW": 3, "h": 4, "w": 12, "y": 4, "x": 0},
                     },
                 },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Tip Temperature (Scan Environment)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Tip Temperature (Scan Environment)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 35, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 35, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Cryo Bottom Temperature (Scan Environment)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Cryo Bottom Temperature (Scan Environment)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 3, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 32, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 32, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Cryo Shield Temperature (Scan Environment)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Cryo Shield Temperature (Scan Environment)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 6, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 29, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 29, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Reference Amplitude (Lockin Amplifier)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Reference Amplitude (Lockin Amplifier)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 21, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Scan Start Bias (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Scan Start Bias (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 9, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 23, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 23, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Scan End Bias (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Scan End Bias (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 12, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 20, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 20, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Sweep Number (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Sweep Number (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 15, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 17, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 17, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Z Average Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Z Average Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 18, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 14, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 14, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Acquisition Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Acquisition Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 27, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 11, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 11, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Animation Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Animation Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 24, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 8, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 8, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Current (Current Sensor)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Current (Current Sensor)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Bias Voltage (Sample Bias Voltage)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Bias Voltage (Sample Bias Voltage)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 12, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Bias Offset (Sample Bias Voltage)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Bias Offset (Sample Bias Voltage)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 15, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Bias Calibration Coefficients (Sample Bias Voltage)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Bias Calibration Coefficients (Sample Bias Voltage)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 18, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Current Offset (Current Sensor)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Current Offset (Current Sensor)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 3, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Current Gain (Current Sensor)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Current Gain (Current Sensor)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 6, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Current Calibration Coefficients (Current Sensor)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Current Calibration Coefficients (Current Sensor)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 9, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # ###
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Z Offset (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Z Offset (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 30, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Bias Sweep End Settling Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Bias Sweep End Settling Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 24, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "First Settling Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "First Settling Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 21, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Final Z (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Final Z (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 27, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Z Controller Hold (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Z Controller Hold (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 33, "x": 8},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Controller Name (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Controller Name (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 16},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "K_I (Piezo PID Controller)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "K_I (Piezo PID Controller)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 23, "x": 24},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # ##
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "K_P (Piezo PID Controller)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "K_P (Piezo PID Controller)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 20, "x": 24},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "K_T (Piezo PID Controller)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "K_T (Piezo PID Controller)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 23, "x": 16},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Switch Off Delay (Piezo PID Controller)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Switch Off Delay (Piezo PID Controller)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 17, "x": 24},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Tip Lift (Piezo PID Controller)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Tip Lift (Piezo PID Controller)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 17, "x": 16},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Measurement Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Measurement Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 30, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # ##
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Indicators Period (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Indicators Period (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 33, "x": 0},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Max Slew Rate (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Max Slew Rate (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 26, "x": 24},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
-                # {
-                #     "type": "histogram",
-                #     "show_input": False,
-                #     "autorange": True,
-                #     "nbins": 30,
-                #     "scale": "linear",
-                #     "title": "Z Controller Time (Bias Spectroscopy)",
-                #     "quantity": map_concept_to_full_quantities[
-                #         "Z Controller Time (Bias Spectroscopy)"
-                #     ],
-                #     "layout": {
-                #         "xxl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 20, "x": 16},
-                #         "xl": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "lg": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "md": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #         "sm": {"minH": 3, "minW": 3, "h": 3, "w": 8, "y": 0, "x": 0},
-                #     },
-                # },
             ]
         },
     ),
 )
-
-# data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float
-
-## Some Resolution histogram path
-# data.ENTRY.experiment_instrument.scan_environment.tip_temp__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.scan_environment.cryo_bottom_temp__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.scan_environment.cryo_shield_temp__field#pynxtools.nomad.schema.Root#float
-
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_end_bias__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.scan_region.scan_start_bias__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.sweep_number__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_average_time__field#pynxtools.nomad.schema.Root#int
-# data.ENTRY.experiment_instrument.lockin_amplifier.reference_amplitude__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.acquisition_time__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.animation_time__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.measurement_time__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.circuit.indicators_period__field#pynxtools.nomad.schema.Root#float
-
-
-## Some Reproducibility histogram path
-# data.ENTRY.experiment_instrument.current_sensor.current__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.current_sensor.current_offset__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.current_sensor.amplifier.current_gain__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.current_sensor.current_calibration.coefficients__field#pynxtools.nomad.schema.Root#float
-
-# data.ENTRY.experiment_instrument.sample_bias_votage.bias_voltage__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.sample_bias_votage.bias_offset__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.sample_bias_votage.bias_calibration.coefficients__field#pynxtools.nomad.schema.Root#float
-
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.first_settling_time__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.end_settling_time__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.final_z__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.bias_sweep.max_slew_rate__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_hold__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_time__field#pynxtools.nomad.schema.Root#float
-
-# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_i_value__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_p_value__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.k_t_value__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.switch_off_delay__field#pynxtools.nomad.schema.Root#float
-# data.ENTRY.experiment_instrument.piezo_sensor.positioner_spm.z_controller.tip_lift__field#pynxtools.nomad.schema.Root#float
-
-# Fix the type check why it does not work with str/string
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.controller_name__field#pynxtools.nomad.schema.Root#string
-# data.ENTRY.experiment_instrument.bias_spectroscopy_environment.bias_spectroscopy.positioner_spm.z_controller.z_controller_status__field#pynxtools.nomad.schema.Root#str
