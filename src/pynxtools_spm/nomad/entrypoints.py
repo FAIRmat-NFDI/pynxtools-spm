@@ -22,7 +22,7 @@ from nomad.config.models.plugins import ExampleUploadEntryPoint
 
 sts_example = ExampleUploadEntryPoint(
     title="Scanning Tunneling Spectroscopy (STS)",
-    category="FAIRmat examples",
+    category="NeXus Experiment Examples",
     description="""This example presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Spectroscopy (sts) data.""",
     plugin_package="pynxtools_spm",
     resources=["nomad/examples/sts/STSExampleWithCustomization/*"],
@@ -31,7 +31,7 @@ sts_example = ExampleUploadEntryPoint(
 
 stm_example = ExampleUploadEntryPoint(
     title="Scanning Tunneling Microscopy (STM)",
-    category="FAIRmat examples",
+    category="NeXus Experiment Examples",
     description="""This example presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Microscopy (stm) data""",
     plugin_package="pynxtools_spm",
     resources=["nomad/examples/stm/STMExampleWithCustomization/*"],
@@ -40,7 +40,7 @@ stm_example = ExampleUploadEntryPoint(
 
 afm_example = ExampleUploadEntryPoint(
     title="Atomic Force Microscopy (AFM)",
-    category="FAIRmat examples",
+    category="NeXus Experiment Examples",
     description="""This example presents the capabilities of the NOMAD platform to store standardized Atomic Force Microscopy (afm) data""",
     plugin_package="pynxtools_spm",
     resources=["nomad/examples/afm/AFMExampleWithCustomization/*"],

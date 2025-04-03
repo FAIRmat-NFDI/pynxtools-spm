@@ -1,14 +1,14 @@
 definitions:
-  name: An ELN example for STS ( Scanning Tunneling Spectroscopy).
+  name: Scanning Tunneling Microscopy (STM) ELN Examples
   sections:
-    sts:
+    ELN for STM:
       base_sections:
         - pynxtools.nomad.dataconverter.NexusDataConverter
         - nomad.datamodel.data.EntryData
       m_annotations:
         template:
           reader: spm
-          nxdl: NXsts
+          nxdl: NXstm
         eln:
           hide: []
       quantities:
@@ -18,29 +18,41 @@ definitions:
             eln:
               component: StringEditQuantity
           description: |
-            The name of the NXdata group that comes as child of the entry group for default plot visualization
+            The name of the NXdata group that comes as child of the entry group for default plot
             to be displayed upon the entry of NeXus file.
         definition:
           type:
             type_kind: Enum
             type_data:
-              - NXsts
+              - NXstm
           m_annotations:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the definitions from NeXus app def designed for STS experiments, one can use 
-            NXsts or NXspm, but NXsts is recommended.
+            Name of the definitions from NeXus app def designed for STM experiments,
+            e.g. NXstm.
         experiment_technique:
           type:
             type_kind: Enum
             type_data:
-              - STS
+              - STM
           m_annotations:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the technique used for the experiment, e.g. STS.
+            Name of the technique used for the experiment, e.g. STM. 
+        scan_mode:
+          type:
+            type_kind: Enum
+            type_data:
+              - constant height
+              - constant current
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+          description: |
+            Type of the scan mode to define the type of the interaction between 
+            the tip and the sample.
         experiment_description:
           type: str
           m_annotations:
@@ -57,16 +69,16 @@ definitions:
             eln:
               component: StringEditQuantity
           description: |
-              An unique identifier fot the experiment. e.g. the identifier
-              could be specific for a lab or experiment team.
+            An unique identifier fot the experiment. e.g. the identifier
+            could be specific for a lab or experiment team.
         identifier_collection: 
           type: str
           m_annotations:
             eln:
               component: StringEditQuantity
           description: |
-              An unique identifier of a collection. Use this
-              if the experiment if part of a collection of experiments
+            An unique identifier of a collection. Use this
+            if the experiment if part of a collection of experiments
       sub_sections:
         user:
           section:
@@ -129,7 +141,7 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Generic 5e).
+                          Version or model of the component named by the manufacturer (e.g. Nanonis).
                     model/@version:
                       type: str
                       m_annotations:
@@ -143,13 +155,6 @@ definitions:
                     eln:
                       overview: true
                   quantities:
-                    vendor:
-                      type: str
-                      m_annotations:
-                        eln:
-                          component: StringEditQuantity
-                      description: |
-                        Name of the manufacturer of the software.
                     name:
                       type: str
                       m_annotations:
@@ -157,6 +162,13 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Name of the software. (e.g. Nanonis).
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the manufacturer of the software (e.g. Nanonis).
                     model:
                       type: str
                       m_annotations:
@@ -164,8 +176,8 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Version or model, required to choose correct file parser, of the component named 
-                        by the manufacturer (e.g. Generic 5e).
-                        Note that model should be exactly the same as the one in the experiment file.
+                        by the manufacturer (e.g. Generic 5e). 
+                        Note that the model should be exactly the same as in the experiment file.
                     model/@version:
                       type: str
                       m_annotations:
@@ -186,18 +198,6 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Type of the signal either in voltage or current.
-                    lockin_current_flip_sign:
-                      type: np.float64
-                      m_annotations:
-                        eln:
-                          component: NumberEditQuantity
-                      description: |
-                        The sign (1 or -1) that defines the sign of the lock-in current.
-                        The calibration procedure with retracted tip is normally performed
-                        to compensate for the signal phase delay in SPM. The procedure 
-                        yields two possible solutions, this number should be equal to 1 or -1
-                        depending on which solution is chosen (this concept mainly used in 
-                        STS experiments, e.g. in Nanonis machine).
               scan_environment:
                 section:
                   m_annotations:
@@ -280,66 +280,60 @@ definitions:
                 description: |
                   Description of the sample or sample preparation.
             sub_sections:
-              Sample_component_set:
+              Sample_component:
                 section:
                   m_annotations:
                     eln:
                       overview: true
-                  sub_sections:
-                    Sample_component:
-                      section:
-                        m_annotations:
-                          eln:
-                            overview: true
-                        description: |
-                          A sample component is a part of the sample that is of interest.
-                          For example, a sample component could be a layer of a multilayer sample.
-                        quantities:
-                          name:
-                            type: str
-                            m_annotations:
-                              eln:
-                                component: StringEditQuantity
-                            description: |
-                              Name of the sample component.
-                          sample_id:
-                            type: str
-                            m_annotations:
-                              eln:
-                                component: StringEditQuantity
-                            description: |
-                              An unique identifier for the sample component.
-                          chemical_formula:
-                            type: str
-                            m_annotations:
-                              eln:
-                                component: StringEditQuantity
-                            description: |
-                              The chemical formula specified using CIF conventions.
-                              Abbreviated version of CIF standard:
-                              
-                              * Only recognized element symbols may be used.
-                              * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
-                              * A space or parenthesis must separate each cluster of (element symbol + count).
-                              * Where a group of elements is enclosed in parentheses, the multiplier for the
-                                group must follow the closing parentheses. That is, all element and group
-                                multipliers are assumed to be printed as subscripted numbers.
-                              * Unless the elements are ordered in a manner that corresponds to their chemical
-                                structure, the order of the elements within any group or moiety depends on
-                                whether or not carbon is present.
-                              * If carbon is present, the order should be:
-                              
-                                - C, then H, then the other elements in alphabetical order of their symbol.
-                                - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
-                                
-                              * This is the *Hill* system used by Chemical Abstracts.
-                          description:
-                            type: str
-                            m_annotations:
-                              eln:
-                                component: RichTextEditQuantity
-                            description: |
-                              Description of the sample component or sample preparation.
+                  description: |
+                    A sample component is a part of the sample that is of interest.
+                    For example, a sample component could be a layer of a multilayer sample.
+                  quantities:
+                    name:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the sample component.
+                    sample_id:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        An unique identifier for the sample component.
+                    chemical_formula:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        The chemical formula specified using CIF conventions.
+                        Abbreviated version of CIF standard:
+                        
+                        * Only recognized element symbols may be used.
+                        * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
+                        * A space or parenthesis must separate each cluster of (element symbol + count).
+                        * Where a group of elements is enclosed in parentheses, the multiplier for the
+                          group must follow the closing parentheses. That is, all element and group
+                          multipliers are assumed to be printed as subscripted numbers.
+                        * Unless the elements are ordered in a manner that corresponds to their chemical
+                          structure, the order of the elements within any group or moiety depends on
+                          whether or not carbon is present.
+                        * If carbon is present, the order should be:
+                        
+                          - C, then H, then the other elements in alphabetical order of their symbol.
+                          - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
+                          
+                        * This is the *Hill* system used by Chemical Abstracts.
+                    description:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: RichTextEditQuantity
+                      description: |
+                        Description of the sample component or sample preparation.
               History:
                 section:
                   m_annotations:
