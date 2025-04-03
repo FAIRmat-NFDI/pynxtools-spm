@@ -1,4 +1,4 @@
-
+#!/bin/bash
 # STS Nanonis 5e
 echo " !!! Converting Nanonis STS data !!! "
 find tests/data/nanonis/sts/version_gen_5e_default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXsts --reader spm --output sts_5e_default_config.nxs #--skip-verify
