@@ -1,38 +1,36 @@
-Sample:
-  History:
-    Note: 
-      description: <p>Sample history goes here.</p>
-  description: <p>The sample description goes here.</p>
-  name: DemoSample
-  Sample_component_set:
-    Sample_component:
-      description: <p>Sample component description goes here.</p>
-      name: DemoSample
-identifier_collection: DemoCollectionIdentifier-12
-default: current_forward
-definition: NXstm
-experiment_description: <p>The experiment description goes here.</p>
-identifier_experiment: DemoExperimentIdentifier-12
 Instrument:
   hardware:
-    model: Generic 4.5
-    model/@version: '4.5'
+    model: Generic 5e
+    model/@version: 5e
     name: Nanonis
     vendor: Nanonis
-  scan_environment:
-    tip_temp:
-      unit: K
-      value: 100.0
   software:
-    model: Generic 4.5
-    model/@version: '4.5'
+    model: Generic 5e
+    model/@version: 5e
     name: Nanonis
     vendor: Nanonis
+Sample:
+  History:
+    Note:
+      description: '<p>Demo description: This sample is used in Palma''s lab.</p>'
+  Sample_component:
+    chemical_formula: Au(KAl3Si3O12H2)
+    description: <p>A demo experiment on a sample Au(Mica).</p>
+    name: Au(Mica)
+  name: diPAMY
+default: current_forward
+definition: NXstm
+experiment_description: <p>An demo example&nbsp;</p>
 experiment_technique: STM
-scan_mode: constant current
-User:
+identifier_collection: D:\\DATA\\nanonis V45_sessions\\Zurich PLL\\2023-03-31
+identifier_experiment: D:\\DATA\\nanonis V45_sessions\\Zurich PLL\\2023-03-31\\2023_03_31_oAu(111)__FeBr2_EP1_018.sxm
+scan_mode: constant height
+user:
   affiliation:
-  - HU
+  - Dr. Cojal González, José David (HU)
+  - Prof. Carlos-Andres Palma (HU)
   email:
-  - rubel.mozumder@physik.hu-berlin.de
+  - mozumder@physik.hu-berlin.de
+  - Dr. Cojal González, José David (HU)
+  - palma@physik.hu-berlin.de
   name: Rubel Mozumder
