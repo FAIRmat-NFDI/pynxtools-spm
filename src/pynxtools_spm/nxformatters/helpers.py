@@ -317,7 +317,7 @@ def to_intended_t(
                 for part in parts:
                     modified_parts.append(to_intended_t(part))
                 if any(isinstance(part, str) for part in modified_parts):
-                    return str_value
+                    return data
                 return modified_parts
 
     return data
