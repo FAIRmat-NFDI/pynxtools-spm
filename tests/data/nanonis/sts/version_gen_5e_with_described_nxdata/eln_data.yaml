@@ -25,6 +25,7 @@ Sample:
   description: <p>A demo example experiment run in a Lab.</p>
   name: diPAMY
 default: current_grad
+scan_mode: constant height
 definition: NXsts
 experiment_description: '<p>A demo example for NeXus STS experiment.</p>
 

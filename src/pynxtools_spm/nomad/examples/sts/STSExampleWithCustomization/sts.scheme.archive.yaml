@@ -41,6 +41,19 @@ definitions:
               component: EnumEditQuantity
           description: |
             Name of the technique used for the experiment, e.g. STS.
+        scan_mode:
+          type:
+            type_kind: Enum
+            type_data:
+              - constant height
+              - constant current
+              - constant spacing
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+          description: |
+            Type of the scan mode to define the type of the interaction between 
+            the tip and the sample.
         experiment_description:
           type: str
           m_annotations:
