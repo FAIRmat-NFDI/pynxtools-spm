@@ -48,10 +48,14 @@ map_concept_to_full_quantities = {
     "scan range y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_range_y__field#{schema}#float",
     "scan angle x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_angle_x__field#{schema}#float",
     "scan angle y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_angle_y__field#{schema}#float",
-    "scan pints x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_points_x__field#{schema}#float",
+    "scan points x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_points_x__field#{schema}#float",
     "scan points y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_points_y__field#{schema}#float",
     "step size x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.step_size_x__field#{schema}#float",
     "step size y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.step_size_y__field#{schema}#float",
+    "scan start x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_start_x__field#{schema}#float",
+    "scan start y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_start_y__field#{schema}#float",
+    "scan end x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_end_x__field#{schema}#float",
+    "scan end y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_end_y__field#{schema}#float",
     # Scan Environment -> Bias Scan
     "Bias Start (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_start_bias__field#{schema}#float",
     "Bias End (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_end_bias__field#{schema}#float",
@@ -248,7 +252,7 @@ spm_app = AppEntryPoint(
                         ),
                         MenuItemHistogram(
                             title="Scan Points x",
-                            x=map_concept_to_full_quantities["scan pints x"],
+                            x=map_concept_to_full_quantities["scan points x"],
                         ),
                         MenuItemHistogram(
                             title="Scan Points y",
@@ -261,6 +265,22 @@ spm_app = AppEntryPoint(
                         MenuItemHistogram(
                             title="Step Size y",
                             x=map_concept_to_full_quantities["step size y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Start x",
+                            x=map_concept_to_full_quantities["scan start x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Start y",
+                            x=map_concept_to_full_quantities["scan start y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan End x",
+                            x=map_concept_to_full_quantities["scan end x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan End y",
+                            x=map_concept_to_full_quantities["scan end y"],
                         ),
                     ],
                 ),
@@ -517,6 +537,200 @@ spm_app = AppEntryPoint(
                         MenuItemHistogram(
                             title="z",
                             x=map_concept_to_full_quantities["Piezo Z (Piezo Sensor)"],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Reproducibility & Resolution Indicators",
+                ),
+                Menu(
+                    title="Temperature",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Cantilever Tip Temperature",
+                            x=map_concept_to_full_quantities[
+                                "Tip Temperature (Scan Environment)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cryo Bottom Temperature",
+                            x=map_concept_to_full_quantities[
+                                "Cryo Bottom Temperature (Scan Environment)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cryo Shield Temperature",
+                            x=map_concept_to_full_quantities[
+                                "Cryo Shield Temperature (Scan Environment)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Cantilever SPM",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Cantilever SPM -> Oscillator Excitation",
+                            x=map_concept_to_full_quantities[
+                                "Oscillator excitation (Cantilever SPM)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cantilever Oscillator -> Reference Amplitude",
+                            x=map_concept_to_full_quantities[
+                                "Reference Amplitude (Oscillator)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cantilever Oscillator -> Reference Frequency",
+                            x=map_concept_to_full_quantities[
+                                "Reference Frequency (Oscillator)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Cantilever Oscillator -> Reference Phase",
+                            x=map_concept_to_full_quantities[
+                                "Reference Phase (Oscillator)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Lockin Amplifier & Current Sensor",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemTerms(
+                            title="Modulation Signal",
+                            quantity=map_concept_to_full_quantities[
+                                "Modulation signal (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Reference Frequency",
+                            x=map_concept_to_full_quantities[
+                                "Reference Frequency (Lockin Amplifier)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Current",
+                            x=map_concept_to_full_quantities[
+                                "Current (Current Sensor)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Current Offset",
+                            x=map_concept_to_full_quantities[
+                                "Current Offset (Current Sensor)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Scan",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Offset x",
+                            x=map_concept_to_full_quantities["offset x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Offset y",
+                            x=map_concept_to_full_quantities["offset y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Range x",
+                            x=map_concept_to_full_quantities["scan range x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Range y",
+                            x=map_concept_to_full_quantities["scan range y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Points x",
+                            x=map_concept_to_full_quantities["scan points x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Points y",
+                            x=map_concept_to_full_quantities["scan points y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Step Size x",
+                            x=map_concept_to_full_quantities["step size x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Step Size y",
+                            x=map_concept_to_full_quantities["step size y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Start x",
+                            x=map_concept_to_full_quantities["scan start x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Start y",
+                            x=map_concept_to_full_quantities["scan start y"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan End x",
+                            x=map_concept_to_full_quantities["scan end x"],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan End y",
+                            x=map_concept_to_full_quantities["scan end y"],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Bias Spectroscopy",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Bias Start (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "Bias Start (Bias Spectroscopy)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Bias End (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "Bias End (Bias Spectroscopy)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Bias Offset (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "Bias Offset (Bias Spectroscopy)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Bias Range (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "Bias Range (Bias Spectroscopy)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Scan Points (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "Scan Points (Bias Spectroscopy)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Step Size (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "Step Size (Bias Spectroscopy)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="z_offset (Bias Spectroscopy)",
+                            x=map_concept_to_full_quantities[
+                                "z_offset (Bias Spectroscopy)"
+                            ],
                         ),
                     ],
                 ),
