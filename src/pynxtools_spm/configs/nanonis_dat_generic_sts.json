@@ -201,7 +201,7 @@
               "step_size_bias": "",
               "reset_bias": "",
               "backward_sweep": "",
-              "SCAN_data[scan_data]": [
+              "SCAN_DATA[scan_data]": [
                 {
                   "data": {
                     "name": "Lockin Demod 1X",
@@ -544,7 +544,7 @@
             "backward_speed_N[backward_speed_n]": "",
             "scan_speed": { "@units": "" },
             "scan_time": { "@units": "" },
-            "SCAN_data[scan_data]": ""
+            "SCAN_DATA[scan_data]": ""
           },
           "scan_type": ""
         },
