@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from pathlib import Path
 import os
 import shutil
-from typing import Optional
+from typing import Optional, Callable
 
 
 @dataclass
@@ -42,7 +42,10 @@ class File:
 
 # Copy create an script that copies a directory structure from source to destination directory
 def copy_directory_structure(
-    src: Path, dst: Path, extension: Optional[str], run_action_on_files=None
+    src: Path,
+    dst: Path,
+    extension: Optional[str] = "",
+    run_action_on_files: Optional[Callable] = None,
 ):
     """
     Copies a directory structure from source to destination directory
@@ -51,27 +54,28 @@ def copy_directory_structure(
     :param src: Source directory path
     :param dst: Destination directory path
     :param extension: File extension to filter by
+    :param run_action_on_files: Function to run on each file such as modify files,
+                      storing file path to an object etc.
     """
+
     if not src.is_dir():
         raise ValueError(f"Source {src} is not a directory")
     if not dst.is_dir():
         raise ValueError(f"Destination {dst} is not a directory")
 
-    for root, dirs, files in os.walk(src):
+    for root, _, files in os.walk(src):
+        # root_child = root.split("/", 1)[-1] if "/" in root else ""
+
         if files:
             for file in files:
                 if extension:
                     if not file.endswith(extension):
                         continue
+                source_file = Path(root) / file
+                rel_file_path = source_file.relative_to(src)
+                target_file_path = dst / rel_file_path
 
-                src_file = Path(root) / file
-                dest_file = dst / file
-                shutil.copy2(src_file, dest_file)
-                if run_action_on_files is not None:
-                    run_action_on_files(dest_file)
-
-        if dirs:
-            for dir_ in dirs:
-                nested_dir = dst / dir_
-                os.makedirs(nested_dir, exist_ok=True)
-                copy_directory_structure(src / dir_, nested_dir, extension)
+                target_file_path.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source_file, target_file_path)
+                if run_action_on_files is not None and callable(run_action_on_files):
+                    run_action_on_files(target_file_path)
