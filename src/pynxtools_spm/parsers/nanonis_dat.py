@@ -72,7 +72,6 @@ class DatGenericNanonis:
         self.raw_file: str = file_name
         self.extract_and_store_from_dat_file()
 
-
     # pylint: disable=too-many-arguments
     def check_and_write_unit(
         self, dct, key_or_line, unit_separators, end_of_seperators, value=None
