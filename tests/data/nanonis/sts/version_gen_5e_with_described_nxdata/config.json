@@ -2,6 +2,12 @@
   "ENTRY[entry]": {
     "@default": { "raw_path": "@default:current" },
     "definition": { "@version": "" },
+    "start_time": {
+      "raw_path": "/Start time/value"
+    },
+    "end_time": {
+      "raw_path": "/Saved Date/value"
+    },
     "INSTRUMENT[instrument]": {
       "lockin_amplifier": {
         "modulation_status": {

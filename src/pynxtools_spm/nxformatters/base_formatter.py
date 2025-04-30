@@ -28,11 +28,13 @@ from pynxtools.dataconverter.template import Template
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 import yaml
+import re
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     to_intended_t,
     replace_variadic_name_part,
 )
+import datetime
 from pathlib import Path
 import numpy as np
 
@@ -490,3 +492,37 @@ class SPMformatter(ABC):
                             f"{parent_path}/{nxdata_group}/{key}/@{other_attrs}"
                         ] = other_attrs
         return nxdata_group
+
+    def _handle_special_fields(self):
+        """Handle special fields.
+
+        Further curation the  special fields in template
+        after the template is already populated with data.
+        """
+
+        def _format_datetime(parent_path, fld_key, fld_data):
+            """Format start time"""
+            # Check if data time has "day.month.year hour:minute:second" format
+            # if it is then convert it to "day-month-year hour:minute:second"
+            re_pattern = re.compile(
+                r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
+            )
+            if not isinstance(fld_data, str):
+                return
+            match = re_pattern.match(fld_data.strip())
+            if match:
+                date_time_format = "%d-%m-%Y %H:%M:%S"
+                # Convert to "day-month-year hour:minute:second" format
+                date_str = datetime.datetime.strptime(
+                    f"{match.group(1)}-{match.group(2)}-{match.group(3)} {match.group(4)}",
+                    date_time_format,
+                ).isoformat()
+                self.template[f"{parent_path}/{fld_key}"] = date_str
+
+        for key, val in self.template.items():
+            if key.endswith("start_time"):
+                parent_path, key = key.rsplit("/", 1)
+                _format_datetime(parent_path, key, val)
+            elif key.endswith("end_time"):
+                parent_path, key = key.rsplit("/", 1)
+                _format_datetime(parent_path, key, val)
