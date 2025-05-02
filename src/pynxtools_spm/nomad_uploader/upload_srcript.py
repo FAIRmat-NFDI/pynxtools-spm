@@ -7,6 +7,8 @@ from pathlib import Path
 from typing import Optional
 from dataclasses import asdict, dataclass
 import time
+import re
+import logging
 
 from pynxtools_spm.nomad_uploader.nomad_upload_api import (
     get_authentication_token,
@@ -15,20 +17,29 @@ from pynxtools_spm.nomad_uploader.nomad_upload_api import (
     edit_upload_metadata,
     publish_upload,
     check_upload_status,
+    trigger_reprocess_upload,
 )
 from pynxtools_spm.nomad_uploader.files_movers import copy_directory_structure
-
+from pynxtools_spm.nomad_uploader.helper import (
+    setup_logger,
+)
 from multiprocessing import Process, Lock, Queue
-
-
-debug = True
+# TODO add the process in single batch of processing and uploading
+# set the time out 1 minute for each process 
+# Get the directory where the script will be running
 current_dir = Path(__file__).parent
-
+upload_logger, upload_handler = setup_logger(name="uploader", log_file=current_dir / "upload.log")
+pynxtools_logger = logging.getLogger("pynxtools")
+converter_logger, converter_handeler = setup_logger(name="data converter", 
+                                                    log_file=current_dir / "converter.log",
+                                                    existing_logger=pynxtools_logger)
+# TODO: Log file will be running where the script will be launched
+debug = True
 @dataclass
 class NOMADSettings:
     url_protocol: str = "https"
     url_domain: str = "nomad-lab.eu"
-    url_version: str = "prod/v1/api/v1/"
+    url_version: str = "prod/v1/oasis-b/api/v1/"
     url: str = f"{url_protocol}://{url_domain}/{url_version}"
     username: str = "Mozumder"
     password: str = ""
@@ -46,52 +57,65 @@ class DataProcessingSettings:
     parallel_processing: bool = True
     # Considered as a root directory for the experiment files
     src_dir: Optional[Path] = (
-        current_dir.parent.parent.parent / "tests" / "data" / "cronJobTest"
+        current_dir.parent.parent.parent / "tests" / "data" / "nanonis"
     )
     copy_file_elsewhere: bool = False
     # Destination directory for the experiment files, if files are moved
     # to another location after processing is done, needs `copy_file_elsewhere`
     # to be True
-    dst_dir: Optional[Path] = "/tmp"
+    dst_dir: Optional[Path] = ""
     # create and empty file if upload is sucessfull
     create_pseudo_file: bool = True
     # Extension to the empty file if upload is sucessfull
     pseudo_exts: str = ".done"
     # List of SPMConvertInputParameters objects to run reader on each object
     spm_params_obj_l = []
-    sts_eln = (
-        src_dir
-        / ".."
-        / "nanonis"
-        / "sts"
-        / "version_gen_5e_with_described_nxdata"
-        / "eln_data.yaml"
-    )
+    sts_eln = src_dir / "sts" / "version_gen_5e_with_described_nxdata" / "eln_data.yaml"
     sts_config = ""
     stm_eln = (
-        src_dir
-        / ".."
-        / "nanonis"
-        / "stm"
-        / "version_gen_4_5_with_described_nxdata"
-        / "eln_data.yaml"
+        src_dir / "stm" / "version_gen_4_5_with_described_nxdata" / "eln_data.yaml"
     )
     stm_config = ""
-    afm_eln = (
-        src_dir
-        / ".."
-        / "nanonis"
-        / "afm"
-        / "version_gen_4_with_described_nxdata"
-        / "eln_data.yaml"
-    )
+    afm_eln = src_dir / "afm" / "version_gen_4_with_described_nxdata" / "eln_data.yaml"
     afm_config = ""
+
+
+def create_preseudo_file(
+    params_obj: SPMConvertInputParameters,
+    data_processing_settings: DataProcessingSettings,
+) -> None:
+    """Create a pseudo file if upload is successful."""
+    if (
+        not data_processing_settings.create_pseudo_file
+        and not data_processing_settings.copy_file_elsewhere
+    ):
+        return
+
+    source_fls = list(
+        filter(
+            lambda x: x.suffix in DataProcessingSettings.raw_file_exts,
+            params_obj.input_file,
+        )
+    )
+    for source_f in source_fls:
+        if (
+            data_processing_settings.create_pseudo_file
+        ):
+            pseudo_file_ = source_f.with_suffix(
+                f"{source_f.suffix}{DataProcessingSettings.pseudo_exts}"
+            )
+            pseudo_file_.touch()
+        elif data_processing_settings.copy_file_elsewhere:
+            # As raw file stored in other location, remove it
+            source_f.unlink()
 
 
 def get_unprocessed_files(src_dir: Path) -> list:
     """Filter out the files that are not processed yet.
 
-    E.g. an input file `file.dat` will be denoted as `file.dat.done` after
+    E.g. an input file `file.dat` will be denoted as `file.dat.done` after,
+    assume DataProcessingSettings.create_pseudo_file is True
+    and DataProcessingSettings.pseudo_exts is set to `.done`,
     successful upload to NOMAD. So, it always checks for the raw files
     and if the corresponding `.done` file is not present, it will be
     considered as unprocessed.
@@ -106,12 +130,17 @@ def get_unprocessed_files(src_dir: Path) -> list:
             process_status_map[file.with_suffix("")] = True
 
     def filter_non_processed_file(arg):
+        """Filter out the files that are not processed yet.
+        arg[0] is the file and arg[1] is the process status
+        e.g. file = file.dat and arg[1] = False
+        """
         file, is_processed = arg[0], arg[1]
         if not is_processed:
             return file
 
     return list(map(filter_non_processed_file, process_status_map.items()))
 
+# TODO: Create log file for each process
 
 def set_and_store_prepared_parameters(file: Path):
     params_obj = None
@@ -166,14 +195,6 @@ if __name__ == "__main__":
 
     # In case user wants to store the files elsewhere
     if DataProcessingSettings.copy_file_elsewhere:
-        if (
-            not DataProcessingSettings.dst_dir
-            or not DataProcessingSettings.dst_dir.is_dir()
-        ):
-            print(
-                "Porcess Exits: Destination directory is required to store the files."
-            )
-            exit(1)
 
         copy_directory_structure(
             DataProcessingSettings.src_dir,
@@ -182,20 +203,29 @@ if __name__ == "__main__":
         )
     else:
         file_list = get_unprocessed_files(DataProcessingSettings.src_dir)
+        upload_logger.info(
+            f"Total '{len(file_list)}' files to process in in {DataProcessingSettings.src_dir}:\n"
+            f"{"\n\t\t".join([str(file) for file in file_list])}"
+        )
         # Prepare the input parameters for the SPM reader for each file
         _ = [
             set_and_store_prepared_parameters(file)
             for file in file_list
             if (file and file.is_file())
         ]
-        print("Process Info: Files to process", file_list)
-
-    if debug:
-        print(
-            "Debug: Files copied over to the destination directory.",
-            DataProcessingSettings.spm_params_obj_l,
+        # Logging massage
+        obj_type_num = {}
+        for obj in DataProcessingSettings.spm_params_obj_l:
+            type_ = obj.__class__.__name__
+            if type_ not in obj_type_num:
+                obj_type_num[type_] = 1
+            else:
+                obj_type_num[type_] += 1
+        
+        log_msg = "\n".join([f"Instance of {t}: {n}" for t, n in obj_type_num.items()])
+        upload_logger.info(
+            f"Total '{len(DataProcessingSettings.spm_params_obj_l)}' input parameter object: \n {log_msg}"
         )
-    # TODO: We Need scrutiny observation for parallel processing
 
     if not DataProcessingSettings.parallel_processing:
         pass
@@ -203,16 +233,26 @@ if __name__ == "__main__":
     lock = Lock()
     results_q = Queue()
     time_out = int(DataProcessingSettings.single_batch_processing_time / 3)  # seconds
-
+    from datetime import datetime
     def queue_results(input_params, lock, results_q):
         lock.acquire()
         try:
-            result = convert_spm_experiments(input_params)
+            upload_logger.info(
+                f"Start conversion job with inputs {input_params.input_file} via {input_params.__class__.__name__} instance."
+            )
+            result = convert_spm_experiments(input_params, converter_logger, converter_handeler)
             results_q.put(result)
+
         except Exception as e:
-            print(f"Oops! Error in processing {input_params.input_file}: {e}")
+            upload_logger.error(
+                f"Error in processing {input_params.input_file}: {e}"
+            )
+            # TODO deactivate the raise statement
             raise e
         finally:
+            upload_logger.info(
+                f"Converter job is completed for {input_params.input_file} via {input_params.__class__.__name__} instance."
+            )
             lock.release()
 
     processes_list = []
@@ -223,17 +263,25 @@ if __name__ == "__main__":
             args=(input_params, lock, results_q),
         )
         p.start()
+        upload_logger.info(
+            f"Process job has been submited with input files {input_params.input_file} via process id {p.pid}."
+        )
         processes_list.append(p)
-    if debug:
-        print("Debug: Processes started...", processes_list)
-        print("DEbug: Processes started...", DataProcessingSettings.spm_params_obj_l)
+    # if debug:
+    #     print("Debug: Processes Started : Process list", processes_list)
+    #     print(
+    #         "Debug: Processes started : SPMConvertInputParameters objects",
+    #         DataProcessingSettings.spm_params_obj_l,
+    #     )
     for _, (p, input_params) in enumerate(
         zip(processes_list, DataProcessingSettings.spm_params_obj_l)
     ):
         p.join(time_out)
         if p.is_alive():
-            print(
-                f"Process is still running, terminating it. Process handles input data {asdict(input_params)}",
+            upload_logger.critical(
+                f"Terminating process (PID: {p.pid}) is still "
+                f"running and expected to be done in {time_out}s.\n"
+                f"Converter job with input prameters {asdict(input_params)}",
             )
             p.terminate()
             p.join()
@@ -244,34 +292,46 @@ if __name__ == "__main__":
         # Get back input_params obj with output files
         completed_param_objs.append(results_q.get())
     upload_time_limit = datetime.now() + timedelta(seconds=time_out)
-
+    # TODO: Add option to upload upacked zip files and upload the raw files
+    # TODO: Use asynchrounous process for api calls
     while (
         len(completed_param_objs) > len(indices) and datetime.now() < upload_time_limit
     ):
         sucess_ind = []
         failed_ind = []
+        # TODO: Try to send multiple async requests to nomad 
         for ind, complete_param_obj in enumerate(completed_param_objs):
             zip_to_upload = complete_param_obj.zip_file_path
             if ind in indices:  # already processed or failed
                 continue
             if not zip_to_upload:
+                failed_ind.append(ind)
                 indices.append(ind)
                 continue
             indices.append(ind)
             massage = "Adding files"
             max_attempt = 20
-            attempt = 0
             try:
                 upload_id = upload_to_NOMAD(
                     NOMADSettings.url, NOMADSettings.token, zip_to_upload
                 )
+                upload_logger.info(
+                    f"Upload request to with Upload ID ({upload_id}) corresponding to {complete_param_obj.input_file}."
+                )
+                # trigger_reprocess_upload(
+                #     NOMADSettings.url, NOMADSettings.token, upload_id
+                # )
                 massage = check_upload_status(
                     NOMADSettings.url, NOMADSettings.token, upload_id
                 )
-                print(f"Process Info: Upload ID: {upload_id}")
-                sucess_ind.append(ind)
+                upload_logger.info(
+                    f"Upload status for {upload_id}: \n{massage}"
+                )
+
             except Exception as e:
-                print(f"Error in uploading {zip_to_upload}: {e}")
+                upload_logger.error(
+                    f"Error in uploading (upload_id:{upload_id}) {zip_to_upload}: {e}"
+                )
                 failed_ind.append(ind)
                 continue
             # To modify metadata
@@ -296,43 +356,39 @@ if __name__ == "__main__":
             if NOMADSettings.publish_to_nomad:
                 publish_upload(NOMADSettings.url, NOMADSettings.token, upload_id)
 
-            while (
-                not massage.startswith("Process process_upload completed successfully")
-                and attempt < max_attempt
-            ):
+            attempt = 0
+            while attempt < max_attempt:
                 attempt += 1
+                if massage.startswith("Process process_upload completed successfully"):
+                    upload_logger.info(
+                        f"Upload status: Upload completed successfully with upload ID: {upload_id}"
+                    )
+                    sucess_ind.append(ind)
+                    create_preseudo_file(complete_param_obj, DataProcessingSettings)
+                    break
+                # Check if the upload is failed with any massage that contains error
+                elif re.search(r"\berror\b", massage, re.IGNORECASE):
+                    failed_ind.append(ind)
+                    upload_logger.error(
+                        f"Upload status: Upload failed with error: {massage} for upload ID: {upload_id}"
+                    )
+                    upload_logger.error(
+                        f"Upload status: Upload ID: {upload_id} handles by {complete_param_obj.input_file}"
+                    )
+                    break
+                upload_logger.info(
+                    f"Upload status: {massage} for upload ID: {upload_id}"
+                )
                 massage = check_upload_status(
                     NOMADSettings.url, NOMADSettings.token, upload_id
                 )
                 time.sleep(4 / 60)  # 4 second
+            
 
-            print(f"Process Info: Upload status: {massage}")
         for ind, input_params in enumerate(completed_param_objs):
-            raw_file = list(
-                filter(
-                    lambda x: x.suffix in DataProcessingSettings.raw_file_exts,
-                    input_params.input_file,
-                )
-            )[0]
-            # Clean up the files generated during the process
+
+            # Whether successfully uploaded or not, remove the zip file and ouuput file
             if input_params.zip_file_path and input_params.zip_file_path.is_file():
                 input_params.zip_file_path.unlink()
             if input_params.output and input_params.output.is_file():
                 input_params.output.unlink()
-            if (
-                DataProcessingSettings.create_pseudo_file
-                or not DataProcessingSettings.copy_file_elsewhere
-            ):
-                # Track if upload is successfully done
-                pseudo_file = raw_file.with_suffix(
-                    f"{raw_file.suffix}{DataProcessingSettings.pseudo_exts}"
-                )
-                pseudo_file.touch()
-                # remove the mimicked file if upload is failed
-                if pseudo_file and ind in failed_ind:
-                    pseudo_file.unlink()
-            elif DataProcessingSettings.copy_file_elsewhere:
-                # As raw file stored in other location, remove it
-                raw_file.unlink()
-
-    print("Process Info: All done!")

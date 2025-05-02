@@ -69,6 +69,19 @@ def upload_to_NOMAD(nomad_url, token, upload_file):
             print("something went wrong uploading to NOMAD")
             return
 
+def trigger_reprocess_upload(nomad_url, token, upload_id):
+    """Trigger reprocessing of an upload"""
+    try:
+        response = requests.post(
+            f"{nomad_url}uploads/{upload_id}/action/process",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+            timeout=30,
+        )
+        return response
+    except Exception:
+        print("something went wrong trying to reprocess upload: " + upload_id)
+        return
+
 
 def check_upload_status(nomad_url, token, upload_id):
     """
