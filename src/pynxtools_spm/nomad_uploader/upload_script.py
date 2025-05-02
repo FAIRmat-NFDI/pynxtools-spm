@@ -9,6 +9,7 @@ from dataclasses import asdict, dataclass
 import time
 import re
 import logging
+from datetime import datetime
 
 from pynxtools_spm.nomad_uploader.nomad_upload_api import (
     get_authentication_token,
@@ -54,7 +55,6 @@ class NOMADSettings:
 class DataProcessingSettings:
     raw_file_exts: tuple[str, ...] = (".dat", ".sxm")
     single_batch_processing_time: int = 20 * 60  # seconds
-    parallel_processing: bool = True
     # Considered as a root directory for the experiment files
     src_dir: Optional[Path] = (
         current_dir.parent.parent.parent / "tests" / "data" / "nanonis"
@@ -111,14 +111,14 @@ def create_preseudo_file(
 
 
 def get_unprocessed_files(src_dir: Path) -> list:
-    """Filter out the files that are not processed yet.
+    """Filter out the files that are already processed.
 
-    E.g. an input file `file.dat` will be denoted as `file.dat.done` after,
-    assume DataProcessingSettings.create_pseudo_file is True
-    and DataProcessingSettings.pseudo_exts is set to `.done`,
-    successful upload to NOMAD. So, it always checks for the raw files
-    and if the corresponding `.done` file is not present, it will be
-    considered as unprocessed.
+    E.g. an input file `file.dat` will be denoted as `file.dat.done` after
+    the upload is successful. It is assumed that
+    DataProcessingSettings.create_pseudo_file is True
+    and DataProcessingSettings.pseudo_exts is set to `.done`.
+    This function checks for the raw files where the corresponding `.done` 
+    file is not present.
     """
     process_status_map = {}
     for file in src_dir.glob("**/*.*"):
@@ -227,13 +227,9 @@ if __name__ == "__main__":
             f"Total '{len(DataProcessingSettings.spm_params_obj_l)}' input parameter object: \n {log_msg}"
         )
 
-    if not DataProcessingSettings.parallel_processing:
-        pass
-
     lock = Lock()
     results_q = Queue()
     time_out = int(DataProcessingSettings.single_batch_processing_time / 3)  # seconds
-    from datetime import datetime
     def queue_results(input_params, lock, results_q):
         lock.acquire()
         try:
@@ -267,12 +263,7 @@ if __name__ == "__main__":
             f"Process job has been submited with input files {input_params.input_file} via process id {p.pid}."
         )
         processes_list.append(p)
-    # if debug:
-    #     print("Debug: Processes Started : Process list", processes_list)
-    #     print(
-    #         "Debug: Processes started : SPMConvertInputParameters objects",
-    #         DataProcessingSettings.spm_params_obj_l,
-    #     )
+
     for _, (p, input_params) in enumerate(
         zip(processes_list, DataProcessingSettings.spm_params_obj_l)
     ):
@@ -339,6 +330,7 @@ if __name__ == "__main__":
                 dataset_id = create_dataset(
                     NOMADSettings.url, NOMADSettings.token, "Test_Dataset"
                 )
+                # TODO: Metadata dictionary shoudl come from DataProcessingSettings
                 metadata = {
                     "metadata": {
                         "upload_name": "Test_Upload",
