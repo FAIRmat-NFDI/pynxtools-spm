@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Optional
 from dataclasses import dataclass, asdict
 import zipfile
+import logging
 
 
 @dataclass
@@ -11,7 +12,7 @@ class SPMConvertInputParameters:
     eln: str | Path
     expriement_type: str
     reader: str = "spm"
-    output: str = None
+    output: Optional[str | Path] = None
     nxdl: Optional[str] = None
     create_zip: Optional[bool] = True
     zip_file_path: Optional[str | Path] = None
@@ -22,6 +23,9 @@ class SPMConvertInputParameters:
 
 def convert_spm_experiments(
     input_params: SPMConvertInputParameters,
+    converter_logger: Optional[logging.Logger],
+    converter_handeler: Optional[logging.Handler] = None,
+
 ):
     """Convert SPM (STS, STM and AFM) experirment data files to NeXus format.
     Later, the input files and generated output file are zipped together to
@@ -38,19 +42,19 @@ def convert_spm_experiments(
     """
 
     if not isinstance(input_params, SPMConvertInputParameters):
-        raise ValueError(
+        converter_logger.error(
             "Input parameters must be an instance of SPMConvertInputParameters"
         )
 
     if not input_params.input_file:
-        raise ValueError("Input files are required to run an SPM experiment")
+        converter_logger.error("Input files are required to run an SPM experiment")
     if not input_params.eln:
-        raise ValueError(
-            f"ELN is required to run an {input_params.expriement_type} experiment."
-        )
+        converter_logger.error(f"ELN file is requred to run an {input_params.expriement_type} experiment")
 
     if not input_params.expriement_type:
-        raise ValueError("Experiment type is required to run an SPM experiment")
+        converter_logger.error(
+            "Experiment type is required to run an SPM experiment"
+        )
 
     input_params.input_file = (*input_params.input_file, input_params.eln)
     input_params.input_file = tuple(
@@ -67,6 +71,7 @@ def convert_spm_experiments(
     for file in input_params.input_file:
         if file.suffix in (
             input_params.raw_extension,
+            # TODO remoce the following line
             f".{input_params.raw_extension}",
         ):
             if input_params.output is None:
@@ -78,27 +83,37 @@ def convert_spm_experiments(
             "Valid raw files and extension is required to run an SPM experiment"
         )
     # TODO Try with input_file as tuple of Path objects
-    input_params.input_file = [str(file) for file in input_params.input_file]
-    input_params.output = str(input_params.output)
+    # Use handler only for conver function. Do not close the handler 
+    # after the function call as it will be used again and again
+    if converter_handeler not in converter_logger.handlers:
+        converter_logger.addHandler(converter_handeler)
     try:
-        convert(**asdict(input_params))
-
+        kwargs = asdict(input_params)
+        print("#### kwargs:", kwargs)
+        kwargs["input_file"] = tuple(map(str, input_params.input_file))
+        kwargs["output"] = str(input_params.output)
+        # with converter_logger:
+        convert(**kwargs)
+        print("#### kwargs after conversion:", kwargs)
         if input_params.create_zip:
             with zipfile.ZipFile(zip_file, "w") as zipf:
                 zipf.write(
-                    input_params.output, arcname=input_params.output.split("/")[-1]
+                    str(input_params.output),
+                    arcname=str(input_params.output).split("/")[-1],
                 )
-                for file in input_params.input_file:
+                for file in map(str, input_params.input_file):
                     zipf.write(file, arcname=file.split("/")[-1])
             input_params.zip_file_path = Path(zip_file)
-            input_params.output = Path(input_params.output)
+
     except Exception as e:
         print("NeXusConverterError:", e)
     finally:
-        input_params.input_file = tuple(
-            Path(file) if isinstance(file, str) else file
-            for file in input_params.input_file
-        )
+        converter_logger.removeHandler(converter_handeler)
+    # finally:
+    #     input_params.input_file = tuple(
+    #         Path(file) if isinstance(file, str) else file
+    #         for file in input_params.input_file
+    #     )
 
     return input_params
 
