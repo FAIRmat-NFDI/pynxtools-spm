@@ -37,6 +37,7 @@ def test_directory_structure(tmp_path):
     )
     assert len(copy_file_ls) == 2, "File no properly copied over."
 
+
 @pytest.fixture
 def spm_reader_input_params(tmp_path):
     stm_file_name = "STM_nanonis_generic_4_5.sxm"
@@ -73,4 +74,3 @@ def test_run_spm_reader(spm_reader_input_params):
 
 # def test_upload_to_nomad(spm_reader_input_params):
 #     tocken
-
