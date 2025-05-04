@@ -46,6 +46,7 @@ def copy_directory_structure(
     dst: Path,
     extension: Optional[str] = "",
     run_action_on_files: Optional[Callable] = None,
+    **args,
 ):
     """
     Copies a directory structure from source to destination directory
@@ -56,6 +57,7 @@ def copy_directory_structure(
     :param extension: File extension to filter by
     :param run_action_on_files: Function to run on each file such as modify files,
                       storing file path to an object etc.
+    :param args: Additional arguments to pass to the function run_action_on_files
     """
 
     if not src.is_dir():
@@ -78,5 +80,4 @@ def copy_directory_structure(
                 target_file_path.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(source_file, target_file_path)
                 if run_action_on_files is not None and callable(run_action_on_files):
-                    run_action_on_files(target_file_path)
-
+                    run_action_on_files(target_file_path, **args)
