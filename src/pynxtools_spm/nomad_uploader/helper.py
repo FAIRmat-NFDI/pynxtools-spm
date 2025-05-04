@@ -1,11 +1,13 @@
 import logging
 from typing import Union
 
-def setup_logger(name: str, 
-                 log_file: str, 
-                 level: Union[int, str] = logging.INFO, 
-                 existing_logger: logging.Logger = None
-                 ) -> tuple[logging.Logger, logging.FileHandler]:
+
+def setup_logger(
+    name: str,
+    log_file: str,
+    level: Union[int, str] = logging.INFO,
+    existing_logger: logging.Logger = None,
+) -> tuple[logging.Logger, logging.FileHandler]:
     """Set up a named logger that writes to a specific file.
     if existing_logger is provided, it will be used instead of creating a new one,
     and another handler will be added to it.

@@ -25,7 +25,6 @@ def convert_spm_experiments(
     input_params: SPMConvertInputParameters,
     converter_logger: Optional[logging.Logger],
     converter_handeler: Optional[logging.Handler] = None,
-
 ):
     """Convert SPM (STS, STM and AFM) experirment data files to NeXus format.
     Later, the input files and generated output file are zipped together to
@@ -49,12 +48,12 @@ def convert_spm_experiments(
     if not input_params.input_file:
         converter_logger.error("Input files are required to run an SPM experiment")
     if not input_params.eln:
-        converter_logger.error(f"ELN file is requred to run an {input_params.expriement_type} experiment")
+        converter_logger.error(
+            f"ELN file is requred to run an {input_params.expriement_type} experiment"
+        )
 
     if not input_params.expriement_type:
-        converter_logger.error(
-            "Experiment type is required to run an SPM experiment"
-        )
+        converter_logger.error("Experiment type is required to run an SPM experiment")
 
     input_params.input_file = (*input_params.input_file, input_params.eln)
     input_params.input_file = tuple(
@@ -83,7 +82,7 @@ def convert_spm_experiments(
             "Valid raw files and extension is required to run an SPM experiment"
         )
     # TODO Try with input_file as tuple of Path objects
-    # Use handler only for conver function. Do not close the handler 
+    # Use handler only for conver function. Do not close the handler
     # after the function call as it will be used again and again
     if converter_handeler not in converter_logger.handlers:
         converter_logger.addHandler(converter_handeler)
@@ -108,18 +107,7 @@ def convert_spm_experiments(
     except Exception as e:
         print("NeXusConverterError:", e)
     finally:
+        # Prevent propagatting other logs through this handler
         converter_logger.removeHandler(converter_handeler)
-    # finally:
-    #     input_params.input_file = tuple(
-    #         Path(file) if isinstance(file, str) else file
-    #         for file in input_params.input_file
-    #     )
 
     return input_params
-
-
-# if __name__ == "__main__":
-#     input_params = SPMConvertInputParameters(
-#         input_file=(afm_reader_raw,), eln=afm_reader_eln, expriement_type="afm"
-#     )
-#     convert_spm_experiments(input_params)
