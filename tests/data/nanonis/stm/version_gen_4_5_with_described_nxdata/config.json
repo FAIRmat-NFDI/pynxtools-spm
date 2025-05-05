@@ -2,8 +2,12 @@
   "ENTRY[entry]": {
     "@default": { "raw_path": "@default:current_backward" },
     "identifier_collection": "",
-    "end_time": "",
-    "start_time": "",
+    "start_time": {
+      "#note": "Handled in function _set_start_end_time"
+    },
+    "end_time": {
+      "#note": "Handled in function _set_start_end_time"
+    },
     "scan_mode": "",
     "scan_type": "",
     "experiment_description": { "raw_path": "/COMMENT" },

@@ -32,7 +32,7 @@ from nomad.config.models.ui import (
 schema = "pynxtools.nomad.schema.Root"
 
 map_concept_to_full_quantities = {
-    "Start Time": f"data.ENTRY.start_time__field#{schema}#datetime",
+    "Start Time": f"data.datetime#{schema}#datetime",
     "Entry Type": "entry_type",
     "Definition": f"data.ENTRY.definition__field#{schema}#str",
     "Periodic Table": "results.material.elements",
@@ -132,9 +132,14 @@ spm_app = AppEntryPoint(
                 selected=True,
             ),
             Column(
-                title="start_time",
-                quantity=f"data.ENTRY[*].start_time__field#{schema}",
+                title="Start Time",
+                search_quantity=f"data.datetime#{schema}",
                 selected=True,
+            ),
+            Column(
+                title="Start Times by Entry",
+                search_quantity=f"data.ENTRY[*].start_time__field#{schema}",
+                selected=False,
             ),
             Column(
                 title="title",

@@ -3,11 +3,15 @@
     "@default": {
       "raw_path": "@default:amplitude_backward"
     },
+    "start_time": {
+      "#note": "Handled in function _set_start_end_time"
+    },
+    "end_time": {
+      "#note": "Handled in function _set_start_end_time"
+    },
     "definition": { "@version": null },
     "identifier_collection": "",
-    "end_time": "",
     "entry_identifier": "",
-    "start_time": "",
     "scan_mode": "",
     "scan_type": "",
     "identifier_experiment": { "identifier": "" },

@@ -52,6 +52,8 @@ if TYPE_CHECKING:
 class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     _grp_to_func = {
         "SCAN_CONTROL[scan_control]": "_construct_nxscan_controllers",
+        "start_time": "_set_start_end_time",
+        "end_time": "_set_start_end_time",
     }
     _axes = ["x", "y", "z"]
 
@@ -72,6 +74,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
+        self._handle_special_fields()
 
     def _get_conf_dict(self, config_file: str | Path = None):
         if config_file is not None:
