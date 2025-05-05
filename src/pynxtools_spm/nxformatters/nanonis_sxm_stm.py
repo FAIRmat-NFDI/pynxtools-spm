@@ -33,6 +33,7 @@ from pynxtools_spm.nxformatters.helpers import (
     _scientific_num_pattern,
     to_intended_t,
 )
+import datetime
 import numpy as np
 
 if TYPE_CHECKING:
@@ -58,6 +59,8 @@ gbl_scan_ranges: list[float] = []
 class NanonisSxmSTM(SPMformatter):
     _grp_to_func = {
         "SCAN_CONTROL[scan_control]": "_construct_nxscan_controllers",
+        "start_time": "_set_start_end_time",
+        "end_time": "_set_start_end_time",
         # "DATA[data]": "construct_scan_data_grps",
     }
     _axes = ["x", "y", "z"]
@@ -75,6 +78,7 @@ class NanonisSxmSTM(SPMformatter):
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
+        self._handle_special_fields()
 
     def _get_conf_dict(self, config_file: str | Path = None):
         if config_file is not None:
@@ -480,3 +484,74 @@ class NanonisSxmSTM(SPMformatter):
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
             ] = self.NXScanControl.y_start_unit
         return nxdata_group_nm
+
+    def _set_start_end_time(self, val_dict, parent_path, field_name):
+        """Set start and end time for the scan.
+
+        The start and end time are set in the template
+        by collecting data from raw data dict.
+
+        note:
+        val_dict Is just following the same convention as other methods
+                  hooked in the _grp_to_func dict.
+        """
+        if "#note" not in val_dict:
+            return
+
+        def set_start_time():
+            rec_time = self.raw_data.get("/REC/TIME")
+            rec_date = self.raw_data.get("/REC/DATE")
+            if rec_time and rec_date:
+                # Check if data time has "day.month.year hour:minute:second" format
+                # if it is then convert it to "day-month-year hour:minute:second"
+                re_pattern = re.compile(
+                    r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
+                )
+                match = re_pattern.match(f"{rec_date.strip()} {rec_time.strip()}")
+                if match:
+                    date_time_format = "%d-%m-%Y %H:%M:%S"
+                    date_str = datetime.datetime.strptime(
+                        f"{match.group(1)}-{match.group(2)}-{match.group(3)} {match.group(4)}",
+                        date_time_format,
+                    ).isoformat()
+                    self.template[f"{parent_path}/{field_name}"] = date_str
+            elif rec_date:
+                re_pattern = re.compile(r"(\d{1,2})\.(\d{1,2})\.(\d{4})")
+                match = re_pattern.match(rec_date)
+                if match:
+                    date_str = f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
+                    self.template[f"{parent_path}/{field_name}"] = date_str
+
+        def set_end_time():
+            save_time = self.raw_data.get("/REC/TIME")
+            save_date = self.raw_data.get("/REC/DATE")
+            if not (save_time and save_date):
+                return None
+            if save_date.count(".") == 2:
+                save_date = save_date.replace(".", "-")
+            elif not save_date.count("-") == 2:
+                return
+            date_format = "%d-%m-%Y %H:%M:%S"
+            save_datetime = datetime.datetime.strptime(
+                f"{save_date.strip()} {save_time.strip()}", date_format
+            )
+
+            acq_time = self.raw_data.get("/ACQ/TIME")
+            time_delta = (
+                datetime.timedelta(seconds=int(float(acq_time)))
+                if (save_time is not None and save_date is not None)
+                else None
+            )
+            if not time_delta:
+                return None
+            end_datetime = save_datetime + time_delta
+            if time_delta is None:
+                return None
+
+            self.template[f"{parent_path}/{field_name}"] = end_datetime.isoformat()
+
+        if field_name == "start_time":
+            set_start_time()
+        elif field_name == "end_time":
+            # No data observed yet
+            set_end_time()

@@ -92,6 +92,7 @@ class NanonisDatSTS(SPMformatter):
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
         self._format_template_from_eln()
+        self._handle_special_fields()
 
     def construct_scan_region_grp(
         self,
@@ -378,3 +379,7 @@ class NanonisDatSTS(SPMformatter):
             self._construct_dI_dV_grp(curnt_volt, parent_path, group_name_grad)
 
         return group_name
+
+    def _handle_special_fields(self):
+        """Handle special fields in the template."""
+        super()._handle_special_fields()

@@ -27,16 +27,6 @@ from typing import Dict, Optional, Tuple, Union, Any
 
 import numpy as np
 
-# from pynxtools_spm.helper import (
-#     UNIT_TO_SKIP,
-#     fill_template_from_eln_data,
-#     link_seperation_from_hard_code,
-#     nested_path_to_slash_separated_path,
-#     to_intended_t,
-#     work_out_overwriteable_field,
-#     convert_data_dict_path_to_hdf5_path,
-# )
-# from pynxtools_spm.analyticalplot import dY_by_dX as dI_by_dV
 
 import pynxtools_spm.parsers.helpers as phs
 
@@ -81,17 +71,6 @@ class DatGenericNanonis:
         self.bias_spect_dict: NestedDict_t = {}
         self.raw_file: str = file_name
         self.extract_and_store_from_dat_file()
-
-    # def get_data_nested_dict(self) -> NestedDict_t:
-    #     """Retrun nested dict as bellow
-
-    #     bais_data = {data_field_name:{value: value_for_data_field_of_any_data_typeS,
-    #                                   unit: unit name,
-    #                                   date: ---,
-    #                                   time: ---}
-    #                 }
-    #     """
-    #     return self.bias_spect_dict
 
     # pylint: disable=too-many-arguments
     def check_and_write_unit(
