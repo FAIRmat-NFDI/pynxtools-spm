@@ -36,7 +36,7 @@ if TYPE_CHECKING:
 
 
 # TODO: Try to replace the upper version group, field and attributes
-# with search method from regrex (e.g. SCAN_data[...]). This will help
+# with search method from regrex (e.g. SCAN_DATA[...]). This will help
 # to search the group and field of overwritten name.
 
 # TODO: add test to check if user example config file is the same as given default
@@ -124,7 +124,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         self,
         partial_conf_dict,
         parent_path: str,
-        group_name="SCAN_data[scan_data]",
+        group_name="SCAN_DATA[scan_data]",
     ):
         """To construct the scan data like scan_data."""
 
