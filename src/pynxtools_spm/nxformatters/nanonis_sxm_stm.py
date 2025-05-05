@@ -148,7 +148,7 @@ class NanonisSxmSTM(SPMformatter):
                 self.template[stp_s + "/@units"] = unit
 
         # scan_data group
-        scan_data = "SCAN_data[scan_data]"
+        scan_data = "SCAN_DATA[scan_data]"
         if partial_conf_dict.get(scan_data):
             self.construct_scan_data_grps(
                 partial_conf_dict=partial_conf_dict[scan_data],
@@ -280,7 +280,7 @@ class NanonisSxmSTM(SPMformatter):
         self,
         partial_conf_dict,
         parent_path: str,
-        group_name="SCAN_data[scan_data]",
+        group_name="SCAN_DATA[scan_data]",
     ):
         if isinstance(partial_conf_dict, list):
             # NXdata group will be handled in the general function

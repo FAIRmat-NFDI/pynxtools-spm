@@ -367,7 +367,7 @@ The config file is used to map the raw data coming from the STS experiment file 
                         },
                         "step_size_N[step_size_n]": {"raw_path": "", "@units": ""},
                         "scan_time": "",
-                        "SCAN_data[scan_data]": ""
+                        "SCAN_DATA[scan_data]": ""
                     },
                     "scan_region": {
                         "scan_angle_N[scan_angle_n]": {
