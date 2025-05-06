@@ -15,20 +15,20 @@ nomad_settings = NOMADSettings(
     username="Mozumder",
     password="",
     token="",
-    modify_upload_metadata=False,
+    modify_upload_metadata=True,
     publish_to_nomad=False,
 )
 local_src_dir = Path(
     "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools-spm/tests/data/nanonis"
 )
-total_upload = 3
-data_processing_settings = DataProcessingSettings(
+total_upload = 1
+data_proc_settings = DataProcessingSettings(
     raw_file_exts=(
         ".dat",
         ".sxm",
     ),
     single_batch_processing_time=total_upload * 90,  # seconds
-    src_dir=Path("/home/rubel/NOMAD-FAIRmat/SPMfolder/DataFilesForUpload"),
+    src_dir=local_src_dir,  # Path("/home/rubel/NOMAD-FAIRmat/SPMfolder/DataFilesForUpload"),
     # copy_file_elsewhere=False,
     dst_dir="",
     create_pseudo_file=True,
@@ -42,10 +42,27 @@ data_processing_settings = DataProcessingSettings(
     afm_config="",
     logger_dir=current_dir,
     number_of_uploads=total_upload,
+    file_specific_eln={"raw_file_name": "eln_file_path"},
+    #     metadata = {
+    #     "metadata": {
+    #     "upload_name": upload_name,
+    #     "references": ["https://doi.org/xx.xxxx/xxxxxx"],
+    #     "datasets": dataset_id,
+    #     "embargo_length": 0,
+    #     "coauthors": ["coauthor@affiliation.de"],
+    #     "comment": 'This is a test upload...'
+    #     },
+    # }
+    uplad_metadata={
+        "metadata": {
+            "coauthors": ["cojaddl@physik.hu-berlin.de"],
+            "upload_name": "test_upload",
+        }
+    },
 )
 
 if __name__ == "__main__":
     run_uploader_with(
-        data_settings=nomad_settings,
-        data_processing_settings=data_processing_settings,
+        nomad_settings=nomad_settings,
+        data_proc_settings=data_proc_settings,
     )
