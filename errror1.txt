@@ -1,0 +1,342 @@
+ !!! Converting Nanonis STS data !!! 
+Using spm reader to convert the given files:  
+• tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/STS_nanonis_generic_5e_1.dat
+• tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/eln_data.yaml
+• tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/STS_nanonis_generic_5e_1.dat.done
+• tests/data/nanonis/sts/version_gen_5e_with_described_nxdata/config.json
+INFO - NumExpr defaulting to 12 threads.
+The value at /ENTRY[entry]/scan_mode does not match with the enumerated items from the open enumeration: ['constant_height', 'constant_current', 'constant_spacing'].
+INFO - The value at /ENTRY[entry]/scan_mode does not match with the enumerated items from the open enumeration: ['constant_height', 'constant_current', 'constant_spacing'].
+WARNING: The value at /ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/AMPLIFIER[amplifier]/current_gain should be one of the following Python types: (<class 'int'>, <class 'numpy.integer'>, <class 'float'>, <class 'numpy.floating'>), as defined in the NXDL as NX_NUMBER.
+WARNING - WARNING: The value at /ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/AMPLIFIER[amplifier]/current_gain should be one of the following Python types: (<class 'int'>, <class 'numpy.integer'>, <class 'float'>, <class 'numpy.floating'>), as defined in the NXDL as NX_NUMBER.
+WARNING: The required group, /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/POSITIONER_SPM, hasn't been supplied.
+WARNING - WARNING: The required group, /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/POSITIONER_SPM, hasn't been supplied.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/scan_points_bias requires a unit in the unit category NX_VOLTAGE.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/scan_points_bias requires a unit in the unit category NX_VOLTAGE.
+WARNING: The data entry corresponding to /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/scan_region/scan_range_bias is required and hasn't been supplied by the reader.
+WARNING - WARNING: The data entry corresponding to /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/scan_region/scan_range_bias is required and hasn't been supplied by the reader.
+WARNING: The required group, /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/SCAN_CONTROL[bias_spec_scan_control]/mesh_SCAN, hasn't been supplied.
+WARNING - WARNING: The required group, /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/SCAN_CONTROL[bias_spec_scan_control]/mesh_SCAN, hasn't been supplied.
+WARNING: The required group, /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/SCAN_CONTROL[bias_spec_scan_control]/scan_region, hasn't been supplied.
+WARNING - WARNING: The required group, /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/SCAN_CONTROL[bias_spec_scan_control]/scan_region, hasn't been supplied.
+WARNING: The required group, /ENTRY[entry]/USER, hasn't been supplied.
+WARNING - WARNING: The required group, /ENTRY[entry]/USER, hasn't been supplied.
+WARNING: Duplication of existing field at path '/ENTRY[entry]/entry_identifier' has found at /ENTRY[entry]/COLLECTION[entry_identifier]. Such duplication may break pynxtools writer.
+WARNING - WARNING: Duplication of existing field at path '/ENTRY[entry]/entry_identifier' has found at /ENTRY[entry]/COLLECTION[entry_identifier]. Such duplication may break pynxtools writer.
+WARNING: Field /ENTRY[entry]/COLLECTION[entry_identifier]/identifier written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/COLLECTION[entry_identifier]/identifier written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/DATA[lockin_demod_1x__filter] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/DATA[lockin_demod_1x__filter] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/DATA[lockin_demod_1x__filter]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/DATA[lockin_demod_1x__filter]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x__filter_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/DATA[lockin_demod_1x] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/DATA[lockin_demod_1x] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/DATA[lockin_demod_1x]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/DATA[lockin_demod_1x]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1x_data_grad]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/DATA[lockin_demod_1y__filter] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/DATA[lockin_demod_1y__filter] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/DATA[lockin_demod_1y__filter]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/DATA[lockin_demod_1y__filter]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y__filter_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/DATA[lockin_demod_1y] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/DATA[lockin_demod_1y] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/DATA[lockin_demod_1y]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/DATA[lockin_demod_1y]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_1y_data_grad]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/DATA[lockin_demod_2x__filter] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/DATA[lockin_demod_2x__filter] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/DATA[lockin_demod_2x__filter]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/DATA[lockin_demod_2x__filter]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x__filter_data_grad]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/DATA[lockin_demod_2x] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/DATA[lockin_demod_2x] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/DATA[lockin_demod_2x]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/DATA[lockin_demod_2x]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2x_data_grad]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/DATA[lockin_demod_2y__filter] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/DATA[lockin_demod_2y__filter] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/DATA[lockin_demod_2y__filter]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/DATA[lockin_demod_2y__filter]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y__filter_data_grad]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/AXISNAME[bias_voltage]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/DATA[lockin_demod_2y] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/DATA[lockin_demod_2y] written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/DATA[lockin_demod_2y]/@long_name written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/DATA[lockin_demod_2y]/@long_name written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data]/title written without documentation.
+WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad], but the field does not exist.
+WARNING - WARNING: There were attributes set for the field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad], but the field does not exist.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/@AXISNAME_indices[bias_voltage_indices] will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/@axes will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/@axes will not be written.
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/@signal will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/@signal will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/AXISNAME[bias_voltage] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/DATA[dI_by_dV] written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/title written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/bias_sweep/linear_sweep/SCAN_data[lockin_demod_2y_data_grad]/title written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/calibration/drift_N[drift_x]/@unit written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/calibration/drift_N[drift_x]/@unit written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/calibration/drift_N[drift_y]/@unit written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/calibration/drift_N[drift_y]/@unit written without documentation.
+WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/calibration/drift_N[drift_z]/@unit written without documentation.
+WARNING - WARNING: Attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/calibration/drift_N[drift_z]/@unit written without documentation.
+WARNING: Unit /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_x]/@units in dataset without its field /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_x].
+WARNING - WARNING: Unit /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_x]/@units in dataset without its field /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_x].
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_x]/@units will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_x]/@units will not be written.
+WARNING: Unit /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_y]/@units in dataset without its field /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_y].
+WARNING - WARNING: Unit /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_y]/@units in dataset without its field /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_y].
+WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_y]/@units will not be written.
+WARNING - WARNING: The attribute /ENTRY[entry]/INSTRUMENT[instrument]/piezo_sensor/piezo_configuration/piezo_material/curvature_radius_N[curvature_radius_y]/@units will not be written.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp_sensor written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp_sensor written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_temp_sensor written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_temp_sensor written without documentation.
+WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp_sensor written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp_sensor written without documentation.
+WARNING: Duplication of existing group at path '/ENTRY[entry]/SAMPLE[sample]/history' has found at /ENTRY[entry]/SAMPLE[sample]/HISTORY[history]. Such duplication may break pynxtools writer.
+WARNING - WARNING: Duplication of existing group at path '/ENTRY[entry]/SAMPLE[sample]/history' has found at /ENTRY[entry]/SAMPLE[sample]/HISTORY[history]. Such duplication may break pynxtools writer.
+WARNING: Duplication of existing field at path '/ENTRY[entry]/SAMPLE[sample]/sample_component' has found at /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]. Such duplication may break pynxtools writer.
+WARNING - WARNING: Duplication of existing field at path '/ENTRY[entry]/SAMPLE[sample]/sample_component' has found at /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]. Such duplication may break pynxtools writer.
+WARNING: Field /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]/chemical_formula written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]/chemical_formula written without documentation.
+WARNING: Field /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]/description written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]/description written without documentation.
+WARNING: Field /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]/name written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/SAMPLE[sample]/SAMPLE_COMPONENT[sample_component]/name written without documentation.
+WARNING: Field /ENTRY[entry]/user/affiliation written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/user/affiliation written without documentation.
+WARNING: Field /ENTRY[entry]/user/email written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/user/email written without documentation.
+WARNING: Field /ENTRY[entry]/user/name written without documentation.
+WARNING - WARNING: Field /ENTRY[entry]/user/name written without documentation.
+Warning: Data '['Dr. Carlos-Andres Palma (HU)', 'Dr. Cojal González (HU)']' can not be converted to an arrayand encounterd error could not convert string to float: 'Dr. Carlos-Andres Palma (HU)'
+Warning: Data '['mozumder@physik.hu-berlin.de', 'cojal@physik.hu-berlin.de', 'palma@physik.hu-berlin.de']' can not be converted to an arrayand encounterd error could not convert string to float: 'mozumder@physik.hu-berlin.de'
+ ################################## 
+Key: /ENTRY[entry]/COLLECTION[entry_identifier]/identifier, Value: test/NanonisMain/Identifier/value
+Key: /ENTRY[entry]/entry_identifier, Value: test_identifier
+ ################################## 
+Traceback (most recent call last):
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools/src/pynxtools/dataconverter/writer.py", line 294, in _put_data_into_hdf5
+    dataset = grp.create_dataset(entry_name, data=data)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/h5py/_hl/group.py", line 183, in create_dataset
+    dsid = dataset.make_new_dset(group, shape, dtype, data, name, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/h5py/_hl/dataset.py", line 163, in make_new_dset
+    dset_id = h5d.create(parent.id, name, tid, sid, dcpl=dcpl, dapl=dapl)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5d.pyx", line 137, in h5py.h5d.create
+ValueError: Unable to synchronously create dataset (name already exists)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/bin/dataconverter", line 10, in <module>
+    sys.exit(main_cli())
+             ^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/click/core.py", line 1161, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/click/core.py", line 1082, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/.venv/lib/python3.12/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools/src/pynxtools/dataconverter/convert.py", line 415, in convert_cli
+    convert(
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools/src/pynxtools/dataconverter/convert.py", line 246, in convert
+    Writer(data=data, nxdl_f_path=nxdl_f_path, output_path=output).write()
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools/src/pynxtools/dataconverter/writer.py", line 342, in write
+    self._put_data_into_hdf5()
+  File "/home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools/src/pynxtools/dataconverter/writer.py", line 298, in _put_data_into_hdf5
+    raise IOError(
+OSError: Unknown error occured writing the path: /ENTRY[entry]/entry_identifier with the following message: Unable to synchronously create dataset (name already exists)

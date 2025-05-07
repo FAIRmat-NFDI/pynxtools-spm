@@ -2,7 +2,9 @@
   "ENTRY[entry]": {
     "@default": { "raw_path": "@default:current" },
     "definition": { "@version": "" },
-    "entry_identifier": {
+    "entry_identifier": { "raw_path": "@default:test_identifier" },
+
+    "COLLECTION[entry_identifier]": {
       "identifier": { "raw_path": "@default:test/NanonisMain/Identifier/value" }
     },
     "INSTRUMENT[instrument]": {

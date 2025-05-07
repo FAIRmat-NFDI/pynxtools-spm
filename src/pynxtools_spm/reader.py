@@ -148,6 +148,13 @@ class SPMReader(BaseReader):
                 " corresponding extention."
             )
         manually_filter_data_type(filled_template)
+        print(" ################################## ")
+        for key, val in filled_template.items():
+            if "entry_identifier" in key:
+                print(f"Key: {key}, Value: {val}")
+            elif "idf_version" in key:
+                print(f"Key: {key}, Value: {val}")
+        print(" ################################## ")
         return filled_template
 
 
