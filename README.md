@@ -19,7 +19,8 @@ If someone wants to run the script from linux in a windows pc he may need to ins
 
 #### Install WSL2 with ubuntu distro and launch WSL
 Follow full documentation on [How to install Linux on Windows with WSL](https://learn.microsoft.com/en-us/windows/wsl/install) from Microsoft. Complete the instalation steps and launch linux terminal vis wsl, before following the next steps. After launching the linux terminal via `WSL` follow the next setps from you linux terminal
-#### Create python virtual environment in Linux
+
+#### Create python virtual environment in Linux and nnstall pynxtools and its plugins
 There are several package managers are available arround such as pip (probably most popular one), poetry, uv (highly faster compare to others). You can use one of them, but we recommand to use `uv` and we used `uv` tools througout the documentation.
 
 1. Install `uv` package manager: Before creating python virtial environment, [`uv`](https://docs.astral.sh/uv/) package manager needs to be [installed](https://docs.astral.sh/uv/getting-started/installation/#standalone-installer) in first place. 
@@ -61,14 +62,13 @@ $ source .venv/bin/activate
 5. Install `pynxtool` and `pynxtools-spm` in virtual environment: Both of the `pynxtools` and `pynxtools-spm` are available in PyPI repository, and install the same versions installed in NOMAD where you planed to store you data ([▶️ Watch the video]()).
 
 ```console
-# Install pynxtools in your python virtual environment
-$ uv pip install pynxtools
+# Installing pynxtools-spm will also install pynxtools
 
-# Install pynxtools-spm
-$ uv pip install pynxtools-som
+$ uv pip install pynxtools-spm
 ```
 
-
+#### Write a python script using
+After installtion of the `pynxtools-spm`, you have the `nomad_uploader` sub-package with convenient tools to write your python script that convert and upload the data to NOMAD data repository. Below, an example for the python script that to upload the files in a zip format. Note that NOMAD will extract the files from
 
 
 ##### TODO:
