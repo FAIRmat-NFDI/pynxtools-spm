@@ -24,7 +24,8 @@ dependencies = [
     "pynxtools>=0.10.1",
     # "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@master#egg=pynxtools",
     # "pySPM==0.6.2",  # SPM file reader for Bruker files use it when you have Bruker files
-    "pint"
+    "pint",
+    'requests>=2.27.1,<2.32.0'
 ]
 
 # TODO: Add acknowledgements to pySPM python package
@@ -39,6 +40,7 @@ dev = [
     "ruff>=0.8.3",
     "pytest",
     "pip-tools",
+
 ]
 
 docs = [
