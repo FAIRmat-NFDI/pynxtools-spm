@@ -62,7 +62,6 @@ CONVERT_DICT = {
     "Mesh_scan": "mesh_SCAN[mesh_scan]",
     "Instrument": "INSTRUMENT[instrument]",
     "Note": "NOTE[note]",
-    "Sample_component_set": "SAMPLE_COMPONENT_SET[sample_component_set]",
     "Sample_component": "SAMPLE_COMPONENT[sample_component]",
     "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
 }
@@ -75,6 +74,7 @@ PINT_QUANTITY_MAPPING = {
     "[current]": "current",
 }
 
+REPEATEABLE_CONCEPTS = ("Sample_component",)
 
 @dataclass
 class NXdata:
@@ -82,6 +82,34 @@ class NXdata:
     signal: Optional[str] = None
     auxiliary_signals: Optional[List[str]] = None
     title: Optional[str] = None
+
+
+def write_multiple_concepts_instance(
+    eln_dict: Dict, list_of_concept: List[str], convert_mapping: Dict[str, str]
+):
+    """Write multiple concepts for variadic name in eln dict if there are multiple
+    instances are requested in eln archive.json file.
+    """
+    new_dict = {}
+    if not isinstance(eln_dict, dict):
+        return eln_dict
+    for key, val in eln_dict.items():
+        if isinstance(val, list) and key in list_of_concept:
+            if key in convert_mapping:
+                del convert_mapping[key]
+            for i, item in enumerate(val, 1):
+                new_key = f"{key.lower()}_{i}"
+                convert_mapping.update({new_key: f"{key.upper()}[{new_key}]"})
+                new_dict[new_key] = write_multiple_concepts_instance(
+                    item, list_of_concept, convert_mapping
+                )
+        elif isinstance(val, dict):
+            new_dict[key] = write_multiple_concepts_instance(
+                val, list_of_concept, convert_mapping
+            )
+        else:
+            new_dict[key] = val
+    return new_dict
 
 
 class SPMformatter(ABC):
@@ -130,9 +158,16 @@ class SPMformatter(ABC):
 
     def _get_eln_dict(self, eln_file: str | Path):
         with open(eln_file, mode="r", encoding="utf-8") as fl_obj:
-            eln_dict = flatten_and_replace(
-                FlattenSettings(yaml.safe_load(fl_obj), CONVERT_DICT, REPLACE_NESTED)
+            eln_dict: dict = yaml.safe_load(fl_obj)
+            extended_eln: dict = write_multiple_concepts_instance(
+                eln_dict=eln_dict,
+                list_of_concept=REPEATEABLE_CONCEPTS,
+                convert_mapping=CONVERT_DICT,
             )
+            eln_dict: dict = flatten_and_replace(
+                FlattenSettings(extended_eln, CONVERT_DICT, REPLACE_NESTED)
+            )
+        print(f"ELN dict: {extended_eln}")
         return eln_dict
 
     def walk_though_config_nested_dict(
