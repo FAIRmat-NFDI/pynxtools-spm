@@ -94,9 +94,10 @@ def write_multiple_concepts_instance(
     if not isinstance(eln_dict, dict):
         return eln_dict
     for key, val in eln_dict.items():
-        if isinstance(val, list) and key in list_of_concept:
+        if key in list_of_concept:
             if key in convert_mapping:
                 del convert_mapping[key]
+            val = [val] if not isinstance(val, list) else val
             for i, item in enumerate(val, 1):
                 new_key = f"{key.lower()}_{i}"
                 convert_mapping.update({new_key: f"{key.upper()}[{new_key}]"})
