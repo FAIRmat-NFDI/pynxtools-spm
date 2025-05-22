@@ -86,7 +86,7 @@ class NXdata:
 
 
 def write_multiple_concepts_instance(
-    eln_dict: Dict, list_of_concept: List[str], convert_mapping: Dict[str, str]
+    eln_dict: Dict, list_of_concept: tuple[str], convert_mapping: Dict[str, str]
 ):
     """Write multiple concepts for variadic name in eln dict if there are multiple
     instances are requested in eln archive.json file.
