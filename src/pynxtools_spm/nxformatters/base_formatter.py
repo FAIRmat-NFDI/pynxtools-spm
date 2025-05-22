@@ -166,7 +166,7 @@ class SPMformatter(ABC):
                 list_of_concept=REPEATEABLE_CONCEPTS,
                 convert_mapping=CONVERT_DICT,
             )
-            eln_dict: dict = flatten_and_replace(
+            eln_dict = flatten_and_replace(
                 FlattenSettings(extended_eln, CONVERT_DICT, REPLACE_NESTED)
             )
         print(f"ELN dict: {extended_eln}")
