@@ -76,6 +76,7 @@ PINT_QUANTITY_MAPPING = {
 
 REPEATEABLE_CONCEPTS = ("Sample_component",)
 
+
 @dataclass
 class NXdata:
     grp_name: Optional[str] = ""
