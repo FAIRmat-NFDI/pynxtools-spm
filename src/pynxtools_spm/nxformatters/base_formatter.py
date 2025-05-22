@@ -169,7 +169,6 @@ class SPMformatter(ABC):
             eln_dict = flatten_and_replace(
                 FlattenSettings(extended_eln, CONVERT_DICT, REPLACE_NESTED)
             )
-        print(f"ELN dict: {extended_eln}")
         return eln_dict
 
     def walk_though_config_nested_dict(
