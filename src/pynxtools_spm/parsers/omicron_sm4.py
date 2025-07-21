@@ -1,4 +1,5 @@
 from spym import RHKsm4
+from pynxtools_spm.parsers.base import SPMParser
 
 
 class Sm4Omicron(SPMParser):
@@ -31,8 +32,16 @@ class Sm4Omicron(SPMParser):
         # For example, you can convert it to a specific format or extract certain fields
 
         sm4_data_dict = {}
+        for page in rhk_file_obj.pages:
+            label = page.label
+            for key, val in page.attrs.items():
+                sm4_data_dict[f"/{label}/{key}"] = val
+            for coord, arr in page.coords:
+                sm4_data_dict[f"/{label}/{coord}"] = arr
+            sm4_data_dict[f"/{label}/data"] = page.data
+            
 
-        return rhk_file_obj
+        return sm4_data_dict
 
     def get_stm_raw_file_info():
         ...
