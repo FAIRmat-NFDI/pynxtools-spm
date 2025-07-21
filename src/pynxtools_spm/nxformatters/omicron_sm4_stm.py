@@ -204,6 +204,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                                       parent_path: str,
                                       group_name: Optional[str],
                                       scan_tag: str):
+        ...
         
 
     def _construct_scan_region_group(self,

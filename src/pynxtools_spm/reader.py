@@ -98,39 +98,49 @@ class SPMReader(BaseReader):
             raise ValueError("Data file is required for the reader to work.")
 
         # Get callable object that has parser inside
+        formater_obj = None
         if experirment_technique == "STM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
 
-            nss = NanonisSxmSTM(
+            formater_obj = NanonisSxmSTM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
-            nss.get_nxformatted_template()
-
+            # nss.get_nxformatted_template()
+        elif experirment_technique == "STM" and raw_file_ext == "sm4":
+            from pynxtools_spm.nxformatters.omicron_sm4_stm import OmicronSM4STMFormatter
+            formater_obj = OmicronSM4STMFormatter(template=template,
+                                         raw_file=data_file,
+                                         eln_file=eln_file,
+                                         config_file=config_file
+                                         )
+            # oss.get_nxformatted_template()
         elif experirment_technique == "AFM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
 
-            nsa = NanonisSxmAFM(
+            formater_obj = NanonisSxmAFM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
-            nsa.get_nxformatted_template()
+            # nsa.get_nxformatted_template()
         elif experirment_technique == "STS" and raw_file_ext == "dat":
             from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
 
-            nds = NanonisDatSTS(
+            formater_obj = NanonisDatSTS(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
-            nds.get_nxformatted_template()
-        # set_default_attr_in_group(template)
+            # nds.get_nxformatted_template()
 
+        if not formater_obj:
+            raise ValueError(f"IncorrectExperiment: Incorect experiment technique ({experirment_technique}) or file extension ({raw_file_ext}) are given")
+        formater_obj.get_nxformatted_template()
         # manually_remove the empty data
         for key, val in template.items():
             if isinstance(val, np.ndarray):
