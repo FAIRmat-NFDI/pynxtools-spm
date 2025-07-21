@@ -6,7 +6,11 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "github.copilot.enable": {
-    "python": true,
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "python": false,
     "json": true
   },
   "editor.defaultFormatter": "charliermarsh.ruff",
