@@ -562,3 +562,19 @@ class SPMformatter(ABC):
             elif key.endswith("end_time"):
                 parent_path, key = key.rsplit("/", 1)
                 _format_datetime(parent_path, key, val)
+
+
+    def template_data_units_and_others(self, 
+                                       end_conf_dct: dict, 
+                                       parent_path: str,
+                                       concept_key: str,
+                                       part_to_embed: Optional[str]):
+        data, unit, other_attrs = _get_data_unit_and_others(
+            data_dict=self.raw_data, end_dict=end_conf_dct
+        )
+        temp_key = f"{parent_path}/{replace_variadic_name_part(concept_key, part_to_embed=part_to_embed)}"
+        self.template[temp_key] = to_intended_t(data)
+        self.template[f"{temp_key}/@units"] = unit
+        if other_attrs:
+            for k, v in other_attrs.items():
+                self.template[f"{temp_key}/@{k}"] = v

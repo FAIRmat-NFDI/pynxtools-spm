@@ -342,7 +342,7 @@ def get_link_compatible_key(key):
     return compatible_key
 
 
-def replace_variadic_name_part(name, part_to_embed):
+def replace_variadic_name_part(name, part_to_embed: None):
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"
@@ -356,6 +356,9 @@ def replace_variadic_name_part(name, part_to_embed):
                  ('y_M_N_yy[y_x_yy]', 'x') : 'y_M_N_yy[y_x_yy]',
                  ('yy_ff[yy_mn]', 'x'): 'yy_ff[yy_mn]',}
     """
+    if not part_to_embed:
+        return name
+        
     f_part, _ = name.split("[") if "[" in name else (name, "")
     ind_start = None
     ind_end = None

@@ -3,7 +3,7 @@
     "@default": { "raw_path": "@default:current_backward" },
     "identifier_collection": "",
     "start_time": {
-      "#note": "Handled in function _set_start_end_time"
+      "#note": "noted/Handled in function _set_start_end_time use RHK_DATE and RHK_TIME"
     },
     "end_time": {
       "#note": "Handled in function _set_start_end_time"
@@ -20,8 +20,9 @@
         "cryo_bottom_temp": "",
         "cryo_shield_temp": "",
         "scan_name": { "raw_path": "/Scan/series name" },
-        "SCAN_CONTROL[scan_control]": {
-          "scan_name": { "raw_path": "/Scan/series name" },
+        "SCAN_CONTROL[scan_control_*]": {
+          "note": "handled in function _construct_nxscan_controllers. With '*' it is possible to have multiple scan controllers with different extensions.",
+          "scan_name": { "raw_path": "noted/RHK_PageID" },
           "mesh_SCAN[mesh_scan]": {
             "backward_speed_N[backward_speed_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
@@ -35,11 +36,18 @@
             },
             "scan_speed_N[scan_speed_n]": "",
             "channel_NAME_N[scan_name_n]": "",
-            "scan_points_N[scan_points_n]": {
-              "#note": "Derived in construct_scan_pattern_grp",
-              "raw_path": "/SCAN/PIXELS",
-              "@units": ""
-            },
+            "scan_points_N[scan_points_n]": [
+              {
+                "x": {
+                  "raw_path": "noted/checkit/RHK_Xsize"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "noted/checkit/RHK_Ysize"
+                }
+              }
+            ],
             "stepping_N[stepping_n]": {
               "raw_path": "@default:1",
               "@units": ""
@@ -85,10 +93,16 @@
         "cryo_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_temp_sensor",
         "tip_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/tip_temp_sensor"
       },
+      "voltage_sensor": {
+        "voltage": {
+          "raw_path": "noted/RHK_bias",
+          "@units": "@default:V"
+        }
+      },
       "current_sensor": {
         "current": {
-          "raw_path": "/Current/Current",
-          "@units": "/Current/Current/@unit"
+          "raw_path": "noted/RHK_Current",
+          "@units": "noted/RHK_ZPI_SetPointUnit"
         },
         "current_offset": {
           "raw_path": "/Current/Offset",
@@ -106,8 +120,7 @@
         }
       },
       "lockin_amplifier": {
-        "note": """This groups should Handled in specific function.
-         Because the data will come from the active channel""",
+        "note": "handled in function _construct_lockin_amplifier_grp",
         "reference_frequency": {
           "raw_path": "noted/RHK_CH1Drive_Frequency",
           "@units": "noted/RHK_CH1Drive_FrequencyUnit"
@@ -308,7 +321,6 @@
                 }
               }
             ],
-
             "second_order_correction_N[second_order_correction_n]": [
               {
                 "x": {
@@ -406,10 +418,14 @@
         },
         "POSITIONER_SPM[positioner_spm]": {
           "z_controller": {
-            "K_i": { "raw_path": "noted/RHK_ZPI_IntegralGain",
-              "@units": "noted/RHK_ZPI_IntegralGainUnit" },
-            "K_p": { "raw_path": "noted/RHK_ZPI_ProportionalGain",
-              "@units": "noted/RHK_ZPI_ProportionalGainUnit" },
+            "K_i": {
+              "raw_path": "noted/RHK_ZPI_IntegralGain",
+              "@units": "noted/RHK_ZPI_IntegralGainUnit"
+            },
+            "K_p": {
+              "raw_path": "noted/RHK_ZPI_ProportionalGain",
+              "@units": "noted/RHK_ZPI_ProportionalGainUnit"
+            },
             "set_point": {
               "raw_path": "noted/RHK_ZPI_SetPoint",
               "@units": "noted/RHK_ZPI_SetPointUnit"
@@ -434,7 +450,10 @@
               "@units": "/Z-Controller/Z/@unit"
             }
           },
-          "z_offset": "",
+          "z_offset": {
+            "raw_path": "noted/RHK_Zoffset",
+            "@units": "noted/RHK_Zunits"
+          },
           "tip_position_z": "",
           "controller_label": { "raw_path": "/Z-Controller/Controller name" }
         },
@@ -474,8 +493,8 @@
       },
       "sample_bias_voltage": {
         "bias_voltage": {
-          "raw_path": "/Bias/Bias",
-          "@units": "/Bias/Bias/@unit"
+          "raw_path": "noted/RHK_bias",
+          "@units": "@default:V"
         },
         "bias_offset": {
           "raw_path": "/Bias/Offset",

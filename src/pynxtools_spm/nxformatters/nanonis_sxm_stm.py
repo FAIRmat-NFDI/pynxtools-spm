@@ -67,7 +67,7 @@ class NanonisSxmSTM(SPMformatter):
 
     def __init__(
         self,
-        template: "Template",
+        template: Template,
         raw_file: str | Path,
         eln_file: str | Path,
         config_file: str | Path = None,  # Incase it is not provided by users
