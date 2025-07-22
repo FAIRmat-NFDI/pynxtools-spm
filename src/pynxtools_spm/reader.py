@@ -79,7 +79,7 @@ class SPMReader(BaseReader):
         for file in file_paths:
             ext = file.rsplit(".", 1)[-1]
             fl_obj: object
-            if ext in ["sxm", "dat"]:
+            if ext in ["sxm", "dat", "sm4"]:
                 data_file = file
                 raw_file_ext = ext
             if ext == "json":
@@ -97,8 +97,8 @@ class SPMReader(BaseReader):
         if not data_file:
             raise ValueError("Data file is required for the reader to work.")
 
-        # Get callable object that has parser inside
         formater_obj = None
+        # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
 

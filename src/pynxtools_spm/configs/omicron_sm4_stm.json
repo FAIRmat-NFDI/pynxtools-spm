@@ -3,7 +3,7 @@
     "@default": { "raw_path": "@default:current_backward" },
     "identifier_collection": "",
     "start_time": {
-      "#note": "noted/Handled in function _set_start_end_time use RHK_DATE and RHK_TIME"
+      "#note": "/Topography_Forward/Handled in function _set_start_end_time use RHK_DATE and RHK_TIME"
     },
     "end_time": {
       "#note": "Handled in function _set_start_end_time"
@@ -21,8 +21,8 @@
         "cryo_shield_temp": "",
         "scan_name": { "raw_path": "/Scan/series name" },
         "SCAN_CONTROL[scan_control_*]": {
-          "note": "handled in function _construct_nxscan_controllers. With '*' it is possible to have multiple scan controllers with different extensions.",
-          "scan_name": { "raw_path": "noted/RHK_PageID" },
+          "#note": "handled in function _construct_nxscan_controllers. With '*' it is possible to have multiple scan controllers with different extensions.",
+          "scan_name": { "raw_path": "/Topography_Forward/RHK_PageID" },
           "mesh_SCAN[mesh_scan]": {
             "backward_speed_N[backward_speed_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
@@ -39,12 +39,12 @@
             "scan_points_N[scan_points_n]": [
               {
                 "x": {
-                  "raw_path": "noted/checkit/RHK_Xsize"
+                  "raw_path": "/Topography_Forward/RHK_Xsize"
                 }
               },
               {
                 "y": {
-                  "raw_path": "noted/checkit/RHK_Ysize"
+                  "raw_path": "/Topography_Forward/RHK_Ysize"
                 }
               }
             ],
@@ -58,14 +58,29 @@
           },
           "scan_region": {
             "scan_angle_N[scan_angle_n]": {
-              "raw_path": "/SCAN/ANGLE",
+              "raw_path": "/Topography_Forward/RHK_Angle",
               "@units": "@default:deg"
             },
-            "scan_offset_N[scan_offset_n]": {
-              "#note": "Derived in function 'construct_scan_region_grp'.",
-              "raw_path": "/SCAN/OFFSET",
-              "@units": "/Z-Controller/Z/@unit"
-            },
+            "scan_offset_N[scan_offset_n]": [
+              {
+                "x": {
+                  "raw_path": "/Topography_Forward/RHK_Xoffset",
+                  "@units": "/Topography_Forward/RHK_X/@unit"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Topography_Forward/RHK_Yoffset",
+                  "@units": "/Topography_Forward/RHK_Y/@unit"
+                }
+              },
+              {
+                "z": {
+                  "raw_path": "/Topography_Forward/RHK_Zoffset",
+                  "@units": "/Topography_Forward/RHK_Z/@unit"
+                }
+              }
+            ],
             "scan_range_N[scan_range_n]": {
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/RANGE",
@@ -95,24 +110,21 @@
       },
       "voltage_sensor": {
         "voltage": {
-          "raw_path": "noted/RHK_bias",
+          "raw_path": "/Topography_Forward/RHK_bias",
           "@units": "@default:V"
         }
       },
       "current_sensor": {
         "current": {
-          "raw_path": "noted/RHK_Current",
-          "@units": "noted/RHK_ZPI_SetPointUnit"
+          "raw_path": "/Topography_Forward/RHK_Current",
+          "@units": "/Topography_Forward/RHK_ZPI_SetPoint/@unit"
         },
         "current_offset": {
-          "raw_path": "/Current/Offset",
-          "@units": "/Current/Offset/@unit"
+          "raw_path": "/Topography_Forward/RHK_Current/Offset",
+          "@units": "/Topography_Forward/RHK_Current/Offset/@unit"
         },
         "current_calibration": {
-          "coefficients": {
-            "raw_path": "/Current/Calibration",
-            "@units": "/Current/Calibration/@unit"
-          },
+          "coefficients": "",
           "calibration_time": ""
         },
         "AMPLIFIER[amplifier]": {
@@ -120,21 +132,21 @@
         }
       },
       "lockin_amplifier": {
-        "note": "handled in function _construct_lockin_amplifier_grp",
+        "#note": "handled in function _construct_lockin_amplifier_grp",
         "reference_frequency": {
-          "raw_path": "noted/RHK_CH1Drive_Frequency",
-          "@units": "noted/RHK_CH1Drive_FrequencyUnit"
+          "raw_path": "/Topography_Forward/RHK_CH1Drive_Frequency",
+          "@units": "/Topography_Forward/RHK_CH1Drive_Frequency/@unit"
         },
         "reference_amplitude": {
-          "raw_path": "noted/RHK_CH1Drive_Amplitude",
-          "@units": "noted/RHK_CH1Drive_AmplitudeUnit"
+          "raw_path": "/Topography_Forward/RHK_CH1Drive_Amplitude",
+          "@units": "/Topography_Forward/RHK_CH1Drive_Amplitude/@unit"
         },
         "reference_phase": {
-          "raw_path": "noted/RHK_CH1Drive_PhaseOffset",
-          "@units": "noted/RHK_CH1Drive_PhaseOffsetUnit"
+          "raw_path": "/Topography_Forward/RHK_CH1Drive_PhaseOffset",
+          "@units": "/Topography_Forward/RHK_CH1Drive_PhaseOffset/@unit"
         },
         "active_channel": {
-          "raw_path": "noted/RHK_Lockin0_NonMasterOscillator"
+          "raw_path": "/Topography_Forward/RHK_Lockin0_NonMasterOscillator"
         },
         "modulation_signal": {
           "raw_path": "/Lock-in/Modulated signal"
@@ -150,8 +162,8 @@
         "low_pass_N[low_pass_n]": [
           {
             "1": {
-              "raw_path": "noted/RHK_LowPassFilter1_CutoffFrequency",
-              "@units": "noted/RHK_LowPassFilter1_CutoffFrequencyUnits"
+              "raw_path": "/Topography_Forward/RHK_LowPassFilter1_CutoffFrequency",
+              "@units": "/Topography_Forward/RHK_LowPassFilter1_CutoffFrequency/@unit"
             }
           }
         ],
@@ -182,32 +194,40 @@
         "ref_phase_N[ref_phase_n]": [
           {
             "d1": {
-              "raw_path": "noted/RHK_CH1Drive_PhaseOffset",
-              "@units": "noted/RHK_CH1Drive_PhaseOffsetUnit"
+              "raw_path": "/Topography_Forward/RHK_CH1Drive_PhaseOffset",
+              "@units": "/Topography_Forward/RHK_CH1Drive_PhaseOffset/@unit"
             }
           },
           {
             "d2": {
-              "raw_path": "noted/RHK_CH2Drive_PhaseOffset",
-              "@units": "noted/RHK_CH2Drive_PhaseOffsetUnit"
+              "raw_path": "/Topography_Forward/RHK_CH2Drive_PhaseOffset",
+              "@units": "/Topography_Forward/RHK_CH2Drive_PhaseOffset/@unit"
             }
           }
         ],
         "harmonic_order_N[harmonic_order_n]": [
-          { "d1": { "raw_path": "noted/RHK_CH1Drive_HarmonicFactor" } },
-          { "d2": { "raw_path": "noted/RHK_CH2Drive_HarmonicFactor" } }
-        ],
-        "dc_offset_N": [
           {
             "d1": {
-              "raw_path": "noted/RHK_CH1DriveValue",
-              "@units": "noted/RHK_CH1DriveValueUnit"
+              "raw_path": "/Topography_Forward/RHK_CH1Drive_HarmonicFactor"
             }
           },
           {
             "d2": {
-              "raw_path": "noted/RHK_CH2DriveValue",
-              "@units": "noted/RHK_CH2DriveValueUnit"
+              "raw_path": "/Topography_Forward/RHK_CH2Drive_HarmonicFactor"
+            }
+          }
+        ],
+        "dc_offset_N": [
+          {
+            "d1": {
+              "raw_path": "/Topography_Forward/RHK_CH1DriveValue",
+              "@units": "/Topography_Forward/RHK_CH1DriveValue/@unit"
+            }
+          },
+          {
+            "d2": {
+              "raw_path": "/Topography_Forward/RHK_CH2DriveValue",
+              "@units": "/Topography_Forward/RHK_CH2DriveValue/@unit"
             }
           }
         ]
@@ -299,25 +319,25 @@
               "raw_path": "@default:active"
             },
             "calibration_date": {
-              "raw_path": "noted/RHK_DateTime"
+              "raw_path": "/Topography_Forward/RHK_DateTime"
             },
             "calibration_coefficient_N[calibration_coefficient_n]": [
               {
                 "x": {
-                  "raw_path": "noted/RHK_PiezoSensitivity_TubeX",
-                  "@units": "noted/RHK_PiezoSensitivity_TubeXUnit"
+                  "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeX",
+                  "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeX/@unit"
                 }
               },
               {
                 "y": {
-                  "raw_path": "noted/RHK_PiezoSensitivity_TubeY",
-                  "@units": "noted/RHK_PiezoSensitivity_TubeYUnit"
+                  "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeY",
+                  "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeY/@unit"
                 }
               },
               {
                 "z": {
-                  "raw_path": "noted/RHK_PiezoSensitivity_TubeZ",
-                  "@units": "noted/RHK_PiezoSensitivity_TubeZUnit"
+                  "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeZ",
+                  "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeZ/@unit"
                 }
               }
             ],
@@ -347,14 +367,14 @@
             "drift_N[drift_n]": [
               {
                 "x": {
-                  "raw_path": "noted/ImageDrift_dX",
-                  "@units": "noted/ImageDrift_dXUnit"
+                  "raw_path": "/Topography_Forward/ImageDrift_dX",
+                  "@units": "/Topography_Forward/ImageDrift_dX/@unit"
                 }
               },
               {
                 "y": {
-                  "raw_path": "noted/ImageDrift_dY",
-                  "@units": "noted/ImageDrift_dYUnit"
+                  "raw_path": "/Topography_Forward/ImageDrift_dY",
+                  "@units": "/Topography_Forward/ImageDrift_dY/@unit"
                 }
               },
               {
@@ -419,16 +439,16 @@
         "POSITIONER_SPM[positioner_spm]": {
           "z_controller": {
             "K_i": {
-              "raw_path": "noted/RHK_ZPI_IntegralGain",
-              "@units": "noted/RHK_ZPI_IntegralGainUnit"
+              "raw_path": "/Topography_Forward/RHK_ZPI_IntegralGain",
+              "@units": "/Topography_Forward/RHK_ZPI_IntegralGain/@unit"
             },
             "K_p": {
-              "raw_path": "noted/RHK_ZPI_ProportionalGain",
-              "@units": "noted/RHK_ZPI_ProportionalGainUnit"
+              "raw_path": "/Topography_Forward/RHK_ZPI_ProportionalGain",
+              "@units": "/Topography_Forward/RHK_ZPI_ProportionalGain/@unit"
             },
             "set_point": {
-              "raw_path": "noted/RHK_ZPI_SetPoint",
-              "@units": "noted/RHK_ZPI_SetPointUnit"
+              "raw_path": "/Topography_Forward/RHK_ZPI_SetPoint",
+              "@units": "/Topography_Forward/RHK_ZPI_SetPoint/@unit"
             },
             "D_t": {
               "raw_path": "/Z-Controller/Time const",
@@ -451,8 +471,8 @@
             }
           },
           "z_offset": {
-            "raw_path": "noted/RHK_Zoffset",
-            "@units": "noted/RHK_Zunits"
+            "raw_path": "/Topography_Forward/RHK_Zoffset",
+            "@units": "/Topography_Forward/RHK_Zoffset/@unit"
           },
           "tip_position_z": "",
           "controller_label": { "raw_path": "/Z-Controller/Controller name" }
@@ -493,18 +513,12 @@
       },
       "sample_bias_voltage": {
         "bias_voltage": {
-          "raw_path": "noted/RHK_bias",
+          "raw_path": "/Topography_Forward/RHK_bias",
           "@units": "@default:V"
         },
-        "bias_offset": {
-          "raw_path": "/Bias/Offset",
-          "@units": "/Bias/Offset/@unit"
-        },
+        "bias_offset": "",
         "bias_calibration": {
-          "coefficients": {
-            "raw_path": "/Bias/Calibration",
-            "@units": "/Bias/Calibration/@unit"
-          },
+          "coefficients": "",
           "calibration_time": ""
         }
       }
@@ -523,18 +537,18 @@
       {
         "data": {
           "name": "Topography_forward",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Zunits"
+          "raw_path": "/Topography_Forward/data",
+          "@units": "/Topography_Forward/RHK_Z/@unit"
         },
         "0": {
           "name": "x",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Xunits"
+          "raw_path": "/Topography_Forward/Topography_Forward_x",
+          "@units": "/Topography_Forward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Yunits"
+          "raw_path": "/Topography_Forward/Topography_Forward_y",
+          "@units": "/Topography_Forward/RHK_Y/@unit"
         },
         "title": {
           "raw_path": "@default:Topography Plot of STM Experiment (Foward Direction)"
@@ -544,18 +558,18 @@
       {
         "data": {
           "name": "Topography_backward",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Zunits"
+          "raw_path": "/Topography_Backward/data",
+          "@units": "/Topography_Backward/RHK_Z/@unit"
         },
         "0": {
           "name": "x",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Xunits"
+          "raw_path": "/Topography_Backward/Topography_Backward_x",
+          "@units": "/Topography_Backward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Yunits"
+          "raw_path": "/Topography_Backward/Topography_Backward_y",
+          "@units": "/Topography_Backward/RHK_Y/@unit"
         },
         "title": {
           "raw_path": "@default:Topography Plot of STM Experiment (Backward Direction)"
@@ -565,18 +579,18 @@
       {
         "data": {
           "name": "Current",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_CurrentUnits"
+          "raw_path": "/Current_Backward/data",
+          "@units": "/Current_Backward/RHK_Z/@unit"
         },
         "0": {
           "name": "x",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Xunits"
+          "raw_path": "/Current_Backward/Current_Backward_x",
+          "@units": "/Current_Backward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Yunits"
+          "raw_path": "/Current_Backward/Current_Backward_y",
+          "@units": "/Current_Backward/RHK_Y/@unit"
         },
         "title": {
           "raw_path": "@default:Current Plot of STM Experiment (Forward Direction)"
@@ -586,18 +600,18 @@
       {
         "data": {
           "name": "Current",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_CurrentUnits"
+          "raw_path": "/Current_Forward/data",
+          "@units": "/Current_Forward/RHK_Z/@unit"
         },
         "0": {
           "name": "x",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Xunits"
+          "raw_path": "/Current_Forward/Current_Forward_x",
+          "@units": "/Current_Forward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "needs_care",
-          "@units": "noted/RHK_Yunits"
+          "raw_path": "/Current_Forward/Current_Forward_y",
+          "@units": "/Current_Forward/RHK_Y/@unit"
         },
         "title": {
           "raw_path": "@default:Current Plot of STM Experiment (Backward Direction)"

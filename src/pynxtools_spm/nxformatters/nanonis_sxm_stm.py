@@ -144,6 +144,7 @@ class NanonisSxmSTM(SPMformatter):
                 self.NXScanControl.x_points = point
             elif self._axes[ind] == "y":
                 self.NXScanControl.y_points = point
+
         # step_size
         if len(gbl_scan_points) == len(gbl_scan_ranges):
             for ind, (rng, pnt) in enumerate(zip(gbl_scan_ranges, gbl_scan_points)):
