@@ -85,6 +85,14 @@
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/RANGE",
               "@units": "/Z-Controller/Z/@unit"
+            },
+            "scan_start_N[scan_start_n]": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "scan_end_N[scan_end_n]": {
+              "raw_path": "",
+              "@units": ""
             }
           },
           "scan_time_start": "",
@@ -161,7 +169,7 @@
         "recorded_channels": "",
         "low_pass_N[low_pass_n]": [
           {
-            "1": {
+            "d1": {
               "raw_path": "/Topography_Forward/RHK_LowPassFilter1_CutoffFrequency",
               "@units": "/Topography_Forward/RHK_LowPassFilter1_CutoffFrequency/@unit"
             }
