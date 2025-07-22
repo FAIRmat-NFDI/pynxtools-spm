@@ -122,6 +122,8 @@ class SPMformatter(ABC):
 
     # Class used to colleted data from several subgroups of ScanControl and reuse them
     # in the subgroups
+    
+    # TODO: only use unit for instead of y_start_unit, ... 
     @dataclass
     class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
         # Put the class in the base_formatter.py under BaseFormatter class
@@ -240,9 +242,8 @@ class SPMformatter(ABC):
                             group_name=key,
                         )
                     else:  # Handle fields and attributes
-                        part_to_embed, path_dict = (
-                            item.popitem()
-                        )  # Current only one item is valid
+                        part_to_embed, path_dict = list(item.items())[0] 
+                        # Current only one item is valid
                         # with #note tag this will be handled in a specific function
                         if "#note" in path_dict:
                             continue
@@ -251,7 +252,8 @@ class SPMformatter(ABC):
                         )
                         temp_key = f"{parent_path}/{replace_variadic_name_part(key, part_to_embed=part_to_embed)}"
                         self.template[temp_key] = to_intended_t(data)
-                        self.template[f"{temp_key}/@units"] = unit
+                        if unit:
+                            self.template[f"{temp_key}/@units"] = unit
                         if other_attrs:
                             for k, v in other_attrs.items():
                                 self.template[f"{temp_key}/@{k}"] = v
