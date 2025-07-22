@@ -40,7 +40,7 @@ class Sm4Omicron(SPMBase):
                 sm4_data_dict[f"/{label}/{key}"] = val
             for coord, arr in page.coords:
                 coord = re.sub(pattern=r"(unit|units)$", repl=r"/@unit", string=coord, flags=re.I)
-                sm4_data_dict[f"/{label}/{coord}"] = arr
+                sm4_data_dict[f"/{label}/coords/{coord}"] = arr
             sm4_data_dict[f"/{label}/data"] = page.data
             
 
