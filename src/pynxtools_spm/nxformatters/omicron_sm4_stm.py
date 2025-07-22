@@ -55,7 +55,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
     def __init__(
             self,
-            template: Template,
+            template: "Template",
             raw_file: str | Path,
             eln_file: str | Path,
             config_file: str | Path = None,  # Incase it is not provided by users
@@ -79,7 +79,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         """
         Find active channel from a bunch of available channels.
         """
-        if not (raw_dt_dct and key):
+        if not (raw_dt_dct or key):
             raise ValueError("NoInputData: Unable to find the active channels due to lack of input data.")
         
         search = lambda key_: re.search(r"RHK_CH(\d+)Drive_MasterOscillator", 
@@ -87,7 +87,8 @@ class OmicronSM4STMFormatter(SPMformatter):
                                        flags=re.A)
         if key is not None:
             srch = search(key)
-            return srch.groups()[0] if srch
+            if srch:
+                return srch.groups()[0]
          
         # Get the active channel
         for key_, val in raw_dt_dct.items():
@@ -97,7 +98,7 @@ class OmicronSM4STMFormatter(SPMformatter):
             
             srch = search(key_)
             # expect val string of 1 of 0 
-            if srch and int(val):
+            if srch and int(val) == 1:
                 return srch.groups()[0]
         
         return
@@ -143,7 +144,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                                                           group_name: str,
                                                           fld_to_modify,
                                                           func_to_raw_key):
-        if len(varidic_dct) == 1:
+        if len(varidic_dct) >= 1:
             part_to_embed, raw_path_dct = list(varidic_dct.items())[0]
         else:
             raise ValueError(f"Variadic dict should have only one element.")
@@ -171,13 +172,14 @@ class OmicronSM4STMFormatter(SPMformatter):
             if isinstance(val, dict) and "raw_path" in val:
                 continue
             # Variadic fields
-            elif isinstance(val, list) and all("raw_path" in enddct for vari_n, enddct in vardict.items() for vardict in val):
+            elif isinstance(val, list) and all("raw_path" in enddct for vardict in val for _, enddct in vardict.items()):
                 for var_fld_dct in val:
                     self._handle_variadic_field_with_modified_raw_data_key(varidic_dct=var_fld_dct,
                                                                            parent_parh=parent_path,
                                                                            group_name=group_name,
                                                                            fld_to_modify=key,
                                                                            func_to_raw_key=func_to_raw_key)
+            # Nested group
             elif isinstance(val, dict):
                 self.walk_though_config_nested_dict_with_raw_data_key(partial_conf_dict=val,
                                                                       parent_path=f"{parent_path}/{group_name}",
@@ -196,7 +198,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         self.walk_though_config_nested_dict_with_raw_data_key(partial_conf_dict=partial_conf_dict,
                                                               parent_path=parent_path,
                                                               group_name=group_name,
-                                                              func_to_raw_key=lambda k: self.get_key_with(active_chnl=actv_chnl, k))
+                                                              func_to_raw_key=lambda k: self.get_key_with(active_chnl=actv_chnl, key=k))
 
 
     def _construct_scan_pattern_group(self,
@@ -259,11 +261,6 @@ class OmicronSM4STMFormatter(SPMformatter):
                 self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="y")}/@units"] = "m"
 
 
-
-
-        
-
-
     def _construct_nxscan_controllers(self,
                                       partial_conf_dict: dict,
                                       parent_path: str = "",
@@ -281,7 +278,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         m = re.search(pattern=r'(SCAN_CONTROL\[scan_control_)\*(\])', string=group_name)
         
         if not m:
-            continue
+            raise ValueError("UnavailableGroup: Scan controller group has not been found in config file.")
         
         for scan_tag in self._scan_list:
             groups = m.groups()
