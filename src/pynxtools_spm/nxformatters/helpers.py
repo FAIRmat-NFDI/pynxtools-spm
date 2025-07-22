@@ -128,10 +128,11 @@ def _get_data_unit_and_others(
             contains other attributes (if any attributes comes as a part of value dict).
     """
 
-    if end_dict is None:
+    if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
-        if not end_dict:
-            return "", "", None
+        
+    if not end_dict:
+        return "", "", None
 
     raw_path = end_dict.get("raw_path", "")
 
