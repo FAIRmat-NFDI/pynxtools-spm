@@ -52,15 +52,28 @@
               "raw_path": "@default:1",
               "@units": ""
             },
-            "step_size_N[step_size_n]": { "raw_path": "", "@units": "" },
+            "step_size_N[step_size_n]": [
+              { "x": { "raw_path": "", "@units": "" } },
+              { "y": { "raw_path": "", "@units": "" } }
+            ],
             "scan_time": "",
             "SCAN_DATA[scan_data]": ""
           },
           "scan_region": {
-            "scan_angle_N[scan_angle_n]": {
-              "raw_path": "/Topography_Forward/RHK_Angle",
-              "@units": "@default:deg"
-            },
+            "scan_angle_N[scan_angle_n]": [
+              {
+                "x": {
+                  "raw_path": "/Topography_Forward/RHK_Angle",
+                  "@units": "@default:deg"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Topography_Forward/RHK_Angle",
+                  "@units": "@default:deg"
+                }
+              }
+            ],
             "scan_offset_N[scan_offset_n]": [
               {
                 "x": {
@@ -72,12 +85,6 @@
                 "y": {
                   "raw_path": "/Topography_Forward/RHK_Yoffset",
                   "@units": "/Topography_Forward/RHK_Y/@unit"
-                }
-              },
-              {
-                "z": {
-                  "raw_path": "/Topography_Forward/RHK_Zoffset",
-                  "@units": "/Topography_Forward/RHK_Z/@unit"
                 }
               }
             ],

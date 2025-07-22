@@ -42,6 +42,10 @@ if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
 
 
+        
+    
+    
+
 class OmicronSM4STMFormatter(SPMformatter):
     """
     Formatter for Omicron SM4 STM data.
@@ -73,7 +77,24 @@ class OmicronSM4STMFormatter(SPMformatter):
             return fhs.read_config_file(config_file)
         else:
             return load_default_config("omicron_sm4_stm")
-
+        
+    # TODO move this functnion to the base formater
+    def feed_data_unit_attr_to_template(self,
+                                        data: Any,
+                                        parent_path: str,
+                                        fld_key: str,
+                                        group_name: str = None, 
+                                        unit: str = None, 
+                                        other_attrs: dict= None):
+        if group_name:
+            parent_path = f"{parent_path}/{group_name}"
+        self.template[f"{parent_path}/{fld_key}"] = to_intended_t(data)
+        if unit:
+            self.template[f"{parent_path}/{fld_key}/@units"] = unit
+        if other_attrs:
+            for k, v in other_attrs.items():
+                self.template[f"{parent_path}/{group_name}/@{k}"] = v    
+    
     @staticmethod
     def find_active_channel(raw_dt_dct: dict=None, key: str=None):
         """
@@ -130,11 +151,15 @@ class OmicronSM4STMFormatter(SPMformatter):
                 mod_val_dct[tag] = mod_vval
             data, unit, other_attrs = _get_data_unit_and_others(data_dict=self.raw_data, 
                                                                 end_dict=mod_val_dct)
-            self.template[f"{parent_path}/{group_name}/{fld_key}/@units"] = unit
-            self.template[f"{parent_path}/{group_name}/{fld_key}"] = to_intended_t(data)
-            if other_attrs:
-                for k, v in other_attrs.items():
-                    self.template[f"{parent_path}/{fld_key}/@{k}"] = v
+            self.feed_data_unit_attr_to_template(data=data, parent_path=parent_path,
+                                                 group_name=group_name, unit=unit,
+                                                 other_attrs=other_attrs, fld_key=fld_key)
+            
+            # self.template[f"{parent_path}/{group_name}/{fld_key}/@units"] = unit
+            # self.template[f"{parent_path}/{group_name}/{fld_key}"] = to_intended_t(data)
+            # if other_attrs:
+            #     for k, v in other_attrs.items():
+            #         self.template[f"{parent_path}/{fld_key}/@{k}"] = v
     
     def _handle_variadic_field_with_modified_raw_data_key(self,
                                                           varidic_dct: dict,
@@ -204,20 +229,58 @@ class OmicronSM4STMFormatter(SPMformatter):
                                       parent_path: str,
                                       group_name: Optional[str],
                                       scan_tag: str):
-        ...
-        
+        # TODO add a check if raw_path starts with a scan_tag.
+        for key, val in partial_conf_dict.items():
+            if re.match(r"scan_points_[A-Z]{1}\[", string=key):
+                for li_elm in val:
+                    part_to_embed, end_dct = list(li_elm.items())[0]
+                    fld_key = replace_variadic_name_part(name=key, part_to_embed=part_to_embed)
+                    data, _, other_attrs = _get_data_unit_and_others(data_dict=self.raw_data, 
+                                                                        end_dict=end_dct)
+                    if part_to_embed == "x":
+                        self.NXScanControl.x_points = data
+                        self.template[f"{parent_path}/{group_name}/{fld_key}"] = data
+                    elif part_to_embed == "y":
+                        self.NXScanControl.y_points = data
+                        self.template[f"{parent_path}/{group_name}/{fld_key}"] = data
+                continue
+
+
+            if not re.match(pattern=rf"step_size_[A-Y]{1}\[", string=key):
+                self.walk_though_config_nested_dict(config_dict={key: val}, parent_path=f"{parent_path}/{group_name}")
+
+
+        for key, val in partial_conf_dict.items():
+            if isinstance(val, list) and re.match(pattern=r"step_size_[A-Y]{1}\[", string=key):
+                for li_elm in val:
+                    part_to_embed, end_dct = list(li_elm.items())[0]
+                    fld_key = replace_variadic_name_part(name=key, part_to_embed=part_to_embed)
+                    data, unit, other_attrs = _get_data_unit_and_others(data_dict=self.raw_data, end_dict=end_dct)
+                    if data:
+                        self.feed_data_unit_attr_to_template(data=data, parent_path=parent_path, 
+                                                            group_name=group_name, fld_key=fld_key,
+                                                            unit=unit, other_attrs=other_attrs)
+                        
+                        print(' #### from step_size calculation -1')
+                    else:
+                        print(' #### from step_size calculation')
+                        if self.NXScanControl.x_points and self.NXScanControl.x_range and part_to_embed == "x":
+                            self.template[f"{parent_path}/{group_name}/{fld_key}"] = (self.NXScanControl.x_range
+                                                                                      / self.NXScanControl.x_points)
+                            self.template[f"{parent_path}/{group_name}/{fld_key}/@units"] = self.NXScanControl.x_start_unit
+                        if self.NXScanControl.y_points and self.NXScanControl.y_range and part_to_embed == "y":
+                            self.template[f"{parent_path}/{group_name}/{fld_key}"] = (self.NXScanControl.y_range
+                                                                                      / self.NXScanControl.y_points)
+                            self.template[f"{parent_path}/{group_name}/{fld_key}/@units"] = self.NXScanControl.y_start_unit
+                    
+
+
 
     def _construct_scan_region_group(self,
                                      partial_conf_dict: dict,
                                      parent_path: str,
                                      group_name: Optional[str],
                                      scan_tag: str):
-        x_range = None
-        x_start = None
-        x_end = None
-        y_range = None
-        y_start = None
-        y_end = None
         x_arr = None
         y_arr = None
         for k, v in self.raw_data.items():
@@ -228,35 +291,48 @@ class OmicronSM4STMFormatter(SPMformatter):
                 y_arr = v
         
         if isinstance(x_arr, np.ndarray):
-            x_end = x_arr[-1]
-            x_start = x_arr[0]
-            x_range = x_end - x_start
+            self.NXScanControl.x_end = x_arr[-1]
+            self.NXScanControl.x_start = x_arr[0]
+            self.NXScanControl.x_range = self.NXScanControl.x_end - self.NXScanControl.x_start
+            self.NXScanControl.x_start_unit = "m" 
         if isinstance(y_arr, np.ndarray):
-            y_end = y_arr[-1]
-            y_start = y_arr[0]
-            y_range = y_end - y_start            
-        print(" #### partial_conf_dict : ", partial_conf_dict)
+            self.NXScanControl.y_end = y_arr[-1]
+            self.NXScanControl.y_start = y_arr[0]
+            self.NXScanControl.y_range = self.NXScanControl.y_end - self.NXScanControl.y_start
+            self.NXScanControl.y_start_unit = "m"
         # handle fields
         for key, val in partial_conf_dict.items():
             if re.match(pattern=r"scan_range_[\w]{1}\[", string=key, flags=re.I) and "raw_path" in val:
-                print(" #### scan_range key : ", f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}")
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}"] = x_range
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}"] = self.NXScanControl.x_range
                 # TODO collect unit from raw data dict
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}/@units"] = "m"
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="y")}"] = y_range
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="y")}/@units"] = "m"
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}/@units"] = self.NXScanControl.x_start_unit
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="y")}"] = self.NXScanControl.y_range
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="y")}/@units"] = self.NXScanControl.y_start_unit
             elif re.match(pattern=r"scan_start_[\w]{1}\[", string=key, flags=re.I) and "raw_path" in val:
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}"] = x_start
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}"] = self.NXScanControl.x_start
                 # TODO collect unit from raw data dict
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}/@units"] = "m"
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"] = y_start
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"] = "m"
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed="x")}/@units"] = self.NXScanControl.x_start_unit
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"] = self.NXScanControl.y_start
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"] = self.NXScanControl.y_start_unit
             elif re.match(pattern=r"scan_end_[\w]{1}\[", string=key, flags=re.I) and "raw_path" in val:
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"] = x_end
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"] = self.NXScanControl.x_end
                 # TODO collect unit from raw data dict
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"] = "m"
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"] = y_end
-                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"] = "m"
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"] = self.NXScanControl.x_start_unit
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"] = self.NXScanControl.y_end
+                self.template[f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"] = self.NXScanControl.y_start_unit
+            elif (isinstance(val, list) and all([isinstance(li_elm, dict) for li_elm in val])):
+                for li_elm in val:
+                    part_to_embed, end_dct = list(li_elm.items())[0]
+                    key_mod = replace_variadic_name_part(name=key, part_to_embed=part_to_embed)
+                    data, unit, other_attrs = _get_data_unit_and_others(data_dict=self.raw_data, end_dict=end_dct)
+                    self.feed_data_unit_attr_to_template(data=data, parent_path=parent_path,
+                                                         group_name=group_name, unit=unit,
+                                                         other_attrs=other_attrs, fld_key=key_mod,
+                                                         )
+            # single field
+            elif isinstance(val, dict) and "raw_path" in val:
+                data, unit, other_attrs = _get_data_unit_and_others(data_dict=self.raw_data, end_dict=val)
+
 
 
     def _construct_nxscan_controllers(self,
@@ -276,7 +352,6 @@ class OmicronSM4STMFormatter(SPMformatter):
             if m and (scan := m.groups()[0]) and scan not in self._scan_list:
                 self._scan_list.append(m.groups()[0])
         
-        print(" #### scan list : ", self._scan_list)
         m = re.search(pattern=r'(SCAN_CONTROL\[scan_control_)\*(\])', string=group_name)
         
         if not m:
@@ -287,6 +362,14 @@ class OmicronSM4STMFormatter(SPMformatter):
             group_name_mod = groups[0] + scan_tag + groups[1]
             
             parent_path_mod = f"{parent_path}/{group_name_mod}"
+            # Data from scan_region group will be used later
+            for key, val in partial_conf_dict.items():
+                if re.match(pattern=r"^scan_region$", string=rf"{key}", flags=re.I):
+                    self._construct_scan_region_group(partial_conf_dict=val,
+                                                      parent_path=parent_path_mod,
+                                                      group_name=key,
+                                                      scan_tag=scan_tag
+                    )
             for key, val in partial_conf_dict.items():
                 if re.match(pattern=r"^mesh_SCAN\[mesh_scan\]$", string=rf"{key}", flags=re.I):
                     self._construct_scan_pattern_group(partial_conf_dict=val,
@@ -294,12 +377,6 @@ class OmicronSM4STMFormatter(SPMformatter):
                                                        group_name=key,
                                                        scan_tag=scan_tag
                                                        )
-                elif re.match(pattern=r"^scan_region$", string=rf"{key}", flags=re.I):
-                    self._construct_scan_region_group(partial_conf_dict=val,
-                                                      parent_path=parent_path_mod,
-                                                      group_name=key,
-                                                      scan_tag=scan_tag
-                    )
                 elif isinstance(val, dict) and "raw_path" in val:
                     if "#note" in val:
                         continue
@@ -307,9 +384,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                     data, unit, other_attrs = _get_data_unit_and_others(
                         data_dict=self.raw_data, end_dict=val
                         )
-                    self.template[f"{parent_path_mod}/{key}"] = to_intended_t(data)
-                    self.template[f"{parent_path_mod}/{key}/@units"] = unit
-                    if other_attrs:
-                        for k, v in other_attrs.items():
-                            self.template[f"{parent_path_mod}/{key}/@{k}"] = v
+                    self.feed_data_unit_attr_to_template(data=data, parent_path=parent_path_mod,
+                                                         fld_key=key, other_attrs=other_attrs,
+                                                         unit=unit)
                 
