@@ -67,13 +67,12 @@ class SPMParser:
             }
         },
         "sm4": {
-            "omicron":{
+            "omicron": {
                 "005.0041": Sm4Omicron,
                 "5.41": Sm4Omicron,
                 "5.4": Sm4Omicron,
-
             }
-        }
+        },
     }
 
     def __get_appropriate_parser(

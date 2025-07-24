@@ -58,7 +58,6 @@ def _verify_unit(
     try:
         unit_derived = str(ureg(unit_derived).units)
         return unit_derived
-        # return "" if unit_derived == "dimensionless" else unit_derived
     except Exception as e:
         # TODO: add nomad logger here
         logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
@@ -70,7 +69,7 @@ def _get_data_unit_and_others(
     partial_conf_dict: dict = None,
     concept_field: str = None,
     end_dict: dict = None,
-    func_on_raw_key: callable= None
+    func_on_raw_key: callable = None,
 ) -> Tuple[str, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
@@ -128,7 +127,7 @@ def _get_data_unit_and_others(
             For example:
                 In omicron stm file the scans current and topography, scan region could be differ.
                 A raw key example is `/Topography_forward/...` is slightly different
-                for current scan as `/current_forward/...`. A single function (probably 
+                for current scan as `/current_forward/...`. A single function (probably
                 lambda function) is sufficient to modify this.
 
     Returns:
@@ -145,10 +144,9 @@ def _get_data_unit_and_others(
             return data_dict.get(func_on_raw_key(key), None)
         return data_dict.get(key, None)
 
-
     if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
-        
+
     if not end_dict:
         return "", "", None
 
@@ -347,11 +345,13 @@ def get_link_compatible_key(key):
     compatible_key = key.replace("NX", "")
     key_parts = compatible_key.split("/")
     new_parts = []
-    for part in key_parts:
+    for part in key_parts[1:]:
+        key = part
         ind_f = part.find("[")
         ind_e = part.find("]")
         if ind_f > 0 and ind_e > 0:
-            new_parts.append(part[ind_f + 1 : ind_e])
+            key = part[ind_f + 1 : ind_e]
+        new_parts.append(key)
 
     compatible_key = "/" + "/".join(new_parts)
     return compatible_key
@@ -373,7 +373,7 @@ def replace_variadic_name_part(name, part_to_embed: None):
     """
     if not part_to_embed:
         return name
-        
+
     f_part, _ = name.split("[") if "[" in name else (name, "")
     ind_start = None
     ind_end = None

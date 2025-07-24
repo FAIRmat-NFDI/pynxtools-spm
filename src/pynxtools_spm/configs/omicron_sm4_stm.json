@@ -23,7 +23,9 @@
         "scan_name": { "raw_path": "" },
         "SCAN_CONTROL[scan_control_*]": {
           "#note": "handled in function _construct_nxscan_controllers. With '*' it is possible to have multiple scan controllers with different extensions.",
-          "scan_name": { "raw_path": "/Topography_Forward/RHK_PageID" },
+          "scan_name": {
+            "raw_path": "TODO: write the forward or backward scan here."
+          },
           "mesh_SCAN[mesh_scan]": {
             "backward_speed_N[backward_speed_n]": {
               "raw_path": "",
@@ -132,6 +134,11 @@
         "voltage": {
           "raw_path": "/Topography_Forward/RHK_bias",
           "@units": "@default:V"
+        },
+        "AMPLIFIER[amplifier]": {
+          "current_gain": {
+            "raw_path": "TODO: Try to find this in file metadata."
+          }
         }
       },
       "current_sensor": {
@@ -148,7 +155,9 @@
           "calibration_time": ""
         },
         "AMPLIFIER[amplifier]": {
-          "current_gain": { "raw_path": "" }
+          "current_gain": {
+            "raw_path": "TODO: Try to find this in file metadata."
+          }
         }
       },
       "lockin_amplifier": {
@@ -207,7 +216,10 @@
             }
           }
         ],
-        "hp_filter_order_N": [{ "d1": { "raw_path": "" } }, { "d2": { "raw_path": "" } }],
+        "hp_filter_order_N": [
+          { "d1": { "raw_path": "" } },
+          { "d2": { "raw_path": "" } }
+        ],
         "ref_phase_N[ref_phase_n]": [
           {
             "d1": {
@@ -329,6 +341,7 @@
           "CIRCUIT[circuit]": ""
         }
       },
+
       "piezo_sensor": {
         "PIEZO_CONFIG_SPM[piezo_configuration]": {
           "calibration": {

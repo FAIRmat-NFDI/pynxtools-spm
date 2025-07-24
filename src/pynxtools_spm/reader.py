@@ -110,12 +110,16 @@ class SPMReader(BaseReader):
             )
             # nss.get_nxformatted_template()
         elif experirment_technique == "STM" and raw_file_ext == "sm4":
-            from pynxtools_spm.nxformatters.omicron_sm4_stm import OmicronSM4STMFormatter
-            formater_obj = OmicronSM4STMFormatter(template=template,
-                                         raw_file=data_file,
-                                         eln_file=eln_file,
-                                         config_file=config_file
-                                         )
+            from pynxtools_spm.nxformatters.omicron_sm4_stm import (
+                OmicronSM4STMFormatter,
+            )
+
+            formater_obj = OmicronSM4STMFormatter(
+                template=template,
+                raw_file=data_file,
+                eln_file=eln_file,
+                config_file=config_file,
+            )
             # oss.get_nxformatted_template()
         elif experirment_technique == "AFM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
@@ -139,7 +143,9 @@ class SPMReader(BaseReader):
             # nds.get_nxformatted_template()
 
         if not formater_obj:
-            raise ValueError(f"IncorrectExperiment: Incorect experiment technique ({experirment_technique}) or file extension ({raw_file_ext}) are given")
+            raise ValueError(
+                f"IncorrectExperiment: Incorect experiment technique ({experirment_technique}) or file extension ({raw_file_ext}) are given"
+            )
         formater_obj.get_nxformatted_template()
         # manually_remove the empty data
         for key, val in template.items():

@@ -14,7 +14,7 @@ class Sm4Omicron(SPMBase):
     def parse(self):
         """
         Parse the Omicron SM4 STM file and return the parsed data.
-        
+
         RHKsm4 Object:
             RHKsm4 object is a container containing RHKpage (can be called scan page) object
             each of the page has object public attributes
@@ -22,7 +22,7 @@ class Sm4Omicron(SPMBase):
                 - label --> label for each scan page
                 - data  --> 2D matrix image data
                 - coords --> list of coordinates for each image data
-        
+
         Returns:
             parsed data object (RHKsm4) object containing all the parsed data.
         """
@@ -35,16 +35,18 @@ class Sm4Omicron(SPMBase):
         for page in rhk_file_obj:
             label = page.label
             for key, val in page.attrs.items():
-                key = re.sub(pattern=r"(units|unit)$", repl=r'/@unit', string=key, flags=re.I)
-                    
+                key = re.sub(
+                    pattern=r"(units|unit)$", repl=r"/@unit", string=key, flags=re.I
+                )
+
                 sm4_data_dict[f"/{label}/{key}"] = val
             for coord, arr in page.coords:
-                coord = re.sub(pattern=r"(unit|units)$", repl=r"/@unit", string=coord, flags=re.I)
+                coord = re.sub(
+                    pattern=r"(unit|units)$", repl=r"/@unit", string=coord, flags=re.I
+                )
                 sm4_data_dict[f"/{label}/coords/{coord}"] = arr
             sm4_data_dict[f"/{label}/data"] = page.data
-            
 
         return sm4_data_dict
 
-    def get_stm_raw_file_info():
-        ...
+    def get_stm_raw_file_info(): ...

@@ -10,24 +10,24 @@
     - Use also the same voltage in the sample environment.
 8. In the RHKattributes.json file, for each of the scan there are some keywords-value pairs that we may also collect from the `.sm4`.
 
-```
-    "long_name": "Topography Backward",
-    "units": "m",
-    "scaling_factor": 1.0,
-    "offset": 0.0,
-    "start_time": "2024-01-24T16:27:57.000",
-    "notes": "",
-    "interpretation": "image",
-    "bias": -0.029999995604157448,
-    "bias_units": "V",
-    "setpoint": -1e-09,
-    "setpoint_units": "A",
-    "feedback_active": true,
-    "feedback_pgain": 1e-10,
-    "scan_angle": 0.0,
-    "time_per_point": 0.0001896237808978185,
-    "filename": "STM_sm4/VT240124_A1_0003.sm4"
-```
+    ```
+        "long_name": "Topography Backward",
+        "units": "m",
+        "scaling_factor": 1.0,
+        "offset": 0.0,
+        "start_time": "2024-01-24T16:27:57.000",
+        "notes": "",
+        "interpretation": "image",
+        "bias": -0.029999995604157448,
+        "bias_units": "V",
+        "setpoint": -1e-09,
+        "setpoint_units": "A",
+        "feedback_active": true,
+        "feedback_pgain": 1e-10,
+        "scan_angle": 0.0,
+        "time_per_point": 0.0001896237808978185,
+        "filename": "STM_sm4/VT240124_A1_0003.sm4"
+    ```
 9. ✅ Question for Omicron SM4 STM file:
     - How to define the scan area from the available metadata?
         In a typical scan called `topography`, in the scan matrix, X-axis spans from `0.00000000e+00` to `4.99023443e-08`
@@ -177,3 +177,21 @@
 11. For omicron make the multiple scan_control for topography and current measurements.
 
 12. Write NXdata and map that NXdata to in NXdata in scan_control in the NXscan. And store the NXdata to be linked to the NXdata in NXscan control.
+13. Include data in ELN:
+    - tip_temp
+    - cryo_temp
+    - piezo_temp
+    - Remove scan_name from scan_environment
+
+14. Fix links   
+    1. <group name="current_sensor" type="NXsensor" optional="true"></group>
+    2. <group name="voltage_sensor" type="NXsensor" optional="true"></group>
+    3. <group name="piezo_sensor" type="NXsensor" optional="true"></group>
+    4. <group name="sample_bias_voltage" type="NXsensor"></group>
+
+15. Make sample hisroty optional=True in the NXsample.
+    <group name="history" type="NXhistory">
+        <doc>
+            A set of physical processes that occurred to the sample prior/during experiment.
+        </doc>
+    </group>
