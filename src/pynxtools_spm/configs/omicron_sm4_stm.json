@@ -132,7 +132,7 @@
       },
       "voltage_sensor": {
         "voltage": {
-          "raw_path": "/Topography_Forward/RHK_bias",
+          "raw_path": "/Topography_Forward/RHK_Bias",
           "@units": "@default:V"
         },
         "AMPLIFIER[amplifier]": {
@@ -406,9 +406,6 @@
                   "raw_path": "/Topography_Forward/ImageDrift_dY",
                   "@units": "/Topography_Forward/ImageDrift_dY/@unit"
                 }
-              },
-              {
-                "z": ""
               }
             ],
             "drift_correction_status": {
@@ -507,7 +504,7 @@
         "x": "",
         "y": "",
         "z": {
-          "raw_path": "",
+          "raw_path": "Try to ",
           "@units": ""
         }
       },
@@ -540,7 +537,7 @@
       },
       "sample_bias_voltage": {
         "bias_voltage": {
-          "raw_path": "/Topography_Forward/RHK_bias",
+          "raw_path": "/Topography_Forward/RHK_Bias",
           "@units": "@default:V"
         },
         "bias_offset": "",

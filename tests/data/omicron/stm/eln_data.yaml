@@ -1,11 +1,11 @@
 Instrument:
   hardware:
-    model: "5.4"
+    model: 
     model/@version:
     name: omicron
     vendor: omicron
   software:
-    model: "5.4"
+    model: 
     model/@version:
     name: omicron
     vendor: omicron
@@ -25,7 +25,7 @@ experiment_technique: STM
 identifier_collection: D:\\DATA\\nanonis V45_sessions\\Zurich PLL\\2023-03-31
 identifier_experiment: D:\\DATA\\nanonis V45_sessions\\Zurich PLL\\2023-03-31\\2023_03_31_oAu(111)__FeBr2_EP1_018.sxm
 scan_mode: constant height
-user:
+User:
   affiliation:
   - Dr. Cojal González, José David (HU)
   - Prof. Carlos-Andres Palma (HU)
