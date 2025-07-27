@@ -527,7 +527,6 @@ class OmicronSM4STMFormatter(SPMformatter):
 
     def _handle_special_fields(self):
         super()._handle_special_fields()
-
         template_key = ""
         config_dict = self.config_dict
         template_links = {}
