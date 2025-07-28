@@ -44,7 +44,6 @@ jobs:
            uv pip install pynxtools==${{ matrix.pynxtools_versions }}
           fi
       - name: Install nomad
-        if: "${{ matrix.python_version != '3.8'}}"
         run: |
           uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
       - name: Install package and dependencies
