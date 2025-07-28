@@ -1,8 +1,6 @@
-from typing import Dict, Optional, Tuple
 from pynxtools.units import ureg
-from typing import Optional, Dict, Tuple, Union, Any
+from typing import Optional, Dict, Tuple, Union, Any, Literal
 from pathlib import Path
-from typing import Literal
 import logging
 from copy import deepcopy
 import numpy as np
