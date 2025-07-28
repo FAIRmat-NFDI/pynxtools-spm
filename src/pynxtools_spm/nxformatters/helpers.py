@@ -1,16 +1,12 @@
-from typing import Dict, Optional, Tuple
-from pint import UnitRegistry
-from typing import Optional, Dict, Tuple, Union, Any
+from pynxtools.units import ureg
+from typing import Optional, Dict, Tuple, Union, Any, Literal
 from pathlib import Path
-from typing import Literal
 import logging
 from copy import deepcopy
 import numpy as np
 from findiff import Diff
 import json
 
-
-ureg = UnitRegistry()
 
 #  try to create a common logger for all the modules
 logger = logging.getLogger(__name__)
