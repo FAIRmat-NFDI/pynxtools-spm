@@ -1,8 +1,6 @@
-from typing import Dict, Optional, Tuple
 from pint import UnitRegistry
-from typing import Optional, Dict, Tuple, Union, Any
+from typing import Optional, Dict, Tuple, Union, Any, Callable, Literal
 from pathlib import Path
-from typing import Literal
 import logging
 from copy import deepcopy
 import numpy as np
@@ -62,7 +60,6 @@ def _verify_unit(
     try:
         unit_derived = str(ureg(unit_derived).units)
         return unit_derived
-        # return "" if unit_derived == "dimensionless" else unit_derived
     except Exception as e:
         # TODO: add nomad logger here
         logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
@@ -74,6 +71,7 @@ def _get_data_unit_and_others(
     partial_conf_dict: dict = None,
     concept_field: str = None,
     end_dict: dict = None,
+    func_on_raw_key: callable = None,
 ) -> Tuple[str, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
@@ -124,6 +122,15 @@ def _get_data_unit_and_others(
                 "raw_path": "/SCAN/ANGLE",
                 "@units": "@default:deg"
             },
+        func_on_raw_key : callable
+            Function to apply on raw keywith one input parameter.
+            If there any modification is need on the raw key, this function can be used.
+
+            For example:
+                In omicron stm file the scans current and topography, scan region could be differ.
+                A raw key example is `/Topography_forward/...` is slightly different
+                for current scan as `/current_forward/...`. A single function (probably
+                lambda function) is sufficient to modify this.
 
     Returns:
     --------
@@ -132,23 +139,31 @@ def _get_data_unit_and_others(
             contains other attributes (if any attributes comes as a part of value dict).
     """
 
-    if end_dict is None:
+    def get_data_modified_key(key):
+        if not key:
+            return None
+        if isinstance(func_on_raw_key, Callable):
+            return data_dict.get(func_on_raw_key(key), None)
+        return data_dict.get(key, None)
+
+    if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
-        if not end_dict:
-            return "", "", None
+
+    if not end_dict:
+        return "", "", None
 
     raw_path = end_dict.get("raw_path", "")
 
     # if raw_path have multiple possibel path to the raw data
     if isinstance(raw_path, list):
         for path in raw_path:
-            raw_data = data_dict.get(path, "")
-            if isinstance(raw_data, np.ndarray) or raw_data != "":
+            raw_data = get_data_modified_key(path)
+            if isinstance(raw_data, np.ndarray) or raw_data in ["", None]:
                 break
     elif raw_path.startswith("@default:"):
         raw_data = raw_path.split("@default:")[-1]
     else:
-        raw_data = data_dict.get(raw_path)
+        raw_data = get_data_modified_key(raw_path)
     unit_path = end_dict.get("@units", None)
 
     try:
@@ -160,13 +175,13 @@ def _get_data_unit_and_others(
 
     if unit_path and isinstance(unit_path, list):
         for unit_item in unit_path:
-            unit = data_dict.get(unit_item, None)
+            unit = get_data_modified_key(unit_item)
             if unit is not None:
                 break
     elif unit_path and unit_path.startswith("@default:"):
         unit = unit_path.split("@default:")[-1]
     else:
-        unit = data_dict.get(unit_path, None)
+        unit = get_data_modified_key(unit_path)
     if unit is None or unit == "":
         return to_intended_t(raw_data), "", val_copy
     return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
@@ -332,17 +347,19 @@ def get_link_compatible_key(key):
     compatible_key = key.replace("NX", "")
     key_parts = compatible_key.split("/")
     new_parts = []
-    for part in key_parts:
+    for part in key_parts[1:]:
+        key = part
         ind_f = part.find("[")
         ind_e = part.find("]")
         if ind_f > 0 and ind_e > 0:
-            new_parts.append(part[ind_f + 1 : ind_e])
+            key = part[ind_f + 1 : ind_e]
+        new_parts.append(key)
 
     compatible_key = "/" + "/".join(new_parts)
     return compatible_key
 
 
-def replace_variadic_name_part(name, part_to_embed):
+def replace_variadic_name_part(name, part_to_embed: None):
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"
@@ -356,6 +373,9 @@ def replace_variadic_name_part(name, part_to_embed):
                  ('y_M_N_yy[y_x_yy]', 'x') : 'y_M_N_yy[y_x_yy]',
                  ('yy_ff[yy_mn]', 'x'): 'yy_ff[yy_mn]',}
     """
+    if not part_to_embed:
+        return name
+
     f_part, _ = name.split("[") if "[" in name else (name, "")
     ind_start = None
     ind_end = None

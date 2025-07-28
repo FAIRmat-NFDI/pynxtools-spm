@@ -21,7 +21,7 @@ Base formatter for SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from abc import ABC, abstractmethod
-from typing import Dict, Union, List, Optional, TYPE_CHECKING
+from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable
 from dataclasses import dataclass
 from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
@@ -37,9 +37,6 @@ from pynxtools_spm.nxformatters.helpers import (
 import datetime
 from pathlib import Path
 import numpy as np
-
-from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
-
 
 if TYPE_CHECKING:
     from pint import Quantity
@@ -122,6 +119,8 @@ class SPMformatter(ABC):
 
     # Class used to colleted data from several subgroups of ScanControl and reuse them
     # in the subgroups
+
+    # TODO: only use unit for instead of y_start_unit, ...
     @dataclass
     class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
         # Put the class in the base_formatter.py under BaseFormatter class
@@ -172,7 +171,11 @@ class SPMformatter(ABC):
         return eln_dict
 
     def walk_though_config_nested_dict(
-        self, config_dict: Dict, parent_path: str, use_custom_func_prior: bool = True
+        self,
+        config_dict: Dict,
+        parent_path: str,
+        use_custom_func_prior: bool = True,
+        func_on_raw_key: Optional[Callable] = None,
     ):
         # This concept is just note where the group will be
         # handeld name of the function regestered in the self._grp_to_func
@@ -190,7 +193,9 @@ class SPMformatter(ABC):
             elif key in self._grp_to_func:
                 if not use_custom_func_prior:
                     self.walk_though_config_nested_dict(
-                        config_dict=val, parent_path=f"{parent_path}/{key}"
+                        config_dict=val,
+                        parent_path=f"{parent_path}/{key}",
+                        func_on_raw_key=func_on_raw_key,
                     )
                     # Fill special fields first
                     method = getattr(self, self._grp_to_func[key])
@@ -199,7 +204,9 @@ class SPMformatter(ABC):
                     method = getattr(self, self._grp_to_func[key])
                     method(val, parent_path, key)
                     self.walk_though_config_nested_dict(
-                        config_dict=val, parent_path=f"{parent_path}/{key}"
+                        config_dict=val,
+                        parent_path=f"{parent_path}/{key}",
+                        func_on_raw_key=func_on_raw_key,
                     )
 
             # end dict of the definition path that has raw_path key
@@ -207,7 +214,9 @@ class SPMformatter(ABC):
                 if "#note" in val:
                     continue
                 data, unit, other_attrs = _get_data_unit_and_others(
-                    data_dict=self.raw_data, end_dict=val
+                    data_dict=self.raw_data,
+                    end_dict=val,
+                    func_on_raw_key=func_on_raw_key,
                 )
                 self.template[f"{parent_path}/{key}"] = to_intended_t(data)
                 self.template[f"{parent_path}/{key}/@units"] = unit
@@ -240,24 +249,28 @@ class SPMformatter(ABC):
                             group_name=key,
                         )
                     else:  # Handle fields and attributes
-                        part_to_embed, path_dict = (
-                            item.popitem()
-                        )  # Current only one item is valid
+                        part_to_embed, path_dict = list(item.items())[0]
+                        # Current only one item is valid
                         # with #note tag this will be handled in a specific function
                         if "#note" in path_dict:
                             continue
                         data, unit, other_attrs = _get_data_unit_and_others(
-                            data_dict=self.raw_data, end_dict=path_dict
+                            data_dict=self.raw_data,
+                            end_dict=path_dict,
+                            func_on_raw_key=func_on_raw_key,
                         )
                         temp_key = f"{parent_path}/{replace_variadic_name_part(key, part_to_embed=part_to_embed)}"
                         self.template[temp_key] = to_intended_t(data)
-                        self.template[f"{temp_key}/@units"] = unit
+                        if unit:
+                            self.template[f"{temp_key}/@units"] = unit
                         if other_attrs:
                             for k, v in other_attrs.items():
                                 self.template[f"{temp_key}/@{k}"] = v
 
             else:
-                self.walk_though_config_nested_dict(val, f"{parent_path}/{key}")
+                self.walk_though_config_nested_dict(
+                    val, f"{parent_path}/{key}", func_on_raw_key=func_on_raw_key
+                )
 
     def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
         """Rearrange array data according to the fast and slow axes.
@@ -344,8 +357,11 @@ class SPMformatter(ABC):
     def _resolve_link_in_config(self, val: str, path: str = "/"):
         """Resolve the link in the config file.
 
-        Internal Link to an object in same file in config file is defined as:
+        Internal Link to an object in the same nexus file can be defined in config file as:
         "concept_path" "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
+        or
+        "concept_path" "@default_link:/ENTRY[entry]/INSTRUMENT/cryo_shield_temp_sensor"
+        both are valid
 
         External Link to an object in another file is defined as:
         "concept_path" "@default_link:/path/to/another:file.h5
@@ -356,15 +372,26 @@ class SPMformatter(ABC):
         """
 
         if val.startswith("@default_link:"):
-            if val.count(":") == 1 and (ref_to := val.split(":")[1]):
-                self.template[f"{path}"] = {
-                    "link": convert_data_dict_path_to_hdf5_path(ref_to)
-                }
+            val = val.split("@default_link:")[-1]
 
-            elif val.count(":") == 2:
-                raise NotImplementedError(
-                    "Link to another file has not been implemented yet."
-                )
+            classes = val.split("/")[1:]
+            pattern = ""
+            for part in classes:
+                if not ("[" in part and "]" in part):
+                    pattern += rf"/{part}(\[\w+\])?"
+                else:
+                    pattern = (
+                        pattern + "/" + part.replace("[", r"\[").replace("]", r"\]")
+                    )
+            # pattern += "$"
+
+            for tmp_k, tmp_v in self.template.items():
+                m = re.match(pattern=pattern, string=tmp_k)
+                if m and tmp_v not in ("", None):
+                    self.template[f"{path}"] = {
+                        "link": convert_data_dict_path_to_hdf5_path(m.group())
+                    }
+                    break
 
     @abstractmethod
     def _construct_nxscan_controllers(
@@ -538,14 +565,20 @@ class SPMformatter(ABC):
 
         def _format_datetime(parent_path, fld_key, fld_data):
             """Format start time"""
-            # Check if data time has "day.month.year hour:minute:second" format
-            # if it is then convert it to "day-month-year hour:minute:second"
+
+            # "day.month.year hour:minute:second" -> "day-month-year hour:minute:second"
             re_pattern = re.compile(
                 r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
             )
+
+            # # "day.month.year hour:minute:second" -> "day-month-year hour:minute:second"
+            # re_pattern2 = re.compile(
+            #     r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
+            # )
             if not isinstance(fld_data, str):
                 return
             match = re_pattern.match(fld_data.strip())
+
             if match:
                 date_time_format = "%d-%m-%Y %H:%M:%S"
                 # Convert to "day-month-year hour:minute:second" format
@@ -555,6 +588,14 @@ class SPMformatter(ABC):
                 ).isoformat()
                 self.template[f"{parent_path}/{fld_key}"] = date_str
 
+            else:
+                try:
+                    datetime.datetime.fromisoformat(fld_data)
+                except ValueError:
+                    pass
+                else:
+                    self.template[f"{parent_path}/{fld_key}"] = fld_data
+
         for key, val in self.template.items():
             if key.endswith("start_time"):
                 parent_path, key = key.rsplit("/", 1)
@@ -562,3 +603,20 @@ class SPMformatter(ABC):
             elif key.endswith("end_time"):
                 parent_path, key = key.rsplit("/", 1)
                 _format_datetime(parent_path, key, val)
+
+    def template_data_units_and_others(
+        self,
+        end_conf_dct: dict,
+        parent_path: str,
+        concept_key: str,
+        part_to_embed: Optional[str],
+    ):
+        data, unit, other_attrs = _get_data_unit_and_others(
+            data_dict=self.raw_data, end_dict=end_conf_dct
+        )
+        temp_key = f"{parent_path}/{replace_variadic_name_part(concept_key, part_to_embed=part_to_embed)}"
+        self.template[temp_key] = to_intended_t(data)
+        self.template[f"{temp_key}/@units"] = unit
+        if other_attrs:
+            for k, v in other_attrs.items():
+                self.template[f"{temp_key}/@{k}"] = v
