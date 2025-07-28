@@ -1,5 +1,5 @@
 from typing import Dict, Optional, Tuple
-from pint import UnitRegistry
+from pynxtools.units import ureg
 from typing import Optional, Dict, Tuple, Union, Any
 from pathlib import Path
 from typing import Literal
@@ -10,7 +10,6 @@ from findiff import Diff
 import json
 
 
-ureg = UnitRegistry()
 
 #  try to create a common logger for all the modules
 logger = logging.getLogger(__name__)
