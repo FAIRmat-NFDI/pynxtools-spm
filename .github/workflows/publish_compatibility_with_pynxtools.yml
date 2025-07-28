@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
       # TODO check Disable this test from block merge request
       matrix:
-        pynxtools_versions: ["latest_release", "v0.9.3"]
+        pynxtools_versions: ["latest_release", "master"]
         # pynxtools_versions: ["master"]
-        python-versions: ["3.11"]
+        python-versions: ["3.12"]
  
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,6 @@ jobs:
           version: "0.6.2"
 
       - name: Install nomad
-        if: "${{ matrix.python_versions != '3.8'}}"
         run: |
           uv pip uninstall nomad-lab -q
           uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
@@ -44,10 +43,9 @@ jobs:
         run: |
           PYNXTOOLS_VERSION="${{ matrix.pynxtools_versions }}"
           uv pip uninstall pynxtools -q
-          # if [ "$PYNXTOOLS_VERSION" == "master" ]; then
-          #   uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
-        
-          if [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
+          if [ "$PYNXTOOLS_VERSION" == "master" ]; then
+            uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
+          elif [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
             uv pip install pynxtools
           else
            uv pip install pynxtools==${{ matrix.pynxtools_versions }}
