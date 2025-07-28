@@ -132,9 +132,7 @@ pathspec==0.12.1
 pillow==11.3.0
     # via matplotlib
 pint==0.17
-    # via
-    #   pynxtools-spm (pyproject.toml)
-    #   pynxtools
+    # via pynxtools
 platformdirs==4.3.8
     # via mkdocs-get-deps
 pygments==2.19.2
