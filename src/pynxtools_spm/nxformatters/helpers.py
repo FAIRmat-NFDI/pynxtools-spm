@@ -8,7 +8,6 @@ from findiff import Diff
 import json
 
 
-
 #  try to create a common logger for all the modules
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
