@@ -195,3 +195,6 @@
             A set of physical processes that occurred to the sample prior/during experiment.
         </doc>
     </group>
+
+16. Rename all the partial fields in the NXscan_control. spm_scan_region and spm_scan_pattern.
+    e.g., speed_N 
