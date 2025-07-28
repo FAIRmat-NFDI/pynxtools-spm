@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       # TODO check Disable this test from block merge request
       matrix:
-        pynxtools_versions: ["latest_release"]
+        pynxtools_versions: ["latest_release", "master"]
         # pynxtools_versions: ["master"]
         python-versions: ["3.12"]
  
@@ -45,8 +45,7 @@ jobs:
           uv pip uninstall pynxtools -q
           if [ "$PYNXTOOLS_VERSION" == "master" ]; then
             uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
-        
-          if [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
+          elif [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
             uv pip install pynxtools
           else
            uv pip install pynxtools==${{ matrix.pynxtools_versions }}
