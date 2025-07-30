@@ -1,5 +1,5 @@
 definitions:
-  name: An ELN example for STM ( Scanning Tunneling Microscopy).
+  name: An ELN example for STM (Scanning Tunneling Microscopy).
   sections:
     stm:
       base_sections:
