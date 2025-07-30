@@ -38,7 +38,7 @@ from pynxtools_spm.nxformatters.helpers import (
 )
 from typing import Any, Dict
 from pynxtools_spm.nxformatters.helpers import (
-    cal_dx_by_dy,
+    cal_dy_by_dx,
     get_actual_from_variadic_name,
 )
 import numpy as np
@@ -268,7 +268,7 @@ class NanonisDatSTS(SPMformatter):
 
     def _construct_dI_dV_grp(self, IV_dict, parent_path, group_name):
         try:
-            di_by_dv = cal_dx_by_dy(IV_dict["current_fld"], IV_dict["voltage_fld"])
+            di_by_dv = cal_dy_by_dx(IV_dict["current_fld"], IV_dict["voltage_fld"])
         except Exception as e:
             return
 
