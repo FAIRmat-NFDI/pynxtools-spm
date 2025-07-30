@@ -289,7 +289,7 @@
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 1X__filter",
+                    "name": "Lockin Demod 1X_filter",
                     "raw_path": "/dat_mat_components/LI Demod 1 X [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 1 X [filt]/unit"
                   },
@@ -306,11 +306,11 @@
                     ]
                   },
                   "title": { "raw_path": "@default:Lockin Demod 1X(filter)" },
-                  "grp_name": "Lockin_Demod_1X__filter"
+                  "grp_name": "Lockin_Demod_1X_filter"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 1Y__filter",
+                    "name": "Lockin Demod 1Y_filter",
                     "raw_path": "/dat_mat_components/LI Demod 1 Y [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 1 Y [filt]/unit"
                   },
@@ -327,11 +327,11 @@
                     ]
                   },
                   "title": { "raw_path": "@default:Lockin Demod 1Y(filter)" },
-                  "grp_name": "Lockin_Demod_1Y__filter"
+                  "grp_name": "Lockin_Demod_1Y_filter"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 2X__filter",
+                    "name": "Lockin Demod 2X_filter",
                     "raw_path": "/dat_mat_components/LI Demod 2 X [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 2 X [filt]/unit"
                   },
@@ -348,11 +348,11 @@
                     ]
                   },
                   "title": { "raw_path": "@default:Lockin Demod 2X(filter)" },
-                  "grp_name": "Lockin_Demod_2X__filter"
+                  "grp_name": "Lockin_Demod_2X_filter"
                 },
                 {
                   "data": {
-                    "name": "Lockin Demod 2Y__filter",
+                    "name": "Lockin Demod 2Y_filter",
                     "raw_path": "/dat_mat_components/LI Demod 2 Y [filt]/value",
                     "@units": "/dat_mat_components/LI Demod 2 Y [filt]/unit"
                   },
@@ -369,7 +369,7 @@
                     ]
                   },
                   "title": { "raw_path": "@default:Lockin Demod 2Y(filter)" },
-                  "grp_name": "Lockin_Demod_2Y__filter"
+                  "grp_name": "Lockin_Demod_2Y_filter"
                 }
               ]
             }
@@ -600,7 +600,7 @@
           },
           {
             "data": {
-              "name": "temperature1__filter",
+              "name": "temperature1_filter",
               "raw_path": "/dat_mat_components/Temperature 1 [filt]/value",
               "@units": "/dat_mat_components/Temperature 1 [filt]/unit"
             },
@@ -619,7 +619,7 @@
             "title": {
               "raw_path": "@default:Bias Spectroscopy Temperature1(filter)"
             },
-            "grp_name": "temperature1__filter"
+            "grp_name": "temperature1_filter"
           }
         ]
       }
@@ -647,7 +647,7 @@
       },
       {
         "data": {
-          "name": "Current__filter",
+          "name": "Current_filter",
           "raw_path": "/dat_mat_components/Current [filt]/value",
           "@units": "/dat_mat_components/Current [filt]/unit"
         },
@@ -664,11 +664,11 @@
           ]
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
-        "grp_name": "Current__filter"
+        "grp_name": "Current_filter"
       },
       {
         "data": {
-          "name": "Current__filter",
+          "name": "Current_filter",
           "raw_path": "/dat_mat_components/Current [filt]/value",
           "@units": "/dat_mat_components/Current [filt]/unit"
         },
@@ -685,11 +685,11 @@
           ]
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
-        "grp_name": "Current__filter"
+        "grp_name": "Current_filter"
       },
       {
         "data": {
-          "name": "Current__backward",
+          "name": "Current_backward",
           "raw_path": "/dat_mat_components/Current [bwd]/value",
           "@units": "/dat_mat_components/Current [bwd]/unit"
         },
@@ -706,7 +706,7 @@
           ]
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(Backward)" },
-        "grp_name": "Current__Backward"
+        "grp_name": "Current_Backward"
       }
     ],
     "reproducibility_indicators": {
