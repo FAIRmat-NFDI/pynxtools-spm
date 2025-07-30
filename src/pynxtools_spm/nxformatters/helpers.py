@@ -376,10 +376,10 @@ def replace_variadic_name_part(name, part_to_embed):
         return name
 
 
-def cal_dx_by_dy(x_val: np.ndarray, y_val: np.ndarray) -> np.ndarray:
+def cal_dy_by_dx(y_val: np.ndarray, x_val: np.ndarray) -> np.ndarray:
     """Calc conductance (dI/dV) or gradiant dx/dy for x-variable and y-variable also return the result."""
-    d_dy = Diff(axis=0, grid=x_val, acc=2)
-    return d_dy(y_val)
+    d_dx = Diff(axis=0, grid=x_val, acc=2)
+    return d_dx(y_val)
 
 
 def transfer_plain_template_to_nested_dict(template, nested_dict):

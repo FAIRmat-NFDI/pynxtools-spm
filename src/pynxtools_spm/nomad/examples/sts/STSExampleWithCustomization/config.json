@@ -1,6 +1,6 @@
 {
   "ENTRY[entry]": {
-    "@default": { "raw_path": "@default:current(filter)_grad" },
+    "@default": { "raw_path": "@default:current_filter_grad" },
     "definition": { "@version": "" },
     "start_time": {
       "raw_path": "/Start time/value"
