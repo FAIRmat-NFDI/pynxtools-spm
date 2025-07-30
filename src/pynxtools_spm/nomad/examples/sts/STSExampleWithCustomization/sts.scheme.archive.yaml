@@ -1,5 +1,5 @@
 definitions:
-  name: An ELN example for STS ( Scanning Tunneling Spectroscopy).
+  name: An ELN example for STS (Scanning Tunneling Spectroscopy).
   sections:
     sts:
       base_sections:
