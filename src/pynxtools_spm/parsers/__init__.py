@@ -55,11 +55,13 @@ class SPMParser:
                 "generic5e": SxmGenericNanonis,
                 "generic4.5": SxmGenericNanonis,
                 "generic4": SxmGenericNanonis,
+                "generic5": SxmGenericNanonis,
             }
         },
         "dat": {
             "nanonis": {
                 "generic5e": DatGenericNanonis,
+                "generic5": DatGenericNanonis,
                 "generic4.5": DatGenericNanonis,
             }
         },
