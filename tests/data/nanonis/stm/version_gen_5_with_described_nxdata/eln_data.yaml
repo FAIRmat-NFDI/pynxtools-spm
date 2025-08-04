@@ -1,0 +1,37 @@
+Sample:
+  History:
+    notes: <p>Sample History goes here.</p>
+  name: diPAMY
+  sample_component_set:
+    sample_component:
+      chemical_formula: Au(KAl3Si3012H2)
+      description: '<p>Substrate:<br />Stack of two layers: Au(111) on Mica</p>'
+      name: Au(Mica)
+default: current_forward
+definition: NXstm
+experiment_description: '<p>Experiment with</p>
+
+  <p>Bias: -50mV</p>
+
+  <p>Setpoint: 25pA</p>'
+experiment_instrument:
+  hardware:
+    model: Generic 4.5
+    model/@version: '4.5'
+    name: Nanonis
+    vendor: Nanonis
+experiment_technique: STM
+identifier_collection: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419
+identifier_experiment: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_195.sxm
+scan_mode: constant current
+user:
+  affiliation:
+  - Rubel Mozumder
+  - Dr. Cojal González, José David
+  - Dr. Carlos-Andres Palma
+  email:
+  - ycjin@physik.hu-berlin.de
+  - rubel.mozumder@physik.hu-berlin.de
+  - cojal@physik.hu-berlin.de
+  - palma@physik.hu-berlin.de
+  name: Yichen Jin
