@@ -21,8 +21,8 @@ classifiers = [
 ]
 dependencies = [
     "findiff>=0.11.1",
-    "pynxtools>=0.10.1",
-    # "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@master#egg=pynxtools",
+    # "pynxtools>=0.10.1",
+    "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@hdf-based-validation#egg=pynxtools",
     # "pySPM==0.6.2",  # SPM file reader for Bruker files use it when you have Bruker files
 ]
 
