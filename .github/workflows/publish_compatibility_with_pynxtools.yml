@@ -13,8 +13,7 @@ jobs:
       fail-fast: false
       # TODO check Disable this test from block merge request
       matrix:
-        pynxtools_versions: ["hdf-based-validation"]
-        # pynxtools_versions: ["latest_release", "master"]
+        pynxtools_versions: ["latest_release", "master"]
         # pynxtools_versions: ["master"]
         python-versions: ["3.12"]
  
