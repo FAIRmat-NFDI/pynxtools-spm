@@ -65,7 +65,7 @@
           { "d1": { "raw_path": "/Lock-in/HP Filter Order D1/value" } },
           { "d2": { "raw_path": "/Lock-in/HP Filter Order D2/value" } }
         ],
-        "ref_phaseN[ref_phase_n]": [
+        "ref_offset_phaseN[ref_phase_n]": [
           {
             "d1": {
               "raw_path": "/Lock-in/Reference phase D1/value",
@@ -492,7 +492,7 @@
             }
           },
           "piezo_material": {
-            "curvature_radius_N": [
+            "curvature_radiusN": [
               {
                 "x": {
                   "raw_path": "/Piezo Configuration/Curvature radius X/value",
@@ -541,7 +541,7 @@
           },
           "scan_region": {
             "scan_angleN[scan_angle_n]": "",
-            "scan_offsetN[scan_offset_n]": "",
+            "scan_offset_valueN[scan_offset_value_n]": "",
             "scan_rangeN[scan_range_n]": ""
           },
           "meshSCAN[mesh_scan]": {

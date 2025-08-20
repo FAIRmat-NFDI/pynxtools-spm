@@ -51,7 +51,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
     _grp_to_func = {
         "lockin_amplifier": "_construct_lockin_amplifier_grp",
-        "SCAN_CONTROL[scan_control_*]": "_construct_nxscan_controllers",
+        "SPM_SCAN_CONTROL[spm_scan_control_*]": "_construct_nxscan_controllers",
     }
     _scan_list = []
 
@@ -259,7 +259,8 @@ class OmicronSM4STMFormatter(SPMformatter):
         raw_data = self.raw_data
         self.raw_data = self._scan_tag_raw_data[scan_tag]
         for key, val in partial_conf_dict.items():
-            if re.match(r"scan_points_[A-Z]{1}\[", string=key):
+            if re.match(r"scan_points[\w]+\[", string=key):
+                print(" ##### ")
                 for li_elm in val:
                     part_to_embed, end_dct = list(li_elm.items())[0]
                     fld_key = replace_variadic_name_part(
@@ -270,15 +271,18 @@ class OmicronSM4STMFormatter(SPMformatter):
                         end_dict=end_dct,
                         func_on_raw_key=func_on_raw_key,
                     )
-                    if part_to_embed == "x":
+                    print(" ##### data: ", data)
+                    print(" ##### fld_key: ", fld_key)
+                    print(" ##### other_attrs: ", other_attrs)
+                    if part_to_embed.endswith("x"):
                         self.NXScanControl.x_points = data
                         self.template[f"{parent_path}/{group_name}/{fld_key}"] = data
-                    elif part_to_embed == "y":
+                    elif part_to_embed.endswith("y"):
                         self.NXScanControl.y_points = data
                         self.template[f"{parent_path}/{group_name}/{fld_key}"] = data
                 continue
 
-            if not re.match(pattern=rf"step_size_[A-Y]{1}\[", string=key):
+            if not re.match(pattern=r"step_size[\w]+\[", string=key):
                 self.walk_though_config_nested_dict(
                     config_dict={key: val},
                     parent_path=f"{parent_path}/{group_name}",
@@ -287,7 +291,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
         for key, val in partial_conf_dict.items():
             if isinstance(val, list) and re.match(
-                pattern=r"step_size_[A-Y]{1}\[", string=key
+                pattern=r"step_size[A-Y]{1}\[", string=key
             ):
                 for li_elm in val:
                     part_to_embed, end_dct = list(li_elm.items())[0]
@@ -313,7 +317,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                         if (
                             self.NXScanControl.x_points
                             and self.NXScanControl.x_range
-                            and part_to_embed == "x"
+                            and part_to_embed.endswith("x")
                         ):
                             self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
                                 self.NXScanControl.x_range / self.NXScanControl.x_points
@@ -321,10 +325,10 @@ class OmicronSM4STMFormatter(SPMformatter):
                             self.template[
                                 f"{parent_path}/{group_name}/{fld_key}/@units"
                             ] = self.NXScanControl.x_start_unit
-                        if (
+                        elif (
                             self.NXScanControl.y_points
                             and self.NXScanControl.y_range
-                            and part_to_embed == "y"
+                            and part_to_embed.endswith("y")
                         ):
                             self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
                                 self.NXScanControl.y_range / self.NXScanControl.y_points
@@ -467,9 +471,11 @@ class OmicronSM4STMFormatter(SPMformatter):
                 self._scan_tag_raw_data[scan_tag][key] = val
 
                 if scan_tag not in self._scan_list:
-                    self._scan_list.append(m.groups()[0])
+                    self._scan_list.append(scan_tag)
 
-        m = re.search(pattern=r"(SCAN_CONTROL\[scan_control_)\*(\])", string=group_name)
+        m = re.search(
+            pattern=r"(SPM_SCAN_CONTROL\[spm_scan_control[_*]+)(\])", string=group_name
+        )
 
         if not m:
             raise ValueError(
@@ -479,7 +485,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         groups = m.groups()
         for scan_tag in self._scan_list:
             # modify group name according to the scan_tag
-            group_name_mod = groups[0] + scan_tag.lower() + groups[1]
+            group_name_mod = groups[0][:-1] + scan_tag.lower() + groups[1]
             parent_path_mod = f"{parent_path}/{group_name_mod}"
 
             func_on_raw_key = lambda k: func_on_raw_key_with(
@@ -499,7 +505,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
             for key, val in partial_conf_dict.items():
                 if re.match(
-                    pattern=r"^mesh_SCAN\[mesh_scan\]$", string=rf"{key}", flags=re.I
+                    pattern=r"^meshSCAN\[mesh_scan\]$", string=rf"{key}", flags=re.I
                 ):
                     self._construct_scan_pattern_grp(
                         partial_conf_dict=val,
@@ -562,7 +568,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                             pass
                             # TODO add a logger for all ecceptions
             elif m := re.match(
-                pattern=r"(/ENTRY\[\w+\]/INSTRUMENT\[\w+\]/scan_environment/SCAN_CONTROL\[(\w+)\]/mesh_SCAN\[\w+\])",
+                pattern=r"(/ENTRY\[\w+\]/INSTRUMENT\[\w+\]/scan_environment/SPM_SCAN_CONTROL\[(\w+)\]/meshSCAN\[\w+\])",
                 string=template_key,
             ):
                 groups = m.groups()
