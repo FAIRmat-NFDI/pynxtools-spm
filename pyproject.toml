@@ -21,15 +21,17 @@ classifiers = [
 ]
 dependencies = [
     "findiff>=0.11.1",
-    "pynxtools>=0.10.1",
+    "pynxtools>=0.11.0",
     # "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@master#egg=pynxtools",
     # "pySPM==0.6.2",  # SPM file reader for Bruker files use it when you have Bruker files
     "pint",
     "xarray",
     "matplotlib",
     "scipy",
-    "maplotlib",
-    "hvplot"
+    "hvplot",
+    "spym",
+    "zoneinfo",
+    "tzlocal",
 ]
 
 # TODO: Add acknowledgements to pySPM python package
@@ -66,7 +68,6 @@ spm_app = "pynxtools_spm.app:spm_app"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-# include = ["src/pynxtools_spm"]
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
