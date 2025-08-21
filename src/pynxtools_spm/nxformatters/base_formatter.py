@@ -33,6 +33,7 @@ from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     to_intended_t,
     replace_variadic_name_part,
+    add_local_timezone,
 )
 import datetime
 from pathlib import Path
@@ -562,6 +563,9 @@ class SPMformatter(ABC):
         Further curation the  special fields in template
         after the template is already populated with data.
         """
+        field_to_type = {
+            "active_channel": str,
+        }
 
         def _format_datetime(parent_path, fld_key, fld_data):
             """Format start time"""
@@ -603,6 +607,17 @@ class SPMformatter(ABC):
             elif key.endswith("end_time"):
                 parent_path, key = key.rsplit("/", 1)
                 _format_datetime(parent_path, key, val)
+
+        for template_key, val in self.template.items():
+            if m := re.search(pattern=r"(\w*date|time)$", string=template_key):
+                try:
+                    t_with_zone = add_local_timezone(val)
+                    self.template[template_key] = t_with_zone
+                except KeyError:
+                    pass
+            for key, typ in field_to_type.items():
+                if re.search(pattern=rf"{key}$", string=template_key):
+                    self.template[template_key] = typ(val)
 
     def template_data_units_and_others(
         self,

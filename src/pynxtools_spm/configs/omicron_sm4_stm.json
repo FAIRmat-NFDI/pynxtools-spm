@@ -37,18 +37,12 @@
             },
             "scan_speedN[scan_speed_n]": "",
             "channelNAME[scan_name_n]": "",
-            "scan_pointsN[scan_points_n]": [
-              {
-                "_x": {
-                  "raw_path": "/Topography_Forward/RHK_Xsize"
-                }
-              },
-              {
-                "_y": {
-                  "raw_path": "/Topography_Forward/RHK_Ysize"
-                }
-              }
-            ],
+            "scan_points_x": {
+              "raw_path": "/Topography_Forward/RHK_Xsize"
+            },
+            "scan_points_y": {
+              "raw_path": "/Topography_Forward/RHK_Ysize"
+            },
             "steppingN[stepping_n]": [
               {
                 "_x": {
@@ -68,7 +62,10 @@
               { "y": { "raw_path": "", "@units": "" } }
             ],
             "scan_time": "",
-            "SCAN_DATA[scan_data]": ""
+            "SCAN_DATA[scan_data]": "",
+            "continuousN[continuous]": {
+              "raw_path": "@default:True"
+            }
           },
           "scan_region": {
             "scan_angleN[scan_angle_n]": [
@@ -85,15 +82,20 @@
                 }
               }
             ],
-            "scan_offset_value_x": {
-              "raw_path": "/Topography_Forward/RHK_Xoffset",
-              "@units": "/Topography_Forward/RHK_X/@unit"
-            },
-
-            "scan_offset_value_y": {
-              "raw_path": "/Topography_Forward/RHK_Yoffset",
-              "@units": "/Topography_Forward/RHK_Y/@unit"
-            },
+            "scan_offset_valueN[scan_offset_value_n]": [
+              {
+                "x": {
+                  "raw_path": "/Topography_Forward/RHK_Xoffset",
+                  "@units": "/Topography_Forward/RHK_X/@unit"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Topography_Forward/RHK_Yoffset",
+                  "@units": "/Topography_Forward/RHK_Y/@unit"
+                }
+              }
+            ],
             "scan_rangeN[scan_range_n]": {
               "raw_path": "",
               "@units": ""
@@ -115,10 +117,7 @@
           },
           "scan_resolutionN": "",
           "accuracyN": "",
-          "scan_type": { "raw_path": "@default:mesh", "@units": "" },
-          "continuous": {
-            "raw_path": "@default:True"
-          }
+          "scan_type": { "raw_path": "@default:mesh", "@units": "" }
         },
         "independent_controllers": "",
         "measurement_sensors": "",
@@ -464,15 +463,13 @@
             ]
           }
         },
-        "spm_positioner[spm_positioner]": {
+        "SPM_POSITIONER[spm_positioner]": {
           "z_controller": {
             "K_i": {
-              "raw_path": "/Topography_Forward/RHK_ZPI_IntegralGain",
-              "@units": "/Topography_Forward/RHK_ZPI_IntegralGain/@unit"
+              "raw_path": "/Topography_Forward/RHK_ZPI_IntegralGain"
             },
             "K_p": {
-              "raw_path": "/Topography_Forward/RHK_ZPI_ProportionalGain",
-              "@units": "/Topography_Forward/RHK_ZPI_ProportionalGain/@unit"
+              "raw_path": "/Topography_Forward/RHK_ZPI_ProportionalGain"
             },
             "set_point": {
               "raw_path": "/Topography_Forward/RHK_ZPI_SetPoint",
@@ -500,7 +497,7 @@
           },
           "z_offset_value": {
             "raw_path": "/Topography_Forward/RHK_Zoffset",
-            "@units": "/Topography_Forward/RHK_Zoffset/@unit"
+            "@units": "/Topography_Forward/RHK_Z/@unit"
           },
           "tip_position_z": "",
           "controller_label": { "raw_path": "" }
