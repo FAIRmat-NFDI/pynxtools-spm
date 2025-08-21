@@ -406,15 +406,6 @@ def replace_variadic_name_part(name, part_to_embed: None):
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"
-
-    # TODO: write test for this function with the following test_dict
-    and try to replace this with regex pattern
-    test_dict = {('yy_NM[yy_nm]', 'x'): 'yy_NM[yy_x]',
-                 ('yy_M_N[yy_m_n]', 'x') : 'yy_M_N[yy_x]',
-                 ('Myy[myy]', 'x') : 'Myy[xyy]',
-                 ('y_M_yy[y_m_yy]', 'x') : 'y_M_yy[y_x_yy]',
-                 ('y_M_N_yy[y_x_yy]', 'x') : 'y_M_N_yy[y_x_yy]',
-                 ('yy_ff[yy_mn]', 'x'): 'yy_ff[yy_mn]',}
     """
     if not part_to_embed:
         return name
@@ -432,8 +423,8 @@ def replace_variadic_name_part(name, part_to_embed: None):
             break
     if ind_start == 0 and ind_end is not None:
         part_to_embed = part_to_embed[1:]  # remove the first underscore
-        remainpart = f_part[ind_end:]
-        if remainpart.startswith("_"):
+        end_part = f_part[ind_end:]
+        if end_part.startswith("_"):
             if part_to_embed.endswith("_"):
                 part_to_embed = part_to_embed[0:-1]
         else:
@@ -441,9 +432,11 @@ def replace_variadic_name_part(name, part_to_embed: None):
                 part_to_embed = part_to_embed + "_"
         f_part_mod = f_part.replace(f_part[ind_start:ind_end], part_to_embed)
         return "[".join([f_part, f_part_mod]) + "]"
-    if ind_end is None and ind_start is not None:
-        remainpart = f_part[0:ind_start]
-        if remainpart.endswith("_") and part_to_embed.startswith("_"):
+    elif ind_end is None and ind_start is not None:
+        start_part = f_part[0:ind_start]
+        if start_part and start_part.endswith("_") and part_to_embed.startswith("_"):
+            part_to_embed = part_to_embed[1:]
+        elif not start_part and part_to_embed.startswith("_"):
             part_to_embed = part_to_embed[1:]
         f_part_mod = f_part.replace(f_part[ind_start:], part_to_embed)
         return "[".join([f_part, f_part_mod]) + "]"
