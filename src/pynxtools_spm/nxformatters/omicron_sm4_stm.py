@@ -35,7 +35,6 @@ from pynxtools_spm.nxformatters.helpers import (
     _scientific_num_pattern,
     to_intended_t,
 )
-import dataclasses
 from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 import datetime
 import numpy as np
@@ -164,12 +163,6 @@ class OmicronSM4STMFormatter(SPMformatter):
                 other_attrs=other_attrs,
                 fld_key=fld_key,
             )
-
-            # self.template[f"{parent_path}/{group_name}/{fld_key}/@units"] = unit
-            # self.template[f"{parent_path}/{group_name}/{fld_key}"] = to_intended_t(data)
-            # if other_attrs:
-            #     for k, v in other_attrs.items():
-            #         self.template[f"{parent_path}/{fld_key}/@{k}"] = v
 
     def _handle_variadic_field_with_modified_raw_data_key(
         self,
