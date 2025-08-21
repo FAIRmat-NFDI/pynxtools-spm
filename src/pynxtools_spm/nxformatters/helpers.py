@@ -2,9 +2,13 @@ from pynxtools.units import ureg
 from typing import Optional, Dict, Tuple, Union, Any, Literal
 from pathlib import Path
 import logging
+from datetime import datetime
+import tzlocal
+import zoneinfo
 from copy import deepcopy
 import numpy as np
 from findiff import Diff
+import re
 import json
 
 
@@ -14,6 +18,47 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
 _scientific_num_pattern = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
 
+def add_local_timezone(ts: str, tz: str | None = None) -> str:
+    """
+    Add a timezone to a timestamp if it has none.
+
+    Parameters
+    ----------
+    ts : str
+        Input timestamp string.
+    tz : str | None
+        Optional timezone name (e.g. "Europe/Berlin").
+        If None, the system local timezone will be used.
+
+    Returns
+    -------
+    str
+        ISO8601 timestamp string. If input is invalid, returns `ts` unchanged.
+    """
+    # Already has timezone? -> return unchanged
+    if re.search(r"(Z|[+-]\d{2}:\d{2})$", ts):
+        return ts
+
+    # Try parsing the timestamp safely
+    try:
+        dt = datetime.fromisoformat(ts)
+    except ValueError:
+        # Invalid input -> return as-is
+        return ts
+
+    # Use provided timezone or system local
+    if tz:
+        try:
+            tzinfo = zoneinfo.ZoneInfo(tz)
+        except Exception:
+            # Invalid tz string -> fallback to local
+            tzinfo = tzlocal.get_localzone()
+    else:
+        tzinfo = tzlocal.get_localzone()
+
+    # Attach timezone
+    dt = dt.replace(tzinfo=tzinfo)
+    return dt.isoformat()
 
 def read_config_file(config_file: Union[str, Path]) -> Dict:
     """Read the config file and return the dictionary.
@@ -205,7 +250,7 @@ def get_actual_from_variadic_name(name: str) -> str:
 def to_intended_t(
     data: Any,
     data_struc: Literal["list", "array"] = None,
-    data_type: Literal["str", "int", "float"] = None,
+    data_type: Optional[Union[str, int, float]] = None,
 ):
     """
         Transform string to the intended data type, if not then return data.
@@ -313,11 +358,11 @@ def to_intended_t(
             return off_on[data]
 
         try:
-            transformed = int(data)
+            transformed = int(data) if not data_type else data_type(data)
             return transformed
         except ValueError:
             try:
-                transformed = float(data)
+                transformed = float(data) if not data_type else data_type(data)
                 return transformed
             except ValueError:
                 if "[" in data and "]" in data:

@@ -259,29 +259,43 @@ class OmicronSM4STMFormatter(SPMformatter):
         raw_data = self.raw_data
         self.raw_data = self._scan_tag_raw_data[scan_tag]
         for key, val in partial_conf_dict.items():
-            if re.match(r"scan_points[\w]+\[", string=key):
-                print(" ##### ")
-                for li_elm in val:
-                    part_to_embed, end_dct = list(li_elm.items())[0]
-                    fld_key = replace_variadic_name_part(
-                        name=key, part_to_embed=part_to_embed
-                    )
+            if re.match(r"^scan_points[\w]+", string=key):
+                # If scan_points list of variadic fields
+                if isinstance(val, list):
+                    for li_elm in val:
+                        part_to_embed, end_dct = list(li_elm.items())[0]
+                        fld_key = replace_variadic_name_part(
+                            name=key, part_to_embed=part_to_embed
+                        )
+                        data, _, other_attrs = _get_data_unit_and_others(
+                            data_dict=self.raw_data,
+                            end_dict=end_dct,
+                            func_on_raw_key=func_on_raw_key,
+                        )
+                        if part_to_embed.endswith("x"):
+                            self.NXScanControl.x_points = data
+                            self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
+                                data
+                            )
+                        elif part_to_embed.endswith("y"):
+                            self.NXScanControl.y_points = data
+                            self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
+                                data
+                            )
+
+                elif isinstance(val, dict) and "raw_path" in val:
                     data, _, other_attrs = _get_data_unit_and_others(
-                        data_dict=self.raw_data,
-                        end_dict=end_dct,
-                        func_on_raw_key=func_on_raw_key,
+                        data_dict=raw_data, end_dict=val
                     )
-                    print(" ##### data: ", data)
-                    print(" ##### fld_key: ", fld_key)
-                    print(" ##### other_attrs: ", other_attrs)
-                    if part_to_embed.endswith("x"):
+                    if key.endswith("x"):
                         self.NXScanControl.x_points = data
-                        self.template[f"{parent_path}/{group_name}/{fld_key}"] = data
-                    elif part_to_embed.endswith("y"):
+                        self.template[f"{parent_path}/{group_name}/{key}"] = data
+                    elif key.endswith("y"):
                         self.NXScanControl.y_points = data
-                        self.template[f"{parent_path}/{group_name}/{fld_key}"] = data
+                        self.template[f"{parent_path}/{group_name}/{key}"] = data
                 continue
 
+            # step_size would be handled later.
             if not re.match(pattern=r"step_size[\w]+\[", string=key):
                 self.walk_though_config_nested_dict(
                     config_dict={key: val},
@@ -353,6 +367,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         # Store full raw_data_dict and fill scan_region group according to the scan name
         raw_data = self.raw_data
         self.raw_data = self._scan_tag_raw_data[scan_tag]
+        # Calculate the start of the x_axis and y_axis from the coordinate matrix.
         for k, v in self.raw_data.items():
             m = re.match(
                 pattern=rf"/{scan_tag}/[\w/]*coords/[\w]+(x|y)", string=k, flags=re.I
@@ -380,7 +395,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         # handle fields
         for key, val in partial_conf_dict.items():
             if (
-                re.match(pattern=r"scan_range_[\w]{1}\[", string=key, flags=re.I)
+                re.match(pattern=r"scan_range[\w]{1}", string=key, flags=re.I)
                 and "raw_path" in val
             ):
                 self.template[
@@ -397,7 +412,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"
                 ] = self.NXScanControl.y_start_unit
             elif (
-                re.match(pattern=r"scan_start_[\w]{1}\[", string=key, flags=re.I)
+                re.match(pattern=r"scan_start[\w]{1}", string=key, flags=re.I)
                 and "raw_path" in val
             ):
                 self.template[
@@ -414,7 +429,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"
                 ] = self.NXScanControl.y_start_unit
             elif (
-                re.match(pattern=r"scan_end_[\w]{1}\[", string=key, flags=re.I)
+                re.match(pattern=r"scan_end[\w]{1}", string=key, flags=re.I)
                 and "raw_path" in val
             ):
                 self.template[
@@ -546,6 +561,7 @@ class OmicronSM4STMFormatter(SPMformatter):
             if end_time_str not in completed_field and re.match(
                 pattern=rf"/ENTRY\[\w+\]/{start_time_str}$", string=template_key
             ):
+                self.template[template_key] = fhs.add_local_timezone(val)
                 end_time_k = template_key.replace(start_time_str, end_time_str)
                 end_dct = None
                 for k in end_time_k.split("/")[1:]:
@@ -562,7 +578,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                                 start_time
                             ) + datetime.timedelta(float(data))
                             end_time = datetime.datetime.isoformat(end_time)
-                            self.template[end_time_k] = end_time
+                            self.template[end_time_k] = fhs.add_local_timezone(end_time)
                             completed_field.append(end_time_str)
                         except (ValueError, TypeError):
                             pass
