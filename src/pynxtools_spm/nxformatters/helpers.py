@@ -70,6 +70,7 @@ def _get_data_unit_and_others(
     partial_conf_dict: dict = None,
     concept_field: str = None,
     end_dict: dict = None,
+    func_on_raw_key: callable= None
 ) -> Tuple[str, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
@@ -120,6 +121,15 @@ def _get_data_unit_and_others(
                 "raw_path": "/SCAN/ANGLE",
                 "@units": "@default:deg"
             },
+        func_on_raw_key : callable
+            Function to apply on raw keywith one input parameter.
+            If there any modification is need on the raw key, this function can be used.
+
+            For example:
+                In omicron stm file the scans current and topography, scan region could be differ.
+                A raw key example is `/Topography_forward/...` is slightly different
+                for current scan as `/current_forward/...`. A single function (probably 
+                lambda function) is sufficient to modify this.
 
     Returns:
     --------
@@ -127,6 +137,14 @@ def _get_data_unit_and_others(
             The tuple contains components like raw data string, unit string, and dict that
             contains other attributes (if any attributes comes as a part of value dict).
     """
+
+    def get_data_modified_key(key):
+        if not key:
+            return None
+        if isinstance(func_on_raw_key, Callable):
+            return data_dict.get(func_on_raw_key(key), None)
+        return data_dict.get(key, None)
+
 
     if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
@@ -139,13 +157,13 @@ def _get_data_unit_and_others(
     # if raw_path have multiple possibel path to the raw data
     if isinstance(raw_path, list):
         for path in raw_path:
-            raw_data = data_dict.get(path, "")
-            if isinstance(raw_data, np.ndarray) or raw_data != "":
+            raw_data = get_data_modified_key(path)
+            if isinstance(raw_data, np.ndarray) or raw_data in ["", None]:
                 break
     elif raw_path.startswith("@default:"):
         raw_data = raw_path.split("@default:")[-1]
     else:
-        raw_data = data_dict.get(raw_path)
+        raw_data = get_data_modified_key(raw_path)
     unit_path = end_dict.get("@units", None)
 
     try:
@@ -157,13 +175,13 @@ def _get_data_unit_and_others(
 
     if unit_path and isinstance(unit_path, list):
         for unit_item in unit_path:
-            unit = data_dict.get(unit_item, None)
+            unit = get_data_modified_key(unit_item)
             if unit is not None:
                 break
     elif unit_path and unit_path.startswith("@default:"):
         unit = unit_path.split("@default:")[-1]
     else:
-        unit = data_dict.get(unit_path, None)
+        unit = get_data_modified_key(unit_path)
     if unit is None or unit == "":
         return to_intended_t(raw_data), "", val_copy
     return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
