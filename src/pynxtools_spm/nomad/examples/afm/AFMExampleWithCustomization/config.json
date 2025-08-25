@@ -126,11 +126,11 @@
         "demodulated_amplitude": "",
         "demodulator_channels": "",
         "recorded_channels": "",
-        "ref_phase_N[ref_phase_n]": {
+        "ref_phaseN[ref_phase_n]": {
           "raw_path": "/Lock-in/Reference phase",
           "@units": "/Lock-in/Reference phase/@unit"
         },
-        "harmonic_order_N[harmonic_order_n]": {
+        "harmonic_orderN[harmonic_order_n]": {
           "raw_path": "/Lock-in/Harmonic"
         }
       },
@@ -154,9 +154,9 @@
         "independent_controllers": null,
         "measurement_sensors": null
       },
-      "tip_temp_sensor": null,
-      "cryo_shield_temp_sensor": null,
-      "cryo_temp_sensor": null,
+      "head_temperature_sensor": null,
+      "cryo_shield_temperature_sensor": null,
+      "cryo_bottom_temperature_sensor": null,
       "current_sensor": {
         "AMPLIFIER[amplifier]": { "current_gain": null },
         "current": { "@units": null },
@@ -172,7 +172,7 @@
             "calibration_type": {
               "raw_path": "@default:active"
             },
-            "calibration_coefficient_N[calibration_coefficient_n]": [
+            "calibration_coefficientN[calibration_coefficient_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Calib. X",
@@ -192,7 +192,7 @@
                 }
               }
             ],
-            "second_order_correction_N[second_order_correction_n]": [
+            "calibration_coefficientN[second_order_correction_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/2nd order corr X",
@@ -215,7 +215,7 @@
             "calibration_name": {
               "raw_path": "/Piezo Calibration/Active Calib."
             },
-            "drift_N[drift_n]": [
+            "driftN[drift_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Drift X",
@@ -241,12 +241,12 @@
                 "/Piezo Calibration/Drift correction status"
               ]
             },
-            "hv_gain_N[hv_gain_n]": [
+            "hv_gainN[hv_gain_n]": [
               { "x": { "raw_path": "/Piezo Calibration/HV Gain X" } },
               { "y": { "raw_path": "/Piezo Calibration/HV Gain Y" } },
               { "z": { "raw_path": "/Piezo Calibration/HV Gain Z" } }
             ],
-            "tilt_N[tilt_n]": [
+            "tiltN[tilt_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Tilt X",
@@ -306,7 +306,7 @@
               "@units": "/Z-Controller/Z/@unit"
             }
           },
-          "z_offset": "",
+          "z_offset_value": "",
           "tip_position_z": "",
           "controller_label": { "raw_path": "/Z-Controller/Controller name" }
         },
@@ -315,51 +315,51 @@
         "z": { "@units": null }
       },
       "scan_environment": {
-        "cryo_bottom_temp": { "@units": null },
-        "cryo_shield_temp": { "@units": null },
-        "tip_temp": { "@units": null },
+        "cryo_bottom_temperature": { "@units": null },
+        "cryo_shield_temperature": { "@units": null },
+        "head_temperature": { "@units": null },
         "scan_name": { "raw_path": "/Scan/series name" },
         "SCAN_CONTROL[scan_control]": {
           "scan_name": { "raw_path": "/Scan/series name" },
           "scan_region": {
-            "scan_angle_N[scan_angle_n]": {
+            "scan_angleN[scan_angle_n]": {
               "raw_path": "/SCAN/ANGLE",
               "@units": "@default:deg"
             },
-            "scan_offset_N[scan_offset_n]": {
+            "scan_offsetN[scan_offset_n]": {
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/OFFSET",
               "@units": "/Z-Controller/Z/@unit"
             },
-            "scan_range_N[scan_range_n]": {
+            "scan_rangeN[scan_range_n]": {
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/RANGE",
               "@units": "/Z-Controller/Z/@unit"
             }
           },
-          "mesh_SCAN[mesh_scan]": {
-            "backward_speed_N[backward_speed_n]": {
+          "meshSCAN[mesh_scan]": {
+            "backward_speedN[backward_speed_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
               "raw_path": "/Scan/speed backw.",
               "@units": "/Scan/speed backw./@unit"
             },
-            "forward_speed_N[forward_speed_n]": {
+            "forward_speedN[forward_speed_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
               "raw_path": "/Scan/speed forw.",
               "@units": "/Scan/speed forw./@unit"
             },
-            "scan_speed_N[scan_speed_n]": "",
-            "channel_NAME_N[scan_name_n]": "",
-            "scan_points_N[scan_points_n]": {
+            "scan_speedN[scan_speed_n]": "",
+            "channelNAME[scan_name_n]": "",
+            "scan_pointsN[scan_points_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
               "raw_path": "/SCAN/PIXELS",
               "@units": ""
             },
-            "stepping_N[stepping_n]": {
+            "steppingN[stepping_n]": {
               "raw_path": "@default:1",
               "@units": ""
             },
-            "step_size_N[step_size_n]": { "raw_path": "", "@units": "" },
+            "step_sizeN[step_size_n]": { "raw_path": "", "@units": "" },
             "scan_time": "",
             "SCAN_DATA[scan_data]": [
               {
@@ -457,41 +457,41 @@
             "raw_path": "/SCAN/DIR",
             "@units": ""
           },
-          "scan_resolution_N": "",
-          "accuracy_N": "",
+          "scan_resolutionN": "",
+          "accuracyN": "",
           "scan_type": { "raw_path": "@default:mesh", "@units": "" },
           "scan_control_type": {
             "raw_path": "@default:continuous",
             "@units": ""
           }
         },
-        "cryo_shield_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
-        "cryo_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_temp_sensor",
-        "tip_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/tip_temp_sensor"
+        "cryo_shield_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
+        "cryo_bottom_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
+        "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/head_temperature_sensor"
       },
       "real_time_controller": {
-        "rcs_fabrication": {
+        "fabrication": {
           "model": {
             "raw_path": "/NanonisMain/RT Release/value"
           }
         },
-        "rcs_frequency": {
+        "frequency": {
           "raw_path": "/NanonisMain/RT Frequency",
           "@units": "/NanonisMain/RT Frequency/@unit"
         },
-        "rcs_acquisition_time": {
+        "acquisition_time": {
           "raw_path": "/NanonisMain/Acquisition Period",
           "@units": "/NanonisMain/Acquisition Period/@unit"
         },
-        "rcs_animation_time": {
+        "animation_time": {
           "raw_path": "/NanonisMain/Animations Period",
           "@units": "/NanonisMain/Animations Period/@unit"
         },
-        "rcs_measurement_time": {
+        "measurement_time": {
           "raw_path": "/NanonisMain/Measurements Period",
           "@units": "/NanonisMain/Measurements Period/@unit"
         },
-        "rcs_indication_time": {
+        "indication_time": {
           "raw_path": "/NanonisMain/Indicators Period",
           "@units": "/NanonisMain/Indicators Period/@unit"
         }
@@ -501,7 +501,7 @@
           "raw_path": "/Bias/Bias",
           "@units": "/Bias/Bias/@unit"
         },
-        "bias_offset": {
+        "bias_offset_value": {
           "raw_path": "/Bias/Offset",
           "@units": "/Bias/Offset/@unit"
         },
@@ -605,15 +605,15 @@
       }
     ],
     "reproducibility_indicators": {
-      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
-      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temp",
-      "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
+      "cantilever_head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
+      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
       "cantilever_oscillator": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator"
     },
     "resolution_indicators": {
-      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
-      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temp",
-      "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
+      "cantilever_head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
+      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
       "oscillator_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/oscillator_excitation",
       "amplitude_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/phase_lock_loop/amplitude_excitation"
     }
