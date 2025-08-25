@@ -1,0 +1,3 @@
+[submodule "src/pynxtools_spm/parsers/spym"]
+	path = src/pynxtools_spm/parsers/spym
+	url = https://github.com/rescipy-project/spym.git
