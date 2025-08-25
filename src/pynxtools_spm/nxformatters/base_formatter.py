@@ -21,7 +21,7 @@ Base formatter for SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from abc import ABC, abstractmethod
-from typing import Dict, Union, List, Optional, TYPE_CHECKING
+from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable
 from dataclasses import dataclass
 from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
@@ -174,8 +174,10 @@ class SPMformatter(ABC):
         return eln_dict
 
     def walk_though_config_nested_dict(
-        self, config_dict: Dict, parent_path: str, use_custom_func_prior: bool = True
-    ):
+        self, config_dict: Dict, 
+        parent_path: str, 
+        use_custom_func_prior: bool = True,
+        func_on_raw_key: Optional[Callable] = None):
         # This concept is just note where the group will be
         # handeld name of the function regestered in the self._grp_to_func
         # or somthing like that.
@@ -192,7 +194,8 @@ class SPMformatter(ABC):
             elif key in self._grp_to_func:
                 if not use_custom_func_prior:
                     self.walk_though_config_nested_dict(
-                        config_dict=val, parent_path=f"{parent_path}/{key}"
+                        config_dict=val, parent_path=f"{parent_path}/{key}",
+                        func_on_raw_key=func_on_raw_key
                     )
                     # Fill special fields first
                     method = getattr(self, self._grp_to_func[key])
@@ -201,7 +204,8 @@ class SPMformatter(ABC):
                     method = getattr(self, self._grp_to_func[key])
                     method(val, parent_path, key)
                     self.walk_though_config_nested_dict(
-                        config_dict=val, parent_path=f"{parent_path}/{key}"
+                        config_dict=val, parent_path=f"{parent_path}/{key}",
+                        func_on_raw_key=func_on_raw_key
                     )
 
             # end dict of the definition path that has raw_path key
@@ -209,7 +213,8 @@ class SPMformatter(ABC):
                 if "#note" in val:
                     continue
                 data, unit, other_attrs = _get_data_unit_and_others(
-                    data_dict=self.raw_data, end_dict=val
+                    data_dict=self.raw_data, end_dict=val,
+                    func_on_raw_key=func_on_raw_key
                 )
                 self.template[f"{parent_path}/{key}"] = to_intended_t(data)
                 self.template[f"{parent_path}/{key}/@units"] = unit
@@ -248,7 +253,8 @@ class SPMformatter(ABC):
                         if "#note" in path_dict:
                             continue
                         data, unit, other_attrs = _get_data_unit_and_others(
-                            data_dict=self.raw_data, end_dict=path_dict
+                            data_dict=self.raw_data, end_dict=path_dict,
+                            func_on_raw_key=func_on_raw_key
                         )
                         temp_key = f"{parent_path}/{replace_variadic_name_part(key, part_to_embed=part_to_embed)}"
                         self.template[temp_key] = to_intended_t(data)
@@ -259,7 +265,8 @@ class SPMformatter(ABC):
                                 self.template[f"{temp_key}/@{k}"] = v
 
             else:
-                self.walk_though_config_nested_dict(val, f"{parent_path}/{key}")
+                self.walk_though_config_nested_dict(val, f"{parent_path}/{key}",
+                                                    func_on_raw_key=func_on_raw_key)
 
     def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
         """Rearrange array data according to the fast and slow axes.
@@ -540,11 +547,16 @@ class SPMformatter(ABC):
 
         def _format_datetime(parent_path, fld_key, fld_data):
             """Format start time"""
-            # Check if data time has "day.month.year hour:minute:second" format
-            # if it is then convert it to "day-month-year hour:minute:second"
+            
+            # "day.month.year hour:minute:second" -> "day-month-year hour:minute:second"
             re_pattern = re.compile(
                 r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
             )
+            
+            # # "day.month.year hour:minute:second" -> "day-month-year hour:minute:second"
+            # re_pattern2 = re.compile(
+            #     r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
+            # )
             if not isinstance(fld_data, str):
                 return
             match = re_pattern.match(fld_data.strip())

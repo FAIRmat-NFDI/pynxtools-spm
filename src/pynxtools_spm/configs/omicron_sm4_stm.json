@@ -3,10 +3,11 @@
     "@default": { "raw_path": "@default:current_backward" },
     "identifier_collection": "",
     "start_time": {
-      "#note": "/Topography_Forward/Handled in function _set_start_end_time use RHK_DATE and RHK_TIME"
+      "raw_path": "/Topography_Forward/Handled in function _set_start_end_time use RHK_DATE and RHK_TIME"
     },
     "end_time": {
-      "#note": "Handled in function _set_start_end_time"
+      "#note": "Handled in function _set_start_end_time",
+      "raw_path": "/Topography_Backward/RHK_ImageDrift_Time"
     },
     "scan_mode": "",
     "scan_type": "",
@@ -557,12 +558,12 @@
         },
         "0": {
           "name": "x",
-          "raw_path": "/Topography_Forward/Topography_Forward_x",
+          "raw_path": "/Topography_Forward/coords/Topography_Forward_x",
           "@units": "/Topography_Forward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "/Topography_Forward/Topography_Forward_y",
+          "raw_path": "/Topography_Forward/coords/Topography_Forward_y",
           "@units": "/Topography_Forward/RHK_Y/@unit"
         },
         "title": {
@@ -578,12 +579,12 @@
         },
         "0": {
           "name": "x",
-          "raw_path": "/Topography_Backward/Topography_Backward_x",
+          "raw_path": "/Topography_Backward/coords/Topography_Backward_x",
           "@units": "/Topography_Backward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "/Topography_Backward/Topography_Backward_y",
+          "raw_path": "/Topography_Backward/coords/Topography_Backward_y",
           "@units": "/Topography_Backward/RHK_Y/@unit"
         },
         "title": {
@@ -599,12 +600,12 @@
         },
         "0": {
           "name": "x",
-          "raw_path": "/Current_Backward/Current_Backward_x",
+          "raw_path": "/Current_Backward/coords/Current_Backward_x",
           "@units": "/Current_Backward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "/Current_Backward/Current_Backward_y",
+          "raw_path": "/Current_Backward/coords/Current_Backward_y",
           "@units": "/Current_Backward/RHK_Y/@unit"
         },
         "title": {
@@ -620,12 +621,12 @@
         },
         "0": {
           "name": "x",
-          "raw_path": "/Current_Forward/Current_Forward_x",
+          "raw_path": "/Current_Forward/coords/Current_Forward_x",
           "@units": "/Current_Forward/RHK_X/@unit"
         },
         "1": {
           "name": "y",
-          "raw_path": "/Current_Forward/Current_Forward_y",
+          "raw_path": "/Current_Forward/coords/Current_Forward_y",
           "@units": "/Current_Forward/RHK_Y/@unit"
         },
         "title": {
