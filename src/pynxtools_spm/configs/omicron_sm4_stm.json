@@ -135,7 +135,9 @@
           "@units": "/Topography_Forward/RHK_Bias/Offset/@unit"
         },
         "calibration": {
-          "coefficients": "",
+          "calibration_parameters": {
+            "coefficient": ""
+          },
           "calibration_time": ""
         },
         "AMPLIFIER[amplifier]": {
@@ -154,7 +156,9 @@
           "@units": "/Topography_Forward/RHK_Current/Offset/@unit"
         },
         "calibration": {
-          "coefficients": "",
+          "calibration_parameters": {
+            "coefficient": ""
+          },
           "calibration_time": ""
         },
         "AMPLIFIER[amplifier]": {
@@ -173,6 +177,7 @@
           "raw_path": "/Topography_Forward/RHK_CH1Drive_Amplitude",
           "@units": "/Topography_Forward/RHK_CH1Drive_Amplitude/@unit"
         },
+        "flip_sign": "",
         "reference_phase": {
           "raw_path": "/Topography_Forward/RHK_CH1Drive_PhaseOffset",
           "@units": "/Topography_Forward/RHK_CH1Drive_PhaseOffset/@unit"
@@ -223,7 +228,7 @@
           { "d1": { "raw_path": "" } },
           { "d2": { "raw_path": "" } }
         ],
-        "ref_offset_phaseN[ref_phase_n]": [
+        "ref_offset_phaseN[ref_offset_phase_n]": [
           {
             "d1": {
               "raw_path": "/Topography_Forward/RHK_CH1Drive_PhaseOffset",
@@ -264,88 +269,7 @@
           }
         ]
       },
-      "bias_spectroscopy_environment": {
-        "BIAS_SPECTROSCOPY[bias_spectroscopy]": {
-          "measurement_type": "",
-          "POSITIONER_SPM[positioner_spm]": {
-            "z_controller": {
-              "z_average_time": {
-                "raw_path": "",
-                "@units": ""
-              },
-              "z_controller_time": {
-                "raw_path": "",
-                "@units": ""
-              },
-              "z_controller_hold": {
-                "raw_path": ""
-              },
-              "record_final_z": {
-                "raw_path": ""
-              }
-            },
-            "z_offset_value": {
-              "raw_path": "",
-              "@units": ""
-            }
-          },
-          "bias_sweep": {
-            "scan_type": "",
-            "settling_time": {
-              "raw_path": "",
-              "@units": ""
-            },
-            "first_settling_time": {
-              "raw_path": "",
-              "@units": ""
-            },
-            "end_settling_time": {
-              "raw_path": "",
-              "@units": ""
-            },
-            "max_slew_rate": {
-              "raw_path": "",
-              "@units": ""
-            },
-            "final_z": "",
-            "total_spectroscopy_time": "",
-            "sweep_number": {
-              "raw_path": ""
-            },
-            "scan_region": {
-              "scan_range_bias": "",
-              "scan_offset_bias": "",
-              "scan_angleN[scan_angle_n]": "",
-              "scan_start_bias": {
-                "raw_path": "",
-                "@units": ""
-              },
-              "scan_end_bias": {
-                "raw_path": "",
-                "@units": ""
-              }
-            },
-            "linear_sweep": {
-              "scan_speed": "",
-              "scan_time": "",
-              "forward_speed": "",
-              "backward_speed": "",
-              "scan_points_bias": {
-                "raw_path": ""
-              },
-              "step_size_bias": "",
-              "reset_bias": "",
-              "backward_sweep": {
-                "raw_path": ""
-              },
-              "SCAN_DATA[scan_data]": ""
-            }
-          },
-          "CIRCUIT[circuit]": ""
-        }
-      },
-
-      "piezo_sensor": {
+      "height_piezo_sensor": {
         "piezo_configuration": {
           "calibration": {
             "calibration_type": {
@@ -354,46 +278,50 @@
             "calibration_date": {
               "raw_path": "/Topography_Forward/RHK_DateTime"
             },
-            "calibration_coefficientN[calibration_coefficient_n]": [
-              {
-                "x": {
-                  "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeX",
-                  "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeX/@unit"
+            "rangeN[range_n]": { "x": "", "y": "", "z": "" },
+            "calibrated_axis": "",
+            "calibration_parameters": {
+              "coefficientN[coefficient_n]": [
+                {
+                  "x": {
+                    "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeX",
+                    "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeX/@unit"
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeY",
+                    "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeY/@unit"
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeZ",
+                    "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeZ/@unit"
+                  }
                 }
-              },
-              {
-                "y": {
-                  "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeY",
-                  "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeY/@unit"
+              ],
+              "second_order_correctionN[second_order_correction_n]": [
+                {
+                  "x": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
                 }
-              },
-              {
-                "z": {
-                  "raw_path": "/Topography_Forward/RHK_PiezoSensitivity_TubeZ",
-                  "@units": "/Topography_Forward/RHK_PiezoSensitivity_TubeZ/@unit"
-                }
-              }
-            ],
-            "second_order_correctionN[second_order_correction_n]": [
-              {
-                "x": {
-                  "raw_path": "",
-                  "@units": ""
-                }
-              },
-              {
-                "y": {
-                  "raw_path": "",
-                  "@units": ""
-                }
-              },
-              {
-                "z": {
-                  "raw_path": "",
-                  "@units": ""
-                }
-              }
-            ],
+              ]
+            },
             "calibration_name": {
               "raw_path": ""
             },
@@ -493,20 +421,27 @@
             "z": {
               "raw_path": "",
               "@units": ""
-            }
+            },
+            "z_offset_value": {
+              "raw_path": "/Topography_Forward/RHK_Zoffset",
+              "@units": "/Topography_Forward/RHK_Z/@unit"
+            },
+            "controller_label": { "raw_path": "" }
           },
-          "z_offset_value": {
-            "raw_path": "/Topography_Forward/RHK_Zoffset",
-            "@units": "/Topography_Forward/RHK_Z/@unit"
-          },
-          "tip_position_z": "",
-          "controller_label": { "raw_path": "" }
+          "actuator": {
+            "feedback": ""
+          }
         },
         "x": "",
         "y": "",
         "z": {
           "raw_path": "",
           "@units": ""
+        },
+        "AXISoffset_value[x_offset_value]": {
+          "x": "",
+          "y": "",
+          "z": ""
         }
       },
       "real_time_controller": {
@@ -543,7 +478,9 @@
         },
         "bias_offset_value": "",
         "calibration": {
-          "coefficients": "",
+          "calibration_parameters": {
+            "coefficient": ""
+          },
           "calibration_time": ""
         }
       }
