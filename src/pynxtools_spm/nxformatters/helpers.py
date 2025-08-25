@@ -246,6 +246,14 @@ def get_actual_from_variadic_name(name: str) -> str:
     return name.split("[")[-1].split("]")[0]
 
 
+def flatten_nested_list(list_dt: Union[list, tuple, any]):
+    for elem in list_dt:
+        if isinstance(elem, (list, tuple)):
+            yield from flatten_nested_list(elem)
+        else:
+            yield elem
+
+
 # pylint: disable=too-many-return-statements
 def to_intended_t(
     data: Any,
@@ -290,10 +298,15 @@ def to_intended_t(
             )
             return transformed
         except ValueError as e:
-            print(
-                f"Warning: Data '{data}' can not be converted to an array"
-                f"and encounterd error {e}"
-            )
+            if np.all(
+                map(lambda x: isinstance(x, str), flatten_nested_list(data))
+            ) and np.any(map(lambda x: x.isalpha(), flatten_nested_list(data))):
+                pass
+            else:
+                print(
+                    f"Warning: Data '{data}' can not be converted to an array"
+                    f"and encounterd error {e}"
+                )
         return data
 
     def _array_from_str(data):
@@ -301,20 +314,6 @@ def to_intended_t(
             transformed = json.loads(data)
             return transformed
         return data
-
-    # def _data_with_type(data_type, data):
-    #     try:
-    #         return data_type(data)
-    #     except Exception as e:
-    #         print(
-    #             f"Warnign: Data {data} can not be converted to type {data_type}"
-    #             f"encounterd error {e}"
-    #         )
-
-    # if not data_struc and data_type:
-    #     return _data_with_type(data_type_map[data_type], data)
-    # elif data_struc == "array":
-    #     return _array_from(data, data_type)
 
     symbol_list_for_data_seperation = [";"]
     transformed: Optional[Any]
