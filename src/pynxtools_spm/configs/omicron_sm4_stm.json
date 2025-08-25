@@ -13,15 +13,15 @@
     "scan_type": "",
     "experiment_description": "",
     "INSTRUMENT[instrument]": {
-      "scan_environment": {
+      "SCAN_ENVIRONMENT[scan_environment]": {
         "head_temperature": {
           "raw_path": "",
           "@units": ""
         },
         "cryo_bottom_temperature": "",
         "cryo_shield_temperature": "",
-        "scan_name": { "raw_path": "" },
-        "SCAN_CONTROL[scan_control_*]": {
+        "scanTAG[scan_name]": { "raw_path": "" },
+        "SPM_SCAN_CONTROL[spm_scan_control_*]": {
           "#note": "handled in function _construct_nxscan_controllers. With '*' it is possible to have multiple scan controllers with different extensions.",
           "scan_name": {
             "raw_path": "TODO: write the forward or backward scan here."
@@ -39,23 +39,25 @@
             "channelNAME[scan_name_n]": "",
             "scan_pointsN[scan_points_n]": [
               {
-                "x": {
+                "_x": {
                   "raw_path": "/Topography_Forward/RHK_Xsize"
                 }
               },
               {
-                "y": {
+                "_y": {
                   "raw_path": "/Topography_Forward/RHK_Ysize"
                 }
               }
             ],
             "steppingN[stepping_n]": [
               {
-                "x": {
+                "_x": {
                   "raw_path": "@default:1",
                   "@units": ""
-                },
-                "y": {
+                }
+              },
+              {
+                "_y": {
                   "raw_path": "@default:1",
                   "@units": ""
                 }
@@ -71,32 +73,27 @@
           "scan_region": {
             "scan_angleN[scan_angle_n]": [
               {
-                "x": {
+                "_x": {
                   "raw_path": "/Topography_Forward/RHK_Angle",
                   "@units": "@default:deg"
                 }
               },
               {
-                "y": {
+                "_y": {
                   "raw_path": "/Topography_Forward/RHK_Angle",
                   "@units": "@default:deg"
                 }
               }
             ],
-            "scan_offsetN[scan_offset_n]": [
-              {
-                "x": {
-                  "raw_path": "/Topography_Forward/RHK_Xoffset",
-                  "@units": "/Topography_Forward/RHK_X/@unit"
-                }
-              },
-              {
-                "y": {
-                  "raw_path": "/Topography_Forward/RHK_Yoffset",
-                  "@units": "/Topography_Forward/RHK_Y/@unit"
-                }
-              }
-            ],
+            "scan_offset_value_x": {
+              "raw_path": "/Topography_Forward/RHK_Xoffset",
+              "@units": "/Topography_Forward/RHK_X/@unit"
+            },
+
+            "scan_offset_value_y": {
+              "raw_path": "/Topography_Forward/RHK_Yoffset",
+              "@units": "/Topography_Forward/RHK_Y/@unit"
+            },
             "scan_rangeN[scan_range_n]": {
               "raw_path": "",
               "@units": ""
@@ -134,9 +131,17 @@
           "raw_path": "/Topography_Forward/RHK_Bias",
           "@units": "@default:V"
         },
+        "voltage_offset_value": {
+          "raw_path": "/Topography_Forward/RHK_Bias/Offset",
+          "@units": "/Topography_Forward/RHK_Bias/Offset/@unit"
+        },
+        "calibration": {
+          "coefficients": "",
+          "calibration_time": ""
+        },
         "AMPLIFIER[amplifier]": {
-          "current_gain": {
-            "raw_path": "TODO: Try to find this in file metadata."
+          "voltage_gain": {
+            "raw_path": ""
           }
         }
       },
@@ -145,17 +150,17 @@
           "raw_path": "/Topography_Forward/RHK_Current",
           "@units": "/Topography_Forward/RHK_ZPI_SetPoint/@unit"
         },
-        "current_offset": {
+        "current_offset_value": {
           "raw_path": "/Topography_Forward/RHK_Current/Offset",
           "@units": "/Topography_Forward/RHK_Current/Offset/@unit"
         },
-        "current_calibration": {
+        "calibration": {
           "coefficients": "",
           "calibration_time": ""
         },
         "AMPLIFIER[amplifier]": {
           "current_gain": {
-            "raw_path": "TODO: Try to find this in file metadata."
+            "raw_path": ""
           }
         }
       },
@@ -177,7 +182,7 @@
           "raw_path": "/Topography_Forward/RHK_Lockin0_NonMasterOscillator"
         },
         "modulation_signal": {
-          "raw_path": ""
+          "raw_path": "@default:current"
         },
         "demodulated_signal": {
           "raw_path": ""
@@ -219,7 +224,7 @@
           { "d1": { "raw_path": "" } },
           { "d2": { "raw_path": "" } }
         ],
-        "ref_phaseN[ref_phase_n]": [
+        "ref_offset_phaseN[ref_phase_n]": [
           {
             "d1": {
               "raw_path": "/Topography_Forward/RHK_CH1Drive_PhaseOffset",
@@ -245,7 +250,7 @@
             }
           }
         ],
-        "dc_offsetN": [
+        "dc_offset_valueN": [
           {
             "d1": {
               "raw_path": "/Topography_Forward/RHK_CH1DriveValue",
@@ -370,7 +375,7 @@
                 }
               }
             ],
-            "calibration_coefficientN[second_order_correction_n]": [
+            "second_order_correctionN[second_order_correction_n]": [
               {
                 "x": {
                   "raw_path": "",
@@ -437,7 +442,7 @@
             ]
           },
           "piezo_material": {
-            "curvature_radius_N": [
+            "curvature_radiusN": [
               {
                 "x": {
                   "raw_path": "",
@@ -503,7 +508,7 @@
         "x": "",
         "y": "",
         "z": {
-          "raw_path": "Try to ",
+          "raw_path": "",
           "@units": ""
         }
       },
@@ -540,7 +545,7 @@
           "@units": "@default:V"
         },
         "bias_offset_value": "",
-        "bias_calibration": {
+        "calibration": {
           "coefficients": "",
           "calibration_time": ""
         }

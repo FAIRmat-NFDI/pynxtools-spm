@@ -373,22 +373,40 @@ def replace_variadic_name_part(name, part_to_embed: None):
     """
     if not part_to_embed:
         return name
-
+    if not part_to_embed.startswith("_"):
+        part_to_embed = "_" + part_to_embed
     f_part, _ = name.split("[") if "[" in name else (name, "")
     ind_start = None
     ind_end = None
-    for ind, chr in enumerate(f_part):
-        if chr.isupper():
+    for ind, chr_ in enumerate(f_part):
+        if chr_.isupper():
             if ind_start is None:
                 ind_start = ind
-        if ind_start is not None and chr.islower():
+        if ind_start is not None and chr_.islower():
             ind_end = ind
             break
+    if ind_start == 0 and ind_end is not None:
+        part_to_embed = part_to_embed[1:]  # remove the first underscore
+        remainpart = f_part[ind_end:]
+        if remainpart.startswith("_"):
+            if part_to_embed.endswith("_"):
+                part_to_embed = part_to_embed[0:-1]
+        else:
+            if not part_to_embed.endswith("_"):
+                part_to_embed = part_to_embed + "_"
+        f_part_mod = f_part.replace(f_part[ind_start:ind_end], part_to_embed)
+        return "[".join([f_part, f_part_mod]) + "]"
     if ind_end is None and ind_start is not None:
+        remainpart = f_part[0:ind_start]
+        if remainpart.endswith("_") and part_to_embed.startswith("_"):
+            part_to_embed = part_to_embed[1:]
         f_part_mod = f_part.replace(f_part[ind_start:], part_to_embed)
         return "[".join([f_part, f_part_mod]) + "]"
     elif ind_end is not None and ind_start is not None:
         replacement_p = f_part[ind_start:ind_end]
+        remainpart = f_part[0:ind_start]
+        if remainpart.endswith("_") and part_to_embed.startswith("_"):
+            part_to_embed = part_to_embed[1:]
         # if replacement_p end with '_'
         if replacement_p.endswith("_"):
             replacement_p = replacement_p[:-1]
