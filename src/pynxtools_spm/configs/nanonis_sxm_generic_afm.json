@@ -132,7 +132,7 @@
         "demodulated_amplitude": "",
         "demodulator_channels": "",
         "recorded_channels": "",
-        "ref_phaseN[ref_phase_n]": {
+        "ref_offset_phaseN[ref_phase_n]": {
           "raw_path": "/Lock-in/Reference phase",
           "@units": "/Lock-in/Reference phase/@unit"
         },
@@ -268,7 +268,7 @@
             ]
           },
           "piezo_material": {
-            "curvature_radius_N": [
+            "curvature_radiusN": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Curvature radius X",
@@ -332,7 +332,7 @@
               "raw_path": "/SCAN/ANGLE",
               "@units": "@default:deg"
             },
-            "scan_offsetN[scan_offset_n]": {
+            "scan_offset_valueN[scan_offset_value_n]": {
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/OFFSET",
               "@units": "/Z-Controller/Z/@unit"
