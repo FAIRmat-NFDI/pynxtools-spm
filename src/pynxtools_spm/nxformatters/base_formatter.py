@@ -568,6 +568,12 @@ class SPMformatter(ABC):
                     date_time_format,
                 ).isoformat()
                 self.template[f"{parent_path}/{fld_key}"] = date_str
+            try:
+                datetime.datetime.fromisoformat(fld_data)
+            except ValueError:
+                pass
+            else:
+                self.template[f"{parent_path}/{fld_key}"] = fld_data
 
         for key, val in self.template.items():
             if key.endswith("start_time"):

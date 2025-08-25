@@ -59,7 +59,7 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
         (
             "NXstm",
             "spm",
-            f"{module_dir}/data/nanonis/stm/version_gen_5_with_described_nxdata",
+            f"{module_dir}/data/omicron/stm",
         ),
     ],
 )

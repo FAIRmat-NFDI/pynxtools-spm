@@ -71,7 +71,7 @@ class OmicronSM4STMFormatter(SPMformatter):
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, parent_path="")
         self._format_template_from_eln()
-        # self._handle_special_fields()
+        self._handle_special_fields()
 
     def _get_conf_dict(self, config_file = None):
         if config_file is not None:
@@ -223,7 +223,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                                                               group_name=group_name,
                                                               func_to_raw_key=lambda k: self.get_key_with(active_chnl=actv_chnl, key=k))
 
-    def _construct_scan_pattern_group(self,
+    def _construct_scan_pattern_grp(self,
                                       partial_conf_dict: dict,
                                       parent_path: str,
                                       group_name: Optional[str],
@@ -279,7 +279,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         
         self.raw_data = raw_data
 
-    def _construct_scan_region_group(self,
+    def _construct_scan_region_grp(self,
                                      partial_conf_dict: dict,
                                      parent_path: str,
                                      group_name: Optional[str],
@@ -380,7 +380,7 @@ class OmicronSM4STMFormatter(SPMformatter):
             # Data from scan_region group will be used later
             for key, val in partial_conf_dict.items():
                 if re.match(pattern=r"^scan_region$", string=rf"{key}", flags=re.I):
-                    self._construct_scan_region_group(partial_conf_dict=val,
+                    self._construct_scan_region_grp(partial_conf_dict=val,
                                                       parent_path=parent_path_mod,
                                                       group_name=key,
                                                       scan_tag=scan_tag,
@@ -388,7 +388,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
             for key, val in partial_conf_dict.items():
                 if re.match(pattern=r"^mesh_SCAN\[mesh_scan\]$", string=rf"{key}", flags=re.I):
-                    self._construct_scan_pattern_group(partial_conf_dict=val,
+                    self._construct_scan_pattern_grp(partial_conf_dict=val,
                                                        parent_path=parent_path_mod,
                                                        group_name=key,
                                                        scan_tag=scan_tag,
@@ -410,4 +410,27 @@ class OmicronSM4STMFormatter(SPMformatter):
                
     def _handle_special_fields(self):
         super()._handle_special_fields()
-        
+
+        template_key = ""
+        config_dict = self.config_dict
+        # end time
+        for template_key, val in self.template.items():
+            if re.match(pattern=r"/ENTRY\[\w+\]/start_time$", string=template_key):
+                end_time_k = template_key.replace("start_time", "end_time")
+                end_dct = None
+                for k in end_time_k.split("/")[1:]:
+                    end_dct = config_dict.get(k, None)
+                    config_dict = end_dct
+                if isinstance(end_dct, dict) and  "raw_path" in end_dct:
+                    data, _, _ = _get_data_unit_and_others(
+                        data_dict=self.raw_data, end_dict=end_dct)
+                    start_time = self.template.get(template_key, None)
+                    if start_time not in ["", None]:
+                        print(' #### start_time : ', start_time)
+                        try:
+                            end_time = datetime.datetime.fromisoformat(start_time) + datetime.timedelta(float(data))
+                            end_time = datetime.datetime.isoformat(end_time)
+                            self.template[end_time_k] = end_time
+                        except Exception as e:
+                            self.logger.warning(f"Error parsing time: {e}")
+                
