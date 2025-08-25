@@ -1,5 +1,5 @@
 from pynxtools.units import ureg
-from typing import Optional, Dict, Tuple, Union, Any, Literal
+from typing import Optional, Dict, Tuple, Union, Any, Literal, Callable
 from pathlib import Path
 import logging
 from datetime import datetime
