@@ -51,11 +51,11 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
         #     "spm",
         #     f"{module_dir}/data/nanonis/stm/version_gen_4_5_default_config",
         # ),
-        # (
-        #     "NXstm",
-        #     "spm",
-        #     f"{module_dir}/data/nanonis/stm/version_gen_5e_with_described_nxdata",
-        # ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/nanonis/stm/version_gen_5e_with_described_nxdata",
+        ),
         (
             "NXstm",
             "spm",

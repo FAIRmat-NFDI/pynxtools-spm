@@ -738,7 +738,9 @@ class SPMformatter(ABC):
                 try:
                     t_with_zone = add_local_timezone(val)
                     self.template[template_key] = t_with_zone
-                except KeyError:
+                except Exception:
+                    # Only consider the time or date that follows ISO 8601
+                    # or convertable in it
                     pass
             for key, typ in field_to_type.items():
                 if re.search(pattern=rf"{key}$", string=template_key):

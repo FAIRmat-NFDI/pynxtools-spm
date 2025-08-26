@@ -461,7 +461,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                             completed_field.append(end_time_str)
                         except (ValueError, TypeError):
                             pass
-                            # TODO add a logger for all ecceptions
+            # TODO add a logger for all ecceptions
             elif m := re.match(
                 pattern=r"(/ENTRY\[\w+\]/INSTRUMENT\[\w+\]/scan_environment/SPM_SCAN_CONTROL\[(\w+)\]/meshSCAN\[\w+\])",
                 string=template_key,

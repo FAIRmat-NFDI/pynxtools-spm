@@ -20,11 +20,10 @@
         },
         "cryo_bottom_temperature": "",
         "cryo_shield_temperature": "",
-        "scanTAG[scan_name]": { "raw_path": "" },
         "SPM_SCAN_CONTROL[spm_scan_control_*]": {
           "#note": "handled in function _construct_nxscan_controllers. With '*' it is possible scan name e.g., current_backward.",
-          "scan_name": {
-            "raw_path": "TODO: write the forward or backward scan here."
+          "scanTAG[scan_name]": {
+            "raw_path": ""
           },
           "meshSCAN[mesh_scan]": {
             "backward_speedN[backward_speed_n]": {
@@ -115,24 +114,26 @@
             "raw_path": "",
             "@units": ""
           },
-          "scan_resolutionN": "",
-          "accuracyN": "",
-          "scan_type": { "raw_path": "@default:mesh", "@units": "" }
+          "scan_resolutionN[scan_resolution_n]": "",
+          "accuracyN[accuracy_n]": "",
+          "scan_type": { "raw_path": "@default:mesh", "@units": "" },
+          "scan_control_type": {
+            "raw_path": "@default:continuous",
+            "@units": ""
+          }
         },
-        "independent_controllers": "",
-        "measurement_sensors": "",
         "cryo_shield_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
         "cryo_bottom_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
         "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/head_temperature_sensor"
       },
       "voltage_sensorTAG[voltage_sensor]": {
         "voltage": {
-          "raw_path": "/Topography_Forward/RHK_Bias",
-          "@units": "@default:V"
+          "raw_path": "",
+          "@units": ""
         },
         "voltage_offset_value": {
-          "raw_path": "/Topography_Forward/RHK_Bias/Offset",
-          "@units": "/Topography_Forward/RHK_Bias/Offset/@unit"
+          "raw_path": "",
+          "@units": ""
         },
         "calibration": {
           "calibration_parameters": {
@@ -279,7 +280,11 @@
               "raw_path": "/Topography_Forward/RHK_DateTime"
             },
             "rangeN[range_n]": { "x": "", "y": "", "z": "" },
-            "calibrated_axis": "",
+            "calibratedAXIS[calibrated_n]": [
+              { "x": "" },
+              { "y": "" },
+              { "z": "" }
+            ],
             "calibration_parameters": {
               "coefficientN[coefficient_n]": [
                 {
@@ -476,10 +481,16 @@
           "raw_path": "/Topography_Forward/RHK_Bias",
           "@units": "@default:V"
         },
-        "bias_offset_value": "",
+        "bias_offset_value": {
+          "raw_path": "/Topography_Forward/RHK_Bias/Offset",
+          "@units": "/Topography_Forward/RHK_Bias/Offset/@unit"
+        },
         "calibration": {
           "calibration_parameters": {
-            "coefficient": ""
+            "coefficient": {
+              "raw_path": "/Topography_Forward/RHK_Bias/Calibration",
+              "@units": "/Topography_Forward/RHK_Bias/Calibration/@unit"
+            }
           },
           "calibration_time": ""
         }
