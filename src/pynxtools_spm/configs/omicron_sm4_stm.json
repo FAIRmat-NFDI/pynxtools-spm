@@ -22,7 +22,7 @@
         "cryo_shield_temperature": "",
         "scanTAG[scan_name]": { "raw_path": "" },
         "SPM_SCAN_CONTROL[spm_scan_control_*]": {
-          "#note": "handled in function _construct_nxscan_controllers. With '*' it is possible to have multiple scan controllers with different extensions.",
+          "#note": "handled in function _construct_nxscan_controllers. With '*' it is possible scan name e.g., current_backward.",
           "scan_name": {
             "raw_path": "TODO: write the forward or backward scan here."
           },

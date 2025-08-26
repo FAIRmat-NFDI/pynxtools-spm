@@ -22,7 +22,8 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import re
+# TODO later try to get logger from pynxtools
+from pynxtools_spm import SPM_LOGGER, __formatter
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 from typing import TYPE_CHECKING, Optional, Union, Any
 import re
@@ -32,8 +33,6 @@ import pynxtools_spm.nxformatters.helpers as fhs
 from pathlib import Path
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
-    _scientific_num_pattern,
-    to_intended_t,
 )
 from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 import datetime
@@ -78,25 +77,6 @@ class OmicronSM4STMFormatter(SPMformatter):
         else:
             return load_default_config("omicron_sm4_stm")
 
-    # TODO move this functnion to the base formater
-    def feed_data_unit_attr_to_template(
-        self,
-        data: Any,
-        parent_path: str,
-        fld_key: str,
-        group_name: str = None,
-        unit: str = None,
-        other_attrs: dict = None,
-    ):
-        if group_name:
-            parent_path = f"{parent_path}/{group_name}"
-        self.template[f"{parent_path}/{fld_key}"] = to_intended_t(data)
-        if unit:
-            self.template[f"{parent_path}/{fld_key}/@units"] = unit
-        if other_attrs:
-            for k, v in other_attrs.items():
-                self.template[f"{parent_path}/{group_name}/@{k}"] = v
-
     @staticmethod
     def find_active_channel(raw_dt_dct: dict = None, key: str = None):
         """
@@ -107,21 +87,24 @@ class OmicronSM4STMFormatter(SPMformatter):
                 "NoInputData: Unable to find the active channels due to lack of input data."
             )
 
-        search = lambda key_: re.search(
-            r"RHK_CH(\d+)Drive_MasterOscillator", key_, flags=re.A
-        )
+        def search_pattern(key_: str) -> re.Match | None:
+            return re.search(r"RHK_CH(\d*)Drive_MasterOscillator", key_, flags=re.A)
+
         if key is not None:
-            srch = search(key)
-            if srch:
-                return srch.groups()[0]
+            search_result = search_pattern(key)
+            if search_result:
+                return search_result.groups()[0]
 
         # Get the active channel
         for key_, val in raw_dt_dct.items():
-            srch = search(key_)
-            # expect val string of 1 of 0
-            if srch and int(val) == 1:
-                return srch.groups()[0]
-
+            search_result = search_pattern(key_)
+            # expect val a string representation of a number
+            if search_result:
+                try:
+                    _ = int(val)
+                    return search_result.groups()[0]
+                except (ValueError, TypeError):
+                    SPM_LOGGER.warning("No active channel is found")
         return
 
     @staticmethod
@@ -131,99 +114,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
         repl = rf"RHK_CH{active_chnl}Drive"
 
-        return re.sub(pattern=r"RHK_CH[0-9]+Drive", repl=repl, string=key)
-
-    def _handle_fields_with_modified_raw_data_key(
-        self,
-        partial_conf_dict: dict,
-        parent_path: str,
-        group_name: str,
-        func_to_raw_key: callable,
-    ):
-        # only field
-        for fld_key, end_dct in partial_conf_dict.items():
-            if not (isinstance(end_dct, dict) and "raw_path" in end_dct):
-                continue
-
-            mod_val_dct = {}
-            # correct the active channel in the raw data key
-            for tag, raw_str in end_dct.items():
-                if tag == "note":
-                    continue
-                mod_vval = func_to_raw_key(raw_str)
-                mod_val_dct[tag] = mod_vval
-            data, unit, other_attrs = _get_data_unit_and_others(
-                data_dict=self.raw_data, end_dict=mod_val_dct
-            )
-            self.feed_data_unit_attr_to_template(
-                data=data,
-                parent_path=parent_path,
-                group_name=group_name,
-                unit=unit,
-                other_attrs=other_attrs,
-                fld_key=fld_key,
-            )
-
-    def _handle_variadic_field_with_modified_raw_data_key(
-        self,
-        varidic_dct: dict,
-        parent_parh: str,
-        group_name: str,
-        fld_to_modify,
-        func_to_raw_key,
-    ):
-        if len(varidic_dct) >= 1:
-            part_to_embed, raw_path_dct = list(varidic_dct.items())[0]
-        else:
-            raise ValueError(f"Variadic dict should have only one element.")
-
-        mod_fld = replace_variadic_name_part(fld_to_modify, part_to_embed)
-
-        self._handle_fields_with_modified_raw_data_key(
-            partial_conf_dict={mod_fld: raw_path_dct},
-            parent_path=parent_parh,
-            group_name=group_name,
-            func_to_raw_key=func_to_raw_key,
-        )
-
-    def walk_through_config_by_modified_raw_data_key(
-        self,
-        partial_conf_dict: dict,
-        parent_path: str,
-        group_name: str,
-        func_to_raw_key: callable,
-    ):
-        self._handle_fields_with_modified_raw_data_key(
-            partial_conf_dict=partial_conf_dict,
-            parent_path=parent_path,
-            group_name=group_name,
-            func_to_raw_key=func_to_raw_key,
-        )
-        # Walk through the nested group
-        for key, val in partial_conf_dict.items():
-            # skips fields
-            if isinstance(val, dict) and "raw_path" in val:
-                continue
-            # Variadic fields
-            elif isinstance(val, list) and all(
-                "raw_path" in enddct for vardict in val for _, enddct in vardict.items()
-            ):
-                for var_fld_dct in val:
-                    self._handle_variadic_field_with_modified_raw_data_key(
-                        varidic_dct=var_fld_dct,
-                        parent_parh=parent_path,
-                        group_name=group_name,
-                        fld_to_modify=key,
-                        func_to_raw_key=func_to_raw_key,
-                    )
-            # Nested group
-            elif isinstance(val, dict):
-                self.walk_through_config_by_modified_raw_data_key(
-                    partial_conf_dict=val,
-                    parent_path=f"{parent_path}/{group_name}",
-                    group_name=key,
-                    func_to_raw_key=func_to_raw_key,
-                )
+        return re.sub(pattern=r"RHK_CH[0-9]*Drive", repl=repl, string=key)
 
     def _construct_lockin_amplifier_grp(
         self,
@@ -456,7 +347,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         parent_path: str = "",
         group_name: Optional[str] = None,
     ):
-        # Modify the raw_data key according to the scan_tag
+        # Modify the raw_data key according to the scan_tag: Topography_Backward, Current_Forward
         def func_on_raw_key_with(scan_tag, k, all_tags: list):
             return re.sub(
                 pattern=rf"^/({'|'.join(all_tags)})/",
@@ -482,7 +373,8 @@ class OmicronSM4STMFormatter(SPMformatter):
                     self._scan_list.append(scan_tag)
 
         m = re.search(
-            pattern=r"(SPM_SCAN_CONTROL\[spm_scan_control[_*]+)(\])", string=group_name
+            pattern=r"^(SPM_SCAN_CONTROL\[[_\w]*)([*]+)([_\w]*\])$",
+            string=group_name,
         )
 
         if not m:
@@ -493,7 +385,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         groups = m.groups()
         for scan_tag in self._scan_list:
             # modify group name according to the scan_tag
-            group_name_mod = groups[0][:-1] + scan_tag.lower() + groups[1]
+            group_name_mod = group_name.replace(groups[1], scan_tag.lower())
             parent_path_mod = f"{parent_path}/{group_name_mod}"
 
             func_on_raw_key = lambda k: func_on_raw_key_with(
@@ -526,17 +418,10 @@ class OmicronSM4STMFormatter(SPMformatter):
                 elif isinstance(val, dict) and "raw_path" in val:
                     if "#note" in val:
                         continue
-                    data, unit, other_attrs = _get_data_unit_and_others(
-                        data_dict=self.raw_data,
-                        end_dict=val,
-                        func_on_raw_key=func_on_raw_key,
-                    )
-                    self.feed_data_unit_attr_to_template(
-                        data=data,
+                    self.walk_though_config_nested_dict(
+                        config_dict={key: val},
                         parent_path=parent_path_mod,
-                        fld_key=key,
-                        other_attrs=other_attrs,
-                        unit=unit,
+                        func_on_raw_key=func_on_raw_key,
                     )
 
     def _handle_special_fields(self):
@@ -545,6 +430,7 @@ class OmicronSM4STMFormatter(SPMformatter):
         config_dict = self.config_dict
         template_links = {}
         completed_field = []
+        completed_group = []
         end_time_str = "end_time"
         start_time_str = "start_time"
 
@@ -584,7 +470,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                 scn_ctl_grp = groups[1]
                 full_match = groups[0]
 
-                if scn_ctl_grp in completed_field:
+                if scn_ctl_grp in completed_group:
                     continue
 
                 for scan_tag in self._scan_list:
@@ -592,7 +478,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                         template_links[f"{full_match}/SCAN_DATA[scan_data]"] = (
                             self._scan_tag_to_data_group[scan_tag]
                         )
-                        completed_field.append(scn_ctl_grp)
+                        completed_group.append(scn_ctl_grp)
 
         for template_key, link in template_links.items():
             self.template[template_key] = {
@@ -619,4 +505,6 @@ class OmicronSM4STMFormatter(SPMformatter):
                     rf"/({'|'.join(self._scan_list)})/", string=raw_path
                 )
                 scan_tag = scan_tag.groups()[0] if scan_tag else None
+                if not scan_tag:
+                    continue
                 self._scan_tag_to_data_group[scan_tag] = f"{parent_path}/{group_name}"

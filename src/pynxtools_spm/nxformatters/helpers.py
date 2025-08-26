@@ -280,13 +280,6 @@ def to_intended_t(
         "list": list,
         "array": np.ndarray,
     }
-    # some example data type map
-    # data_type_map = {
-    #     "int": int,
-    #     "float": float,
-    #     "str": str,
-    #     "float64": np.float64,
-    # }
 
     def _array_from(data, dtype=None):
         try:

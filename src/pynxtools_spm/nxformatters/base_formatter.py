@@ -21,7 +21,7 @@ Base formatter for SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from abc import ABC, abstractmethod
-from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable
+from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable, Any
 from dataclasses import dataclass
 from pynxtools_spm.parsers import SPMParser
 from pynxtools.dataconverter.template import Template
@@ -328,6 +328,23 @@ class SPMformatter(ABC):
             rearraged = np.fliplr(rearraged)
         return rearraged
 
+    def feed_data_unit_attr_to_template(
+        self,
+        data: Any,
+        parent_path: str,
+        fld_key: str,
+        group_name: str = None,
+        unit: str = None,
+        other_attrs: dict = None,
+    ):
+        if group_name:
+            parent_path = f"{parent_path}/{group_name}"
+        self.template[f"{parent_path}/{fld_key}"] = to_intended_t(data)
+        if unit:
+            self.template[f"{parent_path}/{fld_key}/@units"] = unit
+        if other_attrs:
+            for k, v in other_attrs.items():
+                self.template[f"{parent_path}/{group_name}/@{k}"] = v
     def get_raw_data_dict(self):
         return SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
 
@@ -393,6 +410,114 @@ class SPMformatter(ABC):
                         "link": convert_data_dict_path_to_hdf5_path(m.group())
                     }
                     break
+
+    def _handle_fields_with_modified_raw_data_key(
+        self,
+        partial_conf_dict: dict,
+        parent_path: str,
+        group_name: str,
+        func_to_raw_key: callable,
+    ):
+        # only field
+        for fld_key, end_dct in partial_conf_dict.items():
+            if not (isinstance(end_dct, dict) and "raw_path" in end_dct):
+                continue
+
+            mod_val_dct = {}
+            # correct the active channel in the raw data key
+            for tag, raw_str in end_dct.items():
+                if tag == "note":
+                    continue
+                mod_vval = func_to_raw_key(raw_str)
+                mod_val_dct[tag] = mod_vval
+            data, unit, other_attrs = _get_data_unit_and_others(
+                data_dict=self.raw_data, end_dict=mod_val_dct
+            )
+            self.feed_data_unit_attr_to_template(
+                data=data,
+                parent_path=parent_path,
+                group_name=group_name,
+                unit=unit,
+                other_attrs=other_attrs,
+                fld_key=fld_key,
+            )
+
+    def _handle_variadic_field_with_modified_raw_data_key(
+        self,
+        varidic_dct_li: list,
+        parent_path: str,
+        group_name: str,
+        fld_to_modify,
+        func_to_raw_key,
+    ):
+        for varidic_dct in varidic_dct_li:
+            if not (isinstance(varidic_dct, dict)):
+                continue
+            part_to_embed, end_dict = list(varidic_dct.items())[0]
+            if not (isinstance(end_dict, dict) and "raw_path" in end_dict):
+                continue
+            mod_fld = replace_variadic_name_part(fld_to_modify, part_to_embed)
+
+            self._handle_fields_with_modified_raw_data_key(
+                partial_conf_dict={mod_fld: end_dict},
+                parent_path=parent_path,
+                group_name=group_name,
+                func_to_raw_key=func_to_raw_key,
+            )
+
+    # TODO move this function to the base_formatter.py
+    def walk_through_config_by_modified_raw_data_key(
+        self,
+        partial_conf_dict: dict,
+        parent_path: str,
+        group_name: str,
+        func_to_raw_key: callable,
+    ):
+        for key, val in partial_conf_dict.items():
+            # skips fields
+            if isinstance(val, dict) and "raw_path" in val:
+                self._handle_fields_with_modified_raw_data_key(
+                    partial_conf_dict={key: val},
+                    parent_path=parent_path,
+                    group_name=group_name,
+                    func_to_raw_key=func_to_raw_key,
+                )
+            elif isinstance(val, list):
+                # Variadic fields
+                if all(
+                    "raw_path" in enddct
+                    for vardict in val
+                    for _, enddct in vardict.items()
+                ):
+                    # for var_fld_dct in val:
+                    self._handle_variadic_field_with_modified_raw_data_key(
+                        varidic_dct_li=val,
+                        parent_path=parent_path,
+                        group_name=group_name,
+                        fld_to_modify=key,
+                        func_to_raw_key=func_to_raw_key,
+                    )
+                # Handle vriadic group
+                else:
+                    for var_grp_nm_part, var_grp_dct in val:
+                        mod_grp_name = replace_variadic_name_part(
+                            name=group_name, part_to_embed=var_grp_nm_part
+                        )
+                        self.walk_through_config_by_modified_raw_data_key(
+                            partial_conf_dict=var_grp_dct,
+                            parent_path=parent_path,
+                            group_name=mod_grp_name,
+                            func_to_raw_key=func_to_raw_key,
+                        )
+
+            # Nested group
+            elif isinstance(val, dict):
+                self.walk_through_config_by_modified_raw_data_key(
+                    partial_conf_dict=val,
+                    parent_path=f"{parent_path}/{group_name}",
+                    group_name=key,
+                    func_to_raw_key=func_to_raw_key,
+                )
 
     @abstractmethod
     def _construct_nxscan_controllers(
