@@ -193,6 +193,7 @@ class NanonisDatSTS(SPMformatter):
         """
         scan_points = "scan_points_bias"
         step_size = "step_size_bias"
+        copy_partial_conf_dict = partial_conf_dict.copy()
         for key, _ in partial_conf_dict.items():
             if scan_points == key:
                 data, _, _ = _get_data_unit_and_others(
@@ -202,11 +203,16 @@ class NanonisDatSTS(SPMformatter):
                 )
                 self.template[f"{parent_path}/{group_name}/{scan_points}"] = data
                 self.BiasSweep.scan_points_bias = data
+                del copy_partial_conf_dict[key]
         self.template[f"{parent_path}/{group_name}/{step_size}"] = (
             self.BiasSweep.scan_end_bias - self.BiasSweep.scan_start_bias
         ) / self.BiasSweep.scan_points_bias
         self.template[f"{parent_path}/{group_name}/{step_size}/@units"] = (
             self.BiasSweep.scan_start_bias_unit
+        )
+        self.walk_though_config_nested_dict(
+            config_dict=copy_partial_conf_dict,
+            parent_path=f"{parent_path}/{group_name}",
         )
 
     def _construct_scan_region_grp_in_bias_spec(
@@ -219,7 +225,7 @@ class NanonisDatSTS(SPMformatter):
         """
         bias_start = "scan_start_bias"
         bias_end = "scan_end_bias"
-
+        partial_conf_dict_copy = partial_conf_dict.copy()
         for key, _ in partial_conf_dict.items():
             if bias_start == key:
                 data, unit, _ = _get_data_unit_and_others(
@@ -231,6 +237,7 @@ class NanonisDatSTS(SPMformatter):
                 self.template[f"{parent_path}/{group_name}/{bias_start}/@units"] = unit
                 self.BiasSweep.scan_start_bias = data
                 self.BiasSweep.scan_start_bias_unit = unit
+                del partial_conf_dict_copy[key]
             elif bias_end == key:
                 data, unit, _ = _get_data_unit_and_others(
                     data_dict=self.raw_data,
@@ -241,7 +248,11 @@ class NanonisDatSTS(SPMformatter):
                 self.template[f"{parent_path}/{group_name}/{bias_end}/@units"] = unit
                 self.BiasSweep.scan_end_bias = data
                 self.BiasSweep.scan_end_bias_unit = unit
-
+                del partial_conf_dict_copy[key]
+        self.walk_though_config_nested_dict(
+            config_dict=partial_conf_dict_copy,
+            parent_path=f"{parent_path}/{group_name}",
+        )
     def _construct_bias_sweep_grp(self, partial_conf_dict, parent_path, group_name):
         """Constructs the bias_sweep group under the group tree
         BIAS_SPECTROSCOPY[bias_spectroscopy]:

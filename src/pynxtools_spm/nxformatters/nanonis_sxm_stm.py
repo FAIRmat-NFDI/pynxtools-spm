@@ -24,7 +24,8 @@ to NeXus application definition NXstm.
 
 from __future__ import annotations
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
-from typing import TYPE_CHECKING, Optional, Union, Any
+from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
+from typing import TYPE_CHECKING, Optional, Union, Any, Callable
 import re
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
@@ -62,6 +63,7 @@ class NanonisSxmSTM(SPMformatter):
         "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",
         "end_time": "_set_start_end_time",
+        "BIAS_SWEEP[bias_sweep]": "_construct_bias_sweep_grp",
         # "DATA[data]": "construct_scan_data_grps",
     }
     _axes = ["x", "y", "z"]
@@ -151,7 +153,7 @@ class NanonisSxmSTM(SPMformatter):
             for ind, (rng, pnt) in enumerate(zip(gbl_scan_ranges, gbl_scan_points)):
                 stp_s = f"{parent_path}/{group_name}/step_sizeN[step_size_{self._axes[ind]}]"
                 self.template[stp_s] = rng / pnt
-                self.template[stp_s + "/@units"] = unit
+                self.template[stp_s + "/@units"] = self.NXScanControl.x_range_unit
 
         # scan_data group
         scan_data = "SCAN_DATA[scan_data]"
@@ -161,6 +163,34 @@ class NanonisSxmSTM(SPMformatter):
                 parent_path=f"{parent_path}/{group_name}",
                 group_name=scan_data,
             )
+
+    def _construct_bias_sweep_grp(
+        self, partial_conf_dict, parent_path, group_name="bias_sweep"
+    ):
+        sts_bias_sweep = getattr(NanonisDatSTS, "_construct_bias_sweep_grp")
+
+        def _construct_scan_region_grp_in_bias_spec(
+            self, partial_conf_dict, parent_path, group_name
+        ):
+            getattr(NanonisDatSTS, "_construct_scan_region_grp_in_bias_spec")(
+                self, partial_conf_dict, parent_path, group_name
+            )
+
+        NanonisSxmSTM._construct_scan_region_grp_in_bias_spec = (
+            _construct_scan_region_grp_in_bias_spec
+        )
+
+        def _construct_linear_sweep_grp(
+            self, partial_conf_dict, parent_path, group_name
+        ):
+            getattr(NanonisDatSTS, "_construct_linear_sweep_grp")(
+                self, partial_conf_dict, parent_path, group_name
+            )
+
+        NanonisSxmSTM._construct_linear_sweep_grp = _construct_linear_sweep_grp
+
+        if isinstance(sts_bias_sweep, Callable):
+            sts_bias_sweep(self, partial_conf_dict, parent_path, group_name)
 
     def construct_scan_region_grp(
         self,
@@ -175,15 +205,20 @@ class NanonisSxmSTM(SPMformatter):
             partial_conf_dict=partial_conf_dict,
             concept_field=scan_offset,
         )
+        # TODO add a check it scan_start is provided by config dict
         scan_offsets = to_intended_t(re.findall(_scientific_num_pattern, scan_offsets))
         for ind, offset in enumerate(scan_offsets):
-            off_key = f"{parent_path}/{group_name}/scan_offset_valueN[scan_offset_value_{self._axes[ind]}]"
-            self.template[off_key] = offset
-            self.template[f"{off_key}/@units"] = unit
+            # off_key = f"{parent_path}/{group_name}/scan_offset_valueN[scan_offset_value_{self._axes[ind]}]"
+            # self.template[off_key] = offset
+            # self.template[f"{off_key}/@units"] = unit
             if self._axes[ind] == "x":
+                self.NXScanControl.x_offset = offset  # type: ignore
+                self.NXScanControl.x_offset_unit = unit
                 self.NXScanControl.x_start = offset  # type: ignore
                 self.NXScanControl.x_start_unit = unit
             elif self._axes[ind] == "y":
+                self.NXScanControl.y_offset = offset  # type: ignore
+                self.NXScanControl.y_offset_unit = unit
                 self.NXScanControl.y_start = offset  # type: ignore
                 self.NXScanControl.y_start_unit = unit
 
@@ -220,22 +255,32 @@ class NanonisSxmSTM(SPMformatter):
         if gbl_scan_ranges:
             gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
         for ind, rng in enumerate(gbl_scan_ranges):
-            rng_key = (
-                f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]"
-            )
-            self.template[rng_key] = rng
-            self.template[f"{rng_key}/@units"] = unit
+            # rng_key = (
+            #     f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]"
+            # )
+            # self.template[rng_key] = rng
+            # self.template[f"{rng_key}/@units"] = unit
 
-            if self._axes[ind] == "x" and self.NXScanControl.x_start is not None:
-                self.NXScanControl.x_end = rng + self.NXScanControl.x_start
-                self.NXScanControl.x_end_unit = unit
-            elif self._axes[ind] == "y" and self.NXScanControl.y_start is not None:
-                self.NXScanControl.y_end = rng + self.NXScanControl.y_start
-                self.NXScanControl.y_end_unit = unit
+            if self._axes[ind] == "x":
+                self.NXScanControl.x_range = rng
+                self.NXScanControl.x_range_unit = unit
+                if self.NXScanControl.x_start not in (None, ""):
+                    self.NXScanControl.x_end = rng + self.NXScanControl.x_start
+                    self.NXScanControl.x_end_unit = unit
+            elif self._axes[ind] == "y":
+                self.NXScanControl.y_range = rng
+                self.NXScanControl.y_range_unit = unit
+                if self.NXScanControl.y_start not in (None, ""):
+                    self.NXScanControl.y_end = rng + self.NXScanControl.y_start
+                    self.NXScanControl.y_end_unit = unit
 
-            self.template[
-                f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]/@units"
-            ] = unit
+            # self.template[
+            #     f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]/@units"
+            # ] = unit
+        self.put_scan_region_field_in_template(parent_path, group_name)
+
+    def put_scan_control_pattern_field_in_template(self, parent_path, group_name):
+        pass
 
     def construct_single_scan_data_grp(self, parent_path, plot_data_info, group_name):
         raw_key = plot_data_info["data_path"]

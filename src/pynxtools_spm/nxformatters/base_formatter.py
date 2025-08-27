@@ -20,6 +20,7 @@ Base formatter for SPM data.
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable, Any
 from dataclasses import dataclass
@@ -127,18 +128,40 @@ class SPMformatter(ABC):
         # Put the class in the base_formatter.py under BaseFormatter class
         x_points: int
         y_points: int
+        x_offset: Union[int, float]
+        x_offset_unit: Union[str, "Quantity"]
+        y_offset: Union[int, float]
+        y_offset_unit: Union[str, "Quantity"]
         x_start: Union[int, float]
         x_start_unit: Union[str, "Quantity"]
         y_start: Union[int, float]
         y_start_unit: Union[str, "Quantity"]
         x_range: Union[int, float]
+        x_range_unit: Union[str, "Quantity"]
         y_range: Union[int, float]
+        y_range_unit: Union[str, "Quantity"]
         x_end: Union[int, float]
         x_end_unit: Union[str, "Quantity"]
         y_end: Union[int, float]
         y_end_unit: Union[str, "Quantity"]
         fast_axis: str  # lower case x, y
         slow_axis: str  # lower case x, y
+
+    @dataclass
+    class BiasSweep:
+        """Storage to store data from bias_sweep and reuse them"""
+
+        scan_offset_bias: float
+        scan_offset_bias_unit: str
+        scan_range_bias: float
+        scan_range_bias_unit: str
+        scan_start_bias: float
+        scan_start_bias_unit: str
+        scan_end_bias: float
+        scan_end_bias_unit: str
+        scan_points_bias: float
+        scan_size_bias: float
+        scan_size_bias_unit: str
 
     def __init__(
         self,
@@ -211,6 +234,7 @@ class SPMformatter(ABC):
                     )
 
             # end dict of the definition path that has raw_path key
+            # TODO: use self.template_data_and_other function here.
             elif isinstance(val, dict) and "raw_path" in val:
                 if "#note" in val:
                     continue
@@ -219,6 +243,8 @@ class SPMformatter(ABC):
                     end_dict=val,
                     func_on_raw_key=func_on_raw_key,
                 )
+                if data in ["", None]:
+                    continue
                 self.template[f"{parent_path}/{key}"] = to_intended_t(data)
                 self.template[f"{parent_path}/{key}/@units"] = unit
                 if other_attrs:
@@ -249,6 +275,7 @@ class SPMformatter(ABC):
                             parent_path=parent_path,
                             group_name=key,
                         )
+                    # TODO: Add condition if dict contains `raw_path`
                     else:  # Handle fields and attributes
                         part_to_embed, path_dict = list(item.items())[0]
                         # Current only one item is valid
@@ -260,6 +287,8 @@ class SPMformatter(ABC):
                             end_dict=path_dict,
                             func_on_raw_key=func_on_raw_key,
                         )
+                        if data in ["", None]:
+                            continue
                         temp_key = f"{parent_path}/{replace_variadic_name_part(key, part_to_embed=part_to_embed)}"
                         self.template[temp_key] = to_intended_t(data)
                         if unit:
@@ -756,9 +785,61 @@ class SPMformatter(ABC):
         data, unit, other_attrs = _get_data_unit_and_others(
             data_dict=self.raw_data, end_dict=end_conf_dct
         )
+        if data in ["", None]:
+            return
         temp_key = f"{parent_path}/{replace_variadic_name_part(concept_key, part_to_embed=part_to_embed)}"
         self.template[temp_key] = to_intended_t(data)
         self.template[f"{temp_key}/@units"] = unit
         if other_attrs:
             for k, v in other_attrs.items():
                 self.template[f"{temp_key}/@{k}"] = v
+
+    def put_scan_region_field_in_template(self, parent_path, group_name):
+        self.template[f"{parent_path}/{group_name}/scan_start_x"] = (
+            self.NXScanControl.x_start
+        )
+        self.template[f"{parent_path}/{group_name}/scan_start_x/@units"] = (
+            self.NXScanControl.x_start_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_start_y"] = (
+            self.NXScanControl.y_start
+        )
+        self.template[f"{parent_path}/{group_name}/scan_start_y/@units"] = (
+            self.NXScanControl.y_start_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_end_x"] = (
+            self.NXScanControl.x_end
+        )
+        self.template[f"{parent_path}/{group_name}/scan_end_x/@units"] = (
+            self.NXScanControl.x_end_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_end_y"] = (
+            self.NXScanControl.y_end
+        )
+        self.template[f"{parent_path}/{group_name}/scan_end_y/@units"] = (
+            self.NXScanControl.y_end_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_range_x"] = (
+            self.NXScanControl.x_range
+        )
+        self.template[f"{parent_path}/{group_name}/scan_range_x/@units"] = (
+            self.NXScanControl.x_range_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_range_y"] = (
+            self.NXScanControl.y_range
+        )
+        self.template[f"{parent_path}/{group_name}/scan_range_y/@units"] = (
+            self.NXScanControl.y_range_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_offset_value_x"] = (
+            self.NXScanControl.x_offset
+        )
+        self.template[f"{parent_path}/{group_name}/scan_offset_value_x/@units"] = (
+            self.NXScanControl.x_offset_unit
+        )
+        self.template[f"{parent_path}/{group_name}/scan_offset_value_y"] = (
+            self.NXScanControl.y_offset
+        )
+        self.template[f"{parent_path}/{group_name}/scan_offset_value_y/@units"] = (
+            self.NXScanControl.y_offset_unit
+        )

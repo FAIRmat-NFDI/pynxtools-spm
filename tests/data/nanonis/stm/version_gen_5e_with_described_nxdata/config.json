@@ -132,13 +132,13 @@
           "raw_path": "/Current/Current",
           "@units": "/Current/Current/@unit"
         },
-        "current_offset_value": {
+        "offset_value": {
           "raw_path": "/Current/Offset",
           "@units": "/Current/Offset/@unit"
         },
-        "current_calibration": {
+        "calibration": {
           "calibration_parameters": {
-            "coefficients": {
+            "coefficient": {
               "raw_path": "/Current/Calibration",
               "@units": "/Current/Calibration/@unit"
             }
@@ -252,9 +252,9 @@
         ]
       },
       "bias_spectroscopy_environment": {
-        "BIAS_SPECTROSCOPY[bias_spectroscopy]": {
+        "SPM_BIAS_SPECTROSCOPY[spm_bias_spectroscopy]": {
           "measurement_type": "",
-          "POSITIONER_SPM[positioner_spm]": {
+          "SPM_POSITIONER[spm_positioner]": {
             "z_controller": {
               "z_average_time": {
                 "raw_path": "/Bias Spectroscopy/Z Avg time",
@@ -267,16 +267,17 @@
               "z_controller_hold": {
                 "raw_path": "/Bias Spectroscopy/Z-controller hold"
               },
-              "record_final_z": {
-                "raw_path": "/Bias Spectroscopy/Record final Z"
+              "final_z": {
+                "raw_path": ""
+              },
+              "z_offset_value": {
+                "raw_path": "/Bias Spectroscopy/Z offset",
+                "@units": "/Bias Spectroscopy/Z offset/@unit"
               }
-            },
-            "z_offset_value": {
-              "raw_path": "/Bias Spectroscopy/Z offset",
-              "@units": "/Bias Spectroscopy/Z offset/@unit"
             }
           },
-          "bias_sweep": {
+          "BIAS_SWEEP[bias_sweep]": {
+            "#note": "handled in _construct_bias_sweep_grp function",
             "scan_type": "",
             "settling_time": {
               "raw_path": "/Bias Spectroscopy/Settling time",
@@ -301,7 +302,10 @@
             },
             "scan_region": {
               "scan_range_bias": "",
-              "scan_offset_bias": "",
+              "scan_offset_bias": {
+                "raw_path": "/Bias/Offset",
+                "@units": "/Bias/Offset/@unit"
+              },
               "scan_angleN[scan_angle_n]": "",
               "scan_start_bias": {
                 "raw_path": "/Bias Spectroscopy/Sweep Start",
@@ -545,10 +549,12 @@
           "raw_path": "/Bias/Offset",
           "@units": "/Bias/Offset/@unit"
         },
-        "bias_calibration": {
-          "coefficients": {
-            "raw_path": "/Bias/Calibration",
-            "@units": "/Bias/Calibration/@unit"
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": {
+              "raw_path": "/Bias/Calibration",
+              "@units": "/Bias/Calibration/@unit"
+            }
           },
           "calibration_time": ""
         }
