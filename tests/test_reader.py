@@ -41,16 +41,11 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
 @pytest.mark.parametrize(
     "nxdl,reader_name,files_or_dir",
     [
-        # (
-        #     "NXstm",
-        #     "spm",
-        #     f"{module_dir}/data/nanonis/stm/version_gen_4_5_with_described_nxdata",
-        # ),
-        # (
-        #     "NXstm",
-        #     "spm",
-        #     f"{module_dir}/data/nanonis/stm/version_gen_4_5_default_config",
-        # ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/nanonis/stm/version_gen_5_with_default_config",
+        ),
         (
             "NXstm",
             "spm",
