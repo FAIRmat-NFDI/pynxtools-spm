@@ -59,6 +59,11 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
         (
             "NXstm",
             "spm",
+            f"{module_dir}/data/nanonis/stm/version_gen_5_with_described_nxdata",
+        ),
+        (
+            "NXstm",
+            "spm",
             f"{module_dir}/data/omicron/stm/default_config",
         ),
     ],

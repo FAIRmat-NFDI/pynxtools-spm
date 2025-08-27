@@ -29,13 +29,13 @@
 # # STM Nanonis Nanonis 5e
 # echo " !!! Converting Nanonis STM data !!! "
 
-find tests/data/nanonis/stm/version_gen_5e_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5e_with_described_nxdata.nxs
-find tests/data/nanonis/stm/version_gen_5e_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_5e_with_described_nxdata.nxs
+# find tests/data/nanonis/stm/version_gen_5e_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5e_with_described_nxdata.nxs
+# find tests/data/nanonis/stm/version_gen_5e_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_5e_with_described_nxdata.nxs
 
 # find tests/data/nanonis/stm/version_gen_5_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5_with_described_nxdata.nxs
 # find tests/data/nanonis/stm/version_gen_5_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_5_with_described_nxdata.nxs
 
-# STM Omicron
-echo " !!! Converting Omicron STM data !!! "
-find tests/data/omicron/stm/default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output omicron_stm_default_config.nxs
-find tests/data/omicron/stm/default_config -type f -name '*.nxs' | xargs mv omicron_stm_default_config.nxs
+# # STM Omicron
+# echo " !!! Converting Omicron STM data !!! "
+# find tests/data/omicron/stm/default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output omicron_stm_default_config.nxs
+# find tests/data/omicron/stm/default_config -type f -name '*.nxs' | xargs mv omicron_stm_default_config.nxs

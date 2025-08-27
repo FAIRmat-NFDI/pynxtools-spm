@@ -717,9 +717,7 @@ class SPMformatter(ABC):
         Further curation the  special fields in template
         after the template is already populated with data.
         """
-        field_to_type = {
-            "active_channel": str,
-        }
+        field_to_type = {"active_channel": str, "software/model/@version": str}
 
         def _format_datetime(parent_path, fld_key, fld_data):
             """Format start time"""
