@@ -416,7 +416,7 @@
               "raw_path": "",
               "@units": ""
             },
-            "controller_status": {
+            "feedback_on": {
               "raw_path": ""
             },
             "switch_off_delay": {

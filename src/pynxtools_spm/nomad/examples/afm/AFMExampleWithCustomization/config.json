@@ -290,7 +290,7 @@
               "raw_path": "/Z-Controller/Time const",
               "@units": "/Z-Controller/Time const/@unit"
             },
-            "controller_status": {
+            "feedback_on": {
               "raw_path": "/Z-Controller/Controller status"
             },
             "switch_off_delay": {

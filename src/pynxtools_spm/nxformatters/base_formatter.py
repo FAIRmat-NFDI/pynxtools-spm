@@ -617,11 +617,11 @@ class SPMformatter(ABC):
         grp_name_to_embed_fit = grp_name_to_embed.replace(" ", "_").lower()
         nxdata_group = replace_variadic_name_part(group_name, grp_name_to_embed_fit)
         data_dict = partial_conf_dict.get("data")
-        nxdata_nm = data_dict.pop("name", "")
-        nxdata_d_arr, d_unit, d_others = _get_data_unit_and_others(
+        data_fld_nm = data_dict.pop("name", "")
+        data_fld_arr, d_unit, d_others = _get_data_unit_and_others(
             self.raw_data, end_dict=data_dict
         )
-        if not isinstance(nxdata_d_arr, np.ndarray):
+        if not isinstance(data_fld_arr, np.ndarray):
             return
         # nxdata_title = partial_conf_dict.get("title", "title")
         nxdata_axes = []
@@ -642,20 +642,20 @@ class SPMformatter(ABC):
                 axdata_unit_other_list.append(
                     _get_data_unit_and_others(self.raw_data, end_dict=val)
                 )
-        field_nm_fit = nxdata_nm.replace(" ", "_").lower()
+        field_nm_fit = data_fld_nm.replace(" ", "_").lower()
         field_nm_variadic = f"DATA[{field_nm_fit}]"
         self.template[f"{parent_path}/{nxdata_group}/title"] = (
             f"Title Data Group {group_index}"
         )
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_variadic}"] = (
-            self.rearrange_data_according_to_axes(nxdata_d_arr, is_forward=is_forward)
+            self.rearrange_data_according_to_axes(data_fld_arr, is_forward=is_forward)
         )
         self.template[f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@units"] = (
             d_unit
         )
         self.template[
             f"{parent_path}/{nxdata_group}/{field_nm_variadic}/@long_name"
-        ] = f"{nxdata_nm} ({d_unit})"
+        ] = f"{data_fld_nm} ({d_unit})"
         self.template[f"{parent_path}/{nxdata_group}/@signal"] = field_nm_fit
         if d_others:
             for k, v in d_others.items():
@@ -709,6 +709,7 @@ class SPMformatter(ABC):
                         self.template[
                             f"{parent_path}/{nxdata_group}/{key}/@{other_attrs}"
                         ] = other_attrs
+
         return nxdata_group
 
     def _handle_special_fields(self):
@@ -717,7 +718,11 @@ class SPMformatter(ABC):
         Further curation the  special fields in template
         after the template is already populated with data.
         """
-        field_to_type = {"active_channel": str, "software/model/@version": str}
+        field_to_type = {
+            r"active_channel$": str,
+            r"software/model/@version$": str,
+            r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: input.lower(),
+        }
 
         def _format_datetime(parent_path, fld_key, fld_data):
             """Format start time"""

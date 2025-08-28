@@ -186,7 +186,7 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Type of the signal either in voltage or current.
-                    lockin_current_flip_sign:
+                    flip_sign:
                       type: np.float64
                       m_annotations:
                         eln:

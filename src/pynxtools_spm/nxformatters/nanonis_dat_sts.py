@@ -345,6 +345,7 @@ class NanonisDatSTS(SPMformatter):
                         curnt_volt["current_fld_name"] = get_actual_from_variadic_name(
                             key[0:-7].split("/")[-1]
                         )
+
                         current_field_to_data[key[0:-7]] = self.template[key[0:-7]]
 
                     voltage = (
@@ -365,7 +366,7 @@ class NanonisDatSTS(SPMformatter):
                     self.TmpConceptsVal.flip_number
                     or next(
                         filter(
-                            lambda x: x[0].endswith("lockin_current_flip_sign"),
+                            lambda x: x[0].endswith("flip_sign"),
                             self.eln.items(),
                         )
                     )[1]

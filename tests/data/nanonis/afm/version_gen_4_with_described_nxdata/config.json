@@ -302,7 +302,7 @@
               "raw_path": "/Z-Controller/Z",
               "@units": "/Z-Controller/Z/@unit"
             },
-            "controller_status": {
+            "feedback_on": {
               "raw_path": "/Z-Controller/Controller status"
             },
             "switch_off_delay": {

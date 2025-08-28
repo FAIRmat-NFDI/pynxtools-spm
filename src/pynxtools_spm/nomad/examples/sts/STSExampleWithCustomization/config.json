@@ -123,7 +123,7 @@
               "@units": "/Bias Spectroscopy/Z offset/unit"
             },
             "z_controller": {
-              "controller_status": {
+              "feedback_on": {
                 "raw_path": "/Z-Controller/Controller status/value"
               },
               "set_point": {
@@ -192,11 +192,11 @@
             "linear_sweep": {
               "scan_speed": "",
               "scan_time": "",
-              "forward_speed": {
+              "forward_speedN[forward_speed]": {
                 "raw_path": "/Scan/speed forw./value",
                 "@units": "/Scan/speed forw./unit"
               },
-              "backward_speed": {
+              "backward_speedN[backward_speed]": {
                 "raw_path": "/Scan/speed backw./value",
                 "@units": "/Scan/speed backw./unit"
               },

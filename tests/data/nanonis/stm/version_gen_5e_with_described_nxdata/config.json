@@ -19,7 +19,7 @@
         },
         "cryo_bottom_temperature": "",
         "cryo_shield_temperature": "",
-        "environment_identifier": { "raw_path": "/Scan/series name" },
+        "identifier_environment": { "raw_path": "/Scan/series name" },
         "SPM_SCAN_CONTROL[spm_scan_control]": {
           "scanTAG[scan_name]": { "raw_path": "/Scan/series name" },
           "meshSCAN[mesh_scan]": {
@@ -319,8 +319,8 @@
             "linear_sweep": {
               "scan_speed": "",
               "scan_time": "",
-              "forward_speed": "",
-              "backward_speed": "",
+              "forward_speedN[forward_speed]": "",
+              "backward_speedN[backward_speed]": "",
               "scan_points_bias": {
                 "raw_path": "/Bias Spectroscopy/Num Pixel"
               },
@@ -490,7 +490,7 @@
               "raw_path": "/Z-Controller/Z",
               "@units": "/Z-Controller/Z/@unit"
             },
-            "controller_status": {
+            "feedback_on": {
               "raw_path": "/Z-Controller/Controller status"
             },
             "switch_off_delay": {

@@ -83,7 +83,7 @@
         "measurement_sensors": "",
         "cryo_shield_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
         "cryo_bottom_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
-        "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/tip_temperature_sensor",
+        "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/tip_temperature_sensor"
       },
       "current_sensor": {
         "current": {
@@ -242,8 +242,8 @@
             "linear_sweep": {
               "scan_speed": "",
               "scan_time": "",
-              "forward_speed": "",
-              "backward_speed": "",
+              "forward_speedN[forward_speed]": "",
+              "backward_speedN[backward_speed]": "",
               "scan_points_bias": {
                 "raw_path": "/Bias Spectroscopy/Num Pixel"
               },
@@ -398,7 +398,7 @@
               "raw_path": "/Z-Controller/TipLift",
               "@units": "/Z-Controller/TipLift/@unit"
             },
-            "controller_status": {
+            "feedback_on": {
               "raw_path": "/Z-Controller/Controller status"
             },
             "switch_off_delay": {
