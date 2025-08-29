@@ -296,7 +296,6 @@ class SPMformatter(ABC):
                         if other_attrs:
                             for k, v in other_attrs.items():
                                 self.template[f"{temp_key}/@{k}"] = v
-
             else:
                 self.walk_though_config_nested_dict(
                     val, f"{parent_path}/{key}", func_on_raw_key=func_on_raw_key
@@ -617,6 +616,7 @@ class SPMformatter(ABC):
         grp_name_to_embed_fit = grp_name_to_embed.replace(" ", "_").lower()
         nxdata_group = replace_variadic_name_part(group_name, grp_name_to_embed_fit)
         data_dict = partial_conf_dict.get("data")
+        # title = "" partial_conf_dict.get("title", "")
         data_fld_nm = data_dict.pop("name", "")
         data_fld_arr, d_unit, d_others = _get_data_unit_and_others(
             self.raw_data, end_dict=data_dict
@@ -639,9 +639,10 @@ class SPMformatter(ABC):
                 nxdata_axes.append(val.pop("name", ""))
                 index = val.pop("axis_ind", index)
                 nxdata_indices.append(index)
-                axdata_unit_other_list.append(
-                    _get_data_unit_and_others(self.raw_data, end_dict=val)
+                axdata_unit_other = _get_data_unit_and_others(
+                    self.raw_data, end_dict=val
                 )
+                axdata_unit_other_list.append(axdata_unit_other)
         field_nm_fit = data_fld_nm.replace(" ", "_").lower()
         field_nm_variadic = f"DATA[{field_nm_fit}]"
         self.template[f"{parent_path}/{nxdata_group}/title"] = (
@@ -684,6 +685,7 @@ class SPMformatter(ABC):
             ] = f"{axis} ({unit})"
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
+                    k = k if k.startswith("@") else f"@{k}"
                     self.template[
                         f"{parent_path}/{nxdata_group}/{axis_variadic}/{k}"
                     ] = v
@@ -697,7 +699,7 @@ class SPMformatter(ABC):
                 continue
             elif key.startswith("@"):
                 self.template[f"{parent_path}/{nxdata_group}/{key}"] = val
-            # NXdata field
+            # NXdata field, this part is not needed.
             elif isinstance(val, dict):
                 data, unit_, other_attrs = _get_data_unit_and_others(
                     data_dict=self.raw_data, end_dict=val

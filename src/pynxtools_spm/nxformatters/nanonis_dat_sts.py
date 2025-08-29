@@ -48,8 +48,8 @@ ureg = UnitRegistry()
 
 class NanonisDatSTS(SPMformatter):
     _grp_to_func = {
-        "SCAN_CONTROL[bias_spec_scan_control]": "_construct_nxscan_controllers",
-        "bias_sweep": "_construct_bias_sweep_grp",
+        # "SCAN_CONTROL[bias_spec_scan_control]": "_construct_nxscan_controllers",s
+        "BIAS_SWEEP[bias_sweep]": "_construct_bias_sweep_grp",
     }
     _axes = ["x", "y", "z"]
     links_to_concepts: Dict[str, Any] = {}
@@ -94,84 +94,87 @@ class NanonisDatSTS(SPMformatter):
         self._format_template_from_eln()
         self._handle_special_fields()
 
-    def construct_scan_region_grp(
-        self,
-        partial_conf_dict,
-        parent_path: str,
-        group_name="scan_region",
-    ):
-        """Function for constructing the 'scan_region' group upder tree
-        scan_environment:
-            SCAN_CONTROL[bias_spec_scan_control]:
-                scan_region: {...}
-        """
-        # Note: This function is for 'scan_region' under the scan_control
-        # and 'scan_region' from 'bias_spec_scan_control' group
+    # def construct_scan_region_grp(
+    #     self,
+    #     partial_conf_dict,
+    #     parent_path: str,
+    #     group_name="scan_region",
+    # ):
+    #     """Function for constructing the 'scan_region' group upder tree
+    #     scan_environment:
+    #         SCAN_CONTROL[bias_spec_scan_control]:
+    #             scan_region: {...}
+    #     """
 
-        scan_range = "scan_range_N[scan_range_n]"
-        scan_ranges, unit, _ = _get_data_unit_and_others(
-            data_dict=self.raw_data,
-            partial_conf_dict=partial_conf_dict,
-            concept_field=scan_range,
-        )
-        if not scan_ranges:
-            return
+    #     # Note: This function is for 'scan_region' under the scan_control
+    #     # and 'scan_region' from 'bias_spec_scan_control' group
 
-        gbl_scan_ranges = re.findall(_scientific_num_pattern, scan_ranges)
-        gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
-        scan_offset = gbl_scan_ranges[:2]
-        scan_ranges = gbl_scan_ranges[2:4]  # type: ignore
-        scan_angles = gbl_scan_ranges[4:]
-        if len(scan_angles) == 1:
-            scan_angles = scan_angles * len(scan_ranges)
-        # Angles unit
-        scan_angle = "scan_angle_N[scan_angle_n]"
-        _, ang_unit, _ = _get_data_unit_and_others(
-            data_dict=self.raw_data,
-            partial_conf_dict=partial_conf_dict,
-            concept_field=scan_angle,
-        )
-        for ind, (off, rng, ang) in enumerate(
-            zip(scan_offset, scan_ranges, scan_angles)
-        ):
-            off_key = f"{parent_path}/{group_name}/scan_offset_N[scan_offset_{self._axes[ind]}]"
-            rng_key = (
-                f"{parent_path}/{group_name}/scan_range_N[scan_range_{self._axes[ind]}]"
-            )
-            ang_key = (
-                f"{parent_path}/{group_name}/scan_angle_N[scan_angle_{self._axes[ind]}]"
-            )
-            self.template[rng_key] = rng
-            self.template[f"{rng_key}/@units"] = unit
-            self.template[off_key] = off
-            self.template[f"{off_key}/@units"] = unit
-            self.template[ang_key] = ang
-            self.template[f"{ang_key}/@units"] = ang_unit
+    #     scan_range = "scan_range_N[scan_range_n]"
+    #     scan_ranges, unit, _ = _get_data_unit_and_others(
+    #         data_dict=self.raw_data,
+    #         partial_conf_dict=partial_conf_dict,
+    #         concept_field=scan_range,
+    #     )
+    #     if not scan_ranges:
+    #         return
 
-            if self._axes[ind] == "x":
-                self.NXScanControl.x_start = off
-                self.NXScanControl.x_start_unit = unit
-                self.NXScanControl.x_end = rng + off
-                self.NXScanControl.x_end_unit = unit
-            elif self._axes[ind] == "y":
-                self.NXScanControl.y_start = off
-                self.NXScanControl.y_start_unit = unit
-                self.NXScanControl.y_end = rng + off
-                self.NXScanControl.y_end_unit = unit
+    #     gbl_scan_ranges = re.findall(_scientific_num_pattern, scan_ranges)
+    #     gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
+    #     scan_offset = gbl_scan_ranges[:2]
+    #     scan_ranges = gbl_scan_ranges[2:4]  # type: ignore
+    #     scan_angles = gbl_scan_ranges[4:]
+    #     if len(scan_angles) == 1:
+    #         scan_angles = scan_angles * len(scan_ranges)
+    #     # Angles unit
+    #     scan_angle = "scan_angle_N[scan_angle_n]"
+    #     _, ang_unit, _ = _get_data_unit_and_others(
+    #         data_dict=self.raw_data,
+    #         partial_conf_dict=partial_conf_dict,
+    #         concept_field=scan_angle,
+    #     )
+    #     for ind, (off, rng, ang) in enumerate(
+    #         zip(scan_offset, scan_ranges, scan_angles)
+    #     ):
+    #         off_key = f"{parent_path}/{group_name}/scan_offset_N[scan_offset_{self._axes[ind]}]"
+    #         rng_key = (
+    #             f"{parent_path}/{group_name}/scan_range_N[scan_range_{self._axes[ind]}]"
+    #         )
+    #         ang_key = (
+    #             f"{parent_path}/{group_name}/scan_angle_N[scan_angle_{self._axes[ind]}]"
+    #         )
+    #         self.template[rng_key] = rng
+    #         self.template[f"{rng_key}/@units"] = unit
+    #         self.template[off_key] = off
+    #         self.template[f"{off_key}/@units"] = unit
+    #         self.template[ang_key] = ang
+    #         self.template[f"{ang_key}/@units"] = ang_unit
+
+    #         if self._axes[ind] == "x":
+    #             self.NXScanControl.x_start = off
+    #             self.NXScanControl.x_start_unit = unit
+    #             self.NXScanControl.x_end = rng + off
+    #             self.NXScanControl.x_end_unit = unit
+    #         elif self._axes[ind] == "y":
+    #             self.NXScanControl.y_start = off
+    #             self.NXScanControl.y_start_unit = unit
+    #             self.NXScanControl.y_end = rng + off
+    #             self.NXScanControl.y_end_unit = unit
 
     def _construct_nxscan_controllers(self, partial_conf_dict, parent_path, group_name):
-        scan_region = "scan_region"
-        mesh_scan = "mesh_SCAN[mesh_scan]"
-        for key, val in partial_conf_dict.items():
-            if scan_region == key:
-                self.construct_scan_region_grp(
-                    partial_conf_dict=val,
-                    parent_path=f"{parent_path}/{group_name}",
-                    group_name=scan_region,
-                )
-            if mesh_scan == key:
-                # Yet to iplement mesh scan
-                pass
+        pass
+
+    #     scan_region = "scan_region"
+    #     mesh_scan = "mesh_SCAN[mesh_scan]"
+    #     for key, val in partial_conf_dict.items():
+    #         if scan_region == key:
+    #             self.construct_scan_region_grp(
+    #                 partial_conf_dict=val,
+    #                 parent_path=f"{parent_path}/{group_name}",
+    #                 group_name=scan_region,
+    #             )
+    #         if mesh_scan == key:
+    #             # STS does not have any mesh scan
+    #             pass
 
     def construct_temperature_data_grp(
         self,
@@ -179,6 +182,7 @@ class NanonisDatSTS(SPMformatter):
         parent_path: str,
         group_name="TEMPERATURE_DATA[temperature_data]",
     ):
+        return
         if isinstance(partial_conf_dict, list):
             for ind, conf_dict in enumerate(partial_conf_dict):
                 _ = self._NXdata_grp_from_conf_description(
@@ -220,8 +224,8 @@ class NanonisDatSTS(SPMformatter):
     ):
         """Constructs the scan_region group under the group tree
         BIAS_SPECTROSCOPY[bias_spectroscopy]:
-            bias_seep:
-                linear_sweep: {...}
+            BIAS_SWEEP[bias_sweep]:
+                scan_region: {...}
         """
         bias_start = "scan_start_bias"
         bias_end = "scan_end_bias"
@@ -256,7 +260,7 @@ class NanonisDatSTS(SPMformatter):
     def _construct_bias_sweep_grp(self, partial_conf_dict, parent_path, group_name):
         """Constructs the bias_sweep group under the group tree
         BIAS_SPECTROSCOPY[bias_spectroscopy]:
-            bias_seep: {...}
+            BIAS_SWEEP[bias_sweep]: {...}
         """
         scan_region = "scan_region"
         linear_sweep = "linear_sweep"
@@ -289,7 +293,6 @@ class NanonisDatSTS(SPMformatter):
             == np.shape(IV_dict["current_fld"])
         ):
             return
-
         self.template[f"{parent_path}/{group_name}/DATA[dI_by_dV]"] = di_by_dv
         self.template[f"{parent_path}/{group_name}/DATA[dI_by_dV]/@units"] = str(
             ureg(IV_dict["current_unit"] + "/" + IV_dict["voltage_unit"]).units
@@ -304,6 +307,7 @@ class NanonisDatSTS(SPMformatter):
         self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]"] = IV_dict[
             "voltage_fld"
         ]
+
 
         self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@units"] = IV_dict[
             "voltage_unit"

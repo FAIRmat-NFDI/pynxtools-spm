@@ -172,6 +172,7 @@
             }
           },
           "BIAS_SWEEP[bias_sweep]": {
+            "#note": "This group will be handled in _construct_bias_sweep_grp.",
             "scan_type": "",
             "settling_time": {
               "raw_path": "/Bias Spectroscopy/Settling time/value",
@@ -227,7 +228,7 @@
               "step_size_bias": "",
               "reset_bias": "",
               "backward_sweep": "",
-              "SCAN_DATA[scan_data]": [
+              "DATA[scan_data]": [
                 {
                   "data": {
                     "name": "current",
@@ -709,7 +710,8 @@
           "@units": [
             "/dat_mat_components/Bias calc/unit",
             "/dat_mat_components/Bias/unit"
-          ]
+          ],
+          "axis_ind": 0
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
         "grp_name": "Current_filter"

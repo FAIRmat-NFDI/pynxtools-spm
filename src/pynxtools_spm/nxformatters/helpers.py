@@ -114,7 +114,7 @@ def _get_data_unit_and_others(
     partial_conf_dict: dict = None,
     concept_field: str = None,
     end_dict: dict = None,
-    func_on_raw_key: callable = None,
+    func_on_raw_key: Callable = lambda x: x,
 ) -> Tuple[str, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
@@ -186,8 +186,10 @@ def _get_data_unit_and_others(
         if not key:
             return None
         if isinstance(func_on_raw_key, Callable):
-            return data_dict.get(func_on_raw_key(key), None)
-        return data_dict.get(key, None)
+            data = data_dict.get(func_on_raw_key(key), None)
+        else:
+            data = data_dict.get(key, None)
+        return to_intended_t(data)
 
     if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
@@ -201,7 +203,7 @@ def _get_data_unit_and_others(
     if isinstance(raw_path, list):
         for path in raw_path:
             raw_data = get_data_modified_key(path)
-            if isinstance(raw_data, np.ndarray) or raw_data in ["", None]:
+            if isinstance(raw_data, np.ndarray) or raw_data not in ["", None]:
                 break
     elif raw_path.startswith("@default:"):
         raw_data = raw_path.split("@default:")[-1]
