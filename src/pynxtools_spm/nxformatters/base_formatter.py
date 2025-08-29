@@ -61,6 +61,7 @@ CONVERT_DICT = {
     "Mesh_scan": "mesh_SCAN[mesh_scan]",
     "Instrument": "INSTRUMENT[instrument]",
     "Note": "NOTE[note]",
+    "Scan_environment": "SCAN_ENVIRONMENT[scan_environment]",
     "Sample_component": "SAMPLE_COMPONENT[sample_component]",
     "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
 }
@@ -724,6 +725,9 @@ class SPMformatter(ABC):
             r"active_channel$": str,
             r"software/model/@version$": str,
             r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: input.lower(),
+            r"lockin_amplifier/(hp|lp){1,}_filter_orderN\[\1_filter_order_[\w]*\]$": (
+                lambda input: input if isinstance(input, (int, float)) else ""
+            ),
         }
 
         def _format_datetime(parent_path, fld_key, fld_data):
@@ -774,10 +778,10 @@ class SPMformatter(ABC):
                     self.template[template_key] = t_with_zone
                 except Exception:
                     # Only consider the time or date that follows ISO 8601
-                    # or convertable in it
+                    # or convertable with it
                     pass
             for key, typ in field_to_type.items():
-                if re.search(pattern=rf"{key}$", string=template_key):
+                if re.search(pattern=rf"{key}", string=template_key):
                     self.template[template_key] = typ(val)
 
     def template_data_units_and_others(

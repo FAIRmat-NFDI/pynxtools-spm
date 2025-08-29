@@ -18,11 +18,11 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
             "spm",
             f"{module_dir}/data/nanonis/sts/version_gen_5e_with_described_nxdata",
         ),
-        # (
-        #     "NXsts",
-        #     "spm",
-        #     f"{module_dir}/data/nanonis/sts/version_gen_5_with_described_nxdata",
-        # ),
+        (
+            "NXsts",
+            "spm",
+            f"{module_dir}/data/nanonis/sts/version_gen_5_with_described_nxdata",
+        ),
         # (
         #     "NXsts",
         #     "spm",

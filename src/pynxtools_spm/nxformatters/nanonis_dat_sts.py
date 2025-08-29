@@ -94,87 +94,8 @@ class NanonisDatSTS(SPMformatter):
         self._format_template_from_eln()
         self._handle_special_fields()
 
-    # def construct_scan_region_grp(
-    #     self,
-    #     partial_conf_dict,
-    #     parent_path: str,
-    #     group_name="scan_region",
-    # ):
-    #     """Function for constructing the 'scan_region' group upder tree
-    #     scan_environment:
-    #         SCAN_CONTROL[bias_spec_scan_control]:
-    #             scan_region: {...}
-    #     """
-
-    #     # Note: This function is for 'scan_region' under the scan_control
-    #     # and 'scan_region' from 'bias_spec_scan_control' group
-
-    #     scan_range = "scan_range_N[scan_range_n]"
-    #     scan_ranges, unit, _ = _get_data_unit_and_others(
-    #         data_dict=self.raw_data,
-    #         partial_conf_dict=partial_conf_dict,
-    #         concept_field=scan_range,
-    #     )
-    #     if not scan_ranges:
-    #         return
-
-    #     gbl_scan_ranges = re.findall(_scientific_num_pattern, scan_ranges)
-    #     gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
-    #     scan_offset = gbl_scan_ranges[:2]
-    #     scan_ranges = gbl_scan_ranges[2:4]  # type: ignore
-    #     scan_angles = gbl_scan_ranges[4:]
-    #     if len(scan_angles) == 1:
-    #         scan_angles = scan_angles * len(scan_ranges)
-    #     # Angles unit
-    #     scan_angle = "scan_angle_N[scan_angle_n]"
-    #     _, ang_unit, _ = _get_data_unit_and_others(
-    #         data_dict=self.raw_data,
-    #         partial_conf_dict=partial_conf_dict,
-    #         concept_field=scan_angle,
-    #     )
-    #     for ind, (off, rng, ang) in enumerate(
-    #         zip(scan_offset, scan_ranges, scan_angles)
-    #     ):
-    #         off_key = f"{parent_path}/{group_name}/scan_offset_N[scan_offset_{self._axes[ind]}]"
-    #         rng_key = (
-    #             f"{parent_path}/{group_name}/scan_range_N[scan_range_{self._axes[ind]}]"
-    #         )
-    #         ang_key = (
-    #             f"{parent_path}/{group_name}/scan_angle_N[scan_angle_{self._axes[ind]}]"
-    #         )
-    #         self.template[rng_key] = rng
-    #         self.template[f"{rng_key}/@units"] = unit
-    #         self.template[off_key] = off
-    #         self.template[f"{off_key}/@units"] = unit
-    #         self.template[ang_key] = ang
-    #         self.template[f"{ang_key}/@units"] = ang_unit
-
-    #         if self._axes[ind] == "x":
-    #             self.NXScanControl.x_start = off
-    #             self.NXScanControl.x_start_unit = unit
-    #             self.NXScanControl.x_end = rng + off
-    #             self.NXScanControl.x_end_unit = unit
-    #         elif self._axes[ind] == "y":
-    #             self.NXScanControl.y_start = off
-    #             self.NXScanControl.y_start_unit = unit
-    #             self.NXScanControl.y_end = rng + off
-    #             self.NXScanControl.y_end_unit = unit
-
     def _construct_nxscan_controllers(self, partial_conf_dict, parent_path, group_name):
         pass
-
-    #     scan_region = "scan_region"
-    #     mesh_scan = "mesh_SCAN[mesh_scan]"
-    #     for key, val in partial_conf_dict.items():
-    #         if scan_region == key:
-    #             self.construct_scan_region_grp(
-    #                 partial_conf_dict=val,
-    #                 parent_path=f"{parent_path}/{group_name}",
-    #                 group_name=scan_region,
-    #             )
-    #         if mesh_scan == key:
-    #             # STS does not have any mesh scan
-    #             pass
 
     def construct_temperature_data_grp(
         self,
@@ -366,6 +287,7 @@ class NanonisDatSTS(SPMformatter):
         # check if group is current group and calculatre dI/dV
         if current and voltage:
             try:
+                # Fix it currently it is unable to get data from eln
                 self.TmpConceptsVal.flip_number = (
                     self.TmpConceptsVal.flip_number
                     or next(
