@@ -485,13 +485,13 @@ class OmicronSM4STMFormatter(SPMformatter):
                 "link": convert_data_dict_path_to_hdf5_path(link)
             }
 
-    def _NXdata_grp_from_conf_description(
+    def _nxdata_grp_from_conf_description(
         self, partial_conf_dict, parent_path, group_name, group_index=0, is_forward=None
     ):
         # conf_dict is an end dict of nxdata group
         conf_dict = partial_conf_dict.copy()
 
-        group_name = super()._NXdata_grp_from_conf_description(
+        group_name = super()._nxdata_grp_from_conf_description(
             partial_conf_dict, parent_path, group_name, group_index, is_forward
         )
         if not group_name:

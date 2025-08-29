@@ -154,7 +154,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             group_name=group_name,
         )
 
-    def _NXdata_grp_from_conf_description(
+    def _nxdata_grp_from_conf_description(
         self,
         partial_conf_dict,
         parent_path,
@@ -175,7 +175,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         else:
             return
 
-        nxdata_group_nm = SPMformatter._NXdata_grp_from_conf_description(
+        nxdata_group_nm = SPMformatter._nxdata_grp_from_conf_description(
             self,
             partial_conf_dict,
             parent_path,

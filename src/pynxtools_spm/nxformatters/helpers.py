@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
 _scientific_num_pattern = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
 
+
 def add_local_timezone(ts: str, tz: str | None = None) -> str:
     """
     Add a timezone to a timestamp if it has none.
@@ -59,6 +60,7 @@ def add_local_timezone(ts: str, tz: str | None = None) -> str:
     # Attach timezone
     dt = dt.replace(tzinfo=tzinfo)
     return dt.isoformat()
+
 
 def read_config_file(config_file: Union[str, Path]) -> Dict:
     """Read the config file and return the dictionary.

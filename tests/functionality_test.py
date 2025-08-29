@@ -5,6 +5,7 @@ Functionality tests for functions and classes developed in spm reader
 from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 import pytest
 
+
 @pytest.mark.parametrize(
     "name, part_to_embed, expected",
     [
@@ -28,4 +29,6 @@ import pytest
 )
 def test_replace_variadic_name_part(name, part_to_embed, expected):
     result = replace_variadic_name_part(name, part_to_embed)
-    assert result == expected, f"Failed for {name}, {part_to_embed}: got {result}, expected {expected}"
+    assert result == expected, (
+        f"Failed for {name}, {part_to_embed}: got {result}, expected {expected}"
+    )

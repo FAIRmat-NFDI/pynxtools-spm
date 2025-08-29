@@ -277,7 +277,7 @@ class NanonisSxmSTM(SPMformatter):
             # self.template[
             #     f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]/@units"
             # ] = unit
-        self.put_scan_region_field_in_template(parent_path, group_name)
+        self.put_scan_2d_region_field_in_template(parent_path, group_name)
 
     def put_scan_control_pattern_field_in_template(self, parent_path, group_name):
         pass
@@ -469,7 +469,7 @@ class NanonisSxmSTM(SPMformatter):
                 group_name=scan_pattern_grp,
             )
 
-    def _NXdata_grp_from_conf_description(
+    def _nxdata_grp_from_conf_description(
         self,
         partial_conf_dict,
         parent_path,
@@ -490,7 +490,7 @@ class NanonisSxmSTM(SPMformatter):
             )
         else:
             return
-        nxdata_group_nm = super()._NXdata_grp_from_conf_description(
+        nxdata_group_nm = super()._nxdata_grp_from_conf_description(
             partial_conf_dict,
             parent_path,
             group_name,
