@@ -93,7 +93,7 @@ map_concept_to_full_quantities = {
     "Reference Amplitude (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_amplitude__field#{schema}#float",
     "Demodulated signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.demodulated_signal__field#{schema}#str",
     "Modulation signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.modulation_signal__field#{schema}#str",
-    "Lockin Current Flip Sign (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.lockin_current_flip_sign__field#{schema}#float",
+    "Lockin Current Flip Sign (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.flip_sign__field#{schema}#float",
     # AFM: Instrument -> Cantilever SPM
     "Oscillator excitation (Cantilever SPM)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.oscillator_excitation__field#{schema}#float",
     "Reference Amplitude (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_amplitude__field#{schema}#float",

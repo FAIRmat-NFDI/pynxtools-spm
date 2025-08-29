@@ -1,10 +1,14 @@
 from pynxtools.units import ureg
-from typing import Optional, Dict, Tuple, Union, Any, Literal
+from typing import Optional, Dict, Tuple, Union, Any, Literal, Callable
 from pathlib import Path
 import logging
+from datetime import datetime
+import tzlocal
+import zoneinfo
 from copy import deepcopy
 import numpy as np
 from findiff import Diff
+import re
 import json
 
 
@@ -13,6 +17,49 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
 _scientific_num_pattern = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
+
+
+def add_local_timezone(ts: str, tz: str | None = None) -> str:
+    """
+    Add a timezone to a timestamp if it has none.
+
+    Parameters
+    ----------
+    ts : str
+        Input timestamp string.
+    tz : str | None
+        Optional timezone name (e.g. "Europe/Berlin").
+        If None, the system local timezone will be used.
+
+    Returns
+    -------
+    str
+        ISO8601 timestamp string. If input is invalid, returns `ts` unchanged.
+    """
+    # Already has timezone? -> return unchanged
+    if re.search(r"(Z|[+-]\d{2}:\d{2})$", ts):
+        return ts
+
+    # Try parsing the timestamp safely
+    try:
+        dt = datetime.fromisoformat(ts)
+    except ValueError:
+        # Invalid input -> return as-is
+        return ts
+
+    # Use provided timezone or system local
+    if tz:
+        try:
+            tzinfo = zoneinfo.ZoneInfo(tz)
+        except Exception:
+            # Invalid tz string -> fallback to local
+            tzinfo = tzlocal.get_localzone()
+    else:
+        tzinfo = tzlocal.get_localzone()
+
+    # Attach timezone
+    dt = dt.replace(tzinfo=tzinfo)
+    return dt.isoformat()
 
 
 def read_config_file(config_file: Union[str, Path]) -> Dict:
@@ -58,7 +105,6 @@ def _verify_unit(
     try:
         unit_derived = str(ureg(unit_derived).units)
         return unit_derived
-        # return "" if unit_derived == "dimensionless" else unit_derived
     except Exception as e:
         # TODO: add nomad logger here
         logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
@@ -70,6 +116,7 @@ def _get_data_unit_and_others(
     partial_conf_dict: dict = None,
     concept_field: str = None,
     end_dict: dict = None,
+    func_on_raw_key: Callable = lambda x: x,
 ) -> Tuple[str, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
@@ -120,6 +167,15 @@ def _get_data_unit_and_others(
                 "raw_path": "/SCAN/ANGLE",
                 "@units": "@default:deg"
             },
+        func_on_raw_key : callable
+            Function to apply on raw keywith one input parameter.
+            If there any modification is need on the raw key, this function can be used.
+
+            For example:
+                In omicron stm file the scans current and topography, scan region could be differ.
+                A raw key example is `/Topography_forward/...` is slightly different
+                for current scan as `/current_forward/...`. A single function (probably
+                lambda function) is sufficient to modify this.
 
     Returns:
     --------
@@ -128,23 +184,33 @@ def _get_data_unit_and_others(
             contains other attributes (if any attributes comes as a part of value dict).
     """
 
-    if end_dict is None:
+    def get_data_modified_key(key):
+        if not key:
+            return None
+        if isinstance(func_on_raw_key, Callable):
+            data = data_dict.get(func_on_raw_key(key), None)
+        else:
+            data = data_dict.get(key, None)
+        return to_intended_t(data)
+
+    if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
-        if not end_dict:
-            return "", "", None
+
+    if not end_dict:
+        return "", "", None
 
     raw_path = end_dict.get("raw_path", "")
 
     # if raw_path have multiple possibel path to the raw data
     if isinstance(raw_path, list):
         for path in raw_path:
-            raw_data = data_dict.get(path, "")
-            if isinstance(raw_data, np.ndarray) or raw_data != "":
+            raw_data = get_data_modified_key(path)
+            if isinstance(raw_data, np.ndarray) or raw_data not in ["", None]:
                 break
     elif raw_path.startswith("@default:"):
         raw_data = raw_path.split("@default:")[-1]
     else:
-        raw_data = data_dict.get(raw_path)
+        raw_data = get_data_modified_key(raw_path)
     unit_path = end_dict.get("@units", None)
 
     try:
@@ -156,13 +222,13 @@ def _get_data_unit_and_others(
 
     if unit_path and isinstance(unit_path, list):
         for unit_item in unit_path:
-            unit = data_dict.get(unit_item, None)
+            unit = get_data_modified_key(unit_item)
             if unit is not None:
                 break
     elif unit_path and unit_path.startswith("@default:"):
         unit = unit_path.split("@default:")[-1]
     else:
-        unit = data_dict.get(unit_path, None)
+        unit = get_data_modified_key(unit_path)
     if unit is None or unit == "":
         return to_intended_t(raw_data), "", val_copy
     return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
@@ -184,11 +250,19 @@ def get_actual_from_variadic_name(name: str) -> str:
     return name.split("[")[-1].split("]")[0]
 
 
+def flatten_nested_list(list_dt: Union[list, tuple, any]):
+    for elem in list_dt:
+        if isinstance(elem, (list, tuple)):
+            yield from flatten_nested_list(elem)
+        else:
+            yield elem
+
+
 # pylint: disable=too-many-return-statements
 def to_intended_t(
     data: Any,
     data_struc: Literal["list", "array"] = None,
-    data_type: Literal["str", "int", "float"] = None,
+    data_type: Optional[Union[str, int, float]] = None,
 ):
     """
         Transform string to the intended data type, if not then return data.
@@ -210,13 +284,6 @@ def to_intended_t(
         "list": list,
         "array": np.ndarray,
     }
-    # some example data type map
-    # data_type_map = {
-    #     "int": int,
-    #     "float": float,
-    #     "str": str,
-    #     "float64": np.float64,
-    # }
 
     def _array_from(data, dtype=None):
         try:
@@ -228,10 +295,15 @@ def to_intended_t(
             )
             return transformed
         except ValueError as e:
-            print(
-                f"Warning: Data '{data}' can not be converted to an array"
-                f"and encounterd error {e}"
-            )
+            if np.all(
+                map(lambda x: isinstance(x, str), flatten_nested_list(data))
+            ) and np.any(map(lambda x: x.isalpha(), flatten_nested_list(data))):
+                pass
+            else:
+                print(
+                    f"Warning: Data '{data}' can not be converted to an array"
+                    f"and encounterd error {e}"
+                )
         return data
 
     def _array_from_str(data):
@@ -239,20 +311,6 @@ def to_intended_t(
             transformed = json.loads(data)
             return transformed
         return data
-
-    # def _data_with_type(data_type, data):
-    #     try:
-    #         return data_type(data)
-    #     except Exception as e:
-    #         print(
-    #             f"Warnign: Data {data} can not be converted to type {data_type}"
-    #             f"encounterd error {e}"
-    #         )
-
-    # if not data_struc and data_type:
-    #     return _data_with_type(data_type_map[data_type], data)
-    # elif data_struc == "array":
-    #     return _array_from(data, data_type)
 
     symbol_list_for_data_seperation = [";"]
     transformed: Optional[Any]
@@ -296,11 +354,11 @@ def to_intended_t(
             return off_on[data]
 
         try:
-            transformed = int(data)
+            transformed = int(data) if not data_type else data_type(data)
             return transformed
         except ValueError:
             try:
-                transformed = float(data)
+                transformed = float(data) if not data_type else data_type(data)
                 return transformed
             except ValueError:
                 if "[" in data and "]" in data:
@@ -328,45 +386,61 @@ def get_link_compatible_key(key):
     compatible_key = key.replace("NX", "")
     key_parts = compatible_key.split("/")
     new_parts = []
-    for part in key_parts:
+    for part in key_parts[1:]:
+        key = part
         ind_f = part.find("[")
         ind_e = part.find("]")
         if ind_f > 0 and ind_e > 0:
-            new_parts.append(part[ind_f + 1 : ind_e])
+            key = part[ind_f + 1 : ind_e]
+        new_parts.append(key)
 
     compatible_key = "/" + "/".join(new_parts)
     return compatible_key
 
 
-def replace_variadic_name_part(name, part_to_embed):
+def replace_variadic_name_part(name, part_to_embed: None):
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"
-
-    # TODO: write test for this function with the following test_dict
-    and try to replace this with regex pattern
-    test_dict = {('yy_NM[yy_nm]', 'x'): 'yy_NM[yy_x]',
-                 ('yy_M_N[yy_m_n]', 'x') : 'yy_M_N[yy_x]',
-                 ('Myy[myy]', 'x') : 'Myy[xyy]',
-                 ('y_M_yy[y_m_yy]', 'x') : 'y_M_yy[y_x_yy]',
-                 ('y_M_N_yy[y_x_yy]', 'x') : 'y_M_N_yy[y_x_yy]',
-                 ('yy_ff[yy_mn]', 'x'): 'yy_ff[yy_mn]',}
     """
+    if not part_to_embed:
+        return name
+    if not part_to_embed.startswith("_"):
+        part_to_embed = "_" + part_to_embed
     f_part, _ = name.split("[") if "[" in name else (name, "")
     ind_start = None
     ind_end = None
-    for ind, chr in enumerate(f_part):
-        if chr.isupper():
+    for ind, chr_ in enumerate(f_part):
+        if chr_.isupper():
             if ind_start is None:
                 ind_start = ind
-        if ind_start is not None and chr.islower():
+        if ind_start is not None and chr_.islower():
             ind_end = ind
             break
-    if ind_end is None and ind_start is not None:
+    if ind_start == 0 and ind_end is not None:
+        part_to_embed = part_to_embed[1:]  # remove the first underscore
+        end_part = f_part[ind_end:]
+        if end_part.startswith("_"):
+            if part_to_embed.endswith("_"):
+                part_to_embed = part_to_embed[0:-1]
+        else:
+            if not part_to_embed.endswith("_"):
+                part_to_embed = part_to_embed + "_"
+        f_part_mod = f_part.replace(f_part[ind_start:ind_end], part_to_embed)
+        return "[".join([f_part, f_part_mod]) + "]"
+    elif ind_end is None and ind_start is not None:
+        start_part = f_part[0:ind_start]
+        if start_part and start_part.endswith("_") and part_to_embed.startswith("_"):
+            part_to_embed = part_to_embed[1:]
+        elif not start_part and part_to_embed.startswith("_"):
+            part_to_embed = part_to_embed[1:]
         f_part_mod = f_part.replace(f_part[ind_start:], part_to_embed)
         return "[".join([f_part, f_part_mod]) + "]"
     elif ind_end is not None and ind_start is not None:
         replacement_p = f_part[ind_start:ind_end]
+        remainpart = f_part[0:ind_start]
+        if remainpart.endswith("_") and part_to_embed.startswith("_"):
+            part_to_embed = part_to_embed[1:]
         # if replacement_p end with '_'
         if replacement_p.endswith("_"):
             replacement_p = replacement_p[:-1]
