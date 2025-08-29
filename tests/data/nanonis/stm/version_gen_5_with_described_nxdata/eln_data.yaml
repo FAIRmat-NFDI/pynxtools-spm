@@ -1,18 +1,16 @@
 Sample:
   History:
     Note:
-      description: <p>Sample History goes here.</p>
+      description: Sample History goes here.
   name: diPAMY
   chemical_formula: Au(KAl3Si3012H2)
-  description: '<p>Substrate:<br />Stack of two layers: Au(111) on Mica</p>'
+  description: 'Substrate: Stack of two layers: Au(111) on Mica'
 
 default: current_forward
 definition: NXstm
-experiment_description: '<p>Experiment with</p>
-
-  <p>Bias: -50mV</p>
-
-  <p>Setpoint: 25pA</p>'
+experiment_description: 'Experiment with
+  Bias: -50mV
+  Setpoint: 25pA'
 Instrument:
   hardware:
     model: Generic 5
