@@ -51,7 +51,7 @@ if TYPE_CHECKING:
 
 class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
     _grp_to_func = {
-        "SCAN_CONTROL[scan_control]": "_construct_nxscan_controllers",
+        "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",
         "end_time": "_set_start_end_time",
     }
