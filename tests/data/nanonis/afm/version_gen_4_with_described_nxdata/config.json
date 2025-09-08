@@ -620,8 +620,8 @@
       "cantilever_head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
       "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
       "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
-      "oscillator_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/oscillator_excitation",
-      "amplitude_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/phase_lock_loop/amplitude_excitation"
+      "oscillator_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_config/amplitude_excitation",
+      "amplitude_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/phase_lock_loop/amplitude_excitation"
     }
   }
 }
