@@ -463,7 +463,7 @@ class OmicronSM4STMFormatter(SPMformatter):
                             pass
             # TODO add a logger for all ecceptions
             elif m := re.match(
-                pattern=r"(/ENTRY\[\w+\]/INSTRUMENT\[\w+\]/scan_environment/SPM_SCAN_CONTROL\[(\w+)\]/meshSCAN\[\w+\])",
+                pattern=r"(/ENTRY\[\w+\]/INSTRUMENT\[\w+\]/SCAN_ENVIRONMENT\[\w+\]/SPM_SCAN_CONTROL\[(\w+)\]/meshSCAN\[\w+\])",
                 string=template_key,
             ):
                 groups = m.groups()
@@ -475,7 +475,7 @@ class OmicronSM4STMFormatter(SPMformatter):
 
                 for scan_tag in self._scan_list:
                     if scan_tag.lower() in scn_ctl_grp:
-                        template_links[f"{full_match}/SCAN_DATA[scan_data]"] = (
+                        template_links[f"{full_match}/DATA[scan_data]"] = (
                             self._scan_tag_to_data_group[scan_tag]
                         )
                         completed_group.append(scn_ctl_grp)

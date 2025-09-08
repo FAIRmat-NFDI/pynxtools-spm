@@ -407,9 +407,16 @@ class SPMformatter(ABC):
 
         Internal Link to an object in the same nexus file can be defined in config file as:
         "concept_path" "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
+        INSTRUMENT[insturment] -> Class name [instance name]
         or
         "concept_path" "@default_link:/ENTRY[entry]/INSTRUMENT/cryo_shield_temp_sensor"
+        INSTRUMENT -> Class name
         both are valid
+
+        But,
+        "concept_path" "@default_link:/ENTRY[entry]/instrument/cryo_shield_temp_sensor"
+        instrument -> instance name
+        is not valid
 
         External Link to an object in another file is defined as:
         "concept_path" "@default_link:/path/to/another:file.h5

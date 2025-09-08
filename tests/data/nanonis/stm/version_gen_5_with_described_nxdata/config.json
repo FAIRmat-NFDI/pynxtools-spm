@@ -625,7 +625,7 @@
       "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
     },
     "resolution_indicators": {
-      "stm_head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+      "head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
       "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
       "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
       "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
