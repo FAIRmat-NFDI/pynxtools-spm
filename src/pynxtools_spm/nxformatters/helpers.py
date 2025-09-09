@@ -25,7 +25,7 @@ import zoneinfo
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional, Tuple, Union
+from typing import Any, Callable, Dict, Optional, Tuple, Union, Type
 
 import numpy as np
 import tzlocal
@@ -137,7 +137,7 @@ def _get_data_unit_and_others(
     concept_field: str = None,
     end_dict: dict = None,
     func_on_raw_key: Callable = lambda x: x,
-) -> Tuple[str, str, Optional[dict]]:
+) -> Tuple[Any, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
     TODO: write doc test for this function
@@ -312,11 +312,11 @@ def to_intended_t(
         "str": str,
     }
 
-    cnv_dtype = data_type
-    if isinstance(cnv_dtype, str) and cnv_dtype in data_struct_map:
-        cnv_dtype = data_struct_map[cnv_dtype]
-    elif cnv_dtype is not None and cnv_dtype(int, float, str, np.ndarray, list):
-        cnv_dtype = None
+    cnv_dtype: Optional[Union[Type, Callable[[Any], Any]]] = None
+    if isinstance(data_type, str):
+        cnv_dtype = data_struct_map.get(data_type)
+    else:
+        cnv_dtype = data_type
 
     def _array_from(data, dtype=None):
         try:
