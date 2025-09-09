@@ -96,22 +96,13 @@ class NanonisDatSTS(NanonisBase):
         self._handle_special_fields()
 
     def _construct_nxscan_controllers(
-        self, partial_conf_dict, parent_path, group_name, *args, **kwargs
+        self,
+        partial_conf_dict,
+        parent_path: str,
+        group_name="scan_control",
+        **kwarg,
     ):
         pass
-
-    # def construct_temperature_data_grp(
-    #     self,
-    #     partial_conf_dict,
-    #     parent_path: str,
-    #     group_name="TEMPERATURE_DATA[temperature_data]",
-    # ):
-    #     return
-    #     if isinstance(partial_conf_dict, list):
-    #         for ind, conf_dict in enumerate(partial_conf_dict):
-    #             _ = self._nxdata_grp_from_conf_description(
-    #                 conf_dict, parent_path, group_name, ind
-    #             )
 
     def _construct_linear_sweep_grp(self, partial_conf_dict, parent_path, group_name):
         """Constructs the linear_sweep group under the group tree
@@ -211,46 +202,57 @@ class NanonisDatSTS(NanonisBase):
             group_name=linear_sweep,
         )
 
-    def _construct_di_dv_grp(self, IV_dict, parent_path, group_name):
+    def _construct_di_dv_grp(self, iv_dict, parent_path, group_name):
         """Constructs the dI/dV group under the group tree"""
         try:
-            di_by_dv = cal_dy_by_dx(IV_dict["current_fld"], IV_dict["voltage_fld"])
+            di_by_dv = cal_dy_by_dx(iv_dict["current_fld"], iv_dict["voltage_fld"])
         except (KeyError, ValueError, ZeroDivisionError):
             return
 
         if not (
             np.shape(di_by_dv)
-            == np.shape(IV_dict["voltage_fld"])
-            == np.shape(IV_dict["current_fld"])
+            == np.shape(iv_dict["voltage_fld"])
+            == np.shape(iv_dict["current_fld"])
         ):
             return
         fld_nm = "dI_by_dV"
         self.template[f"{parent_path}/{group_name}/DATA[{fld_nm}]"] = di_by_dv
         self.template[f"{parent_path}/{group_name}/DATA[{fld_nm}]/@units"] = str(
-            ureg(IV_dict["current_unit"] + "/" + IV_dict["voltage_unit"]).units
+            ureg(iv_dict["current_unit"] + "/" + iv_dict["voltage_unit"]).units
         )
 
         self.template[f"{parent_path}/{group_name}/@signal"] = fld_nm
-        axis = IV_dict["voltage_fld_name"]
+        axis = iv_dict["voltage_fld_name"]
         self.template[f"{parent_path}/{group_name}/@axes"] = [axis]
         self.template[
             f"{parent_path}/{group_name}/@AXISNAME_indices[{axis}_indices]"
         ] = 0
-        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]"] = IV_dict[
+        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]"] = iv_dict[
             "voltage_fld"
         ]
 
-        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@units"] = IV_dict[
+        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@units"] = iv_dict[
             "voltage_unit"
         ]
         self.template[f"{parent_path}/{group_name}/title"] = "dI by dV (Conductance)"
 
     def _nxdata_grp_from_conf_description(
-        self, partial_conf_dict, parent_path, group_name, group_index=0, is_forward=None
+        self,
+        partial_conf_dict,
+        parent_path,
+        group_name,
+        group_index=0,
+        is_forward=None,
+        rearrange_2d_data=True,
     ):
         """Constructs the NXdata group from the configuration description."""
         group_name = super()._nxdata_grp_from_conf_description(
-            partial_conf_dict, parent_path, group_name, group_index, is_forward
+            partial_conf_dict,
+            parent_path,
+            group_name,
+            group_index,
+            is_forward,
+            rearrange_2d_data,
         )
 
         if group_name is None:

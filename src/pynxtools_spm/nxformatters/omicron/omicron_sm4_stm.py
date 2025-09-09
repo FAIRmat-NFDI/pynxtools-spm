@@ -26,8 +26,8 @@ to NeXus application definition NXstm.
 from typing import TYPE_CHECKING, Optional
 import re
 import datetime
-import numpy as np
 from pathlib import Path
+import numpy as np
 
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 
@@ -112,6 +112,8 @@ class OmicronSM4STMFormatter(OmicronBase):
 
     @staticmethod
     def get_key_with(active_chnl=None, key=None):
+        """Get key with active channel."""
+
         if not active_chnl:
             return key
 
@@ -125,6 +127,7 @@ class OmicronSM4STMFormatter(OmicronBase):
         parent_path: str = "",
         group_name: Optional[str] = None,
     ):
+        """Construct the lockin amplifier group."""
         # TODO: Make the active channel object level variable
         actv_chnl = self.find_active_channel(raw_dt_dct=self.raw_data)
         self.walk_through_config_by_modified_raw_data_key(
@@ -142,6 +145,7 @@ class OmicronSM4STMFormatter(OmicronBase):
         scan_tag: str,
         func_on_raw_key: callable,
     ):
+        """Constructs Scan Pattern group from the scan environment group."""
         # Store full raw_data_dict and fill scan_region group according to the scan name
         raw_data = self.raw_data
         self.raw_data = self._scan_tag_raw_data[scan_tag]
@@ -248,6 +252,7 @@ class OmicronSM4STMFormatter(OmicronBase):
         scan_tag: str,
         func_on_raw_key: callable,
     ):
+        """Constructs Scan Region group from the scan control group."""
         x_arr = None
         y_arr = None
 
@@ -347,9 +352,12 @@ class OmicronSM4STMFormatter(OmicronBase):
     def _construct_nxscan_controllers(
         self,
         partial_conf_dict: dict,
-        parent_path: str = "",
+        parent_path: str,
         group_name: Optional[str] = None,
+        **kwarg,
     ):
+        """Specialization of the generic function to create NXscan controller
+        in scan environment group."""
         # Modify the raw_data key according to the scan_tag: Topography_Backward, Current_Forward
         def func_on_raw_key_with(scan_tag, k, all_tags: list):
             return re.sub(
@@ -428,6 +436,7 @@ class OmicronSM4STMFormatter(OmicronBase):
                     )
 
     def _handle_special_fields(self):
+        """Handle special fields in the template."""
         super()._handle_special_fields()
         template_key = ""
         config_dict = self.config_dict
@@ -489,13 +498,26 @@ class OmicronSM4STMFormatter(OmicronBase):
             }
 
     def _nxdata_grp_from_conf_description(
-        self, partial_conf_dict, parent_path, group_name, group_index=0, is_forward=None
+        self,
+        partial_conf_dict,
+        parent_path,
+        group_name,
+        group_index=0,
+        is_forward=None,
+        rearrange_2d_data=True,
     ):
+        """Specialization of the generic function to create NXdata group from plot description
+        in config file."""
         # conf_dict is an end dict of nxdata group
         conf_dict = partial_conf_dict.copy()
 
         group_name = super()._nxdata_grp_from_conf_description(
-            partial_conf_dict, parent_path, group_name, group_index, is_forward
+            partial_conf_dict,
+            parent_path,
+            group_name,
+            group_index,
+            is_forward,
+            rearrange_2d_data=rearrange_2d_data,
         )
         if not group_name:
             return

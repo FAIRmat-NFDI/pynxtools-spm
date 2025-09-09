@@ -316,42 +316,6 @@ class SPMformatter(ABC):
 
         return data
 
-    #     # if NXcontrol is not defined (e.g. for Bias Spectroscopy)
-    #     if not hasattr(self.NXScanControl, "fast_axis") and not hasattr(
-    #         self.NXScanControl, "slow_axis"
-    #     ):
-    #         return data
-    #     fast_axis, slow_axis = (
-    #         self.NXScanControl.fast_axis,
-    #         self.NXScanControl.slow_axis,
-    #     )
-
-    #     rearraged = None
-    #     if fast_axis == "x":
-    #         if slow_axis == "-y":
-    #             rearraged = np.flipud(data)
-    #         rearraged = data
-    #     elif fast_axis == "-x":
-    #         if slow_axis == "y":
-    #             rearraged = np.fliplr(data)
-    #         elif slow_axis == "-y":
-    #             # np.flip(data)
-    #             np.flip(data)
-    #     elif fast_axis == "-y":
-    #         rearraged = np.flipud(data)
-    #         if slow_axis == "-x":
-    #             rearraged = np.fliplr(rearraged)
-    #     elif fast_axis == "y":
-    #         rearraged = data
-    #         if slow_axis == "-x":
-    #             rearraged = np.fliplr(rearraged)
-    #     else:
-    #         rearraged = data
-    #     # Consider backward scan
-    #     if is_forward is False:
-    #         rearraged = np.fliplr(rearraged)
-    #     return rearraged
-
     def feed_data_unit_attr_to_template(
         self,
         data: Any,
@@ -539,8 +503,7 @@ class SPMformatter(ABC):
         self,
         partial_conf_dict,
         parent_path: str,
-        group_name: str,
-        *arg,
+        group_name="scan_control",
         **kwarg,
     ): ...
 

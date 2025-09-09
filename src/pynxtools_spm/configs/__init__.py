@@ -29,6 +29,8 @@ pwd = os.path.dirname(__file__)
 
 
 def load_default_config(config_type):
+    """Load the default configuration file for a given config type."""
+
     nanonis_dat_generic_sts = os.path.join(
         pwd, "nanonis", "nanonis_dat_generic_sts.json"
     )

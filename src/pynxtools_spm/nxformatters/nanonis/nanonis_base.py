@@ -21,32 +21,18 @@ Base formatter for Nanonis SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from __future__ import annotations
-from pynxtools_spm.nxformatters.base_formatter import SPMformatter 
-from abc import ABC, abstractmethod
-from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable, Any
-from dataclasses import dataclass
-from pynxtools_spm.parsers import SPMParser
-from pynxtools.dataconverter.template import Template
-from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
-from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
-import yaml
-import re
-from pynxtools_spm.nxformatters.helpers import (
-    _get_data_unit_and_others,
-    to_intended_t,
-    replace_variadic_name_part,
-    add_local_timezone,
-)
-import datetime
-from pathlib import Path
+from typing import List, Optional
 import numpy as np
 
-if TYPE_CHECKING:
-    from pint import Quantity
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 
 
 class NanonisBase(SPMformatter):
+    """Base class for Nanonis SPM data formatters."""
+
     def _arange_axes(self, direction="down"):
+        """Arrange fast and slow axes according to the scan direction."""
+
         fast_slow: List[str]
         if direction.lower() == "down":
             fast_slow = ["-Y", "X"]

@@ -1,22 +1,22 @@
-from pynxtools.units import ureg
-from typing import Optional, Dict, Tuple, Union, Any, Literal, Callable
-from pathlib import Path
+import json
 import logging
-from datetime import datetime
-import tzlocal
+import re
 import zoneinfo
 from copy import deepcopy
-import numpy as np
-from findiff import Diff
-import re
-import json
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable, Dict, Literal, Optional, Tuple, Union
 
+import numpy as np
+import tzlocal
+from findiff import Diff
+from pynxtools.units import ureg
 
 #  try to create a common logger for all the modules
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
-_scientific_num_pattern = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
+_SCIENTIFIC_NUM_PATTERN = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
 
 
 def add_local_timezone(ts: str, tz: str | None = None) -> str:
@@ -107,7 +107,7 @@ def _verify_unit(
         return unit_derived
     except Exception as e:
         # TODO: add nomad logger here
-        logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
+        logger.debug("Check the unit for nx concept %s.\nError : %s", concept, e)
         return None
 
 
@@ -251,6 +251,7 @@ def get_actual_from_variadic_name(name: str) -> str:
 
 
 def flatten_nested_list(list_dt: Union[list, tuple, any]):
+    """Flatten a nested list or tuple."""
     for elem in list_dt:
         if isinstance(elem, (list, tuple)):
             yield from flatten_nested_list(elem)
@@ -261,7 +262,6 @@ def flatten_nested_list(list_dt: Union[list, tuple, any]):
 # pylint: disable=too-many-return-statements
 def to_intended_t(
     data: Any,
-    data_struc: Literal["list", "array"] = None,
     data_type: Optional[Union[str, int, float]] = None,
 ):
     """

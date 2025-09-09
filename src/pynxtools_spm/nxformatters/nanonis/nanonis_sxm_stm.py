@@ -25,18 +25,16 @@ to NeXus application definition NXstm.
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional, Any, Callable
+from pathlib import Path
 import re
 import datetime
 import numpy as np
-from pathlib import Path
-from pynxtools_spm.nxformatters.base_formatter import (
-    PINT_QUANTITY_MAPPING,
-)
+
 from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
-    _scientific_num_pattern,
+    _SCIENTIFIC_NUM_PATTERN,
     to_intended_t,
 )
 from pynxtools_spm.configs import load_default_config
@@ -64,6 +62,7 @@ gbl_scan_ranges: list[float] = []
 
 
 class NanonisSxmSTM(NanonisBase):
+    """Formatter for Nanonis STM data in SXM file format."""
     _grp_to_func = {
         "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",
@@ -141,7 +140,7 @@ class NanonisSxmSTM(NanonisBase):
             partial_conf_dict=partial_conf_dict,  # dict that contains concept field
             concept_field=scan_point,
         )
-        gbl_scan_points = re.findall(_scientific_num_pattern, scan_points)
+        gbl_scan_points = re.findall(_SCIENTIFIC_NUM_PATTERN, scan_points)
         if gbl_scan_points:
             gbl_scan_points = [float(x) for x in gbl_scan_points]
         for ind, point in enumerate(gbl_scan_points):
@@ -203,6 +202,7 @@ class NanonisSxmSTM(NanonisBase):
         parent_path: str,
         group_name="scan_region",
     ):
+        """Constaruct region group from scan_control group sitting in scan_environment group."""
         scan_offset = "scan_offset_valueN[scan_offset_value_n]"
 
         scan_offsets, unit, _ = _get_data_unit_and_others(
@@ -211,7 +211,7 @@ class NanonisSxmSTM(NanonisBase):
             concept_field=scan_offset,
         )
         # TODO add a check it scan_start is provided by config dict
-        scan_offsets = to_intended_t(re.findall(_scientific_num_pattern, scan_offsets))
+        scan_offsets = to_intended_t(re.findall(_SCIENTIFIC_NUM_PATTERN, scan_offsets))
         for ind, offset in enumerate(scan_offsets):
             # off_key = f"{parent_path}/{group_name}/scan_offset_valueN[scan_offset_value_{self._axes[ind]}]"
             # self.template[off_key] = offset
@@ -237,7 +237,7 @@ class NanonisSxmSTM(NanonisBase):
         )
         if isinstance(scan_angles, str):
             scan_angles = to_intended_t(
-                re.findall(_scientific_num_pattern, scan_angles)
+                re.findall(_SCIENTIFIC_NUM_PATTERN, scan_angles)
             )
         elif isinstance(scan_angles, (int, float)):
             scan_angles = [scan_angles]
@@ -256,15 +256,10 @@ class NanonisSxmSTM(NanonisBase):
             concept_field=scan_range,
         )
         global gbl_scan_ranges
-        gbl_scan_ranges = re.findall(_scientific_num_pattern, scan_ranges)
+        gbl_scan_ranges = re.findall(_SCIENTIFIC_NUM_PATTERN, scan_ranges)
         if gbl_scan_ranges:
             gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
         for ind, rng in enumerate(gbl_scan_ranges):
-            # rng_key = (
-            #     f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]"
-            # )
-            # self.template[rng_key] = rng
-            # self.template[f"{rng_key}/@units"] = unit
 
             if self._axes[ind] == "x":
                 self.NXScanControl.x_range = rng
@@ -279,15 +274,11 @@ class NanonisSxmSTM(NanonisBase):
                     self.NXScanControl.y_end = rng + self.NXScanControl.y_start
                     self.NXScanControl.y_end_unit = unit
 
-            # self.template[
-            #     f"{parent_path}/{group_name}/scan_rangeN[scan_range_{self._axes[ind]}]/@units"
-            # ] = unit
         self.put_scan_2d_region_field_in_template(parent_path, group_name)
 
-    def put_scan_control_pattern_field_in_template(self, parent_path, group_name):
-        pass
-
     def construct_single_scan_data_grp(self, parent_path, plot_data_info, group_name):
+        """Construct single NXdata group for a single scan data."""
+
         raw_key = plot_data_info["data_path"]
         axes = ["x", "y"]
         field_nm = raw_key[1:].replace("/", "_").lower()
@@ -336,6 +327,9 @@ class NanonisSxmSTM(NanonisBase):
         parent_path: str,
         group_name="SCAN_DATA[scan_data]",
     ):
+        """Constructs the NXdata groups for all available scan data in raw file
+        using single_scan_data_grp function."""
+
         if isinstance(partial_conf_dict, list):
             # NXdata group will be handled in the general function
             # walk_through_config_nested_dict
@@ -443,7 +437,11 @@ class NanonisSxmSTM(NanonisBase):
         partial_conf_dict,
         parent_path: str,
         group_name="scan_control",
+        **kwargs,
     ):
+        """Constructs Scan Control group from the scan environment group.
+        Where, scan control group constains scan region and scan pattern groups."""
+
         # find independent_scan_axes
         # independent_axes = "/ENTRY[entry]/INSTRUMENT[instrument]/SCAN_ENVIRONMENT/SCAN_CONTROL[scan_control]/independent_scan_axes"
         independent_axes = "independent_scan_axes"
@@ -481,6 +479,7 @@ class NanonisSxmSTM(NanonisBase):
         group_name,
         group_index=0,
         is_forward: Optional[bool] = None,
+        rearrange_2d_data: bool = True,
     ):
         """Specialization of the generic funciton to create NXdata group or plots."""
         if (
@@ -501,6 +500,7 @@ class NanonisSxmSTM(NanonisBase):
             group_name,
             group_index,
             is_forward=is_forward,
+            rearrange_2d_data=rearrange_2d_data,
         )
         if "0" not in partial_conf_dict:
             axis_x = "x"
