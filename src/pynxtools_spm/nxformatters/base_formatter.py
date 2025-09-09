@@ -395,7 +395,7 @@ class SPMformatter(ABC):
         partial_conf_dict: dict,
         parent_path: str,
         group_name: str,
-        func_to_raw_key: callable,
+        func_to_raw_key: Callable,
     ):
         # only field
         for fld_key, end_dct in partial_conf_dict.items():
@@ -450,7 +450,7 @@ class SPMformatter(ABC):
         partial_conf_dict: dict,
         parent_path: str,
         group_name: str,
-        func_to_raw_key: callable,
+        func_to_raw_key: Callable,
     ):
         for key, val in partial_conf_dict.items():
             # skips fields

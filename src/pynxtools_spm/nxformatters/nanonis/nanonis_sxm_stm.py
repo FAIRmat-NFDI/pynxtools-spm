@@ -63,6 +63,7 @@ gbl_scan_ranges: list[float] = []
 
 class NanonisSxmSTM(NanonisBase):
     """Formatter for Nanonis STM data in SXM file format."""
+
     _grp_to_func = {
         "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",
@@ -260,7 +261,6 @@ class NanonisSxmSTM(NanonisBase):
         if gbl_scan_ranges:
             gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
         for ind, rng in enumerate(gbl_scan_ranges):
-
             if self._axes[ind] == "x":
                 self.NXScanControl.x_range = rng
                 self.NXScanControl.x_range_unit = unit

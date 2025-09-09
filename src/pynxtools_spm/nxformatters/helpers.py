@@ -270,7 +270,7 @@ def get_actual_from_variadic_name(name: str) -> str:
     return name.split("[")[-1].split("]")[0]
 
 
-def flatten_nested_list(list_dt: Union[list, tuple, any]):
+def flatten_nested_list(list_dt: Union[list, tuple, Any]):
     """Flatten a nested list or tuple."""
     for elem in list_dt:
         if isinstance(elem, (list, tuple)):
@@ -282,7 +282,7 @@ def flatten_nested_list(list_dt: Union[list, tuple, any]):
 # pylint: disable=too-many-return-statements
 def to_intended_t(
     data: Any,
-    data_type: Optional[Union[str, int, float]] = None,
+    data_type: Optional[Union[str, Callable[[Any], Any]]] = None,
 ):
     """
         Transform string to the intended data type, if not then return data.
@@ -292,8 +292,12 @@ def to_intended_t(
 
     Parameters
     ----------
-    data : _type_
-        _description_
+    data : Any
+        The data to be converted.
+    data_type : Optional[Union[str, Callable]]
+        The intended data type. It can be 'list', 'ndarray', 'int', 'float', 'str'
+        or the callable function like int, float, str, np.ndarray
+        If None, the function will try to convert to int or float if possible.
 
     Returns
     -------
@@ -302,8 +306,17 @@ def to_intended_t(
     """
     data_struct_map = {
         "list": list,
-        "array": np.ndarray,
+        "ndarray": np.ndarray,
+        "int": int,
+        "float": float,
+        "str": str,
     }
+
+    cnv_dtype = data_type
+    if isinstance(cnv_dtype, str) and cnv_dtype in data_struct_map:
+        cnv_dtype = data_struct_map[cnv_dtype]
+    elif cnv_dtype is not None and cnv_dtype(int, float, str, np.ndarray, list):
+        cnv_dtype = None
 
     def _array_from(data, dtype=None):
         try:
@@ -338,7 +351,7 @@ def to_intended_t(
         return data
 
     if isinstance(data, list):
-        return _array_from(data, dtype=data_type)
+        return _array_from(data, dtype=cnv_dtype)
 
     if isinstance(data, np.ndarray):
         return data
@@ -374,11 +387,11 @@ def to_intended_t(
             return off_on[data]
 
         try:
-            transformed = int(data) if not data_type else data_type(data)
+            transformed = int(data) if cnv_dtype is None else cnv_dtype(data)
             return transformed
         except ValueError:
             try:
-                transformed = float(data) if not data_type else data_type(data)
+                transformed = float(data) if cnv_dtype is None else cnv_dtype(data)
                 return transformed
             except ValueError:
                 if "[" in data and "]" in data:
@@ -418,7 +431,7 @@ def get_link_compatible_key(key):
     return compatible_key
 
 
-def replace_variadic_name_part(name, part_to_embed: None):
+def replace_variadic_name_part(name: str, part_to_embed: Optional[str] = None) -> str:
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"

@@ -57,6 +57,7 @@ class NanonisDatSTS(NanonisBase):
     @dataclass
     class TmpConceptsVal:
         """Temporary storage for concept values to use later"""
+
         flip_number: int = None
 
     @dataclass

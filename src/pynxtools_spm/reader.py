@@ -29,6 +29,7 @@ from pynxtools.dataconverter.readers.base.reader import BaseReader
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
 
@@ -97,7 +98,7 @@ class SPMReader(BaseReader):
         if not data_file:
             raise ValueError("Data file is required for the reader to work.")
 
-        formater_obj = None
+        formater_obj: Optional[SPMformatter] = None
         # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM

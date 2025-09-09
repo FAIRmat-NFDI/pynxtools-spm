@@ -22,8 +22,7 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Any, Callable
 import re
 import datetime
 from pathlib import Path
@@ -54,10 +53,10 @@ class OmicronSM4STMFormatter(OmicronBase):
         "lockin_amplifier": "_construct_lockin_amplifier_grp",
         "SPM_SCAN_CONTROL[spm_scan_control_*]": "_construct_nxscan_controllers",
     }
-    _scan_list = []
+    _scan_list: list[str] = []
 
-    _scan_tag_raw_data = {}
-    _scan_tag_to_data_group = {}
+    _scan_tag_raw_data: dict[str, Any] = {}
+    _scan_tag_to_data_group: dict[str, Any] = {}
 
     def __init__(
         self,
@@ -143,7 +142,7 @@ class OmicronSM4STMFormatter(OmicronBase):
         parent_path: str,
         group_name: Optional[str],
         scan_tag: str,
-        func_on_raw_key: callable,
+        func_on_raw_key: Callable,
     ):
         """Constructs Scan Pattern group from the scan environment group."""
         # Store full raw_data_dict and fill scan_region group according to the scan name
@@ -250,7 +249,7 @@ class OmicronSM4STMFormatter(OmicronBase):
         parent_path: str,
         group_name: Optional[str],
         scan_tag: str,
-        func_on_raw_key: callable,
+        func_on_raw_key: Callable,
     ):
         """Constructs Scan Region group from the scan control group."""
         x_arr = None
@@ -358,6 +357,7 @@ class OmicronSM4STMFormatter(OmicronBase):
     ):
         """Specialization of the generic function to create NXscan controller
         in scan environment group."""
+
         # Modify the raw_data key according to the scan_tag: Topography_Backward, Current_Forward
         def func_on_raw_key_with(scan_tag, k, all_tags: list):
             return re.sub(
