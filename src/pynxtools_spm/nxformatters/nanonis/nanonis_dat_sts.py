@@ -34,9 +34,9 @@ from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
 )
 from pynxtools_spm.nxformatters.base_formatter import (
-    SPMformatter,
     PINT_QUANTITY_MAPPING,
 )
+from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.nxformatters.helpers import (
     cal_dy_by_dx,
     get_actual_from_variadic_name,
@@ -45,7 +45,7 @@ from pynxtools_spm.nxformatters.helpers import (
 ureg = UnitRegistry()
 
 
-class NanonisDatSTS(SPMformatter):
+class NanonisDatSTS(NanonisBase):
     """Formatter for Nanonis STS data with .dat extension"""
 
     _grp_to_func = {

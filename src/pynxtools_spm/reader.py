@@ -100,7 +100,7 @@ class SPMReader(BaseReader):
         formater_obj = None
         # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
 
             formater_obj = NanonisSxmSTM(
                 template=template,
@@ -110,7 +110,7 @@ class SPMReader(BaseReader):
             )
             # nss.get_nxformatted_template()
         elif experirment_technique == "STM" and raw_file_ext == "sm4":
-            from pynxtools_spm.nxformatters.omicron_sm4_stm import (
+            from pynxtools_spm.nxformatters.omicron.omicron_sm4_stm import (
                 OmicronSM4STMFormatter,
             )
 
@@ -122,7 +122,7 @@ class SPMReader(BaseReader):
             )
             # oss.get_nxformatted_template()
         elif experirment_technique == "AFM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_afm import NanonisSxmAFM
 
             formater_obj = NanonisSxmAFM(
                 template=template,
@@ -132,7 +132,7 @@ class SPMReader(BaseReader):
             )
             # nsa.get_nxformatted_template()
         elif experirment_technique == "STS" and raw_file_ext == "dat":
-            from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
+            from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 
             formater_obj = NanonisDatSTS(
                 template=template,

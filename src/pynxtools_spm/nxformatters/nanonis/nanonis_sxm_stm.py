@@ -23,20 +23,25 @@ to NeXus application definition NXstm.
 # limitations under the License.
 
 from __future__ import annotations
-from pynxtools_spm.nxformatters.base_formatter import SPMformatter
-from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
-from typing import TYPE_CHECKING, Optional, Union, Any, Callable
+
+from typing import TYPE_CHECKING, Optional, Any, Callable
 import re
-from pynxtools_spm.configs import load_default_config
-import pynxtools_spm.nxformatters.helpers as fhs
+import datetime
+import numpy as np
 from pathlib import Path
+from pynxtools_spm.nxformatters.base_formatter import (
+    PINT_QUANTITY_MAPPING,
+)
+from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
+from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _scientific_num_pattern,
     to_intended_t,
 )
-import datetime
-import numpy as np
+from pynxtools_spm.configs import load_default_config
+import pynxtools_spm.nxformatters.helpers as fhs
+
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
@@ -58,7 +63,7 @@ if TYPE_CHECKING:
 gbl_scan_ranges: list[float] = []
 
 
-class NanonisSxmSTM(SPMformatter):
+class NanonisSxmSTM(NanonisBase):
     _grp_to_func = {
         "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",

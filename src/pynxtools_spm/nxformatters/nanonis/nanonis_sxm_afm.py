@@ -23,9 +23,12 @@ to NeXus application definition NXstm.
 # limitations under the License.
 
 from typing import Optional, Union, TYPE_CHECKING
-from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
+from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
 from pathlib import Path
-from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+from pynxtools_spm.nxformatters.base_formatter import (
+    PINT_QUANTITY_MAPPING,
+)
+from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
 import numpy as np
@@ -49,7 +52,7 @@ if TYPE_CHECKING:
 # }
 
 
-class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
+class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
     _grp_to_func = {
         "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",
@@ -175,7 +178,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         else:
             return
 
-        nxdata_group_nm = SPMformatter._nxdata_grp_from_conf_description(
+        nxdata_group_nm = NanonisBase._nxdata_grp_from_conf_description(
             self,
             partial_conf_dict,
             parent_path,

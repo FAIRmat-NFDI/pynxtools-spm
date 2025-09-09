@@ -22,27 +22,30 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TODO later try to get logger from pynxtools
-from pynxtools_spm import SPM_LOGGER, __formatter
-from pynxtools_spm.nxformatters.base_formatter import SPMformatter
-from typing import TYPE_CHECKING, Optional, Union, Any
+
+from typing import TYPE_CHECKING, Optional
 import re
-from pynxtools_spm.configs import load_default_config
-from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
-import pynxtools_spm.nxformatters.helpers as fhs
+import datetime
+import numpy as np
 from pathlib import Path
+
+from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
+
+from pynxtools_spm import SPM_LOGGER
+from pynxtools_spm.nxformatters.omicron.omicron_base import OmicronBase
+from pynxtools_spm.configs import load_default_config
+import pynxtools_spm.nxformatters.helpers as fhs
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
 )
 from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
-import datetime
-import numpy as np
+
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
 
 
-class OmicronSM4STMFormatter(SPMformatter):
+class OmicronSM4STMFormatter(OmicronBase):
     """
     Formatter for Omicron SM4 STM data.
     """
