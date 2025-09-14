@@ -30,6 +30,7 @@ from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
 

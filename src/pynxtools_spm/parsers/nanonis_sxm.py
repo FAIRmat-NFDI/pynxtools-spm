@@ -38,9 +38,9 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 # some Global variables to reduce the run time
 SCAN_SIDE = None
 
+
 class SxmGenericNanonis(SPMBase):
     """Specific class for stm reader from nanonis company."""
-
 
     def convert_key_to_unit_and_entity(
         self, key, val, start_bracket="", end_bracket=""
