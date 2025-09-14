@@ -30,7 +30,6 @@ dependencies = [
     "scipy",
     "hvplot",
     "spym",
-    "zoneinfo",
     "tzlocal",
 ]
 
