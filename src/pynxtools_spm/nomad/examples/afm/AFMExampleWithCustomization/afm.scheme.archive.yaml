@@ -213,7 +213,7 @@ definitions:
                                       component: StringEditQuantity
                                   description: |
                                     An unique identifier for the piezo material.
-              scan_environment:
+              Scan_environment:
                 section:
                   m_annotations:
                     eln:

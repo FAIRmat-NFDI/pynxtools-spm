@@ -223,7 +223,7 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Type of the signal either in voltage or current.
-              scan_environment:
+              Scan_environment:
                 section:
                   m_annotations:
                     eln:

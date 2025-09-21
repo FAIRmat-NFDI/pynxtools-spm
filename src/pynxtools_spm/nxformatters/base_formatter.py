@@ -21,24 +21,27 @@ Base formatter for SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from __future__ import annotations
+
+import datetime
+import re
 from abc import ABC, abstractmethod
-from typing import Dict, Union, List, Optional, TYPE_CHECKING, Callable, Any
 from dataclasses import dataclass
-from pynxtools_spm.parsers import SPMParser
-from pynxtools.dataconverter.template import Template
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Union
+
+import numpy as np
+import yaml
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
-import yaml
-import re
+from pynxtools.dataconverter.template import Template
+
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
-    to_intended_t,
-    replace_variadic_name_part,
     add_local_timezone,
+    replace_variadic_name_part,
+    to_intended_t,
 )
-import datetime
-from pathlib import Path
-import numpy as np
+from pynxtools_spm.parsers import SPMParser
 
 if TYPE_CHECKING:
     from pint import Quantity
@@ -661,7 +664,7 @@ class SPMformatter(ABC):
         """
         field_to_type = {
             r"active_channel$": str,
-            r"software/model/@version$": str,
+            r"model/@version$": str,
             r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: input.lower(),
             r"lockin_amplifier/(hp|lp){1,}_filter_orderN\[\1_filter_order_[\w]*\]$": (
                 lambda input: input if isinstance(input, (int, float)) else ""
