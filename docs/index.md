@@ -14,9 +14,9 @@ hide: toc
 
 ## **Motivation for pynxtools-spm**
 
-Data from Scanning Probe Microscopy (SPM) techinques such as Scanning Tunneling Microscopy (STM), Scanning Tunneling Spectroscopy (STS), and Atomic Force Microscopy (AFM) are widely used in condensed matter physics and surface science. However, the data formats used by different SPM instruments follow often proprietary datamodel and are incompatible with each other, making it difficult to share and analyze data across different platforms. To address this issue, the NeXus-FAIRmat community has developed NeXus application definition for [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html), [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html) and [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) and based on the application defintions `pynxtools-spm` reader provides a standardized way to convert raw data from various STM/STS/AFM experiments into the NeXus format accoding to the application definitions, making the data accessible for everyone disregarding the provider of instruments and softwares to acquire the data. The data can be stored and shared in research data management platform e.g., [NOMAD](https://nomad-lab.eu/nomad-lab/). 
+Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunneling Microscopy (STM)__, __Scanning Tunneling Spectroscopy (STS)__, and __Atomic Force Microscopy (AFM)__ are widely produced and analysed in condensed matter physics and surface science. However, the data formats rendered by different SPM instruments follow often proprietary datamodel and are incompatible with each other, making it difficult to share and analyze data across different platforms. To address this issue, the NeXus-FAIRmat community has developed NeXus application definition for [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html), [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html) and [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html). Based on the application defintions `pynxtools-spm` reader provides a standardized way to convert raw data from various STM/STS/AFM experiments into the NeXus format accoding to the application definitions, making the data accessible for everyone disregarding the provider of instruments and softwares to acquire the data from experiments. The data can be stored and shared in research data management platform e.g., [NOMAD](https://nomad-lab.eu/nomad-lab/).
 
-`pynxtools-spm` is a Python package that provides a unified interface for working with SPM data in the NeXus format. It is built on top of the `pynxtools` dataconverter framework and leverages its capabilities to read and write NeXus files. The package includes modules for reading data from various SPM instruments, including Nanonis and Omicron, and converting it into the NeXus format according to the NeXus application definitions for SPM techniques.
+`pynxtools-spm`, a Python package, provides a unified interface for working with SPM data in the NeXus format. It is built on top of the `pynxtools` [ref] dataconverter framework and leverages the capabilities to read and write NeXus files. The `pynxtools-spm` package includes modules for reading data from various SPM instruments, including Nanonis and Omicron, and converting it into the NeXus format according to the NeXus application definitions for SPM techniques.
 
 <div markdown="block" class="home-grid">
   <div markdown="block">
@@ -28,10 +28,11 @@ Data from Scanning Probe Microscopy (SPM) techinques such as Scanning Tunneling 
      2. Discover the Reader functionality in Nomad
          1. Upload data in Nomad using drag and drop
          2. Upload data in Nomad using yaml ELN file
+     3. Run Reader in north tools
  -->
 
 - [Installation](tutorials/installation.md)
-- [Reader Use in Nomad](tutorials/reader-use-in-nomad.md)
+- [Use Reader in Nomad](tutorials/reader-use-in-nomad.md)
 
 </div>
 <div markdown="block">
@@ -43,11 +44,12 @@ Data from Scanning Probe Microscopy (SPM) techinques such as Scanning Tunneling 
       2. Extend existing file format
       3. Test your changes
       4. Contribute your changes
-    4. Extend the application definition
-
+    4. Propose changes in NeXus application definition via NeXus-FAIRmat webpage
 -->
 
-- [How to Use Reader](how-to-guides/how-to-interact-with-reader.md)
+- [Work with Reader](how-to-guides/how-to-interact-with-reader.md)
+<!-- 1.Explain ELN schema 
+    2. Explain Config file-->
 
 </div>
 <div markdown="block">
