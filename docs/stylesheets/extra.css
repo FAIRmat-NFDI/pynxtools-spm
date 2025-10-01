@@ -103,3 +103,19 @@
   white-space: pre-wrap; /* allow wrapping instead of one long line */
   background-color: #f3e9d9;
 }
+
+.scrollable-img {
+  max-height: 60vh;   /* limit to 60% of window height */
+  max-width: 60vw;    /* limit to 60% of window width */
+  overflow: auto;     /* scroll in both directions if needed */
+  border: 1px solid var(--md-default-fg-color--light);
+  border-radius: 6px;
+  background: var(--md-code-bg-color);
+  padding: 0.25em;
+}
+
+.scrollable-img img {
+  display: block;   /* remove inline spacing */
+  max-height: 60vh;   /* at most 60% of window height */
+  max-width: 60vw; 
+}
