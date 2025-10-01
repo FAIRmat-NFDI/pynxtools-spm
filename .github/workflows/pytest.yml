@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         python_version: ["3.10", "3.11", "3.12"]
-        pynxtools_versions: ["master"]
+        pynxtools_versions: ["master", "newVersionSPM"]
 
     steps:
       - uses: actions/checkout@v4
@@ -35,20 +35,20 @@ jobs:
         run: |
           PYNXTOOLS_VERSION="${{ matrix.pynxtools_versions }}"
           uv pip uninstall pynxtools -q
-          if [ "$PYNXTOOLS_VERSION" == "master" ]; then
+          # Check for any branches
+          if [[ ! "$PYNXTOOLS_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@${{ matrix.pynxtools_versions }}
-        
-          elif [ "$PYNXTOOLS_VERSION" == "latest_release" ]; then
-            uv pip install pynxtools
+          elif [[ "$PYNXTOOLS_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            uv pip install pynxtools==${{ matrix.pynxtools_versions }}
           else
-           uv pip install pynxtools==${{ matrix.pynxtools_versions }}
+            uv pip install pynxtools
           fi
       - name: Install nomad
         run: |
           uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
       - name: Install package and dependencies
         run: |
-          uv pip install ".[dev]"
+          uv pip install .[dev]
       - name: Test pynxtools data conversion
         run: |
           pytest tests/test_reader.py

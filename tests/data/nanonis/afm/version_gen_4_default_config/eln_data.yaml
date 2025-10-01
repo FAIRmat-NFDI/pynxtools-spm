@@ -23,7 +23,7 @@ experiment_technique: AFM
 identifier_collection: D:\\Data\\123306
 identifier_experiment: D:\\Data\\123306\A151216.123306-02602
 scan_mode: tapping mode
-user:
+User:
 - affiliation:
   - Dr. Cojal González, José David (HU)
   - Prof. Carlos-Andres Palma (HU)
