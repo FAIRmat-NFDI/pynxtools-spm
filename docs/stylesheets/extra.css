@@ -90,3 +90,16 @@
 .nomad-button--card-action {
   margin: 1em 0 0 0 !important;
 }
+
+.scrollable {
+  max-height: 60vh;   /* at most 60% of window height */
+  max-width: 60vw; 
+  overflow-x: auto;   /* horizontal scrolling if needed */
+  padding: 0.5em;
+  border: 1px solid var(--md-default-fg-color--light);
+  border-radius: 4px;
+  background: var(--md-code-bg-color);
+  font-size: 0.85em; /* optional: make it smaller */
+  white-space: pre-wrap; /* allow wrapping instead of one long line */
+  background-color: #f3e9d9;
+}
