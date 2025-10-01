@@ -21,8 +21,8 @@ classifiers = [
 ]
 dependencies = [
     "findiff>=0.11.1",
-    "pynxtools>=0.11.1",
-    # "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@hdf-based-validation#egg=pynxtools",
+    # "pynxtools>=0.11.1",
+    "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@666-bug-validation-of-open-enumerations-does-not-search-for-custom-attribute#egg=pynxtools",
 ]
 
 # TODO: Add acknowledgements to pySPM python package
