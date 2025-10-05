@@ -11,8 +11,8 @@ nav:
   - Explanation: 
       - explanation/reader-explanation.md
   - Tutorial:
-      - tutorial/nomad-tutorial.md
-      - tutorial/reader-tutorial.md
+      - tutorials/installation.md
+      - tutorials/reader-use-in-nomad.md
   - How-To-Guide : 
       - how-to-guides/how-to-interact-with-reader.md
   - Reference: 
@@ -45,7 +45,6 @@ markdown_extensions:
       #     format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-use_directory_urls: false
 theme:
   name: material
   pallet:
