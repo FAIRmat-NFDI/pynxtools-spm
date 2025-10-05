@@ -19,10 +19,13 @@ Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunn
 `pynxtools-spm`, a Python package, provides a unified interface for working with SPM data in the NeXus format. It is built on top of the `pynxtools` [ref] dataconverter framework and leverages the capabilities to read and write NeXus files. The `pynxtools-spm` package includes modules for reading data from various SPM instruments, including Nanonis and Omicron, and converting it into the NeXus format according to the NeXus application definitions for SPM techniques.
 
 <div markdown="block" class="home-grid">
-  <div markdown="block">
+<div markdown="block">
 
 ### Tutorial
+- [Installation](tutorials/installation.md)
+- [Use Reader in Nomad](tutorials/reader-use-in-nomad.md)
 
+</div>
 <!-- 1. [Installation](tutorial/installation.md)
          1. With Command Line Interface (CLI) to convert data into NeXus format
      2. Discover the Reader functionality in Nomad
@@ -30,16 +33,11 @@ Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunn
          2. Upload data in Nomad using yaml ELN file
      3. Run Reader in north tools
  -->
-
-- [Installation](tutorials/installation.md)
-- [Use Reader in Nomad](tutorials/reader-use-in-nomad.md)
-
-</div>
 <div markdown="block">
 
 ### How-To-Guide
 
-<!--3. Extend the reader functionality or Add new reader for other file formats
+<!--TODO: 3. Extend the reader functionality or Add new reader for other file formats
       1. Add new file format
       2. Extend existing file format
       3. Test your changes
@@ -48,8 +46,6 @@ Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunn
 -->
 
 - [Work with Reader](how-to-guides/how-to-interact-with-reader.md)
-<!-- 1.Explain ELN schema 
-    2. Explain Config file-->
 
 </div>
 <div markdown="block">

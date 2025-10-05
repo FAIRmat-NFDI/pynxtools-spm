@@ -95,13 +95,20 @@
   max-height: 60vh;   /* at most 60% of window height */
   max-width: 60vw; 
   overflow-x: auto;   /* horizontal scrolling if needed */
-  padding: 0.5em;
+  overflow: auto;     /* scroll in both directions if needed */
+  padding: 0.25em;
   border: 1px solid var(--md-default-fg-color--light);
-  border-radius: 4px;
+  border-radius: 6px;
   background: var(--md-code-bg-color);
   font-size: 0.85em; /* optional: make it smaller */
   white-space: pre-wrap; /* allow wrapping instead of one long line */
-  background-color: #f3e9d9;
+  /* background-color: #f3e9d9; */
+
+}
+
+.scrollable p{
+  margin: 0;  /* remove default margin inside scrollable */
+  padding: 0em; 
 }
 
 .scrollable-img {
@@ -116,6 +123,4 @@
 
 .scrollable-img img {
   display: block;   /* remove inline spacing */
-  max-height: 60vh;   /* at most 60% of window height */
-  max-width: 60vw; 
 }
