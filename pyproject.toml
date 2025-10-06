@@ -31,6 +31,11 @@ dependencies = [
     "hvplot",
     "spym>=0.9.2",
     "tzlocal",
+    "mkdocs",
+    "mkdocs-mermaid2-plugin",
+    "mkdocstrings",
+    "mkdocs-material",
+    "mkdocs-macros-plugin"
 ]
 
 # TODO: Add acknowledgements to pySPM python package
