@@ -22,7 +22,7 @@ classifiers = [
 dependencies = [
     "findiff>=0.11.1",
     # "pynxtools>=0.11.0",
-    "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@newVersionSPM#egg=pynxtools",
+    "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@masterM#egg=pynxtools",
     # "pySPM==0.6.2",  # SPM file reader for Bruker files use it when you have Bruker files
     "pint",
     "xarray",
