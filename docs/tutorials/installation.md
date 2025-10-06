@@ -1,7 +1,7 @@
 # Installation
 
 The `pynxtools-spm` is published on PyPI and can be installed via python's package managers like `uv` or `pip`.
-For beginers, we show very basic and common ways to install the package.
+For beginers, we will show very basic and common ways to install the package.
 
 Create a virtual environments with `venv` module and activate it:
 
