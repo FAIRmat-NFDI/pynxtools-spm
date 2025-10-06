@@ -534,7 +534,7 @@ In the tabbed window below, an example of ELN schema file for STS experiment is 
     ```
     </div>
 
-### __Config file__
+### __Config File__
 A config file that carries mapping information from the raw data to the NeXus Application Definition concepts. The config file follows certain rules how the raw data will be processed and orgaised in the NeXus file. It is expected that each user lab should scrutinize the config file and modify it according to their need and the file will not be need to be modified by the underlying data structure but raw data paths.
 
 === "Typical structure of config file (for nonanois STS data)"
@@ -1597,3 +1597,4 @@ __1.__ In STM, regarding the omicron raw_file, `SPM_SCAN_CONTROL[spm_scan_contro
         },
     }
     ```
+    </div>
