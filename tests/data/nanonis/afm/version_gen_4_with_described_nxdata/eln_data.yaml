@@ -11,10 +11,12 @@ Instrument:
     vendor: Nanonis
 Sample:
   Sample_component:
-  - chemical_formula: ' KAl₂(AlSi₃O₁₀)(OH)₂)'
+    chemical_formula: ' KAl₂(AlSi₃O₁₀)(OH)₂)'
     description: <p>Gold on Mica.</p>
     name: Au(Mica)
-  description: <p>We used the diPAMY sample used in this demo example.</p>
+  History:
+    Note:
+      description: "Demo description: This sample is used in Palma's lab."
   name: diPAMY
 default: current_forward
 definition: NXafm
@@ -23,7 +25,7 @@ experiment_technique: AFM
 identifier_collection: D:\\Data\\123306
 identifier_experiment: D:\\Data\\123306\A151216.123306-02602
 scan_mode: tapping mode
-user:
+User:
 - affiliation:
   - Dr. Cojal González, José David (HU)
   - Prof. Carlos-Andres Palma (HU)

@@ -1,6 +1,6 @@
 {
   "ENTRY[entry]": {
-    "@default": { "raw_path": "@default:current_grad" },
+    "@default": { "raw_path": "@default:current_filter" },
     "definition": { "@version": "" },
     "start_time": {
       "raw_path": "/Start time/value"
@@ -18,7 +18,7 @@
           "@units": "/Lock-in/Frequency/unit"
         },
         "modulation_signal": {
-          "raw_path": "@default:Voltage"
+          "raw_path": "@default:Current"
         },
         "demodulated_signal": {
           "raw_path": "@default:Current"
@@ -27,7 +27,15 @@
           "raw_path": "/Lock-in/Amplitude/value",
           "@units": "/Lock-in/Modulated signal/Bias/unit"
         },
-        "low_pass_N": [
+        "demodulated_frequency": "",
+        "demodulated_amplitude": "",
+        "demodulator_channels": "",
+        "recorded_channels": "",
+        "active_channel": {
+          "raw_path": ""
+        },
+        "flip_sign": "",
+        "low_passN": [
           {
             "d1": {
               "raw_path": "/Lock-in/LP Filter Cutoff D1/value",
@@ -41,13 +49,13 @@
             }
           }
         ],
-        "lp_filter_order_N": [
+        "lp_filter_orderN": [
           {
             "d1": { "raw_path": "/Lock-in/LP Filter Order D1/value" },
             "d2": { "raw_path": "/Lock-in/LP Filter Order D2/value" }
           }
         ],
-        "hi_pass_N": [
+        "high_passN": [
           {
             "d1": {
               "raw_path": "/Lock-in/HP Filter Cutoff D1/value",
@@ -61,11 +69,11 @@
             }
           }
         ],
-        "hp_filter_order_N": [
+        "hp_filter_orderN": [
           { "d1": { "raw_path": "/Lock-in/HP Filter Order D1/value" } },
           { "d2": { "raw_path": "/Lock-in/HP Filter Order D2/value" } }
         ],
-        "ref_phase_N[ref_phase_n]": [
+        "ref_offset_phaseN[ref_offset_phase_n]": [
           {
             "d1": {
               "raw_path": "/Lock-in/Reference phase D1/value",
@@ -79,52 +87,58 @@
             }
           }
         ],
-        "harmonic_order_N[harmonic_order_n]": [
+        "harmonic_orderN[harmonic_order_n]": [
           { "d1": { "raw_path": "/Lock-in/Harmonic D1/value" } },
           { "d2": { "raw_path": "/Lock-in/Harmonic D2/value" } }
+        ],
+        "dc_offset_valueN": [
+          {
+            "d1": {
+              "raw_path": "",
+              "@units": ""
+            }
+          },
+          {
+            "d2": {
+              "raw_path": "",
+              "@units": ""
+            }
+          }
         ]
       },
       "real_time_controller": {
-        "rcs_fabrication": {
+        "fabrication": {
           "model": {
             "raw_path": "/NanonisMain/RT Release/value"
           }
         },
-        "rcs_frequency": {
+        "frequency": {
           "raw_path": "/NanonisMain/RT Frequency/value",
           "@units": "/NanonisMain/RT Frequency/unit"
         },
-
-        "rcs_acquisition_time": {
+        "acquisition_time": {
           "raw_path": "/NanonisMain/Acquisition Period/value",
           "@units": "/NanonisMain/Acquisition Period/unit"
         },
-        "rcs_animation_time": {
+        "animation_time": {
           "raw_path": "/NanonisMain/Animations Period/value",
           "@units": "/NanonisMain/Animations Period/unit"
         },
-        "rcs_measurement_time": {
+        "measurement_time": {
           "raw_path": "/NanonisMain/Measurements Period/value",
           "@units": "/NanonisMain/Measurements Period/unit"
         },
-        "rcs_indication_time": {
+        "indication_time": {
           "raw_path": "/NanonisMain/Indicators Period/value",
           "@units": "/NanonisMain/Indicators Period/unit"
         }
       },
       "bias_spectroscopy_environment": {
-        "BIAS_SPECTROSCOPY[bias_spectroscopy]": {
+        "SPM_BIAS_SPECTROSCOPY[bias_spectroscopy]": {
           "measurement_type": "",
-          "POSITIONER_SPM[positioner_spm]": {
-            "controller_label": {
-              "raw_path": "/Z-Controller/Controller name/value"
-            },
-            "z_offset": {
-              "raw_path": "/Bias Spectroscopy/Z offset/value",
-              "@units": "/Bias Spectroscopy/Z offset/unit"
-            },
+          "SPM_POSITIONER[spm_positioner]": {
             "z_controller": {
-              "controller_status": {
+              "feedback_on": {
                 "raw_path": "/Z-Controller/Controller status/value"
               },
               "set_point": {
@@ -148,10 +162,18 @@
               "D_t": {
                 "raw_path": "/Z-Controller/Time const/value",
                 "@units": "/Z-Controller/Time const/unit"
+              },
+              "controller_label": {
+                "raw_path": "/Z-Controller/Controller name/value"
+              },
+              "z_offset_value": {
+                "raw_path": "/Bias Spectroscopy/Z offset/value",
+                "@units": "/Bias Spectroscopy/Z offset/unit"
               }
             }
           },
-          "bias_sweep": {
+          "BIAS_SWEEP[bias_sweep]": {
+            "#note": "This group will be handled in _construct_bias_sweep_grp.",
             "scan_type": "",
             "settling_time": {
               "raw_path": "/Bias Spectroscopy/Settling time/value",
@@ -171,7 +193,7 @@
             },
             "final_z": "",
             "total_spectroscopy_time": "",
-            "sweep_number": {
+            "number_of_sweeps": {
               "raw_path": "/Bias Spectroscopy/Number of sweeps/value"
             },
             "scan_region": {
@@ -180,7 +202,7 @@
                 "raw_path": ["/Bias/Offset/value"],
                 "@units": "/Bias/Offset/unit"
               },
-              "scan_angle_N[scan_angle_n]": "",
+              "scan_angleN[scan_angle_n]": "",
               "scan_start_bias": {
                 "raw_path": "/Bias Spectroscopy/Sweep Start/value",
                 "@units": "/Bias Spectroscopy/Sweep Start/unit"
@@ -193,11 +215,11 @@
             "linear_sweep": {
               "scan_speed": "",
               "scan_time": "",
-              "forward_speed": {
+              "forward_speedN[forward_speed]": {
                 "raw_path": "/Scan/speed forw./value",
                 "@units": "/Scan/speed forw./unit"
               },
-              "backward_speed": {
+              "backward_speedN[backward_speed]": {
                 "raw_path": "/Scan/speed backw./value",
                 "@units": "/Scan/speed backw./unit"
               },
@@ -207,15 +229,16 @@
               "step_size_bias": "",
               "reset_bias": "",
               "backward_sweep": "",
-              "SCAN_DATA[scan_data]": [
+              "DATA[scan_data]": [
                 {
                   "data": {
-                    "name": "Lockin Demod 1X",
+                    "name": "current",
                     "raw_path": "/dat_mat_components/LI Demod 1 X/value",
-                    "@units": "/dat_mat_components/LI Demod 1 X/unit"
+                    "@units": "/dat_mat_components/LI Demod 1 X/unit",
+                    "@long_name": "Lockin Demod 1X"
                   },
                   "0": {
-                    "name": "Bias Voltage",
+                    "name": "voltage",
                     "raw_path": [
                       "/dat_mat_components/Bias calc/value",
                       "/dat_mat_components/Bias/value"
@@ -223,7 +246,8 @@
                     "@units": [
                       "/dat_mat_components/Bias calc/unit",
                       "/dat_mat_components/Bias/unit"
-                    ]
+                    ],
+                    "@long_name": "Bias Voltage"
                   },
                   "title": { "raw_path": "@default:Lockin Signal 1X" },
                   "grp_name": "Lockin Demod 1X"
@@ -380,24 +404,25 @@
         "independent_controllers": "",
         "measurement_sensors": ""
       },
-      "current_sensor": {
-        "AMPLIFIER[amplifier]": {
-          "current_gain": { "raw_path": "/Current/Gain/value" }
-        },
+      "current_sensorTAG[current_sensor]": {
         "current": {
           "raw_path": "/Current/Current/value",
           "@units": "/Current/Current/unit"
         },
-        "current_calibration": {
-          "calibration_interval": "",
-          "coefficients": {
-            "raw_path": "/Current/Calibration/value",
-            "@units": "/Current/Calibration/unit"
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": {
+              "raw_path": "/Current/Calibration/value",
+              "@units": "/Current/Calibration/unit"
+            }
           }
         },
-        "current_offset": {
+        "offset_value": {
           "raw_path": "/Current/Offset/value",
           "@units": "/Current/Offset/unit"
+        },
+        "AMPLIFIER[amplifier]": {
+          "current_gain": { "raw_path": "" }
         }
       },
       "piezo_sensor": {
@@ -406,66 +431,72 @@
             "calibration_type": {
               "raw_path": "@default:active"
             },
-            "calibration_coefficient_N[calibration_coefficient_n]": [
-              {
-                "x": {
-                  "raw_path": "/Piezo Configuration/Calib. X/value",
-                  "@units": "/Piezo Configuration/Calib. X/unit"
+            "calibration_date": {
+              "raw_path": ""
+            },
+            "rangeN[range_n]": { "x": "", "y": "", "z": "" },
+            "calibration_parameters": {
+              "coefficientN[coefficient_n]": [
+                {
+                  "x": {
+                    "raw_path": "/Piezo Configuration/Calib. X/value",
+                    "@units": "/Piezo Configuration/Calib. X/unit"
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "/Piezo Configuration/Calib. Y/value",
+                    "@units": "/Piezo Configuration/Calib. Y/unit"
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "/Piezo Configuration/Calib. Z/value",
+                    "@units": "/Piezo Configuration/Calib. Z/unit"
+                  }
                 }
-              },
-              {
-                "y": {
-                  "raw_path": "/Piezo Configuration/Calib. Y/value",
-                  "@units": "/Piezo Configuration/Calib. Y/unit"
+              ],
+              "second_order_correctionN[second_order_correction_n]": [
+                {
+                  "x": {
+                    "raw_path": "/Piezo Configuration/2nd order corr X/value",
+                    "@units": "/Piezo Configuration/2nd order corr X/unit"
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "/Piezo Configuration/2nd order corr Y/value",
+                    "@units": "/Piezo Configuration/2nd order corr Y/unit"
+                  }
                 }
-              },
-              {
-                "z": {
-                  "raw_path": "/Piezo Configuration/Calib. Z/value",
-                  "@units": "/Piezo Configuration/Calib. Z/unit"
-                }
-              }
-            ],
-            "second_order_correction_N[second_order_correction_n]": [
-              {
-                "x": {
-                  "raw_path": "/Piezo Configuration/2nd order corr X/value",
-                  "@units": "/Piezo Configuration/2nd order corr X/unit"
-                }
-              },
-              {
-                "y": {
-                  "raw_path": "/Piezo Configuration/2nd order corr Y/value",
-                  "@units": "/Piezo Configuration/2nd order corr Y/unit"
-                }
-              }
-            ],
-            "drift_N[drift_n]": [
+              ]
+            },
+            "driftN[drift_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Configuration/Drift X/value",
-                  "unit": "/Piezo Configuration/Drift X/unit"
+                  "@units": "/Piezo Configuration/Drift X/unit"
                 }
               },
               {
                 "y": {
                   "raw_path": "/Piezo Configuration/Drift Y/value",
-                  "unit": "/Piezo Configuration/Drift Y/unit"
+                  "@units": "/Piezo Configuration/Drift Y/unit"
                 }
               },
               {
                 "z": {
                   "raw_path": "/Piezo Configuration/Drift Z/value",
-                  "unit": "/Piezo Configuration/Drift Z/unit"
+                  "@units": "/Piezo Configuration/Drift Z/unit"
                 }
               }
             ],
-            "hv_gain_N[hv_gain_n]": [
+            "hv_gainN[hv_gain_n]": [
               { "x": { "raw_path": "/Piezo Configuration/HV Gain X/value" } },
               { "y": { "raw_path": "/Piezo Configuration/HV Gain Y/value" } },
               { "z": { "raw_path": "/Piezo Configuration/HV Gain Z/value" } }
             ],
-            "tilt_N[tilt_n]": [
+            "tiltN[tilt_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Configuration/Tilt X/value",
@@ -493,7 +524,7 @@
             }
           },
           "piezo_material": {
-            "curvature_radius_N": [
+            "curvature_radiusN": [
               {
                 "x": {
                   "raw_path": "/Piezo Configuration/Curvature radius X/value",
@@ -515,69 +546,87 @@
             ]
           }
         },
-        "POSITIONER_SPM[positioner_spm]": "",
+        "SPM_POSITIONER[spm_positioner]": "",
         "x": { "raw_path": "/X/value", "@units": "/X/unit" },
         "y": { "raw_path": "/Y/value", "@units": "/Y/unit" },
-        "z": { "raw_path": "/Z/value", "@units": "/Z/unit" }
+        "z": { "raw_path": "/Z/value", "@units": "/Z/unit" },
+        "AXISoffset_value[x_offset_value]": {
+          "x": "",
+          "y": "",
+          "z": ""
+        }
       },
       "sample_bias_voltage": {
         "bias_voltage": {
           "raw_path": "/Bias/Bias/value",
           "@units": "/Bias/Bias/unit"
         },
-        "bias_calibration": {
-          "coefficients": {
-            "raw_path": "/Bias/Calibration/value",
-            "@units": "/Bias/Calibration/unit"
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": {
+              "raw_path": "/Bias/Calibration/value",
+              "@units": "/Bias/Calibration/unit"
+            }
           }
         }
       },
-      "scan_environment": {
-        "scan_name": {
+      "SCAN_ENVIRONMENT[scan_environment]": {
+        "identifier_environment": {
           "raw_path": "/Scan/series name/value"
         },
-        "SCAN_CONTROL[bias_spec_scan_control]": {
-          "scan_name": {
-            "raw_path": "/Scan/series name/value"
-          },
-          "scan_region": {
-            "scan_angle_N[scan_angle_n]": "",
-            "scan_offset_N[scan_offset_n]": "",
-            "scan_range_N[scan_range_n]": ""
-          },
-          "mesh_SCAN[mesh_scan]": {
-            "forward_speed_N[forward_speed_n]": "",
-            "backward_speed_N[backward_speed_n]": "",
-            "scan_speed": { "@units": "" },
-            "scan_time": { "@units": "" },
-            "SCAN_DATA[scan_data]": ""
-          },
-          "scan_type": ""
-        },
-        "cryo_bottom_temp": { "@units": "" },
-        "cryo_shield_temp": { "@units": "" },
-        "tip_temp": {
+        "cryo_bottom_temperature": { "@units": "" },
+        "cryo_shield_temperature": { "@units": "" },
+        "head_temperature": {
           "raw_path": "/Temperature 1/Temperature 1/value",
           "@units": "/Temperature 1/Temperature 1/unit"
         },
-        "cryo_shield_temp_sensor": "",
-        "cryo_temp_sensor": "",
-        "tip_temp_sensor": ""
+        "cryo_shield_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
+        "cryo_bottom_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
+        "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/head_temperature_sensor"
       },
-      "TEMPERATURE[cryo_shield_temp_sensor]": {
-        "CHANNEL_temp[channel_temp]": "",
+      "cryo_shield_temperature_sensor": {
+        "temp_offset_value": "",
+        "TEMPERATUREchannel[temperature_channel]": "",
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": ""
+          }
+        },
         "temperature_calibration": { "coefficients": "" },
-        "TEMPERATURE_DATA[temperature_data]": ""
+        "DATA[data]": ""
       },
-      "TEMPERATURE[cryo_temp_sensor]": {
-        "CHANNEL_temp[channel_temp]": "",
+      "cryo_bottom_temperature_sensor": {
+        "temp_offset_value": "",
+        "TEMPERATUREchannel[temperature_channel]": "",
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": ""
+          }
+        },
         "temperature_calibration": { "coefficients": "" },
-        "TEMPERATURE_DATA[temperature_data]": ""
+        "DATA[data]": ""
       },
-      "TEMPERATURE[tip_temp_sensor]": {
-        "CHANNEL_temp[channel_temp]": "",
+      "sample_temperature_sensor": {
+        "temp_offset_value": "",
+        "TEMPERATUREchannel[temperature_channel]": "",
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": ""
+          }
+        },
         "temperature_calibration": { "coefficients": "" },
-        "TEMPERATURE_DATA[temperature_data]": [
+        "DATA[data]": ""
+      },
+      "head_temperature_sensor": {
+        "temp_offset_value": "",
+        "TEMPERATUREchannel[temperature_channel]": "",
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": ""
+          }
+        },
+        "temperature_calibration": { "coefficients": "" },
+        "DATA[data]": [
           {
             "data": {
               "name": "temperature1",
@@ -662,7 +711,8 @@
           "@units": [
             "/dat_mat_components/Bias calc/unit",
             "/dat_mat_components/Bias/unit"
-          ]
+          ],
+          "axis_ind": 0
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
         "grp_name": "Current_filter"
@@ -711,20 +761,20 @@
       }
     ],
     "reproducibility_indicators": {
-      "bias_sweep": "",
-      "current": "",
-      "current_gain": "",
-      "current_offset": "",
-      "reference_frequency": "",
-      "modulation_signal": ""
+      "current": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current",
+      "current_gain": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/AMPLIFIER[amplifier]/current_gain",
+      "current_offset": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current_offset",
+      "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
+      "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
+      "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
     },
     "resolution_indicators": {
-      "bias_sweep": "",
-      "cryo_bottom_temp": "",
-      "cryo_shield_temp": "",
-      "reference_frequency": "",
-      "modulation_signal": "",
-      "stm_head_temp": ""
+      "head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
+      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
+      "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
+      "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
+      "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
     }
   }
 }

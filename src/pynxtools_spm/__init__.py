@@ -20,3 +20,20 @@ TODO: Add simple description of the module
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# TODO use logger from pynxtools and if it is not available, use a default logger
+# TODO: design the massage pattern
+import logging
+
+from pint import formatter
+
+__all__ = ["SPM_LOGGER"]
+
+SPM_LOGGER: logging.Logger = logging.getLogger("pynxtools_spm")
+SPM_LOGGER.setLevel("WARNING")
+
+__ch = logging.StreamHandler()
+__ch.setLevel("WARNING")
+__formatter = logging.Formatter("%(levelname)s - %(name)s - %(message)s")
+__ch.setFormatter(__formatter)
+SPM_LOGGER.addHandler(__ch)

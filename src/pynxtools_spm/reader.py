@@ -29,6 +29,8 @@ from pynxtools.dataconverter.readers.base.reader import BaseReader
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
 
@@ -79,7 +81,7 @@ class SPMReader(BaseReader):
         for file in file_paths:
             ext = file.rsplit(".", 1)[-1]
             fl_obj: object
-            if ext in ["sxm", "dat"]:
+            if ext in ["sxm", "dat", "sm4"]:
                 data_file = file
                 raw_file_ext = ext
             if ext == "json":
@@ -97,40 +99,56 @@ class SPMReader(BaseReader):
         if not data_file:
             raise ValueError("Data file is required for the reader to work.")
 
+        formater_obj: Optional[SPMformatter] = None
         # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
 
-            nss = NanonisSxmSTM(
+            formater_obj = NanonisSxmSTM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
-            nss.get_nxformatted_template()
+            # nss.get_nxformatted_template()
+        elif experirment_technique == "STM" and raw_file_ext == "sm4":
+            from pynxtools_spm.nxformatters.omicron.omicron_sm4_stm import (
+                OmicronSM4STMFormatter,
+            )
 
+            formater_obj = OmicronSM4STMFormatter(
+                template=template,
+                raw_file=data_file,
+                eln_file=eln_file,
+                config_file=config_file,
+            )
+            # oss.get_nxformatted_template()
         elif experirment_technique == "AFM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_afm import NanonisSxmAFM
 
-            nsa = NanonisSxmAFM(
+            formater_obj = NanonisSxmAFM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
-            nsa.get_nxformatted_template()
+            # nsa.get_nxformatted_template()
         elif experirment_technique == "STS" and raw_file_ext == "dat":
-            from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
+            from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 
-            nds = NanonisDatSTS(
+            formater_obj = NanonisDatSTS(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
-            nds.get_nxformatted_template()
-        # set_default_attr_in_group(template)
+            # nds.get_nxformatted_template()
 
+        if not formater_obj:
+            raise ValueError(
+                f"IncorrectExperiment: Incorect experiment technique ({experirment_technique}) or file extension ({raw_file_ext}) are given"
+            )
+        formater_obj.get_nxformatted_template()
         # manually_remove the empty data
         for key, val in template.items():
             if isinstance(val, np.ndarray):

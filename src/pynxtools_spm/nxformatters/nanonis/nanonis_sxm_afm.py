@@ -22,14 +22,15 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 from typing import Optional, Union, TYPE_CHECKING
-from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
 from pathlib import Path
-from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+import numpy as np
+
+from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
+from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
-import numpy as np
-from pynxtools.dataconverter.template import Template
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
@@ -49,9 +50,11 @@ if TYPE_CHECKING:
 # }
 
 
-class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
+class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
+    """Formatter for Nanonis SPM data in SXM file format for AFM."""
+
     _grp_to_func = {
-        "SCAN_CONTROL[scan_control]": "_construct_nxscan_controllers",
+        "SPM_SCAN_CONTROL[spm_scan_control]": "_construct_nxscan_controllers",
         "start_time": "_set_start_end_time",
         "end_time": "_set_start_end_time",
     }
@@ -144,6 +147,7 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         partial_conf_dict,
         parent_path: str,
         group_name="scan_control",
+        **kwarg,
     ):
         """To construct the scan control like scan_control."""
         # The config file for afm is exactly the same as for stm
@@ -154,14 +158,17 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
             group_name=group_name,
         )
 
-    def _NXdata_grp_from_conf_description(
+    def _nxdata_grp_from_conf_description(
         self,
         partial_conf_dict,
         parent_path,
         group_name,
         group_index=0,
         is_forward: Optional[bool] = None,
+        rearrange_2d_data: bool = True,
     ):
+        """Specialization of the generic function to create NXdata group from plot description
+        in config file."""
         if (
             is_forward is None
             and "data" in partial_conf_dict
@@ -175,13 +182,14 @@ class NanonisSxmAFM(NanonisSxmSTM, SPMformatter):
         else:
             return
 
-        nxdata_group_nm = SPMformatter._NXdata_grp_from_conf_description(
+        nxdata_group_nm = NanonisBase._nxdata_grp_from_conf_description(
             self,
             partial_conf_dict,
             parent_path,
             group_name,
             group_index,
             is_forward,
+            rearrange_2d_data=rearrange_2d_data,
         )
         if nxdata_group_nm is None:
             return None

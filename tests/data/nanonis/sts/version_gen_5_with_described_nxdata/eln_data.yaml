@@ -1,30 +1,30 @@
 Sample:
   name: diPAMY
-  sample_component_set:
-    sample_component:
-      chemical_formula: Au(KAl3Si3O12H2)
-      description: '<p>Substrate:</p>
-
-        <p>Two layers stack: Au-Mica</p>'
-      name: Au(Mica)
+  History:
+    Note:
+      description: The experiment was run in Carlos' Lab.
+  Sample_component:
+    chemical_formula: Au(KAl3Si3O12H2)
+    description: 'Substrate:
+                Two layers stack: Au-Mica'
+    name: Au(Mica)
 default: current_filter_grad
 definition: NXsts
-experiment_description: '<p>The experiment with</p>
-
-  <p>Bias: -50mA</p>
-
-  <p>Setpoint: 25pA</p>'
-experiment_instrument:
+scan_mode: constant height
+experiment_description: 'The experiment with
+  Bias: -50mA
+  Setpoint: 25pA'
+Instrument:
   hardware:
     model: Generic5e
     model/@version: 5
     name: Nanonis
     vendor: Nanonis
   lockin_amplifier:
-    lockin_current_flip_sign: -1.0
+    flip_sign: -1.0
     modulation_signal: Current
-  scan_environment:
-    tip_temp:
+  Scan_environment:
+    head_temperature:
       unit: K
       value: 10.0
   software:
@@ -35,7 +35,7 @@ experiment_instrument:
 experiment_technique: STS
 identifier_collection: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_
 identifier_experiment: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230416_20230420
-user:
+User:
   affiliation:
   - Rubel Mozumder
   - Dr. Cojal González, José David

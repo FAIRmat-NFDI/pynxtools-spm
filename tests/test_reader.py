@@ -9,6 +9,11 @@ from pynxtools.testing.nexus_conversion import ReaderTest
 
 module_dir = os.path.dirname(os.path.abspath(__file__))
 
+ignore_lines: list = [
+    "DEBUG - value: 20",
+]
+ignore_sections: dict = {}
+
 
 @pytest.mark.parametrize(
     "nxdl,reader_name,files_or_dir",
@@ -35,7 +40,10 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
     # test plugin reader
     test = ReaderTest(nxdl, reader_name, files_or_dir, tmp_path, caplog)
     test.convert_to_nexus(caplog_level="ERROR", ignore_undocumented=True)
-    test.check_reproducibility_of_nexus()
+    test.check_reproducibility_of_nexus(
+        ignore_lines=ignore_lines,
+        ignore_sections=ignore_sections,
+    )
 
 
 @pytest.mark.parametrize(
@@ -44,12 +52,7 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
         (
             "NXstm",
             "spm",
-            f"{module_dir}/data/nanonis/stm/version_gen_4_5_with_described_nxdata",
-        ),
-        (
-            "NXstm",
-            "spm",
-            f"{module_dir}/data/nanonis/stm/version_gen_4_5_default_config",
+            f"{module_dir}/data/nanonis/stm/version_gen_5_with_default_config",
         ),
         (
             "NXstm",
@@ -61,6 +64,11 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
             "spm",
             f"{module_dir}/data/nanonis/stm/version_gen_5_with_described_nxdata",
         ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/omicron/stm/default_config",
+        ),
     ],
 )
 def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
@@ -68,7 +76,10 @@ def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
     # test plugin reader
     test = ReaderTest(nxdl, reader_name, files_or_dir, tmp_path, caplog)
     test.convert_to_nexus(caplog_level="ERROR", ignore_undocumented=True)
-    test.check_reproducibility_of_nexus()
+    test.check_reproducibility_of_nexus(
+        ignore_lines=ignore_lines,
+        ignore_sections=ignore_sections,
+    )
 
 
 @pytest.mark.parametrize(
@@ -91,4 +102,7 @@ def test_afm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
     # test plugin reader
     test = ReaderTest(nxdl, reader_name, files_or_dir, tmp_path, caplog)
     test.convert_to_nexus(caplog_level="ERROR", ignore_undocumented=True)
-    test.check_reproducibility_of_nexus()
+    test.check_reproducibility_of_nexus(
+        ignore_lines=ignore_lines,
+        ignore_sections=ignore_sections,
+    )
