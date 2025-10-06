@@ -1,34 +1,26 @@
 # Scanning Probe Microscopy (SPM)
 
 !!! danger "Work in progress"
-Scanning Probe Microscopy (SPM) is a high resolution imaging technique used to study material surface at nano scale. The technique can take on a wide range form of experiments catagorized by operating environment (e.g., ambient, valcuum), interaction range, and actuation mode, leading STM (Scanning Tunneling Microscopy), AFM (Atomic Force Microscopy), STS (Scanning Probe Spectroscopy), SPSTM (Spin Polarised STM), MFM (Magnetic Force Microscopy). Thses complex experiments require complex setup of instruments provided by different technology company which turns out diverse data model and data format. How can we compare the diversed data model and data format? Can we interprete the data in a common data model and format accessible to all SPM community? Does the proposed data model follow FAIR data principle?
+Scanning Probe Microscopy (SPM) is a high resolution imaging technique used to study material surface at nano scale. The technique can take on a wide range form of experiments catagorized by operating environment (e.g., ambient, valcuum) and setup, type of interaction between prob and specimen, number of probe and actuation modes, etc. Therfore, there are many subteniques, like STM (Scanning Tunneling Microscopy), AFM (Atomic Force Microscopy), STS (Scanning Probe Spectroscopy). Thses complex experiments require complex setup of instruments provided by different technology companies which turns out diverse data model (mostly unstructured) and data format. How can we compare the diversed data model and data format? Can we interprete the data in a common data model and format accessible to all SPM community? Does the proposed data model follow FAIR data principle?
 
-Regarding a common data models or schema, we have developed community driven standard application definition, using NeXus[link_goes_here] data format, for SPM[link_goes_here] subdomains e.g., STM[link_goes here], STS[link_goes_here], AFM[link_goes_here] and a few base classes to describe instrument components (e.g. Lock-in[link-goes-here], Cantilever[link-goes-here]). Base on our data model, we build the reader that connects the data from experiment generated raw files to the standard application definition inscribed in a HDF5 file (as we are using NeXus data format in HDF5 file, we may also call it NeXus file with '.nxs' extension).
-
+We have developed community driven standard application definition, using NeXus[link_goes_here] data format, for SPM[link_goes_here] subdomains e.g., STM[link_goes here], STS[link_goes_here], AFM[link_goes_here] and a few base classes to describe instrument components (e.g. Lock-in[link-goes-here], Cantilever[link-goes-here]). Based on our data model, we build the data workflow that connects the data from experiment generated raw files to the standard application definition inscribed in a HDF5 file (as we are using NeXus data format in HDF5 file, later on we also call it NeXus file with '.nxs' extension).
+TODO: mention one can use `NXspm` for any sub technique do not warranty the validataion of the parsed data.
 ## SPM Readers
 
-The prime purpose of the readers is to transform data from measurement files into community-defined concepts constructed by the SPM community which allows experimentalists to store, organize, search, analyze, and share experimental data (only within the [NOMAD](https://nomad-lab.eu/nomad-lab/) research data management (RDM) platform) among the scientific communities. The SPM readers is the bundle of readers from STM, STS and AFM. The readers follow a [common structure](link_to_common_code_structure) that allows to extend existing reader and include new readers for other members (e.g. SPSTM) of SPM family.
+The SPM reader(s) is plugin of material science reader framwork `pynxtools`[`link_goes_here`] and anchors a bundle of readers from STM, STS and AFM. The prime purpose of the readers is to transform data from measurement files into by the SPM community supported schema (NeXus applications and base classes) which allows experimentalists to store, organize, search, analyze, and share experimental data in NOMAD (as plugin `pynxtools-spm` is integrated with [NOMAD](https://nomad-lab.eu/nomad-lab/)) research data management (RDM) platform. 
 
-### Acquaintance with Reader Input Files
+The SPM reader is plugin of material science reader framwork `pynxtools`[`link_goes_here`] and anchors a bundle of readers from STM, STS and AFM. The readers follow a [common structure](link_to_common_code_structure) that shall allow to extend reader orchestra by including new readers of different SPM subtechnique (e.g. SPSTM). For each type of techniques (e.g., STM, STS, and AFM), there might be multiple vendors (e.g., Nanonis, Omicron) and each vendor favors different data format and data model. Therefore, each reader is designed to be modular and configurable to adapt different data format and data model. These allows to integrate more and more data format and data model from different vendors without changing the reader structure.
 
-To utilize, reuse, or extend the reader, the different reader input files must be understood. The files are using specific semantic rules so that reader can understand the files and work with their contents.
-The input files are:
 
-1. Raw File(s) containing data from experiments; `.dat`, `.sxm`, for example.
-2. ELN (Electronic Lab Notebook) to collect user input data. There are two ELN types to be used in NOMAD and standalon python environmenet such as jupyter-lab, we will discuss if later.
-3. Config file that connects the raw data to concepts in corresponding NeXus application definition `NXsts` or `NXspm` for STS, `NXstm` for STM and so on.
+To understand the reader structure, one might start understanding the design pattern of the application degintions `NXspm[link_goes_here]`, `NXstm[link_goes_here]`, `NXsts[link_goes_here]`, and `NXafm[link_goes_here]` on the [FAIRmat NeXus Proposal](https://fairmat-nfdi.github.io/nexus_definitions/) page or in the [GitHub repository].
 
-### STS reader
+### __Reader Members of `pynxtools-spm` reader orchestra__
+`pynxtools-spm` includes three readers:
+- STS reader
+- STM reader
+- AFM reader
 
-The reader builds on the [NXsts](link from nexus-fairmat page) or [SPM](link from nexus-fairmat page) application definition and needs an experimental file, a config file (optional, we will discuss later) and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data and user provided data into the [NXsts](link from nexus-fairmat page) or [NXspm](link from nexus-fairmat page) application concepts.
 
-Warning: The config file is a map between the data model from raw experimental file and data model inscribed in application definition, which infer different config files for different software version of the technology company provided setup. Less likely, config file may be different for different lab setups if experimentalist a allowed to modify the default raw data model in experimental file.
-
-#### Supproted File Formats and Versions
-
-- Current version of SPM reader can parse STS from
-  - `.dat` file format from Nanonis:
-    - Versions: Generic 5e
 
 ### STM Reader
 
