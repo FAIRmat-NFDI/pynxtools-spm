@@ -24,6 +24,7 @@ Chosses the appropriate parser based on the file extension and the ELN data.
 from typing import Dict, Union, Callable, Optional, Iterable, Any
 from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
 from pynxtools_spm.parsers.nanonis_dat import DatGenericNanonis
+from pynxtools_spm.parsers.omicron_sm4 import Sm4Omicron
 import pynxtools_spm.parsers.helpers as phs
 import logging
 from pathlib import Path, PosixPath
@@ -63,6 +64,13 @@ class SPMParser:
                 "generic5e": DatGenericNanonis,
                 "generic5": DatGenericNanonis,
                 "generic4.5": DatGenericNanonis,
+            }
+        },
+        "sm4": {
+            "omicron": {
+                "005.0041": Sm4Omicron,
+                "5.41": Sm4Omicron,
+                "5.4": Sm4Omicron,
             }
         },
     }

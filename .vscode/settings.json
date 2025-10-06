@@ -6,6 +6,10 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
     "python": true,
     "json": true
   },

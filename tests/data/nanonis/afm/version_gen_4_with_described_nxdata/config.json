@@ -17,7 +17,7 @@
     "identifier_experiment": { "identifier": "" },
     "experiment_description": { "raw_path": "/COMMENT" },
     "INSTRUMENT[instrument]": {
-      "CANTILEVER_SPM[cantilever_spm]": {
+      "SPM_CANTILEVER[spm_cantilever]": {
         "cantilever_oscillator": {
           "reference_amplitude": {
             "raw_path": "/Oscillation Control/Amplitude Setpoint",
@@ -27,81 +27,15 @@
             "raw_path": "/Oscillation Control/Center Frequency",
             "@units": "/Oscillation Control/Center Frequency/@unit"
           },
-          "frequency_bandwidth": {
-            "raw_path": "/Oscillation Control/Range",
-            "@units": "/Oscillation Control/Range/@unit"
-          },
           "reference_phase": {
             "raw_path": "/Oscillation Control/Reference Phase",
             "@units": "/Oscillation Control/Reference Phase/@unit"
           },
+          "frequency_bandwidth": {
+            "raw_path": "/Oscillation Control/Range",
+            "@units": "/Oscillation Control/Range/@unit"
+          },
           "frequency_harmonic": { "raw_path": "/Oscillation Control/Harmonic" },
-          "oscillator_excitation": {
-            "raw_path": "//Oscillation Control/Excitation",
-            "@units": "/Oscillation Control/Excitation/@unit"
-          },
-          "phase_lock_loop": {
-            "sensitivity_factor": {
-              "raw_path": "/Oscillation Control/PLL-Setup Q-Factor",
-              "@units": "/Oscillation Control/Sensitivity/@unit"
-            },
-            "frequency_demodulation_bandwidth": "",
-            "amplitude_demodulation_bandwidth": {
-              "raw_path": "/Oscillation Control/PLL-Setup Demod. Bandwidth Amp",
-              "@units": "/Oscillation Control/PLL-Setup Demod. Bandwidth Amp/@unit"
-            },
-            "phase_demodulation_bandwidth": {
-              "raw_path": "/Oscillation Control/PLL-Setup Demod. Bandwidth Pha",
-              "@units": "/Oscillation Control/PLL-Setup Demod. Bandwidth Pha/@unit"
-            },
-            "demodulated_signal": "",
-            "amplitude_excitation": {
-              "raw_path": "/Oscillation Control/PLL-Setup amplitude/excitation",
-              "@units": "/Oscillation Control/PLL-Setup amplitude/excitation/@unit"
-            },
-            "cantilever_phase_positioner": {
-              "actuator": {
-                "feedback": {
-                  "K_p": {
-                    "raw_path": "/Oscillation Control/Phase P gain",
-                    "@units": "/Oscillation Control/Phase P gain/@unit"
-                  },
-                  "K_i": {
-                    "raw_path": "/Oscillation Control/Phase I gain",
-                    "@units": "/Oscillation Control/Phase I gain/@unit"
-                  },
-                  "K_d": "",
-                  "D_t": ""
-                }
-              }
-            },
-            "cantilever_frequency_positioner": {
-              "actuator": {
-                "feedback": {
-                  "K_p": "",
-                  "K_i": "",
-                  "K_d": "",
-                  "D_t": ""
-                }
-              }
-            },
-            "cantilever_amplitude_positioner": {
-              "actuator": {
-                "feedback": {
-                  "K_p": {
-                    "raw_path": "/Oscillation Control/Amplitude P gain",
-                    "@units": "/Oscillation Control/Amplitude P gain/@unit"
-                  },
-                  "K_i": {
-                    "raw_path": "/Oscillation Control/Amplitude I gain",
-                    "@units": "/Oscillation Control/Amplitude I gain/@unit"
-                  },
-                  "K_d": "",
-                  "D_t": ""
-                }
-              }
-            }
-          },
           "frequency_shift": {
             "raw_path": "/Oscillation Control/FrequencyShift",
             "@units": "/Oscillation Control/FrequencyShift/@unit"
@@ -112,6 +46,60 @@
           },
           "target_amplitude": "",
           "active_frequency": ""
+        },
+        "cantilever_config": {
+          "amplitude_excitation": {
+            "raw_path": "/Oscillation Control/Excitation",
+            "@units": "/Oscillation Control/Excitation/@unit"
+          },
+          "spring_constant": {
+            "raw_path": "/Oscillation Control/PLL-Setup amplitude/spring_constant",
+            "@units": "/Oscillation Control/PLL-Setup amplitude/spring_constant/@unit"
+          }
+        },
+        "phase_positioner": {
+          "actuator": {
+            "feedback": {
+              "K_p": {
+                "raw_path": "/Oscillation Control/Phase P gain"
+              },
+              "K_i": {
+                "raw_path": "/Oscillation Control/Phase I gain"
+              },
+              "K_d": "",
+              "D_t": ""
+            }
+          }
+        },
+        "amplitude_positioner": {
+          "actuator": {
+            "feedback": {
+              "K_p": {
+                "raw_path": "/Oscillation Control/Amplitude P gain"
+              },
+              "K_i": {
+                "raw_path": "/Oscillation Control/Amplitude I gain"
+              },
+              "K_d": "",
+              "D_t": ""
+            }
+          }
+        }
+      },
+      "phase_lock_loop": {
+        "loop_filter": {
+          "Kf_coefficient": {
+            "raw_path": "/Oscillation Control/PLL-Setup Q-Factor",
+            "@units": "/Oscillation Control/Sensitivity/@unit"
+          }
+        },
+        "frequency_bandwidth": {
+          "raw_path": "/Oscillation Control/PLL-Setup Demod. Bandwidth Amp",
+          "@units": "/Oscillation Control/PLL-Setup Demod. Bandwidth Amp/@unit"
+        },
+        "phase_bandwidth": {
+          "raw_path": "/Oscillation Control/PLL-Setup Demod. Bandwidth Pha",
+          "@units": "/Oscillation Control/PLL-Setup Demod. Bandwidth Pha/@unit"
         }
       },
       "lockin_amplifier": {
@@ -130,11 +118,11 @@
         "demodulated_amplitude": "",
         "demodulator_channels": "",
         "recorded_channels": "",
-        "ref_phase_N[ref_phase_n]": {
+        "ref_offset_phaseN[ref_offset_phase_n]": {
           "raw_path": "/Lock-in/Reference phase",
           "@units": "/Lock-in/Reference phase/@unit"
         },
-        "harmonic_order_N[harmonic_order_n]": {
+        "harmonic_orderN[harmonic_order_n]": {
           "raw_path": "/Lock-in/Harmonic"
         }
       },
@@ -158,68 +146,64 @@
         "independent_controllers": null,
         "measurement_sensors": null
       },
-      "tip_temp_sensor": null,
-      "cryo_shield_temp_sensor": null,
-      "cryo_temp_sensor": null,
-      "current_sensor": {
-        "AMPLIFIER[amplifier]": { "current_gain": null },
-        "current": { "@units": null },
-        "current_calibration": {
-          "calibration_interval": { "@units": null },
-          "coefficients": { "@units": null }
-        },
-        "current_offset": { "@units": null }
-      },
-      "piezo_sensor": {
+      "head_temperature_sensor": null,
+      "cryo_shield_temperature_sensor": null,
+      "cryo_bottom_temperature_sensor": null,
+      "height_piezo_sensor": {
         "piezo_configuration": {
           "calibration": {
             "calibration_type": {
               "raw_path": "@default:active"
             },
-            "calibration_coefficient_N[calibration_coefficient_n]": [
-              {
-                "x": {
-                  "raw_path": "/Piezo Calibration/Calib. X",
-                  "@units": "/Piezo Calibration/Calib. X/@unit"
+            "calibration_date": {
+              "raw_path": ""
+            },
+            "calibration_parameters": {
+              "coefficientN[coefficient_n]": [
+                {
+                  "x": {
+                    "raw_path": "/Piezo Calibration/Calib. X",
+                    "@units": "/Piezo Calibration/Calib. X/@unit"
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "/Piezo Calibration/Calib. Y",
+                    "@units": "/Piezo Calibration/Calib. Y/@unit"
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "/Piezo Calibration/Calib. Z",
+                    "@units": "/Piezo Calibration/Calib. Z/@unit"
+                  }
                 }
-              },
-              {
-                "y": {
-                  "raw_path": "/Piezo Calibration/Calib. Y",
-                  "@units": "/Piezo Calibration/Calib. Y/@unit"
+              ],
+              "second_order_correctionN[second_order_correction_n]": [
+                {
+                  "x": {
+                    "raw_path": "/Piezo Calibration/2nd order corr X",
+                    "@units": "/Piezo Calibration/2nd order corr X/@unit"
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "/Piezo Calibration/2nd order corr Y",
+                    "@units": "/Piezo Calibration/2nd order corr Y/@unit"
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "/Piezo Calibration/2nd order corr Z",
+                    "@units": "/Piezo Calibration/2nd order corr Z/@unit"
+                  }
                 }
-              },
-              {
-                "z": {
-                  "raw_path": "/Piezo Calibration/Calib. Z",
-                  "@units": "/Piezo Calibration/Calib. Z/@unit"
-                }
-              }
-            ],
-            "second_order_correction_N[second_order_correction_n]": [
-              {
-                "x": {
-                  "raw_path": "/Piezo Calibration/2nd order corr X",
-                  "@units": "/Piezo Calibration/2nd order corr X/@unit"
-                }
-              },
-              {
-                "y": {
-                  "raw_path": "/Piezo Calibration/2nd order corr Y",
-                  "@units": "/Piezo Calibration/2nd order corr Y/@unit"
-                }
-              },
-              {
-                "z": {
-                  "raw_path": "/Piezo Calibration/2nd order corr Z",
-                  "@units": "/Piezo Calibration/2nd order corr Z/@unit"
-                }
-              }
-            ],
+              ]
+            },
             "calibration_name": {
               "raw_path": "/Piezo Calibration/Active Calib."
             },
-            "drift_N[drift_n]": [
+            "driftN[drift_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Drift X",
@@ -245,12 +229,12 @@
                 "/Piezo Calibration/Drift correction status"
               ]
             },
-            "hv_gain_N[hv_gain_n]": [
+            "hv_gainN[hv_gain_n]": [
               { "x": { "raw_path": "/Piezo Calibration/HV Gain X" } },
               { "y": { "raw_path": "/Piezo Calibration/HV Gain Y" } },
               { "z": { "raw_path": "/Piezo Calibration/HV Gain Z" } }
             ],
-            "tilt_N[tilt_n]": [
+            "tiltN[tilt_n]": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Tilt X",
@@ -266,7 +250,7 @@
             ]
           },
           "piezo_material": {
-            "curvature_radius_N": [
+            "curvature_radiusN": [
               {
                 "x": {
                   "raw_path": "/Piezo Calibration/Curvature radius X",
@@ -282,7 +266,7 @@
             ]
           }
         },
-        "POSITIONER_SPM[positioner_spm]": {
+        "SPM_POSITIONER[spm_positioner]": {
           "z_controller": {
             "K_i": { "raw_path": "/Z-Controller/P gain" },
             "K_p": { "raw_path": "/Z-Controller/I gain" },
@@ -302,70 +286,86 @@
               "raw_path": "/Z-Controller/Z",
               "@units": "/Z-Controller/Z/@unit"
             },
-            "controller_status": {
+            "feedback_on": {
               "raw_path": "/Z-Controller/Controller status"
             },
             "switch_off_delay": {
               "raw_path": "/Z-Controller/Switch off delay",
               "@units": "/Z-Controller/Switch off delay/@unit"
-            }
+            },
+            "controller_label": { "raw_path": "/Z-Controller/Controller name" }
           },
-          "z_offset": "",
-          "tip_position_z": "",
-          "controller_label": { "raw_path": "/Z-Controller/Controller name" }
+          "z_offset_value": "",
+          "tip_position_z": ""
         },
         "x": { "@units": null },
         "y": { "@units": null },
-        "z": { "@units": null }
+        "z": {
+          "raw_path": "/Z-Controller/Z",
+          "@units": "/Z-Controller/Z/@unit"
+        }
       },
-      "scan_environment": {
-        "cryo_bottom_temp": { "@units": null },
-        "cryo_shield_temp": { "@units": null },
-        "tip_temp": { "@units": null },
-        "scan_name": { "raw_path": "/Scan/series name" },
-        "SCAN_CONTROL[scan_control]": {
-          "scan_name": { "raw_path": "/Scan/series name" },
+      "SCAN_ENVIRONMENT[scan_environment]": {
+        "head_temperature": {
+          "raw_path": "/Temperature 1/Temperature 1",
+          "@units": "@default:K"
+        },
+        "cryo_bottom_temperature": null,
+        "cryo_shield_temperature": null,
+        "identifier_environment": { "raw_path": "/Scan/series name" },
+        "SPM_SCAN_CONTROL[spm_scan_control]": {
+          "scanTAG[scan_name]": { "raw_path": "/Scan/series name" },
           "scan_region": {
-            "scan_angle_N[scan_angle_n]": {
+            "scan_angleN[scan_angle_n]": {
               "raw_path": "/SCAN/ANGLE",
               "@units": "@default:deg"
             },
-            "scan_offset_N[scan_offset_n]": {
+            "scan_offset_valueN[scan_offset_value_n]": {
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/OFFSET",
               "@units": "/Z-Controller/Z/@unit"
             },
-            "scan_range_N[scan_range_n]": {
+            "scan_rangeN[scan_range_n]": {
               "#note": "Derived in function 'construct_scan_region_grp'.",
               "raw_path": "/SCAN/RANGE",
               "@units": "/Z-Controller/Z/@unit"
             }
           },
-          "mesh_SCAN[mesh_scan]": {
-            "backward_speed_N[backward_speed_n]": {
+          "meshSCAN[mesh_scan]": {
+            "backward_speedN[backward_speed_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
               "raw_path": "/Scan/speed backw.",
               "@units": "/Scan/speed backw./@unit"
             },
-            "forward_speed_N[forward_speed_n]": {
+            "forward_speedN[forward_speed_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
               "raw_path": "/Scan/speed forw.",
               "@units": "/Scan/speed forw./@unit"
             },
-            "scan_speed_N[scan_speed_n]": "",
-            "channel_NAME_N[scan_name_n]": "",
-            "scan_points_N[scan_points_n]": {
+            "scan_speedN[scan_speed_n]": "",
+            "channelNAME[scan_name_n]": "",
+            "scan_pointsN[scan_points_n]": {
               "#note": "Derived in construct_scan_pattern_grp",
               "raw_path": "/SCAN/PIXELS",
               "@units": ""
             },
-            "stepping_N[stepping_n]": {
-              "raw_path": "@default:1",
-              "@units": ""
-            },
-            "step_size_N[step_size_n]": { "raw_path": "", "@units": "" },
+            "steppingN[stepping_n]": [
+              {
+                "_x": {
+                  "raw_path": "@default:1",
+                  "@units": ""
+                }
+              },
+              {
+                "_y": {
+                  "raw_path": "@default:1",
+                  "@units": ""
+                }
+              }
+            ],
+            "step_sizeN[step_size_n]": { "raw_path": "", "@units": "" },
             "scan_time": "",
-            "SCAN_DATA[scan_data]": [
+            "DATA[scan_data]": [
               {
                 "data": {
                   "name": "imput_4",
@@ -461,41 +461,41 @@
             "raw_path": "/SCAN/DIR",
             "@units": ""
           },
-          "scan_resolution_N": "",
-          "accuracy_N": "",
+          "scan_resolutionN[scan_resolution_n]": "",
+          "accuracyN": "",
           "scan_type": { "raw_path": "@default:mesh", "@units": "" },
           "scan_control_type": {
             "raw_path": "@default:continuous",
             "@units": ""
           }
         },
-        "cryo_shield_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temp_sensor",
-        "cryo_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_temp_sensor",
-        "tip_temp_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/tip_temp_sensor"
+        "cryo_shield_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
+        "cryo_bottom_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
+        "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/head_temperature_sensor"
       },
       "real_time_controller": {
-        "rcs_fabrication": {
+        "fabrication": {
           "model": {
             "raw_path": "/NanonisMain/RT Release/value"
           }
         },
-        "rcs_frequency": {
+        "frequency": {
           "raw_path": "/NanonisMain/RT Frequency",
           "@units": "/NanonisMain/RT Frequency/@unit"
         },
-        "rcs_acquisition_time": {
+        "acquisition_time": {
           "raw_path": "/NanonisMain/Acquisition Period",
           "@units": "/NanonisMain/Acquisition Period/@unit"
         },
-        "rcs_animation_time": {
+        "animation_time": {
           "raw_path": "/NanonisMain/Animations Period",
           "@units": "/NanonisMain/Animations Period/@unit"
         },
-        "rcs_measurement_time": {
+        "measurement_time": {
           "raw_path": "/NanonisMain/Measurements Period",
           "@units": "/NanonisMain/Measurements Period/@unit"
         },
-        "rcs_indication_time": {
+        "indication_time": {
           "raw_path": "/NanonisMain/Indicators Period",
           "@units": "/NanonisMain/Indicators Period/@unit"
         }
@@ -505,16 +505,18 @@
           "raw_path": "/Bias/Bias",
           "@units": "/Bias/Bias/@unit"
         },
-        "bias_offset": {
+        "bias_offset_value": {
           "raw_path": "/Bias/Offset",
           "@units": "/Bias/Offset/@unit"
         },
-        "bias_calibration": {
-          "coefficients": {
-            "raw_path": "/Bias/Calibration",
-            "@units": "/Bias/Calibration/@unit"
+        "calibration": {
+          "calibration_parameters": {
+            "coefficient": {
+              "raw_path": "/Bias/Calibration",
+              "@units": "/Bias/Calibration/@unit"
+            }
           },
-          "calibration_interval": ""
+          "calibration_time": ""
         }
       }
     },
@@ -609,17 +611,17 @@
       }
     ],
     "reproducibility_indicators": {
-      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
-      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temp",
-      "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
+      "cantilever_head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
+      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
       "cantilever_oscillator": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator"
     },
     "resolution_indicators": {
-      "cantilever_tip_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/tip_temp",
-      "cryo_bottom_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temp",
-      "cryo_shield_temp": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temp",
-      "oscillator_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/oscillator_excitation",
-      "amplitude_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_oscillator/phase_lock_loop/amplitude_excitation"
+      "cantilever_head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
+      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
+      "oscillator_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cantilever_spm/cantilever_config/amplitude_excitation",
+      "amplitude_excitation": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/phase_lock_loop/amplitude_excitation"
     }
   }
 }

@@ -5,7 +5,7 @@ Instrument:
     name: Nanonis
     vendor: Nanonis
   lockin_amplifier:
-    lockin_current_flip_sign: -1.0
+    flip_sign: -1.0
     modulation_signal: Current
   software:
     model: Generic 5e
@@ -15,27 +15,24 @@ Instrument:
 Sample:
   History:
     Note:
-      description: <p>The experiment was run in Carlos' Lab.</p>
+      description: The experiment was run in Carlos' Lab.
   Sample_component:
     chemical_formula: ' KAl₂(AlSi₃O₁₀)(OH)₂)'
-    description: '<pre class="western">Substrate:</pre>
-
-      <pre class="western">two-layer stack: Au-Mica.</pre>'
+    description: 'Substrate:
+      two-layer stack: Au-Mica.'
     name: Au(Mica)
-  description: <p>A demo example experiment run in a Lab.</p>
+  description: A demo example experiment run in a Lab.
   name: diPAMY
 default: current_grad
 scan_mode: constant height
 definition: NXsts
-experiment_description: '<p>A demo example for NeXus STS experiment.</p>
-
-  <pre class="western">Bias: -50mA</pre>
-
-  <pre class="western">Setpoints: 25pA</pre>'
+experiment_description: 'A demo example for NeXus STS experiment.
+  Bias: -50mA
+  Setpoints: 25pA'
 experiment_technique: STS
 identifier_collection: D://Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_
 identifier_experiment: D://Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_20230420
-user:
+User:
   affiliation:
   - Dr. Carlos-Andres Palma (HU)
   - Dr. Cojal González (HU)
