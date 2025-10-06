@@ -41,6 +41,7 @@ The following command can be used to run the `STS` reader from your python envir
 
 ### Run STM Reader
 Use the following command to run the `STM` reader from your python environment:
+
 ```bash
 (.pyenv) <user>$ dataconverter \
 --reader sts \
@@ -49,4 +50,5 @@ Use the following command to run the `STM` reader from your python environment:
 <path-to STM_nanonis_generic_5e.sxm> \
 <path-to config_file_for_sxm.json> \
 <path-to Nanonis_Eln.yaml> \
-``` -->
+```
+-->
