@@ -29,10 +29,18 @@ pwd = os.path.dirname(__file__)
 
 
 def load_default_config(config_type):
-    nanonis_dat_generic_sts = os.path.join(pwd, "nanonis_dat_generic_sts.json")
-    nanonis_sxm_generic_stm = os.path.join(pwd, "nanonis_sxm_generic_stm.json")
-    nanonis_sxm_generic_afm = os.path.join(pwd, "nanonis_sxm_generic_afm.json")
-    omicron_sm4_stm = os.path.join(pwd, "omicron_sm4_stm.json")
+    """Load the default configuration file for a given config type."""
+
+    nanonis_dat_generic_sts = os.path.join(
+        pwd, "nanonis", "nanonis_dat_generic_sts.json"
+    )
+    nanonis_sxm_generic_stm = os.path.join(
+        pwd, "nanonis", "nanonis_sxm_generic_stm.json"
+    )
+    nanonis_sxm_generic_afm = os.path.join(
+        pwd, "nanonis", "nanonis_sxm_generic_afm.json"
+    )
+    omicron_sm4_stm = os.path.join(pwd, "omicron", "omicron_sm4_stm.json")
 
     config_file = None
     if config_type == "nanonis_dat_generic_sts":

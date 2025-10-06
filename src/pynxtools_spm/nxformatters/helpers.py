@@ -1,22 +1,43 @@
-from pynxtools.units import ureg
-from typing import Optional, Dict, Tuple, Union, Any, Literal, Callable
-from pathlib import Path
+"""Helpers for nxformatters."""
+
+# -*- coding: utf-8 -*-
+#
+# Copyright The NOMAD Authors.
+#
+# This file is part of NOMAD. See https://nomad-lab.eu for further info.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+from __future__ import annotations
+import json
 import logging
-from datetime import datetime
-import tzlocal
+import re
 import zoneinfo
 from copy import deepcopy
-import numpy as np
-from findiff import Diff
-import re
-import json
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable, Dict, Optional, Tuple, Union, Type
 
+import numpy as np
+import tzlocal
+from findiff import Diff
+from pynxtools.units import ureg
 
 #  try to create a common logger for all the modules
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 
-_scientific_num_pattern = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
+_SCIENTIFIC_NUM_PATTERN = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
+
 
 def add_local_timezone(ts: str, tz: str | None = None) -> str:
     """
@@ -59,6 +80,7 @@ def add_local_timezone(ts: str, tz: str | None = None) -> str:
     # Attach timezone
     dt = dt.replace(tzinfo=tzinfo)
     return dt.isoformat()
+
 
 def read_config_file(config_file: Union[str, Path]) -> Dict:
     """Read the config file and return the dictionary.
@@ -105,7 +127,7 @@ def _verify_unit(
         return unit_derived
     except Exception as e:
         # TODO: add nomad logger here
-        logger.debug(f"Check the unit for nx concept {concept}.\nError : {e}")
+        logger.debug("Check the unit for nx concept %s.\nError : %s", concept, e)
         return None
 
 
@@ -114,8 +136,8 @@ def _get_data_unit_and_others(
     partial_conf_dict: dict = None,
     concept_field: str = None,
     end_dict: dict = None,
-    func_on_raw_key: callable = None,
-) -> Tuple[str, str, Optional[dict]]:
+    func_on_raw_key: Callable = lambda x: x,
+) -> Tuple[Any, str, Optional[dict]]:
     """Destructure the raw data, units, and other attrs.
 
     TODO: write doc test for this function
@@ -186,8 +208,10 @@ def _get_data_unit_and_others(
         if not key:
             return None
         if isinstance(func_on_raw_key, Callable):
-            return data_dict.get(func_on_raw_key(key), None)
-        return data_dict.get(key, None)
+            data = data_dict.get(func_on_raw_key(key), None)
+        else:
+            data = data_dict.get(key, None)
+        return to_intended_t(data)
 
     if end_dict in [None, ""] and isinstance(partial_conf_dict, dict):
         end_dict = partial_conf_dict.get(concept_field, "")
@@ -201,7 +225,7 @@ def _get_data_unit_and_others(
     if isinstance(raw_path, list):
         for path in raw_path:
             raw_data = get_data_modified_key(path)
-            if isinstance(raw_data, np.ndarray) or raw_data in ["", None]:
+            if isinstance(raw_data, np.ndarray) or raw_data not in ["", None]:
                 break
     elif raw_path.startswith("@default:"):
         raw_data = raw_path.split("@default:")[-1]
@@ -246,7 +270,8 @@ def get_actual_from_variadic_name(name: str) -> str:
     return name.split("[")[-1].split("]")[0]
 
 
-def flatten_nested_list(list_dt: Union[list, tuple, any]):
+def flatten_nested_list(list_dt: Union[list, tuple, Any]):
+    """Flatten a nested list or tuple."""
     for elem in list_dt:
         if isinstance(elem, (list, tuple)):
             yield from flatten_nested_list(elem)
@@ -257,8 +282,7 @@ def flatten_nested_list(list_dt: Union[list, tuple, any]):
 # pylint: disable=too-many-return-statements
 def to_intended_t(
     data: Any,
-    data_struc: Literal["list", "array"] = None,
-    data_type: Optional[Union[str, int, float]] = None,
+    data_type: Optional[Union[str, Callable[[Any], Any]]] = None,
 ):
     """
         Transform string to the intended data type, if not then return data.
@@ -268,8 +292,12 @@ def to_intended_t(
 
     Parameters
     ----------
-    data : _type_
-        _description_
+    data : Any
+        The data to be converted.
+    data_type : Optional[Union[str, Callable]]
+        The intended data type. It can be 'list', 'ndarray', 'int', 'float', 'str'
+        or the callable function like int, float, str, np.ndarray
+        If None, the function will try to convert to int or float if possible.
 
     Returns
     -------
@@ -278,15 +306,17 @@ def to_intended_t(
     """
     data_struct_map = {
         "list": list,
-        "array": np.ndarray,
+        "ndarray": np.ndarray,
+        "int": int,
+        "float": float,
+        "str": str,
     }
-    # some example data type map
-    # data_type_map = {
-    #     "int": int,
-    #     "float": float,
-    #     "str": str,
-    #     "float64": np.float64,
-    # }
+
+    cnv_dtype: Optional[Union[Type, Callable[[Any], Any]]] = None
+    if isinstance(data_type, str):
+        cnv_dtype = data_struct_map.get(data_type)
+    else:
+        cnv_dtype = data_type
 
     def _array_from(data, dtype=None):
         try:
@@ -321,7 +351,7 @@ def to_intended_t(
         return data
 
     if isinstance(data, list):
-        return _array_from(data, dtype=data_type)
+        return _array_from(data, dtype=cnv_dtype)
 
     if isinstance(data, np.ndarray):
         return data
@@ -357,11 +387,11 @@ def to_intended_t(
             return off_on[data]
 
         try:
-            transformed = int(data) if not data_type else data_type(data)
+            transformed = int(data) if cnv_dtype is None else cnv_dtype(data)
             return transformed
         except ValueError:
             try:
-                transformed = float(data) if not data_type else data_type(data)
+                transformed = float(data) if cnv_dtype is None else cnv_dtype(data)
                 return transformed
             except ValueError:
                 if "[" in data and "]" in data:
@@ -401,7 +431,7 @@ def get_link_compatible_key(key):
     return compatible_key
 
 
-def replace_variadic_name_part(name, part_to_embed: None):
+def replace_variadic_name_part(name: str, part_to_embed: Optional[str] = None) -> str:
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"

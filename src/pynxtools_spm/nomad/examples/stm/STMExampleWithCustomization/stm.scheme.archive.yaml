@@ -80,7 +80,7 @@ definitions:
             An unique identifier of a collection. Use this
             if the experiment if part of a collection of experiments
       sub_sections:
-        user:
+        User:
           section:
             m_annotations:
               eln:
@@ -185,6 +185,31 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         If model has a distinquishable version (e.g. BP5e).
+              height_piezo_sensor:
+                section:
+                  m_annotations:
+                    eln:
+                      overview: true
+                  sub_sections:
+                    piezo_configuration:
+                      section:
+                        m_annotations:
+                          eln:
+                            overview: true
+                        sub_sections:
+                          piezo_material:
+                            section:
+                              m_annotations:
+                                eln:
+                                  overview: true
+                              quantities:
+                                identifier_piezo_material:
+                                  type: str
+                                  m_annotations:
+                                    eln:
+                                      component: StringEditQuantity
+                                  description: |
+                                    An unique identifier for the piezo material.              
               lockin_amplifier:
                 section:
                   m_annotations:
@@ -198,13 +223,13 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Type of the signal either in voltage or current.
-              scan_environment:
+              Scan_environment:
                 section:
                   m_annotations:
                     eln:
                       overview: true
                   quantities:
-                    tip_temp:
+                    head_temperature:
                       type: np.float64
                       unit: kelvin
                       m_annotations:
@@ -212,10 +237,10 @@ definitions:
                           component: NumberEditQuantity
                           defaultDisplayUnit: K
                       description: |
-                        Temperature of STM head. Note: At least one field from tip_temp,
-                        cryo_bottom_temp and cryo_shield_temp must be provided.
-                        At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
-                    cryo_bottom_temp:
+                        Temperature of STM head. Note: At least one field from head_temperature,
+                        cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                        At least one field from head_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                    cryo_bottom_temperature:
                       type: np.float64
                       unit: kelvin
                       m_annotations:
@@ -224,8 +249,8 @@ definitions:
                           defaultDisplayUnit: K
                       description: |
                         Temperature of the cold tail of the cryostat. Note: 
-                        At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
-                    cryo_shield_temp:
+                        At least one field from head_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                    cryo_shield_temperature:
                       type: np.float64
                       unit: kelvin
                       m_annotations:
@@ -234,7 +259,7 @@ definitions:
                           defaultDisplayUnit: K
                       description: |
                         Temperature of liquid nitrogen shield. Note: At
-                        least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp.
+                        least one field from head_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
         Sample:
           section:
             m_annotations:
@@ -296,7 +321,7 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Name of the sample component.
-                    sample_id:
+                    identifier_component:
                       type: str
                       m_annotations:
                         eln:
@@ -334,16 +359,32 @@ definitions:
                           component: RichTextEditQuantity
                       description: |
                         Description of the sample component or sample preparation.
-              History:
+              history:
                 section:
                   m_annotations:
                     eln:
                       overview: true
+                  sub_sections:
+                    Note:
+                      section:
+                        m_annotations:
+                          eln:
+                            overview: true
+                        description: |
+                          Notes about the sample history.
+                        quantities:
+                          description:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: RichTextEditQuantity
+                            description: |
+                              Title of an image or other details of the note.                          
                   quantities:
-                    notes:
+                    identifier_history:
                       type: str
                       m_annotations:
                         eln:
-                          component: RichTextEditQuantity
+                          component: StringEditQuantity
                       description: |
-                        Notes about the sample history.
+                        Identifier for sample history.

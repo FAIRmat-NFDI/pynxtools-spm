@@ -1,7 +1,7 @@
 definitions:
   name: Atomic Force Microscopy (AFM) ELN Examples
   sections:
-    ELN for AFM:
+    afm:
       base_sections:
         - pynxtools.nomad.dataconverter.NexusDataConverter
         - nomad.datamodel.data.EntryData
@@ -83,7 +83,7 @@ definitions:
             An unique identifier of a collection. Use this
             if the experiment if part of a collection of experiments
       sub_sections:
-        user:
+        User:
           repeats: True
           section:
             m_annotations:
@@ -205,20 +205,51 @@ definitions:
                               m_annotations:
                                 eln:
                                   overview: true
-                              sub_sections:
+                              quantities:
                                 identifier_piezo_material:
-                                  section:
-                                    m_annotations:
-                                      eln:
-                                        overview: true
-                                    quantities:
-                                      identifier:
-                                        type: str
-                                        m_annotations:
-                                          eln:
-                                            component: StringEditQuantity
-                                        description: |
-                                          An unique identifier for the piezo material.
+                                  type: str
+                                  m_annotations:
+                                    eln:
+                                      component: StringEditQuantity
+                                  description: |
+                                    An unique identifier for the piezo material.
+              Scan_environment:
+                section:
+                  m_annotations:
+                    eln:
+                      overview: true
+                  quantities:
+                    head_temperature:
+                      type: np.float64
+                      unit: kelvin
+                      m_annotations:
+                        eln:
+                          component: NumberEditQuantity
+                          defaultDisplayUnit: K
+                      description: |
+                        Temperature of STM head. Note: At least one field from head_temperature,
+                        cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                        At least one field from tip_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                    cryo_bottom_temperature:
+                      type: np.float64
+                      unit: kelvin
+                      m_annotations:
+                        eln:
+                          component: NumberEditQuantity
+                          defaultDisplayUnit: K
+                      description: |
+                        Temperature of the cold tail of the cryostat. Note: 
+                        At least one field from tip_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                    cryo_shield_temperature:
+                      type: np.float64
+                      unit: kelvin
+                      m_annotations:
+                        eln:
+                          component: NumberEditQuantity
+                          defaultDisplayUnit: K
+                      description: |
+                        Temperature of liquid nitrogen shield. Note: At
+                        least one field from head_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
         Sample:
           section:
             m_annotations:
@@ -265,7 +296,6 @@ definitions:
                   Description of the sample or sample preparation.
             sub_sections:
               Sample_component:
-                repeats: True
                 section:
                   m_annotations:
                     eln:
@@ -281,7 +311,7 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Name of the sample component.
-                    sample_id:
+                    identifier_component:
                       type: str
                       m_annotations:
                         eln:
@@ -319,16 +349,32 @@ definitions:
                           component: RichTextEditQuantity
                       description: |
                         Description of the sample component or sample preparation.
-              History:
+              history:
                 section:
                   m_annotations:
                     eln:
                       overview: true
+                  sub_sections:
+                    Note:
+                      section:
+                        m_annotations:
+                          eln:
+                            overview: true
+                        description: |
+                          Notes about the sample history.
+                        quantities:
+                          description:
+                            type: str
+                            m_annotations:
+                              eln:
+                                component: RichTextEditQuantity
+                            description: |
+                              Title of an image or other details of the note.                          
                   quantities:
-                    note:
+                    identifier_history:
                       type: str
                       m_annotations:
                         eln:
-                          component: RichTextEditQuantity
+                          component: StringEditQuantity
                       description: |
-                        Notes about the sample history.
+                        Identifier for sample history.

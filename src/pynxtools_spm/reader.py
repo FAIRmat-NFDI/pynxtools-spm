@@ -29,6 +29,8 @@ from pynxtools.dataconverter.readers.base.reader import BaseReader
 from pynxtools.dataconverter.template import Template
 from pynxtools import get_nexus_version
 
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+
 # For flatened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
 
@@ -97,10 +99,10 @@ class SPMReader(BaseReader):
         if not data_file:
             raise ValueError("Data file is required for the reader to work.")
 
-        formater_obj = None
+        formater_obj: Optional[SPMformatter] = None
         # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis_sxm_stm import NanonisSxmSTM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
 
             formater_obj = NanonisSxmSTM(
                 template=template,
@@ -110,7 +112,7 @@ class SPMReader(BaseReader):
             )
             # nss.get_nxformatted_template()
         elif experirment_technique == "STM" and raw_file_ext == "sm4":
-            from pynxtools_spm.nxformatters.omicron_sm4_stm import (
+            from pynxtools_spm.nxformatters.omicron.omicron_sm4_stm import (
                 OmicronSM4STMFormatter,
             )
 
@@ -122,7 +124,7 @@ class SPMReader(BaseReader):
             )
             # oss.get_nxformatted_template()
         elif experirment_technique == "AFM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis_sxm_afm import NanonisSxmAFM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_afm import NanonisSxmAFM
 
             formater_obj = NanonisSxmAFM(
                 template=template,
@@ -132,7 +134,7 @@ class SPMReader(BaseReader):
             )
             # nsa.get_nxformatted_template()
         elif experirment_technique == "STS" and raw_file_ext == "dat":
-            from pynxtools_spm.nxformatters.nanonis_dat_sts import NanonisDatSTS
+            from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 
             formater_obj = NanonisDatSTS(
                 template=template,
