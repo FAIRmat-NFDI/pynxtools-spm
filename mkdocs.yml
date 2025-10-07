@@ -9,7 +9,8 @@ use_directory_urls: false
 nav:
   - Home: index.md
   - Explanation: 
-      - explanation/reader-explanation.md
+      - explanation/reader-orchestra.md
+      - explanation/reader-structure.md
   - Tutorial:
       - tutorials/installation.md
       - tutorials/reader-use-in-nomad.md

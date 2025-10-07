@@ -51,7 +51,6 @@ Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunn
 <div markdown="block">
 
 ### Learn
-
 <!-- 1. Reader architecture
      1.1. Principles for shared Application defintions
      2. Reader interface and its components
@@ -67,11 +66,9 @@ Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunn
      4. Application definition design
 -->
 
-- [Explanation](explanation/reader-explanation.md)
-- [Supported File Formats and File Versions](explanation/reader-explanation.md#supported-file-formats-and-file-versions)
-- [NeXus Application Definition](explanation/reader-explanation.md#nexus-application-definition)
-- [Introduction to Reader Input Files](explanation/reader-explanation.md#introduction-to-reader-input-files)
-- [Useful Functions](explanation/reader-explanation.md#useful-functions)
+- [Scanning Probe Microcopy (SPM) Application Definitions](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure)
+- [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
+- 
 </div>
 <div markdown="block">
 
@@ -79,8 +76,14 @@ Data from __Scanning Probe Microscopy (SPM)__ techinques such as __Scanning Tunn
 
 <!-- 1. List of files supported by the Reader follow XPS -->
 
+- Define [NOMAD](https://nomad-lab.eu/nomad-lab/) [ELN schema](https://nomad-lab.eu/prod/v1/staging/docs/howto/customization/elns.html#schemas-for-elns)
+- [NOMAD Glossary](https://nomad-lab.eu/prod/v1/staging/docs/reference/glossary.html)
+- [NeXus Format](https://www.nexusformat.org/)
 - [Reader in Nomad](reference/reference.md#nomad)
 - [NeXus application definition in Reader](reference/reference.md#nexus)
+- [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
+- [nynonispy for reading nanonis file](https://github.com/underchemist/nanonispy)
+- [spym for reading omicron file (e.g., `.sm4`)](https://github.com/underchemist/spym)
 
 </div>
 </div>
