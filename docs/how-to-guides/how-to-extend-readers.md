@@ -1,10 +1,26 @@
+
 The `pynxtools-spm` reader package is designed in a modular way to make it easy to add new readers for other file formats and extend the existing readers for newer file formats. Currently, the reader orchestra of `pynxtools-spm` hosting multiple readers for `STS`, `STM` and `AFM` experiments. It is envisioned that in future more and more readers for diverse file formats of other SPM techniques will be included in this package.
 
-## __Starts Include New Reader for Other File Formats or New Techniques__
-To include a new reader for other file formats, one need to follow the steps below:
+## __Extend File Formats or New Techniques__
 
-__0.__ Clone and prepare the development environment for `pynxtools-spm`
+This is an open source project any contribution to this project is welcome. Before going through the following steps please first read the [reader structure](../explanation/reader-structure.md) to understand the modular design of the reader package.
+
+To include a new reader for other file formats or other techniques, one need to follow the steps below:
+
+__0.__ Clone and prepare the development environment for `pynxtools-spm` ([follow the installation guide](../tutorials/installation.md)).
+
 __1.__ Go though the reader structure [here](../explanation/reader-structure.md) to understand the modular design of the reader package.
+
 __2.__ Starts with creating a new parser module in `parsers` subpackage to read the raw data files from the new SPM file format and convert the raw data path into slash separated hierarchical path. For reading the raw data into slash separated hierarchical path, you can use third party python package if available for that file format or build your own code to read the raw data from the files. All parsers should build `SPMBase` class from `base_parser` module (you may take a look into a existing parser e.g., `nanonis_sxm` or `nanonis_dat`).
+
 __3.__ Starts new formatter module in correspongin submodules of `nxformatters` subpackage. Always, try to use the base classes for formatters (e.g., `NanonisBase`, `omicronBase` in the modules `nanonis_base` and `omicron_base` repectively). On top of this base classes, you can use existing method or develop specific methods to curate the unstructure data coming from the raw files and `ELN` yaml file flowing the instruction given in `config` file (please follow one of the formatters e.g., `nanonis_dat_sts`.). Note that for good development of a formatter one should intesively follow the [application definition](link_goes_here) of the corresponging SPM technique.
-But, adding new technique (e.g., scanning gate microscopy (SGM) the prerequisit step is to develop a application definition in [nexus defnitions repository](link_goes_here)). Please, follow the documentation [`writting an application definition`(https://fairmat-nfdi.github.io/pynxtools/how-tos/nexus/writing-an-appdef.html)] or reach us for better help. Then according to the reader structure, one need to create a new module with a the name of the technique as suffix in `nxformatters` subpackage.  
+
+But, adding new technique (e.g., scanning gate microscopy (SGM) the prerequisit step is to develop a application definition in [nexus defnitions repository](link_goes_here)). Please, follow the documentation [`writting an application definition`(https://fairmat-nfdi.github.io/pynxtools/how-tos/nexus/writing-an-appdef.html)] or reach us for better help. Then according to the reader structure, one need to create a new module with the name of the technique as suffix in name of module `nxformatters` subpackage.
+
+__4.__ Run the converter if it all goods well. You may see lots of warning massages if the raw data are not properly curated according to the application definition. The warning massages tell which data are missing or follow the wrong convetion, etc. Check your code, config file, eln file and the content of those files. Fix one by one until all warning massages are gone. Please, let us know if you need any help.
+
+__5.__ Write test cases for your new parser and formatter modules. It is very easy but important part of the contribtuion. Add your test case in `test_reader` module in `tests` and inlude only the necessary data files in the subfolder of exact `data` folder.
+
+__6.__ Create a PR to include your contributions to the main branch of `pynxtools-spm` repository. You may create the PR as draft while the developing is going on and keep up in the loop
+
+__7.__ We will review your code and give you feedback. After all the changes are done, we will merge your code to the main branch of `pynxtools-spm` repository and we shall release a new version of the package including your contributions.

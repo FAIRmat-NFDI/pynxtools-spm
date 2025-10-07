@@ -30,20 +30,28 @@ Install `pynxtools-spm` package from (PyPI) to use as a standalone package in ac
 $ uv pip install pynxtools-spm  # Install from PyPI
 ```
 
-Or, install `pynxtools-spm` package from the source code (with a specific branch) to use as a standalone package in activated pyton environment. Use this installation method to develop or play with the `pynxtools-spm` code.
+Or, install `pynxtools-spm` package from the source code (with a specific branch) to use as a standalone package in activated python environment. Use this installation method to develop or play with the `pynxtools-spm` code.
 
 ```bash
 $ uv pip install git+https://github.com/FAIRmat-NFDI/pynxtools-spm.git@<branch-name>#egg=pynxtools-spm  # Replace <branch-name> with the exact branch you want to install
 ```
 
-Or, install `pynxtools-spm` as a plugin of `pynxtools` package from (PyPI).
+Or, install `pynxtools-spm` as a plugin of `pynxtools` package from (PyPI) in activated python environment.
 
 
 ```bash
 $ uv pip install pynxtools[spm] # from PyPI
 ```
 
-**Note**: _The earlier `pynxtools-spm` installation steps will also install `pynxtools` as a dependency with an appropriate version._
+Or, install `pynxtools-spm` package in development mode in activated python environment.
+
+```bash
+$ git clone  https://github.com/FAIRmat-NFDI/pynxtools-spm.git
+$ cd pynxtools-spm
+$ uv pip install -e .  # Install in editable mode
+```
+
+**Note**: _All the `pynxtools-spm` installation steps will also install `pynxtools` as a dependency with an appropriate version._
 
 ## **Install `pynxtools-spm` package with NOMAD**
 
