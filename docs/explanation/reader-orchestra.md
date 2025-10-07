@@ -26,14 +26,14 @@ The `section`, `sub_sections`, and `quantities` refer to the root level entitiy 
 This type of ELN needs to be used if the reader is run from the command line. To know which fields and groups refer to which type of data, one needs to read the NeXus definition on the [FAIRmat NeXus Proposal](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html#nxsts) page or in the [GitHub repository](https://github.com/FAIRmat-NFDI/nexus_definitions/blob/fairmat/contributed_definitions/NXsts.nxdl.xml).
 
 
-### __STS reader__
+#### __STS reader__
 
 The `STS` reader builds on the [NXsts](link from nexus-fairmat page) application definition and needs an experimental file, a config file and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file [NXsts](link from nexus-fairmat page) according to the application concepts.
 
-### __STM Reader__
+#### __STM Reader__
 The STM reader is a part of `pynxtools-spm` package and builds on the [NXstm](link from nexus-fairmat page) application definition and needs an experimental file, a config file and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXstm](link from nexus-fairmat page) application concepts.
 
-### __AFM Reader__
+#### __AFM Reader__
 The AFM reader is a part of `pynxtools-spm` package and builds on the [NXafm](link from nexus-fairmat page) application definition and needs an experimental file, a config file and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXafm](link from nexus-fairmat page) application concepts.
 
 !!! Warning 
