@@ -1,29 +1,42 @@
-# Use Reader in NOMAD
-## __Use Example available in NOMAD__
-If `pynxtools-spm` plugin package is installed with NOMAD, there are a few demo examples for __STS__, __STM__, and __AFM__ available in NOMAD. Use of these examples may help to undertand how to use the reader functionality in NOMAD.
+# __Use Reader in NOMAD__
+
+The reader functionality of the `pynxtools-spm` package can be used in [NOMAD](https://nomad-lab.eu/nomad-lab/) if the package is installed as a plugin of the `pynxtools` package where NOMAD is installed. For instructions on installing `pynxtools-spm` with NOMAD, please follow the [installation guide](../tutorials/installation.md#install-pynxtools-spm-with-nomad).
+
+## __Use Example Available in NOMAD__
+
+If the `pynxtools-spm` package is installed with NOMAD as a plugin, there are three demo examples for __STS__, __STM__, and __AFM__ available in NOMAD. Using these examples may help you understand how to use the reader functionality in NOMAD.
 
 <video controls>
-<source src="../assets/DemoFromExampleUpload.webm" type="video/mp4">
+  <source src="../assets/DemoFromExampleUpload.webm" type="video/mp4">
 </video>
 
-This available example in NOMAD can be utilized to extend or modify the reader input files e.g., `ELN schema file`, `config file` to customize the reader functionality as per the user requirement. For details see [How to Interact with Reader](../how-to-guides/how-to-interact-with-reader.md) guide.
+These examples in NOMAD can be utilized to extend or modify the reader input files, such as the `ELN schema file` or `config file`, to customize the reader functionality according to user requirements. For details, see the [How to Interact with Reader](../how-to-guides/how-to-interact-with-reader.md) guide.
 
-## Drag and Drop Example in NOMAD
-Provided the examples in `NOMAD` may not be sufficient to store data and metadata from a experiment. One can modify the ELN schema file to structure and store the metadata according to the application definitions. A few steps to upload data in NOMAD using drag and drop method is shown below.
+## __Drag and Drop Example in NOMAD__
 
-__1.__ Create a NOMAD upload by clicking on the button `CREATE A NEW UPLOAD` in nomad upload page.
-![](../assets/create_upload.png)
+The provided examples in NOMAD may not be sufficient to store all data and metadata from an experiment. You can modify the ELN schema file to structure and store metadata according to the application definitions. Below are a few steps to upload data in NOMAD using the drag and drop method:
 
-__2.__ Rename `unnamed upload` according to the upload name and drop schema file (e.g., `sts.scheme.archive.yaml`) and nomad will create an entry.
-![](../assets/upload_schema_eln.png)
+__1.__ Create a NOMAD upload by clicking the `CREATE A NEW UPLOAD` button on the NOMAD upload page.
 
-__3.__ Let's create an nomad [archive](https://nomad-lab.eu/prod/v1/docs/reference/glossary.html#archive) entry. Base on the schema file, user needs to create an archive entry from schema file. As newly uploaded schema file is not a built-in schema in NOMAD, user needs to create archive from `custom schema` option.
+<div class="scrollable-img">
+    <img src="../assets/create_upload.png"
+          alt="create_upload">
+</div>
+
+__2.__ Rename `unnamed upload` as desired, and drop the schema file (e.g., `sts.schema.archive.yaml`). NOMAD will create an entry.
+
+<div class="scrollable-img">
+    <img src="../assets/upload_schema_eln.png"
+          alt="Sample Image">
+</div>
+
+__3.__ Create a NOMAD [archive](https://nomad-lab.eu/prod/v1/docs/reference/glossary.html#archive) entry. Based on the newly uploaded schema file, you need to create the archive from the `custom schema` option as the uploaded schema file is not a built-in schema in NOMAD.
 
 <video controls>
   <source src="../assets/CreateArchiveFromCustomSchema.webm" type="video/mp4">
 </video>
 
-__4.__ After creation of an archive entry, the data section will immediately expand, and the user can add input data along with raw data files. Filling the required metadata e.g., name of `nxdl`, software, and hardware specification, data can be saved in a NeXus file.
+__4.__ After creating an archive entry, the data section will immediately expand, and you can add input data along with raw data files. By filling in the required metadata (e.g., name of `nxdl`, software and hardware specifications), the data can be saved in a NeXus file.
 
 <video controls>
   <source src="../assets/FinishupCustomizeUpload.webm" type="video/mp4">

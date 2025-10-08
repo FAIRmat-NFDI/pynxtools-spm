@@ -13,7 +13,7 @@ hide: toc
 
 Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunneling Microscopy (STM)__, __Scanning Tunneling Spectroscopy (STS)__, and __Atomic Force Microscopy (AFM)__ are widely produced and analyzed in condensed matter physics and surface science. However, the data formats rendered by different SPM vendor instruments often follow proprietary data models and are incompatible with each other, making it difficult to share and analyze data across different labs using different vendor instrument setups. To address this issue, the NeXus-FAIRmat community has developed NeXus application definitions for [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html), [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html), and [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html). Based on these application definitions, the `pynxtools-spm` reader provides a standardized way to convert raw data from various STM/STS/AFM experiments into the NeXus format according to the application definitions, making the data accessible for everyone regardless of the providing instruments and softwares used to acquire the data from experiments. The data can be stored and shared in research data management platforms, e.g., [NOMAD](https://nomad-lab.eu/nomad-lab/).
 
-`pynxtools-spm`, a Python package, provides a unified interface for storing the SPM data in the NeXus format. The package is built on top of the [`pynxtools`](https://github.com/NOMAD-FAIRmat/pynxtools) [dataconverter](https://github.com/FAIRmat-NFDI/pynxtools/tree/master/src/pynxtools/dataconverter) framework that provides template to store curated data from reader, validator to data according to the application definition and writer to write the data in a NeXus file. In this package, `pynxtools-spm` has taken full benifit from the `pynxtools` converter. `pynxtools-spm` package includes modules of parsers for reading data from diverse SPM experiment raw files, e.g., Nanonis and Omicron instruments, and converting the data into the NeXus format satisfying the NeXus application definitions for SPM techniques.
+`pynxtools-spm`, a Python package, provides a unified interface for storing the SPM data in the NeXus format. The package is built on top of the [`pynxtools`](https://github.com/FAIRmat-NFDI/pynxtools) (see [documentation](https://fairmat-nfdi.github.io/pynxtools/index.html)) [dataconverter](https://github.com/FAIRmat-NFDI/pynxtools/tree/master/src/pynxtools/dataconverter) framework that provides template to store curated data from reader, validator to data according to the application definition and writer to write the data in a NeXus file. In this package, `pynxtools-spm` has taken full benifit from the `pynxtools` converter. `pynxtools-spm` package includes modules of parsers for reading data from diverse SPM experiment raw files, e.g., Nanonis and Omicron instruments, and converting the data into the NeXus format satisfying the NeXus application definitions for SPM techniques.
 
 <div markdown="block" class="home-grid">
 <div markdown="block">
@@ -31,14 +31,6 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 
 ### How-To Guide
 
-<!--TODO: 3. Extend the reader functionality or add a new reader for other file formats
-      1. Add new file format
-      2. Extend existing file format
-      3. Test your changes
-      4. Contribute your changes
-    4. Propose changes in NeXus application definition via NeXus-FAIRmat webpage
--->
-
 - [Work with Reader](how-to-guides/how-to-interact-with-reader.md)
 - [Extend Readers Orchestra](how-to-guides/how-to-extend-readers.md)
 
@@ -46,19 +38,8 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 <div markdown="block">
 
 ### Learn
-<!-- 1. Reader architecture
-     1.1. Principles for shared Application definitions
-     2. Reader interface and its components
-          1. ELN file
-          2. Config file of Reader
-     2. Code principles
-     3. Explanation of important concepts
-         1. Explanation
-         2. Supported File Formats and File Versions
-         3. NeXus Application Definition
-         4. Introduction to Reader Input Files
-         5. Useful Functions
-     4. Application definition design
+<!-- 
+    1. Useful Functions
 -->
 
 - [Scanning Probe Microscopy (SPM) Application Definitions](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure)
