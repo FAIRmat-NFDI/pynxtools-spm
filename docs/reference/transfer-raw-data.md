@@ -15,18 +15,18 @@ __1.__ Command to convert the STS raw data files into NeXus file
 ```bash
 $ dataconverter --nxdl NXsts --reader spm --output output.nxs eln_data.yaml nanonis_sts_file.dat config.json
 ```
-Try with [STS example files](../assets/copy_files_to_examples_in_docs/sts.zip){:sts}.
+Try with [STS example files](../assets/command_line_examples/sts.zip){:sts}.
 
 __2.__ Command to convert the STM raw data files into NeXus file
 ```bash
 $ dataconverter --nxdl NXstm --reader spm --output output.nxs eln_data.yaml nanonis_stm_file.sxm config.json
 ```
 
-Try with [STM example files](../assets/copy_files_to_examples_in_docs/stm.zip){:stm}.
+Try with [STM example files](../assets/command_line_examples/stm.zip){:stm}.
 
 __3.__ Command to convert the AFM raw data files into NeXus file
 ```bash
 $ dataconverter --nxdl NXafm --reader spm --output output.nxs eln_data.yaml nanonis_afm_file.sxm config.json
 ```
 
-Try with [AFM example files](../assets/copy_files_to_examples_in_docs/afm.zip){:afm}.
+Try with [AFM example files](../assets/command_line_examples/afm.zip){:afm}.
