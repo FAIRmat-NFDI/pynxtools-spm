@@ -15,7 +15,7 @@ nav:
       - tutorials/installation.md
       - tutorials/reader-use-in-nomad.md
   - How-To-Guide : 
-      - how-to-guides/how-to-interact-with-reader.md
+      - how-to-guides/how-to-act-with-reader.md
       - how-to-guides/how-to-extend-readers.md
   - Reference: 
       - reference/transfer-raw-data.md
