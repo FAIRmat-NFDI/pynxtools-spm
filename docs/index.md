@@ -31,7 +31,7 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 
 ### How-To Guide
 
-- [Work with Reader](how-to-guides/how-to-interact-with-reader.md)
+- [Work with Reader](how-to-guides/how-to-act-with-reader.md)
 - [Extend Readers Orchestra](how-to-guides/how-to-extend-readers.md)
 
 </div>
