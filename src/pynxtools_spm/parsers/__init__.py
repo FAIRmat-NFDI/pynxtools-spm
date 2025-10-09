@@ -179,8 +179,8 @@ def get_nanonis_sxm_parsed_data(file_path: str):
 
 
 def write_spm_raw_file_data(raw_file, output_file=None):
-    """Parse the raw_file into a organised dictionary. It helps users as well as developers
-    to understand how the reader works and modify the config file."""
+    """Parse the raw_file into a slash separared dictionary. It helps users as well as developers
+    to understand how the reader works with raw data path and correspondingly modify the config file."""
 
     base_name = os.path.basename(raw_file)
     raw_name = base_name.split(".", 1)[0]
