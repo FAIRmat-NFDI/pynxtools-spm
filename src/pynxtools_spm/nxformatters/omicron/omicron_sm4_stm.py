@@ -44,7 +44,7 @@ if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
 
 
-class OmicronSM4STMFormatter(OmicronBase):
+class OmicronSM4STM(OmicronBase):
     """
     Formatter for Omicron SM4 STM data.
     """

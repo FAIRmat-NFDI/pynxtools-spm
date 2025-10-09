@@ -58,8 +58,8 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 - [Reader in NOMAD](reference/reference.md#nomad)
 - [NeXus application definition in Reader](reference/reference.md#nexus)
 - [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
-- [nanonispy for reading Nanonis files](https://github.com/underchemist/nanonispy)
-- [spym for reading Omicron files (e.g., `.sm4`)](https://github.com/underchemist/spym)
+- [nanonispy for reading Nanonis files (e.g., `.sxm`)](https://github.com/underchemist/nanonispy)
+- [spym for reading Omicron files (e.g., `.sm4`)](https://github.com/rescipy-project/spym)
 
 </div>
 </div>
