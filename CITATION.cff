@@ -39,26 +39,25 @@ authors:
   - given-names: Heiko B.
     family-names: Weber
     orcid: 'https://orcid.org/0000-0002-6403-9022'
-doi: 10.5281/zenodo.13827673
+  - given-names: Claudia
+    family-names: Draxl
+    orcid: 'https://orcid.org/0000-0003-3523-6657'
+doi: ''
 
 repository-code: 'https://github.com/FAIRmat-NFDI/pynxtools-spm'
 url: ''
 abstract:
-  The pynxtools-spm is a python package evolved as a plugin of pynxtools
-  (https://github.com/FAIRmat-NFDI/pynxtools). The plugin pynxtools-spm is designed 
-  to read and process the data, metadata and setup to the specific experiment from SPM 
-  family - STM (Scanning Tunneling Microscopy), STS (Scanning Tunneling Spectroscopy), 
-  and AFM (Atomic Force Microscopy). The reader connects resultant processed data to the standard schemata 
-  for NXspm(https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure),  
-  NXsts, NXstm and NXafm which are designed under the NeXus data format. As the part of the
-  data reading and processing, the plugin pynxtools-spm highlight experiment setup and the details of the 
-  specific instruments. The plugin can be used as a standalone package, but 
-  for full benefits of the pynxtools-spm, we recommended to use it in research 
-  data management platform NOMAD(https://nomad-lab.eu/nomad-lab/).
+  The pynxtools-spm is a plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools) written in Python. 
+  pynxtools-spm is a tool for reading, translating, and processing data of specific experiments from the 
+  Scanning Probe Microscopy (SPM) family — STM (Scanning Tunneling Microscopy), STS (Scanning Tunneling 
+  Spectroscopy), and AFM (Atomic Force Microscopy). The tool standardizes data and metadata such that it 
+  is compliant with the NeXus application definitions that build on NXspm 
+  (https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure) 
+  specifically NXsts, NXstm, and NXafm (https://fairmat-nfdi.github.io/nexus_definitions/). pynxtools-spm is developed 
+  both as a standalone reader and as a tool within NOMAD (https://nomad-lab.eu/nomad-lab/), an open-source data 
+  management platform for materials science.
 
-  This small project is a part of the FAIRmat project (project id 460197019) 
-  funded by the Deutsche Forschungsgemeinschaft (DFG, German Research 
-  Foundation)(https://gepris.dfg.de/gepris/projekt/460197019?language=en).
-
+  The work is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - 460197019 
+  (FAIRmat) (https://gepris.dfg.de/gepris/projekt/460197019?language=en).
 
 license: Apache-2.0

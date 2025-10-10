@@ -29,7 +29,7 @@ dependencies = [
     "matplotlib",
     "scipy",
     "hvplot",
-    "spym>=0.9.2", # Laster test version of spym==0.9.2
+    "spym>=0.9.2", # tested version `spym==0.9.2`
     "tzlocal",
     "mkdocs",
     "mkdocs-mermaid2-plugin",

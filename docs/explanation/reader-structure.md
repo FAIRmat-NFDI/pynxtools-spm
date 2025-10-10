@@ -1,3 +1,4 @@
+# Reader Structure
 The reader orchestra of `pynxtools-spm` hosting multiple readers for `STS`, `STM` and `AFM` experiments. It is envisioned that in future more and more readers for other SPM techniques will be included in this package. The reader structure is designed in a modular way to make it easy to add new readers for other file formats and extend the existing readers.
 
 ## __`parsers` subpackage__

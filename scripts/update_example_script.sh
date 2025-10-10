@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Update nexus file in tests/data directory
+
 set -e
 scpt_dir=$(dirname $0)
 root_dir=$(dirname $scpt_dir)
