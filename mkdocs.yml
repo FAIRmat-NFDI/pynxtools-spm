@@ -8,20 +8,18 @@ edit_uri: ""
 use_directory_urls: false
 nav:
   - Home: index.md
-  - Explanation: 
-      - explanation/reader-orchestra.md
-      - explanation/reader-structure.md
   - Tutorial:
       - tutorials/installation.md
       - tutorials/reader-use-in-nomad.md
-  - How-To-Guide : 
+  - How-To-Guides: 
       - how-to-guides/how-to-use-the-reader.md
       - how-to-guides/how-to-extend-readers.md
+  - Explanation: 
+      - explanation/reader-orchestra.md
+      - explanation/reader-structure.md
   - Reference: 
-      - reference/transfer-raw-data.md
+      - reference/standalon-usages.md
 plugins:
-  # - mkdocstrings
-  # - mermaid2
   - search
   - macros:
       module_name: docs/macros
@@ -41,10 +39,6 @@ markdown_extensions:
   - pymdownx.emoji
   - pymdownx.extra
   - pymdownx.superfences:
-      # custom_fences:
-      #   - name: mermaid
-      #     class: mermaid
-      #     format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
 theme:
@@ -66,22 +60,6 @@ theme:
 extra: 
   generator: false
   homepage: https://nomad-lab.eu
-# theme:
-#   name: "material"
-#   features:
-#   - navigation.tabs
-#   - navigation.sections
-#   - navigation.top
-#   - navigation.bottom
-#   - toc.integrate
-#   - search.suggest
-#   - search.highlight
-#   - content.tabs.link
-#   - content.tabs.copy
-#   - content.code.annotation
-  # icon:
-  #   admonition:
-  #     note: octicons/tag-16
 extra_css:
   - stylesheets/extra.css
 extra_javascript:

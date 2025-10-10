@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Copy test examples from test folder to assets/command_line_examples
 
 set -e
 

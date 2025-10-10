@@ -1,4 +1,4 @@
-# Installation
+# __Installation__
 
 `pynxtools-spm` is a Python package published on PyPI. It can be installed via Python package managers such as `uv` or `pip`. For beginners, we show basic and common ways to install the package.
 

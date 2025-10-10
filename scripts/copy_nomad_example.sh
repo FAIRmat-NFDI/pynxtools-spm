@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Copy nomad examples from nomad example folder to assets/nomad_examples
 set -e
 
 this_file_path="$(dirname $(dirname $(realpath "$0")))"
