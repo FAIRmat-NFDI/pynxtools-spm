@@ -172,7 +172,9 @@ class SPMformatter(ABC):
         template: Template,
         raw_file: Union[str, "Path"],
         eln_file: str | Path,
-        config_file: str | Path | None = None,  # Incase it is not provided by users
+        config_file: Optional[
+            Union[str, Path]
+        ] = None,  # Incase it is not provided by users
         entry: Optional[str] = None,
     ):
         self.template: Template = template

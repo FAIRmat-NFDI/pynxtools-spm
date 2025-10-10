@@ -102,7 +102,9 @@ class SPMReader(BaseReader):
         formater_obj: Optional[SPMformatter] = None
         # Get callable object that has parser inside
         if experirment_technique == "STM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
+            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import (
+                NanonisSxmSTM,
+            )
 
             formater_obj = NanonisSxmSTM(
                 template=template,

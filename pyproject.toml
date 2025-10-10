@@ -93,6 +93,7 @@ lint.ignore = [
     "PLW2901", # redefined-loop-name
     "PLR1714", # consider-using-in
     "PLR5501", # else-if-used
+    "PLC0415", # import outside-toplevel
 ]
 lint.fixable = ["ALL"]
 

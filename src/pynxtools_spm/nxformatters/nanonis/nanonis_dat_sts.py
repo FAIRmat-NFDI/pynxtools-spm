@@ -22,7 +22,7 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Any, Dict
+from typing import Any, Dict, Union, Optional
 from dataclasses import dataclass
 from pathlib import Path
 from pint import UnitRegistry
@@ -81,8 +81,8 @@ class NanonisDatSTS(NanonisBase):
         template: Template,
         raw_file: str | Path,
         eln_file: str | Path,
-        config_file: str | Path | None = None,
-        entry: str | None = None,
+        config_file: Optional[Union[str, Path]] = None,
+        entry: Optional[str] = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 

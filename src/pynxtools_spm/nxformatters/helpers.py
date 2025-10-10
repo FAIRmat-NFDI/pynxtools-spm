@@ -39,7 +39,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 _SCIENTIFIC_NUM_PATTERN = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
 
 
-def add_local_timezone(ts: str, tz: str | None = None) -> str:
+def add_local_timezone(ts: str, tz: Optional[str] = None) -> str:
     """
     Add a timezone to a timestamp if it has none.
 
