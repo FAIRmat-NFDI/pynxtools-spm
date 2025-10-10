@@ -2,6 +2,16 @@
 
 The reader functionality of `pynxtools-spm` package can be used in [NOMAD](https://nomad-lab.eu/nomad-lab/) if the package is installed as a plugin of the `pynxtools` package where NOMAD is installed. For instructions on installing `pynxtools-spm` with NOMAD, please follow the [installation guide](../tutorials/installation.md#install-pynxtools-spm-with-nomad).
 
+!!! note
+    To produce this tutorial, we used the following version
+
+    `NOMAD==v1.1.17`, 
+    `pynxtools==v0.11.1`,
+    `pynxtools-spm==0.1.6`.
+
+    Please ensure that you have the same version of `NOMAD` to get the same graphical user interface (GUI) as shown in the tutorial.
+    In later version of NOMAD GUI may change, but the overall functionality should remain similar.
+    
 ## __Use Example Available in NOMAD__
 
 If the `pynxtools-spm` package is installed witas a plugin a NOMAD, three demo examples for __STS__, __STM__, and __AFM__ shall be available in NOMAD. Starting with these examples may help you to understand how to use `pynxtools-spm` readers' functionality in NOMAD.
