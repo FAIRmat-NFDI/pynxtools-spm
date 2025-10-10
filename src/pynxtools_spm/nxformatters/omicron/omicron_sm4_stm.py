@@ -89,7 +89,7 @@ class OmicronSM4STMFormatter(OmicronBase):
                 "NoInputData: Unable to find the active channels due to lack of input data."
             )
 
-        def search_pattern(key_: str) -> Optional[re.Match]:
+        def search_pattern(key_: str) -> Optional[re.Match[str]]:
             return re.search(r"RHK_CH(\d*)Drive_MasterOscillator", key_, flags=re.A)
 
         if key is not None:
