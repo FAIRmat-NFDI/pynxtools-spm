@@ -1,9 +1,9 @@
 site_name: Documentation
 site_description: |
-  The documentation for NOMAD.
+  The documentation for pynxtools-spm plugin.
 site_author: The NOMAD Authors
 repo_url: https://github.com/FAIRmat-NFDI/pynxtools-spm
-site_url: https://nomad-lab.eu/prod/v1/docs/index.html
+site_url: https://fairmat-nfdi.github.io/pynxtools-spm/
 edit_uri: ""
 use_directory_urls: false
 nav:
@@ -54,12 +54,12 @@ theme:
     - navigation.footer
     - navigation.top
   favicon: assets/favicon.png
-  logo: assets/nomad-logo.png
+  logo: assets/nomad-plugin-logo.png
   icon:
     repo: fontawesome/brands/github
 extra: 
   generator: false
-  homepage: https://nomad-lab.eu
+  homepage: https://fairmat-nfdi.github.io/pynxtools-spm/
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
