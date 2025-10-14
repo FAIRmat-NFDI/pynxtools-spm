@@ -25,7 +25,7 @@ plugins:
       module_name: docs/macros
   - mkdocs-simple-hooks:
       hooks:
-        on_pre_build: "docs.hooks:copy_hook"
+        on_pre_build: "docs.hooks:copy_hook" # Copy files content from souce to docs
 markdown_extensions:
   - attr_list
   - md_in_html
