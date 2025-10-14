@@ -2,4 +2,4 @@ prune *
 exclude *
 recursive-include src *.py *.json *.md *.txt *.sxm *.nxs *.yaml *.dat *.yml
 
-include pyproject.toml LICENSE README.md requirements.txt dev-requirements.txt mkdocs.yml
+include pyproject.toml LICENSE README.md mkdocs.yml
