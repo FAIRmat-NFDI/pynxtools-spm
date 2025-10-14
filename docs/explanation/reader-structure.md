@@ -6,7 +6,11 @@ The aim of the parser modules to read the raw data files from various SPM file f
  TODO: Mention all parser should build `SPMBase` class from `base_parser` module.
 Module structure of `parsers` subpackage:
 
+```bash
+--8<-- "included_file_content/parsers.txt"
 ```
+
+<!-- ```
 ./parsers/
 ├── base_parser.py
 ├── helpers.py
@@ -20,7 +24,7 @@ Module structure of `parsers` subpackage:
 │   └── utils.py
 ├── nanonis_sxm.py
 └── omicron_sm4.py
-```
+``` -->
 
 ## __`nxformatters` subpackage__
 The aim of the formatter modules to curate the data from various SPM file formats and convert and store them in `Template[link_goes_here]`. So, that the `writer[link_goes_here]` can write the data NeXus format according to the NeXus application definitions for SPM techniques.

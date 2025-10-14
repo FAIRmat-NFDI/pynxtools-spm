@@ -23,6 +23,9 @@ plugins:
   - search
   - macros:
       module_name: docs/macros
+  - mkdocs-simple-hooks:
+      hooks:
+        on_pre_build: "docs.hooks:copy_hook"
 markdown_extensions:
   - attr_list
   - md_in_html
@@ -31,7 +34,9 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: docs
+      check_paths: true
   - toc:
       permalink: True
   - pymdownx.arithmatex:
@@ -64,3 +69,5 @@ extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascript.js
+extra_files:
+  - tests/data/nanonis/stm/version_gen_5_with_described_nxdata/config.json
