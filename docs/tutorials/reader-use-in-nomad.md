@@ -14,7 +14,7 @@ The reader functionality of `pynxtools-spm` package can be used in [NOMAD](https
     
 ## __Use Example Available in NOMAD__
 
-If the `pynxtools-spm` package is installed witas a plugin a NOMAD, three demo examples for __STS__, __STM__, and __AFM__ shall be available in NOMAD. Starting with these examples may help you to understand how to use `pynxtools-spm` readers' functionality in NOMAD.
+If the `pynxtools-spm` package is installed as a plugin a NOMAD, three demo examples for __STS__, __STM__, and __AFM__ shall be available in NOMAD. Starting with these examples may help you to understand how to use `pynxtools-spm` readers' functionality in NOMAD.
 
 <video controls>
   <source src="../assets/DemoFromExampleUpload.webm" type="video/mp4">

@@ -35,15 +35,15 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
             nxdl: NXsts
             eln:
             hide: []
-        # Schema according to the applicatoin definition NXsts
+        # Schema according to the application definition NXsts
         quantities:
-            default:
+            attribute:
             type: str
             m_annotations:
                 eln:
                 component: StringEditQuantity
             description: |
-                The name of the NXdata group that comes as child of the entry group for default plot visualization
+                The name of the NXdata group that comes as child of the entry group for attribute plot visualization
                 to be displayed upon the entry of NeXus file.
             definition:
             type:
@@ -161,7 +161,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
                             eln:
                             component: StringEditQuantity
                         description: |
-                            If model has a distinquishable version (e.g. BP5e).
+                            If model has a distinguishable version (e.g. BP5e).
                 software:
                     section:
                     m_annotations:
@@ -197,7 +197,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
                             eln:
                             component: StringEditQuantity
                         description: |
-                            If model has a distinquishable version (e.g. BP5e).
+                            If model has a distinguishable version (e.g. BP5e).
                 lockin_amplifier:
                     section:
                     m_annotations:
@@ -235,7 +235,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
                         m_annotations:
                             eln:
                             component: NumberEditQuantity
-                            defaultDisplayUnit: K
+                            attributeDisplayUnit: K
                         description: |
                             Temperature of STM head. Note: At least one field from tip_temp,
                             cryo_bottom_temp and cryo_shield_temp must be provided.
@@ -246,7 +246,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
                         m_annotations:
                             eln:
                             component: NumberEditQuantity
-                            defaultDisplayUnit: K
+                            attributeDisplayUnit: K
                         description: |
                             Temperature of the cold tail of the cryostat. Note: 
                             At least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp must be provided.
@@ -256,7 +256,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
                         m_annotations:
                             eln:
                             component: NumberEditQuantity
-                            defaultDisplayUnit: K
+                            attributeDisplayUnit: K
                         description: |
                             Temperature of liquid nitrogen shield. Note: At
                             least one field from tip_temp, cryo_bottom_temp and cryo_shield_temp.
@@ -378,7 +378,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
             "nxdl": "NXsts",
             "input_files": ["config.json", "Bias-Spectroscopy00015_20230420.dat"],
             "export": true,
-            "default": "current_filter_grad",
+            "attribute": "current_filter_grad",
             "definition": "NXsts",
             "experiment_technique": "STS",
             "experiment_description": "<p>The experiment with</p>\n<p>Bias: -50mA<br />Setpoint: 25pA</p>",
@@ -443,7 +443,7 @@ In the tabbed window below, an example ELN schema file for an STS experiment is 
 
             <p>Two layers stack: Au-Mica</p>'
         name: Au(Mica)
-    default: current_filter_grad
+    attribute: current_filter_grad
     definition: NXsts
     experiment_description: '<p>The experiment with</p>
     <p>Bias: -50mA</p>
@@ -499,7 +499,7 @@ An ELN YAML file is similar to the YAML file (with the extension `.yaml`) genera
         description: 'Substrate:
             Two layers stack: Au-Mica'
         name: Au(Mica)
-    default: current_filter_grad
+    attribute: current_filter_grad
     definition: NXsts
     experiment_description: |
         'The experiment with
@@ -544,12 +544,12 @@ An ELN YAML file is similar to the YAML file (with the extension `.yaml`) genera
 
 The config file carries mapping information from the raw data to the NeXus Application Definition concepts. The config file follows certain rules for how the raw data will be processed and organized in the NeXus file. It is expected that lab users scrutinize the config file and modify it according to their needs. The file does not need to be modified for the underlying data structure, only for raw data paths.
 
-=== "Typical structure of config file (for nonanois STS data)"
+=== "Typical structure of config file (for nanonis STS data)"
     <div class="scrollable-img">
     ```json
     {
         "ENTRY[entry]": {
-            "@default": { "raw_path": "@default:current_filter" },
+            "@attribute": { "raw_path": "@attribute:current_filter" },
             "definition": { "@version": "" },
             "start_time": {
             "raw_path": "/Start time/value"
@@ -567,10 +567,10 @@ The config file carries mapping information from the raw data to the NeXus Appli
                 "@units": "/Lock-in/Frequency/unit"
                 },
                 "modulation_signal": {
-                "raw_path": "@default:Current"
+                "raw_path": "@attribute:Current"
                 },
                 "demodulated_signal": {
-                "raw_path": "@default:Current"
+                "raw_path": "@attribute:Current"
                 },
                 "reference_amplitude": {
                 "raw_path": "/Lock-in/Amplitude/value",
@@ -798,7 +798,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             ],
                             "@long_name": "Bias Voltage"
                         },
-                        "title": { "raw_path": "@default:Lockin Signal 1X" },
+                        "title": { "raw_path": "@attribute:Lockin Signal 1X" },
                         "grp_name": "Lockin Demod 1X"
                         },
                         {
@@ -818,7 +818,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Signal 1Y" },
+                        "title": { "raw_path": "@attribute:Lockin Signal 1Y" },
                         "grp_name": "Lockin Demod 1Y"
                         },
                         {
@@ -838,7 +838,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Signal 2X" },
+                        "title": { "raw_path": "@attribute:Lockin Signal 2X" },
                         "grp_name": "Lockin Demod 2X"
                         },
                         {
@@ -858,7 +858,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Signal 2Y" },
+                        "title": { "raw_path": "@attribute:Lockin Signal 2Y" },
                         "grp_name": "Lockin Demod 2Y"
                         },
                         {
@@ -879,7 +879,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Demod 1X(filter)" },
+                        "title": { "raw_path": "@attribute:Lockin Demod 1X(filter)" },
                         "grp_name": "Lockin_Demod_1X_filter"
                         },
                         {
@@ -900,7 +900,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Demod 1Y(filter)" },
+                        "title": { "raw_path": "@attribute:Lockin Demod 1Y(filter)" },
                         "grp_name": "Lockin_Demod_1Y_filter"
                         },
                         {
@@ -921,7 +921,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Demod 2X(filter)" },
+                        "title": { "raw_path": "@attribute:Lockin Demod 2X(filter)" },
                         "grp_name": "Lockin_Demod_2X_filter"
                         },
                         {
@@ -942,7 +942,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                             "/dat_mat_components/Bias/unit"
                             ]
                         },
-                        "title": { "raw_path": "@default:Lockin Demod 2Y(filter)" },
+                        "title": { "raw_path": "@attribute:Lockin Demod 2Y(filter)" },
                         "grp_name": "Lockin_Demod_2Y_filter"
                         }
                     ]
@@ -978,7 +978,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                 "piezo_configuration": {
                 "calibration": {
                     "calibration_type": {
-                    "raw_path": "@default:active"
+                    "raw_path": "@attribute:active"
                     },
                     "calibration_date": {
                     "raw_path": ""
@@ -1129,9 +1129,9 @@ The config file carries mapping information from the raw data to the NeXus Appli
                 "raw_path": "/Temperature 1/Temperature 1/value",
                 "@units": "/Temperature 1/Temperature 1/unit"
                 },
-                "cryo_shield_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
-                "cryo_bottom_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
-                "head_temperature_sensor": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/head_temperature_sensor"
+                "cryo_shield_temperature_sensor": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_shield_temperature_sensor",
+                "cryo_bottom_temperature_sensor": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/cryo_bottom_temperature_sensor",
+                "head_temperature_sensor": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/head_temperature_sensor"
             },
             "cryo_shield_temperature_sensor": {
                 "temp_offset_value": "",
@@ -1194,7 +1194,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                     ],
                     "axis_ind": 0
                     },
-                    "title": { "raw_path": "@default:Bias Spectroscopy Temperature1" },
+                    "title": { "raw_path": "@attribute:Bias Spectroscopy Temperature1" },
                     "grp_name": "temperature1"
                 },
                 {
@@ -1216,7 +1216,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                     "axis_ind": 0
                     },
                     "title": {
-                    "raw_path": "@default:Bias Spectroscopy Temperature1(filter)"
+                    "raw_path": "@attribute:Bias Spectroscopy Temperature1(filter)"
                     },
                     "grp_name": "temperature1_filter"
                 }
@@ -1241,7 +1241,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                     "/dat_mat_components/Bias/unit"
                 ]
                 },
-                "title": { "raw_path": "@default:Bias Spectroscopy" },
+                "title": { "raw_path": "@attribute:Bias Spectroscopy" },
                 "grp_name": "current"
             },
             {
@@ -1263,7 +1263,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                 ],
                 "axis_ind": 0
                 },
-                "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
+                "title": { "raw_path": "@attribute:Bias Spectroscopy(filter)" },
                 "grp_name": "Current_filter"
             },
             {
@@ -1284,7 +1284,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
                     "/dat_mat_components/Bias/unit"
                 ]
                 },
-                "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
+                "title": { "raw_path": "@attribute:Bias Spectroscopy(filter)" },
                 "grp_name": "Current_filter"
             },
             {
@@ -1305,25 +1305,25 @@ The config file carries mapping information from the raw data to the NeXus Appli
                     "/dat_mat_components/Bias/unit"
                 ]
                 },
-                "title": { "raw_path": "@default:Bias Spectroscopy(Backward)" },
+                "title": { "raw_path": "@attribute:Bias Spectroscopy(Backward)" },
                 "grp_name": "Current_Backward"
             }
             ],
             "reproducibility_indicators": {
-            "current": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current",
-            "current_gain": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/AMPLIFIER[amplifier]/current_gain",
-            "current_offset": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current_offset",
-            "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
-            "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
-            "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
+            "current": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current",
+            "current_gain": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/AMPLIFIER[amplifier]/current_gain",
+            "current_offset": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/current_sensor/current_offset",
+            "bias_sweep": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
+            "reference_frequency": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
+            "modulation_signal": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
             },
             "resolution_indicators": {
-            "head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
-            "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
-            "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
-            "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
-            "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
-            "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
+            "head_temperature": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
+            "cryo_bottom_temperature": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
+            "cryo_shield_temperature": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
+            "bias_sweep": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
+            "reference_frequency": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
+            "modulation_signal": "@attribute_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
             }
         }
     }
@@ -1334,7 +1334,7 @@ The config file carries mapping information from the raw data to the NeXus Appli
 
 __1.__ The simplest way to map NeXus concepts (fields and/or attributes) to the raw data file is to use a map from the concept name to another map object.
 === "Map for NeXus concept `field`"
-    <p>The field <b>reference_frequency</b> of <b>lockin_amplifier</b> group is mapped to an object containnig "raw_path" and attributes e.g., "units", "demo_attr".
+    <p>The field <b>reference_frequency</b> of <b>lockin_amplifier</b> group is mapped to an object containing "raw_path" and attributes e.g., "units", "demo_attr".
     The "raw_path" refers to the path of raw data (e.g., <it>/Lock-in/Frequency/value</it>).</p>
     <div class="scrollable">
     ```json
@@ -1348,34 +1348,34 @@ __1.__ The simplest way to map NeXus concepts (fields and/or attributes) to the 
     ```
     </div>
 === "Map for NeXus concept `attribute`"
-    <p>The attribute <b>default</b> of <b>entry</b> group is mapped to an object containing "raw_path".
+    <p>The attribute <b>attribute</b> of <b>entry</b> group is mapped to an object containing "raw_path".
     The "raw_path" refers to a path of raw data (e.g., <it>/NanonisMain/Experiment name/value</it>).
     <div class="scrollable">
     ```json
     "ENTRY[entry]": {
-        "@default": { "raw_path": "/NanonisMain/Experiment name/value" },
+        "@attribute": { "raw_path": "/NanonisMain/Experiment name/value" },
     }
     ```
     </div>
-__2.__ Set default values for a concept (field and/or attribute) via the config file
-=== "Default Values for NeXus `field`"
-    <p>A default value to a NeXus field <b>modulation_signal</b> field of <b>lockin_amplifier</b> can be set using the syntax "<b>@default:defatult_value</b>". 
+__2.__ Set attribute values for a concept (field and/or attribute) via the config file
+=== "attribute Values for NeXus `field`"
+    <p>A attribute value to a NeXus field <b>modulation_signal</b> field of <b>lockin_amplifier</b> can be set using the syntax "<b>@attribute:attribute_value</b>". 
     </p>
     <div class="scrollable">
     ```json
     "lockin_amplifier": {
         "modulation_signal": {
-        "raw_path": "@default:current"
+        "raw_path": "@attribute:current"
         },
     }
     ```
     </div>
-=== "Deafault Values for NeXus `atttribute`"
-    <p>A default value to a group attribute "<b>default</b>" of <b>entry</b> can be set by syntax "<b>@default:default_value</b>".</p>
+=== "Default Values for NeXus `attribute`"
+    <p>A attribute value to a group attribute "<b>attribute</b>" of <b>entry</b> can be set by syntax "<b>@attribute:attribute_value</b>".</p>
     <div class="scrollable">
     ```json
     "ENTRY[entry]": {
-        "@default": { "raw_path": "@default:current_grad" },
+        "@attribute": { "raw_path": "@attribute:current_grad" },
     }
     ```
     </div>
@@ -1481,12 +1481,12 @@ __3.__ Use the config file to define variadic names for concepts like groups, fi
             "@configurationNAME[configuration_name]": [
             {
                 "name_x": {
-                "raw_path": "default:@default:x_configuration"
+                "raw_path": "attribute:@attribute:x_configuration"
                 },
             },
             {
                 "name_y": {
-                "raw_path": "default:@default:y_configuration"
+                "raw_path": "attribute:@attribute:y_configuration"
                 }
             }
             ]
@@ -1500,10 +1500,10 @@ __3.__ Use the config file to define variadic names for concepts like groups, fi
         "piezo_sensor": {
             "piezo_configuration": {
                 "@configurationNAME[configuration_name_x]": {
-                    "raw_path": "default:@default:x_configuration"
+                    "raw_path": "attribute:@attribute:x_configuration"
                 },
                 "@configurationNAME[configuration_name_y]": {
-                    "raw_path": "default:@default:y_configuration"
+                    "raw_path": "attribute:@attribute:y_configuration"
                 }
             },    
         }
@@ -1511,9 +1511,9 @@ __3.__ Use the config file to define variadic names for concepts like groups, fi
     </div>
 __4.__ Write customized `NXdata` groups via the config file. It is often necessary for a user to annotate plots by defining the axis name and plot title.
 
-=== "Customised `NXdata group`"
-    <p>The <b>NXdata</b> can represent multiple instances of plotable data. Each set is defined by an object in the array of <b>DATA[data]</b>.
-    Each object contains  <b>data</b> key refering the <b>DATA</b> field of <b>NXdata</b> base class, string of numbers (e.g., <b>"0"</b>, <b>"1"</b>) refering the index of the independent axis variable(s) for the <b>data</b>, <b>title</b> key for <b>title</b> field of <b>NXdata</b> group, and <b>grp_name</b> key defining the instance name of the <b>NXdata</b> group.
+=== "Customized `NXdata group`"
+    <p>The <b>NXdata</b> can represent multiple instances of plottable data. Each set is defined by an object in the array of <b>DATA[data]</b>.
+    Each object contains  <b>data</b> key referring the <b>DATA</b> field of <b>NXdata</b> base class, string of numbers (e.g., <b>"0"</b>, <b>"1"</b>) referring the index of the independent axis variable(s) for the <b>data</b>, <b>title</b> key for <b>title</b> field of <b>NXdata</b> group, and <b>grp_name</b> key defining the instance name of the <b>NXdata</b> group.
     <div class="scrollable">
     ```json
     "DATA[data]": [
@@ -1534,7 +1534,7 @@ __4.__ Write customized `NXdata` groups via the config file. It is often necessa
                 "/dat_mat_components/Bias/unit"
             ]
             },
-            "title": { "raw_path": "@default:Bias Spectroscopy" },
+            "title": { "raw_path": "@attribute:Bias Spectroscopy" },
             "grp_name": "current"
         },
         {
@@ -1555,7 +1555,7 @@ __4.__ Write customized `NXdata` groups via the config file. It is often necessa
                 "/dat_mat_components/Bias/unit"
             ]
             },
-            "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
+            "title": { "raw_path": "@attribute:Bias Spectroscopy(filter)" },
             "grp_name": "Current_filter"
         }
     ]
@@ -1599,14 +1599,14 @@ __5.__ The `nxformatter` of `pynxtools-spm` has common functions, methods, and o
     ```
     </div>
 
-### __Default Features of `pynxtools-spm`__
+### __attribute Features of `pynxtools-spm`__
 
-There are some default features to handle raw data from specific vendor files.
+There are some attribute features to handle raw data from specific vendor files.
 
 __1.__ In STM, for Omicron raw files, the `SPM_SCAN_CONTROL[spm_scan_control_*]` group is instantiated for individual scans, e.g., `current_forward`, `current_backward`, `topography_forward`, `topography_backward`, etc.
 
 === "Multiple instances of `SPM_SCAN_CONTROL`"
-    <p>In the concvention <b>SPM_SCAN_CONTROL[spm_scan_control_*]</b> the replacing part is <b>*</b>. For each scan the instance name shall be <b>SPM_SCAN_CONTROL[spm_scan_control_current_forward]</b>. As the name <b>SPM_SCAN_CONTROL</b> is fully replaceable, one can wish to define the instance name as wish, e.g, in the config file, <b>SPM_SCAN_CONTROL[*]</b> or <b>SPM_SCAN_CONTROL[any_prefix_*_any_suffix]</b> both are allowed but one sterisk wildcard <b>*</b> must be provided.</p>.
+    <p>In the convention <b>SPM_SCAN_CONTROL[spm_scan_control_*]</b> the replacing part is <b>*</b>. For each scan the instance name shall be <b>SPM_SCAN_CONTROL[spm_scan_control_current_forward]</b>. As the name <b>SPM_SCAN_CONTROL</b> is fully replaceable, one can wish to define the instance name as wish, e.g, in the config file, <b>SPM_SCAN_CONTROL[*]</b> or <b>SPM_SCAN_CONTROL[any_prefix_*_any_suffix]</b> both are allowed but one asterisk wildcard <b>*</b> must be provided.</p>.
     <div class="scrollable">
     ```json
     "SCAN_ENVIRONMENT[scan_environment]": {
