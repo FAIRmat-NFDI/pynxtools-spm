@@ -1,0 +1,9 @@
+pynxtools_spm/nomad
+├── entrypoints.py
+├── examples
+│   ├── afm
+│   ├── stm
+│   └── sts
+└── nomad_example_paths.py
+
+4 directories, 2 files

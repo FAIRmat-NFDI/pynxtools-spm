@@ -7,24 +7,9 @@ The aim of the parser modules to read the raw data files from various SPM file f
 Module structure of `parsers` subpackage:
 
 ```bash
---8<-- "included_file_content/parsers.txt"
+--8<-- "included_file_content/subpackages_structure/parsers.txt"
 ```
 
-<!-- ```
-./parsers/
-├── base_parser.py
-├── helpers.py
-├── __init__.py
-├── nanonis_dat.py
-├── nanonispy
-│   ├── constants.py
-│   ├── __init__.py
-│   ├── README.md
-│   ├── read.py
-│   └── utils.py
-├── nanonis_sxm.py
-└── omicron_sm4.py
-``` -->
 
 ## __`nxformatters` subpackage__
 The aim of the formatter modules to curate the data from various SPM file formats and convert and store them in `Template[link_goes_here]`. So, that the `writer[link_goes_here]` can write the data NeXus format according to the NeXus application definitions for SPM techniques.
@@ -34,20 +19,8 @@ The `nxformatter` hosts modules `base_formatter`, `helpers` and nested subpackag
 Module structure of `nxformatters` subpackage:
 
 ```
-./nxformatters/
-├── base_formatter.py
-├── helpers.py
-├── __init__.py
-├── nanonis
-│   ├── __init__.py
-│   ├── nanonis_base.py
-│   ├── nanonis_dat_sts.py
-│   ├── nanonis_sxm_afm.py
-│   └── nanonis_sxm_stm.py
-└── omicron
-    ├── __init__.py
-    ├── omicron_base.py
-    └── omicron_sm4_stm.py
+--8<-- "included_file_content/subpackages_structure/nxformatters.txt"
+
 ```
 
 The class `SPMformatter` in module `base_formatter` holding the common interface and methods for all the formatters, whereas the vendor specific base formatters (e.g., `NanonisBase`, `omicronBase` in the modules `nanonis_base` and `omicron_base` repectively) in a modules of corresponding subpackages. On top of this base classes, we developed specific methods to curate the unstructure data coming from the raw files and `ELN` yaml file flowing the instruction given in `config` file. 
@@ -58,14 +31,8 @@ The `config` subpackage hosts some default config files for running the readers 
 Module structure of `config` subpackage:
 
 ```
-./configs/
-├── __init__.py
-├── nanonis
-│   ├── nanonis_dat_generic_sts.json
-│   ├── nanonis_sxm_generic_afm.json
-│   └── nanonis_sxm_generic_stm.json
-└── omicron
-    └── omicron_sm4_stm.json
+--8<-- "included_file_content/subpackages_structure/configs.txt"
+
 ```
 
 ## __`nomad` subpackage__
@@ -74,11 +41,5 @@ The `nomad` subpackage hosts module for nomad entry points in the `entrypoints` 
 Module structure of `nomad` subpackage:
 
 ```
-./nomad/
-├── entrypoints.py
-├── examples
-│   ├── afm
-│   ├── stm
-│   └── sts
-└── nomad_example_paths.py
+--8<-- "included_file_content/subpackages_structure/nomad.txt"
 ```
