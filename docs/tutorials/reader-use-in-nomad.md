@@ -10,7 +10,7 @@ The reader functionality of `pynxtools-spm` package can be used in [NOMAD](https
     `pynxtools-spm==0.1.6`.
 
     Please ensure that you have the same version of `NOMAD` to get the same graphical user interface (GUI) as shown in the tutorial.
-    In later version of NOMAD GUI may change, but the overall functionality should remain similar.
+    In later version of NOMAD, the GUI may change, but the overall functionality should remain similar.
     
 ## __Use Example Available in NOMAD__
 
