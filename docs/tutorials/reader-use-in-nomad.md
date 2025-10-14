@@ -1,6 +1,6 @@
 # __Use Reader in NOMAD__
 
-The reader functionality of `pynxtools-spm` package can be used in [NOMAD](https://nomad-lab.eu/nomad-lab/) if the package is installed as a plugin of the `pynxtools` package where NOMAD is installed. For instructions on installing `pynxtools-spm` with NOMAD, please follow the [installation guide](../tutorials/installation.md#install-pynxtools-spm-with-nomad).
+The reader functionality of `pynxtools-spm` package can be used in [NOMAD](https://nomad-lab.eu/nomad-lab/) if the package is installed together with the `pynxtools` package in NOMAD. For instructions on installing `pynxtools-spm` with NOMAD, please follow the [installation guide](../tutorials/installation.md#install-pynxtools-spm-with-nomad).
 
 !!! note
     To produce this tutorial, we used the following version
