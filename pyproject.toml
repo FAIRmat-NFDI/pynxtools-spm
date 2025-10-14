@@ -42,9 +42,9 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "mypy",
-    "ruff>=0.8.3",
+    "ruff>=0.14.0",
     "pytest",
-    "pip-tools",
+    "pre-commit",
 ]
 
 docs = [
