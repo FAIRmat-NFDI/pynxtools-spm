@@ -15,18 +15,18 @@ __1.__ Command to convert a STS raw data file into NeXus file
 ```bash
 $ dataconverter --nxdl NXsts --reader spm --output output.nxs eln_data.yaml nanonis_sts_file.dat config.json
 ```
-Try with [STS example files](../assets/command_line_examples/sts.zip){:sts}.
+Download and try with [STS example files](../assets/command_line_examples/sts.zip){:sts} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/sts/version_gen_5_with_described_nxdata).
 
 __2.__ Command to convert a STM raw data file into NeXus file
 ```bash
 $ dataconverter --nxdl NXstm --reader spm --output output.nxs eln_data.yaml nanonis_stm_file.sxm config.json
 ```
 
-Try with [STM example files](../assets/command_line_examples/stm.zip){:stm}.
+Download and try with [STM example files](../assets/command_line_examples/stm.zip){:stm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/stm/version_gen_5_with_described_nxdata).
 
 __3.__ Command to convert a AFM raw data file into NeXus file
 ```bash
 $ dataconverter --nxdl NXafm --reader spm --output output.nxs eln_data.yaml nanonis_afm_file.sxm config.json
 ```
 
-Try with [AFM example files](../assets/command_line_examples/afm.zip){:afm}.
+Download and try with [AFM example files](../assets/command_line_examples/afm.zip){:afm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/afm/version_gen_4_with_described_nxdata).
