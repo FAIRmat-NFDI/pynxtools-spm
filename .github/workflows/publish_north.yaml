@@ -3,6 +3,7 @@ on:
     push:
         branches:
             - main
+            - NORTHTools
         tags:
             - "v*.*.*"
 
