@@ -25,8 +25,8 @@ jobs:
               working-directory: ${{ github.workspace }}/north_notebook
               run: |
                   echo "$pwd"
-                  chmod +x scripts/genrate_requirement_file.sh
-                  ./scripts/update_deps.sh
+                  chmod +x scripts/generate_requirement_file.sh
+                  ./scripts/generate_requirement_file.sh
 
             - name: Set up Kaniko
               uses: int128/kaniko-action@v1
