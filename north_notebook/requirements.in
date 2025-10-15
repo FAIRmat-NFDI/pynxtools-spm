@@ -1,0 +1,9 @@
+h5glance>=0.8
+h5grove>=1.1.0
+jupyterlab-h5web[full]==7.1.1
+jupyterlab<4.0.0,>=3.2.9
+punx>=0.2.5
+ipywidgets
+pynxtools==0.10.8
+pynxtools-spm==0.1.2
+nodejs

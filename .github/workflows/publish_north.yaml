@@ -1,0 +1,61 @@
+name: Publish North
+on:
+    push:
+        branches:
+            - main
+        tags:
+            - "v*.*.*"
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+    DOCKER_TAG: ${{ github.ref_name }}
+
+jobs:
+    build:
+        name: Build Docker Image
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+              with:
+                  submodules: recursive # Load submodules if any
+            - name: Run dependency update script
+              working-directory: ${{ github.workspace }}/north_notebook
+              run: |
+                  echo "$pwd"
+                  chmod +x scripts/genrate_requirement_file.sh
+                  ./scripts/update_deps.sh
+
+            - name: Set up Kaniko
+              uses: int128/kaniko-action@v1
+              with:
+                  push: true
+                  context: .
+                  file: ./north_notebook/Dockerfile
+                  tags: |
+                      ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+              env:
+                  DOCKER_CONFIG: /kaniko/.docker
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # test:
+    #     name: Run tests in built Docker image
+    #     runs-on: ubuntu-latest
+    #     needs: build
+
+    #     steps:
+    #         - name: Checkout repository
+    #           uses: actions/checkout@v4
+
+    #         - name: Log in to GitHub Container Registry
+    #           run: |
+    #               echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    #         - name: Pull built image
+    #           run: |
+    #               docker pull ghcr.io/${{ github.repository }}:${{ env.DOCKER_TAG }}
+
+    #         - name: Run tests inside container
+    #           run: |
+    #               docker run --rm ghcr.io/${{ github.repository }}:${{ env.DOCKER_TAG }} \
+    #                   bash -c "pip install pytest nbmake && pytest --nbmake --nbmake-timeout=3600 example/**/E*"
