@@ -1,5 +1,6 @@
 # Custom Dictionary Words
 
+#pynxtools-spm
 pynxtools_spm
 nxformatted
 nanonis
@@ -10,10 +11,11 @@ subpackages
 Mformatter
 nannispy
 
-
+#pynxtools
 pynxtools
 dataconverter
 
+#NeXus
 NeXus
 nxdl
 cryo
@@ -33,16 +35,13 @@ nxscan
 Finishup
 PAMY
 
-
-
-
+# Nomad and Fairmat
 NOMAD
 NFDI
 fairmat
 datamodel
 
-
-
+#Author names
 González
 José
 José
