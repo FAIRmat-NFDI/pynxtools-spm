@@ -51,7 +51,7 @@ definitions:
             coming from the output file, e.g. Comment01 SYNC & Filter LP 8order WITHDRAW
             600 steps, locked Au(111), 50pA, 100 mV set point, 1mV DCA, 973Hz,138
             1st H, -84 2nd H.
-        identifier_experiment: 
+        identifier_experiment:
           type: str
           m_annotations:
             eln:
@@ -59,7 +59,7 @@ definitions:
           description: |
             An unique identifier fot the experiment. e.g. the identifier
             could be specific for a lab or experiment team.
-        identifier_collection: 
+        identifier_collection:
           type: str
           m_annotations:
             eln:
@@ -129,8 +129,8 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Generic 5e).
-                    model/@version:
+                        Version or model of the component named by the manufacturer (e.g. Generic 5e).
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -166,7 +166,7 @@ definitions:
                         Version or model, required to choose correct file parser, of the component named 
                         by the manufacturer (e.g. Generic 5e).
                         Note that model should be exactly the same as the one in the experiment file.
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -238,7 +238,7 @@ definitions:
         Sample:
           section:
             m_annotations:
-              eln: 
+              eln:
                 overview: true
             quantities:
               name:
@@ -256,7 +256,7 @@ definitions:
                 description: |
                   The chemical formula specified using CIF conventions.
                   Abbreviated version of CIF standard:
-                  
+
                   * Only recognized element symbols may be used.
                   * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
                   * A space or parenthesis must separate each cluster of (element symbol + count).
@@ -267,7 +267,7 @@ definitions:
                     structure, the order of the elements within any group or moiety depends on
                     whether or not carbon is present.
                   * If carbon is present, the order should be:
-                  
+
                     - C, then H, then the other elements in alphabetical order of their symbol.
                     - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
                     
@@ -311,7 +311,7 @@ definitions:
                       description: |
                         The chemical formula specified using CIF conventions.
                         Abbreviated version of CIF standard:
-                        
+
                         * Only recognized element symbols may be used.
                         * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
                         * A space or parenthesis must separate each cluster of (element symbol + count).
@@ -322,7 +322,7 @@ definitions:
                           structure, the order of the elements within any group or moiety depends on
                           whether or not carbon is present.
                         * If carbon is present, the order should be:
-                        
+
                           - C, then H, then the other elements in alphabetical order of their symbol.
                           - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
                           

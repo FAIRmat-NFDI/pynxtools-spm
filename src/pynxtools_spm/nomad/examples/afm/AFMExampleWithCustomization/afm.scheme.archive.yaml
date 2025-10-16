@@ -1,7 +1,9 @@
 definitions:
-  name: Atomic Force Microscopy (AFM) ELN Examples
+  name: "AFM_ELN_Example"
+  eln:
+    label: "AFM ELN Example"
   sections:
-    afm:
+    ELN_for_AFM:
       base_sections:
         - pynxtools.nomad.dataconverter.NexusDataConverter
         - nomad.datamodel.data.EntryData
@@ -11,6 +13,7 @@ definitions:
           nxdl: NXafm
         eln:
           hide: []
+          label: "ELN for AFM"
       quantities:
         default:
           type: str
@@ -29,7 +32,7 @@ definitions:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the definitions from NeXus app def designed for STS experiments, one can use 
+            Name of the definitions from NeXus app def designed for STS experiments, one can use
             NXsts or NXspm, but NXsts is recommended.
         experiment_technique:
           type:
@@ -61,11 +64,11 @@ definitions:
             eln:
               component: RichTextEditQuantity
           description: |
-            Descriptive comments for this experiment, added by the experimenter in eln or 
+            Descriptive comments for this experiment, added by the experimenter in eln or
             coming from the output file, e.g. Comment01 SYNC & Filter LP 8order WITHDRAW
             600 steps, locked Au(111), 50pA, 100 mV set point, 1mV DCA, 973Hz,138
             1st H, -84 2nd H.
-        identifier_experiment: 
+        identifier_experiment:
           type: str
           m_annotations:
             eln:
@@ -74,7 +77,7 @@ definitions:
             An unique identifier fot the experiment. e.g. the identifier
             could be specific for a lab or experiment team.
 
-        identifier_collection: 
+        identifier_collection:
           type: str
           m_annotations:
             eln:
@@ -145,8 +148,8 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Nanonis).
-                    model/@version:
+                        Version or model of the component named by the manufacturer (e.g. Nanonis).
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -181,7 +184,7 @@ definitions:
                       description: |
                         Version or model of the component named by the manufacturer (e.g. Generic 4).
                         Note that this should be exacty the same as in experiment file.
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -238,7 +241,7 @@ definitions:
                           component: NumberEditQuantity
                           defaultDisplayUnit: K
                       description: |
-                        Temperature of the cold tail of the cryostat. Note: 
+                        Temperature of the cold tail of the cryostat. Note:
                         At least one field from tip_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
                     cryo_shield_temperature:
                       type: np.float64
@@ -253,7 +256,7 @@ definitions:
         Sample:
           section:
             m_annotations:
-              eln: 
+              eln:
                 overview: true
             quantities:
               name:
@@ -271,7 +274,7 @@ definitions:
                 description: |
                   The chemical formula specified using CIF conventions.
                   Abbreviated version of CIF standard:
-                  
+
                   * Only recognized element symbols may be used.
                   * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
                   * A space or parenthesis must separate each cluster of (element symbol + count).
@@ -282,10 +285,10 @@ definitions:
                     structure, the order of the elements within any group or moiety depends on
                     whether or not carbon is present.
                   * If carbon is present, the order should be:
-                  
+
                     - C, then H, then the other elements in alphabetical order of their symbol.
                     - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
-                    
+
                   * This is the *Hill* system used by Chemical Abstracts.
               description:
                 type: str
@@ -326,7 +329,7 @@ definitions:
                       description: |
                         The chemical formula specified using CIF conventions.
                         Abbreviated version of CIF standard:
-                        
+
                         * Only recognized element symbols may be used.
                         * Each element symbol is followed by a 'count' number. A count of '1' may be omitted.
                         * A space or parenthesis must separate each cluster of (element symbol + count).
@@ -337,10 +340,10 @@ definitions:
                           structure, the order of the elements within any group or moiety depends on
                           whether or not carbon is present.
                         * If carbon is present, the order should be:
-                        
+
                           - C, then H, then the other elements in alphabetical order of their symbol.
                           - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
-                          
+
                         * This is the *Hill* system used by Chemical Abstracts.
                     description:
                       type: str
@@ -369,7 +372,7 @@ definitions:
                               eln:
                                 component: RichTextEditQuantity
                             description: |
-                              Title of an image or other details of the note.                          
+                              Title of an image or other details of the note.
                   quantities:
                     identifier_history:
                       type: str
