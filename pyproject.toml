@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64.0.1", "setuptools-scm[toml]>=6.2"]
+requires = ["setuptools>=78.1.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,6 +16,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
 ]
@@ -24,8 +25,6 @@ dependencies = [
     # "pynxtools>=0.11.0",
     "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@master#egg=pynxtools",
     # "pySPM==0.6.2",  # SPM file reader for Bruker files use it when you have Bruker files
-    "pint",
-    "xarray",
     "matplotlib",
     "scipy",
     "hvplot",
@@ -85,6 +84,7 @@ lint.select = [
     "E", # pycodestyle
     "W", # pycodestyle
     "PL", # pylint
+    "NPY201", # upgrade to numpy>2
 ]
 lint.ignore = [
     "E501", # Line too long ({width} > {limit} characters)
