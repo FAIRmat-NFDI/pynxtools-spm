@@ -12,7 +12,7 @@ Module structure of `parsers` subpackage:
 
 
 ## __`nxformatters` subpackage__
-The aim of the formatter modules to curate the data from various SPM file formats and convert and store them in `Template[link_goes_here]`. So, that the `writer[link_goes_here]` can write the data NeXus format according to the NeXus application definitions for SPM techniques.
+The aim of the formatter modules to curate the data from various SPM file formats and convert and store them in [Template](https://github.com/FAIRmat-NFDI/pynxtools/blob/master/src/pynxtools/dataconverter/template.py). So, that the [writer](https://github.com/FAIRmat-NFDI/pynxtools/blob/master/src/pynxtools/dataconverter/template.py) can write the data NeXus format according to the NeXus application definitions for SPM techniques.
 
 The `nxformatter` hosts modules `base_formatter`, `helpers` and nested subpackages for each SPM vendors (e.g., `nanonis`, `omicron`) with corresponding formatter modules for `STS`, `STM` and `AFM`.
 
