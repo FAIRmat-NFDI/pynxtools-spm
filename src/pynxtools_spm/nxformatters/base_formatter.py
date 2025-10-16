@@ -67,6 +67,7 @@ CONVERT_DICT = {
     "Scan_environment": "SCAN_ENVIRONMENT[scan_environment]",
     "Sample_component": "SAMPLE_COMPONENT[sample_component]",
     "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
+    "model_version": "model/@version",
 }
 
 PINT_QUANTITY_MAPPING = {
