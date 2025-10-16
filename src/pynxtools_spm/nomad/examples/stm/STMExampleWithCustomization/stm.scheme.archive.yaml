@@ -1,7 +1,7 @@
 definitions:
-  name: 'STM_ELN_Example'
+  name: "STM_ELN_Example"
   eln:
-    label: 'STM ELN Example'
+    label: "STM ELN Example"
   sections:
     ELN_for_STM:
       base_sections:
@@ -13,7 +13,7 @@ definitions:
           nxdl: NXstm
         eln:
           hide: []
-          label: 'ELN for STM'
+          label: "ELN for STM"
       quantities:
         default:
           type: str
@@ -144,8 +144,8 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Nanonis).
-                    model/@version:
+                        Version or model of the component named by the manufacturer (e.g. Nanonis).
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -181,7 +181,7 @@ definitions:
                         Version or model, required to choose correct file parser, of the component named
                         by the manufacturer (e.g. Generic 5e).
                         Note that the model should be exactly the same as in the experiment file.
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:

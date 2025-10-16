@@ -1,7 +1,7 @@
 definitions:
-  name: 'AFM_ELN_Example'
+  name: "AFM_ELN_Example"
   eln:
-    label: 'AFM ELN Example'
+    label: "AFM ELN Example"
   sections:
     ELN_for_AFM:
       base_sections:
@@ -13,7 +13,7 @@ definitions:
           nxdl: NXafm
         eln:
           hide: []
-          label: 'ELN for AFM'
+          label: "ELN for AFM"
       quantities:
         default:
           type: str
@@ -148,8 +148,8 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Nanonis).
-                    model/@version:
+                        Version or model of the component named by the manufacturer (e.g. Nanonis).
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -184,7 +184,7 @@ definitions:
                       description: |
                         Version or model of the component named by the manufacturer (e.g. Generic 4).
                         Note that this should be exacty the same as in experiment file.
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:

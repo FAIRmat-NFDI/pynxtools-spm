@@ -1,7 +1,7 @@
 definitions:
-  name: 'STS_ELN_Example'
+  name: "STS_ELN_Example"
   eln:
-    label: 'STS ELN Example'
+    label: "STS ELN Example"
   sections:
     ELN_for_STS:
       base_sections:
@@ -13,7 +13,7 @@ definitions:
           nxdl: NXsts
         eln:
           hide: []
-          label: 'ELN for STS'
+          label: "ELN for STS"
       quantities:
         default:
           type: str
@@ -132,8 +132,8 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                          Version or model of the component named by the manufacturer (e.g. Generic 5e).
-                    model/@version:
+                        Version or model of the component named by the manufacturer (e.g. Generic 5e).
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -169,7 +169,7 @@ definitions:
                         Version or model, required to choose correct file parser, of the component named
                         by the manufacturer (e.g. Generic 5e).
                         Note that model should be exactly the same as the one in the experiment file.
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
