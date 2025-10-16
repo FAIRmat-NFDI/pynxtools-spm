@@ -10,9 +10,9 @@ nav:
   - Home: index.md
   - Tutorial:
       - tutorials/installation.md
-      - tutorials/reader-use-in-nomad.md
-  - How-To-Guides:
-      - how-to-guides/how-to-use-the-reader.md
+      - tutorials/use-reader-in-nomad.md
+  - How-To Guides:
+      - how-to-guides/work-with-reader.md
       - how-to-guides/how-to-extend-readers.md
   - Explanation:
       - explanation/reader-orchestra.md
@@ -23,9 +23,9 @@ plugins:
   - search
   - macros:
       module_name: docs/macros
-  - mkdocs-simple-hooks:
-      hooks:
-        on_pre_build: "docs.hooks:copy_hook" # Copy files content from souce to docs
+  # - mkdocs-simple-hooks:
+  #     hooks:
+  #       on_pre_build: "docs.hooks:copy_hook" # Copy files content from souce to docs
 markdown_extensions:
   - attr_list
   - md_in_html
@@ -50,6 +50,7 @@ theme:
   name: material
   pallet:
     primary: "#2A4CDF"
+    accent: "#008A67"
   font:
     text: "Titillium Web"
   features:

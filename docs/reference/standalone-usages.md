@@ -1,3 +1,4 @@
+# Standalone Usages
 `pynxtools-spm` is a tool for converting content from a raw data file and user provided data to the NeXus file according to the NeXus application definitions for SPM techniques.
 
 One can use [NOMAD](https://nomad-lab.eu/) (see how to upload in NOMAD [documentation](../tutorials/use-reader-in-nomad.md)) research data management system (RMD) to upload the raw data files or command in terminal (needs `pynxtools-spm` installed in your local Python environment, see [installation guide](../tutorials/installation.md)) to convert the raw data files into NeXus file.

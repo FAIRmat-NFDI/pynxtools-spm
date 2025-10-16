@@ -35,7 +35,7 @@ Alternatively, install `pynxtools-spm` as a plugin for the `pynxtools` package f
 $ uv pip install pynxtools[spm]  # Install from PyPI
 ```
 
-Or, install the `pynxtools-spm` package in development mode in activated Python environment to contribute in the code repository:
+Or, install the `pynxtools-spm` package in development mode in your activated Python environment to contribute in the code repository:
 
 ```bash
 $ git clone https://github.com/FAIRmat-NFDI/pynxtools-spm.git
@@ -54,5 +54,5 @@ To install `pynxtools-spm` with [NOMAD](https://nomad-lab.eu/nomad-lab/), first 
 $ uv pip install nomad-lab --extra-index-url https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple
 $ uv pip install pynxtools[spm]
 ```
-
-Note that installing `pynxtools-spm` with NOMAD does not provide any additional advantages unless you deploy NOMAD, called `NOMAD-Oasis`, on your premises or in the cloud. For installation and configuration details, see [NOMAD Oasis](https://nomad-lab.eu/prod/v1/docs/howto/oasis/configure.html).
+!!! note
+    Installing `pynxtools-spm` with NOMAD does not provide any additional advantages unless you deploy NOMAD, called `NOMAD-Oasis`, on your premises or in the cloud. For installation and configuration details, see [NOMAD Oasis](https://nomad-lab.eu/prod/v1/docs/howto/oasis/configure.html).

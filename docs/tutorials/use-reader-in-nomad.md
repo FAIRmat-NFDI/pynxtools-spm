@@ -20,13 +20,13 @@ If the `pynxtools-spm` package is installed as a plugin a NOMAD, three demo exam
   <source src="../assets/DemoFromExampleUpload.webm" type="video/mp4">
 </video>
 
-These examples in NOMAD can be utilized to extend or modify the reader input files, such as modifying the `ELN schema file` or `config file`, to customize the reader functionality according to user requirements. For details, see the [How to Use the Reader](../how-to-guides/work-with-reader.md) guide.
+These examples in NOMAD can be utilized to extend or modify the reader input files, such as modifying the `ELN schema file` or `config file`, to customize the reader functionality according to user requirements. For details, see [How to Use the Reader](../how-to-guides/work-with-reader.md) guide.
 
 ## __Drag and Drop Example in NOMAD__
 
 The three examples above-mentioned may not be sufficient to store all data and metadata from an experiment. Therefore, you can modify the ELN schema file to structure and store metadata according to the application definitions. Below are a few steps to upload data in NOMAD using the drag-and-drop method:
 
-__1.__ Create a NOMAD upload by clicking the `CREATE A NEW UPLOAD` button on the NOMAD upload page.
+__1.__ Create a NOMAD upload by clicking the `CREATE A NEW UPLOAD` button on NOMAD upload page.
 
 <div class="scrollable-img">
     <img src="../assets/create_upload.png"
@@ -46,7 +46,7 @@ __3.__ Create a NOMAD [archive](https://nomad-lab.eu/prod/v1/docs/reference/glos
   <source src="../assets/CreateArchiveFromCustomSchema.webm" type="video/mp4">
 </video>
 
-__4.__ After creating an archive entry, the data section will immediately be expand for adding input data along with raw data files. By filling in the required metadata (e.g., the name of the `nxdl`, software and hardware specifications), the data can be saved in a NeXus file.
+__4.__ After creating an archive entry, the data section will immediately be expand for adding input data along with raw data files. By filling required metadata (e.g., the name of the `nxdl`, software and hardware specifications), the data can be saved in a NeXus file.
 
 <video controls>
   <source src="../assets/FinishupCustomizeUpload.webm" type="video/mp4">
