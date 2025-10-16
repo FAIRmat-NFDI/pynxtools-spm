@@ -173,7 +173,9 @@ class SPMformatter(ABC):
         template: Template,
         raw_file: Union[str, "Path"],
         eln_file: str | Path,
-        config_file: Optional[Union[str, Path]] = None,  # Incase it is not provided by users
+        config_file: Optional[
+            Union[str, Path]
+        ] = None,  # Incase it is not provided by users
         entry: Optional[str] = None,
     ):
         self.template: Template = template
@@ -383,7 +385,9 @@ class SPMformatter(ABC):
                 if not ("[" in part and "]" in part):
                     pattern += rf"/{part}(\[\w+\])?"
                 else:
-                    pattern = pattern + "/" + part.replace("[", r"\[").replace("]", r"\]")
+                    pattern = (
+                        pattern + "/" + part.replace("[", r"\[").replace("]", r"\]")
+                    )
             # pattern += "$"
 
             for tmp_k, tmp_v in self.template.items():
@@ -468,7 +472,9 @@ class SPMformatter(ABC):
             elif isinstance(val, list):
                 # Variadic fields
                 if all(
-                    "raw_path" in enddct for vardict in val for _, enddct in vardict.items()
+                    "raw_path" in enddct
+                    for vardict in val
+                    for _, enddct in vardict.items()
                 ):
                     # for var_fld_dct in val:
                     self._handle_variadic_field_with_modified_raw_data_key(
@@ -590,7 +596,9 @@ class SPMformatter(ABC):
                     continue
                 ax_nm = val.pop("name", "")
                 ax_ind = val.pop("axis_ind", index)
-                axdata_unit_other = _get_data_unit_and_others(self.raw_data, end_dict=val)
+                axdata_unit_other = _get_data_unit_and_others(
+                    self.raw_data, end_dict=val
+                )
                 if isinstance(axdata_unit_other[0], np.ndarray):
                     nxdata_axes.append(ax_nm)
                     nxdata_indices.append(ax_ind)
@@ -601,7 +609,9 @@ class SPMformatter(ABC):
         field_nm_variadic = f"DATA[{field_nm_fit}]"
         self.template[f"{dt_path}/title"] = f"Title Data Group {group_index}"
         if rearrange_2d_data and isinstance(fld_arr, np.ndarray) and fld_arr.ndim == 2:
-            fld_arr = self.rearrange_data_according_to_axes(fld_arr, is_forward=is_forward)
+            fld_arr = self.rearrange_data_according_to_axes(
+                fld_arr, is_forward=is_forward
+            )
         self.template[f"{dt_path}/{field_nm_variadic}"] = fld_arr
         self.template[f"{dt_path}/{field_nm_variadic}/@units"] = d_unit
         self.template[f"{dt_path}/{field_nm_variadic}/@long_name"] = (
@@ -671,7 +681,9 @@ class SPMformatter(ABC):
             """Format start time"""
 
             # "day.month.year hour:minute:second" -> "day-month-year hour:minute:second"
-            re_pattern = re.compile(r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})")
+            re_pattern = re.compile(
+                r"(\d{1,2})\.(\d{1,2})\.(\d{4}) (\d{1,2}:\d{1,2}:\d{1,2})"
+            )
 
             if not isinstance(fld_data, str):
                 return
@@ -739,27 +751,39 @@ class SPMformatter(ABC):
 
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""
-        self.template[f"{parent_path}/{group_name}/scan_start_x"] = self.NXScanControl.x_start
+        self.template[f"{parent_path}/{group_name}/scan_start_x"] = (
+            self.NXScanControl.x_start
+        )
         self.template[f"{parent_path}/{group_name}/scan_start_x/@units"] = (
             self.NXScanControl.x_start_unit
         )
-        self.template[f"{parent_path}/{group_name}/scan_start_y"] = self.NXScanControl.y_start
+        self.template[f"{parent_path}/{group_name}/scan_start_y"] = (
+            self.NXScanControl.y_start
+        )
         self.template[f"{parent_path}/{group_name}/scan_start_y/@units"] = (
             self.NXScanControl.y_start_unit
         )
-        self.template[f"{parent_path}/{group_name}/scan_end_x"] = self.NXScanControl.x_end
+        self.template[f"{parent_path}/{group_name}/scan_end_x"] = (
+            self.NXScanControl.x_end
+        )
         self.template[f"{parent_path}/{group_name}/scan_end_x/@units"] = (
             self.NXScanControl.x_end_unit
         )
-        self.template[f"{parent_path}/{group_name}/scan_end_y"] = self.NXScanControl.y_end
+        self.template[f"{parent_path}/{group_name}/scan_end_y"] = (
+            self.NXScanControl.y_end
+        )
         self.template[f"{parent_path}/{group_name}/scan_end_y/@units"] = (
             self.NXScanControl.y_end_unit
         )
-        self.template[f"{parent_path}/{group_name}/scan_range_x"] = self.NXScanControl.x_range
+        self.template[f"{parent_path}/{group_name}/scan_range_x"] = (
+            self.NXScanControl.x_range
+        )
         self.template[f"{parent_path}/{group_name}/scan_range_x/@units"] = (
             self.NXScanControl.x_range_unit
         )
-        self.template[f"{parent_path}/{group_name}/scan_range_y"] = self.NXScanControl.y_range
+        self.template[f"{parent_path}/{group_name}/scan_range_y"] = (
+            self.NXScanControl.y_range
+        )
         self.template[f"{parent_path}/{group_name}/scan_range_y/@units"] = (
             self.NXScanControl.y_range_unit
         )
