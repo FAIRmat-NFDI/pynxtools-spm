@@ -25,7 +25,7 @@ Module structure of `nxformatters` subpackage:
 The class `SPMformatter` in module `base_formatter` holding the common interface and methods for all the formatters, whereas the vendor specific base formatters (e.g., `NanonisBase`, `omicronBase` in the modules `nanonis_base` and `omicron_base` respectively) in a modules of corresponding subpackages. On top of this base classes, we developed specific methods to curate the unstructured data coming from the raw files and `ELN` yaml file flowing the instruction given in `config` file. 
 
 ## __`config` subpackage__
-The `config` subpackage hosts some attribute config files for running the readers using those config files (not recommended because user may need modify some of the concepts). This config files can be considered as source for writing the custom config files for specific use cases.
+The `config` subpackage hosts some attribute config files for running the readers using those config files (not recommended because user may need modify some of the concepts). These config files can be considered as source for writing the custom config files for specific use cases.
 
 Module structure of `config` subpackage:
 
