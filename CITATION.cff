@@ -47,7 +47,7 @@ doi: ''
 repository-code: 'https://github.com/FAIRmat-NFDI/pynxtools-spm'
 url: ''
 abstract:
-  The pynxtools-spm is a plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools) written in Python. 
+  The pynxtools-spm package is a plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools) written in Python. 
   pynxtools-spm is a tool for reading, translating, and processing data of specific experiments from the 
   Scanning Probe Microscopy (SPM) family — STM (Scanning Tunneling Microscopy), STS (Scanning Tunneling 
   Spectroscopy), and AFM (Atomic Force Microscopy). The tool standardizes data and metadata such that it 
