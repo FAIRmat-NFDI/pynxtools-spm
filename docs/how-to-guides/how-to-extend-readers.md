@@ -2,7 +2,7 @@ The `pynxtools-spm` reader package is designed in a modular way to make it easy 
 
 ## __Extend File Formats or Add New Techniques__
 
-This is an open-source project, and any contribution to this project is welcome. Before proceeding with the steps below, please first read the [reader structure](../explanation/reader-structure.md) to understand the modular design of the reader package.
+This is an open-source project and any contribution to this project is welcome. Before proceeding with the steps below, please first read the [reader structure](../explanation/reader-structure.md) to understand the modular design of the reader package.
 
 To include a new reader for a technique or extend the reader capability by including other file formats, follow the steps below:
 
