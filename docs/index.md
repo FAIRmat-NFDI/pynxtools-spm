@@ -14,8 +14,7 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 
 ### Tutorial
 - [Installation](tutorials/installation.md)
-- [Use Reader in NOMAD](tutorials/reader-use-in-nomad.md)
-- [Use Reader from Command Line](reference/standalone-usages.md)
+- [Use Reader in NOMAD](tutorials/use-reader-in-nomad.md)
 
 </div>
 <!--
@@ -25,32 +24,30 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 
 ### How-To-Guides
 
-- [Work with Reader](how-to-guides/how-to-use-the-reader.md)
+- [Work with Reader](how-to-guides/work-with-reader.md)
 - [Extend Readers' Orchestra](how-to-guides/how-to-extend-readers.md)
 
 </div>
 <div markdown="block">
 
-### Learn
-
-- [Scanning Probe Microscopy (SPM) Application Definitions](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure)
-- [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
+### Explanation
+- [Reader Structure](explanation/reader-structure.md)
+- [Reader Orchestra](explanation/reader-orchestra.md)
 
 </div>
 <div markdown="block">
 
 ### Reference
 
-<!-- 1. List of files supported by the Reader follow XPS -->
-
+- [Use Reader from Command Line](reference/standalone-usages.md)
 - Define [NOMAD](https://nomad-lab.eu/nomad-lab/) [ELN schema](https://nomad-lab.eu/prod/v1/staging/docs/howto/customization/elns.html#schemas-for-elns)
 - [NOMAD Glossary](https://nomad-lab.eu/prod/v1/staging/docs/reference/glossary.html)
 - [NeXus Format](https://www.nexusformat.org/)
-- [Reader in NOMAD](reference/reference.md#nomad)
 - [NeXus application definition in Reader](reference/reference.md#nexus)
 - [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
 - [nanonispy for reading Nanonis files (e.g., `.sxm`)](https://github.com/underchemist/nanonispy)
 - [spym for reading Omicron files (e.g., `.sm4`)](https://github.com/rescipy-project/spym)
+- [Scanning Probe Microscopy (SPM) Application Definitions](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure)
 
 </div>
 </div>

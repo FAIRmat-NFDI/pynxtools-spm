@@ -20,7 +20,7 @@ If the `pynxtools-spm` package is installed as a plugin a NOMAD, three demo exam
   <source src="../assets/DemoFromExampleUpload.webm" type="video/mp4">
 </video>
 
-These examples in NOMAD can be utilized to extend or modify the reader input files, such as modifying the `ELN schema file` or `config file`, to customize the reader functionality according to user requirements. For details, see the [How to Interact with the Reader](../how-to-guides/how-to-use-the-reader.md) guide.
+These examples in NOMAD can be utilized to extend or modify the reader input files, such as modifying the `ELN schema file` or `config file`, to customize the reader functionality according to user requirements. For details, see the [How to Use the Reader](../how-to-guides/work-with-reader.md) guide.
 
 ## __Drag and Drop Example in NOMAD__
 

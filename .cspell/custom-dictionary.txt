@@ -19,7 +19,6 @@ dataconverter
 NeXus
 nxdl
 cryo
-cryo
 Calib
 Demod
 forw
@@ -47,15 +46,11 @@ José
 José
 Cojal
 Mozumder
-orcid
 Lukas
 Pielsticker
-orcid
 Yichen
-orcid
 Florian
 Dobener
-orcid
 Ginzburg
 orcid
 Markus

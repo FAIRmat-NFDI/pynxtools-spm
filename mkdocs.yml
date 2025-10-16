@@ -11,13 +11,13 @@ nav:
   - Tutorial:
       - tutorials/installation.md
       - tutorials/reader-use-in-nomad.md
-  - How-To-Guides: 
+  - How-To-Guides:
       - how-to-guides/how-to-use-the-reader.md
       - how-to-guides/how-to-extend-readers.md
-  - Explanation: 
+  - Explanation:
       - explanation/reader-orchestra.md
       - explanation/reader-structure.md
-  - Reference: 
+  - Reference:
       - reference/standalone-usages.md
 plugins:
   - search
@@ -51,7 +51,7 @@ theme:
   pallet:
     primary: "#2A4CDF"
   font:
-    text: 'Titillium Web'
+    text: "Titillium Web"
   features:
     - content.code.copy
     - content.code.annotate
@@ -62,12 +62,10 @@ theme:
   logo: assets/nomad-plugin-logo.png
   icon:
     repo: fontawesome/brands/github
-extra: 
+extra:
   generator: false
   homepage: https://fairmat-nfdi.github.io/pynxtools-spm/
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascript.js
-extra_files:
-  - tests/data/nanonis/stm/version_gen_5_with_described_nxdata/config.json

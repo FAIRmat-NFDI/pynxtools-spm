@@ -3,7 +3,6 @@ The reader orchestra of `pynxtools-spm` hosting multiple readers for `STS`, `STM
 
 ## __`parsers` subpackage__
 The aim of the parser modules to read the raw data files from various SPM file formats and convert the raw data path into slash separated hierarchical path. So, that the common function can build for all the file formats to read the raw data from the files. For reading the raw data into slash separated hierarchical path, we used several third party python package e.g.,  `spym` python package [ref] for reading `sm4` from `Omicron` or code from third party package like `nanonispy`. 
- TODO: Mention all parser should build `SPMBase` class from `base_parser` module.
 Module structure of `parsers` subpackage:
 
 ```bash
