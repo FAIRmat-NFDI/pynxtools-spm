@@ -13,7 +13,7 @@ definitions:
           nxdl: NXafm
         eln:
           hide: []
-          label: 'ELN_for_AFM'
+          label: 'ELN for AFM'
       quantities:
         default:
           type: str
