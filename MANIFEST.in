@@ -1,5 +1,5 @@
 prune *
 exclude *
-recursive-include src *.py *.json *.md *.txt *.sxm *.nxs *.yaml *.dat *.yml
+recursive-include src *.py *.json *.md *.txt *.sxm *.nxs *.yaml *.dat *.yml *.sm4
 
 include pyproject.toml LICENSE README.md mkdocs.yml

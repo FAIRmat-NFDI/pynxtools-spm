@@ -115,10 +115,10 @@ class SPMReader(BaseReader):
             # nss.get_nxformatted_template()
         elif experirment_technique == "STM" and raw_file_ext == "sm4":
             from pynxtools_spm.nxformatters.omicron.omicron_sm4_stm import (
-                OmicronSM4STMFormatter,
+                OmicronSM4STM,
             )
 
-            formater_obj = OmicronSM4STMFormatter(
+            formater_obj = OmicronSM4STM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,

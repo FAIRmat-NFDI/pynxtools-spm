@@ -8,5 +8,4 @@
 ![](https://coveralls.io/repos/github/FAIRmat-NFDI/pynxtools_spm/badge.svg?branch=master)
 
  # SPM Reader
- !!WARNING!! The is under development.
- 
+ See full documentation at [https://fairmat-nfdi.github.io/pynxtools-spm/](https://fairmat-nfdi.github.io/pynxtools-spm/).
