@@ -32,7 +32,7 @@ The `STM` reader is a part of `pynxtools-spm` package and builds on the [NXstm](
 The `AFM` reader is also part of `pynxtools-spm` package and builds on the [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) application definition and needs an experimental file, a config file and a ELN (ELN stands for Electronic Lab Notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) application concepts.
 
 !!! Warning 
-    The configuration file maps the NeXus data model corresponding application definition to the data model from raw file. This implies that raw files from different software versions or vendors require different configuration files. It is most likely that the path refering to the raw data in a input file needs to be updated in the configuration file for different type of instruments.
+    The configuration file maps the NeXus data model corresponding application definition to the data model from raw file. This implies that raw files from different software versions or vendors require different configuration files. It is most likely that the path referring to the raw data in a input file needs to be updated in the configuration file for different type of instruments.
 
 ### __Supported Vendor Files and Formats__
 Readers support the following vendor files and formats.
