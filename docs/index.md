@@ -54,10 +54,10 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 
 ## Project and Community
 
-The reader is part of the project [FAIRmat](https://www.fairmat-nfdi.eu/fairmat), a FAIR data infrastructure for condensed-matter physics and the chemical physics of solids.
+The `pynxtools-spm` reader is part of the project [FAIRmat](https://www.fairmat-nfdi.eu/fairmat), a FAIR data infrastructure for condensed-matter physics and the chemical physics of solids.
 
 - [FAIRmat project](https://gepris.dfg.de/gepris/projekt/460197019?language=en), which is funded by [NFDI](https://www.nfdi.de/)
 - Reach reader developers via [GitHub issue tracker](https://github.com/FAIRmat-NFDI/pynxtools-spm/issues)
 - Reach pynxtools developers via [GitHub issue tracker](https://github.com/FAIRmat-NFDI/pynxtools/issues)
 
-- Reach the NeXus-FAIRmat community via the [webpage](https://fairmat-nfdi.github.io/nexus_definitions/) or the [GitHub issue tracker](https://fairmat-nfdi.github.io/nexus_definitions/)
+- Reach the NeXus-FAIRmat community via the [webpage](https://fairmat-nfdi.github.io/nexus_definitions/).

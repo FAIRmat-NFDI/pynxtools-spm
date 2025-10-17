@@ -5,14 +5,14 @@ Scanning Probe Microscopy (SPM) is a high resolution imaging technique used to s
 We have developed community driven standard application definition, using [NeXus](https://www.nexusformat.org/) data format, for [SPM](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html) subdomains e.g., [STM](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), [STS](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html), [AFM](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html) and a few base classes to describe instrument components (e.g. [Lock-in](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXlockin.html#nxlockin), [Cantilever](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm_cantilever.html#nxspm-cantilever)). Based on our data model, we build the data workflow that connects the data from experiment generated raw files to the standard application definition inscribed in a HDF5 file (as we are using NeXus data format in HDF5 file, later on we also call it NeXus file with '.nxs' extension).
 
 !!! note
-    One can use `NXspm` for any sub technique, but do not warranty the validation of the NeXus data file.
+    One can use the supper application definition [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html) for any sub technique, but do not warranty the validation of the NeXus data file.
 
 ## __SPM Readers__
-The SPM reader is plugin of material science reader framework [pynxtools](https://github.com/FAIRmat-NFDI/pynxtools) and anchors a bundle of readers from STM, STS and AFM. The readers follow a [common structure](../reader_structure.md) that shall allow to extend the reader orchestra by including new readers for different SPM sub-techniques such as spin-polarized STM. For each type of techniques (e.g., STM, STS, and AFM), there might be multiple instruments vendors (e.g., Nanonis, Omicron) and each vendor favors different data format and data model. Therefore, each reader is designed to be modular and configurable to work with different data formats and data models.
+The SPM reader is plugin of material science reader framework [pynxtools](https://github.com/FAIRmat-NFDI/pynxtools) and anchors a bundle of readers from STM, STS and AFM. The readers follow a [common structure](./reader-structure.md) that shall allow to extend the reader orchestra by including new readers for different SPM sub-techniques such as spin-polarized STM. For each type of techniques (e.g., STM, STS, and AFM), there might be multiple instruments providers (e.g., Nanonis, Omicron) and each vendor favors different data format and data model. Therefore, each reader is designed to be modular and configurable to work with different data formats and data models.
 
 The prime purpose of the readers is to transform data from measurement files into NeXus file according to the SPM community supported schema (NeXus applications and base classes) which allows experimentalists to store, organize, search, analyze, and share experimental data in NOMAD (if plugin `pynxtools-spm` is integrated with [NOMAD](https://nomad-lab.eu/nomad-lab/)) research data management (RDM) platform. 
 
-To understand the reader structure, one might start understanding the design pattern of the application definitions [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html), [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), [NXsts]https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), and [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) on the [FAIRmat NeXus Proposal](https://fairmat-nfdi.github.io/nexus_definitions/) page or in the [GitHub repository].
+To understand the reader structure, one might start understanding the design pattern of the application definitions [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html), [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html), and [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) on the [FAIRmat NeXus Proposal](https://fairmat-nfdi.github.io/nexus_definitions/) page or in the [GitHub repository](https://github.com/FAIRmat-NFDI/nexus_definitions).
 
 ### __Members of `pynxtools-spm` Reader Orchestra__
 `pynxtools-spm` includes three readers:
@@ -23,18 +23,18 @@ To understand the reader structure, one might start understanding the design pat
 
 #### __STS reader__
 
-The `STS` reader builds on the [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html) application definition and needs an experimental file, a config file and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html) according to the application concepts.
+The `STS` reader builds on the [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html) application definition and needs an experimental file, a config file and a ELN (ELN stands for Electronic Lab Notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXsts](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html) application concepts.
 
 #### __STM Reader__
-The STM reader is a part of `pynxtools-spm` package and builds on the [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html) application definition and needs an experimental file, a config file and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html) application concepts.
+The `STM` reader is a part of `pynxtools-spm` package and builds on the [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html) application definition and needs an experimental file, a config file and a ELN (ELN stands for Electronic Lab Notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html) application concepts.
 
 #### __AFM Reader__
-The AFM reader is a part of `pynxtools-spm` package and builds on the [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) application definition and needs an experimental file, a config file and a eln (eln stands for electronic lab notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) application concepts.
+The `AFM` reader is also part of `pynxtools-spm` package and builds on the [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) application definition and needs an experimental file, a config file and a ELN (ELN stands for Electronic Lab Notebook) file to transform the experiment generated data (from raw files) and user provided data (from ELN) into NeXus file according to the [NXafm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html) application concepts.
 
 !!! Warning 
-  The configuration file maps the data model of the raw file to the data model inscribed in the corresponding application definition. This implies that raw files from different software versions or vendors require different configuration files. It is most likely that the path to the raw data file needs to be updated in the configuration file.
+    The configuration file maps the NeXus data model corresponding application definition to the data model from raw file. This implies that raw files from different software versions or vendors require different configuration files. It is most likely that the path refering to the raw data in a input file needs to be updated in the configuration file for different type of instruments.
 
-### __Supported Vendor files and Formats__
+### __Supported Vendor Files and Formats__
 Readers support the following vendor files and formats.
 
 - __STS__
@@ -53,10 +53,17 @@ Readers support the following vendor files and formats.
 The readers mainly need three input files to transform the data into the `NXsts`, `NXstm`, and `NXafm` application definitions for `STS`, `STM`, and `AFM` techniques, respectively. The three input files are - 
 
 #### __Experimental file__ 
-The experimental file is the raw data file generated by the instrument software e.g., (`.dat` for Nanonis `STS` files).
+The experimental file is the raw data file generated by the instrument software e.g., (file with `.dat` extension for Nanonis `STS` files).
+
+=== "A Nanonis STS Raw Data File"
+    <div class="scrollable">
+    ```text
+    --8<-- "included_file_content/sts/Bias-Spectroscopy00015_20230420.dat"
+    ```
+    </div>
 
 #### __Config file__ 
-The config file is a `json` file which maps between the data model (unstructured data) of the raw data file and the data model inscribed in the (e.g., `NXsts`) application definition. Note that, as a intermediate step the corresponding parser generates a data object (e.g., Python dictionary) developing slash separated string key mapping to the value. In the config file, the key string path is used as a path referring the data in raw file. To know how to read this config file and modify it, please follow `Config File` in  [Work with Reader](../how-to-guides/work-with-reader.md) guide.
+The config file is a `json` file which maps between the data model (unstructured data) of the raw data file and the data model inscribed in the application definition (e.g., `NXsts`). Note that, as a intermediate step the corresponding parser (see [Reader Structure](../how-to-guides/work-with-reader.md)) generates key-value pair data object (e.g., Python dictionary) from raw data file. The data object organizes raw data path by a forward slash separated string key mapping to the value (e.g., `'/Experiment/value': 'bias spectroscopy'`). To know how to read this config file and modify it, please follow `Config File` in  [Work with Reader](../how-to-guides/work-with-reader.md) guide.
 
 
 === "Config File Nanonis (STS)"
@@ -79,9 +86,7 @@ The config file is a `json` file which maps between the data model (unstructured
     </div>
 
 #### __ELN Schema file__ 
-The ELN schema file is a `yaml` file which describes the metadata of the experiment. To know how to read this ELN schema file and modify it, please follow section `ELN Schema File` [Work with Reader](../how-to-guides/work-with-reader.md) guide. This file only usable in [NOMAD](https://nomad-lab.eu/nomad-lab/) RDM system.
-
-This type of ELN needs to be used if the reader is run from the command line. To know which fields and groups refer to which type of data, one needs to read the NeXus definition on the [FAIRmat NeXus Proposal](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html#nxsts) page or in the [GitHub repository](https://github.com/FAIRmat-NFDI/nexus_definitions/blob/fairmat/contributed_definitions/NXsts.nxdl.xml).
+The ELN schema file is a `yaml` file which annotates the metadata of the experiment not available in `raw data file`. To know how to read this ELN schema file and modify it, please follow section `ELN Schema File` [Work with Reader](../how-to-guides/work-with-reader.md) guide. This file only usable in [NOMAD](https://nomad-lab.eu/nomad-lab/) RDM system.
 
 === "ELN Schema file (STS)"
     <div class="scrollable">
