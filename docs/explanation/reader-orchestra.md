@@ -86,7 +86,7 @@ The config file is a `json` file which maps between the data model (unstructured
     </div>
 
 #### __ELN Schema file__ 
-The ELN schema file is a `yaml` file which annotates the metadata of the experiment not available in `raw data file`. To know how to read this ELN schema file and modify it, please follow section `ELN Schema File` [Work with Reader](../how-to-guides/work-with-reader.md) guide. This file only usable in [NOMAD](https://nomad-lab.eu/nomad-lab/) RDM system.
+The ELN schema file is a `yaml` file which describes the metadata of the experiment. To know how to read this ELN schema file and modify it, please follow the section `ELN Schema File` in the [How to work with readers](../how-to-guides/how-to-use-the-reader.md) guide. This file is only usable within the [NOMAD](https://nomad-lab.eu/nomad-lab/) RDM system.
 
 === "ELN Schema file (STS)"
     <div class="scrollable">
