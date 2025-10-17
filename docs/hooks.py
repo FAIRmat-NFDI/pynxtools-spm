@@ -1,3 +1,4 @@
+import json
 import shutil
 import subprocess
 from pathlib import Path
@@ -60,13 +61,24 @@ def copy_eln_schema():
     shutil.copy(src, dst)
 
 
-def copy_raw_files():
-    # STS
+def copy_miscelleneous_files():
+    # STS nanonis dat file
     dst = "docs/included_file_content/sts/Bias-Spectroscopy00015_20230420.dat"
     src = "tests/data/nanonis/sts/version_gen_5_with_described_nxdata/Bias-Spectroscopy00015_20230420.dat"
     dst_path = Path(dst)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src, dst)
+
+    # STS nomad archive file
+    dst = "docs/included_file_content/sts/STSExample.archive.json"
+    src = "src/pynxtools_spm/nomad/examples/sts/STSExampleWithCustomization/STSExample.archive.json"
+    dst_path = Path(dst)
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # write in proper json with indentation
+    with open(src, "r") as src_file:
+        content = json.load(src_file)
+        dst_path.write_text(json.dumps(content, indent=4))
 
 
 def generate_folder_structure():
@@ -116,5 +128,5 @@ def generate_folder_structure():
 def copy_hook(*args, **kwargs):
     copy_config_and_plain_eln()
     copy_eln_schema()
-    copy_raw_files()
+    copy_miscelleneous_files()
     generate_folder_structure()
