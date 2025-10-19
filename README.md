@@ -1,5 +1,5 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![DOI](https://zenodo.org/badge/{890885270}.svg)](https://zenodo.org/badge/latestdoi/{890885270})
+[![DOI](https://zenodo.org/badge/890885270.svg)](https://zenodo.org/badge/latestdoi/890885270)
 ![](https://github.com/FAIRmat-NFDI/pynxtools-spm/actions/workflows/pytest.yml/badge.svg)
 ![](https://github.com/FAIRmat-NFDI/pynxtools-spm/actions/workflows/pylint.yml/badge.svg)
 ![](https://github.com/FAIRmat-NFDI/pynxtools-spm/actions/workflows/publish.yml/badge.svg)
