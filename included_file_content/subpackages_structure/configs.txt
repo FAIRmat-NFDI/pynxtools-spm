@@ -1,0 +1,10 @@
+pynxtools_spm/configs
+├── __init__.py
+├── nanonis
+│   ├── nanonis_dat_generic_sts.json
+│   ├── nanonis_sxm_generic_afm.json
+│   └── nanonis_sxm_generic_stm.json
+└── omicron
+    └── omicron_sm4_stm.json
+
+3 directories, 5 files
