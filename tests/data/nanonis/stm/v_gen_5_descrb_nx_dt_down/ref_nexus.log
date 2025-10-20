@@ -40,8 +40,8 @@ DEBUG:
     
 ===== ATTRS (//@HDF5_Version)
 DEBUG: ===== ATTRS (//@HDF5_Version)
-value: 1.14.6 
-DEBUG: value: 1.14.6 
+value: 1.14.6
+DEBUG: value: 1.14.6
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -68,8 +68,8 @@ DEBUG:
         
 ===== ATTRS (//@NX_class)
 DEBUG: ===== ATTRS (//@NX_class)
-value: NXroot 
-DEBUG: value: NXroot 
+value: NXroot
+DEBUG: value: NXroot
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -82,8 +82,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== ATTRS (//@NeXus_release)
 DEBUG: ===== ATTRS (//@NeXus_release)
-value: v2024.02.post1.dev1996+g6cfc2d2e 
-DEBUG: value: v2024.02.post1.dev1996+g6cfc2d2e 
+value: v2024.02.post1.dev1996+g6cfc2d2e
+DEBUG: value: v2024.02.post1.dev1996+g6cfc2d2e
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -124,8 +124,8 @@ DEBUG:
         
 ===== ATTRS (//@NeXus_repository)
 DEBUG: ===== ATTRS (//@NeXus_repository)
-value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e 
-DEBUG: value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e 
+value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e
+DEBUG: value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -152,8 +152,8 @@ DEBUG:
         
 ===== ATTRS (//@file_name)
 DEBUG: ===== ATTRS (//@file_name)
-value: stm_5_with_described_nxdata.nxs 
-DEBUG: value: stm_5_with_described_nxdata.nxs 
+value: stm_5_with_described_nxdata.nxs
+DEBUG: value: stm_5_with_described_nxdata.nxs
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -170,8 +170,8 @@ File name of original NeXus file
 DEBUG: File name of original NeXus file
 ===== ATTRS (//@file_time)
 DEBUG: ===== ATTRS (//@file_time)
-value: 2025-10-20 12:00:36.382397+02:00 
-DEBUG: value: 2025-10-20 12:00:36.382397+02:00 
+value: 2025-10-20 12:50:19.208046+02:00
+DEBUG: value: 2025-10-20 12:50:19.208046+02:00
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -188,8 +188,8 @@ Date and time file was originally created
 DEBUG: Date and time file was originally created
 ===== ATTRS (//@file_update_time)
 DEBUG: ===== ATTRS (//@file_update_time)
-value: 2025-10-20 12:00:36.382397+02:00 
-DEBUG: value: 2025-10-20 12:00:36.382397+02:00 
+value: 2025-10-20 12:50:19.208046+02:00
+DEBUG: value: 2025-10-20 12:50:19.208046+02:00
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -206,8 +206,8 @@ Date and time of last file change at close
 DEBUG: Date and time of last file change at close
 ===== ATTRS (//@h5py_version)
 DEBUG: ===== ATTRS (//@h5py_version)
-value: 3.14.0 
-DEBUG: value: 3.14.0 
+value: 3.14.0
+DEBUG: value: 3.14.0
 classpath: ['']
 DEBUG: classpath: ['']
 classes:
@@ -288,8 +288,8 @@ DEBUG:
 	
 ===== ATTRS (//entry@NX_class)
 DEBUG: ===== ATTRS (//entry@NX_class)
-value: NXentry 
-DEBUG: value: NXentry 
+value: NXentry
+DEBUG: value: NXentry
 classpath: ['NXentry']
 DEBUG: classpath: ['NXentry']
 classes:
@@ -310,8 +310,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== ATTRS (//entry@default)
 DEBUG: ===== ATTRS (//entry@default)
-value: current_forward 
-DEBUG: value: current_forward 
+value: current_forward
+DEBUG: value: current_forward
 classpath: ['NXentry']
 DEBUG: classpath: ['NXentry']
 classes:
@@ -872,8 +872,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/current_backward@NX_class)
 DEBUG: ===== ATTRS (//entry/current_backward@NX_class)
-value: NXdata 
-DEBUG: value: NXdata 
+value: NXdata
+DEBUG: value: NXdata
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -896,8 +896,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== ATTRS (//entry/current_backward@axes)
 DEBUG: ===== ATTRS (//entry/current_backward@axes)
-value: ['y' 'x'] 
-DEBUG: value: ['y' 'x'] 
+value: [y, x]
+DEBUG: value: [y, x]
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -944,8 +944,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_backward@signal)
 DEBUG: ===== ATTRS (//entry/current_backward@signal)
-value: current 
-DEBUG: value: current 
+value: current
+DEBUG: value: current
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -998,8 +998,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_backward@x_indices)
 DEBUG: ===== ATTRS (//entry/current_backward@x_indices)
-value: 0 
-DEBUG: value: 0 
+value: 0
+DEBUG: value: 0
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1022,8 +1022,8 @@ DEBUG: @x_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/current_backward@y_indices)
 DEBUG: ===== ATTRS (//entry/current_backward@y_indices)
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1046,8 +1046,8 @@ DEBUG: @y_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== FIELD (//entry/current_backward/current): <HDF5 dataset "current": shape (256, 256), type ">f4">
 DEBUG: ===== FIELD (//entry/current_backward/current): <HDF5 dataset "current": shape (256, 256), type ">f4">
-value: [-3.0191998e-11 -2.9023716e-11 -3.3862201e-11 -2.9165219e-11 ...
-DEBUG: value: [-3.0191998e-11 -2.9023716e-11 -3.3862201e-11 -2.9165219e-11 ...
+value: [-3.01919982e-11, -2.90237157e-11, -3.38622012e-11, ..., -3.09129111e-11, -2.87516573e-11, -2.97593755e-11]
+DEBUG: value: [-3.01919982e-11, -2.90237157e-11, -3.38622012e-11, ..., -3.09129111e-11, -2.87516573e-11, -2.97593755e-11]
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -1094,8 +1094,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_backward/current@long_name)
 DEBUG: ===== ATTRS (//entry/current_backward/current@long_name)
-value: current (ampere) 
-DEBUG: value: current (ampere) 
+value: current (ampere)
+DEBUG: value: current (ampere)
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -1116,8 +1116,8 @@ data label
 DEBUG: data label
 ===== ATTRS (//entry/current_backward/current@units)
 DEBUG: ===== ATTRS (//entry/current_backward/current@units)
-value: ampere 
-DEBUG: value: ampere 
+value: ampere
+DEBUG: value: ampere
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -1132,8 +1132,8 @@ NXdata.nxdl.xml:/DATA@units - REQUIRED, but undefined unit category
 DEBUG: NXdata.nxdl.xml:/DATA@units - REQUIRED, but undefined unit category
 ===== FIELD (//entry/current_backward/title): <HDF5 dataset "title": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/current_backward/title): <HDF5 dataset "title": shape (), type "|O">
-value: Title Data Group 0 
-DEBUG: value: Title Data Group 0 
+value: Title Data Group 0
+DEBUG: value: Title Data Group 0
 classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 classes:
@@ -1152,8 +1152,8 @@ DEBUG:
 		
 ===== FIELD (//entry/current_backward/x): <HDF5 dataset "x": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/current_backward/x): <HDF5 dataset "x": shape (256,), type "<f8">
-value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
-DEBUG: value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
+value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
+DEBUG: value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -1204,8 +1204,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_backward/x@units)
 DEBUG: ===== ATTRS (//entry/current_backward/x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -1232,8 +1232,8 @@ DEBUG:
 			
 ===== FIELD (//entry/current_backward/y): <HDF5 dataset "y": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/current_backward/y): <HDF5 dataset "y": shape (256,), type "<f8">
-value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
-DEBUG: value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
+value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
+DEBUG: value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -1284,8 +1284,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_backward/y@units)
 DEBUG: ===== ATTRS (//entry/current_backward/y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -1758,8 +1758,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/current_forward@NX_class)
 DEBUG: ===== ATTRS (//entry/current_forward@NX_class)
-value: NXdata 
-DEBUG: value: NXdata 
+value: NXdata
+DEBUG: value: NXdata
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1782,8 +1782,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== ATTRS (//entry/current_forward@axes)
 DEBUG: ===== ATTRS (//entry/current_forward@axes)
-value: ['y' 'x'] 
-DEBUG: value: ['y' 'x'] 
+value: [y, x]
+DEBUG: value: [y, x]
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1830,8 +1830,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_forward@signal)
 DEBUG: ===== ATTRS (//entry/current_forward@signal)
-value: current 
-DEBUG: value: current 
+value: current
+DEBUG: value: current
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1884,8 +1884,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_forward@x_indices)
 DEBUG: ===== ATTRS (//entry/current_forward@x_indices)
-value: 0 
-DEBUG: value: 0 
+value: 0
+DEBUG: value: 0
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1908,8 +1908,8 @@ DEBUG: @x_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/current_forward@y_indices)
 DEBUG: ===== ATTRS (//entry/current_forward@y_indices)
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -1932,8 +1932,8 @@ DEBUG: @y_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== FIELD (//entry/current_forward/current): <HDF5 dataset "current": shape (256, 256), type ">f4">
 DEBUG: ===== FIELD (//entry/current_forward/current): <HDF5 dataset "current": shape (256, 256), type ">f4">
-value: [-2.9788554e-11 -2.8605018e-11 -2.7488961e-11 -3.0999120e-11 ...
-DEBUG: value: [-2.9788554e-11 -2.8605018e-11 -2.7488961e-11 -3.0999120e-11 ...
+value: [-2.97885536e-11, -2.86050177e-11, -2.74889608e-11, ..., -3.03598917e-11, -3.18436007e-11, -3.17812270e-11]
+DEBUG: value: [-2.97885536e-11, -2.86050177e-11, -2.74889608e-11, ..., -3.03598917e-11, -3.18436007e-11, -3.17812270e-11]
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -1980,8 +1980,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_forward/current@long_name)
 DEBUG: ===== ATTRS (//entry/current_forward/current@long_name)
-value: current (ampere) 
-DEBUG: value: current (ampere) 
+value: current (ampere)
+DEBUG: value: current (ampere)
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -2002,8 +2002,8 @@ data label
 DEBUG: data label
 ===== ATTRS (//entry/current_forward/current@units)
 DEBUG: ===== ATTRS (//entry/current_forward/current@units)
-value: ampere 
-DEBUG: value: ampere 
+value: ampere
+DEBUG: value: ampere
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -2018,8 +2018,8 @@ NXdata.nxdl.xml:/DATA@units - REQUIRED, but undefined unit category
 DEBUG: NXdata.nxdl.xml:/DATA@units - REQUIRED, but undefined unit category
 ===== FIELD (//entry/current_forward/title): <HDF5 dataset "title": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/current_forward/title): <HDF5 dataset "title": shape (), type "|O">
-value: Title Data Group 0 
-DEBUG: value: Title Data Group 0 
+value: Title Data Group 0
+DEBUG: value: Title Data Group 0
 classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 classes:
@@ -2038,8 +2038,8 @@ DEBUG:
 		
 ===== FIELD (//entry/current_forward/x): <HDF5 dataset "x": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/current_forward/x): <HDF5 dataset "x": shape (256,), type "<f8">
-value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
-DEBUG: value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
+value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
+DEBUG: value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -2090,8 +2090,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_forward/x@units)
 DEBUG: ===== ATTRS (//entry/current_forward/x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -2118,8 +2118,8 @@ DEBUG:
 			
 ===== FIELD (//entry/current_forward/y): <HDF5 dataset "y": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/current_forward/y): <HDF5 dataset "y": shape (256,), type "<f8">
-value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
-DEBUG: value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
+value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
+DEBUG: value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -2170,8 +2170,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/current_forward/y@units)
 DEBUG: ===== ATTRS (//entry/current_forward/y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -2198,8 +2198,8 @@ DEBUG:
 			
 ===== FIELD (//entry/definition): <HDF5 dataset "definition": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/definition): <HDF5 dataset "definition": shape (), type "|O">
-value: NXstm 
-DEBUG: value: NXstm 
+value: NXstm
+DEBUG: value: NXstm
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2282,8 +2282,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/definition@URL)
 DEBUG: ===== ATTRS (//entry/definition@URL)
-value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e 
-DEBUG: value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e 
+value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e
+DEBUG: value: https://github.com/FAIRmat-NFDI/nexus_definitions/blob/6cfc2d2e
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2306,8 +2306,8 @@ URL of NXDL file
 DEBUG: URL of NXDL file
 ===== ATTRS (//entry/definition@version)
 DEBUG: ===== ATTRS (//entry/definition@version)
-value: v2024.02.post1.dev1996+g6cfc2d2e 
-DEBUG: value: v2024.02.post1.dev1996+g6cfc2d2e 
+value: v2024.02.post1.dev1996+g6cfc2d2e
+DEBUG: value: v2024.02.post1.dev1996+g6cfc2d2e
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2336,8 +2336,8 @@ NXDL version number
 DEBUG: NXDL version number
 ===== FIELD (//entry/end_time): <HDF5 dataset "end_time": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/end_time): <HDF5 dataset "end_time": shape (), type "|O">
-value: 2023-04-29T01:23:56+02:00 
-DEBUG: value: 2023-04-29T01:23:56+02:00 
+value: 2023-04-29T01:23:56+02:00
+DEBUG: value: 2023-04-29T01:23:56+02:00
 classpath: ['NXentry', 'NX_DATE_TIME']
 DEBUG: classpath: ['NXentry', 'NX_DATE_TIME']
 classes:
@@ -2362,8 +2362,8 @@ Ending time of measurement
 DEBUG: Ending time of measurement
 ===== FIELD (//entry/experiment_description): <HDF5 dataset "experiment_description": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/experiment_description): <HDF5 dataset "experiment_description": shape (), type "|O">
-value: Experiment with Bias: -50mV Setpoint: 25pA 
-DEBUG: value: Experiment with Bias: -50mV Setpoint: 25pA 
+value: Experiment with Bias: -50mV Setpoint: 25pA
+DEBUG: value: Experiment with Bias: -50mV Setpoint: 25pA
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2384,8 +2384,8 @@ Brief summary of the experiment, including key objectives.
 DEBUG: Brief summary of the experiment, including key objectives.
 ===== FIELD (//entry/experiment_technique): <HDF5 dataset "experiment_technique": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/experiment_technique): <HDF5 dataset "experiment_technique": shape (), type "|O">
-value: STM 
-DEBUG: value: STM 
+value: STM
+DEBUG: value: STM
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2426,8 +2426,8 @@ DEBUG:
             
 ===== FIELD (//entry/identifier_collection): <HDF5 dataset "identifier_collection": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/identifier_collection): <HDF5 dataset "identifier_collection": shape (), type "|O">
-value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419 
-DEBUG: value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419 
+value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419
+DEBUG: value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2480,8 +2480,8 @@ DEBUG:
 		
 ===== FIELD (//entry/identifier_experiment): <HDF5 dataset "identifier_experiment": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/identifier_experiment): <HDF5 dataset "identifier_experiment": shape (), type "|O">
-value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_195.sxm 
-DEBUG: value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_195.sxm 
+value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_195.sxm
+DEBUG: value: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_195.sxm
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -2630,8 +2630,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument@NX_class)
-value: NXinstrument 
-DEBUG: value: NXinstrument 
+value: NXinstrument
+DEBUG: value: NXinstrument
 classpath: ['NXentry', 'NXinstrument']
 DEBUG: classpath: ['NXentry', 'NXinstrument']
 classes:
@@ -2742,8 +2742,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment@NX_class)
-value: NXenvironment 
-DEBUG: value: NXenvironment 
+value: NXenvironment
+DEBUG: value: NXenvironment
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment']
 classes:
@@ -2826,8 +2826,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy@NX_class)
-value: NXspm_bias_spectroscopy 
-DEBUG: value: NXspm_bias_spectroscopy 
+value: NXspm_bias_spectroscopy
+DEBUG: value: NXspm_bias_spectroscopy
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy']
 classes:
@@ -2932,8 +2932,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep@NX_class)
-value: NXspm_scan_control 
-DEBUG: value: NXspm_scan_control 
+value: NXspm_scan_control
+DEBUG: value: NXspm_scan_control
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control']
 classes:
@@ -3052,8 +3052,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep@NX_class)
-value: NXspm_scan_pattern 
-DEBUG: value: NXspm_scan_pattern 
+value: NXspm_scan_pattern
+DEBUG: value: NXspm_scan_pattern
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern']
 classes:
@@ -3074,8 +3074,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/backward_sweep): <HDF5 dataset "backward_sweep": shape (), type "|b1">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/backward_sweep): <HDF5 dataset "backward_sweep": shape (), type "|b1">
-value: False 
-DEBUG: value: False 
+value: False
+DEBUG: value: False
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_BOOLEAN']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_BOOLEAN']
 classes:
@@ -3094,8 +3094,8 @@ DEBUG:
                 
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/scan_points_bias): <HDF5 dataset "scan_points_bias": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/scan_points_bias): <HDF5 dataset "scan_points_bias": shape (), type "<i8">
-value: 2048 
-DEBUG: value: 2048 
+value: 2048
+DEBUG: value: 2048
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -3138,8 +3138,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/step_size_bias): <HDF5 dataset "step_size_bias": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/step_size_bias): <HDF5 dataset "step_size_bias": shape (), type "<f8">
-value: 4.8828125e-05 
-DEBUG: value: 4.8828125e-05 
+value: 0.00004883
+DEBUG: value: 0.00004883
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -3184,8 +3184,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/step_size_bias@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/linear_sweep/step_size_bias@units)
-value: volt 
-DEBUG: value: volt 
+value: volt
+DEBUG: value: volt
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -3284,8 +3284,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region@NX_class)
-value: NXspm_scan_region 
-DEBUG: value: NXspm_scan_region 
+value: NXspm_scan_region
+DEBUG: value: NXspm_scan_region
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region']
 classes:
@@ -3306,8 +3306,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_end_bias): <HDF5 dataset "scan_end_bias": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_end_bias): <HDF5 dataset "scan_end_bias": shape (), type "<f8">
-value: 0.05 
-DEBUG: value: 0.05 
+value: 0.05
+DEBUG: value: 0.05
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -3352,8 +3352,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_end_bias@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_end_bias@units)
-value: volt 
-DEBUG: value: volt 
+value: volt
+DEBUG: value: volt
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -3372,8 +3372,8 @@ NXspm_scan_region.nxdl.xml:/scan_endN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_endN@units [NX_ANY]
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_offset_bias): <HDF5 dataset "scan_offset_bias": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_offset_bias): <HDF5 dataset "scan_offset_bias": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -3406,8 +3406,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_offset_bias@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_offset_bias@units)
-value: volt 
-DEBUG: value: volt 
+value: volt
+DEBUG: value: volt
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -3422,8 +3422,8 @@ NXspm_bias_spectroscopy.nxdl.xml:/BIAS_SWEEP/scan_region/scan_offset_bias@units 
 DEBUG: NXspm_bias_spectroscopy.nxdl.xml:/BIAS_SWEEP/scan_region/scan_offset_bias@units [NX_VOLTAGE]
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_start_bias): <HDF5 dataset "scan_start_bias": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_start_bias): <HDF5 dataset "scan_start_bias": shape (), type "<f8">
-value: -0.05 
-DEBUG: value: -0.05 
+value: -0.05
+DEBUG: value: -0.05
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -3464,8 +3464,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_start_bias@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/bias_sweep/scan_region/scan_start_bias@units)
-value: volt 
-DEBUG: value: volt 
+value: volt
+DEBUG: value: volt
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -3582,8 +3582,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner@NX_class)
-value: NXspm_positioner 
-DEBUG: value: NXspm_positioner 
+value: NXspm_positioner
+DEBUG: value: NXspm_positioner
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner']
 classes:
@@ -3754,8 +3754,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller@NX_class)
-value: NXpid_controller 
-DEBUG: value: NXpid_controller 
+value: NXpid_controller
+DEBUG: value: NXpid_controller
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller']
 classes:
@@ -3778,8 +3778,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_average_time): <HDF5 dataset "z_average_time": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_average_time): <HDF5 dataset "z_average_time": shape (), type "<f8">
-value: 0.05 
-DEBUG: value: 0.05 
+value: 0.05
+DEBUG: value: 0.05
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -3802,8 +3802,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_average_time@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_average_time@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -3814,8 +3814,8 @@ NXspm_positioner.nxdl.xml:/z_controller/z_average_time@units [NX_TIME]
 DEBUG: NXspm_positioner.nxdl.xml:/z_controller/z_average_time@units [NX_TIME]
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_controller_hold): <HDF5 dataset "z_controller_hold": shape (), type "|b1">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_controller_hold): <HDF5 dataset "z_controller_hold": shape (), type "|b1">
-value: True 
-DEBUG: value: True 
+value: True
+DEBUG: value: True
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_BOOLEAN']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_BOOLEAN']
 classes:
@@ -3840,8 +3840,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_controller_time): <HDF5 dataset "z_controller_time": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_controller_time): <HDF5 dataset "z_controller_time": shape (), type "<f8">
-value: 0.2 
-DEBUG: value: 0.2 
+value: 0.2
+DEBUG: value: 0.2
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -3862,8 +3862,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_controller_time@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_controller_time@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -3874,8 +3874,8 @@ NXspm_positioner.nxdl.xml:/z_controller/z_controller_time@units [NX_TIME]
 DEBUG: NXspm_positioner.nxdl.xml:/z_controller/z_controller_time@units [NX_TIME]
 ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_offset_value): <HDF5 dataset "z_offset_value": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_offset_value): <HDF5 dataset "z_offset_value": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -3896,8 +3896,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_offset_value@units)
 DEBUG: ===== ATTRS (//entry/instrument/bias_spectroscopy_environment/spm_bias_spectroscopy/spm_positioner/z_controller/z_offset_value@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_bias_spectroscopy', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -3980,8 +3980,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/current_sensor@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/current_sensor@NX_class)
-value: NXsensor 
-DEBUG: value: NXsensor 
+value: NXsensor
+DEBUG: value: NXsensor
 classpath: ['NXentry', 'NXinstrument', 'NXsensor']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor']
 classes:
@@ -4066,8 +4066,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/current_sensor/calibration@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/current_sensor/calibration@NX_class)
-value: NXcalibration 
-DEBUG: value: NXcalibration 
+value: NXcalibration
+DEBUG: value: NXcalibration
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration']
 classes:
@@ -4160,8 +4160,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/current_sensor/calibration/calibration_parameters@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/current_sensor/calibration/calibration_parameters@NX_class)
-value: NXparameters 
-DEBUG: value: NXparameters 
+value: NXparameters
+DEBUG: value: NXparameters
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters']
 classes:
@@ -4184,8 +4184,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/current_sensor/calibration/calibration_parameters/coefficient): <HDF5 dataset "coefficient": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/current_sensor/calibration/calibration_parameters/coefficient): <HDF5 dataset "coefficient": shape (), type "<f8">
-value: 1e-09 
-DEBUG: value: 1e-09 
+value: 1.00000000e-09
+DEBUG: value: 1.00000000e-09
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4204,8 +4204,8 @@ DEBUG:
                             
 ===== ATTRS (//entry/instrument/current_sensor/calibration/calibration_parameters/coefficient@units)
 DEBUG: ===== ATTRS (//entry/instrument/current_sensor/calibration/calibration_parameters/coefficient@units)
-value: ampere / volt 
-DEBUG: value: ampere / volt 
+value: ampere / volt
+DEBUG: value: ampere / volt
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4216,8 +4216,8 @@ NXspm.nxdl.xml:/ENTRY/INSTRUMENT/current_sensorTAG/calibration/calibration_param
 DEBUG: NXspm.nxdl.xml:/ENTRY/INSTRUMENT/current_sensorTAG/calibration/calibration_parameters/coefficient@units [NX_ANY]
 ===== FIELD (//entry/instrument/current_sensor/current): <HDF5 dataset "current": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/current_sensor/current): <HDF5 dataset "current": shape (), type "<f8">
-value: -2.96486e-11 
-DEBUG: value: -2.96486e-11 
+value: -2.96486000e-11
+DEBUG: value: -2.96486000e-11
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -4238,8 +4238,8 @@ DEBUG:
                     
 ===== ATTRS (//entry/instrument/current_sensor/current@units)
 DEBUG: ===== ATTRS (//entry/instrument/current_sensor/current@units)
-value: ampere 
-DEBUG: value: ampere 
+value: ampere
+DEBUG: value: ampere
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -4250,8 +4250,8 @@ NXspm.nxdl.xml:/ENTRY/INSTRUMENT/current_sensorTAG/current@units [NX_CURRENT]
 DEBUG: NXspm.nxdl.xml:/ENTRY/INSTRUMENT/current_sensorTAG/current@units [NX_CURRENT]
 ===== FIELD (//entry/instrument/current_sensor/offset_value): <HDF5 dataset "offset_value": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/current_sensor/offset_value): <HDF5 dataset "offset_value": shape (), type "<f8">
-value: -1.1325e-13 
-DEBUG: value: -1.1325e-13 
+value: -1.13250000e-13
+DEBUG: value: -1.13250000e-13
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -4270,8 +4270,8 @@ DEBUG:
                     
 ===== ATTRS (//entry/instrument/current_sensor/offset_value@units)
 DEBUG: ===== ATTRS (//entry/instrument/current_sensor/offset_value@units)
-value: ampere 
-DEBUG: value: ampere 
+value: ampere
+DEBUG: value: ampere
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -4342,8 +4342,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/hardware@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/hardware@NX_class)
-value: NXfabrication 
-DEBUG: value: NXfabrication 
+value: NXfabrication
+DEBUG: value: NXfabrication
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication']
 classes:
@@ -4362,8 +4362,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/hardware/model): <HDF5 dataset "model": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/hardware/model): <HDF5 dataset "model": shape (), type "|O">
-value: Generic 5 
-DEBUG: value: Generic 5 
+value: Generic 5
+DEBUG: value: Generic 5
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -4392,8 +4392,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/hardware/model@version)
 DEBUG: ===== ATTRS (//entry/instrument/hardware/model@version)
-value: 5 
-DEBUG: value: 5 
+value: 5
+DEBUG: value: 5
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -4418,8 +4418,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/hardware/name): <HDF5 dataset "name": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/hardware/name): <HDF5 dataset "name": shape (), type "|O">
-value: Nanonis 
-DEBUG: value: Nanonis 
+value: Nanonis
+DEBUG: value: Nanonis
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -4438,8 +4438,8 @@ DEBUG:
                     
 ===== FIELD (//entry/instrument/hardware/vendor): <HDF5 dataset "vendor": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/hardware/vendor): <HDF5 dataset "vendor": shape (), type "|O">
-value: Nanonis 
-DEBUG: value: Nanonis 
+value: Nanonis
+DEBUG: value: Nanonis
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -4540,8 +4540,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/height_piezo_sensor@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor@NX_class)
-value: NXspm_piezo_sensor 
-DEBUG: value: NXspm_piezo_sensor 
+value: NXspm_piezo_sensor
+DEBUG: value: NXspm_piezo_sensor
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor']
 classes:
@@ -4622,8 +4622,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration@NX_class)
-value: NXspm_piezo_config 
-DEBUG: value: NXspm_piezo_config 
+value: NXspm_piezo_config
+DEBUG: value: NXspm_piezo_config
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config']
 classes:
@@ -4700,8 +4700,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration@NX_class)
-value: NXcalibration 
-DEBUG: value: NXcalibration 
+value: NXcalibration
+DEBUG: value: NXcalibration
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration']
 classes:
@@ -4720,8 +4720,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_name): <HDF5 dataset "calibration_name": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_name): <HDF5 dataset "calibration_name": shape (), type "|O">
-value: LHe 
-DEBUG: value: LHe 
+value: LHe
+DEBUG: value: LHe
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_CHAR']
 classes:
@@ -4814,8 +4814,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters@NX_class)
-value: NXparameters 
-DEBUG: value: NXparameters 
+value: NXparameters
+DEBUG: value: NXparameters
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters']
 classes:
@@ -4838,8 +4838,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_x): <HDF5 dataset "coefficient_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_x): <HDF5 dataset "coefficient_x": shape (), type "<f8">
-value: 3.8e-09 
-DEBUG: value: 3.8e-09 
+value: 3.80000000e-09
+DEBUG: value: 3.80000000e-09
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4862,8 +4862,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_x@units)
-value: meter / volt 
-DEBUG: value: meter / volt 
+value: meter / volt
+DEBUG: value: meter / volt
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4874,8 +4874,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/coefficientN@uni
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/coefficientN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_y): <HDF5 dataset "coefficient_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_y): <HDF5 dataset "coefficient_y": shape (), type "<f8">
-value: 3.8e-09 
-DEBUG: value: 3.8e-09 
+value: 3.80000000e-09
+DEBUG: value: 3.80000000e-09
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4898,8 +4898,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_y@units)
-value: meter / volt 
-DEBUG: value: meter / volt 
+value: meter / volt
+DEBUG: value: meter / volt
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4910,8 +4910,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/coefficientN@uni
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/coefficientN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_z): <HDF5 dataset "coefficient_z": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_z): <HDF5 dataset "coefficient_z": shape (), type "<f8">
-value: 9e-10 
-DEBUG: value: 9e-10 
+value: 9.00000000e-10
+DEBUG: value: 9.00000000e-10
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4934,8 +4934,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_z@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/coefficient_z@units)
-value: meter / volt 
-DEBUG: value: meter / volt 
+value: meter / volt
+DEBUG: value: meter / volt
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4946,8 +4946,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/coefficientN@uni
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/coefficientN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_x): <HDF5 dataset "second_order_correction_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_x): <HDF5 dataset "second_order_correction_x": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4978,8 +4978,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_x@units)
-value: volt / meter ** 2 
-DEBUG: value: volt / meter ** 2 
+value: volt / meter ** 2
+DEBUG: value: volt / meter ** 2
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -4990,8 +4990,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/second_order_cor
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/second_order_correctionN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_y): <HDF5 dataset "second_order_correction_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_y): <HDF5 dataset "second_order_correction_y": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -5022,8 +5022,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_parameters/second_order_correction_y@units)
-value: volt / meter ** 2 
-DEBUG: value: volt / meter ** 2 
+value: volt / meter ** 2
+DEBUG: value: volt / meter ** 2
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -5034,8 +5034,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/second_order_cor
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/calibration_parameters/second_order_correctionN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_type): <HDF5 dataset "calibration_type": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_type): <HDF5 dataset "calibration_type": shape (), type "|O">
-value: active 
-DEBUG: value: active 
+value: active
+DEBUG: value: active
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_CHAR']
 classes:
@@ -5062,8 +5062,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_correction_status): <HDF5 dataset "drift_correction_status": shape (), type "|b1">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_correction_status): <HDF5 dataset "drift_correction_status": shape (), type "|b1">
-value: False 
-DEBUG: value: False 
+value: False
+DEBUG: value: False
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_BOOLEAN']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_BOOLEAN']
 classes:
@@ -5082,8 +5082,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_x): <HDF5 dataset "drift_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_x): <HDF5 dataset "drift_x": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5106,8 +5106,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_x@units)
-value: meter / second 
-DEBUG: value: meter / second 
+value: meter / second
+DEBUG: value: meter / second
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5118,8 +5118,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/driftN@units [NX_ANY]
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/driftN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_y): <HDF5 dataset "drift_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_y): <HDF5 dataset "drift_y": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5142,8 +5142,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_y@units)
-value: meter / second 
-DEBUG: value: meter / second 
+value: meter / second
+DEBUG: value: meter / second
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5154,8 +5154,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/driftN@units [NX_ANY]
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/driftN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_z): <HDF5 dataset "drift_z": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_z): <HDF5 dataset "drift_z": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5178,8 +5178,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_z@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/drift_z@units)
-value: meter / second 
-DEBUG: value: meter / second 
+value: meter / second
+DEBUG: value: meter / second
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5190,8 +5190,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/driftN@units [NX_ANY]
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/driftN@units [NX_ANY]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/hv_gain_x): <HDF5 dataset "hv_gain_x": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/hv_gain_x): <HDF5 dataset "hv_gain_x": shape (), type "<i8">
-value: 10 
-DEBUG: value: 10 
+value: 10
+DEBUG: value: 10
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5214,8 +5214,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/hv_gain_y): <HDF5 dataset "hv_gain_y": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/hv_gain_y): <HDF5 dataset "hv_gain_y": shape (), type "<i8">
-value: 10 
-DEBUG: value: 10 
+value: 10
+DEBUG: value: 10
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5238,8 +5238,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/hv_gain_z): <HDF5 dataset "hv_gain_z": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/hv_gain_z): <HDF5 dataset "hv_gain_z": shape (), type "<i8">
-value: 10 
-DEBUG: value: 10 
+value: 10
+DEBUG: value: 10
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5262,8 +5262,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_x): <HDF5 dataset "tilt_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_x): <HDF5 dataset "tilt_x": shape (), type "<f8">
-value: 0.678395 
-DEBUG: value: 0.678395 
+value: 0.678395
+DEBUG: value: 0.678395
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5284,8 +5284,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_x@units)
-value: degree 
-DEBUG: value: degree 
+value: degree
+DEBUG: value: degree
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5296,8 +5296,8 @@ NXspm_piezo_config.nxdl.xml:/calibration/tiltN@units [NX_ANGLE]
 DEBUG: NXspm_piezo_config.nxdl.xml:/calibration/tiltN@units [NX_ANGLE]
 ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_y): <HDF5 dataset "tilt_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_y): <HDF5 dataset "tilt_y": shape (), type "<f8">
-value: -1.32908 
-DEBUG: value: -1.32908 
+value: -1.32908
+DEBUG: value: -1.32908
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5318,8 +5318,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/piezo_configuration/calibration/tilt_y@units)
-value: degree 
-DEBUG: value: degree 
+value: degree
+DEBUG: value: degree
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_piezo_config', 'NXcalibration', 'NX_NUMBER']
 classes:
@@ -5408,8 +5408,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner@NX_class)
-value: NXspm_positioner 
-DEBUG: value: NXspm_positioner 
+value: NXspm_positioner
+DEBUG: value: NXspm_positioner
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner']
 classes:
@@ -5566,8 +5566,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller@NX_class)
-value: NXpid_controller 
-DEBUG: value: NXpid_controller 
+value: NXpid_controller
+DEBUG: value: NXpid_controller
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller']
 classes:
@@ -5586,8 +5586,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/D_t): <HDF5 dataset "D_t": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/D_t): <HDF5 dataset "D_t": shape (), type "<f8">
-value: 0.000101 
-DEBUG: value: 0.000101 
+value: 0.000101
+DEBUG: value: 0.000101
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5608,8 +5608,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/D_t@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/D_t@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5620,8 +5620,8 @@ NXspm_positioner.nxdl.xml:/z_controller/D_t@units [NX_TIME]
 DEBUG: NXspm_positioner.nxdl.xml:/z_controller/D_t@units [NX_TIME]
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/K_i): <HDF5 dataset "K_i": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/K_i): <HDF5 dataset "K_i": shape (), type "<f8">
-value: 3.514e-12 
-DEBUG: value: 3.514e-12 
+value: 3.51400000e-12
+DEBUG: value: 3.51400000e-12
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5646,8 +5646,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/K_p): <HDF5 dataset "K_p": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/K_p): <HDF5 dataset "K_p": shape (), type "<f8">
-value: 3.47921e-08 
-DEBUG: value: 3.47921e-08 
+value: 0.00000003
+DEBUG: value: 0.00000003
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5670,8 +5670,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/controller_label): <HDF5 dataset "controller_label": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/controller_label): <HDF5 dataset "controller_label": shape (), type "|O">
-value: log Current 
-DEBUG: value: log Current 
+value: log Current
+DEBUG: value: log Current
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_CHAR']
 classes:
@@ -5692,8 +5692,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/feedback_on): <HDF5 dataset "feedback_on": shape (), type "|b1">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/feedback_on): <HDF5 dataset "feedback_on": shape (), type "|b1">
-value: False 
-DEBUG: value: False 
+value: False
+DEBUG: value: False
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_BOOLEAN']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_BOOLEAN']
 classes:
@@ -5714,8 +5714,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/set_point): <HDF5 dataset "set_point": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/set_point): <HDF5 dataset "set_point": shape (), type "<f8">
-value: 2.49999e-11 
-DEBUG: value: 2.49999e-11 
+value: 2.49999000e-11
+DEBUG: value: 2.49999000e-11
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5736,8 +5736,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/switch_off_delay): <HDF5 dataset "switch_off_delay": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/switch_off_delay): <HDF5 dataset "switch_off_delay": shape (), type "<f8">
-value: 0.05 
-DEBUG: value: 0.05 
+value: 0.05
+DEBUG: value: 0.05
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -5756,8 +5756,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/switch_off_delay@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/switch_off_delay@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -5768,8 +5768,8 @@ NXspm_positioner.nxdl.xml:/z_controller/switch_off_delay@units [NX_TIME]
 DEBUG: NXspm_positioner.nxdl.xml:/z_controller/switch_off_delay@units [NX_TIME]
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/tip_lift): <HDF5 dataset "tip_lift": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/tip_lift): <HDF5 dataset "tip_lift": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5788,8 +5788,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/tip_lift@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/tip_lift@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5800,8 +5800,8 @@ NXspm_positioner.nxdl.xml:/z_controller/tip_lift@units [NX_LENGTH]
 DEBUG: NXspm_positioner.nxdl.xml:/z_controller/tip_lift@units [NX_LENGTH]
 ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/z): <HDF5 dataset "z": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/z): <HDF5 dataset "z": shape (), type "<f8">
-value: 1.72439e-11 
-DEBUG: value: 1.72439e-11 
+value: 1.72439000e-11
+DEBUG: value: 1.72439000e-11
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5822,8 +5822,8 @@ DEBUG:
             
 ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/z@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/spm_positioner/z_controller/z@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NXspm_positioner', 'NXpid_controller', 'NX_NUMBER']
 classes:
@@ -5834,8 +5834,8 @@ NXspm_positioner.nxdl.xml:/z_controller/z@units [NX_LENGTH]
 DEBUG: NXspm_positioner.nxdl.xml:/z_controller/z@units [NX_LENGTH]
 ===== FIELD (//entry/instrument/height_piezo_sensor/z): <HDF5 dataset "z": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/height_piezo_sensor/z): <HDF5 dataset "z": shape (), type "<f8">
-value: 1.72439e-11 
-DEBUG: value: 1.72439e-11 
+value: 1.72439000e-11
+DEBUG: value: 1.72439000e-11
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NX_NUMBER']
 classes:
@@ -5854,8 +5854,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/height_piezo_sensor/z@units)
 DEBUG: ===== ATTRS (//entry/instrument/height_piezo_sensor/z@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXspm_piezo_sensor', 'NX_NUMBER']
 classes:
@@ -5960,8 +5960,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/lockin_amplifier@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier@NX_class)
-value: NXlockin 
-DEBUG: value: NXlockin 
+value: NXlockin
+DEBUG: value: NXlockin
 classpath: ['NXentry', 'NXinstrument', 'NXlockin']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin']
 classes:
@@ -5980,8 +5980,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/lockin_amplifier/demodulated_signal): <HDF5 dataset "demodulated_signal": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/demodulated_signal): <HDF5 dataset "demodulated_signal": shape (), type "|O">
-value: current 
-DEBUG: value: current 
+value: current
+DEBUG: value: current
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_CHAR']
 classes:
@@ -6012,8 +6012,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/lockin_amplifier/harmonic_order_d1): <HDF5 dataset "harmonic_order_d1": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/harmonic_order_d1): <HDF5 dataset "harmonic_order_d1": shape (), type "<i8">
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6036,8 +6036,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/lockin_amplifier/harmonic_order_d2): <HDF5 dataset "harmonic_order_d2": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/harmonic_order_d2): <HDF5 dataset "harmonic_order_d2": shape (), type "<i8">
-value: 2 
-DEBUG: value: 2 
+value: 2
+DEBUG: value: 2
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6060,8 +6060,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/lockin_amplifier/high_pass_d1): <HDF5 dataset "high_pass_d1": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/high_pass_d1): <HDF5 dataset "high_pass_d1": shape (), type "<f8">
-value: 9.71405 
-DEBUG: value: 9.71405 
+value: 9.71405
+DEBUG: value: 9.71405
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6084,8 +6084,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/high_pass_d1@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/high_pass_d1@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6096,8 +6096,8 @@ NXlockin.nxdl.xml:/high_passN@units [NX_FREQUENCY]
 DEBUG: NXlockin.nxdl.xml:/high_passN@units [NX_FREQUENCY]
 ===== FIELD (//entry/instrument/lockin_amplifier/high_pass_d2): <HDF5 dataset "high_pass_d2": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/high_pass_d2): <HDF5 dataset "high_pass_d2": shape (), type "<f8">
-value: 9.71405 
-DEBUG: value: 9.71405 
+value: 9.71405
+DEBUG: value: 9.71405
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6120,8 +6120,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/high_pass_d2@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/high_pass_d2@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6132,8 +6132,8 @@ NXlockin.nxdl.xml:/high_passN@units [NX_FREQUENCY]
 DEBUG: NXlockin.nxdl.xml:/high_passN@units [NX_FREQUENCY]
 ===== FIELD (//entry/instrument/lockin_amplifier/low_pass_d1): <HDF5 dataset "low_pass_d1": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/low_pass_d1): <HDF5 dataset "low_pass_d1": shape (), type "<f8">
-value: 621.699 
-DEBUG: value: 621.699 
+value: 621.699
+DEBUG: value: 621.699
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6156,8 +6156,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/low_pass_d1@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/low_pass_d1@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6168,8 +6168,8 @@ NXlockin.nxdl.xml:/low_passN@units [NX_FREQUENCY]
 DEBUG: NXlockin.nxdl.xml:/low_passN@units [NX_FREQUENCY]
 ===== FIELD (//entry/instrument/lockin_amplifier/low_pass_d2): <HDF5 dataset "low_pass_d2": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/low_pass_d2): <HDF5 dataset "low_pass_d2": shape (), type "<f8">
-value: 621.699 
-DEBUG: value: 621.699 
+value: 621.699
+DEBUG: value: 621.699
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6192,8 +6192,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/low_pass_d2@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/low_pass_d2@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6204,8 +6204,8 @@ NXlockin.nxdl.xml:/low_passN@units [NX_FREQUENCY]
 DEBUG: NXlockin.nxdl.xml:/low_passN@units [NX_FREQUENCY]
 ===== FIELD (//entry/instrument/lockin_amplifier/modulation_signal): <HDF5 dataset "modulation_signal": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/modulation_signal): <HDF5 dataset "modulation_signal": shape (), type "|O">
-value: bias 
-DEBUG: value: bias 
+value: bias
+DEBUG: value: bias
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_CHAR']
 classes:
@@ -6246,8 +6246,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/lockin_amplifier/modulation_status): <HDF5 dataset "modulation_status": shape (), type "|b1">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/modulation_status): <HDF5 dataset "modulation_status": shape (), type "|b1">
-value: True 
-DEBUG: value: True 
+value: True
+DEBUG: value: True
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_BOOLEAN']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_BOOLEAN']
 classes:
@@ -6266,8 +6266,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/lockin_amplifier/ref_offset_phase_d1): <HDF5 dataset "ref_offset_phase_d1": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/ref_offset_phase_d1): <HDF5 dataset "ref_offset_phase_d1": shape (), type "<f8">
-value: 139.084 
-DEBUG: value: 139.084 
+value: 139.084
+DEBUG: value: 139.084
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6288,8 +6288,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/ref_offset_phase_d1@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/ref_offset_phase_d1@units)
-value: degree 
-DEBUG: value: degree 
+value: degree
+DEBUG: value: degree
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6300,8 +6300,8 @@ NXlockin.nxdl.xml:/ref_offset_phaseN@units [NX_ANGLE]
 DEBUG: NXlockin.nxdl.xml:/ref_offset_phaseN@units [NX_ANGLE]
 ===== FIELD (//entry/instrument/lockin_amplifier/ref_offset_phase_d2): <HDF5 dataset "ref_offset_phase_d2": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/ref_offset_phase_d2): <HDF5 dataset "ref_offset_phase_d2": shape (), type "<f8">
-value: 40.6287 
-DEBUG: value: 40.6287 
+value: 40.6287
+DEBUG: value: 40.6287
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6322,8 +6322,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/ref_offset_phase_d2@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/ref_offset_phase_d2@units)
-value: degree 
-DEBUG: value: degree 
+value: degree
+DEBUG: value: degree
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6334,8 +6334,8 @@ NXlockin.nxdl.xml:/ref_offset_phaseN@units [NX_ANGLE]
 DEBUG: NXlockin.nxdl.xml:/ref_offset_phaseN@units [NX_ANGLE]
 ===== FIELD (//entry/instrument/lockin_amplifier/reference_frequency): <HDF5 dataset "reference_frequency": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/lockin_amplifier/reference_frequency): <HDF5 dataset "reference_frequency": shape (), type "<f8">
-value: 1000.0 
-DEBUG: value: 1000.0 
+value: 1000
+DEBUG: value: 1000
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6354,8 +6354,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/lockin_amplifier/reference_frequency@target)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/reference_frequency@target)
-value: /entry/instrument/lockin_amplifier/reference_frequency 
-DEBUG: value: /entry/instrument/lockin_amplifier/reference_frequency 
+value: /entry/instrument/lockin_amplifier/reference_frequency
+DEBUG: value: /entry/instrument/lockin_amplifier/reference_frequency
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6368,8 +6368,8 @@ DEBUG: @target - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/instrument/lockin_amplifier/reference_frequency@units)
 DEBUG: ===== ATTRS (//entry/instrument/lockin_amplifier/reference_frequency@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXlockin', 'NX_NUMBER']
 classes:
@@ -6432,8 +6432,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/real_time_controller@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/real_time_controller@NX_class)
-value: NXrcs 
-DEBUG: value: NXrcs 
+value: NXrcs
+DEBUG: value: NXrcs
 classpath: ['NXentry', 'NXinstrument', 'NXrcs']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs']
 classes:
@@ -6450,8 +6450,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/real_time_controller/animation_time): <HDF5 dataset "animation_time": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/real_time_controller/animation_time): <HDF5 dataset "animation_time": shape (), type "<f8">
-value: 0.02 
-DEBUG: value: 0.02 
+value: 0.02
+DEBUG: value: 0.02
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6472,8 +6472,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/real_time_controller/animation_time@units)
 DEBUG: ===== ATTRS (//entry/instrument/real_time_controller/animation_time@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6484,8 +6484,8 @@ NXrcs.nxdl.xml:/animation_time@units [NX_TIME]
 DEBUG: NXrcs.nxdl.xml:/animation_time@units [NX_TIME]
 ===== FIELD (//entry/instrument/real_time_controller/frequency): <HDF5 dataset "frequency": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/real_time_controller/frequency): <HDF5 dataset "frequency": shape (), type "<f8">
-value: 20000.0 
-DEBUG: value: 20000.0 
+value: 20000
+DEBUG: value: 20000
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6506,8 +6506,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/real_time_controller/frequency@units)
 DEBUG: ===== ATTRS (//entry/instrument/real_time_controller/frequency@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6518,8 +6518,8 @@ NXrcs.nxdl.xml:/frequency@units [NX_FREQUENCY]
 DEBUG: NXrcs.nxdl.xml:/frequency@units [NX_FREQUENCY]
 ===== FIELD (//entry/instrument/real_time_controller/indication_time): <HDF5 dataset "indication_time": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/real_time_controller/indication_time): <HDF5 dataset "indication_time": shape (), type "<f8">
-value: 0.3 
-DEBUG: value: 0.3 
+value: 0.3
+DEBUG: value: 0.3
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6538,8 +6538,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/real_time_controller/indication_time@units)
 DEBUG: ===== ATTRS (//entry/instrument/real_time_controller/indication_time@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6550,8 +6550,8 @@ NXrcs.nxdl.xml:/indication_time@units [NX_TIME]
 DEBUG: NXrcs.nxdl.xml:/indication_time@units [NX_TIME]
 ===== FIELD (//entry/instrument/real_time_controller/measurement_time): <HDF5 dataset "measurement_time": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/real_time_controller/measurement_time): <HDF5 dataset "measurement_time": shape (), type "<f8">
-value: 0.5 
-DEBUG: value: 0.5 
+value: 0.5
+DEBUG: value: 0.5
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6572,8 +6572,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/real_time_controller/measurement_time@units)
 DEBUG: ===== ATTRS (//entry/instrument/real_time_controller/measurement_time@units)
-value: second 
-DEBUG: value: second 
+value: second
+DEBUG: value: second
 classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXrcs', 'NX_NUMBER']
 classes:
@@ -6654,8 +6654,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/sample_bias_voltage@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/sample_bias_voltage@NX_class)
-value: NXsensor 
-DEBUG: value: NXsensor 
+value: NXsensor
+DEBUG: value: NXsensor
 classpath: ['NXentry', 'NXinstrument', 'NXsensor']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor']
 classes:
@@ -6676,8 +6676,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/sample_bias_voltage/bias_offset_value): <HDF5 dataset "bias_offset_value": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/sample_bias_voltage/bias_offset_value): <HDF5 dataset "bias_offset_value": shape (), type "<f8">
-value: 0.0 
-DEBUG: value: 0.0 
+value: 0.0
+DEBUG: value: 0.0
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -6696,8 +6696,8 @@ DEBUG:
                     
 ===== ATTRS (//entry/instrument/sample_bias_voltage/bias_offset_value@units)
 DEBUG: ===== ATTRS (//entry/instrument/sample_bias_voltage/bias_offset_value@units)
-value: volt 
-DEBUG: value: volt 
+value: volt
+DEBUG: value: volt
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -6708,8 +6708,8 @@ NXspm.nxdl.xml:/ENTRY/INSTRUMENT/sample_bias_voltage/bias_offset_value@units [NX
 DEBUG: NXspm.nxdl.xml:/ENTRY/INSTRUMENT/sample_bias_voltage/bias_offset_value@units [NX_VOLTAGE]
 ===== FIELD (//entry/instrument/sample_bias_voltage/bias_voltage): <HDF5 dataset "bias_voltage": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/sample_bias_voltage/bias_voltage): <HDF5 dataset "bias_voltage": shape (), type "<f8">
-value: -0.05 
-DEBUG: value: -0.05 
+value: -0.05
+DEBUG: value: -0.05
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -6728,8 +6728,8 @@ DEBUG:
                     
 ===== ATTRS (//entry/instrument/sample_bias_voltage/bias_voltage@units)
 DEBUG: ===== ATTRS (//entry/instrument/sample_bias_voltage/bias_voltage@units)
-value: volt 
-DEBUG: value: volt 
+value: volt
+DEBUG: value: volt
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NX_NUMBER']
 classes:
@@ -6804,8 +6804,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/sample_bias_voltage/calibration@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/sample_bias_voltage/calibration@NX_class)
-value: NXcalibration 
-DEBUG: value: NXcalibration 
+value: NXcalibration
+DEBUG: value: NXcalibration
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration']
 classes:
@@ -6898,8 +6898,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/sample_bias_voltage/calibration/calibration_parameters@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/sample_bias_voltage/calibration/calibration_parameters@NX_class)
-value: NXparameters 
-DEBUG: value: NXparameters 
+value: NXparameters
+DEBUG: value: NXparameters
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters']
 classes:
@@ -6922,8 +6922,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/sample_bias_voltage/calibration/calibration_parameters/coefficient): <HDF5 dataset "coefficient": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/sample_bias_voltage/calibration/calibration_parameters/coefficient): <HDF5 dataset "coefficient": shape (), type "<f8">
-value: 1.0 
-DEBUG: value: 1.0 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -6942,8 +6942,8 @@ DEBUG:
                             
 ===== ATTRS (//entry/instrument/sample_bias_voltage/calibration/calibration_parameters/coefficient@units)
 DEBUG: ===== ATTRS (//entry/instrument/sample_bias_voltage/calibration/calibration_parameters/coefficient@units)
-value: dimensionless 
-DEBUG: value: dimensionless 
+value: dimensionless
+DEBUG: value: dimensionless
 classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXsensor', 'NXcalibration', 'NXparameters', 'NX_NUMBER']
 classes:
@@ -7044,8 +7044,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/scan_environment@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment@NX_class)
-value: NXenvironment 
-DEBUG: value: NXenvironment 
+value: NXenvironment
+DEBUG: value: NXenvironment
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment']
 classes:
@@ -7066,8 +7066,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/scan_environment/head_temperature): <HDF5 dataset "head_temperature": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/head_temperature): <HDF5 dataset "head_temperature": shape (), type "<f8">
-value: 3.53993 
-DEBUG: value: 3.53993 
+value: 3.53993
+DEBUG: value: 3.53993
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NX_NUMBER']
 classes:
@@ -7088,8 +7088,8 @@ DEBUG:
                     
 ===== ATTRS (//entry/instrument/scan_environment/head_temperature@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/head_temperature@units)
-value: kelvin 
-DEBUG: value: kelvin 
+value: kelvin
+DEBUG: value: kelvin
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NX_NUMBER']
 classes:
@@ -7100,8 +7100,8 @@ NXspm.nxdl.xml:/ENTRY/INSTRUMENT/SCAN_ENVIRONMENT/head_temperature@units [NX_TEM
 DEBUG: NXspm.nxdl.xml:/ENTRY/INSTRUMENT/SCAN_ENVIRONMENT/head_temperature@units [NX_TEMPERATURE]
 ===== FIELD (//entry/instrument/scan_environment/identifier_environment): <HDF5 dataset "identifier_environment": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/identifier_environment): <HDF5 dataset "identifier_environment": shape (), type "|O">
-value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_ 
-DEBUG: value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_ 
+value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_
+DEBUG: value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NX_CHAR']
 classes:
@@ -7242,8 +7242,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control@NX_class)
-value: NXspm_scan_control 
-DEBUG: value: NXspm_scan_control 
+value: NXspm_scan_control
+DEBUG: value: NXspm_scan_control
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control']
 classes:
@@ -7262,8 +7262,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/independent_scan_axes): <HDF5 dataset "independent_scan_axes": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/independent_scan_axes): <HDF5 dataset "independent_scan_axes": shape (), type "|O">
-value: ['-Y', 'X'] 
-DEBUG: value: ['-Y', 'X'] 
+value: ['-Y', 'X']
+DEBUG: value: ['-Y', 'X']
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 classes:
@@ -7378,8 +7378,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan@NX_class)
-value: NXspm_scan_pattern 
-DEBUG: value: NXspm_scan_pattern 
+value: NXspm_scan_pattern
+DEBUG: value: NXspm_scan_pattern
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern']
 classes:
@@ -7398,8 +7398,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/backward_speed_y): <HDF5 dataset "backward_speed_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/backward_speed_y): <HDF5 dataset "backward_speed_y": shape (), type "<f8">
-value: 2.23214e-08 
-DEBUG: value: 2.23214e-08 
+value: 0.00000002
+DEBUG: value: 0.00000002
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7426,8 +7426,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/backward_speed_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/backward_speed_y@units)
-value: meter / second 
-DEBUG: value: meter / second 
+value: meter / second
+DEBUG: value: meter / second
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7438,8 +7438,8 @@ NXspm_scan_pattern.nxdl.xml:/backward_speedN@units [NX_ANY]
 DEBUG: NXspm_scan_pattern.nxdl.xml:/backward_speedN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/continuous): <HDF5 dataset "continuous": shape (), type "|b1">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/continuous): <HDF5 dataset "continuous": shape (), type "|b1">
-value: True 
-DEBUG: value: True 
+value: True
+DEBUG: value: True
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_BOOLEAN']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_BOOLEAN']
 classes:
@@ -7472,8 +7472,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/forward_speed_y): <HDF5 dataset "forward_speed_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/forward_speed_y): <HDF5 dataset "forward_speed_y": shape (), type "<f8">
-value: 2.23214e-08 
-DEBUG: value: 2.23214e-08 
+value: 0.00000002
+DEBUG: value: 0.00000002
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7500,8 +7500,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/forward_speed_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/forward_speed_y@units)
-value: meter / second 
-DEBUG: value: meter / second 
+value: meter / second
+DEBUG: value: meter / second
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7512,8 +7512,8 @@ NXspm_scan_pattern.nxdl.xml:/forward_speedN@units [NX_ANY]
 DEBUG: NXspm_scan_pattern.nxdl.xml:/forward_speedN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/scan_points_x): <HDF5 dataset "scan_points_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/scan_points_x): <HDF5 dataset "scan_points_x": shape (), type "<f8">
-value: 256.0 
-DEBUG: value: 256.0 
+value: 256
+DEBUG: value: 256
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7550,8 +7550,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/scan_points_y): <HDF5 dataset "scan_points_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/scan_points_y): <HDF5 dataset "scan_points_y": shape (), type "<f8">
-value: 256.0 
-DEBUG: value: 256.0 
+value: 256
+DEBUG: value: 256
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7588,8 +7588,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_x): <HDF5 dataset "step_size_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_x): <HDF5 dataset "step_size_x": shape (), type "<f8">
-value: 1.5625e-11 
-DEBUG: value: 1.5625e-11 
+value: 1.56250000e-11
+DEBUG: value: 1.56250000e-11
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7628,8 +7628,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7644,8 +7644,8 @@ NXspm_scan_pattern.nxdl.xml:/step_sizeN@units [NX_ANY]
 DEBUG: NXspm_scan_pattern.nxdl.xml:/step_sizeN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_y): <HDF5 dataset "step_size_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_y): <HDF5 dataset "step_size_y": shape (), type "<f8">
-value: 1.5625e-11 
-DEBUG: value: 1.5625e-11 
+value: 1.56250000e-11
+DEBUG: value: 1.56250000e-11
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7684,8 +7684,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/step_size_y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7700,8 +7700,8 @@ NXspm_scan_pattern.nxdl.xml:/step_sizeN@units [NX_ANY]
 DEBUG: NXspm_scan_pattern.nxdl.xml:/step_sizeN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/stepping_x): <HDF5 dataset "stepping_x": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/stepping_x): <HDF5 dataset "stepping_x": shape (), type "<i8">
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7732,8 +7732,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/stepping_y): <HDF5 dataset "stepping_y": shape (), type "<i8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/mesh_scan/stepping_y): <HDF5 dataset "stepping_y": shape (), type "<i8">
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_pattern', 'NX_NUMBER']
 classes:
@@ -7764,8 +7764,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_control_type): <HDF5 dataset "scan_control_type": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_control_type): <HDF5 dataset "scan_control_type": shape (), type "|O">
-value: continuous 
-DEBUG: value: continuous 
+value: continuous
+DEBUG: value: continuous
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 classes:
@@ -7792,8 +7792,8 @@ DEBUG:
         
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_name): <HDF5 dataset "scan_name": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_name): <HDF5 dataset "scan_name": shape (), type "|O">
-value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_ 
-DEBUG: value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_ 
+value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_
+DEBUG: value: Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 classes:
@@ -7882,8 +7882,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region@NX_class)
-value: NXspm_scan_region 
-DEBUG: value: NXspm_scan_region 
+value: NXspm_scan_region
+DEBUG: value: NXspm_scan_region
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region']
 classes:
@@ -7902,8 +7902,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_n): <HDF5 dataset "scan_angle_n": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_n): <HDF5 dataset "scan_angle_n": shape (), type "<f8">
-value: 135.1 
-DEBUG: value: 135.1 
+value: 135.1
+DEBUG: value: 135.1
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -7930,8 +7930,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_n@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_n@units)
-value: degree 
-DEBUG: value: degree 
+value: degree
+DEBUG: value: degree
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -7942,8 +7942,8 @@ NXspm_scan_region.nxdl.xml:/scan_angleN@units [NX_ANGLE]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_angleN@units [NX_ANGLE]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_x): <HDF5 dataset "scan_angle_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_x): <HDF5 dataset "scan_angle_x": shape (), type "<f8">
-value: 135.1 
-DEBUG: value: 135.1 
+value: 135.1
+DEBUG: value: 135.1
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -7980,8 +7980,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_angle_x@units)
-value: degree 
-DEBUG: value: degree 
+value: degree
+DEBUG: value: degree
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -7996,8 +7996,8 @@ NXspm_scan_region.nxdl.xml:/scan_angleN@units [NX_ANGLE]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_angleN@units [NX_ANGLE]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_x): <HDF5 dataset "scan_end_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_x): <HDF5 dataset "scan_end_x": shape (), type "<f8">
-value: 1.540662e-07 
-DEBUG: value: 1.540662e-07 
+value: 0.00000015
+DEBUG: value: 0.00000015
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8036,8 +8036,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8052,8 +8052,8 @@ NXspm_scan_region.nxdl.xml:/scan_endN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_endN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_y): <HDF5 dataset "scan_end_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_y): <HDF5 dataset "scan_end_y": shape (), type "<f8">
-value: -1.5310849999999998e-07 
-DEBUG: value: -1.5310849999999998e-07 
+value: -0.00000015
+DEBUG: value: -0.00000015
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8092,8 +8092,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_end_y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8108,8 +8108,8 @@ NXspm_scan_region.nxdl.xml:/scan_endN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_endN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_x): <HDF5 dataset "scan_offset_value_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_x): <HDF5 dataset "scan_offset_value_x": shape (), type "<f8">
-value: 1.500662e-07 
-DEBUG: value: 1.500662e-07 
+value: 0.00000015
+DEBUG: value: 0.00000015
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8142,8 +8142,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8158,8 +8158,8 @@ NXspm_scan_region.nxdl.xml:/scan_offset_valueN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_offset_valueN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_y): <HDF5 dataset "scan_offset_value_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_y): <HDF5 dataset "scan_offset_value_y": shape (), type "<f8">
-value: -1.571085e-07 
-DEBUG: value: -1.571085e-07 
+value: -0.00000016
+DEBUG: value: -0.00000016
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8192,8 +8192,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_offset_value_y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8208,8 +8208,8 @@ NXspm_scan_region.nxdl.xml:/scan_offset_valueN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_offset_valueN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_x): <HDF5 dataset "scan_range_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_x): <HDF5 dataset "scan_range_x": shape (), type "<f8">
-value: 4e-09 
-DEBUG: value: 4e-09 
+value: 4.00000000e-09
+DEBUG: value: 4.00000000e-09
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8240,8 +8240,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8256,8 +8256,8 @@ NXspm_scan_region.nxdl.xml:/scan_rangeN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_rangeN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_y): <HDF5 dataset "scan_range_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_y): <HDF5 dataset "scan_range_y": shape (), type "<f8">
-value: 4e-09 
-DEBUG: value: 4e-09 
+value: 4.00000000e-09
+DEBUG: value: 4.00000000e-09
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8288,8 +8288,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_range_y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8304,8 +8304,8 @@ NXspm_scan_region.nxdl.xml:/scan_rangeN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_rangeN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_x): <HDF5 dataset "scan_start_x": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_x): <HDF5 dataset "scan_start_x": shape (), type "<f8">
-value: 1.500662e-07 
-DEBUG: value: 1.500662e-07 
+value: 0.00000015
+DEBUG: value: 0.00000015
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8340,8 +8340,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_x@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8356,8 +8356,8 @@ NXspm_scan_region.nxdl.xml:/scan_startN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_startN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_y): <HDF5 dataset "scan_start_y": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_y): <HDF5 dataset "scan_start_y": shape (), type "<f8">
-value: -1.571085e-07 
-DEBUG: value: -1.571085e-07 
+value: -0.00000016
+DEBUG: value: -0.00000016
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8392,8 +8392,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_y@units)
 DEBUG: ===== ATTRS (//entry/instrument/scan_environment/spm_scan_control/scan_region/scan_start_y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NXspm_scan_region', 'NX_NUMBER']
 classes:
@@ -8408,8 +8408,8 @@ NXspm_scan_region.nxdl.xml:/scan_startN@units [NX_ANY]
 DEBUG: NXspm_scan_region.nxdl.xml:/scan_startN@units [NX_ANY]
 ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_type): <HDF5 dataset "scan_type": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/scan_environment/spm_scan_control/scan_type): <HDF5 dataset "scan_type": shape (), type "|O">
-value: mesh 
-DEBUG: value: mesh 
+value: mesh
+DEBUG: value: mesh
 classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXenvironment', 'NXspm_scan_control', 'NX_CHAR']
 classes:
@@ -8500,8 +8500,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/instrument/software@NX_class)
 DEBUG: ===== ATTRS (//entry/instrument/software@NX_class)
-value: NXfabrication 
-DEBUG: value: NXfabrication 
+value: NXfabrication
+DEBUG: value: NXfabrication
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication']
 classes:
@@ -8520,8 +8520,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/instrument/software/model): <HDF5 dataset "model": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/software/model): <HDF5 dataset "model": shape (), type "|O">
-value: Generic 5 
-DEBUG: value: Generic 5 
+value: Generic 5
+DEBUG: value: Generic 5
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -8550,8 +8550,8 @@ DEBUG:
         
 ===== ATTRS (//entry/instrument/software/model@version)
 DEBUG: ===== ATTRS (//entry/instrument/software/model@version)
-value: 5 
-DEBUG: value: 5 
+value: 5
+DEBUG: value: 5
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -8576,8 +8576,8 @@ DEBUG:
             
 ===== FIELD (//entry/instrument/software/name): <HDF5 dataset "name": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/software/name): <HDF5 dataset "name": shape (), type "|O">
-value: Nanonis 
-DEBUG: value: Nanonis 
+value: Nanonis
+DEBUG: value: Nanonis
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -8596,8 +8596,8 @@ DEBUG:
                     
 ===== FIELD (//entry/instrument/software/vendor): <HDF5 dataset "vendor": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/instrument/software/vendor): <HDF5 dataset "vendor": shape (), type "|O">
-value: Nanonis 
-DEBUG: value: Nanonis 
+value: Nanonis
+DEBUG: value: Nanonis
 classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXinstrument', 'NXfabrication', 'NX_CHAR']
 classes:
@@ -8740,8 +8740,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/reproducibility_indicators@NX_class)
 DEBUG: ===== ATTRS (//entry/reproducibility_indicators@NX_class)
-value: NXcollection 
-DEBUG: value: NXcollection 
+value: NXcollection
+DEBUG: value: NXcollection
 classpath: ['NXentry', 'NXcollection']
 DEBUG: classpath: ['NXentry', 'NXcollection']
 classes:
@@ -8764,8 +8764,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/reproducibility_indicators/modulation_signal): <HDF5 dataset "modulation_signal": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/reproducibility_indicators/modulation_signal): <HDF5 dataset "modulation_signal": shape (), type "|O">
-value: bias 
-DEBUG: value: bias 
+value: bias
+DEBUG: value: bias
 classpath: ['NXentry', 'NXcollection', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_CHAR']
 classes:
@@ -8800,8 +8800,8 @@ DEBUG:
                 
 ===== FIELD (//entry/reproducibility_indicators/reference_frequency): <HDF5 dataset "reference_frequency": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/reproducibility_indicators/reference_frequency): <HDF5 dataset "reference_frequency": shape (), type "<f8">
-value: 1000.0 
-DEBUG: value: 1000.0 
+value: 1000
+DEBUG: value: 1000
 classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 classes:
@@ -8826,8 +8826,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/reproducibility_indicators/reference_frequency@target)
 DEBUG: ===== ATTRS (//entry/reproducibility_indicators/reference_frequency@target)
-value: /entry/instrument/lockin_amplifier/reference_frequency 
-DEBUG: value: /entry/instrument/lockin_amplifier/reference_frequency 
+value: /entry/instrument/lockin_amplifier/reference_frequency
+DEBUG: value: /entry/instrument/lockin_amplifier/reference_frequency
 classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 classes:
@@ -8840,8 +8840,8 @@ DEBUG: @target - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/reproducibility_indicators/reference_frequency@units)
 DEBUG: ===== ATTRS (//entry/reproducibility_indicators/reference_frequency@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 classes:
@@ -8966,8 +8966,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/resolution_indicators@NX_class)
 DEBUG: ===== ATTRS (//entry/resolution_indicators@NX_class)
-value: NXcollection 
-DEBUG: value: NXcollection 
+value: NXcollection
+DEBUG: value: NXcollection
 classpath: ['NXentry', 'NXcollection']
 DEBUG: classpath: ['NXentry', 'NXcollection']
 classes:
@@ -8990,8 +8990,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/resolution_indicators/modulation_signal): <HDF5 dataset "modulation_signal": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/resolution_indicators/modulation_signal): <HDF5 dataset "modulation_signal": shape (), type "|O">
-value: bias 
-DEBUG: value: bias 
+value: bias
+DEBUG: value: bias
 classpath: ['NXentry', 'NXcollection', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_CHAR']
 classes:
@@ -9012,8 +9012,8 @@ DEBUG:
                 
 ===== FIELD (//entry/resolution_indicators/reference_frequency): <HDF5 dataset "reference_frequency": shape (), type "<f8">
 DEBUG: ===== FIELD (//entry/resolution_indicators/reference_frequency): <HDF5 dataset "reference_frequency": shape (), type "<f8">
-value: 1000.0 
-DEBUG: value: 1000.0 
+value: 1000
+DEBUG: value: 1000
 classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 classes:
@@ -9036,8 +9036,8 @@ DEBUG:
                 
 ===== ATTRS (//entry/resolution_indicators/reference_frequency@target)
 DEBUG: ===== ATTRS (//entry/resolution_indicators/reference_frequency@target)
-value: /entry/instrument/lockin_amplifier/reference_frequency 
-DEBUG: value: /entry/instrument/lockin_amplifier/reference_frequency 
+value: /entry/instrument/lockin_amplifier/reference_frequency
+DEBUG: value: /entry/instrument/lockin_amplifier/reference_frequency
 classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 classes:
@@ -9050,8 +9050,8 @@ DEBUG: @target - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/resolution_indicators/reference_frequency@units)
 DEBUG: ===== ATTRS (//entry/resolution_indicators/reference_frequency@units)
-value: hertz 
-DEBUG: value: hertz 
+value: hertz
+DEBUG: value: hertz
 classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXcollection', 'NX_NUMBER']
 classes:
@@ -9140,8 +9140,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/sample@NX_class)
 DEBUG: ===== ATTRS (//entry/sample@NX_class)
-value: NXsample 
-DEBUG: value: NXsample 
+value: NXsample
+DEBUG: value: NXsample
 classpath: ['NXentry', 'NXsample']
 DEBUG: classpath: ['NXentry', 'NXsample']
 classes:
@@ -9164,8 +9164,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/sample/chemical_formula): <HDF5 dataset "chemical_formula": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/sample/chemical_formula): <HDF5 dataset "chemical_formula": shape (), type "|O">
-value: Au(KAl3Si3012H2) 
-DEBUG: value: Au(KAl3Si3012H2) 
+value: Au(KAl3Si3012H2)
+DEBUG: value: Au(KAl3Si3012H2)
 classpath: ['NXentry', 'NXsample', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXsample', 'NX_CHAR']
 classes:
@@ -9218,8 +9218,8 @@ DEBUG:
 		
 ===== FIELD (//entry/sample/description): <HDF5 dataset "description": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/sample/description): <HDF5 dataset "description": shape (), type "|O">
-value: Substrate: Stack of two layers: Au(111) on Mica 
-DEBUG: value: Substrate: Stack of two layers: Au(111) on Mica 
+value: Substrate: Stack of two layers: Au(111) on Mica
+DEBUG: value: Substrate: Stack of two layers: Au(111) on Mica
 classpath: ['NXentry', 'NXsample', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXsample', 'NX_CHAR']
 classes:
@@ -9326,8 +9326,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/sample/history@NX_class)
 DEBUG: ===== ATTRS (//entry/sample/history@NX_class)
-value: NXhistory 
-DEBUG: value: NXhistory 
+value: NXhistory
+DEBUG: value: NXhistory
 classpath: ['NXentry', 'NXsample', 'NXhistory']
 DEBUG: classpath: ['NXentry', 'NXsample', 'NXhistory']
 classes:
@@ -9426,8 +9426,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/sample/history/note@NX_class)
 DEBUG: ===== ATTRS (//entry/sample/history/note@NX_class)
-value: NXnote 
-DEBUG: value: NXnote 
+value: NXnote
+DEBUG: value: NXnote
 classpath: ['NXentry', 'NXsample', 'NXhistory', 'NXnote']
 DEBUG: classpath: ['NXentry', 'NXsample', 'NXhistory', 'NXnote']
 classes:
@@ -9446,8 +9446,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/sample/history/note/description): <HDF5 dataset "description": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/sample/history/note/description): <HDF5 dataset "description": shape (), type "|O">
-value: Sample History goes here. 
-DEBUG: value: Sample History goes here. 
+value: Sample History goes here.
+DEBUG: value: Sample History goes here.
 classpath: ['NXentry', 'NXsample', 'NXhistory', 'NXnote', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXsample', 'NXhistory', 'NXnote', 'NX_CHAR']
 classes:
@@ -9462,8 +9462,8 @@ Title of an image or other details of the note
 DEBUG: Title of an image or other details of the note
 ===== FIELD (//entry/sample/name): <HDF5 dataset "name": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/sample/name): <HDF5 dataset "name": shape (), type "|O">
-value: diPAMY 
-DEBUG: value: diPAMY 
+value: diPAMY
+DEBUG: value: diPAMY
 classpath: ['NXentry', 'NXsample', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXsample', 'NX_CHAR']
 classes:
@@ -9494,8 +9494,8 @@ DEBUG:
         
 ===== FIELD (//entry/scan_mode): <HDF5 dataset "scan_mode": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/scan_mode): <HDF5 dataset "scan_mode": shape (), type "|O">
-value: constant current 
-DEBUG: value: constant current 
+value: constant current
+DEBUG: value: constant current
 classpath: ['NXentry', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NX_CHAR']
 classes:
@@ -9554,8 +9554,8 @@ DEBUG:
             
 ===== FIELD (//entry/start_time): <HDF5 dataset "start_time": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/start_time): <HDF5 dataset "start_time": shape (), type "|O">
-value: 2023-04-29T01:22:24+02:00 
-DEBUG: value: 2023-04-29T01:22:24+02:00 
+value: 2023-04-29T01:22:24+02:00
+DEBUG: value: 2023-04-29T01:22:24+02:00
 classpath: ['NXentry', 'NX_DATE_TIME']
 DEBUG: classpath: ['NXentry', 'NX_DATE_TIME']
 classes:
@@ -9648,8 +9648,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/user@NX_class)
 DEBUG: ===== ATTRS (//entry/user@NX_class)
-value: NXuser 
-DEBUG: value: NXuser 
+value: NXuser
+DEBUG: value: NXuser
 classpath: ['NXentry', 'NXuser']
 DEBUG: classpath: ['NXentry', 'NXuser']
 classes:
@@ -9668,8 +9668,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== FIELD (//entry/user/affiliation): <HDF5 dataset "affiliation": shape (3,), type "|O">
 DEBUG: ===== FIELD (//entry/user/affiliation): <HDF5 dataset "affiliation": shape (3,), type "|O">
-value: ['Rubel Mozumder' 'Dr. Cojal González, José David' ...
-DEBUG: value: ['Rubel Mozumder' 'Dr. Cojal González, José David' ...
+value: [Rubel Mozumder, Dr. Cojal González, José David, Dr. Carlos-Andres Palma]
+DEBUG: value: [Rubel Mozumder, Dr. Cojal González, José David, Dr. Carlos-Andres Palma]
 classpath: ['NXentry', 'NXuser', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXuser', 'NX_CHAR']
 classes:
@@ -9696,8 +9696,8 @@ Affiliation of user
 DEBUG: Affiliation of user
 ===== FIELD (//entry/user/email): <HDF5 dataset "email": shape (4,), type "|O">
 DEBUG: ===== FIELD (//entry/user/email): <HDF5 dataset "email": shape (4,), type "|O">
-value: ['ycjin@physik.hu-berlin.de' 'rubel.mozumder@physik.hu-berlin.de' ...
-DEBUG: value: ['ycjin@physik.hu-berlin.de' 'rubel.mozumder@physik.hu-berlin.de' ...
+value: [ycjin@physik.hu-berlin.de, rubel.mozumder@physik.hu-berlin.de, cojal@physik.hu-berlin.de, palma@physik.hu-berlin.de]
+DEBUG: value: [ycjin@physik.hu-berlin.de, rubel.mozumder@physik.hu-berlin.de, cojal@physik.hu-berlin.de, palma@physik.hu-berlin.de]
 classpath: ['NXentry', 'NXuser', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXuser', 'NX_CHAR']
 classes:
@@ -9722,8 +9722,8 @@ Email of user
 DEBUG: Email of user
 ===== FIELD (//entry/user/name): <HDF5 dataset "name": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/user/name): <HDF5 dataset "name": shape (), type "|O">
-value: Yichen Jin 
-DEBUG: value: Yichen Jin 
+value: Yichen Jin
+DEBUG: value: Yichen Jin
 classpath: ['NXentry', 'NXuser', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXuser', 'NX_CHAR']
 classes:
@@ -10194,8 +10194,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/z_backward@NX_class)
 DEBUG: ===== ATTRS (//entry/z_backward@NX_class)
-value: NXdata 
-DEBUG: value: NXdata 
+value: NXdata
+DEBUG: value: NXdata
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -10218,8 +10218,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== ATTRS (//entry/z_backward@axes)
 DEBUG: ===== ATTRS (//entry/z_backward@axes)
-value: ['y' 'x'] 
-DEBUG: value: ['y' 'x'] 
+value: [y, x]
+DEBUG: value: [y, x]
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -10266,8 +10266,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_backward@signal)
 DEBUG: ===== ATTRS (//entry/z_backward@signal)
-value: z 
-DEBUG: value: z 
+value: z
+DEBUG: value: z
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -10320,8 +10320,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_backward@x_indices)
 DEBUG: ===== ATTRS (//entry/z_backward@x_indices)
-value: 0 
-DEBUG: value: 0 
+value: 0
+DEBUG: value: 0
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -10344,8 +10344,8 @@ DEBUG: @x_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/z_backward@y_indices)
 DEBUG: ===== ATTRS (//entry/z_backward@y_indices)
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -10368,8 +10368,8 @@ DEBUG: @y_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== FIELD (//entry/z_backward/title): <HDF5 dataset "title": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/z_backward/title): <HDF5 dataset "title": shape (), type "|O">
-value: Title Data Group 0 
-DEBUG: value: Title Data Group 0 
+value: Title Data Group 0
+DEBUG: value: Title Data Group 0
 classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 classes:
@@ -10388,8 +10388,8 @@ DEBUG:
 		
 ===== FIELD (//entry/z_backward/x): <HDF5 dataset "x": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/z_backward/x): <HDF5 dataset "x": shape (256,), type "<f8">
-value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
-DEBUG: value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
+value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
+DEBUG: value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -10440,8 +10440,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_backward/x@units)
 DEBUG: ===== ATTRS (//entry/z_backward/x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -10468,8 +10468,8 @@ DEBUG:
 			
 ===== FIELD (//entry/z_backward/y): <HDF5 dataset "y": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/z_backward/y): <HDF5 dataset "y": shape (256,), type "<f8">
-value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
-DEBUG: value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
+value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
+DEBUG: value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -10520,8 +10520,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_backward/y@units)
 DEBUG: ===== ATTRS (//entry/z_backward/y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -10548,8 +10548,8 @@ DEBUG:
 			
 ===== FIELD (//entry/z_backward/z): <HDF5 dataset "z": shape (256, 256), type ">f4">
 DEBUG: ===== FIELD (//entry/z_backward/z): <HDF5 dataset "z": shape (256, 256), type ">f4">
-value: [1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 ...
-DEBUG: value: [1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 ...
+value: [1.72438609e-11, 1.72438609e-11, 1.72438609e-11, ..., 1.72438609e-11, 1.72438609e-11, 1.72438609e-11]
+DEBUG: value: [1.72438609e-11, 1.72438609e-11, 1.72438609e-11, ..., 1.72438609e-11, 1.72438609e-11, 1.72438609e-11]
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -10596,8 +10596,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_backward/z@long_name)
 DEBUG: ===== ATTRS (//entry/z_backward/z@long_name)
-value: z (meter) 
-DEBUG: value: z (meter) 
+value: z (meter)
+DEBUG: value: z (meter)
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -10618,8 +10618,8 @@ data label
 DEBUG: data label
 ===== ATTRS (//entry/z_backward/z@units)
 DEBUG: ===== ATTRS (//entry/z_backward/z@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -11080,8 +11080,8 @@ DEBUG:
 	
 ===== ATTRS (//entry/z_forward@NX_class)
 DEBUG: ===== ATTRS (//entry/z_forward@NX_class)
-value: NXdata 
-DEBUG: value: NXdata 
+value: NXdata
+DEBUG: value: NXdata
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -11104,8 +11104,8 @@ DEBUG: @NX_class [NX_CHAR]
 DEBUG: 
 ===== ATTRS (//entry/z_forward@axes)
 DEBUG: ===== ATTRS (//entry/z_forward@axes)
-value: ['y' 'x'] 
-DEBUG: value: ['y' 'x'] 
+value: [y, x]
+DEBUG: value: [y, x]
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -11152,8 +11152,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_forward@signal)
 DEBUG: ===== ATTRS (//entry/z_forward@signal)
-value: z 
-DEBUG: value: z 
+value: z
+DEBUG: value: z
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -11206,8 +11206,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_forward@x_indices)
 DEBUG: ===== ATTRS (//entry/z_forward@x_indices)
-value: 0 
-DEBUG: value: 0 
+value: 0
+DEBUG: value: 0
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -11230,8 +11230,8 @@ DEBUG: @x_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== ATTRS (//entry/z_forward@y_indices)
 DEBUG: ===== ATTRS (//entry/z_forward@y_indices)
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 classpath: ['NXentry', 'NXdata']
 DEBUG: classpath: ['NXentry', 'NXdata']
 classes:
@@ -11254,8 +11254,8 @@ DEBUG: @y_indices - IS NOT IN SCHEMA
 DEBUG: 
 ===== FIELD (//entry/z_forward/title): <HDF5 dataset "title": shape (), type "|O">
 DEBUG: ===== FIELD (//entry/z_forward/title): <HDF5 dataset "title": shape (), type "|O">
-value: Title Data Group 0 
-DEBUG: value: Title Data Group 0 
+value: Title Data Group 0
+DEBUG: value: Title Data Group 0
 classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR']
 classes:
@@ -11274,8 +11274,8 @@ DEBUG:
 		
 ===== FIELD (//entry/z_forward/x): <HDF5 dataset "x": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/z_forward/x): <HDF5 dataset "x": shape (256,), type "<f8">
-value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
-DEBUG: value: [1.50066200e-07 1.50081886e-07 1.50097573e-07 1.50113259e-07 ...
+value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
+DEBUG: value: [0.00000015, 0.00000015, 0.00000015, ..., 0.00000015, 0.00000015, 0.00000015]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -11326,8 +11326,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_forward/x@units)
 DEBUG: ===== ATTRS (//entry/z_forward/x@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -11354,8 +11354,8 @@ DEBUG:
 			
 ===== FIELD (//entry/z_forward/y): <HDF5 dataset "y": shape (256,), type "<f8">
 DEBUG: ===== FIELD (//entry/z_forward/y): <HDF5 dataset "y": shape (256,), type "<f8">
-value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
-DEBUG: value: [-1.53108500e-07 -1.53124186e-07 -1.53139873e-07 -1.53155559e-07 ...
+value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
+DEBUG: value: [-0.00000015, -0.00000015, -0.00000015, ..., -0.00000016, -0.00000016, -0.00000016]
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -11406,8 +11406,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_forward/y@units)
 DEBUG: ===== ATTRS (//entry/z_forward/y@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_CHAR_OR_NUMBER']
 classes:
@@ -11434,8 +11434,8 @@ DEBUG:
 			
 ===== FIELD (//entry/z_forward/z): <HDF5 dataset "z": shape (256, 256), type ">f4">
 DEBUG: ===== FIELD (//entry/z_forward/z): <HDF5 dataset "z": shape (256, 256), type ">f4">
-value: [1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 ...
-DEBUG: value: [1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 1.724386e-11 ...
+value: [1.72438609e-11, 1.72438609e-11, 1.72438609e-11, ..., 1.72438609e-11, 1.72438609e-11, 1.72438609e-11]
+DEBUG: value: [1.72438609e-11, 1.72438609e-11, 1.72438609e-11, ..., 1.72438609e-11, 1.72438609e-11, 1.72438609e-11]
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -11482,8 +11482,8 @@ DEBUG:
 		
 ===== ATTRS (//entry/z_forward/z@long_name)
 DEBUG: ===== ATTRS (//entry/z_forward/z@long_name)
-value: z (meter) 
-DEBUG: value: z (meter) 
+value: z (meter)
+DEBUG: value: z (meter)
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -11504,8 +11504,8 @@ data label
 DEBUG: data label
 ===== ATTRS (//entry/z_forward/z@units)
 DEBUG: ===== ATTRS (//entry/z_forward/z@units)
-value: meter 
-DEBUG: value: meter 
+value: meter
+DEBUG: value: meter
 classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 DEBUG: classpath: ['NXentry', 'NXdata', 'NX_NUMBER']
 classes:
@@ -11536,44 +11536,44 @@ DEBUG: NXdata group has been identified: /entry/current_forward
 DEBUG: ===== GROUP (//entry/current_forward [NXstm::/NXentry/NXdata]): <HDF5 group "/entry/current_forward" (4 members)>
 ===== ATTRS (//entry/current_forward@NX_class)
 DEBUG: ===== ATTRS (//entry/current_forward@NX_class)
-value: NXdata 
-DEBUG: value: NXdata 
+value: NXdata
+DEBUG: value: NXdata
 ===== ATTRS (//entry/current_forward@axes)
 DEBUG: ===== ATTRS (//entry/current_forward@axes)
-value: ['y' 'x'] 
-DEBUG: value: ['y' 'x'] 
+value: [y, x]
+DEBUG: value: [y, x]
 ===== ATTRS (//entry/current_forward@signal)
 DEBUG: ===== ATTRS (//entry/current_forward@signal)
-value: current 
-DEBUG: value: current 
+value: current
+DEBUG: value: current
 ===== ATTRS (//entry/current_forward@x_indices)
 DEBUG: ===== ATTRS (//entry/current_forward@x_indices)
-value: 0 
-DEBUG: value: 0 
+value: 0
+DEBUG: value: 0
 ===== ATTRS (//entry/current_forward@y_indices)
 DEBUG: ===== ATTRS (//entry/current_forward@y_indices)
-value: 1 
-DEBUG: value: 1 
+value: 1
+DEBUG: value: 1
 
 DEBUG: 
 Signal has been identified: /entry/current_forward/current
 DEBUG: Signal has been identified: /entry/current_forward/current
 ===== FIELD (//entry/current_forward/current): <HDF5 dataset "current": shape (256, 256), type ">f4">
 DEBUG: ===== FIELD (//entry/current_forward/current): <HDF5 dataset "current": shape (256, 256), type ">f4">
-value: [-2.9788554e-11 -2.8605018e-11 -2.7488961e-11 -3.0999120e-11 ...
-DEBUG: value: [-2.9788554e-11 -2.8605018e-11 -2.7488961e-11 -3.0999120e-11 ...
+value: [-2.97885536e-11, -2.86050177e-11, -2.74889608e-11, ..., -3.03598917e-11, -3.18436007e-11, -3.17812270e-11]
+DEBUG: value: [-2.97885536e-11, -2.86050177e-11, -2.74889608e-11, ..., -3.03598917e-11, -3.18436007e-11, -3.17812270e-11]
 Dataset referenced as NXdata SIGNAL
 DEBUG: Dataset referenced as NXdata SIGNAL
 ===== ATTRS (//entry/current_forward/current@long_name)
 DEBUG: ===== ATTRS (//entry/current_forward/current@long_name)
-value: current (ampere) 
-DEBUG: value: current (ampere) 
+value: current (ampere)
+DEBUG: value: current (ampere)
 Dataset referenced as NXdata SIGNAL
 DEBUG: Dataset referenced as NXdata SIGNAL
 ===== ATTRS (//entry/current_forward/current@units)
 DEBUG: ===== ATTRS (//entry/current_forward/current@units)
-value: ampere 
-DEBUG: value: ampere 
+value: ampere
+DEBUG: value: ampere
 
 DEBUG: 
 For Axis #0, 2 axes have been identified: [<HDF5 dataset "y": shape (256,), type "<f8">, <HDF5 dataset "x": shape (256,), type "<f8">]
