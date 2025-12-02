@@ -1,0 +1,31 @@
+{
+  "template": "git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git",
+  "commit": "519f503945368a21d0c44125c0f34cf0d5f46e10",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "reader_name": "spm",
+      "supported_nxdl": "NXspm",
+      "short_description": "NeXus data converter from SPM (Scanning Probe Microscopy).",
+      "technique": "SPM,STS,STM,AFM",
+      "reader_class": "SPMReader",
+      "author_name": "Rubel Mozumder",
+      "author_email": "rubel.mozumder@physik.hu-berlin.de",
+      "license": "Apache Software License 2.0",
+      "zenodo_record": "17390485",
+      "vscode_settings": false,
+      "include_nomad_app": true,
+      "include_nomad_example_upload": true,
+      "__package_name": "pynxtools-spm",
+      "__module_name": "pynxtools_spm",
+      "__nomad_example": "spm_example_upload_entry_point",
+      "__nomad_app": "spm_app_entry_point",
+      "_copy_without_render": [
+        "*.html"
+      ],
+      "_template": "git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git",
+      "_commit": "519f503945368a21d0c44125c0f34cf0d5f46e10"
+    }
+  },
+  "directory": null
+}
