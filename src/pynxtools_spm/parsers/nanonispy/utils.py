@@ -12,7 +12,7 @@ def show_grid(arr, sweep_signal):
     arr : array_like
         A 3d array consisting of (Ix, Iy, E) or (qx, qy, E) data.
     sweep_signal : array_like
-        A 1d array consiting of the bias values or other relevant spectroscopic sweep parameter.
+        A 1d array consisting of the bias values or other relevant spectroscopic sweep parameter.
         For example can be passed from Grid.signals['sweep_signal'].
 
 

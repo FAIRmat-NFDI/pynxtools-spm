@@ -139,7 +139,7 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        If model has a distinquishable version (e.g. BP5e).
+                        If model has a distinguishable version (e.g. BP5e).
               software:
                 section:
                   m_annotations:
@@ -175,7 +175,7 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        If model has a distinquishable version (e.g. BP5e).
+                        If model has a distinguishable version (e.g. BP5e).
               lockin_amplifier:
                 section:
                   m_annotations:

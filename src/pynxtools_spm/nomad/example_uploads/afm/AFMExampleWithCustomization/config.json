@@ -368,7 +368,7 @@
             "DATA[scan_data]": [
               {
                 "data": {
-                  "name": "imput_4",
+                  "name": "input_4",
                   "raw_path": "/Input_4/forward",
                   "@units": "/DATA/INFO/Input_4/Unit"
                 },
@@ -379,7 +379,7 @@
               },
               {
                 "data": {
-                  "name": "imput_4",
+                  "name": "input_4",
                   "raw_path": "/Input_4/backward",
                   "@units": "/DATA/INFO/Input_4/Unit"
                 },
@@ -528,7 +528,7 @@
           "@units": "/DATA/INFO/Z/Unit"
         },
         "title": {
-          "raw_path": "@default:Height Plot of AFM Experiment (Foward Direction)"
+          "raw_path": "@default:Height Plot of AFM Experiment (Forward Direction)"
         },
         "grp_name": "z_forward"
       },

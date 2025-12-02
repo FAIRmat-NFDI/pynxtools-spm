@@ -30,7 +30,7 @@ UNIT_TO_SKIP = ["on/off", "off", "on", "off/on"]
 def nested_path_to_slash_separated_path(
     nested_dict: dict, flattened_dict: dict, parent_path=""
 ):
-    """Convert nested dict into slash separeted path upto certain level."""
+    """Convert nested dict into slash separated path upto certain level."""
     separator = "/"
 
     for key, val in nested_dict.items():
@@ -54,14 +54,14 @@ def get_nested_dict_from_concatenated_key(
     data_dict, dict_to_map_path=None, sep_chars=None
 ):
     """
-    Create nested dict. If key are concateneted with '_', '>' split the key and
+    Create nested dict. If key are concatenated with '_', '>' split the key and
     construct nested dict. For example, {'x1': {'x2': {'x3': {'x4': {'x5': 3}}}}
     from 'x1_x2_x3_x4>x5:3'
     """
     if dict_to_map_path is not None:
-        spreaded_dict = dict_to_map_path
+        spread_dict = dict_to_map_path
     else:
-        spreaded_dict: Dict[str, Any] = {}
+        spread_dict: Dict[str, Any] = {}
     if sep_chars is None:
         sep_chars = ["_", ">"]
     for d_key, d_val in data_dict.items():
@@ -73,27 +73,27 @@ def get_nested_dict_from_concatenated_key(
                     break
             l_key, r_key = d_key.split(sep_char, 1)
             if not has_separator_char(r_key, sep_chars):
-                if l_key not in spreaded_dict:
-                    spreaded_dict[l_key]: Dict[str, Any] = {}
-                spreaded_dict[l_key][r_key] = d_val
+                if l_key not in spread_dict:
+                    spread_dict[l_key]: Dict[str, Any] = {}
+                spread_dict[l_key][r_key] = d_val
             else:
-                if l_key in spreaded_dict:
-                    spreaded_dict[l_key] = get_nested_dict_from_concatenated_key(
+                if l_key in spread_dict:
+                    spread_dict[l_key] = get_nested_dict_from_concatenated_key(
                         {r_key: d_val},
-                        dict_to_map_path=spreaded_dict[l_key],
+                        dict_to_map_path=spread_dict[l_key],
                         sep_chars=sep_chars,
                     )
                 else:
-                    spreaded_dict[l_key]: Dict[str, Any] = {}
-                    spreaded_dict[l_key] = get_nested_dict_from_concatenated_key(
+                    spread_dict[l_key]: Dict[str, Any] = {}
+                    spread_dict[l_key] = get_nested_dict_from_concatenated_key(
                         {r_key: d_val},
-                        dict_to_map_path=spreaded_dict[l_key],
+                        dict_to_map_path=spread_dict[l_key],
                         sep_chars=sep_chars,
                     )
         else:
-            spreaded_dict[d_key] = d_val
+            spread_dict[d_key] = d_val
 
-    return spreaded_dict
+    return spread_dict
 
 
 # TODO only one from get_nested_dict_from_concatenated_key and transfer_plain_config_to_nested_config
@@ -121,7 +121,7 @@ def transfer_plain_config_to_nested_config(template, nested_dict):
 # def nested_path_to_slash_separated_path(
 #     nested_dict: dict, flattened_dict: dict, parent_path=""
 # ):
-#     """Convert nested dict into slash separeted path upto certain level."""
+#     """Convert nested dict into slash separated path upto certain level."""
 #     start = "/"
 
 #     for key, val in nested_dict.items():
