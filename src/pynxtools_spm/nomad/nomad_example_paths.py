@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-List of path for nomad exmaples to run test in nomad.
+List of path for nomad examples to run test in nomad.
 """
 # -*- coding: utf-8 -*-
 #

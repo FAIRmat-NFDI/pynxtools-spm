@@ -1,28 +1,29 @@
 {
-    "version": "0.2",
-    "ignorePaths": [
-        "./tests/data/*",
-        "*.toml",
-        "Makefile",
-        "*.bat",
-        "*.egg-info"
-    ],
-    "dictionaryDefinitions": [
-        {
-            "name": "custom-dictionary",
-            "path": "./.cspell/custom-dictionary.txt",
-            "addWords": true
-        }
-    ],
-    "import": ["@cspell/dict-scientific-terms-us/cspell-ext.json"],
-    "dictionaries": [
-        "custom-dictionary",
-        "scientific_terms_US",
-        "python"
-    ],
-    "words": [],
-    "ignoreWords": [],
-    "ignoreRegExpList": ["\\bNX\\w*\\b", "https?://[\\S]+"],
-    "import": [],
-    "language": "en-US"
+  "version": "0.2",
+  "ignorePaths": [
+    "./tests/data/*",
+    "*.toml",
+    "Makefile",
+    "*.bat",
+    "*.egg-info",
+    "./src/pynxtools_spm/nomad/**/*.json",
+    "./src/pynxtools_spm/nomad/**/*.yaml",
+    "./src/pynxtools_spm/nomad/**/*.yaml",
+    "./src/pynxtools_spm/nomad/**/*.sxm",
+    "./src/pynxtools_spm/nxformatters/base_formatter.py"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "custom-dictionary",
+      "path": "./.cspell/custom-dictionary.txt",
+      "addWords": true
+    }
+  ],
+  "import": ["@cspell/dict-scientific-terms-us/cspell-ext.json"],
+  "dictionaries": ["custom-dictionary", "scientific_terms_US", "python"],
+  "words": [],
+  "ignoreWords": [],
+  "ignoreRegExpList": ["\\bNX\\w*\\b", "https?://[\\S]+"],
+  "import": [],
+  "language": "en-US"
 }

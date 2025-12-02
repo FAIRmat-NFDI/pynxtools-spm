@@ -52,7 +52,7 @@ class NanonisBase(SPMformatter):
     def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
         """Rearrange array data according to the fast and slow axes.
 
-        (NOTE: This tachnique is proved for NANONIS data only, for others it may
+        (NOTE: This technique is proved for NANONIS data only, for others it may
         not work.)
         Parameters
         ----------
@@ -72,28 +72,28 @@ class NanonisBase(SPMformatter):
             self.NXScanControl.slow_axis,
         )
 
-        rearraged = None
+        rearranged = None
         if fast_axis == "x":
             if slow_axis == "-y":
-                rearraged = np.flipud(data)
-            rearraged = data
+                rearranged = np.flipud(data)
+            rearranged = data
         elif fast_axis == "-x":
             if slow_axis == "y":
-                rearraged = np.fliplr(data)
+                rearranged = np.fliplr(data)
             elif slow_axis == "-y":
                 # np.flip(data)
                 np.flip(data)
         elif fast_axis == "-y":
-            rearraged = np.flipud(data)
+            rearranged = np.flipud(data)
             if slow_axis == "-x":
-                rearraged = np.fliplr(rearraged)
+                rearranged = np.fliplr(rearranged)
         elif fast_axis == "y":
-            rearraged = data
+            rearranged = data
             if slow_axis == "-x":
-                rearraged = np.fliplr(rearraged)
+                rearranged = np.fliplr(rearranged)
         else:
-            rearraged = data
+            rearranged = data
         # Consider backward scan
         if is_forward is False:
-            rearraged = np.fliplr(rearraged)
-        return rearraged
+            rearranged = np.fliplr(rearranged)
+        return rearranged

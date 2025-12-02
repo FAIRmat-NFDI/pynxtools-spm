@@ -155,7 +155,7 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        If model has a distinquishable version (e.g. BP5e).
+                        If model has a distinguishable version (e.g. BP5e).
               software:
                 section:
                   m_annotations:
@@ -183,14 +183,14 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Version or model of the component named by the manufacturer (e.g. Generic 4).
-                        Note that this should be exacty the same as in experiment file.
+                        Note that this should be exactly the same as in experiment file.
                     model_version:
                       type: str
                       m_annotations:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        If model has a distinquishable version (e.g. BP5e).
+                        If model has a distinguishable version (e.g. BP5e).
               height_piezo_sensor:
                 section:
                   m_annotations:

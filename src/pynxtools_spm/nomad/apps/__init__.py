@@ -79,12 +79,12 @@ map_concept_to_full_quantities = {
     # Instrument -> Sample Bias Voltage
     "Bias voltage (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_voltage__field#{schema}#float",
     "Bias offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_offset__field#{schema}#float",
-    # Insturument -> Piezo sensor
+    # Instrument -> Piezo sensor
     "Piezo X (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.x__field#{schema}#float",
     "Piezo Y (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.y__field#{schema}#float",
     "Piezo Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.z__field#{schema}#float",
     # Instrument -> Piezo Sensor -> SPM Positioner
-    "controller lable": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.controller_label__field#{schema}#str",
+    "controller label": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.controller_label__field#{schema}#str",
     "Z controller Set Point (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.z_controller.set_point__field#{schema}#float",
     "Z controller Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.z_controller.z__field#{schema}#float",
     # Instrument -> Lockin Amplifier
@@ -103,7 +103,7 @@ map_concept_to_full_quantities = {
 
 spm_app = AppEntryPoint(
     name="SpmApp",
-    description="A Generic NOMAD App for SPM Experimetal Technique.",
+    description="A Generic NOMAD App for SPM Experiment Technique.",
     app=App(
         # Label of the App
         label="SPM",
@@ -514,7 +514,7 @@ spm_app = AppEntryPoint(
                                 MenuItemTerms(
                                     title="controller label",
                                     quantity=map_concept_to_full_quantities[
-                                        "controller lable"
+                                        "controller label"
                                     ],
                                 ),
                                 MenuItemHistogram(

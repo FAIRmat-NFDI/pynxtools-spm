@@ -65,7 +65,7 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
         template: "Template",
         raw_file: Union[str, "Path"],
         eln_file: str | Path,
-        config_file: str = None,  # Incase it is not provided by users
+        config_file: str = None,  # In case it is not provided by users
         entry: Optional[str] = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)

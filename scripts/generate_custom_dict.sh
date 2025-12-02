@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-project_dir=$(dirname "$(dirname "$(realpath "$0")")")
+project_dir=$(dirname $(dirname $(realpath $0)))
 cd "$project_dir"
 
 dict_file=".cspell/custom-dictionary.txt"
@@ -12,7 +12,7 @@ echo "Regenerating custom dictionary for cspell..."
 
 # Run cspell (ignore its exit code — nonzero just means unknown words found)
 cspell_output=$(mktemp)
-if ! cspell --config cspell.json \
+if ! cspell --config ${project_dir}/cspell.json \
   --no-progress --no-summary --words-only \
   "README.md" "CITATION.cff" \
   "docs/**/*" \
