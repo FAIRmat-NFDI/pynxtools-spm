@@ -6,7 +6,7 @@
 ![](https://img.shields.io/pypi/l/pynxtools-spm)
 ![](https://img.shields.io/pypi/v/pynxtools-spm)
 ![](https://coveralls.io/repos/github/FAIRmat-NFDI/pynxtools-spm/badge.svg?branch=main)
-[![DOI](https://zenodo.org/badge/890885270.svg)](https://zenodo.org/badge/latestdoi/890885270)
+[![DOI](https://zenodo.org/badge/759916501.svg)](https://doi.org/10.5281/zenodo.17390485)
 
 # `pynxtools-spm`: A `pynxtools` reader for SPM data
 
