@@ -19,10 +19,8 @@
       "__package_name": "pynxtools-spm",
       "__module_name": "pynxtools_spm",
       "__nomad_example": "spm_example_upload_entry_point",
-      "__nomad_app": "spm_app_entry_point",
-      "_copy_without_render": [
-        "*.html"
-      ],
+      "__nomad_app": "",
+      "_copy_without_render": ["*.html"],
       "_template": "git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git",
       "_commit": "519f503945368a21d0c44125c0f34cf0d5f46e10"
     }
