@@ -17,15 +17,15 @@
 #
 """Tests for the NOMAD app."""
 
-import pytest
+# import pytest
 
-try:
-    import nomad  # noqa: F401
-except ImportError:
-    pytest.skip(
-        "Skipping NOMAD app tests because nomad-lab is not installed",
-        allow_module_level=True,
-    )
+# try:
+#     import nomad  # noqa: F401
+# except ImportError:
+#     pytest.skip(
+#         "Skipping NOMAD app tests because nomad-lab is not installed",
+#         allow_module_level=True,
+#     )
 
 
 def test_importing_app():
