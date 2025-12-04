@@ -490,7 +490,7 @@ def cal_dy_by_dx(y_val: np.ndarray, x_val: np.ndarray) -> np.ndarray:
 
 
 def transfer_plain_template_to_nested_dict(template, nested_dict):
-    """TODO: Write a doc compatibel with doc test write test in pytest."""
+    """TODO: Write a doc compatible with doc test write test in pytest."""
 
     def split_each_key(key, final_val, nested_dict):
         parts = key.split("/", 1)

@@ -67,6 +67,7 @@ class SPMReader(BaseReader):
         template: dict = None,
         file_paths: Tuple[str] = None,
         objects: Tuple[Any] = None,
+        **kwargs,
     ):
         """
         General read menthod to prepare the template.
