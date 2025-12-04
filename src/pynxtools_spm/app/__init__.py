@@ -79,12 +79,12 @@ map_concept_to_full_quantities = {
     # Instrument -> Sample Bias Voltage
     "Bias voltage (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_voltage__field#{schema}#float",
     "Bias offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_offset_value__field#{schema}#float",
-    # Insturument -> Piezo sensor
+    # Instrument -> Piezo sensor
     "Piezo X (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.x__field#{schema}#float",
     "Piezo Y (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.y__field#{schema}#float",
     "Piezo Z (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.z__field#{schema}#float",
     # Instrument -> Piezo Sensor -> SPM Positioner
-    "controller lable": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.controller_label__field#{schema}#str",
+    "controller label": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.controller_label__field#{schema}#str",
     "Z controller Set Point (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.z_controller.set_point__field#{schema}#float",
     "Z controller Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.z_controller.z__field#{schema}#float",
     # Instrument -> Lockin Amplifier
@@ -500,7 +500,7 @@ spm_app = AppEntryPoint(
                                 MenuItemTerms(
                                     title="controller label",
                                     quantity=map_concept_to_full_quantities[
-                                        "controller lable"
+                                        "controller label"
                                     ],
                                 ),
                                 MenuItemHistogram(
