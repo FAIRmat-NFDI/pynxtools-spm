@@ -59,6 +59,7 @@ spm = "pynxtools_spm.reader:SPMReader"
 sts_example = "pynxtools_spm.nomad.entrypoints:sts_example"
 stm_example = "pynxtools_spm.nomad.entrypoints:stm_example"
 afm_example = "pynxtools_spm.nomad.entrypoints:afm_example"
+spm_app = "pynxtools_spm.app:spm_app"
 
 
 [tool.setuptools.packages.find]

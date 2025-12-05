@@ -42,7 +42,7 @@ from pynxtools_spm.nxformatters.helpers import (
     get_actual_from_variadic_name,
 )
 
-ureg = UnitRegistry()
+ureg: UnitRegistry = UnitRegistry()
 
 
 class NanonisDatSTS(NanonisBase):

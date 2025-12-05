@@ -38,32 +38,32 @@ map_concept_to_full_quantities = {
     "Periodic Table": "results.material.elements",
     # Scan Environment
     "Scan Mode": f"data.ENTRY.scan_mode__field#{schema}#str",
-    "Tip Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.scan_environment.tip_temp__field#{schema}#float",
-    "Cryo Bottom Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.scan_environment.cryo_bottom_temp__field#{schema}#float",
-    "Cryo Shield Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.scan_environment.cryo_shield_temp__field#{schema}#float",
+    "Head Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.head_temperature__field#{schema}#float",
+    "Cryo Bottom Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.cryo_bottom_temperature__field#{schema}#float",
+    "Cryo Shield Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.cryo_shield_temperature__field#{schema}#float",
     # Scan Environment->Topographic scan
-    "offset x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_offset_x__field#{schema}#float",
-    "offset y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_offset_y__field#{schema}#float",
-    "scan range x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_range_x__field#{schema}#float",
-    "scan range y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_range_y__field#{schema}#float",
-    "scan angle x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_angle_x__field#{schema}#float",
-    "scan angle y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.scan_region.scan_angle_y__field#{schema}#float",
-    "scan points x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_points_x__field#{schema}#float",
-    "scan points y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_points_y__field#{schema}#float",
-    "step size x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.step_size_x__field#{schema}#float",
-    "step size y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.step_size_y__field#{schema}#float",
-    "scan start x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_start_x__field#{schema}#float",
-    "scan start y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_start_y__field#{schema}#float",
-    "scan end x": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_end_x__field#{schema}#float",
-    "scan end y": f"data.ENTRY.INSTRUMENT.scan_environment.SCAN_CONTROL.mesh_scan.scan_end_y__field#{schema}#float",
+    "offset x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_offset_value_x__field#{schema}#float",
+    "offset y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_offset_value_y__field#{schema}#float",
+    "scan points x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.scan_points_x__field#{schema}#float",
+    "scan points y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.scan_points_y__field#{schema}#float",
+    "step size x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.step_size_x__field#{schema}#float",
+    "step size y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.step_size_y__field#{schema}#float",
+    "scan range x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_range_x__field#{schema}#float",
+    "scan range y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_range_y__field#{schema}#float",
+    "scan angle x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_angle_x__field#{schema}#float",
+    "scan angle y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_angle_y__field#{schema}#float",
+    "scan start x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_start_x__field#{schema}#float",
+    "scan start y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_start_y__field#{schema}#float",
+    "scan end x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_end_x__field#{schema}#float",
+    "scan end y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_end_y__field#{schema}#float",
     # Scan Environment -> Bias Scan
-    "Bias Start (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_start_bias__field#{schema}#float",
-    "Bias End (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_end_bias__field#{schema}#float",
-    "Bias Offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_offset_bias__field#{schema}#float",
-    "Bias Range (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.scan_region.scan_range_bias__field#{schema}#float",
-    "Scan Points (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.linear_sweep.scan_points_bias__field#{schema}#float",
-    "Step Size (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.bias_sweep.linear_sweep.step_size_bias__field#{schema}#float",
-    "z_offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.BIAS_SPECTROSCOPY.POSITIONER_SPM.z_offset__field#{schema}#float",
+    "Bias Start (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_start_bias__field#{schema}#float",
+    "Bias End (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_end_bias__field#{schema}#float",
+    "Bias Offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_offset_bias__field#{schema}#float",
+    "Bias Range (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_range_bias__field#{schema}#float",
+    "Scan Points (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.linear_sweep.scan_points_bias__field#{schema}#float",
+    "Step Size (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.linear_sweep.step_size_bias__field#{schema}#float",
+    "z_offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.SPM_POSITIONER.z_controller.z_offset_value__field#{schema}#float",
     # Instrument -> Hardware
     "Name (Hardware)": f"data.ENTRY.INSTRUMENT.hardware.name__field#{schema}#str",
     "Model (Hardware)": f"data.ENTRY.INSTRUMENT.hardware.model__field#{schema}#str",
@@ -71,34 +71,32 @@ map_concept_to_full_quantities = {
     "Name (Software)": f"data.ENTRY.INSTRUMENT.software.name__field#{schema}#str",
     "Model (Software)": f"data.ENTRY.INSTRUMENT.software.model__field#{schema}#str",
     # Instrument -> current_sensor
-    "Current (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensor.current__field#{schema}#float",
-    "Current Offset (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensor.current_offset__field#{schema}#float",
+    "Current (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensorTAG.current__field#{schema}#float",
+    "Current Offset (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensorTAG.offset_value__field#{schema}#float",
     # Instrument -> voltage_sensor
-    "Voltage (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensor.voltage__field#{schema}#float",
-    "Voltage Offset (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensor.voltage_offset__field#{schema}#float",
+    "Voltage (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensorTAG.voltage__field#{schema}#float",
+    "Voltage Offset (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensorTAG.offset_value__field#{schema}#float",
     # Instrument -> Sample Bias Voltage
     "Bias voltage (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_voltage__field#{schema}#float",
-    "Bias offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_offset__field#{schema}#float",
-    # Insturument -> Piezo sensor
-    "Piezo X (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.x__field#{schema}#float",
-    "Piezo Y (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.y__field#{schema}#float",
-    "Piezo Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.z__field#{schema}#float",
+    "Bias offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_offset_value__field#{schema}#float",
+    # Instrument -> Piezo sensor
+    "Piezo X (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.x__field#{schema}#float",
+    "Piezo Y (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.y__field#{schema}#float",
+    "Piezo Z (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.z__field#{schema}#float",
     # Instrument -> Piezo Sensor -> SPM Positioner
-    "controller lable": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.controller_label__field#{schema}#str",
-    "Z controller Set Point (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.z_controller.set_point__field#{schema}#float",
-    "Z controller Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.POSITIONER_SPM.z_controller.z__field#{schema}#float",
+    "controller label": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.controller_label__field#{schema}#str",
+    "Z controller Set Point (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.z_controller.set_point__field#{schema}#float",
+    "Z controller Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.z_controller.z__field#{schema}#float",
     # Instrument -> Lockin Amplifier
     "Reference Frequency (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_frequency__field#{schema}#float",
     "Reference Phase (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_phase__field#{schema}#float",
     "Reference Amplitude (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_amplitude__field#{schema}#float",
     "Demodulated signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.demodulated_signal__field#{schema}#str",
-    "Modulation signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.modulation_signal__field#{schema}#str",
     "Lockin Current Flip Sign (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.flip_sign__field#{schema}#float",
     # AFM: Instrument -> Cantilever SPM
-    "Oscillator excitation (Cantilever SPM)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.oscillator_excitation__field#{schema}#float",
-    "Reference Amplitude (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_amplitude__field#{schema}#float",
-    "Reference Frequency (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_frequency__field#{schema}#float",
-    "Reference Phase (Oscillator)": f"data.ENTRY.INSTRUMENT.CANTILEVER_SPM.cantilever_oscillator.reference_phase__field#{schema}#float",
+    "Reference Amplitude (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_amplitude__field#{schema}#float",
+    "Reference Frequency (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_frequency__field#{schema}#float",
+    "Reference Phase (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_phase__field#{schema}#float",
 }
 
 spm_app = AppEntryPoint(
@@ -193,7 +191,7 @@ spm_app = AppEntryPoint(
                         MenuItemHistogram(
                             title="Tip Temperature",
                             x=map_concept_to_full_quantities[
-                                "Tip Temperature (Scan Environment)"
+                                "Head Temperature (Scan Environment)"
                             ],
                         ),
                         MenuItemHistogram(
@@ -364,12 +362,6 @@ spm_app = AppEntryPoint(
                                 "Reference Phase (Oscillator)"
                             ],
                         ),
-                        MenuItemHistogram(
-                            title="Oscillator excitation",
-                            x=map_concept_to_full_quantities[
-                                "Oscillator excitation (Cantilever SPM)"
-                            ],
-                        ),
                     ],
                 ),
                 Menu(
@@ -450,12 +442,6 @@ spm_app = AppEntryPoint(
                                 "Demodulated signal (Lockin Amplifier)"
                             ],
                         ),
-                        MenuItemTerms(
-                            title="Modulation signal",
-                            quantity=map_concept_to_full_quantities[
-                                "Modulation signal (Lockin Amplifier)"
-                            ],
-                        ),
                         MenuItemHistogram(
                             title="Lockin Current Flip Sign",
                             x=map_concept_to_full_quantities[
@@ -514,7 +500,7 @@ spm_app = AppEntryPoint(
                                 MenuItemTerms(
                                     title="controller label",
                                     quantity=map_concept_to_full_quantities[
-                                        "controller lable"
+                                        "controller label"
                                     ],
                                 ),
                                 MenuItemHistogram(
@@ -533,15 +519,21 @@ spm_app = AppEntryPoint(
                         ),
                         MenuItemHistogram(
                             title="x",
-                            x=map_concept_to_full_quantities["Piezo X (Piezo Sensor)"],
+                            x=map_concept_to_full_quantities[
+                                "Piezo X (Piezo Sensor XYZ)"
+                            ],
                         ),
                         MenuItemHistogram(
                             title="y",
-                            x=map_concept_to_full_quantities["Piezo Y (Piezo Sensor)"],
+                            x=map_concept_to_full_quantities[
+                                "Piezo Y (Piezo Sensor XYZ)"
+                            ],
                         ),
                         MenuItemHistogram(
                             title="z",
-                            x=map_concept_to_full_quantities["Piezo Z (Piezo Sensor)"],
+                            x=map_concept_to_full_quantities[
+                                "Piezo Z (Piezo Sensor XYZ)"
+                            ],
                         ),
                     ],
                 ),
@@ -556,7 +548,7 @@ spm_app = AppEntryPoint(
                         MenuItemHistogram(
                             title="Cantilever Tip Temperature",
                             x=map_concept_to_full_quantities[
-                                "Tip Temperature (Scan Environment)"
+                                "Head Temperature (Scan Environment)"
                             ],
                         ),
                         MenuItemHistogram(
@@ -578,12 +570,6 @@ spm_app = AppEntryPoint(
                     indentation=1,
                     show_header=True,
                     items=[
-                        MenuItemHistogram(
-                            title="Cantilever SPM -> Oscillator Excitation",
-                            x=map_concept_to_full_quantities[
-                                "Oscillator excitation (Cantilever SPM)"
-                            ],
-                        ),
                         MenuItemHistogram(
                             title="Cantilever Oscillator -> Reference Amplitude",
                             x=map_concept_to_full_quantities[
@@ -609,12 +595,6 @@ spm_app = AppEntryPoint(
                     indentation=1,
                     show_header=True,
                     items=[
-                        MenuItemTerms(
-                            title="Modulation Signal",
-                            quantity=map_concept_to_full_quantities[
-                                "Modulation signal (Lockin Amplifier)"
-                            ],
-                        ),
                         MenuItemHistogram(
                             title="Reference Frequency",
                             x=map_concept_to_full_quantities[
