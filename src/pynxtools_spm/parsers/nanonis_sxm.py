@@ -46,7 +46,7 @@ class SxmGenericNanonis(SPMBase):
         self, key, val, start_bracket="", end_bracket=""
     ):
         """
-        Split key into 'key' and 'key/@units' if key is designed as somthing like this 'key(A)'.
+        Split key into 'key' and 'key/@units' if key is designed as something like this 'key(A)'.
         """
         if start_bracket and end_bracket:
             if start_bracket in key and end_bracket in key:
@@ -60,7 +60,7 @@ class SxmGenericNanonis(SPMBase):
             # In case if value contain name and unit e.g. /.../demodulated_signal: 'current(A)'
             if start_bracket in val and end_bracket in val:
                 unit_parts = val.rsplit(start_bracket)
-                # Assume that val does not have any key but decriptive text,
+                # Assume that val does not have any key but descriptive text,
                 # e.g. Current (A);Bias (V);
                 if len(unit_parts) > 2:
                     return [(key, val)]
@@ -75,7 +75,7 @@ class SxmGenericNanonis(SPMBase):
 
     def __get_raw_metadata_and_signal(self, file_name):
         """
-        Retun metadata plain dict and signal
+        Return metadata plain dict and signal
         Convert header part (that contains metadata) of a file with 'sxm' extension into
         plain dict.
         """
@@ -113,24 +113,22 @@ class SxmGenericNanonis(SPMBase):
             if line == "":
                 continue
             parts = line.split("\t")
-            startting = prepend_part + "/" + parts[2]
+            start = prepend_part + "/" + parts[2]
             for meta_tag, value in zip(header[1:], parts[1:]):
-                scan_metadata_dict[startting + "/" + meta_tag] = value
+                scan_metadata_dict[start + "/" + meta_tag] = value
         return scan_metadata_dict
 
     def __get_nested_metadata_dict_and_signal(self):
         """
-        Get meradata and signal from spm file.
+        Get metadata and signal from spm file.
         """
         metadata_dict, signal = self.__get_raw_metadata_and_signal(self.file_path)
-        nesteded_matadata_dict = phs.get_nested_dict_from_concatenated_key(
-            metadata_dict
-        )
+        nested_metadata_dict = phs.get_nested_dict_from_concatenated_key(metadata_dict)
         # Convert nested (dict) path to signal into slash_separated path to signal
         temp_flattened_dict_sig = {}
         nested_path_to_slash_separated_path(signal, temp_flattened_dict_sig)
         temp_flattened_dict = {}
-        nested_path_to_slash_separated_path(nesteded_matadata_dict, temp_flattened_dict)
+        nested_path_to_slash_separated_path(nested_metadata_dict, temp_flattened_dict)
         flattened_dict = {}
         scan_metadata_dict = None
 
@@ -170,7 +168,7 @@ class SxmGenericNanonis(SPMBase):
 
 
 def get_stm_raw_file_info(raw_file):
-    """Parse the raw_file into a organised dictionary. It helps users as well as developers
+    """Parse the raw_file into a organized dictionary. It helps users as well as developers
     to understand how the reader works and modify the config file."""
 
     base_name = os.path.basename(raw_file)

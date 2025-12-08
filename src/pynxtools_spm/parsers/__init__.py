@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Chosses the appropriate parser based on the file extension and the ELN data.
+Choose the appropriate parser based on the file extension and the ELN data.
 """
 # -*- coding: utf-8 -*-
 #
@@ -81,7 +81,7 @@ class SPMParser:
         eln: Optional[Dict] = {},
         file_ext: Optional[str] = None,
     ) -> Iterable[Callable]:
-        """Search for appropriate prser and pass it the reader.
+        """Search for appropriate parser and pass it the reader.
 
         Parameters
         ----------
@@ -94,7 +94,7 @@ class SPMParser:
             File extension (e.g. 'sxm'), by default None
         Returns
         -------
-            Return Callable function that has capability to run the correponding parser.
+            Return Callable function that has capability to run the corresponding parser.
         """
         if file_ext is None:
             if file is None:
