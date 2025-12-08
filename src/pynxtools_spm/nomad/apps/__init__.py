@@ -101,7 +101,7 @@ map_concept_to_full_quantities = {
 
 spm_app = AppEntryPoint(
     name="SpmApp",
-    description="A Generic NOMAD App for SPM Experimetal Technique.",
+    description="A Generic NOMAD App for SPM Experiment Technique.",
     app=App(
         # Label of the App
         label="SPM",

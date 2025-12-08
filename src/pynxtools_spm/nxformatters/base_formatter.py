@@ -175,7 +175,7 @@ class SPMformatter(ABC):
         eln_file: str | Path,
         config_file: Optional[
             Union[str, Path]
-        ] = None,  # Incase it is not provided by users
+        ] = None,  # In case it is not provided by users
         entry: Optional[str] = None,
     ):
         self.template: Template = template
@@ -210,7 +210,7 @@ class SPMformatter(ABC):
     ):
         # This concept is just note where the group will be
         # handeld name of the function regestered in the self._grp_to_func
-        # or somthing like that.
+        # or something like that.
         if "#note" in config_dict:
             return
         for key, val in config_dict.items():
@@ -221,7 +221,7 @@ class SPMformatter(ABC):
                 self._resolve_link_in_config(val, f"{parent_path}/{key}")
             # Special case, will be handled in a specific function registered
             # in self._grp_to_func
-            elif retrived_key := next(
+            elif retrieved_key := next(
                 (k for k in self._grp_to_func.keys() if key.startswith(k)), None
             ):
                 if not use_custom_func_prior:
@@ -231,10 +231,10 @@ class SPMformatter(ABC):
                         func_on_raw_key=func_on_raw_key,
                     )
                     # Fill special fields first
-                    method = getattr(self, self._grp_to_func[retrived_key])
+                    method = getattr(self, self._grp_to_func[retrieved_key])
                     method(val, parent_path, key)
                 else:
-                    method = getattr(self, self._grp_to_func[retrived_key])
+                    method = getattr(self, self._grp_to_func[retrieved_key])
                     method(val, parent_path, key)
                     self.walk_though_config_nested_dict(
                         config_dict=val,

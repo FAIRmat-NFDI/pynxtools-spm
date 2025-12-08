@@ -31,7 +31,7 @@ from pynxtools import get_nexus_version
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 
-# For flatened key-value pair from nested dict.
+# For flattened key-value pair from nested dict.
 REPLACE_NESTED: Dict[str, str] = {}
 
 
@@ -69,13 +69,13 @@ class SPMReader(BaseReader):
         objects: Tuple[Any] = None,
     ):
         """
-        General read menthod to prepare the template.
+        General read method to prepare the template.
         """
         filled_template: Union[Dict, None] = Template()
         eln_file: str = None
         config_file: Optional[str] = None
         data_file: Optional[str] = ""
-        experirment_technique: Optional[str] = None
+        experiment_technique: Optional[str] = None
         raw_file_ext: Optional[str] = None
 
         for file in file_paths:
@@ -90,55 +90,55 @@ class SPMReader(BaseReader):
                 eln_file = file
                 with open(file, mode="r", encoding="utf-8") as fl_obj:
                     eln_dict = yaml.safe_load(fl_obj)
-                    experirment_technique = eln_dict.get("experiment_technique")
-                    # TODO get defition name
-                if experirment_technique is None:
+                    experiment_technique = eln_dict.get("experiment_technique")
+                    # TODO get definition name
+                if experiment_technique is None:
                     raise ValueError("Experiment technique is not defined in ELN file.")
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:
             raise ValueError("Data file is required for the reader to work.")
 
-        formater_obj: Optional[SPMformatter] = None
+        formatter_obj: Optional[SPMformatter] = None
         # Get callable object that has parser inside
-        if experirment_technique == "STM" and raw_file_ext == "sxm":
+        if experiment_technique == "STM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import (
                 NanonisSxmSTM,
             )
 
-            formater_obj = NanonisSxmSTM(
+            formatter_obj = NanonisSxmSTM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
             # nss.get_nxformatted_template()
-        elif experirment_technique == "STM" and raw_file_ext == "sm4":
+        elif experiment_technique == "STM" and raw_file_ext == "sm4":
             from pynxtools_spm.nxformatters.omicron.omicron_sm4_stm import (
                 OmicronSM4STM,
             )
 
-            formater_obj = OmicronSM4STM(
+            formatter_obj = OmicronSM4STM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
             # oss.get_nxformatted_template()
-        elif experirment_technique == "AFM" and raw_file_ext == "sxm":
+        elif experiment_technique == "AFM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_afm import NanonisSxmAFM
 
-            formater_obj = NanonisSxmAFM(
+            formatter_obj = NanonisSxmAFM(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
                 config_file=config_file,
             )
             # nsa.get_nxformatted_template()
-        elif experirment_technique == "STS" and raw_file_ext == "dat":
+        elif experiment_technique == "STS" and raw_file_ext == "dat":
             from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 
-            formater_obj = NanonisDatSTS(
+            formatter_obj = NanonisDatSTS(
                 template=template,
                 raw_file=data_file,
                 eln_file=eln_file,
@@ -146,11 +146,11 @@ class SPMReader(BaseReader):
             )
             # nds.get_nxformatted_template()
 
-        if not formater_obj:
+        if not formatter_obj:
             raise ValueError(
-                f"IncorrectExperiment: Incorect experiment technique ({experirment_technique}) or file extension ({raw_file_ext}) are given"
+                f"IncorrectExperiment: Incorrect experiment technique ({experiment_technique}) or file extension ({raw_file_ext}) are given"
             )
-        formater_obj.get_nxformatted_template()
+        formatter_obj.get_nxformatted_template()
         # manually_remove the empty data
         for key, val in template.items():
             if isinstance(val, np.ndarray):
@@ -165,7 +165,7 @@ class SPMReader(BaseReader):
         if not filled_template.keys():
             raise ValueError(
                 "Reader could not read anything! Check for input files and the"
-                " corresponding extention."
+                " corresponding extension."
             )
         manually_filter_data_type(filled_template)
         return filled_template

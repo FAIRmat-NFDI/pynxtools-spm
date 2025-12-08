@@ -30,7 +30,7 @@ class NanonisFile:
     byte_offset : int
         Size of header in bytes.
     header_raw : str
-        Unproccessed header information.
+        Unprocessed header information.
     """
 
     def __init__(self, fname):
@@ -678,7 +678,7 @@ def _parse_dat_header(header_raw):
 
 def _clean_sxm_header(header_dict):
     """
-    Cleanup header dicitonary key-value pairs.
+    Cleanup header dictionary key-value pairs.
 
     Parameters
     ----------

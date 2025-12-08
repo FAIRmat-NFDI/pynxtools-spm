@@ -1,19 +1,19 @@
 definitions:
-  name: "AFM_ELN_Example"
+  name: "STS_ELN_Example"
   eln:
-    label: "AFM ELN Example"
+    label: "STS ELN Example"
   sections:
-    ELN_for_AFM:
+    ELN_for_STS:
       base_sections:
         - pynxtools.nomad.dataconverter.NexusDataConverter
         - nomad.datamodel.data.EntryData
       m_annotations:
         template:
           reader: spm
-          nxdl: NXafm
+          nxdl: NXsts
         eln:
           hide: []
-          label: "ELN for AFM"
+          label: "ELN for STS"
       quantities:
         default:
           type: str
@@ -21,13 +21,13 @@ definitions:
             eln:
               component: StringEditQuantity
           description: |
-            The name of the NXdata group that comes as child of the entry group for default plot
+            The name of the NXdata group that comes as child of the entry group for default plot visualization
             to be displayed upon the entry of NeXus file.
         definition:
           type:
             type_kind: Enum
             type_data:
-              - NXafm
+              - NXsts
           m_annotations:
             eln:
               component: EnumEditQuantity
@@ -38,26 +38,12 @@ definitions:
           type:
             type_kind: Enum
             type_data:
-              - AFM
+              - STS
           m_annotations:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the technique used for the experiment, e.g. AFM.
-        scan_mode:
-          type:
-            type_kind: Enum
-            type_data:
-              - contact mode
-              - tapping mode
-              - non-contact mode
-              - Kelvin probe
-              - electric force
-          m_annotations:
-            eln:
-              component: EnumEditQuantity
-          description: |
-            Mode of scan in AFM experiment.
+            Name of the technique used for the experiment, e.g. STS.
         experiment_description:
           type: str
           m_annotations:
@@ -76,7 +62,6 @@ definitions:
           description: |
             An unique identifier fot the experiment. e.g. the identifier
             could be specific for a lab or experiment team.
-
         identifier_collection:
           type: str
           m_annotations:
@@ -87,7 +72,6 @@ definitions:
             if the experiment if part of a collection of experiments
       sub_sections:
         User:
-          repeats: True
           section:
             m_annotations:
               eln:
@@ -128,13 +112,6 @@ definitions:
                     eln:
                       overview: true
                   quantities:
-                    vendor:
-                      type: str
-                      m_annotations:
-                        eln:
-                          component: StringEditQuantity
-                      description: |
-                        Name of the vendor of the hardware. (e.g. Nanonis).
                     name:
                       type: str
                       m_annotations:
@@ -142,20 +119,27 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Name of the hardware. (e.g. Nanonis).
+                    vendor:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Name of the manufacturer of the hardware (e.g. Nanonis).
                     model:
                       type: str
                       m_annotations:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        Version or model of the component named by the manufacturer (e.g. Nanonis).
+                        Version or model of the component named by the manufacturer (e.g. Generic 5e).
                     model_version:
                       type: str
                       m_annotations:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        If model has a distinquishable version (e.g. BP5e).
+                        If model has a distinguishable version (e.g. BP5e).
               software:
                 section:
                   m_annotations:
@@ -168,7 +152,7 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        Name of the vendor of the software. (e.g. Nanonis).
+                        Name of the manufacturer of the software.
                     name:
                       type: str
                       m_annotations:
@@ -182,40 +166,41 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        Version or model of the component named by the manufacturer (e.g. Generic 4).
-                        Note that this should be exacty the same as in experiment file.
+                        Version or model, required to choose correct file parser, of the component named
+                        by the manufacturer (e.g. Generic 5e).
+                        Note that model should be exactly the same as the one in the experiment file.
                     model_version:
                       type: str
                       m_annotations:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        If model has a distinquishable version (e.g. BP5e).
-              height_piezo_sensor:
+                        If model has a distinguishable version (e.g. BP5e).
+              lockin_amplifier:
                 section:
                   m_annotations:
                     eln:
                       overview: true
-                  sub_sections:
-                    piezo_configuration:
-                      section:
-                        m_annotations:
-                          eln:
-                            overview: true
-                        sub_sections:
-                          piezo_material:
-                            section:
-                              m_annotations:
-                                eln:
-                                  overview: true
-                              quantities:
-                                identifier_piezo_material:
-                                  type: str
-                                  m_annotations:
-                                    eln:
-                                      component: StringEditQuantity
-                                  description: |
-                                    An unique identifier for the piezo material.
+                  quantities:
+                    modulation_signal:
+                      type: str
+                      m_annotations:
+                        eln:
+                          component: StringEditQuantity
+                      description: |
+                        Type of the signal either in voltage or current.
+                    flip_sign:
+                      type: np.float64
+                      m_annotations:
+                        eln:
+                          component: NumberEditQuantity
+                      description: |
+                        The sign (1 or -1) that defines the sign of the lock-in current.
+                        The calibration procedure with retracted tip is normally performed
+                        to compensate for the signal phase delay in SPM. The procedure
+                        yields two possible solutions, this number should be equal to 1 or -1
+                        depending on which solution is chosen (this concept mainly used in
+                        STS experiments, e.g. in Nanonis machine).
               Scan_environment:
                 section:
                   m_annotations:
@@ -232,7 +217,6 @@ definitions:
                       description: |
                         Temperature of STM head. Note: At least one field from head_temperature,
                         cryo_bottom_temperature and cryo_shield_temperature must be provided.
-                        At least one field from tip_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
                     cryo_bottom_temperature:
                       type: np.float64
                       unit: kelvin
@@ -242,7 +226,7 @@ definitions:
                           defaultDisplayUnit: K
                       description: |
                         Temperature of the cold tail of the cryostat. Note:
-                        At least one field from tip_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
+                        At least one field from head_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
                     cryo_shield_temperature:
                       type: np.float64
                       unit: kelvin

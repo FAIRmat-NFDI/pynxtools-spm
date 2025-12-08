@@ -22,6 +22,7 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import annotations
 from typing import Any, Dict, Union, Optional
 from dataclasses import dataclass
 from pathlib import Path
@@ -298,7 +299,7 @@ class NanonisDatSTS(NanonisBase):
                         curnt_volt["voltage_fld_name"] = get_actual_from_variadic_name(
                             key[0:-7].split("/")[-1]
                         )
-        # check if group is current group and calculatre dI/dV
+        # check if group is current group and calculate dI/dV
         if current and voltage:
             try:
                 # Fix it currently it is unable to get data from eln
@@ -317,7 +318,7 @@ class NanonisDatSTS(NanonisBase):
 
             if flip_number is None:
                 raise ValueError(
-                    "Flip number for lockin current must be suplied via eln."
+                    "Flip number for lockin current must be supplied via eln."
                 )
             if len(current_field_to_data) != 1:
                 raise ValueError("Each group can have only one current field.")

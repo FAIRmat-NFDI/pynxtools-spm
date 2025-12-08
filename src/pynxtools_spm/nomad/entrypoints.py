@@ -25,7 +25,7 @@ sts_example = ExampleUploadEntryPoint(
     category="NeXus Experiment Examples",
     description="""This example presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Spectroscopy (sts) data.""",
     plugin_package="pynxtools_spm",
-    resources=["nomad/examples/sts/STSExampleWithCustomization/*"],
+    resources=["nomad/example_uploads/sts/STSExampleWithCustomization/*"],
 )
 
 
@@ -34,7 +34,7 @@ stm_example = ExampleUploadEntryPoint(
     category="NeXus Experiment Examples",
     description="""This example presents the capabilities of the NOMAD platform to store standardized Scanning Tunneling Microscopy (stm) data""",
     plugin_package="pynxtools_spm",
-    resources=["nomad/examples/stm/STMExampleWithCustomization/*"],
+    resources=["nomad/example_uploads/stm/STMExampleWithCustomization/*"],
 )
 
 
@@ -43,5 +43,5 @@ afm_example = ExampleUploadEntryPoint(
     category="NeXus Experiment Examples",
     description="""This example presents the capabilities of the NOMAD platform to store standardized Atomic Force Microscopy (afm) data""",
     plugin_package="pynxtools_spm",
-    resources=["nomad/examples/afm/AFMExampleWithCustomization/*"],
+    resources=["nomad/example_uploads/afm/AFMExampleWithCustomization/*"],
 )

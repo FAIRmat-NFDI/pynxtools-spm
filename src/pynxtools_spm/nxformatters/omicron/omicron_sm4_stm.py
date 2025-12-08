@@ -63,7 +63,7 @@ class OmicronSM4STM(OmicronBase):
         template: "Template",
         raw_file: str | Path,
         eln_file: str | Path,
-        config_file: str | Path = None,  # Incase it is not provided by users
+        config_file: str | Path = None,  # In case it is not provided by users
         entry: Optional[str] = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
@@ -473,7 +473,7 @@ class OmicronSM4STM(OmicronBase):
                             completed_field.append(end_time_str)
                         except (ValueError, TypeError):
                             pass
-            # TODO add a logger for all ecceptions
+            # TODO add a logger for all exceptions
             elif m := re.match(
                 pattern=r"(/ENTRY\[\w+\]/INSTRUMENT\[\w+\]/SCAN_ENVIRONMENT\[\w+\]/SPM_SCAN_CONTROL\[(\w+)\]/meshSCAN\[\w+\])",
                 string=template_key,

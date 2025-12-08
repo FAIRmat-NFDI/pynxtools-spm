@@ -5,6 +5,9 @@
   "editor.tabCompletion": "on",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
+  "editor.rulers": [90],
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 4,
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,

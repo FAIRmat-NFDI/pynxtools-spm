@@ -524,7 +524,7 @@
           "@units": "/Topography_Forward/RHK_Y/@unit"
         },
         "title": {
-          "raw_path": "@default:Topography Plot of STM Experiment (Foward Direction)"
+          "raw_path": "@default:Topography Plot of STM Experiment (Forward Direction)"
         },
         "grp_name": "z_forward"
       },

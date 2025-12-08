@@ -578,7 +578,7 @@
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Plot of STM Experiment (Foward Direction)"
+          "raw_path": "@default:Height Plot of STM Experiment (Forward Direction)"
         },
         "grp_name": "z_forward"
       },
@@ -600,7 +600,7 @@
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Plot of STM Experiment (Foward Direction)"
+          "raw_path": "@default:Current Plot of STM Experiment (Forward Direction)"
         },
         "grp_name": "current_forward"
       },

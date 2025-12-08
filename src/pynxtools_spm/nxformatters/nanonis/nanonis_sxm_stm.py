@@ -78,7 +78,7 @@ class NanonisSxmSTM(NanonisBase):
         template: "Template",
         raw_file: str | Path,
         eln_file: str | Path,
-        config_file: str | Path = None,  # Incase it is not provided by users
+        config_file: str | Path = None,  # In case it is not provided by users
         entry: Optional[str] = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
@@ -113,7 +113,7 @@ class NanonisSxmSTM(NanonisBase):
             if self.NXScanControl.fast_axis.startswith("-")  # -ve direction
             else self.NXScanControl.fast_axis
         )
-        # TODO: chech fast_axis contains - sign and remove it
+        # TODO: check fast_axis contains - sign and remove it
         self.template[
             f"{parent_path}/{group_name}/forward_speedN[forward_speed_{fast_axis}]"
         ] = to_intended_t(forward_speed)
@@ -203,7 +203,7 @@ class NanonisSxmSTM(NanonisBase):
         parent_path: str,
         group_name="scan_region",
     ):
-        """Constaruct region group from scan_control group sitting in scan_environment group."""
+        """Construct region group from scan_control group sitting in scan_environment group."""
         scan_offset = "scan_offset_valueN[scan_offset_value_n]"
 
         scan_offsets, unit, _ = _get_data_unit_and_others(
@@ -440,7 +440,7 @@ class NanonisSxmSTM(NanonisBase):
         **kwargs,
     ):
         """Constructs Scan Control group from the scan environment group.
-        Where, scan control group constains scan region and scan pattern groups."""
+        Where, a scan control group contains scan region and scan pattern groups."""
 
         # find independent_scan_axes
         # independent_axes = "/ENTRY[entry]/INSTRUMENT[instrument]/SCAN_ENVIRONMENT/SCAN_CONTROL[scan_control]/independent_scan_axes"
@@ -481,7 +481,7 @@ class NanonisSxmSTM(NanonisBase):
         is_forward: Optional[bool] = None,
         rearrange_2d_data: bool = True,
     ):
-        """Specialization of the generic funciton to create NXdata group or plots."""
+        """Specialization of the generic function to create NXdata group or plots."""
         if (
             is_forward is None
             and "data" in partial_conf_dict

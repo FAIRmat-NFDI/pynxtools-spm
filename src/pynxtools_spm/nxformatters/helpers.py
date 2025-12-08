@@ -114,7 +114,7 @@ def _verify_unit(
         unit_derived = unit
     elif base_key:
         unit_or_path = conf_dict[f"{base_key}/@units"]
-        if unit_or_path.starswith("@default:"):
+        if unit_or_path.startswith("@default:"):
             unit_derived = unit_or_path.split("@default:")[-1]
         else:
             unit_derived = (
@@ -188,7 +188,7 @@ def _get_data_unit_and_others(
                 "@units": "@default:deg"
             },
         func_on_raw_key : callable
-            Function to apply on raw keywith one input parameter.
+            Function to apply on raw key with one input parameter.
             If there any modification is need on the raw key, this function can be used.
 
             For example:
@@ -221,7 +221,7 @@ def _get_data_unit_and_others(
 
     raw_path = end_dict.get("raw_path", "")
 
-    # if raw_path have multiple possibel path to the raw data
+    # if raw_path have multiple possible path to the raw data
     if isinstance(raw_path, list):
         for path in raw_path:
             raw_data = get_data_modified_key(path)
@@ -286,7 +286,7 @@ def to_intended_t(
 ):
     """
         Transform string to the intended data type, if not then return data.
-    e.g '2.5E-2' will be transfor into 2.5E-2
+    e.g '2.5E-2' will be transfer into 2.5E-2
     tested with: '2.4E-23', '28', '45.98', 'test', ['59', '3.00005', '498E-34'], None
     with result: 2.4e-23, 28, 45.98, test, [5.90000e+01 3.00005e+00 4.98000e-32], None
 
@@ -335,7 +335,7 @@ def to_intended_t(
             else:
                 print(
                     f"Warning: Data '{data}' can not be converted to an array"
-                    f"and encounterd error {e}"
+                    f"and encountered error {e}"
                 )
         return data
 
@@ -345,7 +345,7 @@ def to_intended_t(
             return transformed
         return data
 
-    symbol_list_for_data_seperation = [";"]
+    symbol_list_for_data_separation = [";"]
     transformed: Optional[Any]
     if data is None:
         return data
@@ -397,7 +397,7 @@ def to_intended_t(
                 if "[" in data and "]" in data:
                     return _array_from_str(data)
 
-        for sym in symbol_list_for_data_seperation:
+        for sym in symbol_list_for_data_separation:
             if sym in data:
                 parts = data.split(sym)
                 modified_parts = []
@@ -471,8 +471,8 @@ def replace_variadic_name_part(name: str, part_to_embed: Optional[str] = None) -
         return "[".join([f_part, f_part_mod]) + "]"
     elif ind_end is not None and ind_start is not None:
         replacement_p = f_part[ind_start:ind_end]
-        remainpart = f_part[0:ind_start]
-        if remainpart.endswith("_") and part_to_embed.startswith("_"):
+        rest_part = f_part[0:ind_start]
+        if rest_part.endswith("_") and part_to_embed.startswith("_"):
             part_to_embed = part_to_embed[1:]
         # if replacement_p end with '_'
         if replacement_p.endswith("_"):
@@ -484,13 +484,13 @@ def replace_variadic_name_part(name: str, part_to_embed: Optional[str] = None) -
 
 
 def cal_dy_by_dx(y_val: np.ndarray, x_val: np.ndarray) -> np.ndarray:
-    """Calc conductance (dI/dV) or gradiant dx/dy for x-variable and y-variable also return the result."""
+    """Calc conductance (dI/dV) or gradient dx/dy for x-variable and y-variable also return the result."""
     d_dx = Diff(axis=0, grid=x_val, acc=2)
     return d_dx(y_val)
 
 
 def transfer_plain_template_to_nested_dict(template, nested_dict):
-    """TODO: Write a doc compatibel with doc test write test in pytest."""
+    """TODO: Write a doc compatible with doc test write test in pytest."""
 
     def split_each_key(key, final_val, nested_dict):
         parts = key.split("/", 1)

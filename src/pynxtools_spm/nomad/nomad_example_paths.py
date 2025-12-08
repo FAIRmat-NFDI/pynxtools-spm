@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-List of path for nomad exmaples to run test in nomad.
+List of path for nomad examples to run test in nomad.
 """
 # -*- coding: utf-8 -*-
 #
@@ -25,22 +25,22 @@ import os
 
 
 STS_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(
-    os.path.dirname(__file__), "examples", "sts", "STSDefaultExample"
+    os.path.dirname(__file__), "example_uploads", "sts", "STSDefaultExample"
 )
 STS_CUSTOMIZED_EXAMPLE_PATH = os.path.join(
-    os.path.dirname(__file__), "examples", "sts", "STSExampleWithCustomization"
+    os.path.dirname(__file__), "example_uploads", "sts", "STSExampleWithCustomization"
 )
 
 STM_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(
-    os.path.dirname(__file__), "examples", "stm", "STMDefaultExample"
+    os.path.dirname(__file__), "example_uploads", "stm", "STMDefaultExample"
 )
 STM_CUSTOMIZED_EXAMPLE_PATH = os.path.join(
-    os.path.dirname(__file__), "examples", "stm", "STMExampleWithCustomization"
+    os.path.dirname(__file__), "example_uploads", "stm", "STMExampleWithCustomization"
 )
 
 AFM_DEFAULT_CONF_EXAMPLE_PATH = os.path.join(
-    os.path.dirname(__file__), "examples", "afm", "AFMDefaultExample"
+    os.path.dirname(__file__), "example_uploads", "afm", "AFMDefaultExample"
 )
 AFM_CUSTOMIZED_EXAMPLE_PATH = os.path.join(
-    os.path.dirname(__file__), "examples", "afm", "AFMExampleWithCustomization"
+    os.path.dirname(__file__), "example_uploads", "afm", "AFMExampleWithCustomization"
 )
