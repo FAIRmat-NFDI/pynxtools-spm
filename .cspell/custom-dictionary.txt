@@ -18,7 +18,6 @@ cryo
 curnt
 dataconverter
 datamodel
-defition
 Demod
 Dobener
 Draxl
