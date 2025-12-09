@@ -17,20 +17,19 @@
 #
 """Tests for the NOMAD app."""
 
-# import pytest
+import pytest
 
-# try:
-#     import nomad  # noqa: F401
-# except ImportError:
-#     pytest.skip(
-#         "Skipping NOMAD app tests because nomad-lab is not installed",
-#         allow_module_level=True,
-#     )
+try:
+    import nomad  # noqa: F401
+except ImportError:
+    pytest.skip(
+        "Skipping NOMAD app tests because nomad-lab is not installed",
+        allow_module_level=True,
+    )
 
 
 def test_importing_app():
     # this will raise an exception if pydantic model validation fails for the app
-    # from pynxtools_spm.nomad.apps import spm_app_entry_point  # noqa: PLC0415
+    from pynxtools_spm.nomad.apps import spm_app  # noqa: E402
 
-    # assert spm_app_entry_point.app.label == "SPM"
-    pass
+    assert spm_app.app.label == "SPM"  # pylint: disable=E1101
