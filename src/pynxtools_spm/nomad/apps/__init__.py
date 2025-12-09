@@ -102,7 +102,7 @@ map_concept_to_full_quantities = {
 spm_app: AppEntryPoint = AppEntryPoint(
     name="SpmApp",
     description="A Generic NOMAD App for SPM Experiment Technique.",
-    App=App(
+    app=App(
         # Label of the App
         label="SPM",
         # Path used in the URL, must be unique
