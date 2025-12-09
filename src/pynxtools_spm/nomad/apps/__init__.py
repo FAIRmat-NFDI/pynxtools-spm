@@ -99,10 +99,10 @@ map_concept_to_full_quantities = {
     "Reference Phase (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_phase__field#{schema}#float",
 }
 
-spm_app = AppEntryPoint(
+spm_app: AppEntryPoint = AppEntryPoint(
     name="SpmApp",
     description="A Generic NOMAD App for SPM Experiment Technique.",
-    app=App(
+    App=App(
         # Label of the App
         label="SPM",
         # Path used in the URL, must be unique
