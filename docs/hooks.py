@@ -47,21 +47,21 @@ def copy_config_and_plain_eln():
 def copy_eln_schema():
     # STS
     dst = "docs/included_file_content/sts/sts.scheme.archive.yaml"
-    src = "src/pynxtools_spm/nomad/examples/sts/STSExampleWithCustomization/sts.scheme.archive.yaml"
+    src = "src/pynxtools_spm/nomad/example_uploads/sts/STSExampleWithCustomization/sts.scheme.archive.yaml"
     dst_path = Path(dst)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src, dst)
 
     # STM
     dst = "docs/included_file_content/stm/stm.scheme.archive.yaml"
-    src = "src/pynxtools_spm/nomad/examples/stm/STMExampleWithCustomization/stm.scheme.archive.yaml"
+    src = "src/pynxtools_spm/nomad/example_uploads/stm/STMExampleWithCustomization/stm.scheme.archive.yaml"
     dst_path = Path(dst)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src, dst)
 
     # AFM
     dst = "docs/included_file_content/afm/afm.scheme.archive.yaml"
-    src = "src/pynxtools_spm/nomad/examples/afm/AFMExampleWithCustomization/afm.scheme.archive.yaml"
+    src = "src/pynxtools_spm/nomad/example_uploads/afm/AFMExampleWithCustomization/afm.scheme.archive.yaml"
     dst_path = Path(dst)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src, dst)
@@ -77,7 +77,7 @@ def copy_miscellaneous_files():
 
     # STS nomad archive file
     dst = "docs/included_file_content/sts/STSExample.archive.json"
-    src = "src/pynxtools_spm/nomad/examples/sts/STSExampleWithCustomization/STSExample.archive.json"
+    src = "src/pynxtools_spm/nomad/example_uploads/sts/STSExampleWithCustomization/STSExample.archive.json"
     dst_path = Path(dst)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
 
