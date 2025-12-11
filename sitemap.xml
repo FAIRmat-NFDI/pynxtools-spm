@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://fairmat-nfdi.github.io/pynxtools-spm/index.html</loc>
+         <lastmod>2025-12-11</lastmod>
+    </url>
+    <url>
+         <loc>https://fairmat-nfdi.github.io/pynxtools-spm/explanation/reader-orchestra.html</loc>
+         <lastmod>2025-12-11</lastmod>
+    </url>
+    <url>
+         <loc>https://fairmat-nfdi.github.io/pynxtools-spm/explanation/reader-structure.html</loc>
+         <lastmod>2025-12-11</lastmod>
+    </url>
+    <url>
+         <loc>https://fairmat-nfdi.github.io/pynxtools-spm/how-to-guides/how-to-extend-readers.html</loc>
+         <lastmod>2025-12-11</lastmod>
+    </url>
+    <url>
+         <loc>https://fairmat-nfdi.github.io/pynxtools-spm/how-to-guides/work-with-reader.html</loc>
+         <lastmod>2025-12-11</lastmod>
+    </url>
+    <url>
+         <loc>https://fairmat-nfdi.github.io/pynxtools-spm/reference/standalone-usages.html</loc>
+         <lastmod>2025-12-11</lastmod>
+    </url>
+</urlset>

@@ -1,0 +1,14 @@
+pynxtools_spm/nomad
+├── README.md
+├── __init__.py
+├── apps
+│   └── __init__.py
+├── entrypoints.py
+├── example_uploads
+│   ├── __init__.py
+│   ├── afm
+│   ├── stm
+│   └── sts
+└── nomad_example_paths.py
+
+6 directories, 6 files
