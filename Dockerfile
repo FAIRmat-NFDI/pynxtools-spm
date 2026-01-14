@@ -80,7 +80,7 @@ RUN fix-permissions "/home/${NB_USER}" \
 WORKDIR $HOME
 
 # copy north examples
-COPY --chown=${NB_UID}:${NB_GID}  ./north_examples ${HOME}/examples
+COPY --chown=${NB_UID}:${NB_GID}  ./src/pynxtools_spm/nomad/nomad_uploads ${HOME}/examples
 
 # groups: cannot find name for group ID 11320
 RUN touch ${HOME}/.hushlogin
