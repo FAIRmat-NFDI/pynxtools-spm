@@ -66,20 +66,13 @@ WORKDIR $HOME/$PLUGIN_NAME
 # https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
-    # --mount=type=bind,source=.git,target=$HOME/$PLUGIN_NAME/.git \
     uv sync --locked --no-editable --extra=north --extra=nomad --inexact
-
-# # Sync the project
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     --mount=type=bind,source=.git,target=.git \SETUPTOOLS_SCM_PRETEND_VERSION
-#     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-#     uv sync --locked --no-editable --inexact 
 
 WORKDIR $HOME
 RUN rm -rf ${HOME}/${PLUGIN_NAME}
 
-RUN jupyter lab build --dev-build=False --minimize=False
-RUN fix-permissions "/home/${NB_USER}" \ 
+RUN jupyter lab build --dev-build=False --minimize=False && \
+    fix-permissions "/home/${NB_USER}" \ 
     && fix-permissions "${CONDA_DIR}"
 
 WORKDIR $HOME
