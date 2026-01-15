@@ -3,6 +3,7 @@ ARG JUPYTER_TAG=2025-10-20
 ARG UV_VERSION=0.9
 ARG PLUGIN_NAME="PLUGIN"
 ARG PYTHON_VERSION=3.12
+ARG SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM="0.0.0+0.gunknown"
 FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv_stage
 
 FROM quay.io/jupyter/scipy-notebook:${JUPYTER_TAG} AS scipy_notebook
@@ -45,6 +46,8 @@ RUN apt-get install nodejs -y \
 
 USER ${NB_USER}
 
+ARG SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM
+
 # uv env
 ENV UV_PROJECT_ENVIRONMENT=${CONDA_DIR} \
     UV_LINK_MODE=copy \
@@ -52,23 +55,25 @@ ENV UV_PROJECT_ENVIRONMENT=${CONDA_DIR} \
     # Use python from conda which is default for scipy-notebook
     # so that uv pip and pip refer to the same python
     # If needed one can create another venv with 'uv venv'
-    UV_SYSTEM_PYTHON=1
-
-# https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-# Install dependencies
-RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --locked --no-install-project --extra=north --extra=nomad --inexact 
-
+    UV_SYSTEM_PYTHON=1 \
+    SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM=${SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM}
 
 COPY --chown=${NB_USER}:${NB_GID} . $HOME/$PLUGIN_NAME
 
 WORKDIR $HOME/$PLUGIN_NAME
 
-# Sync the project
+# RUN export SETUPTOOLS_SCM_PRETEND_VERSION=${SETUPTOOLS_SCM_PRETEND_VERSION}
+# https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
+# Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --no-editable --extra=north --extra=nomad --inexact 
+    # --mount=type=bind,source=.git,target=$HOME/$PLUGIN_NAME/.git \
+    uv sync --locked --no-editable --extra=north --extra=nomad --inexact
+
+# # Sync the project
+# RUN --mount=type=cache,target=/root/.cache/uv \
+#     --mount=type=bind,source=.git,target=.git \SETUPTOOLS_SCM_PRETEND_VERSION
+#     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+#     uv sync --locked --no-editable --inexact 
 
 WORKDIR $HOME
 RUN rm -rf ${HOME}/${PLUGIN_NAME}
@@ -80,8 +85,8 @@ RUN fix-permissions "/home/${NB_USER}" \
 WORKDIR $HOME
 
 # copy north examples
-COPY --chown=${NB_UID}:${NB_GID}  ./src/pynxtools_spm/nomad/nomad_uploads ${HOME}/examples
+COPY --chown=${NB_UID}:${NB_GID}  ./src/pynxtools_spm/nomad/example_uploads ${HOME}/examples
 
-# groups: cannot find name for group ID 11320
+
 RUN touch ${HOME}/.hushlogin
 

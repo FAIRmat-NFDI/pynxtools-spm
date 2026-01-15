@@ -36,6 +36,9 @@ dependencies = [
 "Parent Project" = "https://github.com/FAIRmat-NFDI"
 
 [project.optional-dependencies]
+nomad = [
+    "nomad-lab>=1.4.0"
+]
 dev = [
     "mypy",
     "ruff>=0.14.0",
