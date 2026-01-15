@@ -16,11 +16,12 @@ env:
   JUPYTER_VERSION: "2025-04-14"
   IMAGE_PREFIX: /jupyter
   SERVICES: jupyter
-  TEST_DATA_DIR: "$(pwd)/src/pynstools_spm/nomad/example_uploads"
+  TEST_DATA_DIR: $(pwd)/src/pynstools_spm/nomad/example_uploads
+
   # Path w.r.t. TEST_DATA_DIR multi-line in single string
-  TEST_NOTEBOOKS: afm/CommandLineDataconverter.ipynb
-    stm/CommandLineDataconverter.ipynb
-    sts/CommandLineDataconverter.ipynb
+  TEST_NOTEBOOKS: afm/AFMExampleWithCustomization/CommandLineDataconverter.ipynb
+    stm/STMExampleWithCustomization/CommandLineDataconverter.ipynb
+    sts/STSExampleWithCustomization/CommandLineDataconverter.ipynb
 
 permissions:
   packages: write
