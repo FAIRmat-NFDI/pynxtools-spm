@@ -27,7 +27,7 @@ env:
     nomad/example_uploads/afm/AFMExampleWithCustomization/CommandLineDataconverter.ipynb
     nomad/example_uploads/stm/STMExampleWithCustomization/CommandLineDataconverter.ipynb
     nomad/example_uploads/sts/STSExampleWithCustomization/CommandLineDataconverter.ipynb
-    north_tools/spm_jupyter/examples/stm/CommandLineDataconverter_STM.ipynb
+    north_tools/spm_jupyter/examples/stm/CommandLineDataconverter.ipynb
 
 permissions:
   packages: write
