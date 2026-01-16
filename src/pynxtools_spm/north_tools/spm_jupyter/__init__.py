@@ -17,7 +17,7 @@ tool = NORTHTool(
     path_prefix="lab/tree",
     privileged=False,
     with_path=True,
-    display_name="SPM",
+    display_name="SPM-Jupyter",
 )
 
 spm_jupyter = NorthToolEntryPoint(id_url_safe="spm_jupyter", north_tool=tool)

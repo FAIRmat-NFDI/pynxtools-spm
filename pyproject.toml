@@ -73,7 +73,7 @@ sts_example = "pynxtools_spm.nomad.entrypoints:sts_example"
 stm_example = "pynxtools_spm.nomad.entrypoints:stm_example"
 afm_example = "pynxtools_spm.nomad.entrypoints:afm_example"
 spm_app = "pynxtools_spm.nomad.apps:spm_app"
-spm_tool = "pynxtools_spm.north_tools.jupyter_nb:spm_jupyter"
+spm_tool = "pynxtools_spm.north_tools.spm_jupyter:spm_jupyter"
 
 
 [tool.setuptools.packages.find]

@@ -1,9 +1,10 @@
-
 ARG JUPYTER_TAG=2025-10-20
 ARG UV_VERSION=0.9
 ARG PLUGIN_NAME="PLUGIN"
 ARG PYTHON_VERSION=3.12
 ARG SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM="0.0.0+0.gunknown"
+# path relative to the build context
+ARG EXAMPLES_DIR="src/pynxtools_spm/north_tools/spm_jupyter/examples"
 FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv_stage
 
 FROM quay.io/jupyter/scipy-notebook:${JUPYTER_TAG} AS scipy_notebook
@@ -58,9 +59,9 @@ ENV UV_PROJECT_ENVIRONMENT=${CONDA_DIR} \
     UV_SYSTEM_PYTHON=1 \
     SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM=${SETUPTOOLS_SCM_PRETEND_VERSION_FOR_PYNXTOOLS_SPM}
 
-COPY --chown=${NB_USER}:${NB_GID} . $HOME/$PLUGIN_NAME
+COPY --chown=${NB_USER}:${NB_GID} . ${HOME}/${PLUGIN_NAME}
 
-WORKDIR $HOME/$PLUGIN_NAME
+WORKDIR ${HOME}/${PLUGIN_NAME}
 
 # RUN export SETUPTOOLS_SCM_PRETEND_VERSION=${SETUPTOOLS_SCM_PRETEND_VERSION}
 # https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
@@ -68,18 +69,18 @@ WORKDIR $HOME/$PLUGIN_NAME
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-editable --extra=north --extra=nomad --inexact
 
-WORKDIR $HOME
+WORKDIR ${HOME}
 RUN rm -rf ${HOME}/${PLUGIN_NAME}
 
 RUN jupyter lab build --dev-build=False --minimize=False && \
     fix-permissions "/home/${NB_USER}" \ 
     && fix-permissions "${CONDA_DIR}"
 
-WORKDIR $HOME
+WORKDIR ${HOME}
 
+ARG EXAMPLES_DIR
 # copy north examples
-COPY --chown=${NB_UID}:${NB_GID}  ./src/pynxtools_spm/nomad/example_uploads ${HOME}/examples
-
+COPY --chown=${NB_UID}:${NB_GID}  ${EXAMPLES_DIR} ${HOME}/examples
 
 RUN touch ${HOME}/.hushlogin
 
