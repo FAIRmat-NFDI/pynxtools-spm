@@ -40,7 +40,8 @@ dev = [
     "mypy",
     "ruff>=0.14.0",
     "pytest",
-    "pre-commit"
+    "pre-commit",
+    "cruft",
 ]
 
 docs = [
@@ -51,6 +52,12 @@ docs = [
     "mkdocs-macros-plugin",
     "mkdocs-simple-hooks",
 ]
+north = [
+    "jupyterlab-h5web",
+    "jupyterlab",
+    "ipywidgets",
+]
+nomad = ["nomad-lab[infrastructure]>=1.4.1rc2"]
 
 [project.entry-points."pynxtools.reader"]
 spm = "pynxtools_spm.reader:SPMReader"
@@ -60,6 +67,7 @@ sts_example = "pynxtools_spm.nomad.entrypoints:sts_example"
 stm_example = "pynxtools_spm.nomad.entrypoints:stm_example"
 afm_example = "pynxtools_spm.nomad.entrypoints:afm_example"
 spm_app = "pynxtools_spm.nomad.apps:spm_app"
+spm = "pynxtools_spm.nomad.north_tools.spm:north_tool"
 
 
 [tool.setuptools.packages.find]
@@ -70,7 +78,7 @@ version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 
 [tool.ruff]
-include = ["src/pynxtools_spm/*.py", "tests/*.py"]
+include = ["src/pynxtools_spm/**/*.py", "tests/**/*.py"]
 lint.select = [
     "E", # pycodestyle
     "W", # pycodestyle
