@@ -18,6 +18,6 @@ def test_importing_north_tool():
     )
 
     assert (
-        north_tool.id_url_safe == 'pynxtools_spm_spm'
-        or north_tool.id == 'nomad-north-spm'
-    ), 'NORTHtool entry point has incorrect id or id_url_safe'
+        north_tool.id_url_safe == "pynxtools_spm_spm"
+        or north_tool.id == "nomad-north-spm"
+    ), "NORTHtool entry point has incorrect id or id_url_safe"
