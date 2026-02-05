@@ -9,10 +9,10 @@ from pynxtools.testing.nexus_conversion import ReaderTest
 
 module_dir = os.path.dirname(os.path.abspath(__file__))
 
-ignore_lines: list = [
+ignore_lines: list[str] = [
     "DEBUG - value: 20",
 ]
-ignore_sections: dict = {}
+ignore_sections: dict[str, list[str]] = {}
 
 
 @pytest.mark.parametrize(
