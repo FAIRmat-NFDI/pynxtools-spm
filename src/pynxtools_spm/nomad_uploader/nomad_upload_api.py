@@ -19,17 +19,25 @@ def get_authentication_token(
         upload_logger = logger
 
     try:
-        response = requests.get(
+        response = requests.post(
             nomad_url + "auth/token",
-            params=dict(username=username, password=password),
+            data=dict(
+                grant_type="password",
+                username=username,
+                password=password,
+                scope="",
+                client_id="string",
+                client_secret="string",
+            ),
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
             timeout=10,
         )
         token = response.json().get("access_token")
         if token:
-            logger.info("Successfully retrieved authentication token")
+            upload_logger.info("Successfully retrieved authentication token")
             return token
-        logger.error("Authentication token not found in response")
-        logger.error("Response: " + str(response.json()))
+        upload_logger.error("Authentication token not found in response")
+        upload_logger.error("Response: " + str(response.json()))
         return
     except Exception as e:
         upload_logger.error(f"Something went wrong trying to get authentication token.")
@@ -68,15 +76,14 @@ def upload_to_NOMAD(
     upload_file: Path,
     file_name: str = None,
     upload_name: str = None,
-    upload_logger: logging.Logger = None,
+    upload_logger: logging.Logger = logger,
 ):
     """Upload a single file as a new NOMAD upload. Compressed zip/tar files are
     automatically decompressed.
     """
     upload_name = upload_name if upload_name else upload_file.name
     file_name = file_name if file_name else upload_file.name
-    if upload_logger is None:
-        upload_logger = logger
+
     with open(upload_file, "rb") as f:
         try:
             response = requests.post(
@@ -90,13 +97,13 @@ def upload_to_NOMAD(
             )
             upload_id = response.json().get("upload_id")
             if upload_id:
-                logger.info(
+                upload_logger.info(
                     f"Successfully uploaded {upload_file} to NOMAD with ID {upload_id}"
                 )
                 return upload_id
 
-            logger.error("Upload ID not found in response")
-            logger.error("Response: " + str(response.json()))
+            upload_logger.error("Upload ID not found in response")
+            upload_logger.error("Response: " + str(response.json()))
             return
         except Exception:
             upload_logger.error(
@@ -107,11 +114,10 @@ def upload_to_NOMAD(
 
 
 def trigger_reprocess_upload(
-    nomad_url: str, token: str, upload_id: str, upload_logger: logging.Logger = None
+    nomad_url: str, token: str, upload_id: str, upload_logger: logging.Logger = logger
 ):
     """Trigger reprocessing of an upload"""
-    if upload_logger is None:
-        upload_logger = logger
+
     try:
         response = requests.post(
             f"{nomad_url}uploads/{upload_id}/action/process",
@@ -163,7 +169,8 @@ def check_upload_status(
             headers={"Authorization": f"Bearer {token}"},
             timeout=30,
         )
-        status_message = response.json().get("data").get("last_status_message")
+        status_message = response.json().get("data", {}).get("last_status_message")
+        upload_logger.info(f"Full response {upload_id}: {str(response.json())}")
         if status_message:
             return status_message
 
