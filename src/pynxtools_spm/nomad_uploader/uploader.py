@@ -87,10 +87,18 @@ class DataProcessingSettings:
     number_of_uploads: int = 10
     delete_failed_uploads: bool = False
     upload_metadata: Optional[dict] = None
-    # Raw file to ELN file mapping.
-    file_specific_eln: Optional[dict] = None
+    # File to converter data
+    # file_to_converter_data = {'file_name': {'eln': 'eln_file_path',
+    #                                         'technique': 'stm/sts/afm'}}
+    file_to_convert_data: Optional[dict] = None
     # Time for individual file conversion
     single_file_pynx_convert_time: int = 5  # seconds
+
+    def __post_init__(self):
+        file_obj = {}
+        for file, obj in self.file_to_convert_data.items():
+            file_obj[Path(file).name] = obj
+        self.file_to_convert_data = file_obj
 
 
 def create_preseudo_file(
@@ -132,9 +140,11 @@ def get_unprocessed_files(src_dir: Path, data_proc_settings) -> list:
     file is not present.
     """
     process_status_map = {}
+    # Collect all raw files
     for file in src_dir.glob("**/*.*"):
         if file.is_file() and file.suffix in data_proc_settings.raw_file_exts:
             process_status_map[file] = False
+    # Mark processed files as True
     for file in src_dir.glob("**/*.*"):
         if file.is_file() and file.suffix == data_proc_settings.pseudo_exts:
             # Remove extra pseudo extension
@@ -156,10 +166,17 @@ def set_and_store_prepared_parameters(
     spm_tech: Optional[Literal["stm", "sts", "afm"]] = None,
 ) -> None:
     params_obj = None
-    spec_eln_file = data_proc_settings.file_specific_eln.get(
-        file.name, data_proc_settings.sts_eln
+    spec_eln_file = (
+        data_proc_settings.file_to_convert_data.get(file.name, {}).get("eln")
+        if data_proc_settings.file_to_convert_data
+        else None
     )
-    if file.suffix == ".dat":
+    technique = (
+        data_proc_settings.file_to_convert_data.get(file.name, {}).get("technique")
+        if data_proc_settings.file_to_convert_data
+        else None
+    )
+    if technique == "sts" or file.suffix == ".dat":
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.sts_eln,
@@ -169,7 +186,7 @@ def set_and_store_prepared_parameters(
             raw_extension="dat",
             create_zip=True,
         )
-    elif file.suffix == ".sxm":
+    elif technique == "stm" or file.suffix == ".sxm":
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.stm_eln,
@@ -179,7 +196,7 @@ def set_and_store_prepared_parameters(
             raw_extension="sxm",
             create_zip=True,
         )
-    elif file.suffix == ".sxm":
+    elif technique == "afm" or file.suffix == ".sxm":
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.afm_eln,
@@ -351,8 +368,9 @@ def run_uploader_with(
                 upload_id = upload_to_NOMAD(
                     nomad_settings.url, nomad_settings.token, zip_to_upload
                 )
+
                 upload_logger.info(
-                    f"Upload request with Upload ID ({upload_id}) corresponding to {complete_param_obj.input_file}."
+                    f"Upload request with Upload ID ({upload_id}) corresponding to files \n{'\n'.join(map(str, complete_param_obj.input_file))}."
                 )
                 # trigger_reprocess_upload(
                 #     nomad_settings.url, nomad_settings.token, upload_id

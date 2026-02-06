@@ -55,15 +55,14 @@ def convert_spm_experiments(
     if not input_params.expriement_type:
         converter_logger.error("Experiment type is required to run an SPM experiment")
 
-    input_params.input_file = (*input_params.input_file, input_params.eln)
     input_params.input_file = tuple(
-        Path(file) if isinstance(file, str) else file
-        for file in input_params.input_file
+        map(Path, (*input_params.input_file, input_params.eln))
     )
+
     if input_params.config:
         input_params.input_file = (
             *input_params.input_file,
-            input_params.config,
+            Path(input_params.config),
         )
 
     zip_file = None
@@ -88,24 +87,22 @@ def convert_spm_experiments(
         converter_logger.addHandler(converter_handeler)
     try:
         kwargs = asdict(input_params)
-        print("#### kwargs:", kwargs)
         kwargs["input_file"] = tuple(map(str, input_params.input_file))
         kwargs["output"] = str(input_params.output)
         # with converter_logger:
         convert(**kwargs)
-        print("#### kwargs after conversion:", kwargs)
         if input_params.create_zip:
             with zipfile.ZipFile(zip_file, "w") as zipf:
                 zipf.write(
                     str(input_params.output),
-                    arcname=str(input_params.output).split("/")[-1],
+                    arcname=Path(input_params.output).name,
                 )
                 for file in map(str, input_params.input_file):
-                    zipf.write(file, arcname=file.split("/")[-1])
+                    zipf.write(file, arcname=Path(file).name)
             input_params.zip_file_path = Path(zip_file)
 
     except Exception as e:
-        print("NeXusConverterError:", e)
+        converter_logger.error(f"Error: {e}")
     finally:
         # Prevent propagatting other logs through this handler
         converter_logger.removeHandler(converter_handeler)

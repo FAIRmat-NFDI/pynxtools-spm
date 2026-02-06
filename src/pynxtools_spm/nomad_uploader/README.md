@@ -135,7 +135,8 @@ if __name__ == "__main__":
 | `number_of_uploads` | int | No | 10 | Max files to process per batch |
 | `delete_failed_uploads` | bool | No | False | Delete uploads on timeout |
 | `upload_metadata` | dict | No | None | Metadata to apply to all uploads |
-| `file_specific_eln` | dict | No | None | Map filenames to specific ELN files |
+| `file_to_convert_data` | dict | No | None | Map file paths to ELN files and technique types |
+| `single_file_pynx_convert_time` | int | No | 5 | Timeout for single file conversion (seconds) |
 
 ## Metadata Management
 
@@ -254,6 +255,32 @@ Solution: Increase `max_upload_attempt` or `nomad_processing_time` in NOMADSetti
 
 ## Advanced Usage
 
+### Custom File-Specific Configuration
+
+Map specific files to custom ELN files and technique types using `file_to_convert_data`:
+
+```python
+data_proc_settings = DataProcessingSettings(
+    # ... other settings ...
+    file_to_convert_data={
+        "/path/to/data/stm/sample1.sxm": {
+            "eln": "/path/to/custom_eln1.yaml",  # Optional: use specific ELN
+            "technique": "stm",  # Required: specify technique (stm/sts/afm)
+        },
+        "/path/to/data/sts/measurement.dat": {
+            "eln": "",  # Empty: use default ELN from sts_eln setting
+            "technique": "sts",
+        },
+        "/path/to/data/afm/surface.sxm": {
+            "eln": "/path/to/custom_eln2.yaml",
+            "technique": "afm",
+        },
+    }
+)
+```
+
+**Important**: Use full file paths as keys to avoid collisions when files in different directories have the same name. The `__post_init__` method automatically creates both full-path and filename lookups.
+
 ### Processing Only Unprocessed Files
 
 The uploader automatically creates `.done` marker files for successful uploads. On subsequent runs, it only processes files without corresponding `.done` markers.
@@ -266,14 +293,52 @@ The uploader automatically creates `.done` marker files for successful uploads. 
 # Only processes new files without .done markers
 ```
 
+### Automatic Technique Detection
+
+The uploader uses a hybrid approach to determine the SPM technique:
+
+1. **Explicit Configuration**: If `file_to_convert_data` specifies a `technique` for a file, it uses that value
+2. **File Extension Fallback**: If no explicit technique is configured:
+   - `.dat` files → STS (Scanning Tunneling Spectroscopy)
+   - `.sxm` files → STM (Scanning Tunneling Microscopy) by default
+
+**Best Practice**: Use `file_to_convert_data` to explicitly specify techniques, especially when:
+- `.sxm` files should be processed as AFM instead of STM
+- You have multiple files with the same name in different directories
+- You want to override default technique detection
+
+### Zip File Creation
+
+Each successful conversion creates a zip file containing:
+- **NeXus output file** (`.nxs`)
+- **Original raw data file** (`.dat` or `.sxm`)
+- **ELN metadata file** (`.yaml`)
+- **Config file** (if specified)
+
+The zip file uses basename extraction to ensure clean file names in the archive.
+
 ### Batch Processing with Custom ELN Mapping
 
+**Deprecated**: The old `file_specific_eln` parameter has been replaced with `file_to_convert_data`.
+
 ```python
-data_proc_settings.file_specific_eln = {
-    "sample1.dat": Path("/path/to/sample1_eln.yaml"),
-    "sample2.sxm": Path("/path/to/sample2_eln.yaml"),
+# Old approach (deprecated):
+# data_proc_settings.file_specific_eln = {
+#     "sample1.dat": Path("/path/to/sample1_eln.yaml"),
+# }
+
+# New approach (recommended):
+data_proc_settings.file_to_convert_data = {
+    "/full/path/to/sample1.dat": {
+        "eln": "/path/to/sample1_eln.yaml",
+        "technique": "sts"
+    },
+    "/full/path/to/sample2.sxm": {
+        "eln": "/path/to/sample2_eln.yaml", 
+        "technique": "afm"  # Explicitly specify AFM for .sxm file
+    },
 }
-# Default ELN will be used for files not in this mapping
+# Default ELN (sts_eln, stm_eln, afm_eln) used for files not in this mapping
 ```
 
 ### Publishing to NOMAD
@@ -329,9 +394,18 @@ See `example_upload_script.py` for a complete working example with real configur
 
 When modifying the uploader:
 1. Update type hints (`Optional[Literal[...]]` for restricted values)
-2. Maintain consistent logger usage (pass `upload_logger` to all functions)
-3. Add comprehensive docstrings
-4. Update this README with new features
+2. Maintain consistent logger usage (pass `upload_logger` and `converter_logger` to functions)
+3. Use `Path.name` for extracting filenames instead of string splitting
+4. Add comprehensive docstrings
+5. Update this README with new features
+6. Test with various file types (.dat, .sxm) and techniques (STS, STM, AFM)
+
+### Recent Changes
+
+- **v2.0**: Replaced `file_specific_eln` with `file_to_convert_data` for better technique specification
+- **Improved**: File path handling using `Path.name` instead of string manipulation
+- **Enhanced**: Automatic technique detection with explicit configuration support
+- **Fixed**: Collision handling when multiple files have the same name in different directories
 
 
 ## Support
