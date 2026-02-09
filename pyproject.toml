@@ -36,6 +36,8 @@ dependencies = [
 "Parent Project" = "https://github.com/FAIRmat-NFDI"
 
 [project.optional-dependencies]
+nomad = ["nomad-lab >= 1.4.0"]
+
 dev = [
     "mypy",
     "ruff>=0.14.0",
@@ -50,6 +52,11 @@ docs = [
     "mkdocs-material",
     "mkdocs-macros-plugin",
     "mkdocs-simple-hooks",
+]
+
+nomad_api = [
+"requests",
+"nomad-lab >= 1.4.0",
 ]
 
 [project.entry-points."pynxtools.reader"]
@@ -70,7 +77,7 @@ version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 
 [tool.ruff]
-include = ["src/pynxtools_spm/*.py", "tests/*.py"]
+include = ["src/pynxtools_spm/**/*.py", "tests/**/*.py"]
 lint.select = [
     "E", # pycodestyle
     "W", # pycodestyle
@@ -101,3 +108,8 @@ ignore_missing_imports = true
 follow_imports = "silent"
 no_strict_optional = true
 disable_error_code = "import, annotation-unchecked"
+
+[tool.uv]
+extra-index-url = [
+"https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple",
+]

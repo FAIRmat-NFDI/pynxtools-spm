@@ -67,9 +67,9 @@ def spm_reader_input_params(tmp_path):
 
 def test_run_spm_reader(spm_reader_input_params):
     assert spm_reader_input_params.zip_file_path.exists(), "Zip file not created."
-    assert str(spm_reader_input_params.output).endswith(".nxs"), (
-        "No NeXus file is created."
-    )
+    assert str(spm_reader_input_params.output).endswith(
+        ".nxs"
+    ), "No NeXus file is created."
 
 
 # def test_upload_to_nomad(spm_reader_input_params):

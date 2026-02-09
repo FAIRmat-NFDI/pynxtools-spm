@@ -4,7 +4,7 @@ from pynxtools_spm.nomad_uploader.reader_config_setup import (
 )
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Literal
 from dataclasses import asdict, dataclass
 import time
 import re
@@ -42,6 +42,10 @@ class NOMADSettings:
     # If the upload will be published to the central NOMAD database
     publish_to_nomad: bool = False
     url: str = None
+    # Send api request to check if upload is successfully processed and published,
+    # if not retry until max_upload_attempt is reached
+    max_upload_attempt: int = 20
+    nomad_processing_time: int = 3  # seconds
 
     def __post_init__(self):
         if not self.url:
@@ -82,8 +86,19 @@ class DataProcessingSettings:
     # Number of files to be uploaded in a single batch
     number_of_uploads: int = 10
     delete_failed_uploads: bool = False
-    uplad_metadata: Optional[dict] = None
-    file_specific_eln: Optional[dict] = None
+    upload_metadata: Optional[dict] = None
+    # File to converter data
+    # file_to_converter_data = {'file_name': {'eln': 'eln_file_path',
+    #                                         'technique': 'stm/sts/afm'}}
+    file_to_convert_data: Optional[dict] = None
+    # Time for individual file conversion
+    single_file_pynx_convert_time: int = 5  # seconds
+
+    def __post_init__(self):
+        file_obj = {}
+        for file, obj in self.file_to_convert_data.items():
+            file_obj[Path(file).name] = obj
+        self.file_to_convert_data = file_obj
 
 
 def create_preseudo_file(
@@ -104,15 +119,14 @@ def create_preseudo_file(
         )
     )
     for source_f in source_fls:
-        if data_proc_settings.create_pseudo_file:
-            pseudo_file_ = source_f.with_suffix(
-                f"{source_f.suffix}{data_proc_settings.pseudo_exts}"
-            )
-            pseudo_file_.touch()
-        # elif data_proc_settings.copy_file_elsewhere:
-        #     pass
-        # As raw file stored in other location, remove it
-        # source_f.unlink()
+        pseudo_file_ = source_f.with_suffix(
+            f"{source_f.suffix}{data_proc_settings.pseudo_exts}"
+        )
+        pseudo_file_.touch()
+    # elif data_proc_settings.copy_file_elsewhere:
+    #     pass
+    # As raw file stored in other location, remove it
+    # source_f.unlink()
 
 
 def get_unprocessed_files(src_dir: Path, data_proc_settings) -> list:
@@ -126,9 +140,11 @@ def get_unprocessed_files(src_dir: Path, data_proc_settings) -> list:
     file is not present.
     """
     process_status_map = {}
+    # Collect all raw files
     for file in src_dir.glob("**/*.*"):
         if file.is_file() and file.suffix in data_proc_settings.raw_file_exts:
             process_status_map[file] = False
+    # Mark processed files as True
     for file in src_dir.glob("**/*.*"):
         if file.is_file() and file.suffix == data_proc_settings.pseudo_exts:
             # Remove extra pseudo extension
@@ -145,13 +161,22 @@ def get_unprocessed_files(src_dir: Path, data_proc_settings) -> list:
 
 
 def set_and_store_prepared_parameters(
-    file: Path, data_proc_settings: DataProcessingSettings
+    file: Path,
+    data_proc_settings: DataProcessingSettings,
+    spm_tech: Optional[Literal["stm", "sts", "afm"]] = None,
 ) -> None:
     params_obj = None
-    spec_eln_file = data_proc_settings.file_specific_eln.get(
-        file.name, data_proc_settings.sts_eln
+    spec_eln_file = (
+        data_proc_settings.file_to_convert_data.get(file.name, {}).get("eln")
+        if data_proc_settings.file_to_convert_data
+        else None
     )
-    if file.suffix == ".dat":
+    technique = (
+        data_proc_settings.file_to_convert_data.get(file.name, {}).get("technique")
+        if data_proc_settings.file_to_convert_data
+        else None
+    )
+    if technique == "sts" or file.suffix == ".dat":
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.sts_eln,
@@ -161,7 +186,7 @@ def set_and_store_prepared_parameters(
             raw_extension="dat",
             create_zip=True,
         )
-    elif file.suffix == ".sxm":
+    elif technique == "stm" or file.suffix == ".sxm":
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.stm_eln,
@@ -171,7 +196,7 @@ def set_and_store_prepared_parameters(
             raw_extension="sxm",
             create_zip=True,
         )
-    elif file.suffix == ".sxm":
+    elif technique == "afm" or file.suffix == ".sxm":
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.afm_eln,
@@ -213,9 +238,7 @@ def run_uploader_with(
         nomad_settings.url, nomad_settings.username, nomad_settings.password
     )
     if not nomad_settings.token:
-        upload_logger.error(
-            "Authentication failed: Token is required to upload files."
-        )
+        upload_logger.error("Authentication failed: Token is required to upload files.")
         return
     if not data_proc_settings.src_dir or not data_proc_settings.src_dir.is_dir():
         upload_logger.error(
@@ -260,7 +283,7 @@ def run_uploader_with(
 
     lock = Lock()
     results_q = Queue()
-    time_out = int(data_proc_settings.single_batch_processing_time / 3)  # seconds
+    time_out = int(data_proc_settings.single_file_pynx_convert_time)  # seconds
 
     def queue_results(input_params, lock, results_q):
         lock.acquire()
@@ -281,7 +304,7 @@ def run_uploader_with(
             )
             lock.release()
 
-    processes_list = []
+    p_to_params = {}
 
     for input_params in data_proc_settings.spm_params_obj_l:
         p = Process(
@@ -292,17 +315,19 @@ def run_uploader_with(
         upload_logger.info(
             f"Process job has been submited with input files {input_params.input_file} via process id {p.pid}."
         )
-        processes_list.append(p)
+        p_to_params[p] = input_params
+        # processes_list.append(p)
 
-    for _, (p, input_params) in enumerate(
-        zip(processes_list, data_proc_settings.spm_params_obj_l)
-    ):
+    for p, input_params in p_to_params.items():
+        # enumerate(
+        # zip(processes_list, data_proc_settings.spm_params_obj_l)
+        # ):
         p.join(time_out)
         if p.is_alive():
             upload_logger.critical(
                 f"Terminating process (PID: {p.pid}) is still "
                 f"running and expected to be done in {time_out}s.\n"
-                f"Converter job with input prameters {asdict(input_params)}",
+                f"The job is associated with input prameters {asdict(input_params)}",
             )
             p.terminate()
             p.join()
@@ -312,7 +337,16 @@ def run_uploader_with(
     while not results_q.empty():
         # Get back input_params obj with output files
         completed_param_objs.append(results_q.get())
-    upload_time_limit = datetime.now() + timedelta(seconds=time_out)
+
+    # Total upload time limit
+    total_upload_time = (
+        int(
+            data_proc_settings.single_batch_processing_time
+            * nomad_settings.nomad_processing_time
+        )
+        + 3 * data_proc_settings.single_batch_processing_time
+    )
+    upload_time_limit = datetime.now() + timedelta(seconds=total_upload_time)
     # TODO: Use asynchrounous request for api requests
     while (
         len(completed_param_objs) > len(indices) and datetime.now() < upload_time_limit
@@ -330,19 +364,19 @@ def run_uploader_with(
                 continue
             indices.append(ind)
             massage = "Adding files"
-            max_attempt = 20
             try:
                 upload_id = upload_to_NOMAD(
                     nomad_settings.url, nomad_settings.token, zip_to_upload
                 )
+
                 upload_logger.info(
-                    f"Upload request with Upload ID ({upload_id}) corresponding to {complete_param_obj.input_file}."
+                    f"Upload request with Upload ID ({upload_id}) corresponding to files \n{'\n'.join(map(str, complete_param_obj.input_file))}."
                 )
                 # trigger_reprocess_upload(
                 #     nomad_settings.url, nomad_settings.token, upload_id
                 # )
                 massage = check_upload_status(
-                    nomad_settings.url, nomad_settings.token, upload_id
+                    nomad_settings.url, nomad_settings.token, upload_id, upload_logger
                 )
                 upload_logger.info(f"Upload status for {upload_id}: \n{massage}")
 
@@ -360,9 +394,14 @@ def run_uploader_with(
                 publish_upload(nomad_settings.url, nomad_settings.token, upload_id)
 
             attempt = 0
-            while attempt < max_attempt:
+            while attempt < nomad_settings.max_upload_attempt:
                 attempt += 1
-                if massage.startswith("Process process_upload completed successfully"):
+
+                if massage and re.search(
+                    r"\b(completed successfully | successfully)\b",
+                    massage,
+                    re.IGNORECASE,
+                ):
                     upload_logger.info(
                         f"Upload status: Upload successfully completed with upload ID: {upload_id}"
                     )
@@ -371,22 +410,22 @@ def run_uploader_with(
                     # To modify metadata
                     if (
                         nomad_settings.modify_upload_metadata
-                        and data_proc_settings.uplad_metadata
+                        and data_proc_settings.upload_metadata
                     ):
                         upload_logger.info(
                             f"Modifying metadata of upload ID: {upload_id} with\n"
-                            f" metadata {data_proc_settings.uplad_metadata}"
+                            f" metadata {data_proc_settings.upload_metadata}"
                         )
 
                         edit_upload_metadata(
                             nomad_settings.url,
                             nomad_settings.token,
                             upload_id,
-                            data_proc_settings.uplad_metadata,
+                            data_proc_settings.upload_metadata,
                         )
                     break
                 # Check if the upload is failed with any massage that contains error
-                elif re.search(r"\berror\b", massage, re.IGNORECASE):
+                elif massage and re.search(r"\berror\b", massage, re.IGNORECASE):
                     failed_ind.append(ind)
                     upload_logger.error(
                         f"Upload status: Upload failed with error: {massage} for upload ID: {upload_id}"
@@ -396,7 +435,8 @@ def run_uploader_with(
                     )
                     break
                 elif (
-                    attempt == max_attempt and data_proc_settings.delete_failed_uploads
+                    attempt == nomad_settings.max_upload_attempt
+                    and data_proc_settings.delete_failed_uploads
                 ):
                     upload_logger.error(
                         f"Upload status: Upload is time out for upload ID: {upload_id}"
@@ -413,9 +453,9 @@ def run_uploader_with(
                     break
 
                 massage = check_upload_status(
-                    nomad_settings.url, nomad_settings.token, upload_id
+                    nomad_settings.url, nomad_settings.token, upload_id, upload_logger
                 )
-                time.sleep(1)
+                time.sleep(3)
 
         for ind, input_params in enumerate(completed_param_objs):
             # Whether successfully uploaded or not, remove the zip file and ouuput file
