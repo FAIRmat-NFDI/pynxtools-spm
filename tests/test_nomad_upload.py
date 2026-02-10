@@ -1,15 +1,21 @@
 from pynxtools_spm.nomad_uploader.files_movers import copy_directory_structure
+from pynxtools_spm.nomad_uploader.helper import setup_logger
 from pynxtools_spm.nomad_uploader.reader_config_setup import (
     SPMConvertInputParameters,
     convert_spm_experiments,
+)
+from pynxtools_spm.nomad_uploader.helper import (
+    setup_logger,
 )
 import pytest
 from pathlib import Path
 import os
 import shutil
 
-nomad_upload_data_dir = Path(__file__).parent / "data"
-src_dir_tree = nomad_upload_data_dir / "src_dir_tree"
+data_dir = Path(__file__).parent / "data"
+
+
+# data_dir = data_dir / "data_dir"
 
 
 def test_directory_structure(tmp_path):
@@ -22,28 +28,44 @@ def test_directory_structure(tmp_path):
         copy_file_ls.append(file)
 
     copy_directory_structure(
-        src_dir_tree,
+        data_dir,
         dst_dir_tree,
         extension=".sxm",
         run_action_on_files=run_action_on_files,
     )
-    assert len(copy_file_ls) == 1, "File no properly copied over."
+    assert len(copy_file_ls) == 5, "File no properly copied over."
 
+    copy_file_ls = []
     copy_directory_structure(
-        src_dir_tree,
+        data_dir,
         dst_dir_tree,
         extension=".dat",
         run_action_on_files=run_action_on_files,
     )
-    assert len(copy_file_ls) == 2, "File no properly copied over."
+    assert len(copy_file_ls) == 3, "File no properly copied over."
 
 
 @pytest.fixture
 def spm_reader_input_params(tmp_path):
-    stm_file_name = "STM_nanonis_generic_4_5.sxm"
+    upload_logger, upload_handler = setup_logger(
+        name="uploader", log_file=tmp_path / "upload.log"
+    )
+    stm_file_name = "Au_mica_2023_Y_A_diPAMY_195.sxm"
     eln_file_name = "eln_data.yaml"
-    stm_raw = src_dir_tree / "stm" / stm_file_name
-    stm_eln = src_dir_tree / "stm" / eln_file_name
+    stm_raw = (
+        data_dir
+        / "nanonis"
+        / "stm"
+        / "version_gen_5_with_default_config"
+        / stm_file_name
+    )
+    stm_eln = (
+        data_dir
+        / "nanonis"
+        / "stm"
+        / "version_gen_5_with_default_config"
+        / eln_file_name
+    )
 
     stm_raw_tmp_path = tmp_path / stm_file_name
     stm_eln_tmp_path = tmp_path / eln_file_name
@@ -61,7 +83,7 @@ def spm_reader_input_params(tmp_path):
         create_zip=True,
         skip_verify=True,
     )
-    _ = convert_spm_experiments(input_params)
+    _ = convert_spm_experiments(input_params, upload_logger, upload_handler)
     return input_params
 
 

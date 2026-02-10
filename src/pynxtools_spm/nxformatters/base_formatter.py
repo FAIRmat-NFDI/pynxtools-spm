@@ -377,7 +377,7 @@ class SPMformatter(ABC):
         """
 
         if val.startswith("@default_link:"):
-            val = val.split("@default_link:")[-1]
+            val = val.rsplit("@default_link:", maxsplit=1)[-1]
 
             classes = val.split("/")[1:]
             pattern = ""

@@ -23,9 +23,7 @@ from pynxtools_spm.nomad_uploader.nomad_upload_api import (
 )
 
 # from pynxtools_spm.nomad_uploader.files_movers import copy_directory_structure
-from pynxtools_spm.nomad_uploader.helper import (
-    setup_logger,
-)
+
 from multiprocessing import Process, Lock, Queue
 
 
@@ -257,9 +255,10 @@ def run_uploader_with(
     #     )
 
     file_list = get_unprocessed_files(data_proc_settings.src_dir, data_proc_settings)
+    separator = "\n\t\t"
     upload_logger.info(
         f"Total '{len(file_list)}' files to process in in {data_proc_settings.src_dir}:\n"
-        f"{'\n\t\t'.join([str(file) for file in file_list])}"
+        f"{separator.join([str(file) for file in file_list])}"
     )
     # Prepare the input parameters for the SPM reader for each file
     _ = [
@@ -369,8 +368,9 @@ def run_uploader_with(
                     nomad_settings.url, nomad_settings.token, zip_to_upload
                 )
 
+                separator = "\n"
                 upload_logger.info(
-                    f"Upload request with Upload ID ({upload_id}) corresponding to files \n{'\n'.join(map(str, complete_param_obj.input_file))}."
+                    f"Upload request with Upload ID ({upload_id}) corresponding to files {separator}{separator.join(map(str, complete_param_obj.input_file))}."
                 )
                 # trigger_reprocess_upload(
                 #     nomad_settings.url, nomad_settings.token, upload_id
