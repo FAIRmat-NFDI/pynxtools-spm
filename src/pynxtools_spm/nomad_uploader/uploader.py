@@ -2,10 +2,13 @@ from pynxtools_spm.nomad_uploader.reader_config_setup import (
     SPMConvertInputParameters,
     convert_spm_experiments,
 )
+from pynxtools_spm.nomad_uploader.helper import (
+    setup_logger,
+)
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional, List, Literal
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 import time
 import re
 import logging
@@ -66,14 +69,14 @@ class DataProcessingSettings:
     # Considered as a root directory for the experiment files
     src_dir: Path
     # List of SPMConvertInputParameters objects to run reader on each object
-    spm_params_obj_l: Optional[List[Path]] = list
+    spm_params_obj_l: List[SPMConvertInputParameters] = field(default_factory=list)
     # Destination directory for the experiment files, if files are moved
     # to another location after processing is done, needs `copy_file_elsewhere`
     # to be True
     dst_dir: Optional[Path] = None
-    # create and empty file if upload is sucessfull
+    # create and empty file if upload is successful
     create_pseudo_file: bool = True
-    # Extension to the empty file if upload is sucessfull
+    # Extension to the empty file if upload is successful
     pseudo_exts: str = ".done"
     sts_config: Optional[Path] = None
     stm_config: Optional[Path] = None
@@ -99,7 +102,7 @@ class DataProcessingSettings:
         self.file_to_convert_data = file_obj
 
 
-def create_preseudo_file(
+def create_pseudo_file(
     params_obj: SPMConvertInputParameters,
     data_proc_settings: DataProcessingSettings,
 ) -> None:
@@ -178,7 +181,7 @@ def set_and_store_prepared_parameters(
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.sts_eln,
-            expriement_type="sts",
+            experiment_type="sts",
             config=data_proc_settings.sts_config,
             nxdl="NXsts",
             raw_extension="dat",
@@ -188,7 +191,7 @@ def set_and_store_prepared_parameters(
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.stm_eln,
-            expriement_type="stm",
+            experiment_type="stm",
             config=data_proc_settings.stm_config,
             nxdl="NXstm",
             raw_extension="sxm",
@@ -198,7 +201,7 @@ def set_and_store_prepared_parameters(
         params_obj = SPMConvertInputParameters(
             input_file=(file,),
             eln=spec_eln_file if spec_eln_file else data_proc_settings.afm_eln,
-            expriement_type="afm",
+            experiment_type="afm",
             config=data_proc_settings.afm_config,
             nxdl="NXafm",
             raw_extension="sxm",
@@ -210,7 +213,7 @@ def set_and_store_prepared_parameters(
 
 
 converter_logger = None
-converter_handeler = None
+converter_handler = None
 upload_handler = None
 upload_logger = None
 
@@ -219,16 +222,16 @@ def run_uploader_with(
     data_proc_settings: DataProcessingSettings, nomad_settings: NOMADSettings
 ) -> None:
     """Run the uploader with the given settings."""
-    global converter_logger, converter_handeler, upload_handler, upload_logger
+    global converter_logger, converter_handler, upload_handler, upload_logger
     if converter_logger is None and upload_logger is None:
         logger_dir = data_proc_settings.logger_dir
         upload_logger, upload_handler = setup_logger(
-            name="uploader", log_file=logger_dir / "upload.log"
+            name="uploader", log_file=str(logger_dir / "upload.log")
         )
         pynxtools_logger = logging.getLogger("pynxtools")
-        converter_logger, converter_handeler = setup_logger(
+        converter_logger, converter_handler = setup_logger(
             name="data converter",
-            log_file=logger_dir / "converter.log",
+            log_file=str(logger_dir / "converter.log"),
             existing_logger=pynxtools_logger,
         )
 
@@ -261,11 +264,9 @@ def run_uploader_with(
         f"{separator.join([str(file) for file in file_list])}"
     )
     # Prepare the input parameters for the SPM reader for each file
-    _ = [
-        set_and_store_prepared_parameters(file, data_proc_settings)
-        for file in file_list
-        if (file and file.is_file())
-    ]
+    for file in file_list:
+        if file and file.is_file():
+            set_and_store_prepared_parameters(file, data_proc_settings)
     # For logging massage
     obj_type_num = {}
     for obj in data_proc_settings.spm_params_obj_l:
@@ -281,7 +282,7 @@ def run_uploader_with(
     )
 
     lock = Lock()
-    results_q = Queue()
+    results_q: Queue = Queue()
     time_out = int(data_proc_settings.single_file_pynx_convert_time)  # seconds
 
     def queue_results(input_params, lock, results_q):
@@ -291,7 +292,7 @@ def run_uploader_with(
                 f"Start conversion job with inputs {input_params.input_file} via {input_params.__class__.__name__} instance."
             )
             result = convert_spm_experiments(
-                input_params, converter_logger, converter_handeler
+                input_params, converter_logger, converter_handler
             )
             results_q.put(result)
 
@@ -312,7 +313,7 @@ def run_uploader_with(
         )
         p.start()
         upload_logger.info(
-            f"Process job has been submited with input files {input_params.input_file} via process id {p.pid}."
+            f"Process job has been submitted with input files {input_params.input_file} via process id {p.pid}."
         )
         p_to_params[p] = input_params
         # processes_list.append(p)
@@ -326,12 +327,12 @@ def run_uploader_with(
             upload_logger.critical(
                 f"Terminating process (PID: {p.pid}) is still "
                 f"running and expected to be done in {time_out}s.\n"
-                f"The job is associated with input prameters {asdict(input_params)}",
+                f"The job is associated with input parameters {asdict(input_params)}",
             )
             p.terminate()
             p.join()
 
-    indices = []
+    indices: List[int] = []
     completed_param_objs = []
     while not results_q.empty():
         # Get back input_params obj with output files
@@ -346,7 +347,7 @@ def run_uploader_with(
         + 3 * data_proc_settings.single_batch_processing_time
     )
     upload_time_limit = datetime.now() + timedelta(seconds=total_upload_time)
-    # TODO: Use asynchrounous request for api requests
+    # TODO: Use asynchronous request for api requests
     while (
         len(completed_param_objs) > len(indices) and datetime.now() < upload_time_limit
     ):
@@ -370,7 +371,7 @@ def run_uploader_with(
 
                 separator = "\n"
                 upload_logger.info(
-                    f"Upload request with Upload ID ({upload_id}) corresponding to files {separator}{separator.join(map(str, complete_param_obj.input_file))}."
+                    f"Upload request with Upload ID ({upload_id}) corresponding to files \n{separator.join(map(str, complete_param_obj.input_file))}."
                 )
                 # trigger_reprocess_upload(
                 #     nomad_settings.url, nomad_settings.token, upload_id
@@ -406,7 +407,7 @@ def run_uploader_with(
                         f"Upload status: Upload successfully completed with upload ID: {upload_id}"
                     )
                     success_ind.append(ind)
-                    create_preseudo_file(complete_param_obj, data_proc_settings)
+                    create_pseudo_file(complete_param_obj, data_proc_settings)
                     # To modify metadata
                     if (
                         nomad_settings.modify_upload_metadata
@@ -458,7 +459,7 @@ def run_uploader_with(
                 time.sleep(3)
 
         for ind, input_params in enumerate(completed_param_objs):
-            # Whether successfully uploaded or not, remove the zip file and ouuput file
+            # Whether successfully uploaded or not, remove the zip file and output file
             if input_params.zip_file_path and input_params.zip_file_path.is_file():
                 input_params.zip_file_path.unlink()
             if input_params.output and input_params.output.is_file():

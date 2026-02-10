@@ -671,7 +671,9 @@ class SPMformatter(ABC):
             r"active_channel$": str,
             r"model/@version$": str,
             r"/model$": str,
-            r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: input.lower(),
+            r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: (
+                input.lower()
+            ),
             r"lockin_amplifier/(hp|lp){1,}_filter_orderN\[\1_filter_order_[\w]*\]$": (
                 lambda input: input if isinstance(input, (int, float)) else ""
             ),

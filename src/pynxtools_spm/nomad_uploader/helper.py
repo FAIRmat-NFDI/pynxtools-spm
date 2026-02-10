@@ -20,14 +20,14 @@ def setup_logger(
     # # Check if the logger already has a handler
     # if not logger.handlers:
 
-    file_handeler = logging.FileHandler(log_file)
-    file_handeler.setLevel(level)
+    file_handler = logging.FileHandler(log_file)
+    file_handler.setLevel(level)
 
     formatter = logging.Formatter(
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
-    file_handeler.setFormatter(formatter)
+    file_handler.setFormatter(formatter)
 
-    logger.addHandler(file_handeler)
+    logger.addHandler(file_handler)
     logger.info(f"Test Logger {name} set up with file handler for {log_file}")
-    return logger, file_handeler
+    return logger, file_handler

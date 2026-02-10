@@ -8,9 +8,9 @@ import logging
 
 @dataclass
 class SPMConvertInputParameters:
-    input_file: tuple[Path]  # raw_files and eln (merged later)
+    input_file: tuple[Path, ...]  # raw_files and eln (merged later)
     eln: str | Path
-    expriement_type: str
+    experiment_type: str
     reader: str = "spm"
     output: Optional[str | Path] = None
     nxdl: Optional[str] = None
@@ -24,9 +24,9 @@ class SPMConvertInputParameters:
 def convert_spm_experiments(
     input_params: SPMConvertInputParameters,
     converter_logger: Optional[logging.Logger],
-    converter_handeler: Optional[logging.Handler] = None,
+    converter_handler: Optional[logging.Handler] = None,
 ):
-    """Convert SPM (STS, STM and AFM) experirment data files to NeXus format.
+    """Convert SPM (STS, STM and AFM) experiment data files to NeXus format.
     Later, the input files and generated output file are zipped together to
     upload to NOMAD.
 
@@ -37,7 +37,7 @@ def convert_spm_experiments(
     - output: NeXus file, named from the raw file base name
     - zip_file: Zipped file, named from the raw file base name
     Required parameters in input_params:
-    - expriement_type: SPM experiment type (STM, AFM, STS)
+    - experiment_type: SPM experiment type (STM, AFM, STS)
     """
 
     if not isinstance(input_params, SPMConvertInputParameters):
@@ -49,10 +49,10 @@ def convert_spm_experiments(
         converter_logger.error("Input files are required to run an SPM experiment")
     if not input_params.eln:
         converter_logger.error(
-            f"ELN file is requred to run an {input_params.expriement_type} experiment"
+            f"ELN file is required to run an {input_params.experiment_type} experiment"
         )
 
-    if not input_params.expriement_type:
+    if not input_params.experiment_type:
         converter_logger.error("Experiment type is required to run an SPM experiment")
 
     input_params.input_file = tuple(
@@ -69,7 +69,7 @@ def convert_spm_experiments(
     for file in input_params.input_file:
         if file.suffix in (
             input_params.raw_extension,
-            # TODO remoce the following line
+            # TODO remove the following line
             f".{input_params.raw_extension}",
         ):
             if input_params.output is None:
@@ -81,10 +81,10 @@ def convert_spm_experiments(
             "Valid raw files and extension is required to run an SPM experiment"
         )
     # TODO Try with input_file as tuple of Path objects
-    # Use handler only for conver function. Do not close the handler
+    # Use handler only for convert function. Do not close the handler
     # after the function call as it will be used again and again
-    if converter_handeler not in converter_logger.handlers:
-        converter_logger.addHandler(converter_handeler)
+    if converter_handler not in converter_logger.handlers:
+        converter_logger.addHandler(converter_handler)
     try:
         kwargs = asdict(input_params)
         kwargs["input_file"] = tuple(map(str, input_params.input_file))
@@ -97,14 +97,14 @@ def convert_spm_experiments(
                     str(input_params.output),
                     arcname=Path(input_params.output).name,
                 )
-                for file in map(str, input_params.input_file):
-                    zipf.write(file, arcname=Path(file).name)
+                for file_ in map(str, input_params.input_file):
+                    zipf.write(file_, arcname=Path(file_).name)
             input_params.zip_file_path = Path(zip_file)
 
     except Exception as e:
         converter_logger.error(f"Error: {e}")
     finally:
-        # Prevent propagatting other logs through this handler
-        converter_logger.removeHandler(converter_handeler)
+        # Prevent propagating other logs through this handler
+        converter_logger.removeHandler(converter_handler)
 
     return input_params

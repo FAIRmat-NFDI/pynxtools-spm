@@ -76,7 +76,7 @@ def spm_reader_input_params(tmp_path):
     input_params = SPMConvertInputParameters(
         input_file=(stm_raw_tmp_path,),
         eln=stm_eln_tmp_path,
-        expriement_type="stm",
+        experiment_type="stm",
         reader="spm",
         nxdl="NXstm",
         raw_extension=".sxm",
@@ -89,10 +89,10 @@ def spm_reader_input_params(tmp_path):
 
 def test_run_spm_reader(spm_reader_input_params):
     assert spm_reader_input_params.zip_file_path.exists(), "Zip file not created."
-    assert str(spm_reader_input_params.output).endswith(
-        ".nxs"
-    ), "No NeXus file is created."
+    assert str(spm_reader_input_params.output).endswith(".nxs"), (
+        "No NeXus file is created."
+    )
 
 
 # def test_upload_to_nomad(spm_reader_input_params):
-#     tocken
+#     token
