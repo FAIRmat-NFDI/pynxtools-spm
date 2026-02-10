@@ -389,6 +389,89 @@ For complete NOMAD API documentation, visit: https://nomad-lab.eu/docs
 
 See an example Python script `example_upload_script.py` in [script folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/scripts) for a complete working example with real configuration.
 
+## Scheduling Automated Uploads (Linux/Windows)
+
+This section shows how to run the uploader on a schedule using cron (Linux) or Task Scheduler (Windows). The scripts below are minimal wrappers that call your configured Python entry point. Adjust paths and environment locations to match your machine.
+
+### Linux (cron)
+
+**Shell script** (example used on Ubuntu):
+
+```bash
+#! /bin/bash
+
+# Stop on error
+set -e
+
+current_dir=$(dirname $(realpath $0))
+echo "Current directory: $current_dir"
+uploader_script="$current_dir/example_upload_script.py"
+venv="/home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/.venv"
+python_3="$venv/bin/python3"
+echo "Running uploader script..."
+"$python_3" "$uploader_script" > "$current_dir/debug.txt" 2>&1
+echo "Uploader script finished. Check debug.txt for details."
+```
+
+Save the script as scripts/run_uploader.sh and make it executable:
+
+```bash
+chmod +x /home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/scripts/run_uploader.sh
+```
+
+Add a cron entry (runs every day at 02:30):
+
+```bash
+crontab -e
+```
+
+```bash
+30 2 * * * /home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/scripts/run_uploader.sh
+```
+
+Run every 4 hours:
+
+```bash
+0 */4 * * * /home/rubel/NOMAD-FAIRmat/GH/pynxtools-spm/scripts/run_uploader.sh
+```
+
+### Windows (Task Scheduler)
+
+You can use a batch file or PowerShell script. The example below uses a batch file.
+
+**Batch script** (save as scripts\run_uploader.bat):
+
+```bat
+@echo off
+setlocal
+
+set "ROOT=C:\path\to\pynxtools-spm"
+set "VENV=%ROOT%\.venv"
+set "PYTHON=%VENV%\Scripts\python.exe"
+set "SCRIPT=%ROOT%\scripts\example_upload_script.py"
+set "LOG=%ROOT%\scripts\debug.txt"
+
+echo Running uploader script...
+"%PYTHON%" "%SCRIPT%" > "%LOG%" 2>&1
+echo Uploader script finished. Check debug.txt for details.
+
+endlocal
+```
+
+Create a scheduled task (runs daily at 02:30):
+
+```bat
+schtasks /Create /SC DAILY /ST 02:30 /TN "NOMADUploader" /TR "C:\path\to\pynxtools-spm\scripts\run_uploader.bat"
+```
+
+Run every 4 hours:
+
+```bat
+schtasks /Create /SC HOURLY /MO 4 /TN "NOMADUploaderEvery4Hours" /TR "C:\path\to\pynxtools-spm\scripts\run_uploader.bat"
+```
+
+If you prefer PowerShell, you can call the same Python executable with a `.ps1` script and register it with Task Scheduler.
+
 ## Contributing
 
 When modifying the uploader:
