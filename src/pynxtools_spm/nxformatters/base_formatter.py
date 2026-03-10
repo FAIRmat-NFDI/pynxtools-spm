@@ -193,19 +193,27 @@ class SPMformatter(ABC):
         self,
         template: Template,
         raw_file: str | Path,
-        eln_file: str | Path,
+        eln_file: str | Path | None = None,
         config_file: None | (str | Path) = None,  # In case it is not provided by users
+        auxiliary_files: list[str | Path] | None = None,
         entry: str | None = None,
     ):
 
-        self.scan_control: NXScanControl | None = NXScanControl()
-        self.bias_sweep: BiasSweep | None = BiasSweep()
+        self.scan_control: NXScanControl = NXScanControl()
+        self.bias_sweep: BiasSweep = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
         self.raw_data: dict = self.get_raw_data_dict()
         self.entry: str = entry
         self.config_dict = self._get_conf_dict(config_file) or None  # Placeholder
+        if auxiliary_files is not None:
+            self.auxiliary_files = auxiliary_files
+        else:
+            # TODO: Instead of print, use logging to give this info to users.
+            print(
+                "INFO: No auxiliary files provided. If there are auxiliary files, please provide them as a list of file paths to the formatter."
+            )
 
     @abstractmethod
     def _get_conf_dict(self, config_file: str | Path = None): ...
@@ -475,7 +483,6 @@ class SPMformatter(ABC):
                 func_to_raw_key=func_to_raw_key,
             )
 
-    # TODO move this function to the base_formatter.py
     def walk_through_config_by_modified_raw_data_key(
         self,
         partial_conf_dict: dict,
@@ -841,4 +848,19 @@ class SPMformatter(ABC):
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_y/@units"] = (
             self.scan_control.y_offset_unit
+        )
+
+    def put_scan_pattern_field_in_template(self, parent_path, group_name):
+        """Puts the scan pattern field into the template"""
+        self.template[f"{parent_path}/{group_name}/scan_points_x"] = (
+            self.scan_control.x_points
+        )
+        self.template[f"{parent_path}/{group_name}/scan_points_y"] = (
+            self.scan_control.y_points
+        )
+        self.template[f"{parent_path}/{group_name}/fast_axis"] = (
+            self.scan_control.fast_axis
+        )
+        self.template[f"{parent_path}/{group_name}/slow_axis"] = (
+            self.scan_control.slow_axis
         )
