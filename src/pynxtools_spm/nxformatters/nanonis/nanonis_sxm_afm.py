@@ -62,11 +62,11 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
 
     def __init__(
         self,
-        template: "Template",
-        raw_file: Union[str, "Path"],
+        template: Template,
+        raw_file: str | Path,
         eln_file: str | Path,
         config_file: str = None,  # In case it is not provided by users
-        entry: Optional[str] = None,
+        entry: str | None = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
         # # self.config_dict: Dict = self._get_conf_dict(config_file)
@@ -164,7 +164,7 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
         parent_path,
         group_name,
         group_index=0,
-        is_forward: Optional[bool] = None,
+        is_forward: bool | None = None,
         rearrange_2d_data: bool = True,
     ):
         """Specialization of the generic function to create NXdata group from plot description

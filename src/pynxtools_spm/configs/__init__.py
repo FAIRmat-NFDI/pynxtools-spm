@@ -52,5 +52,5 @@ def load_default_config(config_type):
     elif config_type == "omicron_sm4_stm":
         config_file = omicron_sm4_stm
     if config_file is not None:
-        with open(config_file, "r", encoding="utf-8") as f:
+        with open(config_file, encoding="utf-8") as f:
             return json.load(f)

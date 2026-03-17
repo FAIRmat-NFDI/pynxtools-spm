@@ -67,7 +67,7 @@ class NanonisFile:
             return "spec"
         else:
             raise UnhandledFileError(
-                "{} is not a supported filetype or does not exist".format(self.basename)
+                f"{self.basename} is not a supported filetype or does not exist"
             )
 
     def read_raw_header(self, byte_offset):
@@ -119,9 +119,7 @@ class NanonisFile:
                 try:
                     entry = line.strip().decode()
                 except UnicodeDecodeError:
-                    warnings.warn(
-                        "{} has non-uft-8 characters, replacing them.".format(f.name)
-                    )
+                    warnings.warn(f"{f.name} has non-uft-8 characters, replacing them.")
                     entry = line.strip().decode("utf-8", errors="replace")
                 if tag in entry:
                     byte_offset = f.tell()
@@ -129,7 +127,7 @@ class NanonisFile:
 
             if byte_offset == -1:
                 raise FileHeaderNotFoundError(
-                    "Could not find the {} end tag in {}".format(tag, self.basename)
+                    f"Could not find the {tag} end tag in {self.basename}"
                 )
 
         return byte_offset
@@ -143,7 +141,7 @@ class NanonisFile:
                 self.data_format = nanonis_format_dict[data_format]
             except KeyError as exc:
                 self.data_format = nanonis_format_dict["big endian float 32"]
-                warnings.warn("{} is not a valid data format".format(data_format))
+                warnings.warn(f"{data_format} is not a valid data format")
 
 
 class Grid(NanonisFile):
@@ -415,7 +413,7 @@ class Spec(NanonisFile):
         """
 
         # done differently since data is ascii, not binary
-        f = open(self.fname, "r")
+        f = open(self.fname)
         f.seek(self.byte_offset)
         data_dict = dict()
 
@@ -431,7 +429,7 @@ class Spec(NanonisFile):
 
     def _num_header_lines(self):
         """Number of lines the header is composed of"""
-        with open(self.fname, "r") as f:
+        with open(self.fname) as f:
             data = f.readlines()
             for i, line in enumerate(data):
                 if nanonis_end_tags["spec"] in line:
@@ -558,9 +556,7 @@ def _parse_3ds_header(header_raw, header_override):
 
         # guide user to using override dict
         if isinstance(e, KeyError):
-            raise KeyError(
-                "[{key}] is missing from header.".format(key=e.args[0]) + msg
-            )
+            raise KeyError(f"[{e.args[0]}] is missing from header." + msg)
         elif isinstance(e, ValueError):
             print(e.args)
             raise ValueError("Unexpected value found in header." + msg)
@@ -789,4 +785,4 @@ def _is_valid_file(fname, ext):
     """
     _, fname_ext = os.path.splitext(fname)
     if fname_ext[1:] != ext:
-        raise UnhandledFileError("{} is not a {} file".format(fname, ext))
+        raise UnhandledFileError(f"{fname} is not a {ext} file")

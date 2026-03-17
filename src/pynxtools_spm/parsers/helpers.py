@@ -61,7 +61,7 @@ def get_nested_dict_from_concatenated_key(
     if dict_to_map_path is not None:
         spread_dict = dict_to_map_path
     else:
-        spread_dict: Dict[str, Any] = {}
+        spread_dict: dict[str, Any] = {}
     if sep_chars is None:
         sep_chars = ["_", ">"]
     for d_key, d_val in data_dict.items():
@@ -74,7 +74,7 @@ def get_nested_dict_from_concatenated_key(
             l_key, r_key = d_key.split(sep_char, 1)
             if not has_separator_char(r_key, sep_chars):
                 if l_key not in spread_dict:
-                    spread_dict[l_key]: Dict[str, Any] = {}
+                    spread_dict[l_key]: dict[str, Any] = {}
                 spread_dict[l_key][r_key] = d_val
             else:
                 if l_key in spread_dict:
@@ -84,7 +84,7 @@ def get_nested_dict_from_concatenated_key(
                         sep_chars=sep_chars,
                     )
                 else:
-                    spread_dict[l_key]: Dict[str, Any] = {}
+                    spread_dict[l_key]: dict[str, Any] = {}
                     spread_dict[l_key] = get_nested_dict_from_concatenated_key(
                         {r_key: d_val},
                         dict_to_map_path=spread_dict[l_key],

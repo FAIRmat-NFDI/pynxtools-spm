@@ -25,7 +25,8 @@ import zoneinfo
 from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional, Tuple, Union, Type
+from typing import Any, Dict, Optional, Tuple, Union, Type
+from collections.abc import Callable
 
 import numpy as np
 import tzlocal
@@ -39,7 +40,7 @@ logging.basicConfig(level=logging.DEBUG, format="%(levelname)s - %(message)s")
 _SCIENTIFIC_NUM_PATTERN = r"[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?"
 
 
-def add_local_timezone(ts: str, tz: Optional[str] = None) -> str:
+def add_local_timezone(ts: str, tz: str | None = None) -> str:
     """
     Add a timezone to a timestamp if it has none.
 
@@ -82,7 +83,7 @@ def add_local_timezone(ts: str, tz: Optional[str] = None) -> str:
     return dt.isoformat()
 
 
-def read_config_file(config_file: Union[str, Path]) -> Dict:
+def read_config_file(config_file: str | Path) -> dict:
     """Read the config file and return the dictionary.
 
     Parameters
@@ -99,7 +100,7 @@ def read_config_file(config_file: Union[str, Path]) -> Dict:
         config_file = str(config_file.absolute())
 
     if config_file.endswith("json"):
-        with open(config_file, mode="r", encoding="utf-8") as f_obj:
+        with open(config_file, encoding="utf-8") as f_obj:
             config_dict = json.load(f_obj)
         return config_dict
     else:
@@ -137,7 +138,7 @@ def _get_data_unit_and_others(
     concept_field: str = None,
     end_dict: dict = None,
     func_on_raw_key: Callable = lambda x: x,
-) -> Tuple[Any, str, Optional[dict]]:
+) -> tuple[Any, str, dict | None]:
     """Destructure the raw data, units, and other attrs.
 
     TODO: write doc test for this function
@@ -267,10 +268,10 @@ def get_actual_from_variadic_name(name: str) -> str:
     str
         The actual name.
     """
-    return name.rsplit("[", maxsplit=1)[-1].split("]")[0]
+    return name.rsplit("[", maxsplit=1)[-1].split("]", maxsplit=1)[0]
 
 
-def flatten_nested_list(list_dt: Union[list, tuple, Any]):
+def flatten_nested_list(list_dt: list | tuple | Any):
     """Flatten a nested list or tuple."""
     for elem in list_dt:
         if isinstance(elem, (list, tuple)):
@@ -282,7 +283,7 @@ def flatten_nested_list(list_dt: Union[list, tuple, Any]):
 # pylint: disable=too-many-return-statements
 def to_intended_t(
     data: Any,
-    data_type: Optional[Union[str, Callable[[Any], Any]]] = None,
+    data_type: str | Callable[[Any], Any] | None = None,
 ):
     """
         Transform string to the intended data type, if not then return data.
@@ -312,7 +313,7 @@ def to_intended_t(
         "str": str,
     }
 
-    cnv_dtype: Optional[Union[Type, Callable[[Any], Any]]] = None
+    cnv_dtype: type | Callable[[Any], Any] | None = None
     if isinstance(data_type, str):
         cnv_dtype = data_struct_map.get(data_type)
     else:
@@ -346,7 +347,7 @@ def to_intended_t(
         return data
 
     symbol_list_for_data_separation = [";"]
-    transformed: Optional[Any]
+    transformed: Any | None
     if data is None:
         return data
 
@@ -431,7 +432,7 @@ def get_link_compatible_key(key):
     return compatible_key
 
 
-def replace_variadic_name_part(name: str, part_to_embed: Optional[str] = None) -> str:
+def replace_variadic_name_part(name: str, part_to_embed: str | None = None) -> str:
     """Replace the variadic part of the name with the part_to_embed.
     e.g. name = "scan_angle_N_X[scan_angle_n_x]", part_to_embed = "xy"
     then the output will be "scan_angle_xy"

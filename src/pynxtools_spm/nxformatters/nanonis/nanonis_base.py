@@ -33,7 +33,7 @@ class NanonisBase(SPMformatter):
     def _arange_axes(self, direction="down"):
         """Arrange fast and slow axes according to the scan direction."""
 
-        fast_slow: List[str]
+        fast_slow: list[str]
         if direction.lower() == "down":
             fast_slow = ["-Y", "X"]
         elif direction.lower() == "up":
@@ -49,7 +49,7 @@ class NanonisBase(SPMformatter):
 
         return fast_slow
 
-    def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
+    def rearrange_data_according_to_axes(self, data, is_forward: bool | None = None):
         """Rearrange array data according to the fast and slow axes.
 
         (NOTE: This technique is proved for NANONIS data only, for others it may

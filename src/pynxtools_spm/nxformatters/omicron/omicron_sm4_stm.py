@@ -22,7 +22,8 @@ to NeXus application definition NXstm.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import TYPE_CHECKING, Optional, Any, Callable
+from typing import TYPE_CHECKING, Optional, Any
+from collections.abc import Callable
 import re
 import datetime
 from pathlib import Path
@@ -64,7 +65,7 @@ class OmicronSM4STM(OmicronBase):
         raw_file: str | Path,
         eln_file: str | Path,
         config_file: str | Path = None,  # In case it is not provided by users
-        entry: Optional[str] = None,
+        entry: str | None = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 
@@ -89,7 +90,7 @@ class OmicronSM4STM(OmicronBase):
                 "NoInputData: Unable to find the active channels due to lack of input data."
             )
 
-        def search_pattern(key_: str) -> Optional[re.Match[str]]:
+        def search_pattern(key_: str) -> re.Match[str] | None:
             return re.search(r"RHK_CH(\d*)Drive_MasterOscillator", key_, flags=re.A)
 
         if key is not None:
@@ -124,7 +125,7 @@ class OmicronSM4STM(OmicronBase):
         self,
         partial_conf_dict: dict,
         parent_path: str = "",
-        group_name: Optional[str] = None,
+        group_name: str | None = None,
     ):
         """Construct the lockin amplifier group."""
         # TODO: Make the active channel object level variable
@@ -140,7 +141,7 @@ class OmicronSM4STM(OmicronBase):
         self,
         partial_conf_dict: dict,
         parent_path: str,
-        group_name: Optional[str],
+        group_name: str | None,
         scan_tag: str,
         func_on_raw_key: Callable,
     ):
@@ -247,7 +248,7 @@ class OmicronSM4STM(OmicronBase):
         self,
         partial_conf_dict: dict,
         parent_path: str,
-        group_name: Optional[str],
+        group_name: str | None,
         scan_tag: str,
         func_on_raw_key: Callable,
     ):
@@ -352,7 +353,7 @@ class OmicronSM4STM(OmicronBase):
         self,
         partial_conf_dict: dict,
         parent_path: str,
-        group_name: Optional[str] = None,
+        group_name: str | None = None,
         **kwarg,
     ):
         """Specialization of the generic function to create NXscan controller
