@@ -27,7 +27,8 @@ import re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+from collections.abc import Callable
 
 import numpy as np
 import yaml
@@ -47,7 +48,7 @@ if TYPE_CHECKING:
     from pint import Quantity
 
 
-REPLACE_NESTED: Dict[str, str] = {}
+REPLACE_NESTED: dict[str, str] = {}
 
 CONVERT_DICT = {
     "Positioner_spm": "POSITIONER_SPM[positioner_spm]",
@@ -83,14 +84,14 @@ REPEATEABLE_CONCEPTS = ("Sample_component",)
 
 @dataclass
 class NXdata:
-    grp_name: Optional[str] = ""
-    signal: Optional[str] = None
-    auxiliary_signals: Optional[List[str]] = None
-    title: Optional[str] = None
+    grp_name: str | None = ""
+    signal: str | None = None
+    auxiliary_signals: list[str] | None = None
+    title: str | None = None
 
 
 def write_multiple_concepts_instance(
-    eln_dict: Dict, list_of_concept: tuple[str], convert_mapping: Dict[str, str]
+    eln_dict: dict, list_of_concept: tuple[str], convert_mapping: dict[str, str]
 ):
     """Write multiple concepts for variadic name in eln dict if there are multiple
     instances are requested in eln archive.json file.
@@ -133,22 +134,22 @@ class SPMformatter(ABC):
         # Put the class in the base_formatter.py under BaseFormatter class
         x_points: int
         y_points: int
-        x_offset: Union[int, float]
-        x_offset_unit: Union[str, "Quantity"]
-        y_offset: Union[int, float]
-        y_offset_unit: Union[str, "Quantity"]
-        x_start: Union[int, float]
-        x_start_unit: Union[str, "Quantity"]
-        y_start: Union[int, float]
-        y_start_unit: Union[str, "Quantity"]
-        x_range: Union[int, float]
-        x_range_unit: Union[str, "Quantity"]
-        y_range: Union[int, float]
-        y_range_unit: Union[str, "Quantity"]
-        x_end: Union[int, float]
-        x_end_unit: Union[str, "Quantity"]
-        y_end: Union[int, float]
-        y_end_unit: Union[str, "Quantity"]
+        x_offset: int | float
+        x_offset_unit: str | Quantity
+        y_offset: int | float
+        y_offset_unit: str | Quantity
+        x_start: int | float
+        x_start_unit: str | Quantity
+        y_start: int | float
+        y_start_unit: str | Quantity
+        x_range: int | float
+        x_range_unit: str | Quantity
+        y_range: int | float
+        y_range_unit: str | Quantity
+        x_end: int | float
+        x_end_unit: str | Quantity
+        y_end: int | float
+        y_end_unit: str | Quantity
         fast_axis: str  # lower case x, y
         slow_axis: str  # lower case x, y
 
@@ -171,17 +172,15 @@ class SPMformatter(ABC):
     def __init__(
         self,
         template: Template,
-        raw_file: Union[str, "Path"],
+        raw_file: str | Path,
         eln_file: str | Path,
-        config_file: Optional[
-            Union[str, Path]
-        ] = None,  # In case it is not provided by users
-        entry: Optional[str] = None,
+        config_file: None | (str | Path) = None,  # In case it is not provided by users
+        entry: str | None = None,
     ):
         self.template: Template = template
-        self.raw_file: Union[str, "Path"] = raw_file
+        self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
-        self.raw_data: Dict = self.get_raw_data_dict()
+        self.raw_data: dict = self.get_raw_data_dict()
         self.entry: str = entry
         self.config_dict = self._get_conf_dict(config_file) or None  # Placeholder
 
@@ -189,7 +188,7 @@ class SPMformatter(ABC):
     def _get_conf_dict(self, config_file: str | Path = None): ...
 
     def _get_eln_dict(self, eln_file: str | Path):
-        with open(eln_file, mode="r", encoding="utf-8") as fl_obj:
+        with open(eln_file, encoding="utf-8") as fl_obj:
             eln_dict: dict = yaml.safe_load(fl_obj)
             extended_eln: dict = write_multiple_concepts_instance(
                 eln_dict=eln_dict,
@@ -203,10 +202,10 @@ class SPMformatter(ABC):
 
     def walk_though_config_nested_dict(
         self,
-        config_dict: Dict,
+        config_dict: dict,
         parent_path: str,
         use_custom_func_prior: bool = True,
-        func_on_raw_key: Optional[Callable] = None,
+        func_on_raw_key: Callable | None = None,
     ):
         # This concept is just note where the group will be
         # handeld name of the function regestered in the self._grp_to_func
@@ -310,7 +309,7 @@ class SPMformatter(ABC):
                     val, f"{parent_path}/{key}", func_on_raw_key=func_on_raw_key
                 )
 
-    def rearrange_data_according_to_axes(self, data, is_forward: Optional[bool] = None):
+    def rearrange_data_according_to_axes(self, data, is_forward: bool | None = None):
         """Rearrange array data according to the fast and slow axes.
 
         Implement this function in other base classes (e.g., NanonisBase) where it is needed.
@@ -377,7 +376,7 @@ class SPMformatter(ABC):
         """
 
         if val.startswith("@default_link:"):
-            val = val.split("@default_link:")[-1]
+            val = val.rsplit("@default_link:", maxsplit=1)[-1]
 
             classes = val.split("/")[1:]
             pattern = ""
@@ -522,7 +521,7 @@ class SPMformatter(ABC):
         parent_path: str,
         group_name: str,
         group_index=0,
-        is_forward: Optional[bool] = None,
+        is_forward: bool | None = None,
         rearrange_2d_data: bool = True,
     ):
         """Example NXdata dict descrioption from config
@@ -671,7 +670,9 @@ class SPMformatter(ABC):
             r"active_channel$": str,
             r"model/@version$": str,
             r"/model$": str,
-            r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: input.lower(),
+            r"lockin_amplifier/(demodulated|modulation)_signal$": lambda input: (
+                input.lower()
+            ),
             r"lockin_amplifier/(hp|lp){1,}_filter_orderN\[\1_filter_order_[\w]*\]$": (
                 lambda input: input if isinstance(input, (int, float)) else ""
             ),
@@ -732,7 +733,7 @@ class SPMformatter(ABC):
         end_conf_dct: dict,
         parent_path: str,
         concept_key: str,
-        part_to_embed: Optional[str],
+        part_to_embed: str | None,
     ):
         """
         Puts the data, unit, and other attributes into the template

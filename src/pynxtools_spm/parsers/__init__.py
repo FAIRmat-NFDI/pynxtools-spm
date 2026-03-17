@@ -21,7 +21,8 @@ Choose the appropriate parser based on the file extension and the ELN data.
 # limitations under the License.
 #
 
-from typing import Dict, Union, Callable, Optional, Iterable, Any
+from typing import Dict, Union, Optional, Any
+from collections.abc import Callable, Iterable
 from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
 from pynxtools_spm.parsers.nanonis_dat import DatGenericNanonis
 from pynxtools_spm.parsers.omicron_sm4 import Sm4Omicron
@@ -49,8 +50,8 @@ class SPMParser:
     """
 
     # parser navigate type
-    par_nav_t = Dict[str, Union["par_nav_t", Callable]]
-    __parser_navigation: Dict[str, par_nav_t] = {
+    par_nav_t = dict[str, Union["par_nav_t", Callable]]
+    __parser_navigation: dict[str, par_nav_t] = {
         "sxm": {
             "nanonis": {
                 "generic5e": SxmGenericNanonis,
@@ -77,9 +78,9 @@ class SPMParser:
 
     def __get_appropriate_parser(
         self,
-        file: Union[str, Path],
-        eln: Optional[Dict] = {},
-        file_ext: Optional[str] = None,
+        file: str | Path,
+        eln: dict | None = {},
+        file_ext: str | None = None,
     ) -> Iterable[Callable]:
         """Search for appropriate parser and pass it the reader.
 
@@ -104,7 +105,7 @@ class SPMParser:
                     file_ext = str(file.absolute()).rsplit(".", 1)[-1]
                 elif isinstance(file, str) and os.path.exists(file):
                     file_ext = file.rsplit(".", 1)[-1]
-        parser: Optional[Callable] = None
+        parser: Callable | None = None
         # experiment_t_key: str = "/ENTRY[entry]/experiment_type"
         # experiment_t: str = eln[experiment_t_key]
         try:
@@ -140,15 +141,15 @@ class SPMParser:
 
     def get_raw_data_dict(
         self,
-        file: Union[str, Path],
-        eln: Dict = None,
-        file_ext: Optional[str] = None,
+        file: str | Path,
+        eln: dict = None,
+        file_ext: str | None = None,
     ):
         """Get the raw data from the file."""
         parsers: Iterable[Callable] = self.__get_appropriate_parser(
             file=file, eln=eln or {}, file_ext=file_ext
         )
-        raw_data_dict: Optional[Dict[str, Any]] = None
+        raw_data_dict: dict[str, Any] | None = None
         for parser in parsers:
             try:
                 raw_data_dict = parser(file).parse()

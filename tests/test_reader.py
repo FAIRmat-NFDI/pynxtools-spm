@@ -11,6 +11,7 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
 
 ignore_lines: list = [
     "DEBUG - value: 20",
+    "DEBUG - value: 0.",
 ]
 ignore_sections: dict = {}
 

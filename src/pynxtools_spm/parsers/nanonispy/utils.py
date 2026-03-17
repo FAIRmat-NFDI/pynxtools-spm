@@ -34,7 +34,7 @@ def show_grid(arr, sweep_signal):
 
     im = ax.imshow(arr[:, :, int(s_energy_ind.val)])
     s_energy_ind.valtext.set_text(
-        "{:.2f} mV".format(sweep_signal[int(s_energy_ind.val)] * 1000)
+        f"{sweep_signal[int(s_energy_ind.val)] * 1000:.2f} mV"
     )
 
     def update(val):
@@ -42,7 +42,7 @@ def show_grid(arr, sweep_signal):
         im.autoscale()
 
         s_energy_ind.valtext.set_text(
-            "{:.2f} mV".format(sweep_signal[int(s_energy_ind.val)] * 1000)
+            f"{sweep_signal[int(s_energy_ind.val)] * 1000:.2f} mV"
         )
 
     s_energy_ind.on_changed(update)

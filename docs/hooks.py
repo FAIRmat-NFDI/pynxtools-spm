@@ -82,7 +82,7 @@ def copy_miscellaneous_files():
     dst_path.parent.mkdir(parents=True, exist_ok=True)
 
     # write in proper json with indentation
-    with open(src, "r") as src_file:
+    with open(src) as src_file:
         content = json.load(src_file)
         dst_path.write_text(json.dumps(content, indent=4))
 

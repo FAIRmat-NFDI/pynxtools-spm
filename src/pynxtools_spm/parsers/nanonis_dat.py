@@ -48,7 +48,7 @@ UNIT_MAP = {
 }
 
 # Type aliases
-NestedDict_t = Dict[str, Union[int, str, float, "NestedDict_t"]]
+NestedDict_t = dict[str, Union[int, str, float, "NestedDict_t"]]
 
 
 # pylint: disable=invalid-name
@@ -156,7 +156,7 @@ class DatGenericNanonis:
 
     def check_matrix_data_block_has_started(
         self, line_to_analyse: str
-    ) -> Tuple[bool, list]:
+    ) -> tuple[bool, list]:
         """_summary_
 
         Parameters
@@ -235,7 +235,7 @@ class DatGenericNanonis:
                         "value": list(np_2d_array[:, ind])
                     }
 
-        with open(self.raw_file, mode="r", encoding="utf-8") as file_obj:
+        with open(self.raw_file, encoding="utf-8") as file_obj:
             lines = file_obj.readlines()
             # last two lines for getting matrix data block that comes at the end of the file
             last_line: str

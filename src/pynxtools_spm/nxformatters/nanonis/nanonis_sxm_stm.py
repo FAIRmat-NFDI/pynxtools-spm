@@ -24,7 +24,8 @@ to NeXus application definition NXstm.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional, Any, Callable
+from typing import TYPE_CHECKING, Optional, Any
+from collections.abc import Callable
 from pathlib import Path
 import re
 import datetime
@@ -75,11 +76,11 @@ class NanonisSxmSTM(NanonisBase):
 
     def __init__(
         self,
-        template: "Template",
+        template: Template,
         raw_file: str | Path,
         eln_file: str | Path,
         config_file: str | Path = None,  # In case it is not provided by users
-        entry: Optional[str] = None,
+        entry: str | None = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 
@@ -478,7 +479,7 @@ class NanonisSxmSTM(NanonisBase):
         parent_path,
         group_name,
         group_index=0,
-        is_forward: Optional[bool] = None,
+        is_forward: bool | None = None,
         rearrange_2d_data: bool = True,
     ):
         """Specialization of the generic function to create NXdata group or plots."""
