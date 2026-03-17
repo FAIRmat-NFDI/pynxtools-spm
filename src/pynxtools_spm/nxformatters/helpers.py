@@ -267,7 +267,7 @@ def get_actual_from_variadic_name(name: str) -> str:
     str
         The actual name.
     """
-    return name.split("[")[-1].split("]")[0]
+    return name.rsplit("[", maxsplit=1)[-1].split("]")[0]
 
 
 def flatten_nested_list(list_dt: Union[list, tuple, Any]):
