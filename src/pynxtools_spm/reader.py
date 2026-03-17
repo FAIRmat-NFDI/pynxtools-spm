@@ -32,7 +32,7 @@ from pynxtools import get_nexus_version
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 
 # For flattened key-value pair from nested dict.
-REPLACE_NESTED: Dict[str, str] = {}
+REPLACE_NESTED: dict[str, str] = {}
 
 
 def manually_filter_data_type(template):
@@ -65,18 +65,18 @@ class SPMReader(BaseReader):
     def read(
         self,
         template: dict = None,
-        file_paths: Tuple[str] = None,
-        objects: Tuple[Any] = None,
+        file_paths: tuple[str] = None,
+        objects: tuple[Any] = None,
     ):
         """
         General read method to prepare the template.
         """
-        filled_template: Union[Dict, None] = Template()
+        filled_template: dict | None = Template()
         eln_file: str = None
-        config_file: Optional[str] = None
-        data_file: Optional[str] = ""
-        experiment_technique: Optional[str] = None
-        raw_file_ext: Optional[str] = None
+        config_file: str | None = None
+        data_file: str | None = ""
+        experiment_technique: str | None = None
+        raw_file_ext: str | None = None
 
         for file in file_paths:
             ext = file.rsplit(".", 1)[-1]
@@ -88,7 +88,7 @@ class SPMReader(BaseReader):
                 config_file = file
             if ext in ["yaml", "yml"]:
                 eln_file = file
-                with open(file, mode="r", encoding="utf-8") as fl_obj:
+                with open(file, encoding="utf-8") as fl_obj:
                     eln_dict = yaml.safe_load(fl_obj)
                     experiment_technique = eln_dict.get("experiment_technique")
                     # TODO get definition name
@@ -99,7 +99,7 @@ class SPMReader(BaseReader):
         if not data_file:
             raise ValueError("Data file is required for the reader to work.")
 
-        formatter_obj: Optional[SPMformatter] = None
+        formatter_obj: SPMformatter | None = None
         # Get callable object that has parser inside
         if experiment_technique == "STM" and raw_file_ext == "sxm":
             from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import (

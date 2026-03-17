@@ -53,7 +53,7 @@ class NanonisDatSTS(NanonisBase):
         "BIAS_SWEEP[bias_sweep]": "_construct_bias_sweep_grp",
     }
     _axes = ["x", "y", "z"]
-    links_to_concepts: Dict[str, Any] = {}
+    links_to_concepts: dict[str, Any] = {}
 
     @dataclass
     class TmpConceptsVal:
@@ -82,8 +82,8 @@ class NanonisDatSTS(NanonisBase):
         template: Template,
         raw_file: str | Path,
         eln_file: str | Path,
-        config_file: Optional[Union[str, Path]] = None,
-        entry: Optional[str] = None,
+        config_file: str | Path | None = None,
+        entry: str | None = None,
     ):
         super().__init__(template, raw_file, eln_file, config_file, entry)
 
