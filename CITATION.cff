@@ -2,15 +2,8 @@ cff-version: 1.2.0
 title: 'pynxtools-spm: A pynxtools plugin for SPM (Scanning Probe Microscopy) data readers'
 message: If you use this software, please cite it using the
   metadata from this file.
-message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
 type: software
-<<<<<<< Updated upstream
-version: 0.2.4
-=======
 version: 0.2.5
->>>>>>> Stashed changes
 authors:
   - given-names: Rubel
     family-names: Mozumder
