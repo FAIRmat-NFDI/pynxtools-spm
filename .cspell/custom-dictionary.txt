@@ -8,7 +8,7 @@ bais
 Brockhauser
 bruker
 Bruker
-Calib
+Calib 
 caplog
 chann
 channs
@@ -104,3 +104,4 @@ ureg
 valinit
 valtext
 Yichen
+zenodo
