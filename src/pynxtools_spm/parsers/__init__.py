@@ -26,6 +26,7 @@ from collections.abc import Callable, Iterable
 from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
 from pynxtools_spm.parsers.nanonis_dat import DatGenericNanonis
 from pynxtools_spm.parsers.omicron_sm4 import Sm4Omicron
+from pynxtools_spm.parsers.bruker_spm import SpmBruker
 import pynxtools_spm.parsers.helpers as phs
 import logging
 from pathlib import Path, PosixPath
@@ -72,6 +73,11 @@ class SPMParser:
                 "005.0041": Sm4Omicron,
                 "5.41": Sm4Omicron,
                 "5.4": Sm4Omicron,
+            }
+        },
+        "spm": {
+            "bruker": {
+                "9.64": SpmBruker,
             }
         },
     }

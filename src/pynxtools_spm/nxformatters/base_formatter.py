@@ -193,8 +193,9 @@ class SPMformatter(ABC):
         self,
         template: Template,
         raw_file: str | Path,
-        eln_file: str | Path,
+        eln_file: str | Path | None = None,
         config_file: None | (str | Path) = None,  # In case it is not provided by users
+        auxilary_files: list[str | Path] | None = None,
         entry: str | None = None,
     ):
 
@@ -475,7 +476,6 @@ class SPMformatter(ABC):
                 func_to_raw_key=func_to_raw_key,
             )
 
-    # TODO move this function to the base_formatter.py
     def walk_through_config_by_modified_raw_data_key(
         self,
         partial_conf_dict: dict,

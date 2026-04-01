@@ -76,6 +76,7 @@ class SPMReader(BaseReader):
         data_file: str | None = ""
         experiment_technique: str | None = None
         raw_file_ext: str | None = None
+        auxiliary_files: list[str] = []
 
         for file in file_paths:
             ext = file.rsplit(".", 1)[-1]
@@ -93,6 +94,8 @@ class SPMReader(BaseReader):
                     # TODO get definition name
                 if experiment_technique is None:
                     raise ValueError("Experiment technique is not defined in ELN file.")
+            else:
+                auxiliary_files.append(file)
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:
