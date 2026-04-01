@@ -9,7 +9,10 @@
     "end_time": {
       "#note": "Handled in function _set_start_end_time"
     },
-    "scan_mode": "",
+    "scan_mode": {
+      "raw_path": "/MicroscopeList",
+      "@units": ""
+    },
     "scan_type": "",
     "identifier_experiment": { "identifier": "" },
     "experiment_description": { "raw_path": "/Text" },
@@ -339,10 +342,12 @@
           },
           "meshSCAN[mesh_scan]": {
             "backward_speedN[backward_speed_n]": {
+              "#note": "",
               "raw_path": "",
               "@units": ""
             },
             "forward_speedN[forward_speed_n]": {
+              "#note": "",
               "raw_path": "",
               "@units": ""
             },
@@ -351,10 +356,12 @@
             "scan_pointsN[scan_points_n]": [
               {
                 "x": {
-                  "raw_path": "/Samps/line"
+                  "raw_path": "/Scan/Height_Sensor/backward/Valid_data_len_X",
+                  "@units": "@default:mn"
                 },
                 "y": {
-                  "raw_path": "/Lines"
+                  "raw_path": "/Scan/Height_Sensor/backward/Valid_data_len_Y",
+                  "@units": "@default:mn"
                 }
               }
             ],

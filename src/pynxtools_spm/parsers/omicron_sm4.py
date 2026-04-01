@@ -49,4 +49,5 @@ class Sm4Omicron(SPMBase):
 
         return sm4_data_dict
 
-    def get_stm_raw_file_info(self): ...
+    # def get_stm_raw_file_info(self):
+    #     return self.parse()

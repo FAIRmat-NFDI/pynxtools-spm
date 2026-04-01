@@ -34,10 +34,9 @@ class SPMBruker(Bruker):
     def __init__(self, path, encoding="latin1"):
         Bruker.__init__(self, path)
         self.encoding = encoding
-
+        self.file = []
+        self.equipment = []
         with open(self.path, "rb") as file:
-            self.file = []
-            self.equipment = []
             mode = ""
             line = ""
             while True:
@@ -63,6 +62,10 @@ class SPMBruker(Bruker):
                         elif mode == "Equipment":
                             self.equipment[-1][args[0]] = args[1]
 
+    @property
+    def channels(self):
+        return self.get_list_of_channels(encoding=self.encoding)
+
     def get_list_of_channels(self, encoding=None):
         if encoding is None:
             encoding = self.encoding
@@ -86,7 +89,7 @@ class SPMBruker(Bruker):
     def get_layer_with_channel(self, channel, encoding=None):
         if encoding is None:
             encoding = self.encoding
-        for ind, layer in enumerate(self.layers):
+        for _, layer in enumerate(self.layers):
             with contextlib.suppress(KeyError):
                 channel_info = layer[b"@2:Image Data"][0].decode(encoding)
                 result = re.match(
