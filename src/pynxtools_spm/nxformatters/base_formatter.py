@@ -206,6 +206,13 @@ class SPMformatter(ABC):
         self.raw_data: dict = self.get_raw_data_dict()
         self.entry: str = entry
         self.config_dict = self._get_conf_dict(config_file) or None  # Placeholder
+        if auxilary_files is not None:
+            self.auxilary_files = auxilary_files
+        else:
+            # TODO: Instead of print, use logging to give this info to users.
+            print(
+                "INFO: No auxiliary files provided. If there are auxiliary files, please provide them as a list of file paths to the formatter."
+            )
 
     @abstractmethod
     def _get_conf_dict(self, config_file: str | Path = None): ...
