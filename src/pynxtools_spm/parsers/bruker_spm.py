@@ -42,7 +42,7 @@ class SpmBruker(SPMBase):
                     bruker_data_dict.update(
                         {f"/Equipment_list/{ind}/{k}": v for k, v in temp_dict.items()}
                     )
-
+        scans_list = []
         # Ciao scan list (for image)
         for layer in spm_obj.layers:
             tmp_dict = {}
@@ -87,11 +87,14 @@ class SpmBruker(SPMBase):
             tmp_dict_update = {}
             for key, val in tmp_dict.items():
                 k_parts = key.split("/")
+                scans_list.append(f"{scan_name}/{direction}")
                 k_parts = [*k_parts[0:2], scan_name, direction, *k_parts[2:]]
                 key = "/".join(k_parts)
                 tmp_dict_update[key] = val
 
             bruker_data_dict.update(tmp_dict_update)
+
+        bruker_data_dict["/Scan_list"] = scans_list
 
         # Scanner list
         if len(spm_obj.scanners) > 0:

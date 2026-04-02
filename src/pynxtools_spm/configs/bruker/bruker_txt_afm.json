@@ -317,8 +317,8 @@
           "scanTAG[scan_name]": { "raw_path": "" },
           "scan_region": {
             "scan_angleN[scan_angle_n]": {
-              "raw_path": "",
-              "@units": ""
+              "raw_path": "/Rotate_Ang.",
+              "@units": "@default:deg"
             },
             "scan_offset_valueN[scan_offset_value_n]": [
               {
