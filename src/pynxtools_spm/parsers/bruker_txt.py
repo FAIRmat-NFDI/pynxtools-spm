@@ -1,6 +1,7 @@
 from pynxtools_spm.parsers.base_parser import SPMBase
 import numpy as np
 import re
+from pynxtools import logger as pynx_logger
 
 
 class TxtBruker(SPMBase):
@@ -19,6 +20,7 @@ class TxtBruker(SPMBase):
         # Got array header
         array_header = None
         array_data = []
+        last_line = ""
         with open(self.file_path) as f_ob:
             lines = f_ob.readlines()
             for line in lines:
@@ -28,7 +30,7 @@ class TxtBruker(SPMBase):
                 if (
                     ":" not in line
                     and not array_header
-                    and "Force file list end" not in line
+                    and "Force file list end" in last_line
                 ):
                     array_header = line
                 elif ":" not in line and array_header:
@@ -36,30 +38,28 @@ class TxtBruker(SPMBase):
                     # print(f"Cols: {cols}")
                     if len(array_data) == 0:
                         array_data = [[col.strip()] for col in cols]
-                        print(f"Array data initialized: {array_data}")
                         continue
                     elif len(cols) != len(array_data):
                         # Use pynxtools logger
-                        print(
-                            f"Warning: line has different number of columns than header. "
-                            f"Line: {line}, Header: {array_data}"
+                        pynx_logger.Error(
+                            "Number of columns in array data (%s) does not match the number of columns in array header (%s).",
+                            len(cols),
+                            len(array_data),
                         )
                         break
                     # Append data to each column
                     for ind, col in enumerate(cols):
                         array_data[ind].append(col.strip())
                     continue
-                elif ":" in line and array_header:
-                    array_header = None
+                elif ":" in line:
                     key, val = line.split(":", 1)
                     key = key.strip()
                     val = val.strip()
                     temp_dict = self.extract_data_unit(key, val)
                     bruker_data_dict.update(temp_dict)
-        if array_header and array_data:
-            array_names = array_header.strip().split()
-            print(f"Array names: {len(array_names)}")
-            print(f"Array data length: {len(array_data)}")
+                last_line = line
+        if len(array_data) > 0:
+            array_names = [header.strip() for header in array_header.strip().split()]
             for ind, arr_name in enumerate(array_names):
                 bruker_data_dict[f"/{arr_name.strip()}"] = np.array(
                     [float(x) for x in array_data[ind]]
