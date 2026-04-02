@@ -168,7 +168,7 @@ def _get_data_unit_and_others(
                     "raw_path": "/SCAN/ANGLE",
                     "@units": "@default:deg"
                 },
-                "scan_offset_N[scan_offset_n]": {
+                "scan_offset_valueN[scan_offset_value_n]": {
                     "raw_path": "/SCAN/OFFSET",
                 },
                 "scan_range_N[scan_range_n]": {

@@ -314,27 +314,39 @@
           "scanTAG[scan_name]": { "raw_path": "" },
           "scan_region": {
             "scan_angleN[scan_angle_n]": {
-              "raw_path": "",
-              "@units": ""
+              "raw_path": "/Scanner_list/0/Rotate_Ang.",
+              "@units": "@default:deg"
             },
             "scan_offset_valueN[scan_offset_value_n]": [
               {
                 "x": {
-                  "raw_path": "/X_Offset",
-                  "@units": "/X Offset/unit"
+                  "raw_path": "/Scanner_list/0/X_Offset",
+                  "@units": "@default:nm"
                 }
               },
               {
                 "y": {
-                  "raw_path": "/Y_Offset",
-                  "@units": "/Y Offset/unit"
+                  "raw_path": "/Scanner_list/0/Y_Offset",
+                  "@units": "@default:nm"
                 }
               }
             ],
+            "scan_startN[scan_start_n]": [
+              {
+                "x": {"raw_path": "/Scanner_list/0/X_Position",
+              "@units": "@default:nm"
+              }
+                },
+             {
+              "y": {
+              "raw_path": "/Scanner_list/0/Y_Position",
+              "@units": "@default:nm"
+            }}
+            ],
             "scan_rangeN[scan_range_n]": {
-              "#note": "",
-              "raw_path": "",
-              "@units": ""
+              "#note: Aspect_Ratio is also needed to calculate the scan range",
+              "raw_path": "/Scanner_list/0/Scan_Size",
+              "@units": "@default:nm"
             }
           },
           "meshSCAN[mesh_scan]": {
@@ -351,10 +363,10 @@
             "scan_pointsN[scan_points_n]": [
               {
                 "x": {
-                  "raw_path": "/Samps/line"
+                  "raw_path": "/Scanner_list/0/Samps/line"
                 },
                 "y": {
-                  "raw_path": "/Lines"
+                   "raw_path": "/Scanner_list/0/Lines"
                 }
               }
             ],
@@ -372,7 +384,7 @@
                 }
               }
             ],
-            "step_sizeN[step_size_n]": { "raw_path": "", "@units": "" },
+            "step_sizeN[step_size_n]": "",
             "scan_time": "",
             "DATA[scan_data]": [
               {
