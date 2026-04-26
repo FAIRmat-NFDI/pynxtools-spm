@@ -1,4 +1,4 @@
-from pynxtools_spm.parsers.bruker.bruker_spm import SPMBruker
+from pynxtools_spm.parsers.bruker.pySPMbruker import pySPMBruker
 from pynxtools_spm.parsers.base_parser import SPMBase
 import re
 
@@ -22,7 +22,7 @@ class SpmBruker(SPMBase):
 
     def parse(self, encoding="latin1"):
         """Parse the Bruker SPM file and return a dictionary with the parsed data."""
-        spm_obj = SPMBruker(self.file_path, encoding=encoding)
+        spm_obj = pySPMBruker(self.file_path, encoding=encoding)
 
         bruker_data_dict = {}
         channel_list = spm_obj.channels
