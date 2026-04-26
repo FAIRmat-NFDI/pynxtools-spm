@@ -16,6 +16,9 @@
 # limitations under the License.
 
 from __future__ import annotations
+from typing import Optional
+from pathlib import Path
+
 from pynxtools import logger as pynx_logger
 
 from pynxtools_spm.nxformatters.bruker.bruker_base import BrukerBase
@@ -87,14 +90,14 @@ class BrukerSpmAFM(BrukerBase):
     ):
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp)
-        if scan_region_dict:
+        if scan_region_dict is not None:
             self.construct_region_region_grp(
                 partial_conf_dict=scan_region_dict,
                 parent_path=f"{parent_path}/{group_name}",
             )
 
         scan_pattern_grp = "meshSCAN[mesh_scan]"
-        scan_pattern_dict = partial_conf_dict.get(scan_pattern_grp, None)
+        scan_pattern_dict = partial_conf_dict.get(scan_pattern_grp)
         if scan_pattern_dict is not None:
             self.construct_scan_pattern_grp(
                 partial_conf_dict=scan_pattern_dict,
@@ -165,7 +168,7 @@ class BrukerSpmAFM(BrukerBase):
                     )
                 else:
                     pynx_logger.warning(
-                        "Aspect ratio value is not in expected format, defaulting to 1:1. Aspect ratio value: %s",
+                        "Aspect ratio value is not found in expected format, defaulting to 1:1. Aspect ratio value: %s",
                         aspect_ratio,
                     )
             range_val = ureg.Quantity(data, unit).to(self.NXScanControl.x_start_unit)
@@ -179,6 +182,9 @@ class BrukerSpmAFM(BrukerBase):
             self.NXScanControl.y_end = (
                 self.NXScanControl.y_start + self.NXScanControl.y_range
             )
+        self.put_scan_2d_region_field_in_template(
+            parent_path=parent_path, group_name=group_name
+        )
 
     def construct_scan_pattern_grp(
         self,

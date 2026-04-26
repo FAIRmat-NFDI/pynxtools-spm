@@ -13,11 +13,16 @@
     "plaintext": false,
     "markdown": true,
     "scminput": false,
-    "python": false,
+    "python": true,
     "json": true
   },
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,
   "CRS.OnSaveAlFileAction": "Reorganize",
-  "github.copilot.chat.editor.temporalContext.enabled": true
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "workbench.preferredDarkColorTheme": "Monokai",
+  "workbench.preferredHighContrastColorTheme": "Monokai",
+  "workbench.preferredHighContrastLightColorTheme": "Monokai",
+  "workbench.preferredLightColorTheme": "Monokai",
+  "json.format.keepLines": true
 }
