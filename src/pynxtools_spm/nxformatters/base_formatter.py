@@ -199,8 +199,8 @@ class SPMformatter(ABC):
         entry: str | None = None,
     ):
 
-        self.scan_control: NXScanControl | None = NXScanControl()
-        self.bias_sweep: BiasSweep | None = BiasSweep()
+        self.scan_control: NXScanControl = NXScanControl()
+        self.bias_sweep: BiasSweep = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
@@ -853,14 +853,14 @@ class SPMformatter(ABC):
     def put_scan_pattern_field_in_template(self, parent_path, group_name):
         """Puts the scan pattern field into the template"""
         self.template[f"{parent_path}/{group_name}/scan_points_x"] = (
-            self.nx_scan_control.x_points
+            self.scan_control.x_points
         )
         self.template[f"{parent_path}/{group_name}/scan_points_y"] = (
-            self.nx_scan_control.y_points
+            self.scan_control.y_points
         )
         self.template[f"{parent_path}/{group_name}/fast_axis"] = (
-            self.nx_scan_control.fast_axis
+            self.scan_control.fast_axis
         )
         self.template[f"{parent_path}/{group_name}/slow_axis"] = (
-            self.nx_scan_control.slow_axis
+            self.scan_control.slow_axis
         )
