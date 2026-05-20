@@ -2,9 +2,9 @@ name: Compatibility with pynxtools
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 env:
   python-version: 3.12
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pynxtools-version: ["latest"]
+        pynxtools-version: [ "master" ]
 
     steps:
       - uses: actions/checkout@v4
@@ -35,10 +35,16 @@ jobs:
           uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
       - name: Install pynxtools release version ${{ matrix.pynxtools-version }}
         run: |
-          if [ "${{ matrix.pynxtools-version }}" == "latest" ]; then
+          version="${{ matrix.pynxtools-version }}"
+          if [[ "$version" == "latest" ]]; then
             uv pip install pynxtools
+          elif [[ "$version" == "master" ]]; then
+            uv pip install git+https://github.com/FAIRmat-NFDI/pynxtools.git@master
+          elif [[ "$version" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            uv pip install "pynxtools==${version#v}"
           else
-           uv pip install pynxtools==${{ matrix.pynxtools-version }}
+            echo "Unsupported pynxtools-version: $version"
+            exit 1
           fi
       - name: Run tests
         run: |
