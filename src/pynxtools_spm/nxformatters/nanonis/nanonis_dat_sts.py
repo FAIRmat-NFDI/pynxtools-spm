@@ -123,18 +123,18 @@ class NanonisDatSTS(NanonisBase):
                     concept_field=scan_points,
                 )
                 self.template[f"{parent_path}/{group_name}/{scan_points}"] = data
-                self.BiasSweep.scan_points_bias = data
+                self.bias_sweep.scan_points_bias = data
                 del copy_partial_conf_dict[key]
-        self.BiasSweep.scan_size_bias = (
-            self.BiasSweep.scan_end_bias - self.BiasSweep.scan_start_bias
-        ) / self.BiasSweep.scan_points_bias
-        self.BiasSweep.scan_size_bias_unit = self.BiasSweep.scan_end_bias_unit
+        self.bias_sweep.scan_size_bias = (
+            self.bias_sweep.scan_end_bias - self.bias_sweep.scan_start_bias
+        ) / self.bias_sweep.scan_points_bias
+        self.bias_sweep.scan_size_bias_unit = self.bias_sweep.scan_end_bias_unit
 
         self.template[f"{parent_path}/{group_name}/{step_size}"] = (
-            self.BiasSweep.scan_size_bias
+            self.bias_sweep.scan_size_bias
         )
         self.template[f"{parent_path}/{group_name}/{step_size}/@units"] = (
-            self.BiasSweep.scan_size_bias_unit
+            self.bias_sweep.scan_size_bias_unit
         )
         self.walk_though_config_nested_dict(
             config_dict=copy_partial_conf_dict,
@@ -161,8 +161,8 @@ class NanonisDatSTS(NanonisBase):
                 )
                 self.template[f"{parent_path}/{group_name}/{bias_start}"] = data
                 self.template[f"{parent_path}/{group_name}/{bias_start}/@units"] = unit
-                self.BiasSweep.scan_start_bias = data
-                self.BiasSweep.scan_start_bias_unit = unit
+                self.bias_sweep.scan_start_bias = data
+                self.bias_sweep.scan_start_bias_unit = unit
                 del partial_conf_dict_copy[key]
             elif bias_end == key:
                 data, unit, _ = _get_data_unit_and_others(
@@ -172,8 +172,8 @@ class NanonisDatSTS(NanonisBase):
                 )
                 self.template[f"{parent_path}/{group_name}/{bias_end}"] = data
                 self.template[f"{parent_path}/{group_name}/{bias_end}/@units"] = unit
-                self.BiasSweep.scan_end_bias = data
-                self.BiasSweep.scan_end_bias_unit = unit
+                self.bias_sweep.scan_end_bias = data
+                self.bias_sweep.scan_end_bias_unit = unit
                 del partial_conf_dict_copy[key]
         self.walk_though_config_nested_dict(
             config_dict=partial_conf_dict_copy,

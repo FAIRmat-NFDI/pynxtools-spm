@@ -90,6 +90,48 @@ class NXdata:
     title: str | None = None
 
 
+@dataclass
+class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
+    # Put the class in the base_formatter.py under BaseFormatter class
+    x_points: int | None = None
+    y_points: int | None = None
+    x_offset: int | float | None = None
+    x_offset_unit: str | Quantity | None = None
+    y_offset: int | float | None = None
+    y_offset_unit: str | Quantity | None = None
+    x_start: int | float | None = None
+    x_start_unit: str | Quantity | None = None
+    y_start: int | float | None = None
+    y_start_unit: str | Quantity | None = None
+    x_range: int | float | None = None
+    x_range_unit: str | Quantity | None = None
+    y_range: int | float | None = None
+    y_range_unit: str | Quantity | None = None
+    x_end: int | float | None = None
+    x_end_unit: str | Quantity | None = None
+    y_end: int | float | None = None
+    y_end_unit: str | Quantity | None = None
+    fast_axis: str | None = None  # lower case x, y
+    slow_axis: str | None = None  # lower case x, y
+
+
+@dataclass
+class BiasSweep:
+    """Storage to store data from bias_sweep and reuse them"""
+
+    scan_offset_bias: float | None = None
+    scan_offset_bias_unit: str | None = None
+    scan_range_bias: float | None = None
+    scan_range_bias_unit: str | None = None
+    scan_start_bias: float | None = None
+    scan_start_bias_unit: str | None = None
+    scan_end_bias: float | None = None
+    scan_end_bias_unit: str | None = None
+    scan_points_bias: float | None = None
+    scan_size_bias: float | None = None
+    scan_size_bias_unit: str | None = None
+
+
 def write_multiple_concepts_instance(
     eln_dict: dict, list_of_concept: tuple[str], convert_mapping: dict[str, str]
 ):
@@ -129,45 +171,6 @@ class SPMformatter(ABC):
     # in the subgroups
 
     # TODO: only use unit for instead of y_start_unit, ...
-    @dataclass
-    class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
-        # Put the class in the base_formatter.py under BaseFormatter class
-        x_points: int
-        y_points: int
-        x_offset: int | float
-        x_offset_unit: str | Quantity
-        y_offset: int | float
-        y_offset_unit: str | Quantity
-        x_start: int | float
-        x_start_unit: str | Quantity
-        y_start: int | float
-        y_start_unit: str | Quantity
-        x_range: int | float
-        x_range_unit: str | Quantity
-        y_range: int | float
-        y_range_unit: str | Quantity
-        x_end: int | float
-        x_end_unit: str | Quantity
-        y_end: int | float
-        y_end_unit: str | Quantity
-        fast_axis: str  # lower case x, y
-        slow_axis: str  # lower case x, y
-
-    @dataclass
-    class BiasSweep:
-        """Storage to store data from bias_sweep and reuse them"""
-
-        scan_offset_bias: float
-        scan_offset_bias_unit: str
-        scan_range_bias: float
-        scan_range_bias_unit: str
-        scan_start_bias: float
-        scan_start_bias_unit: str
-        scan_end_bias: float
-        scan_end_bias_unit: str
-        scan_points_bias: float
-        scan_size_bias: float
-        scan_size_bias_unit: str
 
     def __init__(
         self,
@@ -177,6 +180,9 @@ class SPMformatter(ABC):
         config_file: None | (str | Path) = None,  # In case it is not provided by users
         entry: str | None = None,
     ):
+
+        self.scan_control: NXScanControl | None = NXScanControl()
+        self.bias_sweep: BiasSweep | None = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
@@ -753,50 +759,50 @@ class SPMformatter(ABC):
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""
         self.template[f"{parent_path}/{group_name}/scan_start_x"] = (
-            self.NXScanControl.x_start
+            self.scan_control.x_start
         )
         self.template[f"{parent_path}/{group_name}/scan_start_x/@units"] = (
-            self.NXScanControl.x_start_unit
+            self.scan_control.x_start_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_start_y"] = (
-            self.NXScanControl.y_start
+            self.scan_control.y_start
         )
         self.template[f"{parent_path}/{group_name}/scan_start_y/@units"] = (
-            self.NXScanControl.y_start_unit
+            self.scan_control.y_start_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_end_x"] = (
-            self.NXScanControl.x_end
+            self.scan_control.x_end
         )
         self.template[f"{parent_path}/{group_name}/scan_end_x/@units"] = (
-            self.NXScanControl.x_end_unit
+            self.scan_control.x_end_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_end_y"] = (
-            self.NXScanControl.y_end
+            self.scan_control.y_end
         )
         self.template[f"{parent_path}/{group_name}/scan_end_y/@units"] = (
-            self.NXScanControl.y_end_unit
+            self.scan_control.y_end_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_range_x"] = (
-            self.NXScanControl.x_range
+            self.scan_control.x_range
         )
         self.template[f"{parent_path}/{group_name}/scan_range_x/@units"] = (
-            self.NXScanControl.x_range_unit
+            self.scan_control.x_range_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_range_y"] = (
-            self.NXScanControl.y_range
+            self.scan_control.y_range
         )
         self.template[f"{parent_path}/{group_name}/scan_range_y/@units"] = (
-            self.NXScanControl.y_range_unit
+            self.scan_control.y_range_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_x"] = (
-            self.NXScanControl.x_offset
+            self.scan_control.x_offset
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_x/@units"] = (
-            self.NXScanControl.x_offset_unit
+            self.scan_control.x_offset_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_y"] = (
-            self.NXScanControl.y_offset
+            self.scan_control.y_offset
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_y/@units"] = (
-            self.NXScanControl.y_offset_unit
+            self.scan_control.y_offset_unit
         )
