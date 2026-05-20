@@ -196,8 +196,8 @@
         ],
         "lp_filter_orderN": [
           {
-            "d1": { "raw_path": "" },
-            "d2": { "raw_path": "" }
+            "d1": { "raw_path": "/Lock-in/LP Filter Order D1" },
+            "d2": { "raw_path": "/Lock-in/LP Filter Order D2" }
           }
         ],
         "high_passN": [
@@ -215,8 +215,8 @@
           }
         ],
         "hp_filter_orderN": [
-          { "d1": { "raw_path": "" } },
-          { "d2": { "raw_path": "" } }
+          { "d1": { "raw_path": "/Lock-in/HP Filter Order D1" } },
+          { "d2": { "raw_path": "/Lock-in/HP Filter Order D2" } }
         ],
         "ref_offset_phaseN[ref_offset_phase_n]": [
           {
@@ -476,7 +476,7 @@
             "K_p": { "raw_path": "/Z-Controller/I gain" },
             "set_point": {
               "raw_path": "/Z-Controller/Setpoint",
-              "@units": "/Z-Controller/Setpoint/@unit"
+              "@units": "/Z-Controller/Setpoint unit"
             },
             "D_t": {
               "raw_path": "/Z-Controller/Time const",
@@ -578,7 +578,7 @@
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Topography (Forward Direction)"
+          "raw_path": "@default:Height Plot of STM Experiment (Forward Direction)"
         },
         "grp_name": "z_forward"
       },
@@ -589,7 +589,7 @@
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Topography (Backward Direction)"
+          "raw_path": "@default:Height Plot of STM Experiment (Backward Direction)"
         },
         "grp_name": "z_backward"
       },
@@ -600,7 +600,7 @@
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Topography (Forward Direction)"
+          "raw_path": "@default:Current Plot of STM Experiment (Forward Direction)"
         },
         "grp_name": "current_forward"
       },
@@ -611,7 +611,7 @@
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Topography (Backward Direction)"
+          "raw_path": "@default:Current Plot of STM Experiment (Backward Direction)"
         },
         "grp_name": "current_backward"
       }
@@ -625,9 +625,9 @@
       "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"
     },
     "resolution_indicators": {
-      "head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/head_temperature",
-      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_bottom_temperature",
-      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/scan_environment/cryo_shield_temperature",
+      "head_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/SCAN_ENVIRONMENT/head_temperature",
+      "cryo_bottom_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/SCAN_ENVIRONMENT/cryo_bottom_temperature",
+      "cryo_shield_temperature": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/SCAN_ENVIRONMENT/cryo_shield_temperature",
       "bias_sweep": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/bias_spectroscopy_environment/BIAS_SPECTROSCOPY[bias_spectroscopy]/BIAS_SWEEP[bias_sweep]",
       "reference_frequency": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/reference_frequency",
       "modulation_signal": "@default_link:/ENTRY[entry]/INSTRUMENT[instrument]/lockin_amplifier/modulation_signal"

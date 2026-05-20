@@ -164,12 +164,12 @@ class OmicronSM4STM(OmicronBase):
                             func_on_raw_key=func_on_raw_key,
                         )
                         if part_to_embed.endswith("x"):
-                            self.NXScanControl.x_points = data
+                            self.scan_control.x_points = data
                             self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
                                 data
                             )
                         elif part_to_embed.endswith("y"):
-                            self.NXScanControl.y_points = data
+                            self.scan_control.y_points = data
                             self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
                                 data
                             )
@@ -179,10 +179,10 @@ class OmicronSM4STM(OmicronBase):
                         data_dict=raw_data, end_dict=val
                     )
                     if key.endswith("x"):
-                        self.NXScanControl.x_points = data
+                        self.scan_control.x_points = data
                         self.template[f"{parent_path}/{group_name}/{key}"] = data
                     elif key.endswith("y"):
-                        self.NXScanControl.y_points = data
+                        self.scan_control.y_points = data
                         self.template[f"{parent_path}/{group_name}/{key}"] = data
                 continue
 
@@ -220,27 +220,27 @@ class OmicronSM4STM(OmicronBase):
 
                     else:
                         if (
-                            self.NXScanControl.x_points
-                            and self.NXScanControl.x_range
+                            self.scan_control.x_points
+                            and self.scan_control.x_range
                             and part_to_embed.endswith("x")
                         ):
                             self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
-                                self.NXScanControl.x_range / self.NXScanControl.x_points
+                                self.scan_control.x_range / self.scan_control.x_points
                             )
                             self.template[
                                 f"{parent_path}/{group_name}/{fld_key}/@units"
-                            ] = self.NXScanControl.x_start_unit
+                            ] = self.scan_control.x_start_unit
                         elif (
-                            self.NXScanControl.y_points
-                            and self.NXScanControl.y_range
+                            self.scan_control.y_points
+                            and self.scan_control.y_range
                             and part_to_embed.endswith("y")
                         ):
                             self.template[f"{parent_path}/{group_name}/{fld_key}"] = (
-                                self.NXScanControl.y_range / self.NXScanControl.y_points
+                                self.scan_control.y_range / self.scan_control.y_points
                             )
                             self.template[
                                 f"{parent_path}/{group_name}/{fld_key}/@units"
-                            ] = self.NXScanControl.y_start_unit
+                            ] = self.scan_control.y_start_unit
 
         self.raw_data = raw_data
 
@@ -270,19 +270,19 @@ class OmicronSM4STM(OmicronBase):
                 y_arr = v
 
         if isinstance(x_arr, np.ndarray):
-            self.NXScanControl.x_end = x_arr[-1]
-            self.NXScanControl.x_start = x_arr[0]
-            self.NXScanControl.x_range = (
-                self.NXScanControl.x_end - self.NXScanControl.x_start
+            self.scan_control.x_end = x_arr[-1]
+            self.scan_control.x_start = x_arr[0]
+            self.scan_control.x_range = (
+                self.scan_control.x_end - self.scan_control.x_start
             )
-            self.NXScanControl.x_start_unit = "m"
+            self.scan_control.x_start_unit = "m"
         if isinstance(y_arr, np.ndarray):
-            self.NXScanControl.y_end = y_arr[-1]
-            self.NXScanControl.y_start = y_arr[0]
-            self.NXScanControl.y_range = (
-                self.NXScanControl.y_end - self.NXScanControl.y_start
+            self.scan_control.y_end = y_arr[-1]
+            self.scan_control.y_start = y_arr[0]
+            self.scan_control.y_range = (
+                self.scan_control.y_end - self.scan_control.y_start
             )
-            self.NXScanControl.y_start_unit = "m"
+            self.scan_control.y_start_unit = "m"
 
         # handle fields
         for key, val in partial_conf_dict.items():
@@ -292,51 +292,51 @@ class OmicronSM4STM(OmicronBase):
             ):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
-                ] = self.NXScanControl.x_range
+                ] = self.scan_control.x_range
                 # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
-                ] = self.NXScanControl.x_start_unit
+                ] = self.scan_control.x_start_unit
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"
-                ] = self.NXScanControl.y_range
+                ] = self.scan_control.y_range
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"
-                ] = self.NXScanControl.y_start_unit
+                ] = self.scan_control.y_start_unit
             elif (
                 re.match(pattern=r"scan_start[\w]{1}", string=key, flags=re.I)
                 and "raw_path" in val
             ):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
-                ] = self.NXScanControl.x_start
+                ] = self.scan_control.x_start
                 # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
-                ] = self.NXScanControl.x_start_unit
+                ] = self.scan_control.x_start_unit
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"
-                ] = self.NXScanControl.y_start
+                ] = self.scan_control.y_start
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"
-                ] = self.NXScanControl.y_start_unit
+                ] = self.scan_control.y_start_unit
             elif (
                 re.match(pattern=r"scan_end[\w]{1}", string=key, flags=re.I)
                 and "raw_path" in val
             ):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
-                ] = self.NXScanControl.x_end
+                ] = self.scan_control.x_end
                 # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
-                ] = self.NXScanControl.x_start_unit
+                ] = self.scan_control.x_start_unit
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}"
-                ] = self.NXScanControl.y_end
+                ] = self.scan_control.y_end
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='y')}/@units"
-                ] = self.NXScanControl.y_start_unit
+                ] = self.scan_control.y_start_unit
 
             # single field or nested groups or variadic fields
             else:

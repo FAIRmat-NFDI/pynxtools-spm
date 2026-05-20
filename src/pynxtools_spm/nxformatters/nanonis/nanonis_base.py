@@ -44,8 +44,8 @@ class NanonisBase(SPMformatter):
             fast_slow = ["-X", "Y"]
         else:
             fast_slow = ["X", "Y"]
-        self.NXScanControl.fast_axis = fast_slow[0].lower()
-        self.NXScanControl.slow_axis = fast_slow[1].lower()
+        self.scan_control.fast_axis = fast_slow[0].lower()
+        self.scan_control.slow_axis = fast_slow[1].lower()
 
         return fast_slow
 
@@ -63,13 +63,13 @@ class NanonisBase(SPMformatter):
         """
 
         # if NXcontrol is not defined (e.g. for Bias Spectroscopy)
-        if not hasattr(self.NXScanControl, "fast_axis") and not hasattr(
-            self.NXScanControl, "slow_axis"
+        if not hasattr(self.scan_control, "fast_axis") and not hasattr(
+            self.scan_control, "slow_axis"
         ):
             return data
         fast_axis, slow_axis = (
-            self.NXScanControl.fast_axis,
-            self.NXScanControl.slow_axis,
+            self.scan_control.fast_axis,
+            self.scan_control.slow_axis,
         )
 
         rearranged = None

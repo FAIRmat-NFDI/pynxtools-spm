@@ -27,8 +27,10 @@ import re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 from collections.abc import Callable
+from collections.abc import Sequence
+import copy
 
 import numpy as np
 import yaml
@@ -79,7 +81,7 @@ PINT_QUANTITY_MAPPING = {
     "[current]": "current",
 }
 
-REPEATEABLE_CONCEPTS = ("Sample_component",)
+REPEATEABLE_CONCEPTS = ("Sample_component", "User", "Note")
 
 
 @dataclass
@@ -90,8 +92,50 @@ class NXdata:
     title: str | None = None
 
 
+@dataclass
+class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
+    # Put the class in the base_formatter.py under BaseFormatter class
+    x_points: int | None = None
+    y_points: int | None = None
+    x_offset: int | float | None = None
+    x_offset_unit: str | Quantity | None = None
+    y_offset: int | float | None = None
+    y_offset_unit: str | Quantity | None = None
+    x_start: int | float | None = None
+    x_start_unit: str | Quantity | None = None
+    y_start: int | float | None = None
+    y_start_unit: str | Quantity | None = None
+    x_range: int | float | None = None
+    x_range_unit: str | Quantity | None = None
+    y_range: int | float | None = None
+    y_range_unit: str | Quantity | None = None
+    x_end: int | float | None = None
+    x_end_unit: str | Quantity | None = None
+    y_end: int | float | None = None
+    y_end_unit: str | Quantity | None = None
+    fast_axis: str | None = None  # lower case x, y
+    slow_axis: str | None = None  # lower case x, y
+
+
+@dataclass
+class BiasSweep:
+    """Storage to store data from bias_sweep and reuse them"""
+
+    scan_offset_bias: float | None = None
+    scan_offset_bias_unit: str | None = None
+    scan_range_bias: float | None = None
+    scan_range_bias_unit: str | None = None
+    scan_start_bias: float | None = None
+    scan_start_bias_unit: str | None = None
+    scan_end_bias: float | None = None
+    scan_end_bias_unit: str | None = None
+    scan_points_bias: float | None = None
+    scan_size_bias: float | None = None
+    scan_size_bias_unit: str | None = None
+
+
 def write_multiple_concepts_instance(
-    eln_dict: dict, list_of_concept: tuple[str], convert_mapping: dict[str, str]
+    eln_dict: dict, list_of_concept: Sequence[str], convert_mapping: dict[str, str]
 ):
     """Write multiple concepts for variadic name in eln dict if there are multiple
     instances are requested in eln archive.json file.
@@ -102,11 +146,25 @@ def write_multiple_concepts_instance(
     for key, val in eln_dict.items():
         if key in list_of_concept:
             if key in convert_mapping:
+                nx_grp_name = convert_mapping[key]
+                cls_name = nx_grp_name.split("[")[0]
                 del convert_mapping[key]
-            val = [val] if not isinstance(val, list) else val
+            else:
+                cls_name = key.upper()
+
+            if not isinstance(val, list):
+                # NXsample has a filed of sample_component, to skip the name conflict
+                # https://manual.nexusformat.org/classes/base_classes/NXsample.html#nxsample-sample-component-group
+                key = f"{key.lower()}_1" if key == "Sample_component" else key
+                convert_mapping.update({key: f"{cls_name}[{key.lower()}]"})
+                new_dict[key] = write_multiple_concepts_instance(
+                    val, list_of_concept, convert_mapping
+                )
+                continue
+
             for i, item in enumerate(val, 1):
                 new_key = f"{key.lower()}_{i}"
-                convert_mapping.update({new_key: f"{key.upper()}[{new_key}]"})
+                convert_mapping.update({new_key: f"{cls_name}[{new_key}]"})
                 new_dict[new_key] = write_multiple_concepts_instance(
                     item, list_of_concept, convert_mapping
                 )
@@ -129,45 +187,6 @@ class SPMformatter(ABC):
     # in the subgroups
 
     # TODO: only use unit for instead of y_start_unit, ...
-    @dataclass
-    class NXScanControl:  # TODO: Rename this class NXimageScanControl and create another class for BiasSpectroscopy
-        # Put the class in the base_formatter.py under BaseFormatter class
-        x_points: int
-        y_points: int
-        x_offset: int | float
-        x_offset_unit: str | Quantity
-        y_offset: int | float
-        y_offset_unit: str | Quantity
-        x_start: int | float
-        x_start_unit: str | Quantity
-        y_start: int | float
-        y_start_unit: str | Quantity
-        x_range: int | float
-        x_range_unit: str | Quantity
-        y_range: int | float
-        y_range_unit: str | Quantity
-        x_end: int | float
-        x_end_unit: str | Quantity
-        y_end: int | float
-        y_end_unit: str | Quantity
-        fast_axis: str  # lower case x, y
-        slow_axis: str  # lower case x, y
-
-    @dataclass
-    class BiasSweep:
-        """Storage to store data from bias_sweep and reuse them"""
-
-        scan_offset_bias: float
-        scan_offset_bias_unit: str
-        scan_range_bias: float
-        scan_range_bias_unit: str
-        scan_start_bias: float
-        scan_start_bias_unit: str
-        scan_end_bias: float
-        scan_end_bias_unit: str
-        scan_points_bias: float
-        scan_size_bias: float
-        scan_size_bias_unit: str
 
     def __init__(
         self,
@@ -177,6 +196,9 @@ class SPMformatter(ABC):
         config_file: None | (str | Path) = None,  # In case it is not provided by users
         entry: str | None = None,
     ):
+
+        self.scan_control: NXScanControl | None = NXScanControl()
+        self.bias_sweep: BiasSweep | None = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
@@ -190,13 +212,14 @@ class SPMformatter(ABC):
     def _get_eln_dict(self, eln_file: str | Path):
         with open(eln_file, encoding="utf-8") as fl_obj:
             eln_dict: dict = yaml.safe_load(fl_obj)
+            convert_mapping = copy.deepcopy(CONVERT_DICT)
             extended_eln: dict = write_multiple_concepts_instance(
                 eln_dict=eln_dict,
                 list_of_concept=REPEATEABLE_CONCEPTS,
-                convert_mapping=CONVERT_DICT,
+                convert_mapping=convert_mapping,
             )
             eln_dict = flatten_and_replace(
-                FlattenSettings(extended_eln, CONVERT_DICT, REPLACE_NESTED)
+                FlattenSettings(extended_eln, convert_mapping, REPLACE_NESTED)
             )
         return eln_dict
 
@@ -545,10 +568,15 @@ class SPMformatter(ABC):
             },
             "@any_attr": "Actual attr value",
             "any_field1": {
-                "raw_path": "@defalut:Any field name",}.
+                "raw_path": "@default:Any field name",
+            },
             "any_field2": {
-                "raw_path": "/path/in/data/dict",}.
+                "raw_path": "/path/in/data/dict",
+            },
             "grp_name": "temperature1(filter)",
+            "title": {
+                "raw_path": "@default:A user provided title",
+            },
         }
         To get the proper relation please visit:
 
@@ -643,9 +671,16 @@ class SPMformatter(ABC):
         ]
         # Read grp attributes from config file
         for key, val in partial_conf_dict.items():
-            if key in ("grp_name",) or isinstance(val, dict) or key.startswith("#"):
+            try:
+                int(key)  # Cardinal number for axis, handled in specific formatter.
                 continue
-            elif key.startswith("@"):
+            except ValueError:
+                pass
+            if key in ("grp_name", "data"):
+                continue
+            if key.startswith("#"):
+                continue
+            if key.startswith("@"):
                 self.template[f"{dt_path}/{key}"] = val
             # NXdata field, this part is not needed.
             elif isinstance(val, dict):
@@ -716,7 +751,9 @@ class SPMformatter(ABC):
                 _format_datetime(parent_path, key, val)
 
         for template_key, val in self.template.items():
-            if m := re.search(pattern=r"(\w*date|time)$", string=template_key):
+            if (isinstance(val, str) and val.strip() == "") or val is None:
+                continue
+            if re.search(pattern=r"(\w*date|time)$", string=template_key):
                 try:
                     t_with_zone = add_local_timezone(val)
                     self.template[template_key] = t_with_zone
@@ -753,50 +790,50 @@ class SPMformatter(ABC):
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""
         self.template[f"{parent_path}/{group_name}/scan_start_x"] = (
-            self.NXScanControl.x_start
+            self.scan_control.x_start
         )
         self.template[f"{parent_path}/{group_name}/scan_start_x/@units"] = (
-            self.NXScanControl.x_start_unit
+            self.scan_control.x_start_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_start_y"] = (
-            self.NXScanControl.y_start
+            self.scan_control.y_start
         )
         self.template[f"{parent_path}/{group_name}/scan_start_y/@units"] = (
-            self.NXScanControl.y_start_unit
+            self.scan_control.y_start_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_end_x"] = (
-            self.NXScanControl.x_end
+            self.scan_control.x_end
         )
         self.template[f"{parent_path}/{group_name}/scan_end_x/@units"] = (
-            self.NXScanControl.x_end_unit
+            self.scan_control.x_end_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_end_y"] = (
-            self.NXScanControl.y_end
+            self.scan_control.y_end
         )
         self.template[f"{parent_path}/{group_name}/scan_end_y/@units"] = (
-            self.NXScanControl.y_end_unit
+            self.scan_control.y_end_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_range_x"] = (
-            self.NXScanControl.x_range
+            self.scan_control.x_range
         )
         self.template[f"{parent_path}/{group_name}/scan_range_x/@units"] = (
-            self.NXScanControl.x_range_unit
+            self.scan_control.x_range_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_range_y"] = (
-            self.NXScanControl.y_range
+            self.scan_control.y_range
         )
         self.template[f"{parent_path}/{group_name}/scan_range_y/@units"] = (
-            self.NXScanControl.y_range_unit
+            self.scan_control.y_range_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_x"] = (
-            self.NXScanControl.x_offset
+            self.scan_control.x_offset
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_x/@units"] = (
-            self.NXScanControl.x_offset_unit
+            self.scan_control.x_offset_unit
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_y"] = (
-            self.NXScanControl.y_offset
+            self.scan_control.y_offset
         )
         self.template[f"{parent_path}/{group_name}/scan_offset_value_y/@units"] = (
-            self.NXScanControl.y_offset_unit
+            self.scan_control.y_offset_unit
         )

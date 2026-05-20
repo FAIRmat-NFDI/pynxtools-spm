@@ -110,9 +110,9 @@ class NanonisSxmSTM(NanonisBase):
             concept_field=forward_speed_k,
         )
         fast_axis = (
-            self.NXScanControl.fast_axis[1:]
-            if self.NXScanControl.fast_axis.startswith("-")  # -ve direction
-            else self.NXScanControl.fast_axis
+            self.scan_control.fast_axis[1:]
+            if self.scan_control.fast_axis.startswith("-")  # -ve direction
+            else self.scan_control.fast_axis
         )
         # TODO: check fast_axis contains - sign and remove it
         self.template[
@@ -150,16 +150,16 @@ class NanonisSxmSTM(NanonisBase):
                 f"{parent_path}/{group_name}/scan_pointsN[scan_points_{self._axes[ind]}]"
             ] = point
             if self._axes[ind] == "x":
-                self.NXScanControl.x_points = point
+                self.scan_control.x_points = point
             elif self._axes[ind] == "y":
-                self.NXScanControl.y_points = point
+                self.scan_control.y_points = point
 
         # step_size
         if len(gbl_scan_points) == len(gbl_scan_ranges):
             for ind, (rng, pnt) in enumerate(zip(gbl_scan_ranges, gbl_scan_points)):
                 stp_s = f"{parent_path}/{group_name}/step_sizeN[step_size_{self._axes[ind]}]"
                 self.template[stp_s] = rng / pnt
-                self.template[stp_s + "/@units"] = self.NXScanControl.x_range_unit
+                self.template[stp_s + "/@units"] = self.scan_control.x_range_unit
 
         # scan_data group
         scan_data = "SCAN_DATA[scan_data]"
@@ -219,15 +219,15 @@ class NanonisSxmSTM(NanonisBase):
             # self.template[off_key] = offset
             # self.template[f"{off_key}/@units"] = unit
             if self._axes[ind] == "x":
-                self.NXScanControl.x_offset = offset  # type: ignore
-                self.NXScanControl.x_offset_unit = unit
-                self.NXScanControl.x_start = offset  # type: ignore
-                self.NXScanControl.x_start_unit = unit
+                self.scan_control.x_offset = offset  # type: ignore
+                self.scan_control.x_offset_unit = unit
+                self.scan_control.x_start = offset  # type: ignore
+                self.scan_control.x_start_unit = unit
             elif self._axes[ind] == "y":
-                self.NXScanControl.y_offset = offset  # type: ignore
-                self.NXScanControl.y_offset_unit = unit
-                self.NXScanControl.y_start = offset  # type: ignore
-                self.NXScanControl.y_start_unit = unit
+                self.scan_control.y_offset = offset  # type: ignore
+                self.scan_control.y_offset_unit = unit
+                self.scan_control.y_start = offset  # type: ignore
+                self.scan_control.y_start_unit = unit
 
         # Scan Angle
         scan_angle = "scan_angleN[scan_angle_n]"
@@ -263,17 +263,17 @@ class NanonisSxmSTM(NanonisBase):
             gbl_scan_ranges = [float(x) for x in gbl_scan_ranges]
         for ind, rng in enumerate(gbl_scan_ranges):
             if self._axes[ind] == "x":
-                self.NXScanControl.x_range = rng
-                self.NXScanControl.x_range_unit = unit
-                if self.NXScanControl.x_start not in (None, ""):
-                    self.NXScanControl.x_end = rng + self.NXScanControl.x_start
-                    self.NXScanControl.x_end_unit = unit
+                self.scan_control.x_range = rng
+                self.scan_control.x_range_unit = unit
+                if self.scan_control.x_start not in (None, ""):
+                    self.scan_control.x_end = rng + self.scan_control.x_start
+                    self.scan_control.x_end_unit = unit
             elif self._axes[ind] == "y":
-                self.NXScanControl.y_range = rng
-                self.NXScanControl.y_range_unit = unit
-                if self.NXScanControl.y_start not in (None, ""):
-                    self.NXScanControl.y_end = rng + self.NXScanControl.y_start
-                    self.NXScanControl.y_end_unit = unit
+                self.scan_control.y_range = rng
+                self.scan_control.y_range_unit = unit
+                if self.scan_control.y_start not in (None, ""):
+                    self.scan_control.y_end = rng + self.scan_control.y_start
+                    self.scan_control.y_end_unit = unit
 
         self.put_scan_2d_region_field_in_template(parent_path, group_name)
 
@@ -372,15 +372,15 @@ class NanonisSxmSTM(NanonisBase):
                                 "calibration": row[4],
                                 "offset": row[5],
                                 "x_axis": np.linspace(
-                                    self.NXScanControl.x_start,
-                                    self.NXScanControl.x_end,
-                                    int(self.NXScanControl.x_points),
+                                    self.scan_control.x_start,
+                                    self.scan_control.x_end,
+                                    int(self.scan_control.x_points),
                                 ),
                                 "x_units": row[2],
                                 "y_axis": np.linspace(
-                                    self.NXScanControl.y_start,
-                                    self.NXScanControl.y_end,
-                                    int(self.NXScanControl.y_points),
+                                    self.scan_control.y_start,
+                                    self.scan_control.y_end,
+                                    int(self.scan_control.y_points),
                                 ),
                                 "y_units": row[2],
                             },
@@ -390,15 +390,15 @@ class NanonisSxmSTM(NanonisBase):
                                 "calibration": row[4],
                                 "offset": row[5],
                                 "x_axis": np.linspace(
-                                    self.NXScanControl.x_start,
-                                    self.NXScanControl.x_end,
-                                    int(self.NXScanControl.x_points),
+                                    self.scan_control.x_start,
+                                    self.scan_control.x_end,
+                                    int(self.scan_control.x_points),
                                 ),
                                 "x_units": row[2],
                                 "y_axis": np.linspace(
-                                    self.NXScanControl.y_start,
-                                    self.NXScanControl.y_end,
-                                    int(self.NXScanControl.y_points),
+                                    self.scan_control.y_start,
+                                    self.scan_control.y_end,
+                                    int(self.scan_control.y_points),
                                 ),
                                 "y_units": row[2],
                             },
@@ -413,15 +413,15 @@ class NanonisSxmSTM(NanonisBase):
                             "calibration": row[4],
                             "offset": row[5],
                             "x_axis": np.linspace(
-                                self.NXScanControl.x_start,
-                                self.NXScanControl.x_end,
-                                int(self.NXScanControl.x_points),
+                                self.scan_control.x_start,
+                                self.scan_control.x_end,
+                                int(self.scan_control.x_points),
                             ),
                             "x_units": row[2],
                             "y_axis": np.linspace(
-                                self.NXScanControl.y_start,
-                                self.NXScanControl.y_end,
-                                int(self.NXScanControl.y_points),
+                                self.scan_control.y_start,
+                                self.scan_control.y_end,
+                                int(self.scan_control.y_points),
                             ),
                             "y_units": row[2],
                         }
@@ -512,28 +512,28 @@ class NanonisSxmSTM(NanonisBase):
             ] = 0
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
                 np.linspace(
-                    self.NXScanControl.x_start,
-                    self.NXScanControl.x_end,
-                    int(self.NXScanControl.x_points),
+                    self.scan_control.x_start,
+                    self.scan_control.x_end,
+                    int(self.scan_control.x_points),
                 )
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@units"
-            ] = self.NXScanControl.x_start_unit
+            ] = self.scan_control.x_start_unit
 
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_y}_indices]"
             ] = 1
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
                 np.linspace(
-                    self.NXScanControl.y_end,
-                    self.NXScanControl.y_start,
-                    int(self.NXScanControl.y_points),
+                    self.scan_control.y_end,
+                    self.scan_control.y_start,
+                    int(self.scan_control.y_points),
                 )
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
-            ] = self.NXScanControl.y_start_unit
+            ] = self.scan_control.y_start_unit
         return nxdata_group_nm
 
     def _set_start_end_time(self, val_dict, parent_path, field_name):
