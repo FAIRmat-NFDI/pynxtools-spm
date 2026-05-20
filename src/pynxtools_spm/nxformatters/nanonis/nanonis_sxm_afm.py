@@ -205,26 +205,26 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
             ] = 0
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
                 np.linspace(
-                    self.NXScanControl.x_start,
-                    self.NXScanControl.x_end,
-                    int(self.NXScanControl.x_points),
+                    self.scan_control.x_start,
+                    self.scan_control.x_end,
+                    int(self.scan_control.x_points),
                 )
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@units"
-            ] = self.NXScanControl.x_start_unit
+            ] = self.scan_control.x_start_unit
 
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_y}_indices]"
             ] = 1
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
                 np.linspace(
-                    self.NXScanControl.y_end,
-                    self.NXScanControl.y_start,
-                    int(self.NXScanControl.y_points),
+                    self.scan_control.y_end,
+                    self.scan_control.y_start,
+                    int(self.scan_control.y_points),
                 )
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
-            ] = self.NXScanControl.y_start_unit
+            ] = self.scan_control.y_start_unit
         return nxdata_group_nm

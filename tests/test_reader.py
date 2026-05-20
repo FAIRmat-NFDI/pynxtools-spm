@@ -9,11 +9,14 @@ from pynxtools.testing.nexus_conversion import ReaderTest
 
 module_dir = os.path.dirname(os.path.abspath(__file__))
 
-ignore_lines: list = [
-    "DEBUG - value: 20",
-    "DEBUG - value: 0.",
-]
-ignore_sections: dict = {}
+ignore_lines: list = []
+ignore_sections = {
+    "FIELD /entry/start_time ": ["Value"],
+    "FIELD /entry/end_time ": ["Value"],
+    "FIELD /entry/instrument/height_piezo_sensor/piezo_configuration/calibration/calibration_date ": [
+        "Value"
+    ],
+}
 
 
 @pytest.mark.parametrize(

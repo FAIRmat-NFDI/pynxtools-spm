@@ -105,3 +105,4 @@ valinit
 valtext
 Yichen
 zenodo
+pynx
