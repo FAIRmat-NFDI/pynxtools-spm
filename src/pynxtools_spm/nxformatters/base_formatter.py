@@ -722,6 +722,8 @@ class SPMformatter(ABC):
                 _format_datetime(parent_path, key, val)
 
         for template_key, val in self.template.items():
+            if (isinstance(val, str) and val.strip() == "") or val is None:
+                continue
             if m := re.search(pattern=r"(\w*date|time)$", string=template_key):
                 try:
                     t_with_zone = add_local_timezone(val)

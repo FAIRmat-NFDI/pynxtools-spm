@@ -168,6 +168,9 @@ class SPMReader(BaseReader):
                 " corresponding extension."
             )
         manually_filter_data_type(filled_template)
+        for key, val in filled_template.items():
+            if "active_channel" in key:
+                print(f"Key: {key}, Value: {val}, Type: {type(val)}")
         return filled_template
 
 
