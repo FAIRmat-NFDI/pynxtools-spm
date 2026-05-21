@@ -724,7 +724,7 @@ class SPMformatter(ABC):
         for template_key, val in self.template.items():
             if (isinstance(val, str) and val.strip() == "") or val is None:
                 continue
-            if m := re.search(pattern=r"(\w*date|time)$", string=template_key):
+            if re.search(pattern=r"(\w*date|time)$", string=template_key):
                 try:
                     t_with_zone = add_local_timezone(val)
                     self.template[template_key] = t_with_zone
