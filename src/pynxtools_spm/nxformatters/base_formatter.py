@@ -145,7 +145,12 @@ def write_multiple_concepts_instance(
         if key in list_of_concept:
             if key in convert_mapping:
                 del convert_mapping[key]
-            val = [val] if not isinstance(val, list) else val
+            if not isinstance(val, list):
+                new_dict[key] = write_multiple_concepts_instance(
+                    val, list_of_concept, convert_mapping
+                )
+                continue
+
             for i, item in enumerate(val, 1):
                 new_key = f"{key.lower()}_{i}"
                 convert_mapping.update({new_key: f"{key.upper()}[{new_key}]"})
