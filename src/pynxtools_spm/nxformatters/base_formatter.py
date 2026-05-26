@@ -655,11 +655,11 @@ class SPMformatter(ABC):
                 continue
             except ValueError:
                 pass
-            if key in ("grp_name", "data") or (
-                isinstance(val, dict) and key.startswith("#")
-            ):
+            if key in ("grp_name", "data"):
                 continue
-            elif key.startswith("@"):
+            if key.startswith("#"):
+                continue
+            if key.startswith("@"):
                 self.template[f"{dt_path}/{key}"] = val
             # NXdata field, this part is not needed.
             elif isinstance(val, dict):
