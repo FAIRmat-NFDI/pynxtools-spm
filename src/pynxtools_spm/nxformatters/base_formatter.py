@@ -551,10 +551,11 @@ class SPMformatter(ABC):
             },
             "@any_attr": "Actual attr value",
             "any_field1": {
-                "raw_path": "@defalut:Any field name",}.
+                "raw_path": "@default:Any field name",}.
             "any_field2": {
                 "raw_path": "/path/in/data/dict",}.
             "grp_name": "temperature1(filter)",
+            "title": {"raw_path": "@default:A user provided title",}
         }
         To get the proper relation please visit:
 
@@ -649,7 +650,14 @@ class SPMformatter(ABC):
         ]
         # Read grp attributes from config file
         for key, val in partial_conf_dict.items():
-            if key in ("grp_name",) or isinstance(val, dict) or key.startswith("#"):
+            try:
+                int(key)  # Cardinal number for axis, handled in specific formatter.
+                continue
+            except ValueError:
+                pass
+            if key in ("grp_name", "data") or (
+                isinstance(val, dict) and key.startswith("#")
+            ):
                 continue
             elif key.startswith("@"):
                 self.template[f"{dt_path}/{key}"] = val
