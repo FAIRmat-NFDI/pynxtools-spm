@@ -551,11 +551,15 @@ class SPMformatter(ABC):
             },
             "@any_attr": "Actual attr value",
             "any_field1": {
-                "raw_path": "@default:Any field name",}.
+                "raw_path": "@default:Any field name",
+            },
             "any_field2": {
-                "raw_path": "/path/in/data/dict",}.
+                "raw_path": "/path/in/data/dict",
+            },
             "grp_name": "temperature1(filter)",
-            "title": {"raw_path": "@default:A user provided title",}
+            "title": {
+                "raw_path": "@default:A user provided title",
+            },
         }
         To get the proper relation please visit:
 
