@@ -27,8 +27,10 @@ import re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 from collections.abc import Callable
+from collections.abc import Sequence
+import copy
 
 import numpy as np
 import yaml
@@ -79,7 +81,7 @@ PINT_QUANTITY_MAPPING = {
     "[current]": "current",
 }
 
-REPEATEABLE_CONCEPTS = ("Sample_component",)
+REPEATEABLE_CONCEPTS = ("Sample_component", "User", "Note")
 
 
 @dataclass
@@ -133,7 +135,7 @@ class BiasSweep:
 
 
 def write_multiple_concepts_instance(
-    eln_dict: dict, list_of_concept: tuple[str], convert_mapping: dict[str, str]
+    eln_dict: dict, list_of_concept: Sequence[str], convert_mapping: dict[str, str]
 ):
     """Write multiple concepts for variadic name in eln dict if there are multiple
     instances are requested in eln archive.json file.
@@ -144,8 +146,17 @@ def write_multiple_concepts_instance(
     for key, val in eln_dict.items():
         if key in list_of_concept:
             if key in convert_mapping:
+                nx_grp_name = convert_mapping[key]
+                cls_name = nx_grp_name.split("[")[0]
                 del convert_mapping[key]
+            else:
+                cls_name = key.upper()
+
             if not isinstance(val, list):
+                # NXsample has a filed of sample_component, to skip the name conflict
+                # https://manual.nexusformat.org/classes/base_classes/NXsample.html#nxsample-sample-component-group
+                key = f"{key}_1" if key == "Sample_component" else key
+                convert_mapping.update({key: f"{cls_name}[{key.lower()}]"})
                 new_dict[key] = write_multiple_concepts_instance(
                     val, list_of_concept, convert_mapping
                 )
@@ -153,7 +164,7 @@ def write_multiple_concepts_instance(
 
             for i, item in enumerate(val, 1):
                 new_key = f"{key.lower()}_{i}"
-                convert_mapping.update({new_key: f"{key.upper()}[{new_key}]"})
+                convert_mapping.update({new_key: f"{cls_name}[{new_key}]"})
                 new_dict[new_key] = write_multiple_concepts_instance(
                     item, list_of_concept, convert_mapping
                 )
@@ -201,10 +212,11 @@ class SPMformatter(ABC):
     def _get_eln_dict(self, eln_file: str | Path):
         with open(eln_file, encoding="utf-8") as fl_obj:
             eln_dict: dict = yaml.safe_load(fl_obj)
+            convert_mapping = copy.deepcopy(CONVERT_DICT)
             extended_eln: dict = write_multiple_concepts_instance(
                 eln_dict=eln_dict,
                 list_of_concept=REPEATEABLE_CONCEPTS,
-                convert_mapping=CONVERT_DICT,
+                convert_mapping=convert_mapping,
             )
             eln_dict = flatten_and_replace(
                 FlattenSettings(extended_eln, CONVERT_DICT, REPLACE_NESTED)
