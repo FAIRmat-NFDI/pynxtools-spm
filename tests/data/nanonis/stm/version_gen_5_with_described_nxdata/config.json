@@ -578,7 +578,7 @@
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Plot of STM Experiment (Forward Direction)"
+          "raw_path": "@default:Height Topography (Forward Direction)"
         },
         "grp_name": "z_forward"
       },
@@ -589,7 +589,7 @@
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Plot of STM Experiment (Backward Direction)"
+          "raw_path": "@default:Height Topography (Backward Direction)"
         },
         "grp_name": "z_backward"
       },
@@ -600,7 +600,7 @@
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Plot of STM Experiment (Forward Direction)"
+          "raw_path": "@default:Current Topography (Forward Direction)"
         },
         "grp_name": "current_forward"
       },
@@ -611,7 +611,7 @@
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Plot of STM Experiment (Backward Direction)"
+          "raw_path": "@default:Current Topography (Backward Direction)"
         },
         "grp_name": "current_backward"
       }

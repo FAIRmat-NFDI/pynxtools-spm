@@ -19,8 +19,7 @@ A short description on STS reader which also suitable for file from STM .
 # limitations under the License.
 #
 
-import json
-from typing import Dict, Union, Tuple, Any, Optional
+from typing import Any
 import numpy as np
 import yaml
 import copy
