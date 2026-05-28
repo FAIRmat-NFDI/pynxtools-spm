@@ -1,19 +1,19 @@
 Instrument:
   hardware:
     model: Generic 4
-    model/@version: '4'
+    model/@version: "4"
     name: Nanonis
     vendor: Nanonis
   software:
     model: Generic 4
-    model/@version: '4'
+    model/@version: "4"
     name: Nanonis
     vendor: Nanonis
 Sample:
   Sample_component:
-  - chemical_formula: ' KAl₂(AlSi₃O₁₀)(OH)₂)'
-    description: <p>Gold on Mica.</p>
-    name: Au(Mica)
+    - chemical_formula: " KAl₂(AlSi₃O₁₀)(OH)₂)"
+      description: <p>Gold on Mica.</p>
+      name: Au(Mica)
   description: <p>We used the diPAMY sample used in this demo example.</p>
   name: diPAMY
 default: current_forward
@@ -24,11 +24,11 @@ identifier_collection: D:\\Data\\123306
 identifier_experiment: D:\\Data\\123306\A151216.123306-02602
 scan_mode: tapping mode
 User:
-- affiliation:
-  - Dr. Cojal González, José David (HU)
-  - Prof. Carlos-Andres Palma (HU)
+  affiliation:
+    - Dr. Cojal González, José David (HU)
+    - Prof. Carlos-Andres Palma (HU)
   email:
-  - cojal@physik.hu-berlin.de
-  - palma@physik.hu-berlin.de
-  - mozumder@physik.hu-berlin.de
+    - cojal@physik.hu-berlin.de
+    - palma@physik.hu-berlin.de
+    - mozumder@physik.hu-berlin.de
   name: Rubel Mozumder

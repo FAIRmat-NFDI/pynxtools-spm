@@ -155,7 +155,7 @@ def write_multiple_concepts_instance(
             if not isinstance(val, list):
                 # NXsample has a filed of sample_component, to skip the name conflict
                 # https://manual.nexusformat.org/classes/base_classes/NXsample.html#nxsample-sample-component-group
-                key = f"{key}_1" if key == "Sample_component" else key
+                key = f"{key.lower()}_1" if key == "Sample_component" else key
                 convert_mapping.update({key: f"{cls_name}[{key.lower()}]"})
                 new_dict[key] = write_multiple_concepts_instance(
                     val, list_of_concept, convert_mapping
@@ -219,7 +219,7 @@ class SPMformatter(ABC):
                 convert_mapping=convert_mapping,
             )
             eln_dict = flatten_and_replace(
-                FlattenSettings(extended_eln, CONVERT_DICT, REPLACE_NESTED)
+                FlattenSettings(extended_eln, convert_mapping, REPLACE_NESTED)
             )
         return eln_dict
 
