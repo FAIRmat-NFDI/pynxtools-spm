@@ -4,13 +4,13 @@ Sample:
       description: Sample History goes here.
   name: diPAMY
   chemical_formula: Au(KAl3Si3012H2)
-  description: 'Substrate: Stack of two layers: Au(111) on Mica'
+  description: "Substrate: Stack of two layers: Au(111) on Mica"
 
 default: current_forward
 definition: NXstm
-experiment_description: 'Experiment with
+experiment_description: "Experiment with
   Bias: -50mV
-  Setpoint: 25pA'
+  Setpoint: 25pA"
 Instrument:
   hardware:
     model: Generic 5
@@ -27,13 +27,24 @@ identifier_collection: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1m
 identifier_experiment: D:\Data\20230428\Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_1min_0420_30min_0425_30min_195.sxm
 scan_mode: constant current
 User:
-  affiliation:
-  - Rubel Mozumder
-  - Dr. Cojal González, José David
-  - Dr. Carlos-Andres Palma
-  email:
-  - ycjin@physik.hu-berlin.de
-  - rubel.mozumder@physik.hu-berlin.de
-  - cojal@physik.hu-berlin.de
-  - palma@physik.hu-berlin.de
-  name: Yichen Jin
+  - affiliation:
+      - Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China
+    name: Yan Wang
+  - affiliation:
+      - Department of Physics& IRIS Adlershof, Humboldt-Universität zu Berlin, 12489 Berlin,
+        Germany
+    email:
+      - cojal@physik.hu-berlin.de
+    name: Cojal González, José David
+  - affiliation:
+      - FAIRmat, Humboldt-Universität zu Berlin, Berlin
+    email:
+      - rubel.mozumder@physik.hu-berlin.de
+    name: Rubel Mozumder
+  - affiliation:
+      - Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China
+      - Department of Physics& IRIS Adlershof, Humboldt-Universität zu Berlin, 12489 Berlin,
+        Germany
+    email:
+      - palma@iphy.ac.cn
+    name: Prof. Carlos-Andres Palma
