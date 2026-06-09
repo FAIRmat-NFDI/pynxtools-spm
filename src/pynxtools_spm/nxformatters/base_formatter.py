@@ -34,6 +34,7 @@ import copy
 
 import numpy as np
 import yaml
+from pint import UnitRegistry
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
@@ -177,11 +178,19 @@ def write_multiple_concepts_instance(
     return new_dict
 
 
+_ureg = UnitRegistry()
+
+
 class SPMformatter(ABC):
     # Map function to deal specific group. Map key should be the same as it is
     # in config file
     _grp_to_func: dict[str, str] = {}  # Placeholder
     _axes: list[str] = []  # Placeholder
+
+    @staticmethod
+    def unit_short(unit: str) -> str:
+        """Return a short unit symbol using pint (e.g. 'meter' -> 'm')."""
+        return f"{_ureg(unit).units:~}"
 
     # Class used to colleted data from several subgroups of ScanControl and reuse them
     # in the subgroups
@@ -653,22 +662,25 @@ class SPMformatter(ABC):
         if not (len(nxdata_axes) == len(nxdata_indices) == len(axdata_unit_other_list)):
             return
 
+        axes = [None] * len(nxdata_indices)
         for ind, (index, axis) in enumerate(zip(nxdata_indices, nxdata_axes)):
-            axis_fit = axis.replace(" ", "_").lower()
+            axis_fit = axis.replace(" ", "_")
             axis_variadic = f"AXISNAME[{axis_fit}]"
             self.template[f"{dt_path}/@AXISNAME_indices[{axis_fit}_indices]"] = index
             self.template[f"{dt_path}/{axis_variadic}"] = axdata_unit_other_list[ind][0]
             unit = axdata_unit_other_list[ind][1]
             self.template[f"{dt_path}/{axis_variadic}/@units"] = unit
-            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = f"{axis} ({unit})"
+            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = (
+                f"{axis} ({self.unit_short(unit)})"
+            )
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
                     k = k if k.startswith("@") else f"@{k}"
                     self.template[f"{dt_path}/{axis_variadic}/{k}"] = v
+            axes[index] = axis_fit
 
-        self.template[f"{dt_path}/@axes"] = [
-            ax.replace(" ", "_").lower() for ax in nxdata_axes
-        ]
+        self.template[f"{dt_path}/@axes"] = axes
+
         # Read grp attributes from config file
         for key, val in partial_conf_dict.items():
             try:

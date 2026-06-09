@@ -514,14 +514,14 @@
           "@units": "/Topography_Forward/RHK_Z/@unit"
         },
         "0": {
-          "name": "x",
-          "raw_path": "/Topography_Forward/coords/Topography_Forward_x",
-          "@units": "/Topography_Forward/RHK_X/@unit"
-        },
-        "1": {
-          "name": "y",
+          "name": "Y",
           "raw_path": "/Topography_Forward/coords/Topography_Forward_y",
           "@units": "/Topography_Forward/RHK_Y/@unit"
+        },
+        "1": {
+          "name": "X",
+          "raw_path": "/Topography_Forward/coords/Topography_Forward_x",
+          "@units": "/Topography_Forward/RHK_X/@unit"
         },
         "title": {
           "raw_path": "@default:Topography Plot of STM Experiment (Forward Direction)"
@@ -535,14 +535,14 @@
           "@units": "/Topography_Backward/RHK_Z/@unit"
         },
         "0": {
-          "name": "x",
-          "raw_path": "/Topography_Backward/coords/Topography_Backward_x",
-          "@units": "/Topography_Backward/RHK_X/@unit"
-        },
-        "1": {
-          "name": "y",
+          "name": "Y",
           "raw_path": "/Topography_Backward/coords/Topography_Backward_y",
           "@units": "/Topography_Backward/RHK_Y/@unit"
+        },
+        "1": {
+          "name": "X",
+          "raw_path": "/Topography_Backward/coords/Topography_Backward_x",
+          "@units": "/Topography_Backward/RHK_X/@unit"
         },
         "title": {
           "raw_path": "@default:Topography Plot of STM Experiment (Backward Direction)"
@@ -556,19 +556,19 @@
           "@units": "/Current_Backward/RHK_Z/@unit"
         },
         "0": {
-          "name": "x",
-          "raw_path": "/Current_Backward/coords/Current_Backward_x",
-          "@units": "/Current_Backward/RHK_X/@unit"
-        },
-        "1": {
-          "name": "y",
+          "name": "Y",
           "raw_path": "/Current_Backward/coords/Current_Backward_y",
           "@units": "/Current_Backward/RHK_Y/@unit"
         },
-        "title": {
-          "raw_path": "@default:Current Plot of STM Experiment (Forward Direction)"
+        "1": {
+          "name": "X",
+          "raw_path": "/Current_Backward/coords/Current_Backward_x",
+          "@units": "/Current_Backward/RHK_X/@unit"
         },
-        "grp_name": "current_forward"
+        "title": {
+          "raw_path": "@default:Current Toppograpy (Backward)"
+        },
+        "grp_name": "current_backward"
       },
       {
         "data": {
@@ -576,20 +576,20 @@
           "raw_path": "/Current_Forward/data",
           "@units": "/Current_Forward/RHK_Z/@unit"
         },
-        "0": {
-          "name": "x",
+        "1": {
+          "name": "X",
           "raw_path": "/Current_Forward/coords/Current_Forward_x",
           "@units": "/Current_Forward/RHK_X/@unit"
         },
-        "1": {
-          "name": "y",
+        "0": {
+          "name": "Y",
           "raw_path": "/Current_Forward/coords/Current_Forward_y",
           "@units": "/Current_Forward/RHK_Y/@unit"
         },
         "title": {
-          "raw_path": "@default:Current Plot of STM Experiment (Backward Direction)"
+          "raw_path": "@default:Current Plot of STM Experiment (Forward)"
         },
-        "grp_name": "current_backward"
+        "grp_name": "current_forward"
       }
     ],
     "reproducibility_indicators": {

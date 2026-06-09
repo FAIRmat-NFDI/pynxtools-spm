@@ -40,12 +40,9 @@ from pynxtools_spm.nxformatters.helpers import (
 )
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
-from pint import UnitRegistry
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
-
-ureg = UnitRegistry()
 
 
 # TODO: add test to check if user example config file is the same as given default
@@ -318,11 +315,15 @@ class NanonisSxmSTM(NanonisBase):
         self.template[f"{parent_path}/{group_name}/x"] = plot_data_info["x_axis"]
         x_unit = plot_data_info["x_units"]
         self.template[f"{parent_path}/{group_name}/x/@units"] = x_unit
-        self.template[f"{parent_path}/{group_name}/x/@long_name"] = f"X ({x_unit})"
+        self.template[f"{parent_path}/{group_name}/x/@long_name"] = (
+            f"X ({self.unit_short(x_unit)})"
+        )
         self.template[f"{parent_path}/{group_name}/y"] = plot_data_info["y_axis"]
         y_unit = plot_data_info["y_units"]
         self.template[f"{parent_path}/{group_name}/y/@units"] = y_unit
-        self.template[f"{parent_path}/{group_name}/y/@long_name"] = f"Y ({y_unit})"
+        self.template[f"{parent_path}/{group_name}/y/@long_name"] = (
+            f"Y ({self.unit_short(y_unit)})"
+        )
 
     def construct_scan_data_grps(
         self,
@@ -539,15 +540,12 @@ class NanonisSxmSTM(NanonisBase):
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
             ] = self.scan_control.y_start_unit
 
-            def unit_short(x):
-                return f"{ureg(x).units:~}"
-
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@long_name"
-            ] = f"Y ({unit_short(self.scan_control.y_start_unit)})"
+            ] = f"Y ({self.unit_short(self.scan_control.y_start_unit)})"
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@long_name"
-            ] = f"X ({unit_short(self.scan_control.x_start_unit)})"
+            ] = f"X ({self.unit_short(self.scan_control.x_start_unit)})"
         return nxdata_group_nm
 
     def _set_start_end_time(self, val_dict, parent_path, field_name):
