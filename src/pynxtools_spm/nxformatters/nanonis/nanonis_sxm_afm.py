@@ -26,6 +26,7 @@ from __future__ import annotations
 from typing import Optional, Union, TYPE_CHECKING
 from pathlib import Path
 import numpy as np
+from pint import UnitRegistry
 
 from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
 from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
@@ -34,6 +35,8 @@ import pynxtools_spm.nxformatters.helpers as fhs
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
+
+ureg = UnitRegistry()
 
 
 # TODO: Try to replace the upper version group, field and attributes
@@ -194,8 +197,8 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
         if nxdata_group_nm is None:
             return None
         if "0" not in partial_conf_dict:
-            axis_x = "x"
-            axis_y = "y"
+            axis_x = "X"
+            axis_y = "Y"
             self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [
                 axis_y,
                 axis_x,
@@ -227,4 +230,14 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
             ] = self.scan_control.y_start_unit
+
+            def unit_short(x):
+                return f"{ureg(x).units:~}"
+
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@long_name"
+            ] = f"Y ({unit_short(self.scan_control.y_start_unit)})"
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@long_name"
+            ] = f"X ({unit_short(self.scan_control.x_start_unit)})"
         return nxdata_group_nm
