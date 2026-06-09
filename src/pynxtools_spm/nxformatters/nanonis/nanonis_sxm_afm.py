@@ -30,6 +30,7 @@ from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_stm import NanonisSxmSTM
 from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
+from pynxtools_spm.nxformatters.helpers import unit_short
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
@@ -201,7 +202,7 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
             ]
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_x}_indices]"
-            ] = 0
+            ] = 1
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
                 np.linspace(
                     self.scan_control.x_start,
@@ -215,7 +216,7 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
 
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_y}_indices]"
-            ] = 1
+            ] = 0
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
                 np.linspace(
                     self.scan_control.y_end,
@@ -229,8 +230,8 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
 
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@long_name"
-            ] = f"Y ({self.unit_short(self.scan_control.y_start_unit)})"
+            ] = f"Y ({unit_short(self.scan_control.y_start_unit)})"
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@long_name"
-            ] = f"X ({self.unit_short(self.scan_control.x_start_unit)})"
+            ] = f"X ({unit_short(self.scan_control.x_start_unit)})"
         return nxdata_group_nm

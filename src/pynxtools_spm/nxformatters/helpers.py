@@ -490,6 +490,11 @@ def cal_dy_by_dx(y_val: np.ndarray, x_val: np.ndarray) -> np.ndarray:
     return d_dx(y_val)
 
 
+def unit_short(unit: str) -> str:
+    """Return a short unit symbol using pint (e.g. 'meter' -> 'm')."""
+    return f"{ureg(unit).units:~}"
+
+
 def transfer_plain_template_to_nested_dict(template, nested_dict):
     """TODO: Write a doc compatible with doc test write test in pytest."""
 

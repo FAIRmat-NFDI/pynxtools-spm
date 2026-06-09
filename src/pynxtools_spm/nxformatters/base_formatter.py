@@ -34,7 +34,6 @@ import copy
 
 import numpy as np
 import yaml
-from pint import UnitRegistry
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
@@ -44,6 +43,7 @@ from pynxtools_spm.nxformatters.helpers import (
     add_local_timezone,
     replace_variadic_name_part,
     to_intended_t,
+    unit_short,
 )
 from pynxtools_spm.parsers import SPMParser
 
@@ -178,19 +178,11 @@ def write_multiple_concepts_instance(
     return new_dict
 
 
-_ureg = UnitRegistry()
-
-
 class SPMformatter(ABC):
     # Map function to deal specific group. Map key should be the same as it is
     # in config file
     _grp_to_func: dict[str, str] = {}  # Placeholder
     _axes: list[str] = []  # Placeholder
-
-    @staticmethod
-    def unit_short(unit: str) -> str:
-        """Return a short unit symbol using pint (e.g. 'meter' -> 'm')."""
-        return f"{_ureg(unit).units:~}"
 
     # Class used to colleted data from several subgroups of ScanControl and reuse them
     # in the subgroups
@@ -641,7 +633,8 @@ class SPMformatter(ABC):
                     axdata_unit_other_list.append(axdata_unit_other)
 
         # DATA field
-        field_nm_fit = data_fld_nm.replace(" ", "_").lower()
+        d_unit = unit_short(d_unit) if d_unit else ""
+        field_nm_fit = data_fld_nm.replace(" ", "_")
         field_nm_variadic = f"DATA[{field_nm_fit}]"
         self.template[f"{dt_path}/title"] = f"Title Data Group {group_index}"
         if rearrange_2d_data and isinstance(fld_arr, np.ndarray) and fld_arr.ndim == 2:
@@ -671,7 +664,7 @@ class SPMformatter(ABC):
             unit = axdata_unit_other_list[ind][1]
             self.template[f"{dt_path}/{axis_variadic}/@units"] = unit
             self.template[f"{dt_path}/{axis_variadic}/@long_name"] = (
-                f"{axis} ({self.unit_short(unit)})"
+                f"{axis} ({unit_short(unit)})"
             )
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
