@@ -211,7 +211,6 @@ class NanonisDatSTS(NanonisBase):
             di_by_dv = cal_dy_by_dx(iv_dict["current_fld"], iv_dict["voltage_fld"])
         except (KeyError, ValueError, ZeroDivisionError):
             return
-        print("Calculated dI/dV values: ", iv_dict["voltage_long_name"])
         if not (
             np.shape(di_by_dv)
             == np.shape(iv_dict["voltage_fld"])

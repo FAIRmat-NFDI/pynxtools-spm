@@ -509,7 +509,7 @@
     "DATA[data]": [
       {
         "data": {
-          "name": "Topography_forward",
+          "name": "Topography forward",
           "raw_path": "/Topography_Forward/data",
           "@units": "/Topography_Forward/RHK_Z/@unit"
         },
@@ -524,7 +524,7 @@
           "@units": "/Topography_Forward/RHK_X/@unit"
         },
         "title": {
-          "raw_path": "@default:Topography Plot of STM Experiment (Forward Direction)"
+          "raw_path": "@default:Height Topography (Forward)"
         },
         "grp_name": "z_forward"
       },
@@ -545,7 +545,7 @@
           "@units": "/Topography_Backward/RHK_X/@unit"
         },
         "title": {
-          "raw_path": "@default:Topography Plot of STM Experiment (Backward Direction)"
+          "raw_path": "@default:Height Topography (Backward)"
         },
         "grp_name": "z_backward"
       },
@@ -566,7 +566,7 @@
           "@units": "/Current_Backward/RHK_X/@unit"
         },
         "title": {
-          "raw_path": "@default:Current Toppograpy (Backward)"
+          "raw_path": "@default:Current Topography (Backward)"
         },
         "grp_name": "current_backward"
       },
@@ -587,7 +587,7 @@
           "@units": "/Current_Forward/RHK_Y/@unit"
         },
         "title": {
-          "raw_path": "@default:Current Plot of STM Experiment (Forward)"
+          "raw_path": "@default:Current Topography (Forward)"
         },
         "grp_name": "current_forward"
       }

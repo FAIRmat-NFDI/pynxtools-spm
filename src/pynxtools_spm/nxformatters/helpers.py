@@ -490,8 +490,13 @@ def cal_dy_by_dx(y_val: np.ndarray, x_val: np.ndarray) -> np.ndarray:
     return d_dx(y_val)
 
 
-def unit_short(unit: str) -> str:
-    """Return a short unit symbol using pint (e.g. 'meter' -> 'm')."""
+def unit_short(unit: str | Any) -> str:
+    """Return a short unit symbol using pint (e.g. 'meter' -> 'm').
+
+    Accepts either a plain string unit name or a pint Quantity object.
+    """
+    if hasattr(unit, "units"):
+        return f"{unit.units:~}"
     return f"{ureg(unit).units:~}"
 
 
