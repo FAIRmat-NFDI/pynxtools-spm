@@ -9,12 +9,12 @@
   "editor.renderWhitespace": "all",
   "editor.tabSize": 4,
   "github.copilot.enable": {
-    "*": false,
     "plaintext": false,
     "markdown": true,
     "scminput": false,
     "python": true,
-    "json": true
+    "json": true,
+    "shell": true
   },
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,

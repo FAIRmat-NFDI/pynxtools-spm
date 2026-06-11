@@ -59,6 +59,7 @@ miscellaneous
 Mozumder
 MPES
 multilines
+Mbruker
 nanonis
 Nanonis
 NANONIS

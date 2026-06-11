@@ -18,13 +18,13 @@ root_dir=$(dirname $scpt_dir)
 # find ${root_dir}/tests/data/nanonis/sts/version_gen_5_with_described_nxdata -type f -name '*.nxs' | xargs mv sts_5_with_described_nxdata.nxs
 
 # # STM Nanonis 5e and 5
-echo " !!! Converting Nanonis STM data !!! "
+# echo " !!! Converting Nanonis STM data !!! "
 
 # find ${root_dir}/tests/data/nanonis/stm/version_gen_5e_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5e_with_described_nxdata.nxs
 # find ${root_dir}/tests/data/nanonis/stm/version_gen_5e_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_5e_with_described_nxdata.nxs
 
-find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5_with_described_nxdata.nxs
-find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_5_with_described_nxdata.nxs
+# find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5_with_described_nxdata.nxs
+# find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_described_nxdata -type f -name '*.nxs' | xargs mv stm_5_with_described_nxdata.nxs
 
 # find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output stm_5_with_default_config.nxs
 # find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_default_config -type f -name '*.nxs' | xargs mv stm_5_with_default_config.nxs
@@ -34,10 +34,15 @@ find ${root_dir}/tests/data/nanonis/stm/version_gen_5_with_described_nxdata -typ
 # find ${root_dir}/tests/data/omicron/stm/default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXstm --reader spm --output omicron_stm_default_config.nxs
 # find ${root_dir}/tests/data/omicron/stm/default_config -type f -name '*.nxs' | xargs mv omicron_stm_default_config.nxs
 
-# # # AFM Nanonis 4
+# # AFM Nanonis 4
 # echo " !!! Converting Nanonis AFM data !!! "
 # find ${root_dir}/tests/data/nanonis/afm/version_gen_4_default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXafm --reader spm --output afm_4_with_default_config.nxs
 # find ${root_dir}/tests/data/nanonis/afm/version_gen_4_default_config -type f -name '*.nxs' | xargs mv afm_4_with_default_config.nxs
 
 # find ${root_dir}/tests/data/nanonis/afm/version_gen_4_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXafm --reader spm --output afm_4_with_described_nxdata.nxs
 # find ${root_dir}/tests/data/nanonis/afm/version_gen_4_with_described_nxdata -type f -name '*.nxs' | xargs mv afm_4_with_described_nxdata.nxs
+
+# AFM Bruker
+echo " !!! Converting Bruker AFM data !!! "
+find ${root_dir}/tests/data/bruker/afm/default_config -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXafm --reader spm --output afm_default_config.nxs
+find ${root_dir}/tests/data/bruker/afm/default_config -type f -name '*.nxs' | xargs mv afm_default_config.nxs

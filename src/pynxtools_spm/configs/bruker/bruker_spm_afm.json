@@ -311,6 +311,7 @@
         "cryo_shield_temperature": null,
         "identifier_environment": { "raw_path": "" },
         "SPM_SCAN_CONTROL[spm_scan_control]": {
+          "#note": "This entire group is handled in _construct_nxscan_controllers",
           "scanTAG[scan_name]": { "raw_path": "" },
           "scan_region": {
             "scan_angleN[scan_angle_n]": {
@@ -333,18 +334,20 @@
             ],
             "scan_startN[scan_start_n]": [
               {
-                "x": {"raw_path": "/Scanner_list/0/X_Position",
-              "@units": "@default:nm"
+                "x": {
+                  "raw_path": "/Scanner_list/0/X_Position",
+                  "@units": "@default:nm"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Scanner_list/0/Y_Position",
+                  "@units": "@default:nm"
+                }
               }
-                },
-             {
-              "y": {
-              "raw_path": "/Scanner_list/0/Y_Position",
-              "@units": "@default:nm"
-            }}
             ],
             "scan_rangeN[scan_range_n]": {
-              "#note: Aspect_Ratio is also needed to calculate the scan range",
+              "#note": "Aspect_Ratio is also needed to calculate the scan range",
               "raw_path": "/Scanner_list/0/Scan_Size",
               "@units": "@default:nm"
             }
@@ -366,7 +369,7 @@
                   "raw_path": "/Scanner_list/0/Samps/line"
                 },
                 "y": {
-                   "raw_path": "/Scanner_list/0/Lines"
+                  "raw_path": "/Scanner_list/0/Lines"
                 }
               }
             ],
@@ -422,13 +425,112 @@
       {
         "data": {
           "name": "z",
-          "raw_path": "/Z/forward",
-          "@units": "/DATA/INFO/Z/Unit"
+          "raw_path": "/Height_Sensor/forward",
+          "@units": "@default:nm"
         },
         "title": {
           "raw_path": "@default:Height Plot of AFM Experiment (Forward Direction)"
         },
         "grp_name": "z_forward"
+      },
+      {
+        "data": {
+          "name": "z",
+          "raw_path": "/Height_Sensor/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Height Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "z_backward"
+      },
+      {
+        "data": {
+          "name": "amplitude_error",
+          "raw_path": "/Amplitude_Error/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Error Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "amplitude_error_forward"
+      },
+      {
+        "data": {
+          "name": "amplitude_error",
+          "raw_path": "/Amplitude_Error/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Error Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "amplitude_error_backward"
+      },
+      {
+        "data": {
+          "name": "phase",
+          "raw_path": "/Phase/forward",
+          "@units": "@default:deg"
+        },
+        "title": {
+          "raw_path": "@default:Phase Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "phase_forward"
+      },
+      {
+        "data": {
+          "name": "phase",
+          "raw_path": "/Phase/backward",
+          "@units": "@default:deg"
+        },
+        "title": {
+          "raw_path": "@default:Phase Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "phase_backward"
+      },
+      {
+        "data": {
+          "name": "amplitude",
+          "raw_path": "/Amplitude/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "amplitude_forward"
+      },
+      {
+        "data": {
+          "name": "amplitude",
+          "raw_path": "/Amplitude/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "amplitude_backward"
+      },
+      {
+        "data": {
+          "name": "tm_deflection",
+          "raw_path": "/TM_Deflection/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:TM Deflection Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "tm_deflection_forward"
+      },
+      {
+        "data": {
+          "name": "tm_deflection",
+          "raw_path": "/TM_Deflection/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:TM Deflection Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "tm_deflection_backward"
       }
     ]
   }
