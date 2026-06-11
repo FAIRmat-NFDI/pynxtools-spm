@@ -62,22 +62,6 @@ class NanonisDatSTS(NanonisBase):
 
         flip_number: int = None
 
-    # @dataclass
-    # class BiasSweep:
-    #     """Storage to store data from bias_sweep and reuse them"""
-
-    #     scan_offset_bias: float
-    #     scan_offset_bias_unit: str
-    #     scan_range_bias: float
-    #     scan_range_bias_unit: str
-    #     scan_start_bias: float
-    #     scan_start_bias_unit: str
-    #     scan_end_bias: float
-    #     scan_end_bias_unit: str
-    #     scan_points_bias: float
-    #     scan_size_bias: float
-    #     scan_size_bias_unit: str
-
     def __init__(
         self,
         template: Template,

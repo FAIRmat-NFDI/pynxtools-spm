@@ -853,14 +853,14 @@ class SPMformatter(ABC):
     def put_scan_pattern_field_in_template(self, parent_path, group_name):
         """Puts the scan pattern field into the template"""
         self.template[f"{parent_path}/{group_name}/scan_points_x"] = (
-            self.NXScanControl.x_points
+            self.nx_scan_control.x_points
         )
         self.template[f"{parent_path}/{group_name}/scan_points_y"] = (
-            self.NXScanControl.y_points
+            self.nx_scan_control.y_points
         )
         self.template[f"{parent_path}/{group_name}/fast_axis"] = (
-            self.NXScanControl.fast_axis
+            self.nx_scan_control.fast_axis
         )
         self.template[f"{parent_path}/{group_name}/slow_axis"] = (
-            self.NXScanControl.slow_axis
+            self.nx_scan_control.slow_axis
         )
