@@ -99,6 +99,11 @@ def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
             "spm",
             f"{module_dir}/data/nanonis/afm/version_gen_4_default_config",
         ),
+        (
+            "NXafm",
+            "spm",
+            f"{module_dir}/data/bruker/afm/default_config",
+        ),
     ],
 )
 def test_afm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
