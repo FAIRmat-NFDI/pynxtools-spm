@@ -66,26 +66,6 @@ class BrukerSpmAFM(BrukerBase):
 
         return load_default_config(config_type="bruker_spm_afm")
 
-    # def get_raw_data_dict(self):
-    #     data_dict = {}
-    #     data_dict_raw_data = SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
-    #     data_dict_raw_data.update(data_dict_raw_data)
-    #     # if self.auxiliary_files is not None:
-    #     #     for aux_file in self.auxiliary_files:
-    #     #         aux_data_dict = SPMParser().get_raw_data_dict(aux_file, eln=self.eln)
-    #     #         data_dict.update(aux_data_dict)
-    #     # else:
-    #     #     pynx_logger.error(
-    #     #         "No auxiliary file of .txt is provided for Bruker AFM data. "
-    #     #         "To parse a Bruker AFM .spm file, an auxiliary .txt file containing experiment metadata is required. "
-    #     #     )
-    #     #     raise ValueError(
-    #     #         "An auxiliary .txt file is required for Bruker AFM data for experiment metadata."
-    #     #         "Please provide the path to the .txt file as an auxiliary file when initializing the formatter."
-    #     #     )
-
-    #     return data_dict
-
     def _construct_nxscan_controllers(
         self, partial_conf_dict, parent_path, group_name="scan_control", **kwarg
     ):
@@ -105,7 +85,6 @@ class BrukerSpmAFM(BrukerBase):
                 parent_path=f"{parent_path}/{group_name}",
                 group_name=scan_pattern_grp,
             )
-        print("scan_control group after construction:", self.scan_control)
 
     def construct_region_region_grp(
         self, partial_conf_dict, parent_path, group_name="scan_region"
@@ -216,7 +195,6 @@ class BrukerSpmAFM(BrukerBase):
                 "Scan points information is missing or not in expected format. "
                 "Please check config file and raw data."
             )
-        print(" NXscanControl after getting scan points data: ", self.scan_control)
         # Calculate step size from scan range and scan points
         self.template[f"{parent_path}/{group_name}/step_size_x"] = (
             self.scan_control.x_range / (self.scan_control.x_points - 1)
@@ -229,6 +207,10 @@ class BrukerSpmAFM(BrukerBase):
         )
         self.template[f"{parent_path}/{group_name}/step_size_y/@units"] = (
             self.scan_control.y_range_unit
+        )
+
+        self.put_scan_pattern_field_in_template(
+            parent_path=parent_path, group_name=group_name
         )
 
     def _nxdata_grp_from_conf_description(
@@ -253,7 +235,9 @@ class BrukerSpmAFM(BrukerBase):
         if nxdata_group is None:
             return None
 
-        title = partial_conf_dict.get("title", "")
+        title, _, _ = _get_data_unit_and_others(
+            data_dict=self.raw_data, end_dict=partial_conf_dict.get("title", "")
+        )
         if title:
             self.template[f"{parent_path}/{nxdata_group}/title"] = title
 
@@ -276,6 +260,8 @@ class BrukerSpmAFM(BrukerBase):
             signal_name = self.template[f"{nxdata_path}/@signal"]
             signal_path = f"{nxdata_path}/DATA[{signal_name}]"
             signal_data = self.template[signal_path]
+            axes_path = f"{nxdata_path}/@axes"
+            axes_data = self.template.get(axes_path, [])
 
             if isinstance(signal_data, np.ndarray) and signal_data.ndim == 2:
                 expected_x_points = signal_data.shape[0]
@@ -287,11 +273,19 @@ class BrukerSpmAFM(BrukerBase):
                 y_points_match = isinstance(axis_y_data, np.ndarray) and (
                     axis_y_data.size == expected_y_points
                 )
-
-                pynx_logger.warning(
-                    "The signal data is 2D with shape (%s, %s)."
-                    "Expected x points: %s, expected y points: %s from scan region data."
-                )
+                if not (x_points_match and y_points_match):
+                    pynx_logger.warning(
+                        "The signal data is 2D with shape (%s, %s)."
+                        "Scan region data has %s x points and %s y points.",
+                        expected_x_points,
+                        expected_y_points,
+                        self.scan_control.x_points,
+                        self.scan_control.y_points,
+                    )
+                    pynx_logger.warning(
+                        f"Recreating 'X' and 'Y' axis data based on the shape of the signal data."
+                        f"{expected_x_points} x points and {expected_y_points} y points"
+                    )
 
                 if not x_points_match:
                     axis_x_data = np.linspace(
@@ -312,4 +306,9 @@ class BrukerSpmAFM(BrukerBase):
 
                 self.template[f"{axis_y_key}/@units"] = self.scan_control.y_start_unit
 
+                if not axes_data:
+                    self.template[f"{axes_path}"] = [
+                        axis_y,
+                        axis_x,
+                    ]
         return nxdata_group

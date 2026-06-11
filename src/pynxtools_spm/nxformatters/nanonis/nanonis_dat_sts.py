@@ -61,21 +61,21 @@ class NanonisDatSTS(NanonisBase):
 
         flip_number: int = None
 
-    @dataclass
-    class BiasSweep:
-        """Storage to store data from bias_sweep and reuse them"""
+    # @dataclass
+    # class BiasSweep:
+    #     """Storage to store data from bias_sweep and reuse them"""
 
-        scan_offset_bias: float
-        scan_offset_bias_unit: str
-        scan_range_bias: float
-        scan_range_bias_unit: str
-        scan_start_bias: float
-        scan_start_bias_unit: str
-        scan_end_bias: float
-        scan_end_bias_unit: str
-        scan_points_bias: float
-        scan_size_bias: float
-        scan_size_bias_unit: str
+    #     scan_offset_bias: float
+    #     scan_offset_bias_unit: str
+    #     scan_range_bias: float
+    #     scan_range_bias_unit: str
+    #     scan_start_bias: float
+    #     scan_start_bias_unit: str
+    #     scan_end_bias: float
+    #     scan_end_bias_unit: str
+    #     scan_points_bias: float
+    #     scan_size_bias: float
+    #     scan_size_bias_unit: str
 
     def __init__(
         self,
@@ -85,7 +85,13 @@ class NanonisDatSTS(NanonisBase):
         config_file: str | Path | None = None,
         entry: str | None = None,
     ):
-        super().__init__(template, raw_file, eln_file, config_file, entry)
+        super().__init__(
+            template=template,
+            raw_file=raw_file,
+            eln_file=eln_file,
+            config_file=config_file,
+            entry=entry,
+        )
 
     def _get_conf_dict(self, config_file: str | Path = None):
         if config_file:

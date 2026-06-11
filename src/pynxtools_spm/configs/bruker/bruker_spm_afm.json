@@ -367,7 +367,9 @@
               {
                 "x": {
                   "raw_path": "/Scanner_list/0/Samps/line"
-                },
+                }
+              },
+              {
                 "y": {
                   "raw_path": "/Scanner_list/0/Lines"
                 }
