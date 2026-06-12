@@ -109,3 +109,5 @@ valtext
 Yichen
 zenodo
 pynx
+nanoscope
+NanoScope

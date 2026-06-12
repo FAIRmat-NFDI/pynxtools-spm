@@ -1,0 +1,15 @@
+experiment_technique: AFM
+scan_mode: contact mode
+definition: NXafm
+Instrument:
+  hardware:
+    model:
+    name: Bruker Dimension Icon
+    vendor: Bruker
+  software:
+    model: NanoScope
+    vendor: Bruker
+Sample:
+  name: Unknown
+User:
+  name: Unknown
