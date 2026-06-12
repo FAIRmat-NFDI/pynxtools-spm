@@ -24,7 +24,7 @@ to NeXus application definition NXstm.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional, Any
+from typing import TYPE_CHECKING, Any
 from collections.abc import Callable
 from pathlib import Path
 import re
@@ -37,10 +37,10 @@ from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
     _SCIENTIFIC_NUM_PATTERN,
     to_intended_t,
+    unit_short,
 )
 from pynxtools_spm.configs import load_default_config
 import pynxtools_spm.nxformatters.helpers as fhs
-
 
 if TYPE_CHECKING:
     from pynxtools.dataconverter.template import Template
@@ -316,11 +316,15 @@ class NanonisSxmSTM(NanonisBase):
         self.template[f"{parent_path}/{group_name}/x"] = plot_data_info["x_axis"]
         x_unit = plot_data_info["x_units"]
         self.template[f"{parent_path}/{group_name}/x/@units"] = x_unit
-        self.template[f"{parent_path}/{group_name}/x/@long_name"] = f"X ({x_unit})"
+        self.template[f"{parent_path}/{group_name}/x/@long_name"] = (
+            f"X ({unit_short(x_unit)})"
+        )
         self.template[f"{parent_path}/{group_name}/y"] = plot_data_info["y_axis"]
         y_unit = plot_data_info["y_units"]
         self.template[f"{parent_path}/{group_name}/y/@units"] = y_unit
-        self.template[f"{parent_path}/{group_name}/y/@long_name"] = f"Y ({y_unit})"
+        self.template[f"{parent_path}/{group_name}/y/@long_name"] = (
+            f"Y ({unit_short(y_unit)})"
+        )
 
     def construct_scan_data_grps(
         self,
@@ -504,12 +508,12 @@ class NanonisSxmSTM(NanonisBase):
             rearrange_2d_data=rearrange_2d_data,
         )
         if "0" not in partial_conf_dict:
-            axis_x = "x"
-            axis_y = "y"
+            axis_x = "X"
+            axis_y = "Y"
             self.template[f"{parent_path}/{nxdata_group_nm}/@axes"] = [axis_y, axis_x]
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_x}_indices]"
-            ] = 0
+            ] = 1
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
                 np.linspace(
                     self.scan_control.x_start,
@@ -523,7 +527,8 @@ class NanonisSxmSTM(NanonisBase):
 
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_y}_indices]"
-            ] = 1
+            ] = 0
+
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
                 np.linspace(
                     self.scan_control.y_end,
@@ -531,9 +536,17 @@ class NanonisSxmSTM(NanonisBase):
                     int(self.scan_control.y_points),
                 )
             )
+
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
             ] = self.scan_control.y_start_unit
+
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@long_name"
+            ] = f"Y ({unit_short(self.scan_control.y_start_unit)})"
+            self.template[
+                f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@long_name"
+            ] = f"X ({unit_short(self.scan_control.x_start_unit)})"
         return nxdata_group_nm
 
     def _set_start_end_time(self, val_dict, parent_path, field_name):

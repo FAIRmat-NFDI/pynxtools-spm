@@ -573,45 +573,45 @@
     "DATA[data]": [
       {
         "data": {
-          "name": "z",
+          "name": "Z",
           "raw_path": "/Z/forward",
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Topography (Forward Direction)"
+          "raw_path": "@default:Height Topography (Forward)"
         },
         "grp_name": "z_forward"
       },
       {
         "data": {
-          "name": "z",
+          "name": "Z",
           "raw_path": "/Z/backward",
           "@units": "@default:m"
         },
         "title": {
-          "raw_path": "@default:Height Topography (Backward Direction)"
+          "raw_path": "@default:Height Topography (Backward)"
         },
         "grp_name": "z_backward"
       },
       {
         "data": {
-          "name": "current",
+          "name": "Current",
           "raw_path": "/Current/forward",
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Topography (Forward Direction)"
+          "raw_path": "@default:Current Topography (Forward)"
         },
         "grp_name": "current_forward"
       },
       {
         "data": {
-          "name": "current",
+          "name": "Current",
           "raw_path": "/Current/backward",
           "@units": "@default:A"
         },
         "title": {
-          "raw_path": "@default:Current Topography (Backward Direction)"
+          "raw_path": "@default:Current Topography (Backward)"
         },
         "grp_name": "current_backward"
       }

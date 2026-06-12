@@ -41,6 +41,7 @@ from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.nxformatters.helpers import (
     cal_dy_by_dx,
     get_actual_from_variadic_name,
+    unit_short,
 )
 
 ureg: UnitRegistry = UnitRegistry()
@@ -210,7 +211,6 @@ class NanonisDatSTS(NanonisBase):
             di_by_dv = cal_dy_by_dx(iv_dict["current_fld"], iv_dict["voltage_fld"])
         except (KeyError, ValueError, ZeroDivisionError):
             return
-
         if not (
             np.shape(di_by_dv)
             == np.shape(iv_dict["voltage_fld"])
@@ -219,8 +219,8 @@ class NanonisDatSTS(NanonisBase):
             return
         fld_nm = "dI_by_dV"
         self.template[f"{parent_path}/{group_name}/DATA[{fld_nm}]"] = di_by_dv
-        self.template[f"{parent_path}/{group_name}/DATA[{fld_nm}]/@units"] = str(
-            ureg(iv_dict["current_unit"] + "/" + iv_dict["voltage_unit"]).units
+        self.template[f"{parent_path}/{group_name}/DATA[{fld_nm}]/@units"] = unit_short(
+            str(ureg(iv_dict["current_unit"] + "/" + iv_dict["voltage_unit"]).units)
         )
 
         self.template[f"{parent_path}/{group_name}/@signal"] = fld_nm
@@ -232,10 +232,13 @@ class NanonisDatSTS(NanonisBase):
         self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]"] = iv_dict[
             "voltage_fld"
         ]
+        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@long_name"] = (
+            iv_dict["voltage_long_name"]
+        )
 
-        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@units"] = iv_dict[
-            "voltage_unit"
-        ]
+        self.template[f"{parent_path}/{group_name}/AXISNAME[{axis}]/@units"] = (
+            unit_short(iv_dict["voltage_unit"])
+        )
         self.template[f"{parent_path}/{group_name}/title"] = "dI by dV (Conductance)"
 
     def _nxdata_grp_from_conf_description(
@@ -266,6 +269,7 @@ class NanonisDatSTS(NanonisBase):
             "voltage_fld": "",
             "voltage_unit": "",
             "voltage_fld_name": "",
+            "voltage_long_name": "",
         }
         current_field_to_data = {}
         current = False
@@ -299,6 +303,9 @@ class NanonisDatSTS(NanonisBase):
                         curnt_volt["voltage_fld_name"] = get_actual_from_variadic_name(
                             key[0:-7].split("/")[-1]
                         )
+                        curnt_volt["voltage_long_name"] = self.template[
+                            key[0:-7] + "/@long_name"
+                        ]
         # check if group is current group and calculate dI/dV
         if current and voltage:
             try:

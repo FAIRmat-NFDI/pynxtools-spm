@@ -43,6 +43,7 @@ from pynxtools_spm.nxformatters.helpers import (
     add_local_timezone,
     replace_variadic_name_part,
     to_intended_t,
+    unit_short,
 )
 from pynxtools_spm.parsers import SPMParser
 
@@ -632,7 +633,8 @@ class SPMformatter(ABC):
                     axdata_unit_other_list.append(axdata_unit_other)
 
         # DATA field
-        field_nm_fit = data_fld_nm.replace(" ", "_").lower()
+        d_unit = unit_short(d_unit) if d_unit else ""
+        field_nm_fit = data_fld_nm.replace(" ", "_")
         field_nm_variadic = f"DATA[{field_nm_fit}]"
         self.template[f"{dt_path}/title"] = f"Title Data Group {group_index}"
         if rearrange_2d_data and isinstance(fld_arr, np.ndarray) and fld_arr.ndim == 2:
@@ -653,22 +655,25 @@ class SPMformatter(ABC):
         if not (len(nxdata_axes) == len(nxdata_indices) == len(axdata_unit_other_list)):
             return
 
+        axes = [None] * len(nxdata_indices)
         for ind, (index, axis) in enumerate(zip(nxdata_indices, nxdata_axes)):
-            axis_fit = axis.replace(" ", "_").lower()
+            axis_fit = axis.replace(" ", "_")
             axis_variadic = f"AXISNAME[{axis_fit}]"
             self.template[f"{dt_path}/@AXISNAME_indices[{axis_fit}_indices]"] = index
             self.template[f"{dt_path}/{axis_variadic}"] = axdata_unit_other_list[ind][0]
             unit = axdata_unit_other_list[ind][1]
             self.template[f"{dt_path}/{axis_variadic}/@units"] = unit
-            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = f"{axis} ({unit})"
+            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = (
+                f"{axis} ({unit_short(unit)})"
+            )
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
                     k = k if k.startswith("@") else f"@{k}"
                     self.template[f"{dt_path}/{axis_variadic}/{k}"] = v
+            axes[index] = axis_fit
 
-        self.template[f"{dt_path}/@axes"] = [
-            ax.replace(" ", "_").lower() for ax in nxdata_axes
-        ]
+        self.template[f"{dt_path}/@axes"] = axes
+
         # Read grp attributes from config file
         for key, val in partial_conf_dict.items():
             try:
