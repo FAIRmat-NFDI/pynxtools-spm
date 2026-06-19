@@ -84,6 +84,7 @@ definitions:
             if the experiment if part of a collection of experiments
       sub_sections:
         User:
+          repeats: True
           section:
             m_annotations:
               eln:
