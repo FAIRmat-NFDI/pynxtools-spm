@@ -150,6 +150,17 @@ class SPMReader(BaseReader):
                     eln_file=eln_file,
                     config_file=config_file,
                 )
+            elif raw_file_ext == "txt":
+                from pynxtools_spm.nxformatters.bruker.bruker_txt_afm import (
+                    BrukerTxtAFM,
+                )
+
+                formatter_obj = BrukerTxtAFM(
+                    template=template,
+                    raw_file=data_file,
+                    eln_file=eln_file,
+                    config_file=config_file,
+                )
             # nsa.get_nxformatted_template()
         elif experiment_technique == "STS" and raw_file_ext == "dat":
             from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS

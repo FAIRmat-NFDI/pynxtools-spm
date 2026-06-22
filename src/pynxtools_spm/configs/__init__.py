@@ -42,6 +42,7 @@ def load_default_config(config_type):
     )
     omicron_sm4_stm = os.path.join(pwd, "omicron", "omicron_sm4_stm.json")
     bruker_spm_afm = os.path.join(pwd, "bruker", "bruker_spm_afm.json")
+    bruker_txt_afm = os.path.join(pwd, "bruker", "bruker_txt_afm.json")
     config_file = None
     if config_type == "nanonis_dat_generic_sts":
         config_file = nanonis_dat_generic_sts
@@ -53,6 +54,8 @@ def load_default_config(config_type):
         config_file = omicron_sm4_stm
     elif config_type == "bruker_spm_afm":
         config_file = bruker_spm_afm
+    elif config_type == "bruker_txt_afm":
+        config_file = bruker_txt_afm
 
     if config_file is not None:
         with open(config_file, encoding="utf-8") as f:
