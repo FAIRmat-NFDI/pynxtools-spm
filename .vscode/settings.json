@@ -19,5 +19,6 @@
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,
   "CRS.OnSaveAlFileAction": "Reorganize",
-  "github.copilot.chat.editor.temporalContext.enabled": true
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "yaml.format.singleQuote": true
 }

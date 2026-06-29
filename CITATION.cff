@@ -3,7 +3,7 @@ title: 'pynxtools-spm: A pynxtools plugin for SPM (Scanning Probe Microscopy) da
 message: If you use this software, please cite it using the
   metadata from this file.
 type: software
-version: 0.2.5
+version: 0.2.8
 authors:
   - given-names: Rubel
     family-names: Mozumder
