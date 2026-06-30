@@ -22,6 +22,8 @@ Lines 1174 – end  │  Data rows (9728 rows, one per Z-step)
 
 The `Data offset` and `Data length` fields inside the header describe how an equivalent Bruker binary `.spm` file would encode the same data — they are format documentation, not pointers into this text file.
 
+> **How we know this file is ASCII text:** There is no explicit `Format: ASCII` declaration anywhere in the header. The format is identified by observation: the file has a `.txt` extension, every line is human-readable, the column header row contains plain text names, and data values are written as scientific notation strings (e.g. `-4.792500e-001`). Line-counting with `wc -l` returns 10,901 — which only works on text files. The format is inferred, not declared.
+
 In the pynxtools-spm codebase, this file is parsed by `bruker_txt.py` which reads both the header metadata and the ASCII data columns.
 
 ---
@@ -40,7 +42,6 @@ In the pynxtools-spm codebase, this file is parsed by `bruker_txt.py` which read
 | `\Start context: FOL` | line 4 | FOL = Force Object List (Bruker's force context) |
 | `\Operating mode: Force` | line 164 | Instrument in force (not imaging) mode |
 | `\@MicroscopeList: AFMMode "Contact"` | line 434 | AFM contact mechanics feedback |
-| `\PFT Freq: 2 kHz` | line 358 | PeakForce oscillation at 2 kHz |
 | `\QNM Calibration: DefaultByZ` | line 314 | QNM calibration via Z sensor |
 | `\Modulus Fit Model: Hertzian (Spherical)` | line 336 | Contact mechanics fit model |
 | `\*Ciao force list` | line 877 | Force measurement parameters section |
@@ -142,7 +143,6 @@ Y = −2000 + (row_index    × 1000) nm
 | `Samps/line: 9728 9728` | 9728 | Data points per approach / retract curve |
 | `Ramp Size: 2500 nm` | 2.5 µm | Total Z travel per curve |
 | `FV Line Direction: Bidirection` | both | Approach AND retract recorded |
-| `force/line: 16` | 16 | Force curves per scan line |
 | `X Type: Height Sensor` | Z sensor | X-axis of force curve is true Z position |
 | `Spring Constant: 0.0538362 N/m` | ~54 mN/m | Cantilever stiffness (very soft — suitable for biological samples) |
 
@@ -262,7 +262,30 @@ The data section (starting at line 1173) contains **32 tab-separated columns** a
 
 The suffix `_Ex` = Extension (approach); `_Rt` = Retraction. Each physical signal is stored in multiple calibrated unit forms (V, nm, pN, and raw LSB) so that downstream analysis can use whichever representation is needed without re-applying calibrations.
 
-**Why 32 columns and not 18?** Columns 19–32 are a **redundant duplicate** of columns 5–18 — confirmed numerically: all values are identical to within floating-point rounding (~0.0001 nm in `Height_Sensor_nm_Rt`). This is a Bruker `.spm.txt` export artifact, likely mirroring the 4 `*Ciao force image list` header sections (2 channels × 2 directions). There is no second force curve — this file holds exactly one force curve for one grid position.
+**Why 32 columns and not 18?** Columns 19–32 are a **confirmed redundant duplicate** of columns 5–18, verified by comparing all 9,728 rows programmatically:
+
+| Col A | Col B | Signal | Max difference | Verdict |
+|---|---|---|---|---|
+| 5 | 19 | `Defl_V_Ex` | 0.000000 | Exact duplicate |
+| 6 | 20 | `Defl_V_Rt` | 0.000000 | Exact duplicate |
+| 7 | 21 | `Defl_nm_Ex` | 0.000000 | Exact duplicate |
+| 8 | 22 | `Defl_nm_Rt` | 0.000000 | Exact duplicate |
+| 9 | 23 | `Defl_pN_Ex` | 0.000000 | Exact duplicate |
+| 10 | 24 | `Defl_pN_Rt` | 0.000000 | Exact duplicate |
+| 11 | 25 | `Defl_Lsb_Ex` | 0.000000 | Exact duplicate |
+| 12 | 26 | `Defl_Lsb_Rt` | 0.000000 | Exact duplicate |
+| 13 | 27 | `Height_Sensor_V_Ex` | 0.000000 | Exact duplicate |
+| 14 | 28 | `Height_Sensor_V_Rt` | 0.000000 | Exact duplicate |
+| **15** | **29** | **`Height_Sensor_nm_Ex`** | **0.001 nm** | Rounding only |
+| **16** | **30** | **`Height_Sensor_nm_Rt`** | **0.001 nm** | Rounding only |
+| 17 | 31 | `Height_Sensor_Lsb_Ex` | 0.000000 | Exact duplicate |
+| 18 | 32 | `Height_Sensor_Lsb_Rt` | 0.000000 | Exact duplicate |
+
+The two `Height_Sensor_nm` pairs show differences of ≤ 0.001 nm (1 pm) in 3,441–3,434 out of 9,728 rows. This is a **text serialisation rounding artefact**: the raw LSB columns (17/31 and 18/32) are exactly identical, confirming the underlying data is the same. The nm values are derived by multiplying voltage by the Z-sensor sensitivity (17.9493 nm/V); writing that product as limited-precision text introduces last-digit variation. At 0.001 nm the difference is 250× smaller than the Z spatial resolution of 0.257 nm — physically meaningless.
+
+The differences are both positive and negative with no systematic trend, ruling out any real data distinction between the two column sets.
+
+**Conclusion: columns 19–32 are redundant duplicates of columns 5–18 across all 9,728 rows. This file holds exactly one force curve for one grid position. The duplication is a Bruker `.spm.txt` export artefact, likely mirroring the structure of the 4 `*Ciao force image list` header sections.**
 
 **Data points per column — verified by line count:**
 
@@ -287,7 +310,7 @@ Each row represents one Z-step. Approach (`_Ex`) and retract (`_Rt`) are stored 
 
 **What the 4 `*Ciao force image list` header sections describe:**
 
-The 4 sections in the header (lines 972, 1022, 1072, 1122) document how the **equivalent binary `.spm` file** would store the same data — they describe channels in binary format (deflection error and height sensor, approach and retrace). Their `Data offset / Data length` fields are not pointers into this text file. They are retained in the `.spm.txt` header for completeness and software compatibility.
+The 4 sections in the header (lines 972, 1022, 1072, 1122) document how the **equivalent binary `.spm` file** would store the same data? — they describe channels in binary format (deflection error and height sensor, approach and retrace). Their `Data offset / Data length` fields are not pointers into this text file. They are retained in the `.spm.txt` header for completeness and software compatibility.
 
 ---
 
