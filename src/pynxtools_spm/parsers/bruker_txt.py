@@ -107,8 +107,8 @@ class TxtBruker(SPMBase):
                     continue
 
                 # Key-value pair: \Key: value
-                if ":" in clean:
-                    raw_key, raw_val = clean.split(":", 1)
+                if ": " in clean:
+                    raw_key, raw_val = clean.split(": ", 1)
                     temp_dict = self.extract_data_unit(raw_key.strip(), raw_val.strip())
                     if current_section is not None:
                         temp_dict = {

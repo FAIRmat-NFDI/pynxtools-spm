@@ -11,18 +11,18 @@
       "#note": "Handled in function _set_start_end_time"
     },
     "scan_mode": {
-      "raw_path": "/Ciao_scan_list/0/@MicroscopeList/AFMMode",
+      "raw_path": "@default:non-contact mode",
       "@units": ""
     },
     "scan_type": {
-      "raw_path": "/Ciao_scan_list/0/Operating_mode"
+      "raw_path": "@default:Approach and Retract"
     },
     "identifier_experiment": { "identifier": "" },
-    "experiment_description": { "raw_path": "/Force_file_list/0/Text" },
+    "experiment_description": { "raw_path": "" },
     "INSTRUMENT[instrument]": {
       "hardware": {
-        "vendor": { "raw_path": "/Equipment_list/0/Description" },
-        "model": { "raw_path": "/Scanner_list/0/Scanner_type" }
+        "vendor": { "raw_path": "" },
+        "model": { "raw_path": "" }
       },
       "software": {
         "vendor": { "raw_path": "" },
@@ -35,8 +35,9 @@
             "@units": "@default:nm"
           },
           "reference_frequency": {
-            "raw_path": "",
-            "@units": "@default:Hz"
+            "todo": "fix parser that would write all units as /unit consistency",
+            "raw_path": "/Ciao_scan_list/0/@2:CantFrequency",
+            "@units": "/Ciao_scan_list/0/@2:CantFrequency/unit"
           },
           "reference_phase": {
             "raw_path": "",
@@ -57,14 +58,15 @@
             "raw_path": "/Scanner_list/0/Adaptive_x_CutOffFreq",
             "@units": "@default:Hz"
           },
-          "target_amplitude": "",
+          "amplitude_setpoint": {
+            "#note": "Handles in function Cantilever Oscillator",
+            "raw_path": "/Ciao_scan_list/0/Setpoint/Amplitude_Ratio",
+            "@units": "@default:Hz"
+          },
           "active_frequency": ""
         },
         "cantilever_config": {
-          "amplitude_excitation": {
-            "raw_path": "/Ciao_scan_list/0/Free_Amplitude",
-            "@units": "@default:nm"
-          },
+          "amplitude_excitation": "",
           "spring_constant": {
             "raw_path": "/Ciao_force_image_list/0/Spring_Constant",
             "@units": "@default:N/m"
@@ -110,47 +112,10 @@
           "reference_frequency": ""
         }
       },
-      "lockin_amplifier": {
-        "reference_frequency": {
-          "raw_path": "",
-          "@units": "@default:Hz"
-        },
-        "modulation_signal": { "raw_path": "" },
-        "demodulated_signal": { "raw_path": "" },
-        "modulation_status": { "raw_path": "" },
-        "demodulated_frequency": "",
-        "demodulated_amplitude": "",
-        "demodulator_channels": "",
-        "recorded_channels": "",
-        "ref_offset_phaseN[ref_offset_phase_n]": {
-          "raw_path": "",
-          "@units": ""
-        },
-        "harmonic_orderN[harmonic_order_n]": {
-          "raw_path": ""
-        }
+      "head_temperature_sensor": {
+        "raw_path": "/Ciao_force_list/0/Temperature_(Celsius)",
+        "@units": "@default:C"
       },
-      "bias_spectroscopy_environment": {
-        "BIAS_SPECTROSCOPY[bias_spectroscopy]": {
-          "bias_sweep": {
-            "linear_sweep": {
-              "reset_bias": null,
-              "scan_points_bias": null,
-              "step_size_bias": { "@units": null }
-            },
-            "scan_region": {
-              "scan_end_bias": { "@units": null },
-              "scan_offset_bias": { "@units": null },
-              "scan_range_bias": { "@units": null },
-              "scan_start_bias": { "@units": null }
-            },
-            "settling_time": { "@units": null }
-          }
-        },
-        "independent_controllers": null,
-        "measurement_sensors": null
-      },
-      "head_temperature_sensor": null,
       "cryo_shield_temperature_sensor": null,
       "cryo_bottom_temperature_sensor": null,
       "height_piezo_sensor": {
@@ -205,7 +170,7 @@
             "tip_lift": { "raw_path": "", "@units": "" },
             "z": { "raw_path": "", "@units": "" },
             "feedback_on": {
-              "raw_path": "/Ciao_scan_list/0/Z_Closed_Loop"
+              "raw_path": ""
             },
             "switch_off_delay": { "raw_path": "", "@units": "" },
             "controller_label": { "raw_path": "" }
@@ -225,10 +190,6 @@
         "SPM_SCAN_CONTROL[spm_scan_control]": {
           "scanTAG[scan_name]": { "raw_path": "" },
           "scan_region": {
-            "scan_angleN[scan_angle_n]": {
-              "raw_path": "/Ciao_scan_list/0/Rotate_Ang.",
-              "@units": "@default:deg"
-            },
             "scan_offset_valueN[scan_offset_value_n]": [
               {
                 "x": {
@@ -243,36 +204,57 @@
                 }
               }
             ],
-            "scan_rangeN[scan_range_n]": {
-              "#note": "Scan_Size with Aspect_Ratio is handled in _construct_nxscan_controllers",
-              "raw_path": "/Ciao_scan_list/0/Scan_Size",
-              "@units": "@default:nm"
-            }
+            "scan_startN[scan_start_n]": [
+              {
+                "approach": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "retract": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              }
+            ],
+            "scan_endN[scan_end_n]": [
+              {
+                "approach": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "retract": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              }
+            ]
           },
-          "meshSCAN[mesh_scan]": {
-            "backward_speedN[backward_speed_n]": {
+          "point_forceSCAN[point_force_scan]": {
+            "backward_speedN[backward_speed_retract]": {
               "raw_path": "",
               "@units": ""
             },
-            "forward_speedN[forward_speed_n]": {
+            "forward_speedN[forward_speed_approach]": {
               "raw_path": "",
               "@units": ""
             },
-            "scan_speedN[scan_speed_n]": {
-              "raw_path": "/Ciao_scan_list/0/Scan_Rate",
-              "@units": "@default:Hz"
-            },
-            "channelNAME[scan_name_n]": "",
+            "scan_speedN[scan_speed_n]": "",
             "scan_pointsN[scan_points_n]": [
               {
-                "x": {
-                  "raw_path": "/Ciao_scan_list/0/Samps/line",
+                "approch": {
+                  "#note": "handled in construct_scan_pattern_grp",
+                  "raw_path": "/Ciao_force_list/0/Samps/line",
                   "@units": "@default:dimensionless"
                 }
               },
               {
-                "y": {
-                  "raw_path": "/Ciao_scan_list/0/Lines",
+                "retract": {
+                  "#note": "handled in construct_scan_pattern_grp",
+                  "raw_path": "/Ciao_force_list/0/Samps/line",
                   "@units": "@default:dimensionless"
                 }
               }
@@ -290,19 +272,8 @@
                 "grp_name": ""
               }
             ]
-          },
-          "independent_scan_axes": {
-            "raw_path": "",
-            "@units": ""
-          },
-          "scan_resolutionN[scan_resolution_n]": "",
-          "accuracyN": "",
-          "scan_type": { "raw_path": "", "@units": "" },
-          "scan_control_type": { "raw_path": "", "@units": "" }
-        },
-        "cryo_shield_temperature_sensor": "",
-        "cryo_bottom_temperature_sensor": "",
-        "head_temperature_sensor": ""
+          }
+        }
       }
     },
     "DATA[data]": [
