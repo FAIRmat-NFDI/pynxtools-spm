@@ -390,7 +390,7 @@
 "\EOL Capture Time Interval: 20"
 "\EOL Caputre Ramp Option: None"
 "\EOL Capture Ramp Delay: 0.8"
-"\EOL Capture Camera Source: Internal"
+"\EOL Capture Camera Sourcie: Internal"
 "\External captured frame path: "
 "\EOL Capture File Reading Timeout: 8"
 "\EOL Capture Output: Show"

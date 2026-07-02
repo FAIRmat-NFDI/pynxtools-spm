@@ -111,3 +111,5 @@ zenodo
 pynx
 nanoscope
 NanoScope
+samps
+coeff

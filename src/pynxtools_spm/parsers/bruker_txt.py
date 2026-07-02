@@ -153,7 +153,7 @@ class TxtBruker(SPMBase):
         matches = re.match(pattern=pattern, string=val)
         if matches and (match_grps := matches.groups()) and len(match_grps) == 5:
             temp_dict[f"{key}"] = match_grps[3]
-            temp_dict[f"{key}/@units"] = match_grps[4]
+            temp_dict[f"{key}/unit"] = match_grps[4]
             return temp_dict
 
         # S [AFMMode] Contact
@@ -168,7 +168,7 @@ class TxtBruker(SPMBase):
         matches = re.match(pattern=pattern, string=val)
         if matches and (match_grps := matches.groups()) and len(match_grps) == 2:
             temp_dict[f"{key}"] = match_grps[0]
-            temp_dict[f"{key}/@unit"] = match_grps[1]
+            temp_dict[f"{key}/unit"] = match_grps[1]
             return temp_dict
 
         temp_dict[f"{key}"] = val
