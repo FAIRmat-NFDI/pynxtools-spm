@@ -19,4 +19,5 @@
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,
   "CRS.OnSaveAlFileAction": "Reorganize",
+  "yaml.format.singleQuote": true
 }
