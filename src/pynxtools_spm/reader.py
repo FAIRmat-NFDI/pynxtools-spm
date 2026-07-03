@@ -76,11 +76,12 @@ class SPMReader(BaseReader):
         data_file: str | None = ""
         experiment_technique: str | None = None
         raw_file_ext: str | None = None
+        auxiliary_files: list[str] = []
 
         for file in file_paths:
             ext = file.rsplit(".", 1)[-1]
             fl_obj: object
-            if ext in ["sxm", "dat", "sm4"]:
+            if ext in ["sxm", "dat", "sm4", "spm", "txt"]:
                 data_file = file
                 raw_file_ext = ext
             if ext == "json":
@@ -93,6 +94,8 @@ class SPMReader(BaseReader):
                     # TODO get definition name
                 if experiment_technique is None:
                     raise ValueError("Experiment technique is not defined in ELN file.")
+            else:
+                auxiliary_files.append(file)
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:
@@ -124,15 +127,40 @@ class SPMReader(BaseReader):
                 config_file=config_file,
             )
             # oss.get_nxformatted_template()
-        elif experiment_technique == "AFM" and raw_file_ext == "sxm":
-            from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_afm import NanonisSxmAFM
+        elif experiment_technique == "AFM":
+            if raw_file_ext == "sxm":
+                from pynxtools_spm.nxformatters.nanonis.nanonis_sxm_afm import (
+                    NanonisSxmAFM,
+                )
 
-            formatter_obj = NanonisSxmAFM(
-                template=template,
-                raw_file=data_file,
-                eln_file=eln_file,
-                config_file=config_file,
-            )
+                formatter_obj = NanonisSxmAFM(
+                    template=template,
+                    raw_file=data_file,
+                    eln_file=eln_file,
+                    config_file=config_file,
+                )
+            elif raw_file_ext == "spm":
+                from pynxtools_spm.nxformatters.bruker.bruker_spm_afm import (
+                    BrukerSpmAFM,
+                )
+
+                formatter_obj = BrukerSpmAFM(
+                    template=template,
+                    raw_file=data_file,
+                    eln_file=eln_file,
+                    config_file=config_file,
+                )
+            elif raw_file_ext == "txt":
+                from pynxtools_spm.nxformatters.bruker.bruker_txt_afm import (
+                    BrukerTxtAFM,
+                )
+
+                formatter_obj = BrukerTxtAFM(
+                    template=template,
+                    raw_file=data_file,
+                    eln_file=eln_file,
+                    config_file=config_file,
+                )
             # nsa.get_nxformatted_template()
         elif experiment_technique == "STS" and raw_file_ext == "dat":
             from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
