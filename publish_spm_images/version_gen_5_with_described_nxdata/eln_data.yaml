@@ -1,0 +1,45 @@
+Instrument:
+  hardware:
+    model: Generic 4.5
+    name: Nanonis
+    vendor: Nanonis
+  software:
+    model: Generic 4.5
+    name: Nanonis
+    vendor: Nanonis
+Sample:
+  chemical_formula: C40​H18​N2​
+  description: |
+    Stack of two layers Au(111) diaza-HBC
+    (diaza-hexabenzocoronene) derivative
+    of diPAMY precursor
+  name: diaza-hexabenzocoronene
+User:
+  - affiliation:
+      - Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China
+    name: Yan Wang
+  - affiliation:
+      - Department of Physics& IRIS Adlershof, Humboldt-Universität zu Berlin, 12489 Berlin,
+        Germany
+    email:
+      - cojal@physik.hu-berlin.de
+    name: Cojal González, José David
+  - affiliation:
+      - FAIRmat, Humboldt-Universität zu Berlin, Berlin
+    email:
+      - rubel.mozumder@physik.hu-berlin.de
+    name: Rubel Mozumder
+  - affiliation:
+      - Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China
+      - Department of Physics& IRIS Adlershof, Humboldt-Universität zu Berlin, 12489 Berlin,
+        Germany
+    email:
+      - palma@iphy.ac.cn
+    name: Prof. Carlos-Andres Palma
+default: current_forward
+definition: NXstm
+experiment_description: |
+  The experiment combines
+  on-surface synthesis and low-temperature STM. Where the bias voltage is -50mV.
+experiment_technique: STM
+scan_mode: constant height
