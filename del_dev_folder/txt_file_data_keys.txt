@@ -1,0 +1,699 @@
+/Version: 0x09400105
+/Date: 03:44:35 PM Mon May 15 2023
+/Start_context: FOL
+/Data_length: 77824
+/User_Rating: 0
+/Text: 
+/History: 
+/Navigator_note: 
+/Engage_X_Pos: 
+/Engage_Y_Pos: 
+/Description: Dimension Icon
+/Vision: uEye UI148xLE-C #1
+/Scanner_file: 1b818.scn
+/Scanner_type: Dim 4000
+/Head_Type: SG
+/Serial_Number: 1b818
+/Piezo_size: G
+/File_name: 1b818.scn
+/Retracted_offset_der: -3.6663
+/Extended_offset_der: 4.0997
+/Allow_rotation: Allow
+/Piezo_cal: 440
+/X_sensitivity: 144.78
+/X_derate: 0.178
+/X_mag: 0.95
+/X_mag1: 0.75
+/X_arg: 2.5
+/Fast_arg_derate: 0
+/Orthogonality: 0
+/Y_sensitivity: 155.9
+/Y_derate: 0.1425
+/Y_mag: 0.77
+/Y_mag1: 0.9
+/Y_arg: 3.1
+/Slow_arg_derate: 0.005
+/X_slow_sensitivity: 151.62
+/X_slow_derate: 0.182
+/Y_fast_sensitivity: 142.952
+/Y_fast_derate: 0.1842
+/X_slow-fast_coupling: 0.318896
+/X_slow-fast_coupling_derating: -9.86915e-005
+/Y_slow-fast_coupling: 0.326021
+/Y_slow-fast_coupling_derating: -0.000147779
+/Fast_cal_freq: 2.44141
+/Slow_cal_freq: 4.76838
+/Xs-Yf_coupling: 0.0871558
+/Xs-Yf_coupling_derating: -0
+/Ys-Xf_coupling: 0.11307
+/Ys-Xf_coupling_derating: -0
+/X_offset_sens: 224.9
+/Y_offset_sens: 223.9
+/Max_scan_size: 93
+/Z_min: -220
+/Z_max: 110
+/Z_engage_position: -55
+/Z_to_X_coupling: 5
+/Z_to_Y_coupling: 0
+/Z_to_X_coupling_FF: 6
+/Z_to_Y_coupling_FF: 3
+/StrainXY_Scanner: Yes
+/OptoXY_x_sensitivity: 350
+/OptoXY_y_sensitivity: 355.1
+/OptoXY_orthogonality: -0.00436332
+/OptoXY_x_sens_fitted: 352.9
+/OptoXY_y_sens_fitted: 350.3
+/OptoXY_orthog_fitted: -0.00349066
+/OptoXY_scan_angle_cor: 0
+/OptoXY_pgain/igain: 0.05
+/Optoxy_FitVersion: V1
+/OptoXY_xsenscal_x: 0
+/OptoXY_xsenscal_y: 0
+/OptoXY_xsenscal_xy: 0
+/OptoXY_xsenscal_xx: 0
+/OptoXY_xsenscal_yy: 0
+/OptoXY_xsenscal_xxy: 0
+/OptoXY_xsenscal_xyy: 0
+/OptoXY_xsenscal_xxx: 0
+/OptoXY_xsenscal_yyy: 0
+/OptoXY_xsenscal_xxyy: 0
+/OptoXY_xsenscal_xxxy: 0
+/OptoXY_xsenscal_xyyy: 0
+/OptoXY_xsenscal_xxxx: 0
+/OptoXY_xsenscal_yyyy: 0
+/OptoXY_ysenscal_x: 0
+/OptoXY_ysenscal_y: 0
+/OptoXY_ysenscal_xy: 0
+/OptoXY_ysenscal_xx: 0
+/OptoXY_ysenscal_yy: 0
+/OptoXY_ysenscal_xxy: 0
+/OptoXY_ysenscal_xyy: 0
+/OptoXY_ysenscal_xxx: 0
+/OptoXY_ysenscal_yyy: 0
+/OptoXY_ysenscal_xxyy: 0
+/OptoXY_ysenscal_xxxy: 0
+/OptoXY_ysenscal_xyyy: 0
+/OptoXY_ysenscal_xxxx: 0
+/OptoXY_ysenscal_yyyy: 0
+/OptoXY_orthocal_x: 0
+/OptoXY_orthocal_y: 0
+/OptoXY_orthocal_xy: 0
+/OptoXY_orthocal_xx: 0
+/OptoXY_orthocal_yy: 0
+/ClosedLoop_x_igain: 5
+/ClosedLoop_y_igain: 5
+/Offset_X_TC0: 18.2867
+/Offset_X_TC1: 81.9093
+/Offset_X_TC2: 495.856
+/Offset_X_Gain0: 0.00178541
+/Offset_X_Gain1: 0.00179373
+/Offset_X_Gain2: 0.00516035
+/Offset_Y_TC0: 97.4543
+/Offset_Y_TC1: 1.0058
+/Offset_Y_TC2: 349.488
+/Offset_Y_Gain0: 0.00263142
+/Offset_Y_Gain1: 0
+/Offset_Y_Gain2: 0.0049999
+/Z_Sensor_TC0: 1.27743
+/Z_Sensor_TC1: 19.2371
+/Z_Sensor_TC2: 174.883
+/Z_Sensor_Gain0: 0.00251263
+/Z_Sensor_Gain1: 0.00192592
+/Z_Sensor_Gain2: 0.00318373
+/Z_range_sens: 17.9493
+/StrainZ_Scanner: Yes
+/Z_sensor_sens: 474.99
+/Z_sensor_gain_factor: 2
+/Z_sensor_offset_gain: 3.4
+/Full_Range_Sensor_Gain: 0.6
+/Z_sensor_LinOC: 0.0168626
+/Z_sensor_LinC1: 1
+/Z_sensor_LinC2: 0.000704307
+/Z_sensor_LinC3: -0.140429
+/Z_sensor_LinC4: 0.4774
+/Z_sensor_Linearization: Yes
+/Has_I2C: Yes
+/Adaptive_XY_Feedback_Scanner: Yes
+/Adaptive_ScanSizeExpRatio: 0.5
+/Adaptive_Minimal_Scan_Size: 10
+/Adaptive_Minimal_Scan_Rate: 0.2
+/Adaptive_x_RefPolarity: -1
+/Adaptive_y_RefPolarity: -1
+/Adaptive_x_PlantGain: 2
+/Adaptive_y_PlantGain: 2
+/Adaptive_x_SensorNoise: 320
+/Adaptive_y_SensorNoise: 320
+/Adaptive_x_CutOffFreq: 200
+/Adaptive_y_CutOffFreq: 200
+/Adaptive_x_Feedback_BW: 2
+/Adaptive_y_Feedback_BW: 2
+/Illumination_Scale_Factor: 0.15
+/Illumination_Range: 1023
+/XY_digital_CL_xIgain: 8
+/XY_digital_CL_yIgain: 8
+/@Sens._Zsens: V 17.94930 nm/V
+/@Sens._CurrentSens: V 10.00000 nA/V
+/@Sens._SECPMSens: V 100.0000 mV/V
+/@Sens._Xsensor: V 6265.256 nm/V
+/@Sens._Ysensor: V 6356.550 nm/V
+/Parameter_select: Main
+/Operating_mode: Force
+/Tip_Serial_Number: 
+/Tip_Scanned_Distance: 11854.2
+/Tip_Frame_Count: 5
+/Scan_Size: 0
+/Scan_Size/@unit: nm
+/X_Position: 0
+/Y_Position: 0
+/X_Offset: -2000 nm
+/Y_Offset: -2000 nm
+/Rotate_Ang.: 0
+/Stage_X: -9797.5
+/Stage_Y: -42233.8
+/Stage_Z: -13884.7
+/Stage_Optics: -5781.29
+/X_round: 0
+/Tip_Offset_X: 0
+/Tip_Offset_Y: 0
+/NanoTrack_X_Offset_Set: 0
+/NanoTrack_Y_Offset_Set: 0
+/NanoTrack_X_Offset_Actual: 0
+/NanoTrack_Y_Offset_Actual: 0
+/Samps/line: 9728
+/Lines: 256
+/Y_disable: Enabled
+/Aspect_Ratio: 1:1
+/bidirectional_scan: Disabled
+/Rectilinear_Scan: Disabled
+/Calibrate_Scan_Line_Shift: Off
+/Scan_line_shift: 0
+/QNM_scan_line_shift: 8.192
+/Line_offset_factor: 0
+/Line_average: No
+/Scan_Rate: 0.996492
+/Dark_Lift_Delay: 300
+/Tip_Velocity: 0
+/Zoom_in_at_Constant: Scan Rate
+/XY_Move_Tip_Pos: Surface
+/Minimum_scan_rate: 0.1
+/Lift_rate: 4
+/X_drift: 0
+/Y_drift: 0
+/Step_XY_size: 300
+/Cycles: 10
+/Step_XY_period: 0.005
+/Step_size: 3
+/Units: Metric
+/Setpoint_Units: nm
+/Clear_Buffer_for_new_Scan_Area: No
+/Color_table: 2
+/Scope_dualtrace: Dual
+/Auto_X_Sep: 0
+/Auto_Y_Sep: 0
+/Auto_pattern: Linear
+/Auto_number: 2
+/Capture_direction: Up
+/Capture_prelines: 50
+/Engage_Setpoint: 0.85
+/Min_int._gain: 5
+/Parameter_Update_Retract: Disabled
+/Parameter_Update_FB: Off
+/Capture_mode: Previous
+/Captured_Automatically: 0
+/MIROView_Scan_Direction: 0
+/Gain_Normalization: None
+/Gain_Factor: 1
+/Initial_Setpoint: 44
+/Potential_Feedback: Off
+/Potential_Feedback_Inter: Off
+/Frequency_Feedback: Off
+/Frequency_Feedback_Inter: Off
+/Potential_Type: Off
+/Potential_Type_Inter: Off
+/Freq._Control: Automatic
+/Freq._Control_Inter: Automatic
+/Drive_feedback: Disabled
+/Drive_time: 0
+/Drive_setpoint: 1
+/Drive_gain: 80
+/Start_size: 13199.8
+/Start_size/@unit: nm
+/Pass_2_size: 10000
+/Pass_2_size/@unit: nm
+/Pass_3_size: 5000
+/Pass_3_size/@unit: nm
+/Pass_4_size: 2000
+/Pass_4_size/@unit: nm
+/Feature_scan_angle: 0
+/Feature_Scan_rate: 1
+/Feature_step_size: 0.138889
+/Feature_setpoint: 0.8
+/Feature_threshold: 2000
+/Pass_delay: 5
+/Z_offset: 0
+/Z_tolerance: 238.105
+/Engage_X_offset: 0
+/Engage_X_offset/@unit: nm
+/Engage_Y_offset: 0
+/Engage_Y_offset/@unit: nm
+/Engage_step_size: 0.138889
+/Engage_Z_sens.: 12.5
+/Engage_Z_avg.: 10
+/Engage_Z_delay: 0.5
+/Height_engage: Disabled
+/Extended_Current_sens: 1 pA/V
+/PF_Extended_Current_sens: 1 nA/V
+/Bias_limit: 12
+/Bias_limit/@unit: V
+/AFM_Current_Sensitivity: 1 nA/V
+/SECPM_sens: 100 mV/V
+/Current_range: 200
+/Current_range/@unit: nA
+/Generic_amp_sens: 1 V/A
+/Z_Range: 5.92327
+/Strip_chart: Disabled
+/Strip_Chart_Rate: 500
+/Strip_Chart_Size: 100
+/XY_Closed_Loop: Off
+/OptoXY_Do_Linear: Off
+/Z_Closed_Loop: On
+/Analog2_High_Voltage: 0
+/Analog22_High_Voltage: 0
+/Output_1_Data_Type: Off
+/Output_2_Data_Type: Off
+/Meter_display_ctrl.: Hidden
+/Meter_Display_Mode: Vertical/Horiz
+/Stop_motor: Disabled
+/Display_level: 127
+/XY_Feedback_Control: Digital
+/Show_Thermal_Tune_Button: Both
+/Show_HSDC_Button: Both
+/Show_Point_&_Shoot_Button: Both
+/Show_Potential_Controls: Neither
+/Show_Frame_Rate_Control: Hidden
+/Show_Repulsion_Time_Indicator: Hidden
+/Enable_Optical_Image_Dewarping: Off
+/Z_Sensor_Correction: Enabled
+/XY_Drift_Correction: Enabled
+/Torsional_Freq: 950
+/Torsional_Q: 1000
+/Sample_Rate: 10
+/Sample_Points: 128
+/Cycles_to_Average: 32
+/Harmonics_To_Correct: 1
+/Max_Harmonics: 20
+/Force_Data_Points: 64
+/Calculation_Period: 60
+/Interaction_Time: 0.24
+/Invert_Torsional: Yes
+/Invert_Vertical: Yes
+/Unload_Fit_Region: 0.7
+/Lift_Height: 300
+/Sync_Distance: 88
+/Sync_Distance_New: 0
+/Sync_Distance_QNM: 0
+/Peak_Force_Engage_Amplitude: 100
+/Peak_Force_Engage_Setpoint: 0.15
+/Top_Fit_Region: 0.3
+/Peak_Force_Amplitude: 100
+/QNM_Calibration: DefaultByZ
+/Adhesion_Algorithm: Threshold Crossing
+/Adhesion_Fit_%: 0.1
+/Cursor_A: 0
+/Cursor_B: 300
+/Live_Cell_Background_Removal: Off
+/Dynamic_Sync_Distance: Off
+/Force_Filter: Off
+/Signal/Noise_Threshold: 2
+/Cutoff_Modulus: 0.3
+/Auto_Sync_Distance: On
+/Auto_Sync_Distance_QNM: On
+/Fluid_Cell: No
+/Medium: Fluid
+/Deformation_Fit_Region: 0.98
+/Tip_Radius: 3000
+/Cantilever_Angle: 12
+/Sample_Poisson's_Ratio: 0.3
+/Tip_Half_Angle: 0.314159
+/Include_Adhesion_Force: Yes
+/Min_Force_Fit_Boundary: 20
+/Max_Force_Fit_Boundary: 80
+/Modulus_Fit_Model: Hertzian (Spherical)
+/ScanAsyst_Setup: Allow
+/ScanAsyst_Auto_Control: On
+/ScanAsyst_Auto_Gain: On
+/ScanAsyst_Auto_Setpoint: On
+/ScanAsyst_Auto_Scan_Rate: On
+/ScanAsyst_Auto_Z_Limit: On
+/ScanAsyst_Noise_Threshold: 0.5
+/ScanAsyst_AutoConfig_Frames: 1
+/Scan_Target_Threshold: 0.005
+/Scan_Acceptable_Threshold: 0.1
+/Scan_Max_Optimizing_Time: 30
+/Skip_Offset_Optimization: No
+/Perfusion_Cell_Temperature: 
+/FalseDefl_Scan_DitheringBits: 0
+/Scan_Single_Frame_Number: 1
+/Idle_Depolarize_Warning_Time: 7200
+/Idle_Depolarize_Withdraw_Time: 18000
+/Idle_Depolarize_Threshold: 0.05
+/Auto_Adjust_Rounding: No
+/Peak_Current_Average_Region: 0.0001
+/I2C_Test: Off
+/PFT_Freq: 2
+/PFT_Freq/@unit: kHz
+/Tip_Drive_Noise_Threshold: 0.2
+/Tip_Drive_PFT_Amplitude: 100
+/SyncDistQNM_Filter_Factor: 1
+/Use_Freq_Based_QNM_Calibration: Off
+/Sync_Distance_QNM_8K: 0
+/Sync_Distance_QNM_4K: 0
+/Sync_Distance_QNM_2K: 0
+/Sync_Distance_QNM_1K: 0
+/Sync_Distance_QNM_0.5K: 0
+/Sync_Distance_QNM_0.25K: 0
+/Sync_Distance_QNM_0.125K: 0
+/PFT_Amplitude_Sens_8K: 0
+/PFT_Amplitude_Sens_4K: 0
+/PFT_Amplitude_Sens_2K: 0
+/PFT_Amplitude_Sens_1K: 0
+/PFT_Amplitude_Sens_0.5K: 0
+/PFT_Amplitude_Sens_0.25K: 0
+/PFT_Amplitude_Sens_0.125K: 0
+/Auto_PFT_Ampl._Sens: Off
+/Apply_DDS3_Sens_Factor: Yes
+/PFT_Ampl._Sens_Factor: 0.02
+/SyncDistance_Display: Percentage
+/ScanAsyst_Min._Setpoint: 0.02
+/ScanAsyst_Max._Setpoint: 3
+/ScanAsyst_Gain_Factor: 0
+/ScanAsyst_Gain_Threshold: 100
+/PeakForce_Capture: Never
+/Reduced_Z_Delay: 2
+/Z_Auto_Center_Boundary: 0
+/EOL_Capture_Enable: Off
+/EOL_Capture_Trigger_Position: End of Trace
+/EOL_Capture_Time_Interval: 20
+/EOL_Caputre_Ramp_Option: None
+/EOL_Capture_Ramp_Delay: 0.8
+/EOL_Capture_Camera_Source: Internal
+/External_captured_frame_path: 
+/EOL_Capture_File_Reading_Timeout: 8
+/EOL_Capture_Output: Show
+/EOL_Send_Stop_Trigger: On
+/NanoTrack_Path_Simulation: Off
+/PseudoRT_Path_Simulation: Off
+/NanoTrack_Max_Row_Shift: 10
+/NanoTrack_Max_Col_Shift: 10
+/NanoTrack_Channel: 1
+/NanoTrack_Min_Correlation: 0.8
+/Scan_Park_Lift_Height: 500
+/Adaptive_Interleave: Never
+/Z_Slew_Rate_Limit: 0
+/Touch_Calibration_Sweep_Range: 400
+/Touch_Calibration_Force_Setpoint: 0.2
+/Auto_Amplitude_Setpoint: Off
+/Free_Amplitude: 500
+/Setpoint/Amplitude_Ratio: 0.9
+/Amplitude_Lift_Height: 100
+/Fast_Tapping: Off
+/FF_Phase_Shift: 0
+/FF_Use_Min._Trace_Retrace: On
+/FF_Block_Converge_Data: Off
+/Converge_Lines: 0
+/FF_Use_Z_Sensor_Data: Off
+/FF_Zin2Zout_Scale: 1
+/FF_Defl2Z_Scale: 0
+/LP_CutOff: 200
+/Defl_HP_CutOff: 10
+/FF_Use_Line_Tracking: On
+/AmplitudeCutRatio: 0.4
+/DeflectionCutRatioOfRMS: 5
+/BadPointsLimitPercentage: 0.1
+/AbsMDiffTraceRetrace2AbsMTrace: 0.5
+/TraceRetraceDiffLimit: 1.5
+/Max_Data_Points: 512
+/@InterleaveList/InterleaveOffMode: Disabled
+/@LinearizeList/LinearizeOffMode: modeLinearizeOff
+/@DarkLiftList/DarkLiftOff: Disabled
+/@FPGA_Z_Feedback: S [] On
+/@MicroscopeList/AFMMode: Contact
+/@LPDeflection/LPFilterOn: Enabled
+/@LP_TM_Deflection/LPFilterOn: Enabled
+/@LP_Current/LPFilterOn: Enabled
+/@LP_Vertical_Deflection/LPFilterOn: Enabled
+/@Low_Pass_Frequency/LPFilterOn: Enabled
+/@LP_Friction: S [] Enabled
+/@LP_TM_Friction: S [] Enabled
+/@PicoAnglerPollOnOff/PicoAnglerPollOff: Disabled
+/@ThermalTuneMaxFreq: S [ThermalTuneData500K] 1 - 100 KHz
+/@TipBiasCntrlList/TipBiasCntrlGround: Ground
+/@Sample_Bias_Control: S [] Ground
+/@HSADCMuxOnOff/HSADCMuxOff: modeHSADCMuxOff
+/@HsdcChanADataType: S [HsdcDataTypeDeflection] Vertical Deflection
+/@HsdcChanBDataType: S [HsdcDataTypeLateral] Lateral Deflection
+/@FastScan_List/FastScanOff: Disabled
+/@FastZFeedback_List/DigitalZFastScan: Digital
+/@TR_Mode: S [] Disabled
+/@VerticalGainControlList: S [] Disabled
+/@SCM_Feedback: S [] 
+/@4: Ramp End: 0 nm
+/@3: DrivePhase3SoftHarmoniX: V (0.005493164 �/LSB)       0 �
+/@5: LockIn3SourceSoftHarmoniX: S [] Vertical
+/@2: Output 2 Output Data: S [Analog3] Analog3
+/@Sens._DeflSens: V 105.4528 nm/V
+/@Sens._AmplSens: V 134.1683 nm/V
+/@Sens._DeflectionIn1BSens: V 1.000000 
+/@Sens._FVModulusSens: V 1.000000 Pa/Arb
+/@Sens._FVLogModulusSens: V 1.000000 log(Pa)/log(Arb)
+/@Sens._FVForceSens: V 1.000000 nN/Arb
+/@Sens._FVStiffnessSens: V 1.000000 N/m*Arb
+/@Sens._FVSweepF0Sens: V 1.000000 Hz/Arb
+/@Sens._FVSweepQSens: V 1.000000 1/Arb
+/@Sens._FVSweepAmpSens: V 1.000000 nm/Arb
+/@Sens._FVSweepFitRSqSens: V 1.000000 1/Arb
+/@Sens._FVCRNormContactStiffSens: V 1.000000 1/Arb
+/@Sens._FVCRDampingCoeffSens: V 1.000000 1/Arb
+/@Sens._FVCRRadiusSens: V 1.000000 nm/Arb
+/@Sens._FVCRStorageModSens: V 1.000000 Pa/Arb
+/@Sens._FVCRLossModSens: V 1.000000 Pa/Arb
+/@Sens._FVCRLossTanSens: V 1.000000 1/Arb
+/@Sens._ECBiasSens: V 1000.000 mV/V
+/@Sens._AFMSetFastScanSens: V 1.000000 V/V
+/@Sens._ZsensSens: V 493.0709 nm/V
+/@Sens._ZPicoSens: V 1000.000 nm/V
+/@Sens._LSPRDataSensitivity: V 1.000000 
+/@Sens._LSPRAmplitudeSensitivity: V 1.000000 
+/@Sens._HSPRDataSensitivity: V 1.000000 
+/@Sens._HSPRAmplitudeSensitivity: V 1.000000 
+/@Sens._tunaSens: V 0.01000000 nA/V
+/@Sens._biassens: V 1.000000 V/V
+/@Sens._testsens: V 1.000000 V/V
+/@Sens._SecmEtipSens: V 1.000000 V/V
+/@Sens._SecmItipSens: V 1.000000 nA/V
+/@Sens._SecmISens: V 100.0000 uA/V
+/@Sens._Amplitude_Error: V 134.1683 nm/V
+/@Sens._Phase: V 1.000000 
+/@Sens._Phase_Error: V 1.000000 
+/@Sens._Friction: V 1.000000 
+/@Sens._TM_Deflection: V 134.1683 nm/V
+/@Sens._TM_Friction: V 1.000000 
+/@Sens._Inphase: V 1.000000 
+/@Sens._Quadrature: V 1.000000 
+/@Sens._Amplitude1: V 1.000000 
+/@Sens._Raw_Deflection: V 1.000000 
+/@Sens._Raw_Deflection_Gain: V 1.000000 
+/@Sens._Counter_1: V 1.000000 
+/@Sens._Counter_2: V 1.000000 
+/@Sens._Freq._1: V 1.000000 
+/@Sens._Freq._2: V 1.000000 
+/@Sens._Fast_Z_Analog: V 1.000000 
+/@Sens._Fast_Z: V 1.000000 
+/@Sens._Fast_RMS: V 1.000000 
+/@Sens._Fast_Deflection_Analog: V 1.000000 
+/@Sens._Fast_Deflection_Error: V 1.000000 
+/@Sens._Frequency: V 1.000000 
+/@Sens._Potential: V 1.000000 
+/@Sens._Potential_(HV): V 1.000000 
+/@Sens._dCdZ: V 1.000000 
+/@Sens._TR_Amplitude: V 1.000000 
+/@Sens._TR_Amplitude_Error: V 1.000000 
+/@Sens._TR_Phase: V 1.000000 
+/@Sens._Amplitude2: V 1.000000 
+/@Sens._HS_PR_Phase: V 1.000000 
+/@Sens._MFM_Amplitude: V 1.000000 
+/@Sens._MFM_Phase: V 1.000000 
+/@Sens._dC/dV_Amplitude: V 1.000000 
+/@Sens._dC/dV_Amplitude_Error: V 1.000000 
+/@Sens._dC/dV_I: V 1.000000 
+/@Sens._dC/dV_Q: V 1.000000 
+/@Sens._dC/dV_Phase: V 1.000000 
+/@Sens._Feedback_Bias: V 1.000000 
+/@Sens._Log(Resistance): V 1.000000 
+/@Sens._Input1: V 1.000000 
+/@Sens._Input2: V 1.000000 
+/@Sens._Input3: V 1.000000 
+/@Sens._DriveAmplitude3Sens: V 630.3000 nm/V
+/@Sens._ForceDeflSens: V 1.000000 
+/@Sens._ForceSens: V 1.000000 
+/@Sens._DissipationSens: V 1.000000 
+/@Sens._DeformationSens: V 3151.500 nm/V
+/@Sens._StiffnessSens: V 1.000000 
+/@Sens._LogStiffnessSens: V 1.000000 
+/@Sens._SneddonModulusSens: V 1.000000 
+/@Sens._LogSneddonModulusSens: V 1.000000 
+/@Offset_PotentialInputOffset: V [Sens. Potential] (0.0003051758 V/LSB)       0 V
+/@Offset_SecmInputOffsetEtip: V [Sens. SecmEtipSens] (0.0003750000 V/LSB)      -0 V
+/@Offset_SecmInputOffsetItip: V [Sens. SecmItipSens] (0.0003750000 V/LSB)       0 V
+/@Offset_SecmInputOffsetI: V [Sens. SecmISens] (0.0003750000 V/LSB)      -0 V
+/@Sample_period: 20.00000
+/@Sample_period/@units: us
+/@Z_center: V [Sens. Zsens] (0.006713867 V/LSB) 55.00000 V
+/@1: SCMAmplitudeLimit: V (0.0000009313226 mV/LSB) 4000.000 mV
+/@Lift_Start_Height: V [Sens. Zsens] (0.005035400 V/LSB)       0 V
+/@Lift_Scan_Height: V [Sens. Zsens] (0.005035400 V/LSB) 4.506534 V
+/@Drive_height: V [Sens. Zsens] (0.005035400 V/LSB)       0 V
+/@LogStiffnessOffset: V [Sens. LogStiffnessSens] (0.0004882813 log(Arb)/LSB)       0 log(Arb)
+/@LogSneddonModulusOffset: V [Sens. LogSneddonModulusSens] (0.0004882813 log(Arb)/LSB)       0 log(Arb)
+/Scan_rate: 0.201436
+/Forward_vel.: 56.1125
+/Reverse_vel.: 56.1125
+/Velocity_Ramp_Limit: 3
+/Samps/line/@unit: 9728
+/Samps/line,_retrace: 9728
+/Ave_lines: 1
+/Display_mode: Both
+/Trigger_mode: Relative
+/Rev._trigger_mode: Off
+/Plot_start: 0
+/Plot_end: 1
+/Auto_start: Disable
+/Start_mode: Calibrate
+/Modulate_Amplitude: 0
+/Hold_Type: Z Drive
+/Hold_Samples: 0
+/Hold_Time: 0.1
+/Reverse_delay: 0.1
+/Ramp_Script_Path: 
+/Use_Ramp_Script: Yes
+/Segment_Number: 0
+/Segment_Type: 
+/Segment_Size: 
+/Segment_Samples: 10416, 2083, 2083, 2083, 2083, 1041, 
+/Segment_Duration: 
+/Segment_States: 3, 1, 1, 1, 1, 1, 
+/Segment_Ramp_Type: 
+/Segment_Ramp_Start: 
+/Segment_Ramp_Size: 
+/Indent_setpoint: 0.5
+/X_Rotate: 0
+/Scratch_length: 100
+/Scratch_length/@unit: nm
+/Scratch_rate: 1
+/Scratch_angle: 0
+/Size_linked: Off
+/Drop_height: 10
+/Columns: 5
+/Rows: 5
+/Column_step: 1000
+/Row_step: 1000
+/Capture: Enabled
+/XY_Move_Tip_Mode: Lift and Touch
+/XY_Move_Lift+_Ratio: 0.2
+/XY_Move_Lift+_Height: 500
+/Parking_Height_Limit: 30000
+/force/line: 16
+/Samples_/_line: 16
+/Z_direction: Retract
+/X_Type: Height Sensor
+/FV_Line_Direction: Bidirection
+/FV_Move_Speed: 50
+/FV_Move_Lift+_Ratio: 0.2
+/FV_Move_Defl_Trig: 500
+/Tip_factor: 0
+/True_resonance: 0
+/Deflection_Sensitivity_Correction: 1.08
+/Tip_type: 100W
+/Unit_display: Force
+/PF_PGain: 99.8779
+/PF_ITime: 1.00044
+/Linearization: Enabled
+/Closed_Loop: Enabled
+/Polarity: Negative
+/Temperature_(Celsius): 23
+/PSD_Bin_Width: 7.62939
+/Dark_Ramp: Disable
+/Dark_Ramp_Delay: 300
+/Ramp_Mod_Type: Off
+/Ramp_Mod_Sens: 10
+/Baseline_Fit: 30
+/Baseline_Extrapolation: 30
+/Baseline_Start: 10
+/Baseline_Stop: 50
+/Deflection_Baseline_Fit: Line Extend
+/PFT_Feedback_Type: Peak Force
+/PFT_Deflection_Setpoint: 0.2
+/PFT_Deflection_Igain: 20
+/PFT_Deflection_Pgain: 40
+/@Ramp_Position: V [Sens. Zsens] (0.006713867 V/LSB) -80.71881 V
+/@Sample_Period: 16.00000
+/@Sample_Period/@units: us
+/Data_offset: 80960
+/Bytes/pixel: 2
+/Data_type: AFM
+/Data_Type_Description: 
+/Do_zoffder: 0
+/Note: 
+/Plane_fit: 0 0 0 0
+/Frame_direction: Up
+/Capture_start_line: 0
+/Color_Table_Index: 12
+/Relative_frame_time: 0
+/Invalid_Data_Flag: None
+/Invalid_Data_Fill: None
+/Scan_Line: Main
+/Realtime_Planefit: Line
+/Offline_Planefit: None
+/Spring_Constant: 0.0538362
+/Separation_Scale: 0
+/Force_offset: 0
+/Z_magnew_force: 1
+/Invert: Normal
+/Time_channel: 0
+/Force_TMR: 1.558053e-009
+/Scope_coupling: DC
+/Smoothing_filter: 0
+/Graph_function: i
+/STS_I_range: 15000
+/STS_DLI/DLV_range: 10
+/STS_DLI/DV_range: 10
+/STS_DI/DV_range: 10
+/STS_Log(i)_range: 10
+/Ave_points: 1
+/Force_Phase_Offset: 0
+/Effective_BW: 3919
+/X_Data_Type: Ch2:
+/@Z_magnify: 1
+/Time_s_Ex: [0.000000e+00 2.551581e-04 5.103162e-04 ... 2.481146e+00 2.481401e+00
+ 2.481656e+00]
+/Time_s_Rt: [2.482178 2.482433 2.482688 ... 4.963102 4.963357 4.963612]
+/Calc_Ramp_Ex_nm: [0.000000e+00 2.569902e-01 5.139803e-01 ... 2.499313e+03 2.499571e+03
+ 2.499828e+03]
+/Calc_Ramp_Rt_nm: [ 2.499743e+03  2.499486e+03  2.499229e+03 ...  4.297386e-01  1.727484e-01
+ -8.424178e-02]
+/Defl_V_Ex: [-0.47925   -0.475875  -0.4725    ...  0.2032562  0.2051313  0.2070063]
+/Defl_V_Rt: [ 0.2992591  0.2985091  0.2966341 ... -0.48825   -0.48675   -0.489    ]
+/Defl_nm_Ex: [-50.53825 -50.18235 -49.82645 ...  21.43394  21.63167  21.8294 ]
+/Defl_nm_Rt: [ 31.55771  31.47862  31.28089 ... -51.48733 -51.32915 -51.56642]
+/Defl_pN_Ex: [-2720.788 -2701.627 -2682.467 ...  1153.922  1164.567  1175.212]
+/Defl_pN_Rt: [ 1698.947  1694.689  1684.044 ... -2771.882 -2763.366 -2776.14 ]
+/Defl_Lsb_Ex: [-83755010. -83165180. -82575360. ...  35521600.  35849290.  36176980.]
+/Defl_Lsb_Rt: [ 52299320.  52168250.  51840560. ... -85327870. -85065730. -85458940.]
+/Height_Sensor_V_Ex: [-3.195402 -3.194893 -3.194315 ...  1.875975  1.876201  1.876861]
+/Height_Sensor_V_Rt: [ 1.912968  1.912849  1.912563 ... -3.156523 -3.157044 -3.157557]
+/Height_Sensor_nm_Ex: [-1575.56   -1575.309  -1575.024  ...   924.9885   925.1003   925.4257]
+/Height_Sensor_nm_Rt: [  943.2288   943.1703   943.0292 ... -1556.39   -1556.647  -1556.899 ]
+/Height_Sensor_Lsb_Ex: [-5.584365e+08 -5.583476e+08 -5.582467e+08 ...  3.278501e+08  3.278897e+08
+  3.280051e+08]
+/Height_Sensor_Lsb_Rt: [ 3.343151e+08  3.342944e+08  3.342444e+08 ... -5.516420e+08 -5.517331e+08
+ -5.518227e+08]
