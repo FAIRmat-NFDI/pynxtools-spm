@@ -20,6 +20,8 @@ if TYPE_CHECKING:
         ("yy_NM[yy_nm]", "x", "yy_NM[yy_x]"),
         ("yy_M_N[yy_m_n]", "x", "yy_M_N[yy_x]"),
         ("Myy[myy]", "x", "Myy[x_yy]"),
+        ("yyM[yym]", "x", "yyM[yy_x]"),
+        ("yyM[yy_m]", "x", "yyM[yy_x]"),
         ("y_M_yy[y_m_yy]", "x", "y_M_yy[y_x_yy]"),
         ("y_M_N_yy[y_x_yy]", "x", "y_M_N_yy[y_x_yy]"),
         ("yy_ff[yy_mn]", "x", "yy_ff[yy_mn]"),

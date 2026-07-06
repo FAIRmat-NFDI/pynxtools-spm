@@ -34,7 +34,9 @@ import copy
 
 import numpy as np
 import yaml
-from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
+from pynxtools.dataconverter.helpers import (
+    convert_data_dict_path_to_hdf5_path,
+)
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
 
@@ -72,6 +74,7 @@ CONVERT_DICT = {
     "Sample_component": "SAMPLE_COMPONENT[sample_component]",
     "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
     "model_version": "model/@version",
+    "citeID": "citeID[cite_id]",
 }
 
 PINT_QUANTITY_MAPPING = {
@@ -151,7 +154,8 @@ def write_multiple_concepts_instance(
                 cls_name = nx_grp_name.split("[")[0]
                 del convert_mapping[key]
             else:
-                cls_name = key.upper()
+                continue
+                # cls_name = key.upper()
 
             if not isinstance(val, list):
                 # NXsample has a filed of sample_component, to skip the name conflict
@@ -164,7 +168,12 @@ def write_multiple_concepts_instance(
                 continue
 
             for i, item in enumerate(val, 1):
-                new_key = f"{key.lower()}_{i}"
+                # handles cases: USER[user], NOTE[note]
+                if cls_name.isupper():
+                    new_key = f"{key.lower()}_{i}"
+                # Handles cases: citeID[cite_id]
+                else:
+                    new_key = replace_variadic_name_part(name=key, part_to_embed=f"{i}")
                 convert_mapping.update({new_key: f"{cls_name}[{new_key}]"})
                 new_dict[new_key] = write_multiple_concepts_instance(
                     item, list_of_concept, convert_mapping
