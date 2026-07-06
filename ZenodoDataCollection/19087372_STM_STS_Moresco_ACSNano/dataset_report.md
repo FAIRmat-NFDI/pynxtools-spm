@@ -6,11 +6,15 @@
 |------------|-------|
 | **Title**  | Supplementary data to publication https://pubs.acs.org/doi/10.1021/acsnano.5c17283 |
 | **DOI**    | [10.5281/zenodo.19087372](https://doi.org/10.5281/zenodo.19087372) |
+| **Url** | PlaceHolder: Full dataset URL from the zenodo record. |
 | **Date**   | 2026-03-18 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
 | **Authors**| Moresco, Francesca |
 | **Tags**   | STM, STS, scanning tunneling microscopy, subphthalocyanine, single-molecule machines, Au(111) |
+| **Description** | PlaceHolder: Full dataset description file from the zenodo record. |
+| **Experiment information related files** | PlaceHolder: List of the files that contain other information related with the experiment, e.g., chemical formulas, experiment temperatures etc. |
+
 
 ## Technique
 
@@ -41,6 +45,10 @@ Files uploaded flat ([S3 prefix](https://s3.console.aws.amazon.com/s3/buckets/sp
 | file | experiment | count | S3 key prefix |
 |------|------------|-------|---------------|
 | `A*.dat` / `B*.dat` | STM/STS | 78 | `zenodo/19087372/` |
+
+**Information Files**:
+| file | experiment | count | S3 key|
+|------|------------|-------|---------------|
 
 ## Category
 

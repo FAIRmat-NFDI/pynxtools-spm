@@ -1,0 +1,41 @@
+Instrument:
+  hardware:
+    model:
+    model/@version:
+    name: Nanonis
+    vendor: Nanonis
+  software:
+    model:
+    model/@version:
+    name: Nanonis
+    vendor: Nanonis
+Sample:
+  History:
+    Note:
+      description: PlaceHolder - Comes from zenodo dataset sample description if available (Try you best to find it in the dataset description)
+  Sample_component:
+    chemical_formula: PlaceHolder - Comes from zenodo dataset sample chemical formula if available (try you best to find it in the dataset description)
+    description: PlaceHolder - Comes from zenodo dataset sample description if available (try you best to find it in the dataset description)
+    name: PlaceHolder - Comes from zenodo dataset sample name if available, (try you best to find it in the dataset description)
+  name: PlaceHolder - Comes from zenodo dataset sample name if available (try you best to find it in the dataset description)
+default: current_forward
+definition: NXafm
+experiment_description: PlaceHolder - Comes from zenodo dataset description
+experiment_technique: AFM
+identifier_collection: PlaceHolder - Dataset URL
+identifier_experiment: PlaceHolder - Raw file name or dataset identifier
+scan_mode: PlaceHolder - Comes from the raw data file or dataset description
+User:
+  email:
+    - mozumder@physik.hu-berlin.de
+  name:
+    - Rubel Mozumder
+citeID:
+  author:
+    - PlaceHolder - Comes from zenodo dataset author list
+  url:
+    - PlaceHolder - Comes from zenodo dataset url
+  doi:
+    - PlaceHolder - Comes from zenodo dataset doi
+  description:
+    - PlaceHolder - Comes from zenodo dataset description
