@@ -85,6 +85,33 @@ class BrukerSpmAFM(BrukerBase):
                 group_name=scan_pattern_grp,
             )
 
+    @staticmethod
+    def _scalar_with_unit(value, fallback_unit):
+        """Normalize a scan-geometry value to a numeric magnitude and a unit.
+
+        Newer NanoScope (v9.x) ``.spm`` files store some geometry values as
+        unit-bearing strings such as ``"-3750 nm"``, whereas older files store a
+        bare number together with a unit taken from the config. ``pint`` is used
+        to split an embedded unit off the value and, when a ``fallback_unit`` is
+        given, to express the magnitude in that unit. Non-string or
+        non-parsable values are returned unchanged alongside ``fallback_unit``.
+        """
+        if not isinstance(value, str):
+            return value, fallback_unit
+        try:
+            quantity = ureg.Quantity(value)
+        except Exception:  # noqa: BLE001 - pint raises several error types
+            return value, fallback_unit
+        if quantity.dimensionless:
+            return quantity.magnitude, fallback_unit
+        if fallback_unit:
+            try:
+                quantity = quantity.to(fallback_unit)
+                return quantity.magnitude, fallback_unit
+            except Exception:  # noqa: BLE001 - incompatible/unknown unit
+                pass
+        return quantity.magnitude, str(quantity.units)
+
     def construct_region_region_grp(
         self, partial_conf_dict, parent_path, group_name="scan_region"
     ):
@@ -96,7 +123,16 @@ class BrukerSpmAFM(BrukerBase):
         /Scanner_list/0/Y_Position : 0
         /Scanner_list/0/X_Offset : 0
         /Scanner_list/0/Y_Offset : 0
+        /Scanner_list/0/Stage_X : 0
+        /Scanner_list/0/Stage_Y : 0
         /Scanner_list/0/Aspect_Ratio : 1:1
+
+        Scan origin (start):
+        - ``start = position`` when the absolute ``X_Position``/``Y_Position``
+          is available.
+        - ``start = stage + offset`` otherwise (e.g. NanoScope v9.x ``.spm``
+          files, which do not store an absolute position), using the stage
+          position ``Stage_X``/``Stage_Y`` and the scan offset.
         """
         offset_fld = "scan_offset_valueN[scan_offset_value_n]"
         offset_fld_list = partial_conf_dict.get(offset_fld, None)
@@ -108,6 +144,7 @@ class BrukerSpmAFM(BrukerBase):
                 data, unit, _ = _get_data_unit_and_others(
                     data_dict=self.raw_data, end_dict=end_dict
                 )
+                data, unit = self._scalar_with_unit(data, unit)
                 if key_ext.endswith("x"):
                     self.scan_control.x_offset = data
                     self.scan_control.x_offset_unit = unit
@@ -123,12 +160,27 @@ class BrukerSpmAFM(BrukerBase):
                 data, unit, _ = _get_data_unit_and_others(
                     data_dict=self.raw_data, end_dict=end_dict
                 )
-                if key_ext.endswith("x"):
-                    self.scan_control.x_start = data + self.scan_control.x_offset
-                    self.scan_control.x_start_unit = unit
-                elif key_ext.endswith("y"):
-                    self.scan_control.y_start = data + self.scan_control.y_offset
-                    self.scan_control.y_start_unit = unit
+                data, unit = self._scalar_with_unit(data, unit)
+                axis = "x" if key_ext.endswith("x") else "y"
+                offset = getattr(self.scan_control, f"{axis}_offset")
+                offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
+                if data is not None:
+                    # Absolute position is available; it already is the origin.
+                    start, start_unit = data, unit
+                else:
+                    # NanoScope v9.x has no absolute position field: derive the
+                    # scan origin from the stage position, start = stage + offset.
+                    stage_data = self.raw_data.get(
+                        f"/Scanner_list/0/Stage_{axis.upper()}"
+                    )
+                    stage, stage_unit = self._scalar_with_unit(
+                        stage_data, unit or offset_unit
+                    )
+                    stage = 0 if stage is None else stage
+                    start = stage + (0 if offset is None else offset)
+                    start_unit = stage_unit or offset_unit
+                setattr(self.scan_control, f"{axis}_start", start)
+                setattr(self.scan_control, f"{axis}_start_unit", start_unit)
 
         range_fld = "scan_rangeN[scan_range_n]"
         range_fld_dict = partial_conf_dict.get(range_fld)
