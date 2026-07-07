@@ -64,7 +64,7 @@ instrument software + version, authors, DOI, record URL.
 For each SPM-parsable raw file (per-file rows in the report table):
 
 1. Create `ZenodoDataCollection/<record folder>/conversion/<filename>/`.
-2. Copy `eln_data.yaml` and the config JSON from the matching `ElnExamples/` variant into it.
+2. Copy `eln_data.yaml` and the config JSON (but always use `config.json` name for the config file) from the matching `ElnExamples/` variant into it.
 3. Fill every `PlaceHolder` in the ELN from the Step 2 context:
    - `Sample.*` — sample name/formula/description/history (leave the placeholder text only if
      genuinely not findable; note that in the log).
@@ -74,7 +74,29 @@ For each SPM-parsable raw file (per-file rows in the report table):
    - `scan_mode` — from the raw file header or dataset description.
    - `Instrument.*.model` / `model/@version` — from raw file header if determinable.
    - `citeID` — authors / url / doi / description of the Zenodo record.
-4. Keep the config JSON unmodified unless the conversion in Step 4 shows a mapping problem.
+4. Keep the config JSON unmodified unless the conversion in Step 4 shows a mapping problem
+   (e.g. no NXdata groups written because the file's channels are not mapped — see
+   "Config conventions" below).
+
+**Config conventions** (apply when you must edit/extend a config for a dataset):
+
+- **NXdata `title` naming — use concise scientific labels**, not verbose sentences. Pattern:
+  `"<Quantity> (<Forward|Backward>)"`. Height/height-sensor topography is titled
+  **`Topography`**. Examples:
+  - `Height Plot of AFM Experiment (Forward Direction)` → `Topography (Forward)`
+  - `Adhesion Plot of AFM Experiment (Forward Direction)` → `Adhesion (Forward)`
+  - Other Bruker quantities: `DMT Modulus`, `Adhesion`, `Deformation`, `Dissipation`,
+    `Peak Force Error`, `Amplitude`, `Amplitude Error`, `Phase`, `TM Deflection`.
+  Set each entry's `title.raw_path` to `"@default:<the scientific title>"`.
+- **Bruker channel coverage.** The default `bruker_spm_afm.json` maps only TappingMode channels
+  (`/Height_Sensor`, `/Amplitude`, `/Amplitude_Error`, `/Phase`, `/TM_Deflection`). **PeakForce
+  QNM** files instead carry `/Height`, `/DMTModulus`, `/LogDMTModulus`, `/Adhesion`,
+  `/Deformation`, `/Dissipation`, `/Peak_Force_Error`. If a converted `.nxs` has **no NXdata
+  groups**, the channels are unmapped: add per-channel `DATA[data]` entries (distinct
+  `grp_name`s such as `height_forward`, `dmt_modulus_forward`, … so they never collide with the
+  TappingMode groups) in the **dataset's** `config.json`. Suggested units: Height/Deformation
+  `nm`, DMT Modulus `Pa`, Adhesion/Peak Force Error `nN`, Dissipation `eV`. Set the ELN
+  `default:` to an existing group (prefer `height_forward`).
 
 ### Step 4 — Convert
 
@@ -85,15 +107,44 @@ dataconverter --reader spm --nxdl <NXDL> <raw_file> eln_data.yaml <config.json> 
 
 - Success → `PS = True`. Failure → `PS = False`; copy the traceback into the log and move on.
 
-### Step 5 — Validate the default plot chain
+### Step 5 — Validate the `.nxs` (default chain + NXdata shapes)
 
-Open the `.nxs` with `h5py` and verify `/@default` → entry, entry `@default` → an **existing
+**Always open the generated `.nxs` with `h5py` and validate it before uploading.**
+
+**5a. Default plot chain.** Verify `/@default` → entry, entry `@default` → an **existing
 NXdata group**. If the referenced NXdata does not exist:
 
 1. List the NXdata groups actually present in the file.
-2. Set the ELN `default:` to one of those instance names (prefer a topography/current forward
-   channel).
+2. Set the ELN `default:` to one of those instance names (prefer a topography/height forward
+   channel, e.g. `height_forward`).
 3. Re-run Step 4 and re-check.
+
+**5b. NXdata shape check (every NXdata group).** For each NXdata group, the axis dataset
+lengths must match the signal array shape **according to `@axes` order**. NeXus lists `@axes`
+slow-to-fast, i.e. `['y', 'x']` for a 2D image: `y` is signal dimension 0, `x` is dimension 1.
+So an axis named in position *i* of `@axes` must have length `signal.shape[i]`:
+
+```python
+import h5py
+with h5py.File(nxs, "r") as f:
+    e = f["entry"]
+    for k in e:
+        g = e[k]
+        if not isinstance(g, h5py.Group) or g.attrs.get("NX_class") != "NXdata":
+            continue
+        sig = g.attrs["signal"]; axes = list(g.attrs.get("axes", []))
+        shape = g[sig].shape
+        for dim, ax in enumerate(axes):
+            assert ax in g and g[ax].shape[0] == shape[dim], (
+                f"{k}: axis '{ax}' len {g[ax].shape[0]} != signal dim{dim} {shape[dim]}")
+```
+
+Why this matters: **partial/interrupted or non-square scans** (e.g. 114 lines × 512 samples)
+expose axis/signal mismatches. A crossed x/y (x sized to `shape[0]` instead of `shape[1]`)
+makes plots swap axes, and downstream tools raise errors like
+`Expected array to have length 512 at least`. The Bruker AFM formatter now sizes each axis
+from its own signal dimension (`y = shape[0]`, `x = shape[1]`), so square **and** non-square
+scans stay aligned; still run the assertion above on every file as a guard.
 
 ### Step 6 — Upload on success
 
