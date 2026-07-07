@@ -315,8 +315,13 @@ class BrukerSpmAFM(BrukerBase):
             axes_data = self.template.get(axes_path, [])
 
             if isinstance(signal_data, np.ndarray) and signal_data.ndim == 2:
-                expected_x_points = signal_data.shape[0]
-                expected_y_points = signal_data.shape[1]
+                # NeXus @axes for a 2D image is [slow, fast] == ['y', 'x']:
+                # signal dim 0 is the slow (y) axis and dim 1 the fast (x) axis.
+                # Size each axis from its own signal dimension so that
+                # non-square or partial (interrupted) scans stay aligned with
+                # @axes instead of having x/y lengths swapped.
+                expected_y_points = signal_data.shape[0]
+                expected_x_points = signal_data.shape[1]
 
                 x_points_match = isinstance(axis_x_data, np.ndarray) and (
                     axis_x_data.size == expected_x_points
