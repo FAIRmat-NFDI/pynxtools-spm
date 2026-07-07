@@ -6,11 +6,14 @@
 |------------|-------|
 | **Title**  | Dataset for 'Layer-dependent oxidation spreading in multilayer graphene during AFM local anodic oxidation' |
 | **DOI**    | [10.5281/zenodo.19707666](https://doi.org/10.5281/zenodo.19707666) |
+| **Url**    | [https://zenodo.org/records/19707666](https://zenodo.org/records/19707666) |
 | **Date**   | 2026-04-23 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
-| **Authors**| Vymazal, Jan; Konečný, Martin; Piastek, Jakub; Mach, Jindrich et al. |
+| **Authors**| Vymazal, Jan; Konečný, Martin; Piastek, Jakub et al. |
 | **Tags**   | AFM, atomic force microscopy, graphene, local anodic oxidation, LAO, oxidation, multilayer graphene |
+| **Description** | Individual files used for Figures 2-12 are assembled in the folders. The COMSOL Multiphysics files are provided in the folder "COMSOL Simulations". |
+| **Experiment information related files** | None |
 
 ## Technique
 
@@ -34,24 +37,32 @@
 **Profile used**: RubDev (eu-central-1)  
 **Total objects**: 99 files
 
-**S3 key pattern**: `zenodo/19707666/Data/<Figure folder>/<filename>/<filename>`
+**S3 key pattern**: `zenodo/19707666/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
-Source zip `Data.zip` extracted into `Data/` ([S3 prefix](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/19707666/Data/))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key prefix |
-|------|------------|-------|---------------|
-| `Data/Figure 2/<file>` | AFM | 2 | `zenodo/19707666/Data/Figure 2/` |
-| `Data/Figure 3/<file>` | AFM | 12 | `zenodo/19707666/Data/Figure 3/` |
-| `Data/Figure 4/<file>` | AFM | 12 | `zenodo/19707666/Data/Figure 4/` |
-| `Data/Figure 5/<file>` | AFM | 2 | `zenodo/19707666/Data/Figure 5/` |
-| `Data/Figure 6/<file>` | Raman | 11 | `zenodo/19707666/Data/Figure 6/` |
-| `Data/Figure 7/<file>` | AFM | 6 | `zenodo/19707666/Data/Figure 7/` |
-| `Data/Figure 8/<file>` | AFM | 6 | `zenodo/19707666/Data/Figure 8/` |
-| `Data/Figure 9/<file>` | AFM | 12 | `zenodo/19707666/Data/Figure 9/` |
-| `Data/Figure 10/<file>` | — | 6 | `zenodo/19707666/Data/Figure 10/` |
-| `Data/Figure 11/<file>` | — | 9 | `zenodo/19707666/Data/Figure 11/` |
-| `Data/Figure 12/<file>` | — | 2 | `zenodo/19707666/Data/Figure 12/` |
-| `Data/COMSOL simulations/<file>` | — | 19 | `zenodo/19707666/Data/COMSOL simulations/` |
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `tecky.0_00000.spm` | AFM | 1 | `zenodo/19707666/Data/Figure 3/tecky.0_00000.spm/` | — | — |
+| `tecky.0_00002.spm` | AFM | 2 | `zenodo/19707666/Data/Figure 3/tecky.0_00002.spm/` | — | — |
+| `tecky.0_00000.spm` | AFM | 3 | `zenodo/19707666/Data/Figure 4/tecky.0_00000.spm/` | — | — |
+| `tecky.0_00002.spm` | AFM | 4 | `zenodo/19707666/Data/Figure 4/tecky.0_00002.spm/` | — | — |
+| `tecky.0_00001.spm` | AFM | 5 | `zenodo/19707666/Data/Figure 7/tecky.0_00001.spm/` | — | — |
+| `tecky.0_00002.spm` | AFM | 6 | `zenodo/19707666/Data/Figure 7/tecky.0_00002.spm/` | — | — |
+| `oxid.0_00008.spm` | AFM | 7 | `zenodo/19707666/Data/Figure 9/oxid.0_00008.spm/` | — | — |
+| `*.mdt` | AFM | 6 | `zenodo/19707666/Data/` | — | — |
+| `*.mph` | AFM | 19 | `zenodo/19707666/Data/` | — | — |
+| `*.png` | AFM | 34 | `zenodo/19707666/Data/` | — | — |
+| `*.py` | AFM | 6 | `zenodo/19707666/Data/` | — | — |
+| `*.svg` | AFM | 6 | `zenodo/19707666/Data/` | — | — |
+| `*.svg` | RAMAN | 1 | `zenodo/19707666/Data/` | — | — |
+| `*.txt` | AFM | 17 | `zenodo/19707666/Data/` | — | — |
+| `*.wip` | AFM | 3 | `zenodo/19707666/Data/` | — | — |
+
+## Information Files
+
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
 
 ## Category
 
@@ -60,5 +71,5 @@ Source zip `Data.zip` extracted into `Data/` ([S3 prefix](https://s3.console.aws
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted
-- [ ] Reference .nxs file not yet generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this

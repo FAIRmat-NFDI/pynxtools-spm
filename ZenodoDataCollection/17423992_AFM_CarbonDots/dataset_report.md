@@ -4,13 +4,16 @@
 
 | Field      | Value |
 |------------|-------|
-| **Title**  | Dataset for Blue Laser for Production of Carbon Dots |
+| **Title**  | Dataset for  Blue Laser for Production of Carbon Dots |
 | **DOI**    | [10.5281/zenodo.17423992](https://doi.org/10.5281/zenodo.17423992) |
+| **Url**    | [https://zenodo.org/records/17423992](https://zenodo.org/records/17423992) |
 | **Date**   | 2024-10-03 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
 | **Authors**| Cutroneo, Mariapompea |
 | **Tags**   | AFM, carbon dots, Bruker Dimension ICON, ScanAsyst, thin film |
+| **Description** | The PCL + CDs composites were studied using attenuated total reflectance coupled with Fourier transform infrared spectroscopy (ATR-FTIR) and were monitored using a JASCO Model 4600 spectrophotometer working in the (400–4000) cm−1 wavenumber range. The luminescence of the produced CDs was observed using the Avantes AvaSpec-2048-USB2 optical spectrometer. The luminescence was monitored in the transmission mode in the region 200–800 nm. The exciting UV light source operating at 365 nm and at a fluence of about 100 mJ/cm2 illuminated the front of the cuvette containing the CD suspension at a 10 cm distance and at 0°, while the fiber connected to the spectrometer was located on the back of the cuvette at a 1 mm distance and at 180°. The silicon cuts 1 cm × 1 cm in size were covered with drops of CD suspension and dried in air overnight. The formed films were studied by AFM. A dimension ICON AFM system (Bruker Corp., Bremen, Germany) operating in the ScanAsyst imaging mode in air has been employed. A commercial silicon Tip and SCANASYST, in air mode, with a spring constant of 0.4 N/m, supported 3 μm2 scanning. The identification of the CDs was carried out using AFM images recorded and processed using NanoScope Analysis 1.80 with 32-bit software. |
+| **Experiment information related files** | None |
 
 ## Technique
 
@@ -34,14 +37,19 @@
 **Profile used**: RubDev (eu-central-1)  
 **Total objects**: 2 files
 
-**S3 key pattern**: `zenodo/17423992/<filename>/<filename>`
+**S3 key pattern**: `zenodo/17423992/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
-Files uploaded flat ([S3 prefix](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/17423992/))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | S3 key |
-|------|------------|--------|
-| `Fig4.dat` | AFM | `zenodo/17423992/Fig4.dat/Fig4.dat` |
-| `Fig6.dat` | AFM | `zenodo/17423992/Fig6.dat/Fig6.dat` |
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `Fig4.dat` | AFM | 1 | `zenodo/17423992/Fig4.dat/` | — | — |
+| `Fig6.dat` | AFM | 2 | `zenodo/17423992/Fig6.dat/` | — | — |
+
+## Information Files
+
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
 
 ## Category
 
@@ -50,5 +58,5 @@ Files uploaded flat ([S3 prefix](https://s3.console.aws.amazon.com/s3/buckets/sp
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Format investigation needed
-- [ ] Reference .nxs file not generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
