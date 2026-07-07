@@ -6,11 +6,14 @@
 |------------|-------|
 | **Title**  | Role of Chalcogen atoms in In-Situ Exfoliation of Large-Area 2D Semiconducting Transition Metal Dichalcogenides |
 | **DOI**    | [10.5281/zenodo.14537302](https://doi.org/10.5281/zenodo.14537302) |
+| **Url**    | [https://zenodo.org/records/14537302](https://zenodo.org/records/14537302) |
 | **Date**   | 2024-12-20 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
 | **Authors**| Grubisic-Cabo, Antonija |
-| **Tags**   | 2D materials, Transition metal dichalcogenides, XPS, LEED, Exfoliation, AFM |
+| **Tags**   | 2D materials, Transition metal dichalcogenides, XPS, LEED, Exfoliation, KISS |
+| **Description** | Datasets for "Role of Chalcogen atoms in In Situ Exfoliation of Large-Area 2D Semiconducting Transition Metal Dichalcogenides" publication. <br><br> Optical microscopy, atomic force microscopy (AFM), low-energy electron diffraction (LEED) and X-ray photoelectron spectrocopy measurements (XPS). Measurements were conducted at the Zernike Institute for Advanced Materials in Groningen, The Netherlands. All measurements were performed at room temperature. LEED measurements are obtained using electron energy of 125 eV, while XPS measurements were performed using photon energy of 1486.6 eV (Al anode). <br><br> Experimental data are provided in jpeg format (optical microsopy images, LEED data), spm (AFM data) and txt (XPS data). |
+| **Experiment information related files** | None |
 
 ## Technique
 
@@ -34,28 +37,33 @@
 **Profile used**: RubDev (eu-central-1)  
 **Total objects**: 16 files
 
-**S3 key pattern**: `zenodo/14537302/<filename>/<filename>`
+**S3 key pattern**: `zenodo/14537302/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
-Files uploaded flat (no zip extraction) ([S3 prefix](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/14537302/))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | S3 key |
-|------|------------|--------|
-| `Figure4b_WSe2-Ag-S1.0_00000.spm`        | AFM | `zenodo/14537302/Figure4b_WSe2-Ag-S1.0_00000.spm/Figure4b_WSe2-Ag-S1.0_00000.spm` |
-| `230418BD_WSe2_Au_Survey_Figure5a.txt`    | XPS | `zenodo/14537302/230418BD_WSe2_Au_Survey_Figure5a.txt/230418BD_WSe2_Au_Survey_Figure5a.txt` |
-| `230418BD WSe2_W4f_Figure5b.txt`          | XPS | `zenodo/14537302/230418BD WSe2_W4f_Figure5b.txt/230418BD WSe2_W4f_Figure5b.txt` |
-| `230418BD WSe2_Se3p_Figure5c.txt`         | XPS | `zenodo/14537302/230418BD WSe2_Se3p_Figure5c.txt/230418BD WSe2_Se3p_Figure5c.txt` |
-| `Figure1f.jpg`                            | OM  | `zenodo/14537302/Figure1f.jpg/Figure1f.jpg` |
-| `Figure2a_Sample1.jpg`                    | OM  | `zenodo/14537302/Figure2a_Sample1.jpg/Figure2a_Sample1.jpg` |
-| `Figure2a_Sample2.jpg`                    | OM  | `zenodo/14537302/Figure2a_Sample2.jpg/Figure2a_Sample2.jpg` |
-| `Figure2a_Sample3.jpg`                    | OM  | `zenodo/14537302/Figure2a_Sample3.jpg/Figure2a_Sample3.jpg` |
-| `Figure2a_Sample4.jpg`                    | OM  | `zenodo/14537302/Figure2a_Sample4.jpg/Figure2a_Sample4.jpg` |
-| `Figure2b_Sample1.jpg`                    | OM  | `zenodo/14537302/Figure2b_Sample1.jpg/Figure2b_Sample1.jpg` |
-| `Figure2b_Sample2.jpg`                    | OM  | `zenodo/14537302/Figure2b_Sample2.jpg/Figure2b_Sample2.jpg` |
-| `Figure2b_Sample3.jpg`                    | OM  | `zenodo/14537302/Figure2b_Sample3.jpg/Figure2b_Sample3.jpg` |
-| `Figure2b_Sample4.jpg`                    | OM  | `zenodo/14537302/Figure2b_Sample4.jpg/Figure2b_Sample4.jpg` |
-| `Figure3a.jpg`                            | OM  | `zenodo/14537302/Figure3a.jpg/Figure3a.jpg` |
-| `Figure3b.jpg`                            | OM  | `zenodo/14537302/Figure3b.jpg/Figure3b.jpg` |
-| `Figure4a.png`                            | OM  | `zenodo/14537302/Figure4a.png/Figure4a.png` |
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `Figure4b_WSe2-Ag-S1.0_00000.spm` | AFM | 1 | `zenodo/14537302/Figure4b_WSe2-Ag-S1.0_00000.spm/` | — | — |
+| `*.txt` | AFM | 1 | `zenodo/14537302/230418BD WSe2_Se3p_Figure5c.txt/` | — | — |
+| `*.txt` | AFM | 1 | `zenodo/14537302/230418BD WSe2_W4f_Figure5b.txt/` | — | — |
+| `*.txt` | AFM | 1 | `zenodo/14537302/230418BD_WSe2_Au_Survey_Figure5a.txt/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure1f.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample1.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample2.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample3.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample4.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample1.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample2.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample3.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample4.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure3a.jpg/` | — | — |
+| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure3b.jpg/` | — | — |
+| `*.png` | AFM | 1 | `zenodo/14537302/Figure4a.png/` | — | — |
+
+## Information Files
+
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
 
 ## Category
 
@@ -64,5 +72,5 @@ Files uploaded flat (no zip extraction) ([S3 prefix](https://s3.console.aws.amaz
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted
-- [ ] Reference .nxs file not yet generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
