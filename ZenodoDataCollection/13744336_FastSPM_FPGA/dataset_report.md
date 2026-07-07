@@ -4,13 +4,16 @@
 
 | Field      | Value |
 |------------|-------|
-| **Title**  | Dataset supplementing "Design of an FPGA-Based Controller for Fast Scanning Probe Microscopy" in Sensors 2024 |
+| **Title**  | Dataset supplementing journal article "Design of an FPGA-Based Controller for Fast Scanning Probe Microscopy" in Sensors 2024 |
 | **DOI**    | [10.5281/zenodo.13744336](https://doi.org/10.5281/zenodo.13744336) |
+| **Url**    | [https://zenodo.org/records/13744336](https://zenodo.org/records/13744336) |
 | **Date**   | 2024-09-11 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
-| **Authors**| Gregorat, Leonardo; Cautero, Marco; Carrato, Sergio; Giuressi, Dario et al. |
+| **Authors**| Gregorat, Leonardo; Cautero, Marco; Carrato, Sergio et al. |
 | **Tags**   | fast SPM, FPGA, STM, AFM, scanning probe microscopy |
+| **Description** | Dataset supplementing journal article "Design of an FPGA-Based Controller for Fast Scanning Probe Microscopy" in Sensors 2024. <br><br> Fast imaging measurements showed in Figure 9 of the article:  <br><br> 9a: Fast STM of a static Pt5 cluster on a Fe3O4(001) magnetite surface, taken at room temperature in a UHV chamber with an Omicron VT-AFM microscope at 4 frames/s; pixel resolution 100x100 pixels; image size 8x8 nm2. <br><br> 9b: Fast STM of a Pd-octaethylporphyrin monolayer on a Au(111) surface under electrolyte (phosphate buffer, pH= 7, Ar-saturated), taken with a Beetle-type EC-STM at 12 frames/s (EWE = +0.65 vs RHE, Ub = +0.4 V vs WE); pixel resolution 120x120 pixels; image size 8x8 nm2. <br><br> 9c: Fast AFM images of a Mikromasch TGX1 test grating with a 3 μm pitch and a 130 nm height, taken in contact mode with an Asylum Research/Oxford Instruments MFP-3D microscope (Mikromasch NSC36 probe - 0.6 N/m cantilever) at 4 frames/s; pixel resolution 100x100 pixels. |
+| **Experiment information related files** | None |
 
 ## Technique
 
@@ -34,36 +37,22 @@ Fast imaging datasets: (9a) fast STM of Pt5 cluster on Fe₃O₄(001) at 4 fps; 
 **Profile used**: RubDev (eu-central-1)  
 **Total objects**: 24 files
 
-**S3 key pattern**: `zenodo/13744336/data/<figure>/<filename>/<filename>`
+**S3 key pattern**: `zenodo/13744336/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
-Source zip: `data.zip` → 3 subfolders: `Fig9a` (fast STM, Pt/Fe₃O₄), `Fig9b` (fast EC-STM, Pd-porphyrin/Au), `Fig9c` (fast AFM, TGX1 grating) — each with 8 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/13744336/data/))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | S3 key |
-|------|------------|--------|
-| `Fig9a/FS_231026_009.h5`          | STM | `zenodo/13744336/data/Fig9a/FS_231026_009.h5/FS_231026_009.h5` |
-| `Fig9a/FS_231026_009.h5_meta.txt` | STM | `zenodo/13744336/data/Fig9a/FS_231026_009.h5_meta.txt/FS_231026_009.h5_meta.txt` |
-| `Fig9a/FS_231026_009.log`         | STM | `zenodo/13744336/data/Fig9a/FS_231026_009.log/FS_231026_009.log` |
-| `Fig9a/FS_231026_009_0-72_udi.mp4` | STM | `zenodo/13744336/data/Fig9a/FS_231026_009_0-72_udi.mp4/FS_231026_009_0-72_udi.mp4` |
-| `Fig9a/FS_231026_009_51di.png`    | STM | `zenodo/13744336/data/Fig9a/FS_231026_009_51di.png/FS_231026_009_51di.png` |
-| `Fig9a/FS_231026_009_51ui.png`    | STM | `zenodo/13744336/data/Fig9a/FS_231026_009_51ui.png/FS_231026_009_51ui.png` |
-| `Fig9a/FS_231026_009_61ui.png`    | STM | `zenodo/13744336/data/Fig9a/FS_231026_009_61ui.png/FS_231026_009_61ui.png` |
-| `Fig9a/FS_231026_009_62di.png`    | STM | `zenodo/13744336/data/Fig9a/FS_231026_009_62di.png/FS_231026_009_62di.png` |
-| `Fig9b/FS_240705_009.h5`          | STM | `zenodo/13744336/data/Fig9b/FS_240705_009.h5/FS_240705_009.h5` |
-| `Fig9b/FS_240705_009.h5_meta.txt` | STM | `zenodo/13744336/data/Fig9b/FS_240705_009.h5_meta.txt/FS_240705_009.h5_meta.txt` |
-| `Fig9b/FS_240705_009.log`         | STM | `zenodo/13744336/data/Fig9b/FS_240705_009.log/FS_240705_009.log` |
-| `Fig9b/FS_240705_009_0-497_udi.mp4` | STM | `zenodo/13744336/data/Fig9b/FS_240705_009_0-497_udi.mp4/FS_240705_009_0-497_udi.mp4` |
-| `Fig9b/FS_240705_009_212di.png`   | STM | `zenodo/13744336/data/Fig9b/FS_240705_009_212di.png/FS_240705_009_212di.png` |
-| `Fig9b/FS_240705_009_212ui.png`   | STM | `zenodo/13744336/data/Fig9b/FS_240705_009_212ui.png/FS_240705_009_212ui.png` |
-| `Fig9b/FS_240705_009_310di.png`   | STM | `zenodo/13744336/data/Fig9b/FS_240705_009_310di.png/FS_240705_009_310di.png` |
-| `Fig9b/FS_240705_009_310ui.png`   | STM | `zenodo/13744336/data/Fig9b/FS_240705_009_310ui.png/FS_240705_009_310ui.png` |
-| `Fig9c/FS_231116_002.h5`          | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002.h5/FS_231116_002.h5` |
-| `Fig9c/FS_231116_002.h5_meta.txt` | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002.h5_meta.txt/FS_231116_002.h5_meta.txt` |
-| `Fig9c/FS_231116_002.log`         | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002.log/FS_231116_002.log` |
-| `Fig9c/FS_231116_002_0-24_uf.mp4` | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002_0-24_uf.mp4/FS_231116_002_0-24_uf.mp4` |
-| `Fig9c/FS_231116_002_1uf.png`     | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002_1uf.png/FS_231116_002_1uf.png` |
-| `Fig9c/FS_231116_002_19uf.png`    | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002_19uf.png/FS_231116_002_19uf.png` |
-| `Fig9c/FS_231116_002_20uf.png`    | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002_20uf.png/FS_231116_002_20uf.png` |
-| `Fig9c/FS_231116_002_2uf.png`     | AFM | `zenodo/13744336/data/Fig9c/FS_231116_002_2uf.png/FS_231116_002_2uf.png` |
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `*.h5` | STM | 3 | `zenodo/13744336/data/` | — | — |
+| `*.log` | STM | 3 | `zenodo/13744336/data/` | — | — |
+| `*.mp4` | STM | 3 | `zenodo/13744336/data/` | — | — |
+| `*.png` | STM | 12 | `zenodo/13744336/data/` | — | — |
+| `*.txt` | STM | 3 | `zenodo/13744336/data/` | — | — |
+
+## Information Files
+
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
 
 ## Category
 
@@ -72,5 +61,5 @@ Source zip: `data.zip` → 3 subfolders: `Fig9a` (fast STM, Pt/Fe₃O₄), `Fig9
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser not implemented
-- [ ] Reference .nxs file not generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
