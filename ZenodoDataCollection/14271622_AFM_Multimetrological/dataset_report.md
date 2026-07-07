@@ -6,11 +6,14 @@
 |------------|-------|
 | **Title**  | Raw data for "AFM as a Multimetrological Platform" Manuscript |
 | **DOI**    | [10.5281/zenodo.14271622](https://doi.org/10.5281/zenodo.14271622) |
+| **Url**    | [https://zenodo.org/records/14271622](https://zenodo.org/records/14271622) |
 | **Date**   | 2024-12-04 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
-| **Authors**| Aslan, Husnu; Kaja, Khaled; Piquemal, François; Moran-Meza, Jose et al. |
+| **Authors**| Aslan, Husnu; Kaja, Khaled; Piquemal, François et al. |
 | **Tags**   | AFM, multimetrological, dimensional, electrical, Kelvin probe, SPM |
+| **Description** | Attached are the raw scanning probe microscopy data, collected with different instruments. Each instrument has its own data format and needs to be processed to represent the data properly. The processing often includes, false-colour scale assignment, tilt and rotational corrections, and levelling. After processing, the analysis helps extracting the necessary information from the data such as dimensional and electrical properties, which when calibrated can be presented as images, maps or spectroscopy graphs in respective units. |
+| **Experiment information related files** | None |
 
 ## Technique
 
@@ -34,43 +37,27 @@ Raw SPM data collected with different instruments for a multimetrological AFM st
 **Profile used**: RubDev (eu-central-1)  
 **Total objects**: 28 files
 
-**S3 key pattern**: `zenodo/14271622/<folder>/<filename>/<filename>`
+**S3 key pattern**: `zenodo/14271622/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
-### Bruker .spm AFM files — 5 files ([S3 prefix](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/14271622/NW_GaAs_))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-Source zip: `MultiMetrology_AFM_Manuscript_Fig.2_3_6_7_8_9.zip`
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `NW_GaAs_non-passive_C3275_00000.0_00009.spm` | AFM | 1 | `zenodo/14271622/NW_GaAs_non-passive_C3275_00000.0_00009.spm/` | — | — |
+| `NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm` | AFM | 2 | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm/` | — | — |
+| `NW_GaAs_non-passive_C3275_camLight-Up_00008.spm` | AFM | 3 | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-Up_00008.spm/` | — | — |
+| `NW_GaAs_non-passive_C3275_dark UP_00006.spm` | AFM | 4 | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark UP_00006.spm/` | — | — |
+| `NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm` | AFM | 5 | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm/` | — | — |
+| `*.zip` | AFM | 1 | `zenodo/14271622/04-14-23_Vendredi.zip/` | — | — |
+| `*.zip` | AFM | 1 | `zenodo/14271622/04_13_23_Jeudi.zip/` | — | — |
+| `*.svg` | AFM | 1 | `zenodo/14271622/Fig. 4/` | — | — |
+| `*.tiff` | AFM | 8 | `zenodo/14271622/Fig. 4/` | — | — |
+| `*.tiff` | AFM | 12 | `zenodo/14271622/Fig. 5/` | — | — |
 
-| file | experiment | S3 key |
-|------|------------|--------|
-| `NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm`  | AFM | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm/NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm` |
-| `NW_GaAs_non-passive_C3275_dark UP_00006.spm`    | AFM | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark UP_00006.spm/NW_GaAs_non-passive_C3275_dark UP_00006.spm` |
-| `NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm` | AFM | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm/NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm` |
-| `NW_GaAs_non-passive_C3275_camLight-Up_00008.spm`  | AFM | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-Up_00008.spm/NW_GaAs_non-passive_C3275_camLight-Up_00008.spm` |
-| `NW_GaAs_non-passive_C3275_00000.0_00009.spm`    | AFM | `zenodo/14271622/NW_GaAs_non-passive_C3275_00000.0_00009.spm/NW_GaAs_non-passive_C3275_00000.0_00009.spm` |
+## Information Files
 
-### Figure 4 data — 9 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/14271622/Fig.%204/))
-
-Source zip: `MultiMetrology_AFM_Manuscript_Fig. 4.zip` — 1 SVG + 8 TIFF channel images (Z Height, NCM Amplitude, NCM Phase, Z Detector Corrected; fwd/bwd)
-
-| file | experiment | count | S3 key prefix |
-|------|------------|-------|---------------|
-| `Fig. 4/MultmetrologicalAFM_Fig4.svg` | AFM | 1 | `zenodo/14271622/Fig. 4/MultmetrologicalAFM_Fig4.svg/` |
-| `Fig. 4/Raw data/<channel>_<dir>.tiff` | AFM | 8 | `zenodo/14271622/Fig. 4/Raw data/` |
-
-### Figure 5 data — 12 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/14271622/Fig.%205/))
-
-Source zip: `MultiMetrology_AFM_Manuscript_Fig. 5.zip` — 12 TIFF channel images (NCM Phase, Z Height, Error Signal, EFM Amplitude/Phase/Quad; fwd/bwd)
-
-| file | experiment | count | S3 key prefix |
-|------|------------|-------|---------------|
-| `Fig. 5/NWs Sample1_<timestamp>_<channel>_<dir>.tiff` | AFM | 12 | `zenodo/14271622/Fig. 5/` |
-
-### Session archives — 2 files
-
-| file | experiment | S3 key |
-|------|------------|--------|
-| `04_13_23_Jeudi.zip`   | AFM | `zenodo/14271622/04_13_23_Jeudi.zip/04_13_23_Jeudi.zip` |
-| `04-14-23_Vendredi.zip` | AFM | `zenodo/14271622/04-14-23_Vendredi.zip/04-14-23_Vendredi.zip` |
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
 
 ## Category
 
@@ -79,5 +66,5 @@ Source zip: `MultiMetrology_AFM_Manuscript_Fig. 5.zip` — 12 TIFF channel image
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted
-- [ ] Reference .nxs file not yet generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this

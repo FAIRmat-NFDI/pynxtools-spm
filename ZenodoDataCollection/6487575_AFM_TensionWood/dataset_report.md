@@ -6,11 +6,14 @@
 |------------|-------|
 | **Title**  | Mechanical characterisation of the developing cell wall layers of tension wood fibres by Atomic Force Microscopy |
 | **DOI**    | [10.5281/zenodo.6487575](https://doi.org/10.5281/zenodo.6487575) |
+| **Url**    | [https://zenodo.org/records/6487575](https://zenodo.org/records/6487575) |
 | **Date**   | 2022-01-26 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
-| **Authors**| Arnould, Olivier; Capron, Marie; Ramonda, Michel; Laurans, Françoise et al. |
-| **Tags**   | AFM, atomic force microscopy, cell wall, tension wood, poplar, indentation modulus, G-layer |
+| **Authors**| Arnould, Olivier; Capron, Marie; Ramonda, Michel et al. |
+| **Tags**   | Atomic Force Microscopy, Cell wall, G-layer, Indentation modulus, Maturation, Poplar, Stiffening, Tension wood, Thickening |
+| **Description** | This dataset corresponds to the Arnould et al. (2022) paper (available at https://www.biorxiv.org/content/10.1101/2021.09.23.461481v1.full) on the mechanical characterization of developing cell wall layers of tension wood fibers by Atomic Force Microscopy. It contains all raw AFM files (Bruker format .spm, readable by the free software Gwyddion for example) corresponding to mechanical measurements of poplar reaction wood cells (clone 717-1B4) along 3 radial lines/rows, starting from the cambium. Each cell is identified by its "macroscopic" distance from the cambium (value in µm in the name of each file corresponding to the displacement of the sample in the AFM) which was corrected after using the AFM optical image captures. Some files, with a -z extension after the distance value, correspond to a zoom into the cell wall. The data also contain measurements made for mechanical calibration on epoxy embedded Kevlar fibers, controlled measurements in the embedding resin between each radial line and measurements in normal wood cells. Two csv files containing final data extracted from AFM measurements that give the value of the indentation modulus and the relative thickness to cell diameter ratio (by AFM and by phase contrast optical microscopy) in each cell wall layer as a function of cambium distance are also provided. |
+| **Experiment information related files** | `readme.rtf` |
 
 ## Technique
 
@@ -32,38 +35,105 @@
 **Prefix**: `zenodo/6487575/`  
 **Upload date**: 2026-06-26  
 **Profile used**: RubDev (eu-central-1)  
-**Total objects**: 195 files (148 AFM + 44 Optical + 3 ancillary)
+**Total objects**: 195 files
 
-**S3 key pattern**: `zenodo/6487575/<folder>/<filename>/<filename>`
+**S3 key pattern**: `zenodo/6487575/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
-### AFM files — 148 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/6487575/AFM%20files/))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-Source zip: `AFM files.zip` — Bruker NanoScope `.spm` mechanical indentation maps, grouped by sample type
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `714-1B4-resine3.0_00001.spm` | AFM | 1 | `zenodo/6487575/AFM files/embedding resin outside/714-1B4-resine3.0_00001.spm/` | — | — |
+| `717-1B4-resine1.0_00001.spm` | AFM | 2 | `zenodo/6487575/AFM files/embedding resin outside/717-1B4-resine1.0_00001.spm/` | — | — |
+| `717-1B4-resine1.0_00002.spm` | AFM | 3 | `zenodo/6487575/AFM files/embedding resin outside/717-1B4-resine1.0_00002.spm/` | — | — |
+| `717-1B4-resine2.0_00002.spm` | AFM | 4 | `zenodo/6487575/AFM files/embedding resin outside/717-1B4-resine2.0_00002.spm/` | — | — |
+| `fib-kev.0_00000.spm` | AFM | 5 | `zenodo/6487575/AFM files/kevlar fibre calibration/fib-kev.0_00000.spm/` | — | — |
+| `fib-kev2.0_00001.spm` | AFM | 6 | `zenodo/6487575/AFM files/kevlar fibre calibration/fib-kev2.0_00001.spm/` | — | — |
+| `fib-kev3.0_00002.spm` | AFM | 7 | `zenodo/6487575/AFM files/kevlar fibre calibration/fib-kev3.0_00002.spm/` | — | — |
+| `717-1B4-BN2.0_00001.spm` | AFM | 8 | `zenodo/6487575/AFM files/normal wood/717-1B4-BN2.0_00001.spm/` | — | — |
+| `717-1B4-BN3.0_00002.spm` | AFM | 9 | `zenodo/6487575/AFM files/normal wood/717-1B4-BN3.0_00002.spm/` | — | — |
+| `717-1B4-BN9.0_00001.spm` | AFM | 10 | `zenodo/6487575/AFM files/normal wood/717-1B4-BN9.0_00001.spm/` | — | — |
+| `717-1B4-1_0.0_00001.spm` | AFM | 11 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_0.0_00001.spm/` | — | — |
+| `717-1B4-1_0Bis.0_00001.spm` | AFM | 12 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_0Bis.0_00001.spm/` | — | — |
+| `717-1B4-1_0Tier.0_00002.spm` | AFM | 13 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_0Tier.0_00002.spm/` | — | — |
+| `717-1B4-1_1000um.0_00000.spm` | AFM | 14 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1000um.0_00000.spm/` | — | — |
+| `717-1B4-1_1000um.0_00003.spm` | AFM | 15 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1000um.0_00003.spm/` | — | — |
+| `717-1B4-1_1100um.0_00001.spm` | AFM | 16 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1100um.0_00001.spm/` | — | — |
+| `717-1B4-1_1200um.0_00001.spm` | AFM | 17 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1200um.0_00001.spm/` | — | — |
+| `717-1B4-1_120um.0_00001.spm` | AFM | 18 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_120um.0_00001.spm/` | — | — |
+| `717-1B4-1_1300um-z.0_00002.spm` | AFM | 19 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1300um-z.0_00002.spm/` | — | — |
+| `717-1B4-1_1300um.0_00001.spm` | AFM | 20 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1300um.0_00001.spm/` | — | — |
+| `717-1B4-1_1400um.0_00001.spm` | AFM | 21 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1400um.0_00001.spm/` | — | — |
+| `717-1B4-1_150um.0_00001.spm` | AFM | 22 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_150um.0_00001.spm/` | — | — |
+| `717-1B4-1_1700um.0_00001.spm` | AFM | 23 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_1700um.0_00001.spm/` | — | — |
+| `717-1B4-1_200um.0_00001.spm` | AFM | 24 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_200um.0_00001.spm/` | — | — |
+| `717-1B4-1_210um.0_00002.spm` | AFM | 25 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_210um.0_00002.spm/` | — | — |
+| `717-1B4-1_230um.0_00001.spm` | AFM | 26 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_230um.0_00001.spm/` | — | — |
+| `717-1B4-1_260um.0_00001.spm` | AFM | 27 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_260um.0_00001.spm/` | — | — |
+| `717-1B4-1_30um.0_00000.spm` | AFM | 28 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_30um.0_00000.spm/` | — | — |
+| `717-1B4-1_320um-z.0_00001.spm` | AFM | 29 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_320um-z.0_00001.spm/` | — | — |
+| `717-1B4-1_320um-z.0_00002.spm` | AFM | 30 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_320um-z.0_00002.spm/` | — | — |
+| `717-1B4-1_320um.0_00001.spm` | AFM | 31 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_320um.0_00001.spm/` | — | — |
+| `717-1B4-1_380um-z.0_00002.spm` | AFM | 32 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_380um-z.0_00002.spm/` | — | — |
+| `717-1B4-1_380um.0_00001.spm` | AFM | 33 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_380um.0_00001.spm/` | — | — |
+| `717-1B4-1_440um.0_00001.spm` | AFM | 34 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_440um.0_00001.spm/` | — | — |
+| `717-1B4-1_500um.0_00001.spm` | AFM | 35 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_500um.0_00001.spm/` | — | — |
+| `717-1B4-1_600um.0_00001.spm` | AFM | 36 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_600um.0_00001.spm/` | — | — |
+| `717-1B4-1_60um.0_00000.spm` | AFM | 37 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_60um.0_00000.spm/` | — | — |
+| `717-1B4-1_700um.0_00001.spm` | AFM | 38 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_700um.0_00001.spm/` | — | — |
+| `717-1B4-1_800um-z.0_00001.spm` | AFM | 39 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_800um-z.0_00001.spm/` | — | — |
+| `717-1B4-1_800um.0_00001.spm` | AFM | 40 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_800um.0_00001.spm/` | — | — |
+| `717-1B4-1_900um.0_00001.spm` | AFM | 41 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_900um.0_00001.spm/` | — | — |
+| `717-1B4-1_90um.0_00001.spm` | AFM | 42 | `zenodo/6487575/AFM files/radial ligne #1/717-1B4-1_90um.0_00001.spm/` | — | — |
+| `717-1B4-0Fin.0_00001.spm` | AFM | 43 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-0Fin.0_00001.spm/` | — | — |
+| `717-1B4-2_0.0_00001.spm` | AFM | 44 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_0.0_00001.spm/` | — | — |
+| `717-1B4-2_0Bis.0_00001.spm` | AFM | 45 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_0Bis.0_00001.spm/` | — | — |
+| `717-1B4-2_1000.0_00001.spm` | AFM | 46 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1000.0_00001.spm/` | — | — |
+| `717-1B4-2_1100.0_00001.spm` | AFM | 47 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1100.0_00001.spm/` | — | — |
+| `717-1B4-2_1150.0_00001.spm` | AFM | 48 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1150.0_00001.spm/` | — | — |
+| `717-1B4-2_120.0_00001.spm` | AFM | 49 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_120.0_00001.spm/` | — | — |
+| `717-1B4-2_1200.0_00001.spm` | AFM | 50 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1200.0_00001.spm/` | — | — |
+| `717-1B4-2_1300.0_00001.spm` | AFM | 51 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1300.0_00001.spm/` | — | — |
+| `717-1B4-2_1400.0_00001.spm` | AFM | 52 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1400.0_00001.spm/` | — | — |
+| `717-1B4-2_1700.0_00001.spm` | AFM | 53 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_1700.0_00001.spm/` | — | — |
+| `717-1B4-2_180.0_00001.spm` | AFM | 54 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_180.0_00001.spm/` | — | — |
+| `717-1B4-2_200.0_00001.spm` | AFM | 55 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_200.0_00001.spm/` | — | — |
+| `717-1B4-2_230.0_00001.spm` | AFM | 56 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_230.0_00001.spm/` | — | — |
+| `717-1B4-2_260.0_00001.spm` | AFM | 57 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_260.0_00001.spm/` | — | — |
+| `717-1B4-2_30.0_00001.spm` | AFM | 58 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_30.0_00001.spm/` | — | — |
+| `717-1B4-2_320.0_00001.spm` | AFM | 59 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_320.0_00001.spm/` | — | — |
+| `717-1B4-2_380.0_00001.spm` | AFM | 60 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_380.0_00001.spm/` | — | — |
+| `717-1B4-2_440.0_00001.spm` | AFM | 61 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_440.0_00001.spm/` | — | — |
+| `717-1B4-2_500.0_00001.spm` | AFM | 62 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_500.0_00001.spm/` | — | — |
+| `717-1B4-2_60.0_00001.spm` | AFM | 63 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_60.0_00001.spm/` | — | — |
+| `717-1B4-2_600.0_00001.spm` | AFM | 64 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_600.0_00001.spm/` | — | — |
+| `717-1B4-2_700.0_00001.spm` | AFM | 65 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_700.0_00001.spm/` | — | — |
+| `717-1B4-2_800.0_00001.spm` | AFM | 66 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_800.0_00001.spm/` | — | — |
+| `717-1B4-2_90.0_00001.spm` | AFM | 67 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_90.0_00001.spm/` | — | — |
+| `717-1B4-2_900.0_00001.spm` | AFM | 68 | `zenodo/6487575/AFM files/radial ligne #2/717-1B4-2_900.0_00001.spm/` | — | — |
+| `714-1B4-3_0Bis.0_00001.spm` | AFM | 69 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_0Bis.0_00001.spm/` | — | — |
+| `714-1B4-3_1000um.0_00001.spm` | AFM | 70 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_1000um.0_00001.spm/` | — | — |
+| `714-1B4-3_1200um.0_00001.spm` | AFM | 71 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_1200um.0_00001.spm/` | — | — |
+| `714-1B4-3_1400um.0_00001.spm` | AFM | 72 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_1400um.0_00001.spm/` | — | — |
+| `714-1B4-3_1700um.0_00002.spm` | AFM | 73 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_1700um.0_00002.spm/` | — | — |
+| `714-1B4-3_300um.0_00001.spm` | AFM | 74 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_300um.0_00001.spm/` | — | — |
+| `714-1B4-3_400um.0_00001.spm` | AFM | 75 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_400um.0_00001.spm/` | — | — |
+| `714-1B4-3_500um.0_00001.spm` | AFM | 76 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_500um.0_00001.spm/` | — | — |
+| `714-1B4-3_600um.0_00001.spm` | AFM | 77 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_600um.0_00001.spm/` | — | — |
+| `714-1B4-3_800um.0_00001.spm` | AFM | 78 | `zenodo/6487575/AFM files/radial ligne #3/714-1B4-3_800um.0_00001.spm/` | — | — |
+| `717-1B4-3_0.0_00001.spm` | AFM | 79 | `zenodo/6487575/AFM files/radial ligne #3/717-1B4-3_0.0_00001.spm/` | — | — |
+| `717-1B4-3_100um.0_00001.spm` | AFM | 80 | `zenodo/6487575/AFM files/radial ligne #3/717-1B4-3_100um.0_00001.spm/` | — | — |
+| `717-1B4-3_200um.0_00001.spm` | AFM | 81 | `zenodo/6487575/AFM files/radial ligne #3/717-1B4-3_200um.0_00001.spm/` | — | — |
+| `*.tif` | AFM | 67 | `zenodo/6487575/AFM files/` | — | — |
+| `*.tif` | AFM | 44 | `zenodo/6487575/Optical files/` | — | — |
+| `*.csv` | AFM | 1 | `zenodo/6487575/modulus.csv/` | — | — |
+| `*.csv` | AFM | 1 | `zenodo/6487575/thickness.csv/` | — | — |
 
-| file | experiment | count | S3 key prefix |
-|------|------------|-------|---------------|
-| `embedding resin outside/<file>.spm` | AFM | 5  | `zenodo/6487575/AFM files/embedding resin outside/` |
-| `kevlar fibre calibration/<file>.spm` | AFM | 3  | `zenodo/6487575/AFM files/kevlar fibre calibration/` |
-| `normal wood/<file>.spm`             | AFM | 6  | `zenodo/6487575/AFM files/normal wood/` |
-| `radial ligne #1/<file>.spm`         | AFM | 57 | `zenodo/6487575/AFM files/radial ligne #1/` |
-| `radial ligne #2/<file>.spm`         | AFM | 52 | `zenodo/6487575/AFM files/radial ligne #2/` |
-| `radial ligne #3/<file>.spm`         | AFM | 25 | `zenodo/6487575/AFM files/radial ligne #3/` |
+## Information Files
 
-### Optical files — 44 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/6487575/Optical%20files/))
-
-Source zip: `Optical files.zip` — optical microscopy TIFF images
-
-| file | experiment | count | S3 key prefix |
-|------|------------|-------|---------------|
-| `<file>.tif` | OM | 44 | `zenodo/6487575/Optical files/` |
-
-### Ancillary files — 3 files
-
-| file | experiment | S3 key |
-|------|------------|--------|
-| `modulus.csv`  | AFM | `zenodo/6487575/modulus.csv/modulus.csv` |
-| `thickness.csv` | AFM | `zenodo/6487575/thickness.csv/thickness.csv` |
-| `readme.rtf`   | —   | `zenodo/6487575/readme.rtf/readme.rtf` |
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
+| `readme.rtf` | AFM | 1 | `zenodo/6487575/readme.rtf/` |
 
 ## Category
 
@@ -72,5 +142,5 @@ Source zip: `Optical files.zip` — optical microscopy TIFF images
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted
-- [ ] Reference .nxs file not yet generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this

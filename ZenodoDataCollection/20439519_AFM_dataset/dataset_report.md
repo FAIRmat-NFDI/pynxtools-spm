@@ -4,13 +4,16 @@
 
 | Field      | Value |
 |------------|-------|
-| **Title**  | Autonomous scanning electrochemical cell microscopy enables rapid exploration of large compositionally complex material spaces |
+| **Title**  | Dataset - Autonomous scanning electrochemical cell microscopy enables rapid exploration of large compositionally complex material spaces |
 | **DOI**    | [10.5281/zenodo.20439519](https://doi.org/10.5281/zenodo.20439519) |
+| **Url**    | [https://zenodo.org/records/20439519](https://zenodo.org/records/20439519) |
 | **Date**   | 2026-05-28 |
 | **Access** | Open |
 | **License**| CC BY 4.0 |
 | **Authors**| Thelen, Felix; Kim, Moonjoo; de Oliveira, Geovane Arruda et al. |
-| **Tags**   | Hydrogen evolution reaction, Active learning, Electrochemistry, Magnetron sputtering, SECCM, Gaussian process regression, Electrocatalysis |
+| **Tags**   | Hydrogen evolution reaction, Active learning, Electrochemistry, Materials science, Magetron sputtering, Scanning electrochemical cell microscopy, Gaussian process regression, Electrocatalysis, Materials libraries, High-throughput characterization |
+| **Description** | This dataset contains all experimental and computational data associated with the autonomous Scanning Electrochemical Cell Microscopy (SECCM) platform described in the accompanying publication. The platform combines robotic SECCM with active learning and multi-output Gaussian process (GP) modeling for high-throughput electrochemical characterization of compositionally complex thin-film materials libraries, validated on the Au-Ir-Rh ternary system as a model case for hydrogen evolution reaction (HER) electrocatalyst discovery. <br><br> Three Au-Ir-Rh thin-film materials libraries were fabricated by magnetron co-sputtering onto 100 mm diameter Sapphire wafers and are referred to throughout as Au-rich, Ir-rich, and Rh-rich according to their position in the ternary composition space. All characterization techniques share a unified measurement grid of 342 measurement areas distributed across each library at 4.5 mm spacing. A coordinates file providing the x, y positions of all 342 MAs is included. <br><br> Dataset contents: <br><br> Energy-Dispersive X-ray Spectroscopy (EDX) Volume compositions (Au, Ir, Rh in at.%) at all 342 MAs for each of the three libraries. Provided in .csv format. X-ray Photoelectron Spectroscopy (XPS) Due to the lower throughput of XPS, 13 localized surface composition measurements were performed per library. The full set of measurement areas were predicted using a Gaussian process regression model (method described here (https://doi.org/10.1002/aidi.202500062)). Two files are provided per library: one containing the measured XPS compositions and one containing the GP-predicted values. In addition to Au, Ir, and Rh, the XPS dataset includes surface contents of oxygen (O), carbon (C), native Rh oxide, and Rh hydroxide. Provided in .csv format. <br><br> - X-ray Diffraction (XRD) Diffractograms (2θ position vs. intensity in counts) at all 342 areas for each library. Provided in .csv format. Atomic Force Microscopy (AFM) Raw data from 15 localized AFM measurements (5 per library), recorded in Bruker NanoScope raw data format. Representative images are shown in the Supporting Information of the accompanying paper. SECCM Linear sweep voltammograms (LSVs) acquired at each area for all three libraries. Due to collision risk of the environmental chamber, 20 areas per library were excluded, yielding 322 LSVs per library. Each LSV file contains three columns: potential vs. the reversible hydrogen electrode (RHE, in V), mean current density (in A/cm^2), and the standard deviation of the current density, computed from three individually recorded LSVs that are averaged per measurement area. An additional file contains the parameters extracted by fitting the averaged LSVs to an analytical equation described in the publication: the limiting current density I_lim (A/cm^2), the transfer coefficient α (dimensionless), and the standard rate constant k^0 (cm/s). Provided in .csv format. Active Learning Animations: Two animations (.mp4 format) illustrating the active learning process applied to the Au-Ir-Rh composition space. Each frame corresponds to one iteration of the algorithm and displays the current LSV data, the extracted fit parameters, the GP model predictions across the ternary space, and the acquisition function values used to select the next measurement. One animation corresponds to the baseline GP implementation; the second corresponds to the noise-aware GP variant, which incorporates per-area measurement uncertainty derived from the standard deviations of the individual LSV fit parameters prior to averaging. Measurement Video: (.mp4) of the measurement process of the first 400 measurements/training iterations. It shows the robotic transfer, the environmental chamber and visual capillary approach and the electrocatalytic measurements. |
+| **Experiment information related files** | `DataSetnote.txt`, `LSV_fit_parameters.csv` |
 
 ## Technique
 
@@ -30,81 +33,42 @@ Files use Bruker NanoScope raw format without `.spm` extension.
 **Prefix**: `zenodo/20439519/`  
 **Upload date**: 2026-06-25  
 **Profile used**: RubDev (eu-central-1)  
-**Total objects**: 2018 files (16 AFM + 3 EDX + 967 SECCM + 6 XPS + 1026 XRD)
+**Total objects**: 2018 files
 
-Zips are extracted; each file is uploaded into its own subfolder so experiment metadata
-(`eln_data.yaml`, converted `output.nxs`, etc.) can be added alongside the raw file later.
-
-**S3 key pattern**: `zenodo/<record_id>/<dataset_folder>/<filename>/<filename>`
+**S3 key pattern**: `zenodo/20439519/<subfolders...>/<filename>/<filename>` — each raw file sits in its own folder so ELN/config/`.nxs` can be added alongside it.
 
 **Skipped**: 3 `.mp4` animation/video files (~550 MB total) — not SPM data.
 
-### AFM dataset — 16 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/20439519/AFM_dataset/))
+`PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-Source zip: `AFM_dataset.zip` — Bruker NanoScope raw format (no `.spm` extension)
+| file | experiment | count | S3 key | PS | Uploaded |
+|------|------------|-------|--------|----|----------|
+| `Au-Ir-Rh_Au-rich_AFM_area_168.002` | AFM | 1 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_168.002/` | — | — |
+| `Au-Ir-Rh_Au-rich_AFM_area_178.004` | AFM | 2 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_178.004/` | — | — |
+| `Au-Ir-Rh_Au-rich_AFM_area_20.003` | AFM | 3 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_20.003/` | — | — |
+| `Au-Ir-Rh_Au-rich_AFM_area_313.000` | AFM | 4 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_313.000/` | — | — |
+| `Au-Ir-Rh_Au-rich_AFM_area_55.005` | AFM | 5 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_55.005/` | — | — |
+| `Au-Ir-Rh_Ir-rich_AFM_area_13.000` | AFM | 6 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_13.000/` | — | — |
+| `Au-Ir-Rh_Ir-rich_AFM_area_168.001` | AFM | 7 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_168.001/` | — | — |
+| `Au-Ir-Rh_Ir-rich_AFM_area_178.002` | AFM | 8 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_178.002/` | — | — |
+| `Au-Ir-Rh_Ir-rich_AFM_area_315.003` | AFM | 9 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_315.003/` | — | — |
+| `Au-Ir-Rh_Ir-rich_AFM_area_342.004` | AFM | 10 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_342.004/` | — | — |
+| `Au-Ir-Rh_Rh-rich_AFM_area_16.005` | AFM | 11 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_16.005/` | — | — |
+| `Au-Ir-Rh_Rh-rich_AFM_area_168.008` | AFM | 12 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_168.008/` | — | — |
+| `Au-Ir-Rh_Rh-rich_AFM_area_200.010` | AFM | 13 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_200.010/` | — | — |
+| `Au-Ir-Rh_Rh-rich_AFM_area_240.006` | AFM | 14 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_240.006/` | — | — |
+| `Au-Ir-Rh_Rh-rich_AFM_area_297.009` | AFM | 15 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_297.009/` | — | — |
+| `*.csv` | EDX | 3 | `zenodo/20439519/EDX_dataset/` | — | — |
+| `*.csv` | SECCM | 966 | `zenodo/20439519/SECCM_dataset/` | — | — |
+| `*.csv` | XPS | 6 | `zenodo/20439519/XPS_dataset/` | — | — |
+| `*.xy` | XRD | 1026 | `zenodo/20439519/XRD_dataset/` | — | — |
 
-| file | experiment | S3 key |
-|------|------------|--------|
-| `Au-Ir-Rh_Au-rich_AFM_area_168.002` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_168.002/Au-Ir-Rh_Au-rich_AFM_area_168.002` |
-| `Au-Ir-Rh_Au-rich_AFM_area_178.004` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_178.004/Au-Ir-Rh_Au-rich_AFM_area_178.004` |
-| `Au-Ir-Rh_Au-rich_AFM_area_20.003`  | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_20.003/Au-Ir-Rh_Au-rich_AFM_area_20.003` |
-| `Au-Ir-Rh_Au-rich_AFM_area_313.000` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_313.000/Au-Ir-Rh_Au-rich_AFM_area_313.000` |
-| `Au-Ir-Rh_Au-rich_AFM_area_55.005`  | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_55.005/Au-Ir-Rh_Au-rich_AFM_area_55.005` |
-| `Au-Ir-Rh_Ir-rich_AFM_area_13.000`  | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_13.000/Au-Ir-Rh_Ir-rich_AFM_area_13.000` |
-| `Au-Ir-Rh_Ir-rich_AFM_area_168.001` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_168.001/Au-Ir-Rh_Ir-rich_AFM_area_168.001` |
-| `Au-Ir-Rh_Ir-rich_AFM_area_178.002` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_178.002/Au-Ir-Rh_Ir-rich_AFM_area_178.002` |
-| `Au-Ir-Rh_Ir-rich_AFM_area_315.003` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_315.003/Au-Ir-Rh_Ir-rich_AFM_area_315.003` |
-| `Au-Ir-Rh_Ir-rich_AFM_area_342.004` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_342.004/Au-Ir-Rh_Ir-rich_AFM_area_342.004` |
-| `Au-Ir-Rh_Rh-rich_AFM_area_16.005`  | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_16.005/Au-Ir-Rh_Rh-rich_AFM_area_16.005` |
-| `Au-Ir-Rh_Rh-rich_AFM_area_168.008` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_168.008/Au-Ir-Rh_Rh-rich_AFM_area_168.008` |
-| `Au-Ir-Rh_Rh-rich_AFM_area_200.010` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_200.010/Au-Ir-Rh_Rh-rich_AFM_area_200.010` |
-| `Au-Ir-Rh_Rh-rich_AFM_area_240.006` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_240.006/Au-Ir-Rh_Rh-rich_AFM_area_240.006` |
-| `Au-Ir-Rh_Rh-rich_AFM_area_297.009` | AFM | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_297.009/Au-Ir-Rh_Rh-rich_AFM_area_297.009` |
-| `DataSetnote.txt`                    | —   | `zenodo/20439519/AFM_dataset/DataSetnote.txt/DataSetnote.txt` |
+## Information Files
 
-### EDX dataset — 3 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/20439519/EDX_dataset/))
-
-Source zip: `EDX_dataset.zip` — composition maps (CSV)
-
-| file | experiment | S3 key |
-|------|------------|--------|
-| `Au-Ir-Rh_Au-rich_EDX.csv` | EDX | `zenodo/20439519/EDX_dataset/Au-Ir-Rh_Au-rich_EDX.csv/Au-Ir-Rh_Au-rich_EDX.csv` |
-| `Au-Ir-Rh_Ir-rich_EDX.csv` | EDX | `zenodo/20439519/EDX_dataset/Au-Ir-Rh_Ir-rich_EDX.csv/Au-Ir-Rh_Ir-rich_EDX.csv` |
-| `Au-Ir-Rh_Rh-rich_EDX.csv` | EDX | `zenodo/20439519/EDX_dataset/Au-Ir-Rh_Rh-rich_EDX.csv/Au-Ir-Rh_Rh-rich_EDX.csv` |
-
-### XPS dataset — 6 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/20439519/XPS_dataset/))
-
-Source zip: `XPS_dataset.zip` — surface composition CSVs (measured + predicted)
-
-| file | experiment | S3 key |
-|------|------------|--------|
-| `Au-Ir-Rh_Au-rich_XPS.csv`           | XPS | `zenodo/20439519/XPS_dataset/Au-Ir-Rh_Au-rich_XPS.csv/Au-Ir-Rh_Au-rich_XPS.csv` |
-| `Au-Ir-Rh_Au-rich_XPS_predicted.csv` | XPS | `zenodo/20439519/XPS_dataset/Au-Ir-Rh_Au-rich_XPS_predicted.csv/Au-Ir-Rh_Au-rich_XPS_predicted.csv` |
-| `Au-Ir-Rh_Ir-rich_XPS.csv`           | XPS | `zenodo/20439519/XPS_dataset/Au-Ir-Rh_Ir-rich_XPS.csv/Au-Ir-Rh_Ir-rich_XPS.csv` |
-| `Au-Ir-Rh_Ir-rich_XPS_predicted.csv` | XPS | `zenodo/20439519/XPS_dataset/Au-Ir-Rh_Ir-rich_XPS_predicted.csv/Au-Ir-Rh_Ir-rich_XPS_predicted.csv` |
-| `Au-Ir-Rh_Rh-rich_XPS.csv`           | XPS | `zenodo/20439519/XPS_dataset/Au-Ir-Rh_Rh-rich_XPS.csv/Au-Ir-Rh_Rh-rich_XPS.csv` |
-| `Au-Ir-Rh_Rh-rich_XPS_predicted.csv` | XPS | `zenodo/20439519/XPS_dataset/Au-Ir-Rh_Rh-rich_XPS_predicted.csv/Au-Ir-Rh_Rh-rich_XPS_predicted.csv` |
-
-### SECCM dataset — 967 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/20439519/SECCM_dataset/))
-
-Source zip: `SECCM_dataset.zip` — one LSV CSV per measurement area + fit-parameter summary
-
-| file | experiment | count | S3 key pattern |
-|------|------------|-------|----------------|
-| `Au-Ir-Rh_Au-rich_SECCM_area_N_x=…_y=…_LSV.csv` | SECCM | 322 | `zenodo/20439519/SECCM_dataset/Au-Ir-Rh_Au-rich_SECCM_area_N_x=X_y=Y_LSV.csv/…` |
-| `Au-Ir-Rh_Ir-rich_SECCM_area_N_x=…_y=…_LSV.csv` | SECCM | 322 | `zenodo/20439519/SECCM_dataset/Au-Ir-Rh_Ir-rich_SECCM_area_N_x=X_y=Y_LSV.csv/…` |
-| `Au-Ir-Rh_Rh-rich_SECCM_area_N_x=…_y=…_LSV.csv` | SECCM | 322 | `zenodo/20439519/SECCM_dataset/Au-Ir-Rh_Rh-rich_SECCM_area_N_x=X_y=Y_LSV.csv/…` |
-| `LSV_fit_parameters.csv`                          | SECCM |   1 | `zenodo/20439519/SECCM_dataset/LSV_fit_parameters.csv/LSV_fit_parameters.csv` |
-
-### XRD dataset — 1026 files ([S3 folder](https://s3.console.aws.amazon.com/s3/buckets/spm-zenodo-data-897035677417?prefix=zenodo/20439519/XRD_dataset/))
-
-Source zip: `XRD_dataset.zip` — one `.xy` diffractogram per measurement area
-
-| file | experiment | count | S3 key pattern |
-|------|------------|-------|----------------|
-| `Au-Ir-Rh_Au-rich_XRD_area_NNN_diffractogram.xy` | XRD | 342 | `zenodo/20439519/XRD_dataset/Au-Ir-Rh_Au-rich_XRD_area_NNN_diffractogram.xy/…` |
-| `Au-Ir-Rh_Ir-rich_XRD_area_NNN_diffractogram.xy` | XRD | 342 | `zenodo/20439519/XRD_dataset/Au-Ir-Rh_Ir-rich_XRD_area_NNN_diffractogram.xy/…` |
-| `Au-Ir-Rh_Rh-rich_XRD_area_NNN_diffractogram.xy` | XRD | 342 | `zenodo/20439519/XRD_dataset/Au-Ir-Rh_Rh-rich_XRD_area_NNN_diffractogram.xy/…` |
+| file | experiment | count | S3 key |
+|------|------------|-------|--------|
+| `DataSetnote.txt` | AFM | 1 | `zenodo/20439519/AFM_dataset/DataSetnote.txt/` |
+| `LSV_fit_parameters.csv` | SECCM | 2 | `zenodo/20439519/SECCM_dataset/LSV_fit_parameters.csv/` |
 
 ## Parsability Assessment
 
@@ -118,5 +82,5 @@ Source zip: `XRD_dataset.zip` — one `.xy` diffractogram per measurement area
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test attempted
-- [ ] Reference `.nxs` file generated
+- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
+- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
