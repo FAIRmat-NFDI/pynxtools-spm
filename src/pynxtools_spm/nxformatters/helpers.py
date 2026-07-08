@@ -252,7 +252,9 @@ def _get_data_unit_and_others(
         unit = get_data_modified_key(unit_path)
     if unit is None or unit == "":
         return to_intended_t(raw_data), "", val_copy
-    return to_intended_t(raw_data), _verify_unit(unit=unit), val_copy
+    # Emit the short unit symbol globally (e.g. 'nanometer' -> 'nm', 'hertz' -> 'Hz');
+    # unit_short falls back to the verified unit string if it cannot be shortened.
+    return to_intended_t(raw_data), unit_short(_verify_unit(unit=unit)), val_copy
 
 
 def get_actual_from_variadic_name(name: str) -> str:
@@ -491,13 +493,24 @@ def cal_dy_by_dx(y_val: np.ndarray, x_val: np.ndarray) -> np.ndarray:
 
 
 def unit_short(unit: str | Any) -> str:
-    """Return a short unit symbol using pint (e.g. 'meter' -> 'm').
+    """Return a short unit symbol using pint (e.g. 'meter' -> 'm', 'nanometer' -> 'nm').
 
-    Accepts either a plain string unit name or a pint Quantity object.
+    Accepts either a plain string unit name or a pint Quantity/Unit object. Falls
+    back to the original (possibly long) unit when it cannot be shortened — e.g.
+    an empty value, a non-unit string, or a unit pint does not recognize — so this
+    is always safe to apply at a unit write site.
     """
-    if hasattr(unit, "units"):
-        return f"{unit.units:~}"
-    return f"{ureg(unit).units:~}"
+    if unit is None or unit == "":
+        return unit
+    try:
+        if isinstance(unit, str):
+            return f"{ureg(unit).units:~}"
+        if hasattr(unit, "units"):  # pint Quantity
+            return f"{unit.units:~}"
+        return f"{unit:~}"  # pint Unit
+    except Exception:  # noqa: BLE001 - pint raises several error types; keep the original
+        # Always return a string so the value is HDF5-writable as a @units attr.
+        return unit if isinstance(unit, str) else str(unit)
 
 
 def transfer_plain_template_to_nested_dict(template, nested_dict):
