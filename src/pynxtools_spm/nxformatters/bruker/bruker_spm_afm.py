@@ -145,6 +145,7 @@ class BrukerSpmAFM(BrukerBase):
                     data_dict=self.raw_data, end_dict=end_dict
                 )
                 data, unit = self._scalar_with_unit(data, unit)
+                unit = fhs.unit_short(unit)
                 if key_ext.endswith("x"):
                     self.scan_control.x_offset = data
                     self.scan_control.x_offset_unit = unit
@@ -180,7 +181,9 @@ class BrukerSpmAFM(BrukerBase):
                     start = stage + (0 if offset is None else offset)
                     start_unit = stage_unit or offset_unit
                 setattr(self.scan_control, f"{axis}_start", start)
-                setattr(self.scan_control, f"{axis}_start_unit", start_unit)
+                setattr(
+                    self.scan_control, f"{axis}_start_unit", fhs.unit_short(start_unit)
+                )
 
         range_fld = "scan_rangeN[scan_range_n]"
         range_fld_dict = partial_conf_dict.get(range_fld)
@@ -206,8 +209,8 @@ class BrukerSpmAFM(BrukerBase):
             range_val = ureg.Quantity(data, unit).to(self.scan_control.x_start_unit)
             self.scan_control.x_range = range_val.magnitude
             self.scan_control.y_range = range_val.magnitude / aspect_ratio_val
-            self.scan_control.x_range_unit = str(range_val.units)
-            self.scan_control.y_range_unit = str(range_val.units)
+            self.scan_control.x_range_unit = fhs.unit_short(range_val.units)
+            self.scan_control.y_range_unit = fhs.unit_short(range_val.units)
             self.scan_control.x_end = (
                 self.scan_control.x_start + self.scan_control.x_range
             )
@@ -350,7 +353,9 @@ class BrukerSpmAFM(BrukerBase):
                         expected_x_points,
                     )
                 self.template[f"{axis_x_key}"] = axis_x_data
-                self.template[f"{axis_x_key}/@units"] = self.scan_control.x_start_unit
+                self.template[f"{axis_x_key}/@units"] = fhs.unit_short(
+                    self.scan_control.x_start_unit
+                )
 
                 if not y_points_match:
                     axis_y_data = np.linspace(
@@ -360,7 +365,9 @@ class BrukerSpmAFM(BrukerBase):
                     )
                 self.template[f"{axis_y_key}"] = axis_y_data
 
-                self.template[f"{axis_y_key}/@units"] = self.scan_control.y_start_unit
+                self.template[f"{axis_y_key}/@units"] = fhs.unit_short(
+                    self.scan_control.y_start_unit
+                )
 
                 if not axes_data:
                     self.template[f"{axes_path}"] = [

@@ -677,11 +677,9 @@ class SPMformatter(ABC):
             axis_variadic = f"AXISNAME[{axis_fit}]"
             self.template[f"{dt_path}/@AXISNAME_indices[{axis_fit}_indices]"] = index
             self.template[f"{dt_path}/{axis_variadic}"] = axdata_unit_other_list[ind][0]
-            unit = axdata_unit_other_list[ind][1]
+            unit = unit_short(axdata_unit_other_list[ind][1])
             self.template[f"{dt_path}/{axis_variadic}/@units"] = unit
-            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = (
-                f"{axis} ({unit_short(unit)})"
-            )
+            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = f"{axis} ({unit})"
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
                     k = k if k.startswith("@") else f"@{k}"
