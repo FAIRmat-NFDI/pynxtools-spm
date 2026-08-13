@@ -109,12 +109,21 @@ class SpmBruker(SPMBase):
         for channel in channel_list:
             channel_clean = re.sub(r"\s+", "_", channel.strip())
             key = f"/{channel_clean}"
-            bruker_data_dict[f"{key}/backward"] = spm_obj.get_channel_data(
-                channel=channel, backward=True
-            )
-            bruker_data_dict[f"{key}/forward"] = spm_obj.get_channel_data(
-                channel=channel, backward=False
-            )
+            try:
+                backward_data = spm_obj.get_channel_data(channel=channel, backward=True)
+                forward_data = spm_obj.get_channel_data(channel=channel, backward=False)
+            except Exception as exc:  # noqa: BLE001 - pySPM raises several error types
+                # Some channels cannot be scaled/extracted by pySPM (e.g. KPFM
+                # "Potential" and LockIn2 "Amplitude2"/"Phase2" stored under
+                # @3:Image Data). Skip those and keep the remaining channels rather
+                # than aborting the whole file.
+                print(
+                    f"warning: skipping channel '{channel}': "
+                    f"{type(exc).__name__}: {exc}"
+                )
+                continue
+            bruker_data_dict[f"{key}/backward"] = backward_data
+            bruker_data_dict[f"{key}/forward"] = forward_data
 
         return bruker_data_dict
 

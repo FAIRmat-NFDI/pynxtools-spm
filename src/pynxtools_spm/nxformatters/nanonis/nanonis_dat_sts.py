@@ -116,17 +116,25 @@ class NanonisDatSTS(NanonisBase):
                 self.template[f"{parent_path}/{group_name}/{scan_points}"] = data
                 self.bias_sweep.scan_points_bias = data
                 del copy_partial_conf_dict[key]
-        self.bias_sweep.scan_size_bias = (
-            self.bias_sweep.scan_end_bias - self.bias_sweep.scan_start_bias
-        ) / self.bias_sweep.scan_points_bias
-        self.bias_sweep.scan_size_bias_unit = self.bias_sweep.scan_end_bias_unit
+        # The step size can only be computed for genuine bias-spectroscopy data.
+        # A plain STM/AFM .sxm image (no bias sweep) leaves scan_start/end/points
+        # as None; guard against that instead of raising on None arithmetic.
+        if (
+            self.bias_sweep.scan_end_bias is not None
+            and self.bias_sweep.scan_start_bias is not None
+            and self.bias_sweep.scan_points_bias
+        ):
+            self.bias_sweep.scan_size_bias = (
+                self.bias_sweep.scan_end_bias - self.bias_sweep.scan_start_bias
+            ) / self.bias_sweep.scan_points_bias
+            self.bias_sweep.scan_size_bias_unit = self.bias_sweep.scan_end_bias_unit
 
-        self.template[f"{parent_path}/{group_name}/{step_size}"] = (
-            self.bias_sweep.scan_size_bias
-        )
-        self.template[f"{parent_path}/{group_name}/{step_size}/@units"] = (
-            self.bias_sweep.scan_size_bias_unit
-        )
+            self.template[f"{parent_path}/{group_name}/{step_size}"] = (
+                self.bias_sweep.scan_size_bias
+            )
+            self.template[f"{parent_path}/{group_name}/{step_size}/@units"] = (
+                self.bias_sweep.scan_size_bias_unit
+            )
         self.walk_though_config_nested_dict(
             config_dict=copy_partial_conf_dict,
             parent_path=f"{parent_path}/{group_name}",

@@ -17,8 +17,14 @@
 
 ## Technique
 
-- **Primary SPM technique**: STM (Scanning Tunneling Microscopy)
-- **Instrument**: LT-STM and RT-STM (Hone-Barmak Group)
+- **Primary SPM technique**: STM (Scanning Tunneling Microscopy) — constant current
+- **Instrument**: Nanonis LT-STM and RT-STM (Hone-Barmak Group)
+
+## Sample
+
+- **Material / chemical formula**: single-crystal **tungsten diselenide (WSe₂)** → `WSe2`.
+- **Study**: constant-current STM imaging of atomic-scale defects in WSe₂ (LT-STM and RT-STM),
+  various sizes/resolutions; a subset carries atomic-defect bounding-box / mask labels.
 
 ## Dataset Contents
 
@@ -41,749 +47,749 @@
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `STM_WTip_WSe2-SL445_001.sxm` | STM | 1 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_001.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_002.sxm` | STM | 2 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_002.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_003.sxm` | STM | 3 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_003.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_004.sxm` | STM | 4 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_004.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_005.sxm` | STM | 5 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_005.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_006.sxm` | STM | 6 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_006.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_007.sxm` | STM | 7 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_007.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_008.sxm` | STM | 8 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_008.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_009.sxm` | STM | 9 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_009.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_010.sxm` | STM | 10 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_010.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_011.sxm` | STM | 11 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_011.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_012.sxm` | STM | 12 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_012.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_013.sxm` | STM | 13 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_013.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_014.sxm` | STM | 14 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_014.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_015.sxm` | STM | 15 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_015.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_016.sxm` | STM | 16 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_016.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_017.sxm` | STM | 17 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_017.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_018.sxm` | STM | 18 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_018.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_019.sxm` | STM | 19 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_019.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_020.sxm` | STM | 20 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_020.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_021.sxm` | STM | 21 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_021.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_022.sxm` | STM | 22 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_022.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_023.sxm` | STM | 23 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_023.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_024.sxm` | STM | 24 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_024.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_025.sxm` | STM | 25 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_025.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_026.sxm` | STM | 26 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_026.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_027.sxm` | STM | 27 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_027.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_028.sxm` | STM | 28 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_028.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_029.sxm` | STM | 29 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_029.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_030.sxm` | STM | 30 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_030.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_031.sxm` | STM | 31 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_031.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_032.sxm` | STM | 32 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_032.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_033.sxm` | STM | 33 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_033.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_034.sxm` | STM | 34 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_034.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_035.sxm` | STM | 35 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_035.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_036.sxm` | STM | 36 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_036.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_037.sxm` | STM | 37 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_037.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_038.sxm` | STM | 38 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_038.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_039.sxm` | STM | 39 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_039.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_040.sxm` | STM | 40 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_040.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_041.sxm` | STM | 41 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_041.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_042.sxm` | STM | 42 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_042.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_043.sxm` | STM | 43 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_043.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_044.sxm` | STM | 44 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_044.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_045.sxm` | STM | 45 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_045.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_046.sxm` | STM | 46 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_046.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_047.sxm` | STM | 47 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_047.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_048.sxm` | STM | 48 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_048.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_049.sxm` | STM | 49 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_049.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_050.sxm` | STM | 50 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_050.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_051.sxm` | STM | 51 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_051.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_052.sxm` | STM | 52 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_052.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_053.sxm` | STM | 53 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_053.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_054.sxm` | STM | 54 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_054.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_055.sxm` | STM | 55 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_055.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_056.sxm` | STM | 56 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_056.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_057.sxm` | STM | 57 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_057.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_058.sxm` | STM | 58 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_058.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_059.sxm` | STM | 59 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_059.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_060.sxm` | STM | 60 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_060.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_061.sxm` | STM | 61 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_061.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_062.sxm` | STM | 62 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_062.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_063.sxm` | STM | 63 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_063.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_064.sxm` | STM | 64 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_064.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_065.sxm` | STM | 65 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_065.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_066.sxm` | STM | 66 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_066.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_067.sxm` | STM | 67 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_067.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_068.sxm` | STM | 68 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_068.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_069.sxm` | STM | 69 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_069.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_070.sxm` | STM | 70 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_070.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_071.sxm` | STM | 71 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_071.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_072.sxm` | STM | 72 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_072.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_073.sxm` | STM | 73 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_073.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_074.sxm` | STM | 74 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_074.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_075.sxm` | STM | 75 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_075.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_076.sxm` | STM | 76 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_076.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_077.sxm` | STM | 77 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_077.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_078.sxm` | STM | 78 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_078.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_079.sxm` | STM | 79 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_079.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_080.sxm` | STM | 80 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_080.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_081.sxm` | STM | 81 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_081.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_082.sxm` | STM | 82 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_082.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_083.sxm` | STM | 83 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_083.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_084.sxm` | STM | 84 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_084.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_085.sxm` | STM | 85 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_085.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_086.sxm` | STM | 86 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_086.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_087.sxm` | STM | 87 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_087.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_088.sxm` | STM | 88 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_088.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_089.sxm` | STM | 89 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_089.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_090.sxm` | STM | 90 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_090.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_091.sxm` | STM | 91 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_091.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_092.sxm` | STM | 92 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_092.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_093.sxm` | STM | 93 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_093.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_094.sxm` | STM | 94 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_094.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_095.sxm` | STM | 95 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_095.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_096.sxm` | STM | 96 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_096.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_097.sxm` | STM | 97 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_097.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_098.sxm` | STM | 98 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_098.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_099.sxm` | STM | 99 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_099.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_100.sxm` | STM | 100 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_100.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_101.sxm` | STM | 101 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_101.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_102.sxm` | STM | 102 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_102.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_103.sxm` | STM | 103 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_103.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_104.sxm` | STM | 104 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_104.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_105.sxm` | STM | 105 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_105.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_106.sxm` | STM | 106 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_106.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_107.sxm` | STM | 107 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_107.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_108.sxm` | STM | 108 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_108.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_109.sxm` | STM | 109 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_109.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_110.sxm` | STM | 110 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_110.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_111.sxm` | STM | 111 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_111.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_112.sxm` | STM | 112 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_112.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_113.sxm` | STM | 113 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_113.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_114.sxm` | STM | 114 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_114.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_115.sxm` | STM | 115 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_115.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_116.sxm` | STM | 116 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_116.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_117.sxm` | STM | 117 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_117.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_118.sxm` | STM | 118 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_118.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_119.sxm` | STM | 119 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_119.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_120.sxm` | STM | 120 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_120.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_121.sxm` | STM | 121 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_121.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_122.sxm` | STM | 122 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_122.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_123.sxm` | STM | 123 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_123.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_124.sxm` | STM | 124 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_124.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_125.sxm` | STM | 125 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_125.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_126.sxm` | STM | 126 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_126.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_127.sxm` | STM | 127 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_127.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_128.sxm` | STM | 128 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_128.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_129.sxm` | STM | 129 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_129.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_130.sxm` | STM | 130 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_130.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_131.sxm` | STM | 131 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_131.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_132.sxm` | STM | 132 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_132.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_133.sxm` | STM | 133 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_133.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_134.sxm` | STM | 134 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_134.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_135.sxm` | STM | 135 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_135.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_136.sxm` | STM | 136 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_136.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_137.sxm` | STM | 137 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_137.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_138.sxm` | STM | 138 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_138.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_139.sxm` | STM | 139 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_139.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_140.sxm` | STM | 140 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_140.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_141.sxm` | STM | 141 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_141.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_142.sxm` | STM | 142 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_142.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_143.sxm` | STM | 143 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_143.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_144.sxm` | STM | 144 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_144.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_145.sxm` | STM | 145 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_145.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_146.sxm` | STM | 146 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_146.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_032.sxm` | STM | 147 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_032.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_033.sxm` | STM | 148 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_033.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_034.sxm` | STM | 149 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_034.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_035.sxm` | STM | 150 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_035.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_036.sxm` | STM | 151 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_036.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_037.sxm` | STM | 152 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_037.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_038.sxm` | STM | 153 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_038.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_039.sxm` | STM | 154 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_039.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_040.sxm` | STM | 155 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_040.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_041.sxm` | STM | 156 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_041.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_042.sxm` | STM | 157 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_042.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_043.sxm` | STM | 158 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_043.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_044.sxm` | STM | 159 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_044.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_045.sxm` | STM | 160 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_045.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_046.sxm` | STM | 161 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_046.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_047.sxm` | STM | 162 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_047.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_048.sxm` | STM | 163 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_048.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_049.sxm` | STM | 164 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_049.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_050.sxm` | STM | 165 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_050.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_051.sxm` | STM | 166 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_051.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_052.sxm` | STM | 167 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_052.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_053.sxm` | STM | 168 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_053.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_054.sxm` | STM | 169 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_054.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_055.sxm` | STM | 170 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_055.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_056.sxm` | STM | 171 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_056.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_057.sxm` | STM | 172 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_057.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_058.sxm` | STM | 173 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_058.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_059.sxm` | STM | 174 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_059.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_060.sxm` | STM | 175 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_060.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_061.sxm` | STM | 176 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_061.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_062.sxm` | STM | 177 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_062.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_063.sxm` | STM | 178 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_063.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_064.sxm` | STM | 179 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_064.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_065.sxm` | STM | 180 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_065.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_066.sxm` | STM | 181 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_066.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_067.sxm` | STM | 182 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_067.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_068.sxm` | STM | 183 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_068.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_069.sxm` | STM | 184 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_069.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_070.sxm` | STM | 185 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_070.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_071.sxm` | STM | 186 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_071.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_072.sxm` | STM | 187 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_072.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_073.sxm` | STM | 188 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_073.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_074.sxm` | STM | 189 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_074.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_075.sxm` | STM | 190 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_075.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_076.sxm` | STM | 191 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_076.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_077.sxm` | STM | 192 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_077.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_078.sxm` | STM | 193 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_078.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_079.sxm` | STM | 194 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_079.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_080.sxm` | STM | 195 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_080.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_081.sxm` | STM | 196 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_081.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_082.sxm` | STM | 197 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_082.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_083.sxm` | STM | 198 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_083.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_084.sxm` | STM | 199 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_084.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_085.sxm` | STM | 200 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_085.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_086.sxm` | STM | 201 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_086.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_087.sxm` | STM | 202 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_087.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_088.sxm` | STM | 203 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_088.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_089.sxm` | STM | 204 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_089.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_090.sxm` | STM | 205 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_090.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_091.sxm` | STM | 206 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_091.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_092.sxm` | STM | 207 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_092.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_093.sxm` | STM | 208 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_093.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_094.sxm` | STM | 209 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_094.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_095.sxm` | STM | 210 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_095.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_096.sxm` | STM | 211 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_096.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_097.sxm` | STM | 212 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_097.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_098.sxm` | STM | 213 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_098.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_099.sxm` | STM | 214 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_099.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_100.sxm` | STM | 215 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_100.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_101.sxm` | STM | 216 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_101.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_102.sxm` | STM | 217 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_102.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_103.sxm` | STM | 218 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_103.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_104.sxm` | STM | 219 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_104.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_105.sxm` | STM | 220 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_105.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_106.sxm` | STM | 221 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_106.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_107.sxm` | STM | 222 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_107.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_108.sxm` | STM | 223 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_108.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_109.sxm` | STM | 224 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_109.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_110.sxm` | STM | 225 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_110.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_111.sxm` | STM | 226 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_111.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_112.sxm` | STM | 227 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_112.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_113.sxm` | STM | 228 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_113.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_114.sxm` | STM | 229 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_114.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_115.sxm` | STM | 230 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_115.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_116.sxm` | STM | 231 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_116.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_117.sxm` | STM | 232 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_117.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_118.sxm` | STM | 233 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_118.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_119.sxm` | STM | 234 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_119.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_120.sxm` | STM | 235 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_120.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_121.sxm` | STM | 236 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_121.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_001.sxm` | STM | 237 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_001.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_002.sxm` | STM | 238 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_002.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_003.sxm` | STM | 239 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_003.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_004.sxm` | STM | 240 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_004.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_005.sxm` | STM | 241 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_005.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_006.sxm` | STM | 242 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_006.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_007.sxm` | STM | 243 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_007.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_008.sxm` | STM | 244 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_008.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_009.sxm` | STM | 245 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_009.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_010.sxm` | STM | 246 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_010.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_011.sxm` | STM | 247 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_011.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_012.sxm` | STM | 248 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_012.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_013.sxm` | STM | 249 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_013.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_014.sxm` | STM | 250 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_014.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_015.sxm` | STM | 251 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_015.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_122.sxm` | STM | 252 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_122.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_123.sxm` | STM | 253 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_123.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_124.sxm` | STM | 254 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_124.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_125.sxm` | STM | 255 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_125.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_126.sxm` | STM | 256 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_126.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_127.sxm` | STM | 257 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_127.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_128.sxm` | STM | 258 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_128.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_129.sxm` | STM | 259 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_129.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_130.sxm` | STM | 260 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_130.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_131.sxm` | STM | 261 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_131.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_132.sxm` | STM | 262 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_132.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_133.sxm` | STM | 263 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_133.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_134.sxm` | STM | 264 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_134.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_135.sxm` | STM | 265 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_135.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_136.sxm` | STM | 266 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_136.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_137.sxm` | STM | 267 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_137.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_138.sxm` | STM | 268 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_138.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_139.sxm` | STM | 269 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_139.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_140.sxm` | STM | 270 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_140.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_141.sxm` | STM | 271 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_141.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_142.sxm` | STM | 272 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_142.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_143.sxm` | STM | 273 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_143.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_144.sxm` | STM | 274 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_144.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_145.sxm` | STM | 275 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_145.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_146.sxm` | STM | 276 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_146.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_001.sxm` | STM | 277 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_001.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_002.sxm` | STM | 278 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_002.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_003.sxm` | STM | 279 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_003.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_004.sxm` | STM | 280 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_004.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_005.sxm` | STM | 281 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_005.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_006.sxm` | STM | 282 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_006.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_007.sxm` | STM | 283 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_007.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_008.sxm` | STM | 284 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_008.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_009.sxm` | STM | 285 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_009.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_010.sxm` | STM | 286 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_010.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_011.sxm` | STM | 287 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_011.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_012.sxm` | STM | 288 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_012.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_013.sxm` | STM | 289 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_013.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_014.sxm` | STM | 290 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_014.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_015.sxm` | STM | 291 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_015.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_016.sxm` | STM | 292 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_016.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_017.sxm` | STM | 293 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_017.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_018.sxm` | STM | 294 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_018.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_019.sxm` | STM | 295 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_019.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_020.sxm` | STM | 296 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_020.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_016.sxm` | STM | 297 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_016.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_017.sxm` | STM | 298 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_017.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_018.sxm` | STM | 299 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_018.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_019.sxm` | STM | 300 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_019.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_020.sxm` | STM | 301 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_020.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_021.sxm` | STM | 302 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_021.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_022.sxm` | STM | 303 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_022.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_023.sxm` | STM | 304 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_023.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_024.sxm` | STM | 305 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_024.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_025.sxm` | STM | 306 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_025.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_026.sxm` | STM | 307 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_026.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_027.sxm` | STM | 308 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_027.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_028.sxm` | STM | 309 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_028.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_029.sxm` | STM | 310 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_029.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_030.sxm` | STM | 311 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_030.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_031.sxm` | STM | 312 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_031.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_032.sxm` | STM | 313 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_032.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_033.sxm` | STM | 314 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_033.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_034.sxm` | STM | 315 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_034.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_035.sxm` | STM | 316 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_035.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_036.sxm` | STM | 317 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_036.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_037.sxm` | STM | 318 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_037.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_038.sxm` | STM | 319 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_038.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_039.sxm` | STM | 320 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_039.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_040.sxm` | STM | 321 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_040.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_041.sxm` | STM | 322 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_041.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_042.sxm` | STM | 323 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_042.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_043.sxm` | STM | 324 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_043.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_044.sxm` | STM | 325 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_044.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_045.sxm` | STM | 326 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_045.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_046.sxm` | STM | 327 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_046.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_047.sxm` | STM | 328 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_047.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_048.sxm` | STM | 329 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_048.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_049.sxm` | STM | 330 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_049.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_050.sxm` | STM | 331 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_050.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_051.sxm` | STM | 332 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_051.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_052.sxm` | STM | 333 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_052.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_053.sxm` | STM | 334 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_053.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_054.sxm` | STM | 335 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_054.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_055.sxm` | STM | 336 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_055.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_056.sxm` | STM | 337 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_056.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_057.sxm` | STM | 338 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_057.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_058.sxm` | STM | 339 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_058.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_059.sxm` | STM | 340 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_059.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_060.sxm` | STM | 341 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_060.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_061.sxm` | STM | 342 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_061.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_062.sxm` | STM | 343 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_062.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_063.sxm` | STM | 344 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_063.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_064.sxm` | STM | 345 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_064.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_065.sxm` | STM | 346 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_065.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_066.sxm` | STM | 347 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_066.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_067.sxm` | STM | 348 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_067.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_068.sxm` | STM | 349 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_068.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_069.sxm` | STM | 350 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_069.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_070.sxm` | STM | 351 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_070.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_071.sxm` | STM | 352 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_071.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_072.sxm` | STM | 353 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_072.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_073.sxm` | STM | 354 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_073.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_074.sxm` | STM | 355 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_074.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_075.sxm` | STM | 356 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_075.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_076.sxm` | STM | 357 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_076.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_077.sxm` | STM | 358 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_077.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_078.sxm` | STM | 359 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_078.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_079.sxm` | STM | 360 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_079.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_080.sxm` | STM | 361 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_080.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_081.sxm` | STM | 362 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_081.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_082.sxm` | STM | 363 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_082.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_083.sxm` | STM | 364 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_083.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_084.sxm` | STM | 365 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_084.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_085.sxm` | STM | 366 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_085.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_086.sxm` | STM | 367 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_086.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_087.sxm` | STM | 368 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_087.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_088.sxm` | STM | 369 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_088.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_089.sxm` | STM | 370 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_089.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_090.sxm` | STM | 371 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_090.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_091.sxm` | STM | 372 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_091.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_092.sxm` | STM | 373 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_092.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_093.sxm` | STM | 374 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_093.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_094.sxm` | STM | 375 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_094.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_095.sxm` | STM | 376 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_095.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_096.sxm` | STM | 377 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_096.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_097.sxm` | STM | 378 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_097.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_098.sxm` | STM | 379 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_098.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_099.sxm` | STM | 380 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_099.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_100.sxm` | STM | 381 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_100.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_101.sxm` | STM | 382 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_101.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_102.sxm` | STM | 383 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_102.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_103.sxm` | STM | 384 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_103.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_104.sxm` | STM | 385 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_104.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_105.sxm` | STM | 386 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_105.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_106.sxm` | STM | 387 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_106.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_107.sxm` | STM | 388 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_107.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_108.sxm` | STM | 389 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_108.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_109.sxm` | STM | 390 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_109.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_110.sxm` | STM | 391 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_110.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_111.sxm` | STM | 392 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_111.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_112.sxm` | STM | 393 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_112.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_113.sxm` | STM | 394 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_113.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_114.sxm` | STM | 395 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_114.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_115.sxm` | STM | 396 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_115.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_116.sxm` | STM | 397 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_116.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_117.sxm` | STM | 398 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_117.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_118.sxm` | STM | 399 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_118.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_119.sxm` | STM | 400 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_119.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_120.sxm` | STM | 401 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_120.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_121.sxm` | STM | 402 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_121.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_122.sxm` | STM | 403 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_122.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_123.sxm` | STM | 404 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_123.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_124.sxm` | STM | 405 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_124.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_125.sxm` | STM | 406 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_125.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_126.sxm` | STM | 407 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_126.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_127.sxm` | STM | 408 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_127.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_128.sxm` | STM | 409 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_128.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_129.sxm` | STM | 410 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_129.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_130.sxm` | STM | 411 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_130.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_131.sxm` | STM | 412 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_131.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_132.sxm` | STM | 413 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_132.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_133.sxm` | STM | 414 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_133.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_134.sxm` | STM | 415 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_134.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_135.sxm` | STM | 416 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_135.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_136.sxm` | STM | 417 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_136.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_137.sxm` | STM | 418 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_137.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_138.sxm` | STM | 419 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_138.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_139.sxm` | STM | 420 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_139.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_140.sxm` | STM | 421 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_140.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_141.sxm` | STM | 422 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_141.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_142.sxm` | STM | 423 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_142.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_143.sxm` | STM | 424 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_143.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_144.sxm` | STM | 425 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_144.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_145.sxm` | STM | 426 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_145.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_146.sxm` | STM | 427 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_146.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_147.sxm` | STM | 428 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_147.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_148.sxm` | STM | 429 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_148.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_149.sxm` | STM | 430 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_149.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_150.sxm` | STM | 431 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_150.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_151.sxm` | STM | 432 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_151.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_152.sxm` | STM | 433 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_152.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_153.sxm` | STM | 434 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_153.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_154.sxm` | STM | 435 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_154.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_155.sxm` | STM | 436 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_155.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_156.sxm` | STM | 437 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_156.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_157.sxm` | STM | 438 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_157.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_158.sxm` | STM | 439 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_158.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_159.sxm` | STM | 440 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_159.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_160.sxm` | STM | 441 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_160.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_161.sxm` | STM | 442 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_161.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_162.sxm` | STM | 443 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_162.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_163.sxm` | STM | 444 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_163.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_164.sxm` | STM | 445 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_164.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_165.sxm` | STM | 446 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_165.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_166.sxm` | STM | 447 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_166.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_167.sxm` | STM | 448 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_167.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_168.sxm` | STM | 449 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_168.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_169.sxm` | STM | 450 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_169.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_170.sxm` | STM | 451 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_170.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_171.sxm` | STM | 452 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_171.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_172.sxm` | STM | 453 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_172.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_173.sxm` | STM | 454 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_173.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_174.sxm` | STM | 455 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_174.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_175.sxm` | STM | 456 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_175.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_176.sxm` | STM | 457 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_176.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_177.sxm` | STM | 458 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_177.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_178.sxm` | STM | 459 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_178.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_179.sxm` | STM | 460 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_179.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_180.sxm` | STM | 461 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_180.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_181.sxm` | STM | 462 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_181.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_182.sxm` | STM | 463 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_182.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_183.sxm` | STM | 464 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_183.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_184.sxm` | STM | 465 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_184.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_185.sxm` | STM | 466 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_185.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_186.sxm` | STM | 467 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_186.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_187.sxm` | STM | 468 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_187.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_188.sxm` | STM | 469 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_188.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_189.sxm` | STM | 470 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_189.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_190.sxm` | STM | 471 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_190.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_191.sxm` | STM | 472 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_191.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_192.sxm` | STM | 473 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_192.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_193.sxm` | STM | 474 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_193.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_194.sxm` | STM | 475 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_194.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_195.sxm` | STM | 476 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_195.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_196.sxm` | STM | 477 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_196.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_197.sxm` | STM | 478 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_197.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_198.sxm` | STM | 479 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_198.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_199.sxm` | STM | 480 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_199.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_200.sxm` | STM | 481 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_200.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_201.sxm` | STM | 482 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_201.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_202.sxm` | STM | 483 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_202.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_203.sxm` | STM | 484 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_203.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_204.sxm` | STM | 485 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_204.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_205.sxm` | STM | 486 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_205.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_206.sxm` | STM | 487 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_206.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_207.sxm` | STM | 488 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_207.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_208.sxm` | STM | 489 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_208.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_209.sxm` | STM | 490 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_209.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_210.sxm` | STM | 491 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_210.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_001.sxm` | STM | 492 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_001.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_002.sxm` | STM | 493 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_002.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_003.sxm` | STM | 494 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_003.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_004.sxm` | STM | 495 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_004.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_005.sxm` | STM | 496 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_005.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_006.sxm` | STM | 497 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_006.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_007.sxm` | STM | 498 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_007.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_008.sxm` | STM | 499 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_008.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_009.sxm` | STM | 500 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_009.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_010.sxm` | STM | 501 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_010.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_011.sxm` | STM | 502 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_011.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_012.sxm` | STM | 503 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_012.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_013.sxm` | STM | 504 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_013.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_014.sxm` | STM | 505 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_014.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_015.sxm` | STM | 506 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_015.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_016.sxm` | STM | 507 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_016.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_017.sxm` | STM | 508 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_017.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_018.sxm` | STM | 509 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_018.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_019.sxm` | STM | 510 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_019.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_020.sxm` | STM | 511 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_020.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_021.sxm` | STM | 512 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_021.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_022.sxm` | STM | 513 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_022.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_023.sxm` | STM | 514 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_023.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_024.sxm` | STM | 515 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_024.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_025.sxm` | STM | 516 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_025.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_026.sxm` | STM | 517 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_026.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_027.sxm` | STM | 518 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_027.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_028.sxm` | STM | 519 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_028.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_029.sxm` | STM | 520 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_029.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_030.sxm` | STM | 521 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_030.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_031.sxm` | STM | 522 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_031.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_032.sxm` | STM | 523 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_032.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_033.sxm` | STM | 524 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_033.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_034.sxm` | STM | 525 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_034.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_035.sxm` | STM | 526 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_035.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_036.sxm` | STM | 527 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_036.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_037.sxm` | STM | 528 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_037.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_038.sxm` | STM | 529 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_038.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_039.sxm` | STM | 530 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_039.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_040.sxm` | STM | 531 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_040.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_041.sxm` | STM | 532 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_041.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_042.sxm` | STM | 533 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_042.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_043.sxm` | STM | 534 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_043.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_044.sxm` | STM | 535 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_044.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_045.sxm` | STM | 536 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_045.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_046.sxm` | STM | 537 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_046.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_047.sxm` | STM | 538 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_047.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_048.sxm` | STM | 539 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_048.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_049.sxm` | STM | 540 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_049.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_050.sxm` | STM | 541 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_050.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_051.sxm` | STM | 542 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_051.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_052.sxm` | STM | 543 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_052.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_053.sxm` | STM | 544 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_053.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_054.sxm` | STM | 545 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_054.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_055.sxm` | STM | 546 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_055.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_056.sxm` | STM | 547 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_056.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_057.sxm` | STM | 548 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_057.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_058.sxm` | STM | 549 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_058.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_059.sxm` | STM | 550 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_059.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_060.sxm` | STM | 551 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_060.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_061.sxm` | STM | 552 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_061.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_062.sxm` | STM | 553 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_062.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_063.sxm` | STM | 554 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_063.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_064.sxm` | STM | 555 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_064.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_065.sxm` | STM | 556 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_065.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_066.sxm` | STM | 557 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_066.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_067.sxm` | STM | 558 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_067.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_068.sxm` | STM | 559 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_068.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_069.sxm` | STM | 560 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_069.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_070.sxm` | STM | 561 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_070.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_071.sxm` | STM | 562 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_071.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_072.sxm` | STM | 563 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_072.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_073.sxm` | STM | 564 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_073.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_074.sxm` | STM | 565 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_074.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_075.sxm` | STM | 566 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_075.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_076.sxm` | STM | 567 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_076.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_077.sxm` | STM | 568 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_077.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_078.sxm` | STM | 569 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_078.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_079.sxm` | STM | 570 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_079.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_080.sxm` | STM | 571 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_080.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_081.sxm` | STM | 572 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_081.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_082.sxm` | STM | 573 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_082.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_083.sxm` | STM | 574 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_083.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_084.sxm` | STM | 575 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_084.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_085.sxm` | STM | 576 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_085.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_086.sxm` | STM | 577 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_086.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_087.sxm` | STM | 578 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_087.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_088.sxm` | STM | 579 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_088.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_089.sxm` | STM | 580 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_089.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_090.sxm` | STM | 581 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_090.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_091.sxm` | STM | 582 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_091.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_092.sxm` | STM | 583 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_092.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_093.sxm` | STM | 584 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_093.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_094.sxm` | STM | 585 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_094.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_095.sxm` | STM | 586 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_095.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_096.sxm` | STM | 587 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_096.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_097.sxm` | STM | 588 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_097.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_098.sxm` | STM | 589 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_098.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_099.sxm` | STM | 590 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_099.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_100.sxm` | STM | 591 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_100.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_101.sxm` | STM | 592 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_101.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_102.sxm` | STM | 593 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_102.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_103.sxm` | STM | 594 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_103.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_104.sxm` | STM | 595 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_104.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_105.sxm` | STM | 596 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_105.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_106.sxm` | STM | 597 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_106.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_107.sxm` | STM | 598 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_107.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_108.sxm` | STM | 599 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_108.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_109.sxm` | STM | 600 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_109.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_001.sxm` | STM | 601 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_001.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_002.sxm` | STM | 602 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_002.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_003.sxm` | STM | 603 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_003.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_004.sxm` | STM | 604 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_004.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_005.sxm` | STM | 605 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_005.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_006.sxm` | STM | 606 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_006.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_007.sxm` | STM | 607 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_007.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_008.sxm` | STM | 608 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_008.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_009.sxm` | STM | 609 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_009.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_010.sxm` | STM | 610 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_010.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_011.sxm` | STM | 611 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_011.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_012.sxm` | STM | 612 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_012.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_013.sxm` | STM | 613 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_013.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_014.sxm` | STM | 614 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_014.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_015.sxm` | STM | 615 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_015.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_016.sxm` | STM | 616 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_016.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_017.sxm` | STM | 617 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_017.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_018.sxm` | STM | 618 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_018.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_019.sxm` | STM | 619 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_019.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_020.sxm` | STM | 620 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_020.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_021.sxm` | STM | 621 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_021.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_022.sxm` | STM | 622 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_022.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_023.sxm` | STM | 623 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_023.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_024.sxm` | STM | 624 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_024.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_025.sxm` | STM | 625 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_025.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_026.sxm` | STM | 626 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_026.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_027.sxm` | STM | 627 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_027.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_028.sxm` | STM | 628 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_028.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_029.sxm` | STM | 629 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_029.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_030.sxm` | STM | 630 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_030.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_031.sxm` | STM | 631 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_031.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_032.sxm` | STM | 632 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_032.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_033.sxm` | STM | 633 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_033.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_034.sxm` | STM | 634 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_034.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_035.sxm` | STM | 635 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_035.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_036.sxm` | STM | 636 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_036.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_037.sxm` | STM | 637 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_037.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_038.sxm` | STM | 638 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_038.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_039.sxm` | STM | 639 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_039.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_040.sxm` | STM | 640 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_040.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_041.sxm` | STM | 641 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_041.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_042.sxm` | STM | 642 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_042.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_043.sxm` | STM | 643 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_043.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_044.sxm` | STM | 644 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_044.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_045.sxm` | STM | 645 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_045.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_046.sxm` | STM | 646 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_046.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_047.sxm` | STM | 647 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_047.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_048.sxm` | STM | 648 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_048.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_049.sxm` | STM | 649 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_049.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_050.sxm` | STM | 650 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_050.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_051.sxm` | STM | 651 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_051.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_052.sxm` | STM | 652 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_052.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_053.sxm` | STM | 653 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_053.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_054.sxm` | STM | 654 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_054.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_055.sxm` | STM | 655 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_055.sxm/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_001.dat` | STM | 656 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_001.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_002.dat` | STM | 657 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_002.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_003.dat` | STM | 658 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_003.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_004.dat` | STM | 659 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_004.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_005.dat` | STM | 660 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_005.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_006.dat` | STM | 661 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_006.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_007.dat` | STM | 662 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_007.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_008.dat` | STM | 663 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_008.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_009.dat` | STM | 664 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_009.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_010.dat` | STM | 665 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_010.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_011.dat` | STM | 666 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_011.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_012.dat` | STM | 667 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_012.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_013.dat` | STM | 668 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_013.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_014.dat` | STM | 669 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_014.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_015.dat` | STM | 670 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_015.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_016.dat` | STM | 671 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_016.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_017.dat` | STM | 672 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_017.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_018.dat` | STM | 673 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_018.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_019.dat` | STM | 674 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_019.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_020.dat` | STM | 675 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_020.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_021.dat` | STM | 676 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_021.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_022.dat` | STM | 677 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_022.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_023.dat` | STM | 678 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_023.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_024.dat` | STM | 679 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_024.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_025.dat` | STM | 680 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_025.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_026.dat` | STM | 681 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_026.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_027.dat` | STM | 682 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_027.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_028.dat` | STM | 683 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_028.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_029.dat` | STM | 684 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_029.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_030.dat` | STM | 685 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_030.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_031.dat` | STM | 686 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_031.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_032.dat` | STM | 687 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_032.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_033.dat` | STM | 688 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_033.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_034.dat` | STM | 689 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_034.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_035.dat` | STM | 690 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_035.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_036.dat` | STM | 691 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_036.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_037.dat` | STM | 692 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_037.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_038.dat` | STM | 693 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_038.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_039.dat` | STM | 694 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_039.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_040.dat` | STM | 695 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_040.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_041.dat` | STM | 696 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_041.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_042.dat` | STM | 697 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_042.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_043.dat` | STM | 698 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_043.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_044.dat` | STM | 699 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_044.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_045.dat` | STM | 700 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_045.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_046.dat` | STM | 701 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_046.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_047.dat` | STM | 702 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_047.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_048.dat` | STM | 703 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_048.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_049.dat` | STM | 704 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_049.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_050.dat` | STM | 705 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_050.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_051.dat` | STM | 706 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_051.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_052.dat` | STM | 707 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_052.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_053.dat` | STM | 708 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_053.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_054.dat` | STM | 709 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_054.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_055.dat` | STM | 710 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_055.dat/` | — | — |
-| `V-Spec_WTip_WSe2-SL445_056.dat` | STM | 711 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_056.dat/` | — | — |
-| `STM_WTip_WSe2-SL445_001.sxm` | STM | 712 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_001.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_002.sxm` | STM | 713 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_002.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_003.sxm` | STM | 714 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_003.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_004.sxm` | STM | 715 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_004.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_005.sxm` | STM | 716 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_005.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_006.sxm` | STM | 717 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_006.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_007.sxm` | STM | 718 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_007.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_008.sxm` | STM | 719 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_008.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_009.sxm` | STM | 720 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_009.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_010.sxm` | STM | 721 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_010.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_011.sxm` | STM | 722 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_011.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_012.sxm` | STM | 723 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_012.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_013.sxm` | STM | 724 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_013.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_014.sxm` | STM | 725 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_014.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_015.sxm` | STM | 726 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_015.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_016.sxm` | STM | 727 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_016.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_017.sxm` | STM | 728 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_017.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_018.sxm` | STM | 729 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_018.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_019.sxm` | STM | 730 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_019.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_020.sxm` | STM | 731 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_020.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_021.sxm` | STM | 732 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_021.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_022.sxm` | STM | 733 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_022.sxm/` | — | — |
-| `STM_WTip_WSe2-SL445_023.sxm` | STM | 734 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_023.sxm/` | — | — |
-| `*.ini` | STM | 7 | `zenodo/10443995/STM_data/` | — | — |
-| `*.zip` | STM | 2 | `zenodo/10443995/STM_data/` | — | — |
-| `*.jpg` | STM | 236 | `zenodo/10443995/STM_images/` | — | — |
-| `*.npy` | STM | 1 | `zenodo/10443995/WSe2-Defect-Training-Images_2023-05-01.npy/` | — | — |
-| `*.npy` | STM | 1 | `zenodo/10443995/WSe2-Defect-Training-Labels_2023-05-01.npy/` | — | — |
-| `*.csv` | STM | 1 | `zenodo/10443995/annotations.csv/` | — | — |
-| `*.json` | STM | 1 | `zenodo/10443995/annotations.json/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `STM_WTip_WSe2-SL445_001.sxm` | STM | WSe2 single crystal | WSe2 | 1 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_001.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_002.sxm` | STM | WSe2 single crystal | WSe2 | 2 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_002.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_003.sxm` | STM | WSe2 single crystal | WSe2 | 3 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_003.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_004.sxm` | STM | WSe2 single crystal | WSe2 | 4 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_004.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_005.sxm` | STM | WSe2 single crystal | WSe2 | 5 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_005.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_006.sxm` | STM | WSe2 single crystal | WSe2 | 6 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_006.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_007.sxm` | STM | WSe2 single crystal | WSe2 | 7 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_007.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_008.sxm` | STM | WSe2 single crystal | WSe2 | 8 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_008.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_009.sxm` | STM | WSe2 single crystal | WSe2 | 9 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_009.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_010.sxm` | STM | WSe2 single crystal | WSe2 | 10 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_010.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_011.sxm` | STM | WSe2 single crystal | WSe2 | 11 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_011.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_012.sxm` | STM | WSe2 single crystal | WSe2 | 12 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_012.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_013.sxm` | STM | WSe2 single crystal | WSe2 | 13 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_013.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_014.sxm` | STM | WSe2 single crystal | WSe2 | 14 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_014.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_015.sxm` | STM | WSe2 single crystal | WSe2 | 15 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_015.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_016.sxm` | STM | WSe2 single crystal | WSe2 | 16 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_016.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_017.sxm` | STM | WSe2 single crystal | WSe2 | 17 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_017.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_018.sxm` | STM | WSe2 single crystal | WSe2 | 18 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_018.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_019.sxm` | STM | WSe2 single crystal | WSe2 | 19 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_019.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_020.sxm` | STM | WSe2 single crystal | WSe2 | 20 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_020.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_021.sxm` | STM | WSe2 single crystal | WSe2 | 21 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_021.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_022.sxm` | STM | WSe2 single crystal | WSe2 | 22 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_022.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_023.sxm` | STM | WSe2 single crystal | WSe2 | 23 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_023.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_024.sxm` | STM | WSe2 single crystal | WSe2 | 24 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_024.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_025.sxm` | STM | WSe2 single crystal | WSe2 | 25 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_025.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_026.sxm` | STM | WSe2 single crystal | WSe2 | 26 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_026.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_027.sxm` | STM | WSe2 single crystal | WSe2 | 27 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_027.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_028.sxm` | STM | WSe2 single crystal | WSe2 | 28 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_028.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_029.sxm` | STM | WSe2 single crystal | WSe2 | 29 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_029.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_030.sxm` | STM | WSe2 single crystal | WSe2 | 30 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_030.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_031.sxm` | STM | WSe2 single crystal | WSe2 | 31 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_031.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_032.sxm` | STM | WSe2 single crystal | WSe2 | 32 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_032.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_033.sxm` | STM | WSe2 single crystal | WSe2 | 33 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_033.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_034.sxm` | STM | WSe2 single crystal | WSe2 | 34 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_034.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_035.sxm` | STM | WSe2 single crystal | WSe2 | 35 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_035.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_036.sxm` | STM | WSe2 single crystal | WSe2 | 36 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_036.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_037.sxm` | STM | WSe2 single crystal | WSe2 | 37 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_037.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_038.sxm` | STM | WSe2 single crystal | WSe2 | 38 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_038.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_039.sxm` | STM | WSe2 single crystal | WSe2 | 39 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_039.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_040.sxm` | STM | WSe2 single crystal | WSe2 | 40 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_040.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_041.sxm` | STM | WSe2 single crystal | WSe2 | 41 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_041.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_042.sxm` | STM | WSe2 single crystal | WSe2 | 42 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_042.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_043.sxm` | STM | WSe2 single crystal | WSe2 | 43 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_043.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_044.sxm` | STM | WSe2 single crystal | WSe2 | 44 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_044.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_045.sxm` | STM | WSe2 single crystal | WSe2 | 45 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_045.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_046.sxm` | STM | WSe2 single crystal | WSe2 | 46 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_046.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_047.sxm` | STM | WSe2 single crystal | WSe2 | 47 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_047.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_048.sxm` | STM | WSe2 single crystal | WSe2 | 48 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_048.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_049.sxm` | STM | WSe2 single crystal | WSe2 | 49 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_049.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_050.sxm` | STM | WSe2 single crystal | WSe2 | 50 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_050.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_051.sxm` | STM | WSe2 single crystal | WSe2 | 51 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_051.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_052.sxm` | STM | WSe2 single crystal | WSe2 | 52 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_052.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_053.sxm` | STM | WSe2 single crystal | WSe2 | 53 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_053.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_054.sxm` | STM | WSe2 single crystal | WSe2 | 54 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_054.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_055.sxm` | STM | WSe2 single crystal | WSe2 | 55 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_055.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_056.sxm` | STM | WSe2 single crystal | WSe2 | 56 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_056.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_057.sxm` | STM | WSe2 single crystal | WSe2 | 57 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_057.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_058.sxm` | STM | WSe2 single crystal | WSe2 | 58 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_058.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_059.sxm` | STM | WSe2 single crystal | WSe2 | 59 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_059.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_060.sxm` | STM | WSe2 single crystal | WSe2 | 60 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_060.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_061.sxm` | STM | WSe2 single crystal | WSe2 | 61 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_061.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_062.sxm` | STM | WSe2 single crystal | WSe2 | 62 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_062.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_063.sxm` | STM | WSe2 single crystal | WSe2 | 63 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_063.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_064.sxm` | STM | WSe2 single crystal | WSe2 | 64 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_064.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_065.sxm` | STM | WSe2 single crystal | WSe2 | 65 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_065.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_066.sxm` | STM | WSe2 single crystal | WSe2 | 66 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_066.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_067.sxm` | STM | WSe2 single crystal | WSe2 | 67 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_067.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_068.sxm` | STM | WSe2 single crystal | WSe2 | 68 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_068.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_069.sxm` | STM | WSe2 single crystal | WSe2 | 69 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_069.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_070.sxm` | STM | WSe2 single crystal | WSe2 | 70 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_070.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_071.sxm` | STM | WSe2 single crystal | WSe2 | 71 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_071.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_072.sxm` | STM | WSe2 single crystal | WSe2 | 72 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_072.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_073.sxm` | STM | WSe2 single crystal | WSe2 | 73 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_073.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_074.sxm` | STM | WSe2 single crystal | WSe2 | 74 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_074.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_075.sxm` | STM | WSe2 single crystal | WSe2 | 75 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_075.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_076.sxm` | STM | WSe2 single crystal | WSe2 | 76 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_076.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_077.sxm` | STM | WSe2 single crystal | WSe2 | 77 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_077.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_078.sxm` | STM | WSe2 single crystal | WSe2 | 78 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_078.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_079.sxm` | STM | WSe2 single crystal | WSe2 | 79 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_079.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_080.sxm` | STM | WSe2 single crystal | WSe2 | 80 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_080.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_081.sxm` | STM | WSe2 single crystal | WSe2 | 81 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_081.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_082.sxm` | STM | WSe2 single crystal | WSe2 | 82 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_082.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_083.sxm` | STM | WSe2 single crystal | WSe2 | 83 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_083.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_084.sxm` | STM | WSe2 single crystal | WSe2 | 84 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_084.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_085.sxm` | STM | WSe2 single crystal | WSe2 | 85 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_085.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_086.sxm` | STM | WSe2 single crystal | WSe2 | 86 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_086.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_087.sxm` | STM | WSe2 single crystal | WSe2 | 87 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_087.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_088.sxm` | STM | WSe2 single crystal | WSe2 | 88 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_088.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_089.sxm` | STM | WSe2 single crystal | WSe2 | 89 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_089.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_090.sxm` | STM | WSe2 single crystal | WSe2 | 90 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_090.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_091.sxm` | STM | WSe2 single crystal | WSe2 | 91 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_091.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_092.sxm` | STM | WSe2 single crystal | WSe2 | 92 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_092.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_093.sxm` | STM | WSe2 single crystal | WSe2 | 93 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_093.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_094.sxm` | STM | WSe2 single crystal | WSe2 | 94 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_094.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_095.sxm` | STM | WSe2 single crystal | WSe2 | 95 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_095.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_096.sxm` | STM | WSe2 single crystal | WSe2 | 96 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_096.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_097.sxm` | STM | WSe2 single crystal | WSe2 | 97 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_097.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_098.sxm` | STM | WSe2 single crystal | WSe2 | 98 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_098.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_099.sxm` | STM | WSe2 single crystal | WSe2 | 99 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_099.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_100.sxm` | STM | WSe2 single crystal | WSe2 | 100 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_100.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_101.sxm` | STM | WSe2 single crystal | WSe2 | 101 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_101.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_102.sxm` | STM | WSe2 single crystal | WSe2 | 102 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_102.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_103.sxm` | STM | WSe2 single crystal | WSe2 | 103 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_103.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_104.sxm` | STM | WSe2 single crystal | WSe2 | 104 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_104.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_105.sxm` | STM | WSe2 single crystal | WSe2 | 105 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_105.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_106.sxm` | STM | WSe2 single crystal | WSe2 | 106 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_106.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_107.sxm` | STM | WSe2 single crystal | WSe2 | 107 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_107.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_108.sxm` | STM | WSe2 single crystal | WSe2 | 108 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_108.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_109.sxm` | STM | WSe2 single crystal | WSe2 | 109 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_109.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_110.sxm` | STM | WSe2 single crystal | WSe2 | 110 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_110.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_111.sxm` | STM | WSe2 single crystal | WSe2 | 111 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_111.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_112.sxm` | STM | WSe2 single crystal | WSe2 | 112 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_112.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_113.sxm` | STM | WSe2 single crystal | WSe2 | 113 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_113.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_114.sxm` | STM | WSe2 single crystal | WSe2 | 114 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_114.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_115.sxm` | STM | WSe2 single crystal | WSe2 | 115 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_115.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_116.sxm` | STM | WSe2 single crystal | WSe2 | 116 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_116.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_117.sxm` | STM | WSe2 single crystal | WSe2 | 117 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_117.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_118.sxm` | STM | WSe2 single crystal | WSe2 | 118 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_118.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_119.sxm` | STM | WSe2 single crystal | WSe2 | 119 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_119.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_120.sxm` | STM | WSe2 single crystal | WSe2 | 120 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_120.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_121.sxm` | STM | WSe2 single crystal | WSe2 | 121 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_121.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_122.sxm` | STM | WSe2 single crystal | WSe2 | 122 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_122.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_123.sxm` | STM | WSe2 single crystal | WSe2 | 123 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_123.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_124.sxm` | STM | WSe2 single crystal | WSe2 | 124 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_124.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_125.sxm` | STM | WSe2 single crystal | WSe2 | 125 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_125.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_126.sxm` | STM | WSe2 single crystal | WSe2 | 126 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_126.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_127.sxm` | STM | WSe2 single crystal | WSe2 | 127 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_127.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_128.sxm` | STM | WSe2 single crystal | WSe2 | 128 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_128.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_129.sxm` | STM | WSe2 single crystal | WSe2 | 129 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_129.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_130.sxm` | STM | WSe2 single crystal | WSe2 | 130 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_130.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_131.sxm` | STM | WSe2 single crystal | WSe2 | 131 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_131.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_132.sxm` | STM | WSe2 single crystal | WSe2 | 132 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_132.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_133.sxm` | STM | WSe2 single crystal | WSe2 | 133 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_133.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_134.sxm` | STM | WSe2 single crystal | WSe2 | 134 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_134.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_135.sxm` | STM | WSe2 single crystal | WSe2 | 135 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_135.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_136.sxm` | STM | WSe2 single crystal | WSe2 | 136 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_136.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_137.sxm` | STM | WSe2 single crystal | WSe2 | 137 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_137.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_138.sxm` | STM | WSe2 single crystal | WSe2 | 138 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_138.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_139.sxm` | STM | WSe2 single crystal | WSe2 | 139 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_139.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_140.sxm` | STM | WSe2 single crystal | WSe2 | 140 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_140.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_141.sxm` | STM | WSe2 single crystal | WSe2 | 141 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_141.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_142.sxm` | STM | WSe2 single crystal | WSe2 | 142 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_142.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_143.sxm` | STM | WSe2 single crystal | WSe2 | 143 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_143.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_144.sxm` | STM | WSe2 single crystal | WSe2 | 144 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_144.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_145.sxm` | STM | WSe2 single crystal | WSe2 | 145 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_145.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_146.sxm` | STM | WSe2 single crystal | WSe2 | 146 | `zenodo/10443995/STM_data/2021-11-18/STM_WTip_WSe2-SL445_146.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_032.sxm` | STM | WSe2 single crystal | WSe2 | 147 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_032.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_033.sxm` | STM | WSe2 single crystal | WSe2 | 148 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_033.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_034.sxm` | STM | WSe2 single crystal | WSe2 | 149 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_034.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_035.sxm` | STM | WSe2 single crystal | WSe2 | 150 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_035.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_036.sxm` | STM | WSe2 single crystal | WSe2 | 151 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_036.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_037.sxm` | STM | WSe2 single crystal | WSe2 | 152 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_037.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_038.sxm` | STM | WSe2 single crystal | WSe2 | 153 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_038.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_039.sxm` | STM | WSe2 single crystal | WSe2 | 154 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_039.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_040.sxm` | STM | WSe2 single crystal | WSe2 | 155 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_040.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_041.sxm` | STM | WSe2 single crystal | WSe2 | 156 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_041.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_042.sxm` | STM | WSe2 single crystal | WSe2 | 157 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_042.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_043.sxm` | STM | WSe2 single crystal | WSe2 | 158 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_043.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_044.sxm` | STM | WSe2 single crystal | WSe2 | 159 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_044.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_045.sxm` | STM | WSe2 single crystal | WSe2 | 160 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_045.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_046.sxm` | STM | WSe2 single crystal | WSe2 | 161 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_046.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_047.sxm` | STM | WSe2 single crystal | WSe2 | 162 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_047.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_048.sxm` | STM | WSe2 single crystal | WSe2 | 163 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_048.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_049.sxm` | STM | WSe2 single crystal | WSe2 | 164 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_049.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_050.sxm` | STM | WSe2 single crystal | WSe2 | 165 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_050.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_051.sxm` | STM | WSe2 single crystal | WSe2 | 166 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_051.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_052.sxm` | STM | WSe2 single crystal | WSe2 | 167 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_052.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_053.sxm` | STM | WSe2 single crystal | WSe2 | 168 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_053.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_054.sxm` | STM | WSe2 single crystal | WSe2 | 169 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_054.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_055.sxm` | STM | WSe2 single crystal | WSe2 | 170 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_055.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_056.sxm` | STM | WSe2 single crystal | WSe2 | 171 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_056.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_057.sxm` | STM | WSe2 single crystal | WSe2 | 172 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_057.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_058.sxm` | STM | WSe2 single crystal | WSe2 | 173 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_058.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_059.sxm` | STM | WSe2 single crystal | WSe2 | 174 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_059.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_060.sxm` | STM | WSe2 single crystal | WSe2 | 175 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_060.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_061.sxm` | STM | WSe2 single crystal | WSe2 | 176 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_061.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_062.sxm` | STM | WSe2 single crystal | WSe2 | 177 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_062.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_063.sxm` | STM | WSe2 single crystal | WSe2 | 178 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_063.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_064.sxm` | STM | WSe2 single crystal | WSe2 | 179 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_064.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_065.sxm` | STM | WSe2 single crystal | WSe2 | 180 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_065.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_066.sxm` | STM | WSe2 single crystal | WSe2 | 181 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_066.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_067.sxm` | STM | WSe2 single crystal | WSe2 | 182 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_067.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_068.sxm` | STM | WSe2 single crystal | WSe2 | 183 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_068.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_069.sxm` | STM | WSe2 single crystal | WSe2 | 184 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_069.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_070.sxm` | STM | WSe2 single crystal | WSe2 | 185 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_070.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_071.sxm` | STM | WSe2 single crystal | WSe2 | 186 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_071.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_072.sxm` | STM | WSe2 single crystal | WSe2 | 187 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_072.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_073.sxm` | STM | WSe2 single crystal | WSe2 | 188 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_073.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_074.sxm` | STM | WSe2 single crystal | WSe2 | 189 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_074.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_075.sxm` | STM | WSe2 single crystal | WSe2 | 190 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_075.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_076.sxm` | STM | WSe2 single crystal | WSe2 | 191 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_076.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_077.sxm` | STM | WSe2 single crystal | WSe2 | 192 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_077.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_078.sxm` | STM | WSe2 single crystal | WSe2 | 193 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_078.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_079.sxm` | STM | WSe2 single crystal | WSe2 | 194 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_079.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_080.sxm` | STM | WSe2 single crystal | WSe2 | 195 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_080.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_081.sxm` | STM | WSe2 single crystal | WSe2 | 196 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_081.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_082.sxm` | STM | WSe2 single crystal | WSe2 | 197 | `zenodo/10443995/STM_data/2021-11-19/STM_WTip_WSe2-SL445_082.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_083.sxm` | STM | WSe2 single crystal | WSe2 | 198 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_083.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_084.sxm` | STM | WSe2 single crystal | WSe2 | 199 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_084.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_085.sxm` | STM | WSe2 single crystal | WSe2 | 200 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_085.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_086.sxm` | STM | WSe2 single crystal | WSe2 | 201 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_086.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_087.sxm` | STM | WSe2 single crystal | WSe2 | 202 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_087.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_088.sxm` | STM | WSe2 single crystal | WSe2 | 203 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_088.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_089.sxm` | STM | WSe2 single crystal | WSe2 | 204 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_089.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_090.sxm` | STM | WSe2 single crystal | WSe2 | 205 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_090.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_091.sxm` | STM | WSe2 single crystal | WSe2 | 206 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_091.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_092.sxm` | STM | WSe2 single crystal | WSe2 | 207 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_092.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_093.sxm` | STM | WSe2 single crystal | WSe2 | 208 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_093.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_094.sxm` | STM | WSe2 single crystal | WSe2 | 209 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_094.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_095.sxm` | STM | WSe2 single crystal | WSe2 | 210 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_095.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_096.sxm` | STM | WSe2 single crystal | WSe2 | 211 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_096.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_097.sxm` | STM | WSe2 single crystal | WSe2 | 212 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_097.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_098.sxm` | STM | WSe2 single crystal | WSe2 | 213 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_098.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_099.sxm` | STM | WSe2 single crystal | WSe2 | 214 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_099.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_100.sxm` | STM | WSe2 single crystal | WSe2 | 215 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_100.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_101.sxm` | STM | WSe2 single crystal | WSe2 | 216 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_101.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_102.sxm` | STM | WSe2 single crystal | WSe2 | 217 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_102.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_103.sxm` | STM | WSe2 single crystal | WSe2 | 218 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_103.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_104.sxm` | STM | WSe2 single crystal | WSe2 | 219 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_104.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_105.sxm` | STM | WSe2 single crystal | WSe2 | 220 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_105.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_106.sxm` | STM | WSe2 single crystal | WSe2 | 221 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_106.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_107.sxm` | STM | WSe2 single crystal | WSe2 | 222 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_107.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_108.sxm` | STM | WSe2 single crystal | WSe2 | 223 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_108.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_109.sxm` | STM | WSe2 single crystal | WSe2 | 224 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_109.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_110.sxm` | STM | WSe2 single crystal | WSe2 | 225 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_110.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_111.sxm` | STM | WSe2 single crystal | WSe2 | 226 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_111.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_112.sxm` | STM | WSe2 single crystal | WSe2 | 227 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_112.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_113.sxm` | STM | WSe2 single crystal | WSe2 | 228 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_113.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_114.sxm` | STM | WSe2 single crystal | WSe2 | 229 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_114.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_115.sxm` | STM | WSe2 single crystal | WSe2 | 230 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_115.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_116.sxm` | STM | WSe2 single crystal | WSe2 | 231 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_116.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_117.sxm` | STM | WSe2 single crystal | WSe2 | 232 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_117.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_118.sxm` | STM | WSe2 single crystal | WSe2 | 233 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_118.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_119.sxm` | STM | WSe2 single crystal | WSe2 | 234 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_119.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_120.sxm` | STM | WSe2 single crystal | WSe2 | 235 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_120.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_121.sxm` | STM | WSe2 single crystal | WSe2 | 236 | `zenodo/10443995/STM_data/2021-11-20/STM_WTip_WSe2-SL445_121.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_001.sxm` | STM | WSe2 single crystal | WSe2 | 237 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_001.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_002.sxm` | STM | WSe2 single crystal | WSe2 | 238 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_002.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_003.sxm` | STM | WSe2 single crystal | WSe2 | 239 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_003.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_004.sxm` | STM | WSe2 single crystal | WSe2 | 240 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_004.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_005.sxm` | STM | WSe2 single crystal | WSe2 | 241 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_005.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_006.sxm` | STM | WSe2 single crystal | WSe2 | 242 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_006.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_007.sxm` | STM | WSe2 single crystal | WSe2 | 243 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_007.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_008.sxm` | STM | WSe2 single crystal | WSe2 | 244 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_008.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_009.sxm` | STM | WSe2 single crystal | WSe2 | 245 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_009.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_010.sxm` | STM | WSe2 single crystal | WSe2 | 246 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_010.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_011.sxm` | STM | WSe2 single crystal | WSe2 | 247 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_011.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_012.sxm` | STM | WSe2 single crystal | WSe2 | 248 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_012.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_013.sxm` | STM | WSe2 single crystal | WSe2 | 249 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_013.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_014.sxm` | STM | WSe2 single crystal | WSe2 | 250 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_014.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_015.sxm` | STM | WSe2 single crystal | WSe2 | 251 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_015.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_122.sxm` | STM | WSe2 single crystal | WSe2 | 252 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_122.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_123.sxm` | STM | WSe2 single crystal | WSe2 | 253 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_123.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_124.sxm` | STM | WSe2 single crystal | WSe2 | 254 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_124.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_125.sxm` | STM | WSe2 single crystal | WSe2 | 255 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_125.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_126.sxm` | STM | WSe2 single crystal | WSe2 | 256 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_126.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_127.sxm` | STM | WSe2 single crystal | WSe2 | 257 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_127.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_128.sxm` | STM | WSe2 single crystal | WSe2 | 258 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_128.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_129.sxm` | STM | WSe2 single crystal | WSe2 | 259 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_129.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_130.sxm` | STM | WSe2 single crystal | WSe2 | 260 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_130.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_131.sxm` | STM | WSe2 single crystal | WSe2 | 261 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_131.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_132.sxm` | STM | WSe2 single crystal | WSe2 | 262 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_132.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_133.sxm` | STM | WSe2 single crystal | WSe2 | 263 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_133.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_134.sxm` | STM | WSe2 single crystal | WSe2 | 264 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_134.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_135.sxm` | STM | WSe2 single crystal | WSe2 | 265 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_135.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_136.sxm` | STM | WSe2 single crystal | WSe2 | 266 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_136.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_137.sxm` | STM | WSe2 single crystal | WSe2 | 267 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_137.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_138.sxm` | STM | WSe2 single crystal | WSe2 | 268 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_138.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_139.sxm` | STM | WSe2 single crystal | WSe2 | 269 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_139.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_140.sxm` | STM | WSe2 single crystal | WSe2 | 270 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_140.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_141.sxm` | STM | WSe2 single crystal | WSe2 | 271 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_141.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_142.sxm` | STM | WSe2 single crystal | WSe2 | 272 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_142.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_143.sxm` | STM | WSe2 single crystal | WSe2 | 273 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_143.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_144.sxm` | STM | WSe2 single crystal | WSe2 | 274 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_144.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_145.sxm` | STM | WSe2 single crystal | WSe2 | 275 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_145.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_146.sxm` | STM | WSe2 single crystal | WSe2 | 276 | `zenodo/10443995/STM_data/2021-11-21/STM_WTip_WSe2-SL445_146.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_001.sxm` | STM | WSe2 single crystal | WSe2 | 277 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_001.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_002.sxm` | STM | WSe2 single crystal | WSe2 | 278 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_002.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_003.sxm` | STM | WSe2 single crystal | WSe2 | 279 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_003.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_004.sxm` | STM | WSe2 single crystal | WSe2 | 280 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_004.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_005.sxm` | STM | WSe2 single crystal | WSe2 | 281 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_005.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_006.sxm` | STM | WSe2 single crystal | WSe2 | 282 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_006.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_007.sxm` | STM | WSe2 single crystal | WSe2 | 283 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_007.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_008.sxm` | STM | WSe2 single crystal | WSe2 | 284 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_008.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_009.sxm` | STM | WSe2 single crystal | WSe2 | 285 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_009.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_010.sxm` | STM | WSe2 single crystal | WSe2 | 286 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_010.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_011.sxm` | STM | WSe2 single crystal | WSe2 | 287 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_011.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_012.sxm` | STM | WSe2 single crystal | WSe2 | 288 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_012.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_013.sxm` | STM | WSe2 single crystal | WSe2 | 289 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_013.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_014.sxm` | STM | WSe2 single crystal | WSe2 | 290 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_014.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_015.sxm` | STM | WSe2 single crystal | WSe2 | 291 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_015.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_016.sxm` | STM | WSe2 single crystal | WSe2 | 292 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_016.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_017.sxm` | STM | WSe2 single crystal | WSe2 | 293 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_017.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_018.sxm` | STM | WSe2 single crystal | WSe2 | 294 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_018.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_019.sxm` | STM | WSe2 single crystal | WSe2 | 295 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_019.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_020.sxm` | STM | WSe2 single crystal | WSe2 | 296 | `zenodo/10443995/STM_data/2021-11-22 -bak/STM_WTip_WSe2-SL445_020.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_016.sxm` | STM | WSe2 single crystal | WSe2 | 297 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_016.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_017.sxm` | STM | WSe2 single crystal | WSe2 | 298 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_017.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_018.sxm` | STM | WSe2 single crystal | WSe2 | 299 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_018.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_019.sxm` | STM | WSe2 single crystal | WSe2 | 300 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_019.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_020.sxm` | STM | WSe2 single crystal | WSe2 | 301 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_020.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_021.sxm` | STM | WSe2 single crystal | WSe2 | 302 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_021.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_022.sxm` | STM | WSe2 single crystal | WSe2 | 303 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_022.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_023.sxm` | STM | WSe2 single crystal | WSe2 | 304 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_023.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_024.sxm` | STM | WSe2 single crystal | WSe2 | 305 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_024.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_025.sxm` | STM | WSe2 single crystal | WSe2 | 306 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_025.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_026.sxm` | STM | WSe2 single crystal | WSe2 | 307 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_026.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_027.sxm` | STM | WSe2 single crystal | WSe2 | 308 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_027.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_028.sxm` | STM | WSe2 single crystal | WSe2 | 309 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_028.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_029.sxm` | STM | WSe2 single crystal | WSe2 | 310 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_029.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_030.sxm` | STM | WSe2 single crystal | WSe2 | 311 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_030.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_031.sxm` | STM | WSe2 single crystal | WSe2 | 312 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_031.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_032.sxm` | STM | WSe2 single crystal | WSe2 | 313 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_032.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_033.sxm` | STM | WSe2 single crystal | WSe2 | 314 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_033.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_034.sxm` | STM | WSe2 single crystal | WSe2 | 315 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_034.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_035.sxm` | STM | WSe2 single crystal | WSe2 | 316 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_035.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_036.sxm` | STM | WSe2 single crystal | WSe2 | 317 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_036.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_037.sxm` | STM | WSe2 single crystal | WSe2 | 318 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_037.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_038.sxm` | STM | WSe2 single crystal | WSe2 | 319 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_038.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_039.sxm` | STM | WSe2 single crystal | WSe2 | 320 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_039.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_040.sxm` | STM | WSe2 single crystal | WSe2 | 321 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_040.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_041.sxm` | STM | WSe2 single crystal | WSe2 | 322 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_041.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_042.sxm` | STM | WSe2 single crystal | WSe2 | 323 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_042.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_043.sxm` | STM | WSe2 single crystal | WSe2 | 324 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_043.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_044.sxm` | STM | WSe2 single crystal | WSe2 | 325 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_044.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_045.sxm` | STM | WSe2 single crystal | WSe2 | 326 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_045.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_046.sxm` | STM | WSe2 single crystal | WSe2 | 327 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_046.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_047.sxm` | STM | WSe2 single crystal | WSe2 | 328 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_047.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_048.sxm` | STM | WSe2 single crystal | WSe2 | 329 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_048.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_049.sxm` | STM | WSe2 single crystal | WSe2 | 330 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_049.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_050.sxm` | STM | WSe2 single crystal | WSe2 | 331 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_050.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_051.sxm` | STM | WSe2 single crystal | WSe2 | 332 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_051.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_052.sxm` | STM | WSe2 single crystal | WSe2 | 333 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_052.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_053.sxm` | STM | WSe2 single crystal | WSe2 | 334 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_053.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_054.sxm` | STM | WSe2 single crystal | WSe2 | 335 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_054.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_055.sxm` | STM | WSe2 single crystal | WSe2 | 336 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_055.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_056.sxm` | STM | WSe2 single crystal | WSe2 | 337 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_056.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_057.sxm` | STM | WSe2 single crystal | WSe2 | 338 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_057.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_058.sxm` | STM | WSe2 single crystal | WSe2 | 339 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_058.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_059.sxm` | STM | WSe2 single crystal | WSe2 | 340 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_059.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_060.sxm` | STM | WSe2 single crystal | WSe2 | 341 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_060.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_061.sxm` | STM | WSe2 single crystal | WSe2 | 342 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_061.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_062.sxm` | STM | WSe2 single crystal | WSe2 | 343 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_062.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_063.sxm` | STM | WSe2 single crystal | WSe2 | 344 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_063.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_064.sxm` | STM | WSe2 single crystal | WSe2 | 345 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_064.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_065.sxm` | STM | WSe2 single crystal | WSe2 | 346 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_065.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_066.sxm` | STM | WSe2 single crystal | WSe2 | 347 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_066.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_067.sxm` | STM | WSe2 single crystal | WSe2 | 348 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_067.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_068.sxm` | STM | WSe2 single crystal | WSe2 | 349 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_068.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_069.sxm` | STM | WSe2 single crystal | WSe2 | 350 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_069.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_070.sxm` | STM | WSe2 single crystal | WSe2 | 351 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_070.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_071.sxm` | STM | WSe2 single crystal | WSe2 | 352 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_071.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_072.sxm` | STM | WSe2 single crystal | WSe2 | 353 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_072.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_073.sxm` | STM | WSe2 single crystal | WSe2 | 354 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_073.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_074.sxm` | STM | WSe2 single crystal | WSe2 | 355 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_074.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_075.sxm` | STM | WSe2 single crystal | WSe2 | 356 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_075.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_076.sxm` | STM | WSe2 single crystal | WSe2 | 357 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_076.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_077.sxm` | STM | WSe2 single crystal | WSe2 | 358 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_077.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_078.sxm` | STM | WSe2 single crystal | WSe2 | 359 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_078.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_079.sxm` | STM | WSe2 single crystal | WSe2 | 360 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_079.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_080.sxm` | STM | WSe2 single crystal | WSe2 | 361 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_080.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_081.sxm` | STM | WSe2 single crystal | WSe2 | 362 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_081.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_082.sxm` | STM | WSe2 single crystal | WSe2 | 363 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_082.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_083.sxm` | STM | WSe2 single crystal | WSe2 | 364 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_083.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_084.sxm` | STM | WSe2 single crystal | WSe2 | 365 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_084.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_085.sxm` | STM | WSe2 single crystal | WSe2 | 366 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_085.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_086.sxm` | STM | WSe2 single crystal | WSe2 | 367 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_086.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_087.sxm` | STM | WSe2 single crystal | WSe2 | 368 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_087.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_088.sxm` | STM | WSe2 single crystal | WSe2 | 369 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_088.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_089.sxm` | STM | WSe2 single crystal | WSe2 | 370 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_089.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_090.sxm` | STM | WSe2 single crystal | WSe2 | 371 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_090.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_091.sxm` | STM | WSe2 single crystal | WSe2 | 372 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_091.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_092.sxm` | STM | WSe2 single crystal | WSe2 | 373 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_092.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_093.sxm` | STM | WSe2 single crystal | WSe2 | 374 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_093.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_094.sxm` | STM | WSe2 single crystal | WSe2 | 375 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_094.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_095.sxm` | STM | WSe2 single crystal | WSe2 | 376 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_095.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_096.sxm` | STM | WSe2 single crystal | WSe2 | 377 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_096.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_097.sxm` | STM | WSe2 single crystal | WSe2 | 378 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_097.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_098.sxm` | STM | WSe2 single crystal | WSe2 | 379 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_098.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_099.sxm` | STM | WSe2 single crystal | WSe2 | 380 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_099.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_100.sxm` | STM | WSe2 single crystal | WSe2 | 381 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_100.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_101.sxm` | STM | WSe2 single crystal | WSe2 | 382 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_101.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_102.sxm` | STM | WSe2 single crystal | WSe2 | 383 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_102.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_103.sxm` | STM | WSe2 single crystal | WSe2 | 384 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_103.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_104.sxm` | STM | WSe2 single crystal | WSe2 | 385 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_104.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_105.sxm` | STM | WSe2 single crystal | WSe2 | 386 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_105.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_106.sxm` | STM | WSe2 single crystal | WSe2 | 387 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_106.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_107.sxm` | STM | WSe2 single crystal | WSe2 | 388 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_107.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_108.sxm` | STM | WSe2 single crystal | WSe2 | 389 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_108.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_109.sxm` | STM | WSe2 single crystal | WSe2 | 390 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_109.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_110.sxm` | STM | WSe2 single crystal | WSe2 | 391 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_110.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_111.sxm` | STM | WSe2 single crystal | WSe2 | 392 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_111.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_112.sxm` | STM | WSe2 single crystal | WSe2 | 393 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_112.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_113.sxm` | STM | WSe2 single crystal | WSe2 | 394 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_113.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_114.sxm` | STM | WSe2 single crystal | WSe2 | 395 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_114.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_115.sxm` | STM | WSe2 single crystal | WSe2 | 396 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_115.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_116.sxm` | STM | WSe2 single crystal | WSe2 | 397 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_116.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_117.sxm` | STM | WSe2 single crystal | WSe2 | 398 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_117.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_118.sxm` | STM | WSe2 single crystal | WSe2 | 399 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_118.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_119.sxm` | STM | WSe2 single crystal | WSe2 | 400 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_119.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_120.sxm` | STM | WSe2 single crystal | WSe2 | 401 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_120.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_121.sxm` | STM | WSe2 single crystal | WSe2 | 402 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_121.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_122.sxm` | STM | WSe2 single crystal | WSe2 | 403 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_122.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_123.sxm` | STM | WSe2 single crystal | WSe2 | 404 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_123.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_124.sxm` | STM | WSe2 single crystal | WSe2 | 405 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_124.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_125.sxm` | STM | WSe2 single crystal | WSe2 | 406 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_125.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_126.sxm` | STM | WSe2 single crystal | WSe2 | 407 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_126.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_127.sxm` | STM | WSe2 single crystal | WSe2 | 408 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_127.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_128.sxm` | STM | WSe2 single crystal | WSe2 | 409 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_128.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_129.sxm` | STM | WSe2 single crystal | WSe2 | 410 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_129.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_130.sxm` | STM | WSe2 single crystal | WSe2 | 411 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_130.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_131.sxm` | STM | WSe2 single crystal | WSe2 | 412 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_131.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_132.sxm` | STM | WSe2 single crystal | WSe2 | 413 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_132.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_133.sxm` | STM | WSe2 single crystal | WSe2 | 414 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_133.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_134.sxm` | STM | WSe2 single crystal | WSe2 | 415 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_134.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_135.sxm` | STM | WSe2 single crystal | WSe2 | 416 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_135.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_136.sxm` | STM | WSe2 single crystal | WSe2 | 417 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_136.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_137.sxm` | STM | WSe2 single crystal | WSe2 | 418 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_137.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_138.sxm` | STM | WSe2 single crystal | WSe2 | 419 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_138.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_139.sxm` | STM | WSe2 single crystal | WSe2 | 420 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_139.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_140.sxm` | STM | WSe2 single crystal | WSe2 | 421 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_140.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_141.sxm` | STM | WSe2 single crystal | WSe2 | 422 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_141.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_142.sxm` | STM | WSe2 single crystal | WSe2 | 423 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_142.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_143.sxm` | STM | WSe2 single crystal | WSe2 | 424 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_143.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_144.sxm` | STM | WSe2 single crystal | WSe2 | 425 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_144.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_145.sxm` | STM | WSe2 single crystal | WSe2 | 426 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_145.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_146.sxm` | STM | WSe2 single crystal | WSe2 | 427 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_146.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_147.sxm` | STM | WSe2 single crystal | WSe2 | 428 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_147.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_148.sxm` | STM | WSe2 single crystal | WSe2 | 429 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_148.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_149.sxm` | STM | WSe2 single crystal | WSe2 | 430 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_149.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_150.sxm` | STM | WSe2 single crystal | WSe2 | 431 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_150.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_151.sxm` | STM | WSe2 single crystal | WSe2 | 432 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_151.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_152.sxm` | STM | WSe2 single crystal | WSe2 | 433 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_152.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_153.sxm` | STM | WSe2 single crystal | WSe2 | 434 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_153.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_154.sxm` | STM | WSe2 single crystal | WSe2 | 435 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_154.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_155.sxm` | STM | WSe2 single crystal | WSe2 | 436 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_155.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_156.sxm` | STM | WSe2 single crystal | WSe2 | 437 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_156.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_157.sxm` | STM | WSe2 single crystal | WSe2 | 438 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_157.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_158.sxm` | STM | WSe2 single crystal | WSe2 | 439 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_158.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_159.sxm` | STM | WSe2 single crystal | WSe2 | 440 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_159.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_160.sxm` | STM | WSe2 single crystal | WSe2 | 441 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_160.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_161.sxm` | STM | WSe2 single crystal | WSe2 | 442 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_161.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_162.sxm` | STM | WSe2 single crystal | WSe2 | 443 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_162.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_163.sxm` | STM | WSe2 single crystal | WSe2 | 444 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_163.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_164.sxm` | STM | WSe2 single crystal | WSe2 | 445 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_164.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_165.sxm` | STM | WSe2 single crystal | WSe2 | 446 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_165.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_166.sxm` | STM | WSe2 single crystal | WSe2 | 447 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_166.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_167.sxm` | STM | WSe2 single crystal | WSe2 | 448 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_167.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_168.sxm` | STM | WSe2 single crystal | WSe2 | 449 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_168.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_169.sxm` | STM | WSe2 single crystal | WSe2 | 450 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_169.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_170.sxm` | STM | WSe2 single crystal | WSe2 | 451 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_170.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_171.sxm` | STM | WSe2 single crystal | WSe2 | 452 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_171.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_172.sxm` | STM | WSe2 single crystal | WSe2 | 453 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_172.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_173.sxm` | STM | WSe2 single crystal | WSe2 | 454 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_173.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_174.sxm` | STM | WSe2 single crystal | WSe2 | 455 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_174.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_175.sxm` | STM | WSe2 single crystal | WSe2 | 456 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_175.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_176.sxm` | STM | WSe2 single crystal | WSe2 | 457 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_176.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_177.sxm` | STM | WSe2 single crystal | WSe2 | 458 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_177.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_178.sxm` | STM | WSe2 single crystal | WSe2 | 459 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_178.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_179.sxm` | STM | WSe2 single crystal | WSe2 | 460 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_179.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_180.sxm` | STM | WSe2 single crystal | WSe2 | 461 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_180.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_181.sxm` | STM | WSe2 single crystal | WSe2 | 462 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_181.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_182.sxm` | STM | WSe2 single crystal | WSe2 | 463 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_182.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_183.sxm` | STM | WSe2 single crystal | WSe2 | 464 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_183.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_184.sxm` | STM | WSe2 single crystal | WSe2 | 465 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_184.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_185.sxm` | STM | WSe2 single crystal | WSe2 | 466 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_185.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_186.sxm` | STM | WSe2 single crystal | WSe2 | 467 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_186.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_187.sxm` | STM | WSe2 single crystal | WSe2 | 468 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_187.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_188.sxm` | STM | WSe2 single crystal | WSe2 | 469 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_188.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_189.sxm` | STM | WSe2 single crystal | WSe2 | 470 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_189.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_190.sxm` | STM | WSe2 single crystal | WSe2 | 471 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_190.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_191.sxm` | STM | WSe2 single crystal | WSe2 | 472 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_191.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_192.sxm` | STM | WSe2 single crystal | WSe2 | 473 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_192.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_193.sxm` | STM | WSe2 single crystal | WSe2 | 474 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_193.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_194.sxm` | STM | WSe2 single crystal | WSe2 | 475 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_194.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_195.sxm` | STM | WSe2 single crystal | WSe2 | 476 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_195.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_196.sxm` | STM | WSe2 single crystal | WSe2 | 477 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_196.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_197.sxm` | STM | WSe2 single crystal | WSe2 | 478 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_197.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_198.sxm` | STM | WSe2 single crystal | WSe2 | 479 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_198.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_199.sxm` | STM | WSe2 single crystal | WSe2 | 480 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_199.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_200.sxm` | STM | WSe2 single crystal | WSe2 | 481 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_200.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_201.sxm` | STM | WSe2 single crystal | WSe2 | 482 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_201.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_202.sxm` | STM | WSe2 single crystal | WSe2 | 483 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_202.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_203.sxm` | STM | WSe2 single crystal | WSe2 | 484 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_203.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_204.sxm` | STM | WSe2 single crystal | WSe2 | 485 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_204.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_205.sxm` | STM | WSe2 single crystal | WSe2 | 486 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_205.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_206.sxm` | STM | WSe2 single crystal | WSe2 | 487 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_206.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_207.sxm` | STM | WSe2 single crystal | WSe2 | 488 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_207.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_208.sxm` | STM | WSe2 single crystal | WSe2 | 489 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_208.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_209.sxm` | STM | WSe2 single crystal | WSe2 | 490 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_209.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_210.sxm` | STM | WSe2 single crystal | WSe2 | 491 | `zenodo/10443995/STM_data/2021-11-22/STM_WTip_WSe2-SL445_210.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_001.sxm` | STM | WSe2 single crystal | WSe2 | 492 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_001.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_002.sxm` | STM | WSe2 single crystal | WSe2 | 493 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_002.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_003.sxm` | STM | WSe2 single crystal | WSe2 | 494 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_003.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_004.sxm` | STM | WSe2 single crystal | WSe2 | 495 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_004.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_005.sxm` | STM | WSe2 single crystal | WSe2 | 496 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_005.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_006.sxm` | STM | WSe2 single crystal | WSe2 | 497 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_006.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_007.sxm` | STM | WSe2 single crystal | WSe2 | 498 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_007.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_008.sxm` | STM | WSe2 single crystal | WSe2 | 499 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_008.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_009.sxm` | STM | WSe2 single crystal | WSe2 | 500 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_009.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_010.sxm` | STM | WSe2 single crystal | WSe2 | 501 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_010.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_011.sxm` | STM | WSe2 single crystal | WSe2 | 502 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_011.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_012.sxm` | STM | WSe2 single crystal | WSe2 | 503 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_012.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_013.sxm` | STM | WSe2 single crystal | WSe2 | 504 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_013.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_014.sxm` | STM | WSe2 single crystal | WSe2 | 505 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_014.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_015.sxm` | STM | WSe2 single crystal | WSe2 | 506 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_015.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_016.sxm` | STM | WSe2 single crystal | WSe2 | 507 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_016.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_017.sxm` | STM | WSe2 single crystal | WSe2 | 508 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_017.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_018.sxm` | STM | WSe2 single crystal | WSe2 | 509 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_018.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_019.sxm` | STM | WSe2 single crystal | WSe2 | 510 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_019.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_020.sxm` | STM | WSe2 single crystal | WSe2 | 511 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_020.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_021.sxm` | STM | WSe2 single crystal | WSe2 | 512 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_021.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_022.sxm` | STM | WSe2 single crystal | WSe2 | 513 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_022.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_023.sxm` | STM | WSe2 single crystal | WSe2 | 514 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_023.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_024.sxm` | STM | WSe2 single crystal | WSe2 | 515 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_024.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_025.sxm` | STM | WSe2 single crystal | WSe2 | 516 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_025.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_026.sxm` | STM | WSe2 single crystal | WSe2 | 517 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_026.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_027.sxm` | STM | WSe2 single crystal | WSe2 | 518 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_027.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_028.sxm` | STM | WSe2 single crystal | WSe2 | 519 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_028.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_029.sxm` | STM | WSe2 single crystal | WSe2 | 520 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_029.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_030.sxm` | STM | WSe2 single crystal | WSe2 | 521 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_030.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_031.sxm` | STM | WSe2 single crystal | WSe2 | 522 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_031.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_032.sxm` | STM | WSe2 single crystal | WSe2 | 523 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_032.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_033.sxm` | STM | WSe2 single crystal | WSe2 | 524 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_033.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_034.sxm` | STM | WSe2 single crystal | WSe2 | 525 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_034.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_035.sxm` | STM | WSe2 single crystal | WSe2 | 526 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_035.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_036.sxm` | STM | WSe2 single crystal | WSe2 | 527 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_036.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_037.sxm` | STM | WSe2 single crystal | WSe2 | 528 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_037.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_038.sxm` | STM | WSe2 single crystal | WSe2 | 529 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_038.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_039.sxm` | STM | WSe2 single crystal | WSe2 | 530 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_039.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_040.sxm` | STM | WSe2 single crystal | WSe2 | 531 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_040.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_041.sxm` | STM | WSe2 single crystal | WSe2 | 532 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_041.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_042.sxm` | STM | WSe2 single crystal | WSe2 | 533 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_042.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_043.sxm` | STM | WSe2 single crystal | WSe2 | 534 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_043.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_044.sxm` | STM | WSe2 single crystal | WSe2 | 535 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_044.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_045.sxm` | STM | WSe2 single crystal | WSe2 | 536 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_045.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_046.sxm` | STM | WSe2 single crystal | WSe2 | 537 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_046.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_047.sxm` | STM | WSe2 single crystal | WSe2 | 538 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_047.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_048.sxm` | STM | WSe2 single crystal | WSe2 | 539 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_048.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_049.sxm` | STM | WSe2 single crystal | WSe2 | 540 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_049.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_050.sxm` | STM | WSe2 single crystal | WSe2 | 541 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_050.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_051.sxm` | STM | WSe2 single crystal | WSe2 | 542 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_051.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_052.sxm` | STM | WSe2 single crystal | WSe2 | 543 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_052.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_053.sxm` | STM | WSe2 single crystal | WSe2 | 544 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_053.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_054.sxm` | STM | WSe2 single crystal | WSe2 | 545 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_054.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_055.sxm` | STM | WSe2 single crystal | WSe2 | 546 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_055.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_056.sxm` | STM | WSe2 single crystal | WSe2 | 547 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_056.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_057.sxm` | STM | WSe2 single crystal | WSe2 | 548 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_057.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_058.sxm` | STM | WSe2 single crystal | WSe2 | 549 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_058.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_059.sxm` | STM | WSe2 single crystal | WSe2 | 550 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_059.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_060.sxm` | STM | WSe2 single crystal | WSe2 | 551 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_060.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_061.sxm` | STM | WSe2 single crystal | WSe2 | 552 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_061.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_062.sxm` | STM | WSe2 single crystal | WSe2 | 553 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_062.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_063.sxm` | STM | WSe2 single crystal | WSe2 | 554 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_063.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_064.sxm` | STM | WSe2 single crystal | WSe2 | 555 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_064.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_065.sxm` | STM | WSe2 single crystal | WSe2 | 556 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_065.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_066.sxm` | STM | WSe2 single crystal | WSe2 | 557 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_066.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_067.sxm` | STM | WSe2 single crystal | WSe2 | 558 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_067.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_068.sxm` | STM | WSe2 single crystal | WSe2 | 559 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_068.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_069.sxm` | STM | WSe2 single crystal | WSe2 | 560 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_069.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_070.sxm` | STM | WSe2 single crystal | WSe2 | 561 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_070.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_071.sxm` | STM | WSe2 single crystal | WSe2 | 562 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_071.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_072.sxm` | STM | WSe2 single crystal | WSe2 | 563 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_072.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_073.sxm` | STM | WSe2 single crystal | WSe2 | 564 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_073.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_074.sxm` | STM | WSe2 single crystal | WSe2 | 565 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_074.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_075.sxm` | STM | WSe2 single crystal | WSe2 | 566 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_075.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_076.sxm` | STM | WSe2 single crystal | WSe2 | 567 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_076.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_077.sxm` | STM | WSe2 single crystal | WSe2 | 568 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_077.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_078.sxm` | STM | WSe2 single crystal | WSe2 | 569 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_078.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_079.sxm` | STM | WSe2 single crystal | WSe2 | 570 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_079.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_080.sxm` | STM | WSe2 single crystal | WSe2 | 571 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_080.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_081.sxm` | STM | WSe2 single crystal | WSe2 | 572 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_081.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_082.sxm` | STM | WSe2 single crystal | WSe2 | 573 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_082.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_083.sxm` | STM | WSe2 single crystal | WSe2 | 574 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_083.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_084.sxm` | STM | WSe2 single crystal | WSe2 | 575 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_084.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_085.sxm` | STM | WSe2 single crystal | WSe2 | 576 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_085.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_086.sxm` | STM | WSe2 single crystal | WSe2 | 577 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_086.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_087.sxm` | STM | WSe2 single crystal | WSe2 | 578 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_087.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_088.sxm` | STM | WSe2 single crystal | WSe2 | 579 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_088.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_089.sxm` | STM | WSe2 single crystal | WSe2 | 580 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_089.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_090.sxm` | STM | WSe2 single crystal | WSe2 | 581 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_090.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_091.sxm` | STM | WSe2 single crystal | WSe2 | 582 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_091.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_092.sxm` | STM | WSe2 single crystal | WSe2 | 583 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_092.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_093.sxm` | STM | WSe2 single crystal | WSe2 | 584 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_093.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_094.sxm` | STM | WSe2 single crystal | WSe2 | 585 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_094.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_095.sxm` | STM | WSe2 single crystal | WSe2 | 586 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_095.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_096.sxm` | STM | WSe2 single crystal | WSe2 | 587 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_096.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_097.sxm` | STM | WSe2 single crystal | WSe2 | 588 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_097.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_098.sxm` | STM | WSe2 single crystal | WSe2 | 589 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_098.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_099.sxm` | STM | WSe2 single crystal | WSe2 | 590 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_099.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_100.sxm` | STM | WSe2 single crystal | WSe2 | 591 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_100.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_101.sxm` | STM | WSe2 single crystal | WSe2 | 592 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_101.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_102.sxm` | STM | WSe2 single crystal | WSe2 | 593 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_102.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_103.sxm` | STM | WSe2 single crystal | WSe2 | 594 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_103.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_104.sxm` | STM | WSe2 single crystal | WSe2 | 595 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_104.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_105.sxm` | STM | WSe2 single crystal | WSe2 | 596 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_105.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_106.sxm` | STM | WSe2 single crystal | WSe2 | 597 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_106.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_107.sxm` | STM | WSe2 single crystal | WSe2 | 598 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_107.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_108.sxm` | STM | WSe2 single crystal | WSe2 | 599 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_108.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_109.sxm` | STM | WSe2 single crystal | WSe2 | 600 | `zenodo/10443995/STM_data/2021-11-23/STM_WTip_WSe2-SL445_109.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_001.sxm` | STM | WSe2 single crystal | WSe2 | 601 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_001.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_002.sxm` | STM | WSe2 single crystal | WSe2 | 602 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_002.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_003.sxm` | STM | WSe2 single crystal | WSe2 | 603 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_003.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_004.sxm` | STM | WSe2 single crystal | WSe2 | 604 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_004.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_005.sxm` | STM | WSe2 single crystal | WSe2 | 605 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_005.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_006.sxm` | STM | WSe2 single crystal | WSe2 | 606 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_006.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_007.sxm` | STM | WSe2 single crystal | WSe2 | 607 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_007.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_008.sxm` | STM | WSe2 single crystal | WSe2 | 608 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_008.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_009.sxm` | STM | WSe2 single crystal | WSe2 | 609 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_009.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_010.sxm` | STM | WSe2 single crystal | WSe2 | 610 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_010.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_011.sxm` | STM | WSe2 single crystal | WSe2 | 611 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_011.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_012.sxm` | STM | WSe2 single crystal | WSe2 | 612 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_012.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_013.sxm` | STM | WSe2 single crystal | WSe2 | 613 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_013.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_014.sxm` | STM | WSe2 single crystal | WSe2 | 614 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_014.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_015.sxm` | STM | WSe2 single crystal | WSe2 | 615 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_015.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_016.sxm` | STM | WSe2 single crystal | WSe2 | 616 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_016.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_017.sxm` | STM | WSe2 single crystal | WSe2 | 617 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_017.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_018.sxm` | STM | WSe2 single crystal | WSe2 | 618 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_018.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_019.sxm` | STM | WSe2 single crystal | WSe2 | 619 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_019.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_020.sxm` | STM | WSe2 single crystal | WSe2 | 620 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_020.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_021.sxm` | STM | WSe2 single crystal | WSe2 | 621 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_021.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_022.sxm` | STM | WSe2 single crystal | WSe2 | 622 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_022.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_023.sxm` | STM | WSe2 single crystal | WSe2 | 623 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_023.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_024.sxm` | STM | WSe2 single crystal | WSe2 | 624 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_024.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_025.sxm` | STM | WSe2 single crystal | WSe2 | 625 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_025.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_026.sxm` | STM | WSe2 single crystal | WSe2 | 626 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_026.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_027.sxm` | STM | WSe2 single crystal | WSe2 | 627 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_027.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_028.sxm` | STM | WSe2 single crystal | WSe2 | 628 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_028.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_029.sxm` | STM | WSe2 single crystal | WSe2 | 629 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_029.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_030.sxm` | STM | WSe2 single crystal | WSe2 | 630 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_030.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_031.sxm` | STM | WSe2 single crystal | WSe2 | 631 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_031.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_032.sxm` | STM | WSe2 single crystal | WSe2 | 632 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_032.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_033.sxm` | STM | WSe2 single crystal | WSe2 | 633 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_033.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_034.sxm` | STM | WSe2 single crystal | WSe2 | 634 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_034.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_035.sxm` | STM | WSe2 single crystal | WSe2 | 635 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_035.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_036.sxm` | STM | WSe2 single crystal | WSe2 | 636 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_036.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_037.sxm` | STM | WSe2 single crystal | WSe2 | 637 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_037.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_038.sxm` | STM | WSe2 single crystal | WSe2 | 638 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_038.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_039.sxm` | STM | WSe2 single crystal | WSe2 | 639 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_039.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_040.sxm` | STM | WSe2 single crystal | WSe2 | 640 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_040.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_041.sxm` | STM | WSe2 single crystal | WSe2 | 641 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_041.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_042.sxm` | STM | WSe2 single crystal | WSe2 | 642 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_042.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_043.sxm` | STM | WSe2 single crystal | WSe2 | 643 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_043.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_044.sxm` | STM | WSe2 single crystal | WSe2 | 644 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_044.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_045.sxm` | STM | WSe2 single crystal | WSe2 | 645 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_045.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_046.sxm` | STM | WSe2 single crystal | WSe2 | 646 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_046.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_047.sxm` | STM | WSe2 single crystal | WSe2 | 647 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_047.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_048.sxm` | STM | WSe2 single crystal | WSe2 | 648 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_048.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_049.sxm` | STM | WSe2 single crystal | WSe2 | 649 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_049.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_050.sxm` | STM | WSe2 single crystal | WSe2 | 650 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_050.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_051.sxm` | STM | WSe2 single crystal | WSe2 | 651 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_051.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_052.sxm` | STM | WSe2 single crystal | WSe2 | 652 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_052.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_053.sxm` | STM | WSe2 single crystal | WSe2 | 653 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_053.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_054.sxm` | STM | WSe2 single crystal | WSe2 | 654 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_054.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_055.sxm` | STM | WSe2 single crystal | WSe2 | 655 | `zenodo/10443995/STM_data/2021-11-26/STM_WTip_WSe2-SL445_055.sxm/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_001.dat` | STM | WSe2 single crystal | WSe2 | 656 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_001.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_002.dat` | STM | WSe2 single crystal | WSe2 | 657 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_002.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_003.dat` | STM | WSe2 single crystal | WSe2 | 658 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_003.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_004.dat` | STM | WSe2 single crystal | WSe2 | 659 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_004.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_005.dat` | STM | WSe2 single crystal | WSe2 | 660 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_005.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_006.dat` | STM | WSe2 single crystal | WSe2 | 661 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_006.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_007.dat` | STM | WSe2 single crystal | WSe2 | 662 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_007.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_008.dat` | STM | WSe2 single crystal | WSe2 | 663 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_008.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_009.dat` | STM | WSe2 single crystal | WSe2 | 664 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_009.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_010.dat` | STM | WSe2 single crystal | WSe2 | 665 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_010.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_011.dat` | STM | WSe2 single crystal | WSe2 | 666 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_011.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_012.dat` | STM | WSe2 single crystal | WSe2 | 667 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_012.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_013.dat` | STM | WSe2 single crystal | WSe2 | 668 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_013.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_014.dat` | STM | WSe2 single crystal | WSe2 | 669 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_014.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_015.dat` | STM | WSe2 single crystal | WSe2 | 670 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_015.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_016.dat` | STM | WSe2 single crystal | WSe2 | 671 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_016.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_017.dat` | STM | WSe2 single crystal | WSe2 | 672 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_017.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_018.dat` | STM | WSe2 single crystal | WSe2 | 673 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_018.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_019.dat` | STM | WSe2 single crystal | WSe2 | 674 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_019.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_020.dat` | STM | WSe2 single crystal | WSe2 | 675 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_020.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_021.dat` | STM | WSe2 single crystal | WSe2 | 676 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_021.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_022.dat` | STM | WSe2 single crystal | WSe2 | 677 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_022.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_023.dat` | STM | WSe2 single crystal | WSe2 | 678 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_023.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_024.dat` | STM | WSe2 single crystal | WSe2 | 679 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_024.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_025.dat` | STM | WSe2 single crystal | WSe2 | 680 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_025.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_026.dat` | STM | WSe2 single crystal | WSe2 | 681 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_026.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_027.dat` | STM | WSe2 single crystal | WSe2 | 682 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_027.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_028.dat` | STM | WSe2 single crystal | WSe2 | 683 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_028.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_029.dat` | STM | WSe2 single crystal | WSe2 | 684 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_029.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_030.dat` | STM | WSe2 single crystal | WSe2 | 685 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_030.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_031.dat` | STM | WSe2 single crystal | WSe2 | 686 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_031.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_032.dat` | STM | WSe2 single crystal | WSe2 | 687 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_032.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_033.dat` | STM | WSe2 single crystal | WSe2 | 688 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_033.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_034.dat` | STM | WSe2 single crystal | WSe2 | 689 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_034.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_035.dat` | STM | WSe2 single crystal | WSe2 | 690 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_035.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_036.dat` | STM | WSe2 single crystal | WSe2 | 691 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_036.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_037.dat` | STM | WSe2 single crystal | WSe2 | 692 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_037.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_038.dat` | STM | WSe2 single crystal | WSe2 | 693 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_038.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_039.dat` | STM | WSe2 single crystal | WSe2 | 694 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_039.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_040.dat` | STM | WSe2 single crystal | WSe2 | 695 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_040.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_041.dat` | STM | WSe2 single crystal | WSe2 | 696 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_041.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_042.dat` | STM | WSe2 single crystal | WSe2 | 697 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_042.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_043.dat` | STM | WSe2 single crystal | WSe2 | 698 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_043.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_044.dat` | STM | WSe2 single crystal | WSe2 | 699 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_044.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_045.dat` | STM | WSe2 single crystal | WSe2 | 700 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_045.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_046.dat` | STM | WSe2 single crystal | WSe2 | 701 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_046.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_047.dat` | STM | WSe2 single crystal | WSe2 | 702 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_047.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_048.dat` | STM | WSe2 single crystal | WSe2 | 703 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_048.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_049.dat` | STM | WSe2 single crystal | WSe2 | 704 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_049.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_050.dat` | STM | WSe2 single crystal | WSe2 | 705 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_050.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_051.dat` | STM | WSe2 single crystal | WSe2 | 706 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_051.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_052.dat` | STM | WSe2 single crystal | WSe2 | 707 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_052.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_053.dat` | STM | WSe2 single crystal | WSe2 | 708 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_053.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_054.dat` | STM | WSe2 single crystal | WSe2 | 709 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_054.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_055.dat` | STM | WSe2 single crystal | WSe2 | 710 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_055.dat/` | True | True |
+| `V-Spec_WTip_WSe2-SL445_056.dat` | STM | WSe2 single crystal | WSe2 | 711 | `zenodo/10443995/STM_data/2021-11-26/V-Spec_WTip_WSe2-SL445_056.dat/` | True | True |
+| `STM_WTip_WSe2-SL445_001.sxm` | STM | WSe2 single crystal | WSe2 | 712 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_001.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_002.sxm` | STM | WSe2 single crystal | WSe2 | 713 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_002.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_003.sxm` | STM | WSe2 single crystal | WSe2 | 714 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_003.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_004.sxm` | STM | WSe2 single crystal | WSe2 | 715 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_004.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_005.sxm` | STM | WSe2 single crystal | WSe2 | 716 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_005.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_006.sxm` | STM | WSe2 single crystal | WSe2 | 717 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_006.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_007.sxm` | STM | WSe2 single crystal | WSe2 | 718 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_007.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_008.sxm` | STM | WSe2 single crystal | WSe2 | 719 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_008.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_009.sxm` | STM | WSe2 single crystal | WSe2 | 720 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_009.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_010.sxm` | STM | WSe2 single crystal | WSe2 | 721 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_010.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_011.sxm` | STM | WSe2 single crystal | WSe2 | 722 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_011.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_012.sxm` | STM | WSe2 single crystal | WSe2 | 723 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_012.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_013.sxm` | STM | WSe2 single crystal | WSe2 | 724 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_013.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_014.sxm` | STM | WSe2 single crystal | WSe2 | 725 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_014.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_015.sxm` | STM | WSe2 single crystal | WSe2 | 726 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_015.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_016.sxm` | STM | WSe2 single crystal | WSe2 | 727 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_016.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_017.sxm` | STM | WSe2 single crystal | WSe2 | 728 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_017.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_018.sxm` | STM | WSe2 single crystal | WSe2 | 729 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_018.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_019.sxm` | STM | WSe2 single crystal | WSe2 | 730 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_019.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_020.sxm` | STM | WSe2 single crystal | WSe2 | 731 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_020.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_021.sxm` | STM | WSe2 single crystal | WSe2 | 732 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_021.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_022.sxm` | STM | WSe2 single crystal | WSe2 | 733 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_022.sxm/` | True | True |
+| `STM_WTip_WSe2-SL445_023.sxm` | STM | WSe2 single crystal | WSe2 | 734 | `zenodo/10443995/STM_data/2021-11-27/STM_WTip_WSe2-SL445_023.sxm/` | True | True |
+| `*.ini` | STM | WSe2 single crystal | WSe2 | 7 | `zenodo/10443995/STM_data/` | — | — |
+| `*.zip` | STM | WSe2 single crystal | WSe2 | 2 | `zenodo/10443995/STM_data/` | — | — |
+| `*.jpg` | STM | WSe2 single crystal | WSe2 | 236 | `zenodo/10443995/STM_images/` | — | — |
+| `*.npy` | STM | WSe2 single crystal | WSe2 | 1 | `zenodo/10443995/WSe2-Defect-Training-Images_2023-05-01.npy/` | — | — |
+| `*.npy` | STM | WSe2 single crystal | WSe2 | 1 | `zenodo/10443995/WSe2-Defect-Training-Labels_2023-05-01.npy/` | — | — |
+| `*.csv` | STM | WSe2 single crystal | WSe2 | 1 | `zenodo/10443995/annotations.csv/` | — | — |
+| `*.json` | STM | WSe2 single crystal | WSe2 | 1 | `zenodo/10443995/annotations.json/` | — | — |
 
 ## Information Files
 
@@ -794,8 +800,24 @@
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-08/09 with `pynxtools-spm` 0.2.5. License **`cc-by-4.0`** passes the
+open-license gate. **All 678 `.sxm` STM + all 56 `.dat` STS files converted, validated, and
+uploaded** (`PS = True`, `Uploaded = True`).
+
+- **STM `.sxm` (678/678):** default `current_forward`; short units, 0 shape mismatches.
+- **STS `.dat` (56/56):** genuine Nanonis STS (header `Experiment<TAB>bias spectroscopy`).
+  Recovered with a **per-dataset `config.json`** (copied from `ElnExamples/nanonis_dat_sts` and
+  edited so `raw_path` is a list — this dataset mixes averaged-sweep `Current [AVG]` and
+  single-sweep `Current` channel names; the src default config was not touched). Default
+  `current` (+ `current_grad` = numerical dI/dV).
+
+Output `.nxs` named meaningfully as `WSe2_<raw_stem>.nxs`. `citeID.description` carries the full
+Zenodo description + the original raw file name.
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 678/678 `.sxm` + 56/56 `.dat` converted (`PS = True`)
+- [x] Reference .nxs files generated and uploaded for all 734 files
