@@ -39,6 +39,7 @@ Heiko
 imshow
 Incorrect
 infinitiy
+initialising
 input
 inted
 iupac
@@ -54,6 +55,7 @@ Lukas
 mainfile
 Markus
 metadata
+metainfo
 Mformatter
 miscellaneous
 Mozumder
