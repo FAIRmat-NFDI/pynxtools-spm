@@ -54,6 +54,7 @@ hexabenzocoronene
 imshow
 Incorrect
 infinitiy
+initialising
 input
 inted
 itemsize
@@ -71,6 +72,7 @@ Lukas
 mainfile
 Markus
 metadata
+metainfo
 Mformatter
 Mirco
 miscellaneous
