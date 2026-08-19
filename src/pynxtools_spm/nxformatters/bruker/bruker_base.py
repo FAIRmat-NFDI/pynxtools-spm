@@ -15,12 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from __future__ import annotations
-import numpy as np
-import re
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
-from pynxtools_spm.nxformatters.helpers import _get_data_unit_and_others
-
 
 class BrukerBase(SPMformatter):
     """
