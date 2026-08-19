@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
 
+
 class BrukerBase(SPMformatter):
     """
     Base class for Bruker SPM formatters.
