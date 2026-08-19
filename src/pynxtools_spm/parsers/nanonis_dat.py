@@ -72,6 +72,7 @@ class DatGenericNanonis(SPMBase):
         self.bias_spect_dict: NestedDict_t = {}
         self.raw_file: str = file_name if isinstance(file_name, str) else str(file_name)
         self.extract_and_store_from_dat_file()
+        super().__init__(file_name)
 
     # pylint: disable=too-many-arguments
     def check_and_write_unit(

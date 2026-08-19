@@ -34,6 +34,7 @@ import copy
 
 import numpy as np
 import yaml
+from pynxtools import logger as pynx_logger
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
@@ -193,14 +194,14 @@ class SPMformatter(ABC):
         self,
         template: Template,
         raw_file: str | Path,
-        eln_file: str | Path | None = None,
+        eln_file: str | Path,
         config_file: None | (str | Path) = None,  # In case it is not provided by users
         auxiliary_files: list[str | Path] | None = None,
         entry: str | None = None,
     ):
 
-        self.scan_control: NXScanControl = NXScanControl()
-        self.bias_sweep: BiasSweep = BiasSweep()
+        self.scan_control: NXScanControl | None = NXScanControl()
+        self.bias_sweep: BiasSweep | None = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
@@ -210,9 +211,9 @@ class SPMformatter(ABC):
         if auxiliary_files is not None:
             self.auxiliary_files = auxiliary_files
         else:
-            # TODO: Instead of print, use logging to give this info to users.
-            print(
-                "INFO: No auxiliary files provided. If there are auxiliary files, please provide them as a list of file paths to the formatter."
+            pynx_logger.info(
+                "No auxiliary files provided. If there are auxiliary files, please"
+                " provide them as a list of file paths to the formatter."
             )
 
     @abstractmethod
