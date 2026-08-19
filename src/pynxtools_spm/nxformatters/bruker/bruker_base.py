@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-"""
-A short description on STS reader which also suitable for file from STM .
-"""
-
+#
 # Copyright The NOMAD Authors.
 #
 # This file is part of NOMAD. See https://nomad-lab.eu for further info.
@@ -18,23 +14,17 @@ A short description on STS reader which also suitable for file from STM .
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-import os
-from abc import ABC, abstractmethod
-from pathlib import Path
+from __future__ import annotations
+import numpy as np
+import re
+
+from pynxtools_spm.nxformatters.base_formatter import SPMformatter
+from pynxtools_spm.nxformatters.helpers import _get_data_unit_and_others
 
 
-class SPMBase(ABC):
-    """Base class for all the SPM readers."""
+class BrukerBase(SPMformatter):
+    """
+    Base class for Bruker SPM formatters.
+    """
 
-    def __init__(self, file_path: str | Path) -> None:
-        super().__init__()
-        if os.path.exists(file_path):
-            self.file_path = file_path
-        else:
-            raise FileNotFoundError(f"File {file_path} not found.")
-
-    @abstractmethod
-    def parse(self):
-        """Parse the file and return the parsed data."""
-        pass
+    _grp_to_func = {}

@@ -41,3 +41,12 @@ find ${root_dir}/tests/data/nanonis/afm/version_gen_4_default_config -type f -na
 
 find ${root_dir}/tests/data/nanonis/afm/version_gen_4_with_described_nxdata -type f ! -name '*.nxs' | xargs dataconverter --nxdl NXafm --reader spm --output afm_4_with_described_nxdata.nxs
 find ${root_dir}/tests/data/nanonis/afm/version_gen_4_with_described_nxdata -type f -name '*.nxs' | xargs mv afm_4_with_described_nxdata.nxs
+
+# AFM Bruker SPMLab (.FLT)
+# Written straight into the data directory instead of being generated in the
+# working directory and moved onto the previous file: a .FLT export holds a
+# single channel, so new channels and scan directions are added as further data
+# directories, and the two step form fails whenever the target does not exist yet.
+echo " !!! Converting Bruker SPMLab AFM (.FLT) data !!! "
+flt_dir=${root_dir}/tests/data/bruker/afm/flt_default_config
+find ${flt_dir} -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output ${flt_dir}/afm_flt_default_config.nxs

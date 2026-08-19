@@ -78,9 +78,11 @@ class SPMReader(BaseReader):
         raw_file_ext: str | None = None
 
         for file in file_paths:
-            ext = file.rsplit(".", 1)[-1]
+            # Vendors do not agree on the case of the extension, e.g. Bruker
+            # writes '.FLT'.
+            ext = file.rsplit(".", 1)[-1].lower()
             fl_obj: object
-            if ext in ["sxm", "dat", "sm4"]:
+            if ext in ["sxm", "dat", "sm4", "flt"]:
                 data_file = file
                 raw_file_ext = ext
             if ext == "json":
@@ -134,6 +136,17 @@ class SPMReader(BaseReader):
                 config_file=config_file,
             )
             # nsa.get_nxformatted_template()
+        elif experiment_technique == "AFM" and raw_file_ext == "flt":
+            from pynxtools_spm.nxformatters.bruker.bruker_flt_afm import (
+                BrukerFltAFM,
+            )
+
+            formatter_obj = BrukerFltAFM(
+                template=template,
+                raw_file=data_file,
+                eln_file=eln_file,
+                config_file=config_file,
+            )
         elif experiment_technique == "STS" and raw_file_ext == "dat":
             from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 
