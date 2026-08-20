@@ -1,7 +1,7 @@
 {
   "ENTRY[entry]": {
     "@default": {
-      "raw_path": "@default:Height"
+      "raw_path": "@default:height"
     },
     "start_time": {
       "#note": "Handled in function _set_start_end_time. SPMLab writes a non ISO8601 stamp, e.g. 'Jun.17.2026 08:03:43'.",
@@ -211,14 +211,14 @@
     "DATA[data]": [
       {
         "data": {
-          "name": "Height",
+          "name": "height",
           "raw_path": "/CHANNEL/data",
           "@units": "/CHANNEL/data/@unit"
         },
         "title": {
           "raw_path": "@default:AFM Scan Image"
         },
-        "grp_name": "Height"
+        "grp_name": "height"
       }
     ],
     "SAMPLE[sample]": {

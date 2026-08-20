@@ -20,7 +20,7 @@ Sample:
   situation: air
   thickness: 0.5
   thickness/@units: mm
-default: scan_image
+default: height
 definition: NXafm
 experiment_description: >-
   Peak Force Tapping AFM height image of a YSZ(100) single crystal, forward scan

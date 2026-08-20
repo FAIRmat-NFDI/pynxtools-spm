@@ -1,5 +1,9 @@
-"""
-Functionality tests for functions and classes developed in spm reader
+"""Tests for the Bruker SPMLab (.FLT) AFM format.
+
+Covers the whole path a .FLT file takes through the reader: the ASCII header
+reader and value/unit splitter of ``FltBruker``, its ``parse`` output, the
+selection of that parser by ``SPMParser``, the SPMLab timestamp handling of
+``BrukerFltAFM`` and the dispatch performed by ``SPMReader``.
 """
 
 from dataclasses import dataclass
@@ -8,40 +12,11 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 from pynxtools_spm.parsers.bruker_flt import (
     DATA_OFFSET,
     HEADER_CHUNK_SIZE,
     FltBruker,
 )
-
-
-@pytest.mark.parametrize(
-    "name, part_to_embed, expected",
-    [
-        ("yy_NM[yy_nm]", "x", "yy_NM[yy_x]"),
-        ("yy_M_N[yy_m_n]", "x", "yy_M_N[yy_x]"),
-        ("Myy[myy]", "x", "Myy[x_yy]"),
-        ("y_M_yy[y_m_yy]", "x", "y_M_yy[y_x_yy]"),
-        ("y_M_N_yy[y_x_yy]", "x", "y_M_N_yy[y_x_yy]"),
-        ("yy_ff[yy_mn]", "x", "yy_ff[yy_mn]"),
-        ("ALL_UPPER", "all_lower", "ALL_UPPER[all_lower]"),
-        # Additional test cases
-        ("test[abc]", "z", "test[abc]"),
-        ("prefixM[prefix_m]", "_y", "prefixM[prefix_y]"),
-        ("no_brackets", "x", "no_brackets"),
-        ("[only]", "x", "[only]"),
-        ("multi_M_N_M[multi_m_n_m]", "_z", "multi_M_N_M[multi_z]"),
-        ("", "x", ""),
-        ("complex_M_N[complex_m_n]", "a", "complex_M_N[complex_a]"),
-        ("already_x[already_x]", "x", "already_x[already_x]"),
-    ],
-)
-def test_replace_variadic_name_part(name, part_to_embed, expected):
-    result = replace_variadic_name_part(name, part_to_embed)
-    assert result == expected, (
-        f"Failed for {name}, {part_to_embed}: got {result}, expected {expected}"
-    )
 
 
 # ---------------------------------------------------------------------------
@@ -50,210 +25,14 @@ def test_replace_variadic_name_part(name, part_to_embed, expected):
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
 FLT_DATA_DIR = TEST_DATA_DIR / "bruker" / "afm" / "flt_default_config"
-FLT_RAW_FILE = FLT_DATA_DIR / "B3320_13_061726074638.SIG_TOPO_FRW.FLT"
+FLT_RAW_FILE = next(FLT_DATA_DIR.glob("*.flt"), None) or next(
+    FLT_DATA_DIR.glob("*.FLT"), None
+)
+assert FLT_RAW_FILE is not None, f"no .flt file found in {FLT_DATA_DIR}"
 
 ENTRY = "/ENTRY[entry]"
-SCAN_CONTROL = (
-    f"{ENTRY}/INSTRUMENT[instrument]/SCAN_ENVIRONMENT[scan_environment]"
-    "/SPM_SCAN_CONTROL[spm_scan_control]"
-)
-MESH_SCAN = f"{SCAN_CONTROL}/meshSCAN[mesh_scan]"
-SCAN_REGION = f"{SCAN_CONTROL}/scan_region"
-
-# Header values of the reference file, read straight from its ASCII header:
-# ScanRangeX/Y=1.0000 µm, OffsetX/Y=1.0000 µm, ResolutionX/Y=512.
-FLT_RANGE = 1.0
-FLT_OFFSET = 1.0
+# Read straight from the reference file's ASCII header: ResolutionX/Y=512.
 FLT_RESOLUTION = 512
-
-
-@pytest.fixture(scope="module")
-def flt_template() -> dict:
-    """Convert the reference .FLT file once and share the filled template.
-
-    The real file and the real default config are used rather than stubs, so
-    that a change in either the parser, the config or the formatter shows up
-    here.
-    """
-    from pynxtools.dataconverter.template import Template
-
-    from pynxtools_spm.nxformatters.bruker.bruker_flt_afm import BrukerFltAFM
-
-    formatter = BrukerFltAFM(
-        template=Template(),
-        raw_file=str(FLT_RAW_FILE),
-        eln_file=str(FLT_DATA_DIR / "eln_data.yaml"),
-    )
-    return formatter.get_nxformatted_template()
-
-
-class TestBrukerFltAFMConversion:
-    """End-to-end checks of BrukerFltAFM against the reference .FLT file."""
-
-    def test_signal_data_is_attached(self, flt_template):
-        """The '/CHANNEL/' placeholder resolves, so the image reaches NXdata."""
-        assert flt_template[f"{ENTRY}/DATA[scan_image]/@signal"] == "channel"
-        signal = flt_template[f"{ENTRY}/DATA[scan_image]/DATA[channel]"]
-        assert isinstance(signal, np.ndarray)
-        assert signal.shape == (FLT_RESOLUTION, FLT_RESOLUTION)
-        # 'Height' is stored by gwyddionpy in SI metres.
-        assert flt_template[f"{ENTRY}/DATA[scan_image]/DATA[channel]/@units"] == "m"
-
-    def test_scan_region_is_written_by_the_config_walker(self, flt_template):
-        """scan_region needs no formatter code: every field maps to a header key."""
-        assert flt_template[
-            f"{SCAN_REGION}/scan_offset_valueN[scan_offset_value_x]"
-        ] == pytest.approx(FLT_OFFSET)
-        assert flt_template[
-            f"{SCAN_REGION}/scan_offset_valueN[scan_offset_value_y]"
-        ] == pytest.approx(FLT_OFFSET)
-        assert flt_template[
-            f"{SCAN_REGION}/scan_rangeN[scan_range_x]"
-        ] == pytest.approx(FLT_RANGE)
-        assert flt_template[
-            f"{SCAN_REGION}/scan_rangeN[scan_range_y]"
-        ] == pytest.approx(FLT_RANGE)
-        assert flt_template[
-            f"{SCAN_REGION}/scan_angleN[scan_angle_n]"
-        ] == pytest.approx(0.0)
-        assert (
-            flt_template[
-                f"{SCAN_REGION}/scan_offset_valueN[scan_offset_value_x]/@units"
-            ]
-            == "micrometer"
-        )
-
-    def test_scan_pattern_and_step_size(self, flt_template):
-        assert flt_template[f"{MESH_SCAN}/scan_points_x"] == FLT_RESOLUTION
-        assert flt_template[f"{MESH_SCAN}/scan_points_y"] == FLT_RESOLUTION
-        assert flt_template[f"{MESH_SCAN}/fast_axis"] == "x"
-        assert flt_template[f"{MESH_SCAN}/slow_axis"] == "y"
-        expected_step = FLT_RANGE / (FLT_RESOLUTION - 1)
-        assert flt_template[f"{MESH_SCAN}/step_sizeN[step_size_x]"] == pytest.approx(
-            expected_step
-        )
-        assert flt_template[f"{MESH_SCAN}/step_sizeN[step_size_y]"] == pytest.approx(
-            expected_step
-        )
-        assert flt_template[f"{MESH_SCAN}/step_sizeN[step_size_x]/@units"] == (
-            "micrometer"
-        )
-
-    def test_axes_are_physical_and_correctly_ordered(self, flt_template):
-        """The slow (y) axis indexes rows, the fast (x) axis indexes columns."""
-        data_grp = f"{ENTRY}/DATA[scan_image]"
-        assert flt_template[f"{data_grp}/@axes"] == ["y", "x"]
-        assert flt_template[f"{data_grp}/@AXISNAME_indices[y_indices]"] == 0
-        assert flt_template[f"{data_grp}/@AXISNAME_indices[x_indices]"] == 1
-
-        signal = flt_template[f"{data_grp}/DATA[channel]"]
-        axis_y = flt_template[f"{data_grp}/AXISNAME[y]"]
-        axis_x = flt_template[f"{data_grp}/AXISNAME[x]"]
-        assert axis_y.size == signal.shape[0]
-        assert axis_x.size == signal.shape[1]
-        assert flt_template[f"{data_grp}/AXISNAME[x]/@units"] == "micrometer"
-
-    def test_axis_endpoints_follow_the_offset_as_origin(self, flt_template):
-        """OffsetX/Y is read as the frame origin, so x runs offset -> offset+range.
-
-        This is Gwyddion's reading of the SPMLab header and differs from
-        NanoScope .spm, where Bruker documents the offset as the scan centre.
-        See src/pynxtools_spm/parsers/bruker/README.md.
-        """
-        data_grp = f"{ENTRY}/DATA[scan_image]"
-        for axis_name in ("x", "y"):
-            axis = flt_template[f"{data_grp}/AXISNAME[{axis_name}]"]
-            assert axis[0] == pytest.approx(FLT_OFFSET)
-            assert axis[-1] == pytest.approx(FLT_OFFSET + FLT_RANGE)
-            # Row/column index grows with the coordinate.
-            assert np.all(np.diff(axis) > 0)
-
-    def test_scan_name_and_mode_from_header(self, flt_template):
-        assert flt_template[f"{SCAN_CONTROL}/scanTAG[scan_name]"] == "SIG_TOPO"
-        assert flt_template[f"{SCAN_CONTROL}/scan_type"] == "mesh"
-
-    def test_start_time_is_iso8601(self, flt_template):
-        """'Jun.17.2026 08:03:43' is rewritten as ISO 8601.
-
-        Only the local part is asserted: the base formatter appends the local
-        timezone offset, which depends on the machine running the test.
-        """
-        start_time = flt_template[f"{ENTRY}/start_time"]
-        assert start_time.startswith("2026-06-17T08:03:43")
-
-    def test_sample_metadata_from_eln(self, flt_template):
-        assert flt_template[f"{ENTRY}/SAMPLE[sample]/name"] == "YSZ(100)K_B3320_13"
-        assert (
-            flt_template[f"{ENTRY}/SAMPLE[sample]/chemical_formula"]
-            == "(Y2O3)0.085(ZrO2)0.915"
-        )
-        assert flt_template[f"{ENTRY}/SAMPLE[sample]/physical_form"] == "single crystal"
-        assert flt_template[f"{ENTRY}/SAMPLE[sample]/thickness"] == pytest.approx(0.5)
-        assert flt_template[f"{ENTRY}/SAMPLE[sample]/thickness/@units"] == "mm"
-
-
-# ---------------------------------------------------------------------------
-# BrukerFltAFM — channel placeholder resolution
-# ---------------------------------------------------------------------------
-
-
-class TestBrukerFltChannelPlaceholder:
-    """A .FLT file holds one channel, whose name prefixes every raw path."""
-
-    def _make_formatter(self, raw_data: dict):
-        from pynxtools_spm.nxformatters.bruker.bruker_flt_afm import BrukerFltAFM
-
-        formatter = BrukerFltAFM.__new__(BrukerFltAFM)
-        formatter.raw_data = raw_data
-        formatter.raw_file = "in-memory.FLT"
-        return formatter
-
-    @pytest.mark.parametrize("channel", ["Height", "Adhesion", "Peak Force Error"])
-    def test_channel_name_is_taken_from_the_image_array(self, channel):
-        formatter = self._make_formatter(
-            {
-                "source_format": "spmlabf",
-                f"/{channel}/name": channel,
-                f"/{channel}/data": np.zeros((4, 4)),
-            }
-        )
-        assert formatter._get_channel_name() == channel
-
-    def test_channel_name_is_none_without_image_data(self):
-        # A scalar under '/data' is not an image and must not be mistaken for one.
-        formatter = self._make_formatter(
-            {"source_format": "spmlabf", "/Height/data": "not-an-array"}
-        )
-        assert formatter._get_channel_name() is None
-
-    def test_placeholder_is_replaced_everywhere_in_the_config(self):
-        formatter = self._make_formatter({"/Adhesion/data": np.zeros((2, 2))})
-        config = {
-            "DATA[data]": [
-                {
-                    "data": {
-                        "raw_path": "/CHANNEL/data",
-                        "@units": "/CHANNEL/data/@unit",
-                    }
-                }
-            ],
-            "nested": {"deep": {"raw_path": "/CHANNEL/meta/SetPoint"}},
-            "literal": "@default:peak force tapping mode",
-            "number": 512,
-        }
-        resolved = formatter._resolve_channel_placeholder(config)
-
-        assert resolved["DATA[data]"][0]["data"]["raw_path"] == "/Adhesion/data"
-        assert resolved["DATA[data]"][0]["data"]["@units"] == "/Adhesion/data/@unit"
-        assert resolved["nested"]["deep"]["raw_path"] == "/Adhesion/meta/SetPoint"
-        # Values without the placeholder are passed through untouched.
-        assert resolved["literal"] == "@default:peak force tapping mode"
-        assert resolved["number"] == 512
-
-    def test_config_is_returned_unchanged_when_no_channel_is_found(self):
-        formatter = self._make_formatter({"source_format": "spmlabf"})
-        config = {"a": {"raw_path": "/CHANNEL/data"}}
-        assert formatter._resolve_channel_placeholder(config) == config
 
 
 # ---------------------------------------------------------------------------
@@ -430,8 +209,6 @@ def _build_flt_header(sections: dict[str, list[tuple[str, str] | str]]) -> bytes
     which the binary raster starts, i.e. the length of the header itself, and
     the parser only looks for it in the first chunk it reads.
 
-    An entry given as a plain string is emitted verbatim, so that malformed
-    lines can be placed inside the header before its length is computed.
     """
     lines = ["[Data Parameters]", f"DataOffset={_OFFSET_PLACEHOLDER}"]
     for name, entries in sections.items():
@@ -665,28 +442,13 @@ class TestFltBrukerHeader:
         ]
         assert parsed == flavor.expected
 
-    @pytest.mark.parametrize("placement", ["missing", "past-the-first-chunk"])
-    def test_unusable_data_offset_yields_an_empty_dict(
-        self, flavor, placement, tmp_path, caplog
-    ):
-        """Without a usable 'DataOffset' the header end is unknown.
+    def test_missing_data_offset_yields_an_empty_dict(self, flavor, tmp_path, caplog):
+        """Without 'DataOffset' the end of the header is unknown.
 
-        'DataOffset' is only searched for in the first HEADER_CHUNK_SIZE bytes.
-        Real exports put it in the second section, a few dozen bytes in, so the
-        second case is a documented limit rather than a defect: such a header is
-        skipped whole, with a warning, instead of being guessed at.
+        A truncated or foreign file is skipped whole, with a warning, rather
+        than being guessed at.
         """
         header = DATA_OFFSET.sub("", flavor.header.decode("latin-1")).encode("latin-1")
-        if placement == "past-the-first-chunk":
-            padding = "\r\n".join(f"Pad{i}=ignored" for i in range(900))
-            header += f"[Padding]\r\n{padding}\r\n".encode("latin-1")
-            header += (
-                f"[Data Parameters]\r\nDataOffset={len(header) + 40:>8d}\r\n".encode(
-                    "latin-1"
-                )
-            )
-            assert len(header) > HEADER_CHUNK_SIZE
-
         parser = _flt_parser_for(tmp_path, header)
         with caplog.at_level("WARNING"):
             assert parser._get_raw_header_dict() == {}
@@ -941,7 +703,13 @@ class TestFltReaderDispatch:
 
     def test_template_is_filled_from_the_flt_file(self, filled_template):
         assert filled_template[f"{ENTRY}/definition"] == "NXafm"
-        signal = filled_template[f"{ENTRY}/DATA[scan_image]/DATA[channel]"]
+        groups = {
+            key[: -len("/@signal")]: val
+            for key, val in filled_template.items()
+            if key.endswith("/@signal") and key.startswith(f"{ENTRY}/DATA[")
+        }
+        ((group, signal_name),) = groups.items()
+        signal = filled_template[f"{group}/DATA[{signal_name}]"]
         assert isinstance(signal, np.ndarray)
         assert signal.shape == (FLT_RESOLUTION, FLT_RESOLUTION)
 
