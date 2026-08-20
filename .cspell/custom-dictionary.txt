@@ -34,6 +34,8 @@ González
 gradient
 griddata
 grps
+gwyddionpy
+Gwyddion's
 Haraszti
 Heiko
 imshow
@@ -47,6 +49,7 @@ keywith
 Kpage
 Kühbach
 levelname
+linearization
 localzone
 lockin
 Lockin
@@ -69,6 +72,7 @@ nchanns
 ndarray
 ndir
 nested
+nxafm
 NFDI
 nxdata
 nxdl
@@ -95,14 +99,19 @@ Shabih
 Sherjeel
 specdata
 spect
+spmlab
+spmlabf
 spym
 subpackages
 Subpackages
 Tamás
 topo
+unitless
 ureg
 valinit
 valtext
+xreal
 Yichen
+yreal
 zenodo
 pynx

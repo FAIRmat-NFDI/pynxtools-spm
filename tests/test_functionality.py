@@ -2,8 +2,9 @@
 Functionality tests for functions and classes developed in spm reader
 """
 
-from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 import pytest
+
+from pynxtools_spm.nxformatters.helpers import replace_variadic_name_part
 
 
 @pytest.mark.parametrize(

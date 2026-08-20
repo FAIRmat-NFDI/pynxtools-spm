@@ -26,6 +26,7 @@ from collections.abc import Callable, Iterable
 from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
 from pynxtools_spm.parsers.nanonis_dat import DatGenericNanonis
 from pynxtools_spm.parsers.omicron_sm4 import Sm4Omicron
+from pynxtools_spm.parsers.bruker_flt import FltBruker
 import pynxtools_spm.parsers.helpers as phs
 import logging
 from pathlib import Path, PosixPath
@@ -74,6 +75,16 @@ class SPMParser:
                 "5.4": Sm4Omicron,
             }
         },
+        "flt": {
+            "bruker": {
+                # The FLT header reports the software as 'Program=SPMLab' and
+                # 'Version=1.00', so the ELN may spell the model either way.
+                "spmlab1.00": FltBruker,
+                "spmlab1.0": FltBruker,
+                "spmlab": FltBruker,
+                "1.00": FltBruker,
+            }
+        },
     }
 
     def __get_appropriate_parser(
@@ -105,6 +116,8 @@ class SPMParser:
                     file_ext = str(file.absolute()).rsplit(".", 1)[-1]
                 elif isinstance(file, str) and os.path.exists(file):
                     file_ext = file.rsplit(".", 1)[-1]
+        # Vendors do not agree on the case of the extension, e.g. Bruker writes '.FLT'.
+        file_ext = file_ext.lower() if file_ext is not None else None
         parser: Callable | None = None
         # experiment_t_key: str = "/ENTRY[entry]/experiment_type"
         # experiment_t: str = eln[experiment_t_key]
@@ -213,6 +226,22 @@ def get_nanonis_dat_parsed_data(file_path: str):
         The parsed data from the Nanonis DAT file.
     """
     raise NotImplementedError("This function is not implemented yet.")
+
+
+def get_bruker_flt_parsed_data(file_path: str):
+    """This function is intended to parse the Bruker FLT file and return the parsed data.
+
+    Parameters
+    ----------
+    file_path : str
+        The path to the Bruker FLT file.
+
+    Returns
+    -------
+    Dict
+        The parsed data from the Bruker FLT file.
+    """
+    return SPMParser().get_raw_data_dict(file_path)
 
 
 def get_bruker_spm_parsed_data(file_path: str):

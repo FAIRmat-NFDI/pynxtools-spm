@@ -28,6 +28,7 @@ from typing import Dict, Optional, Tuple, Union, Any
 import numpy as np
 
 
+from pynxtools_spm.parsers.base_parser import SPMBase
 import pynxtools_spm.parsers.helpers as phs
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
@@ -52,7 +53,7 @@ NestedDict_t = dict[str, Union[int, str, float, "NestedDict_t"]]
 
 
 # pylint: disable=invalid-name
-class DatGenericNanonis:
+class DatGenericNanonis(SPMBase):
     """This class collect and store data fo Bias spectroscopy of SPM experiment.
 
     The class splits the data and store in into nested python dictionary as follows.
@@ -69,8 +70,9 @@ class DatGenericNanonis:
         # Note: If get some information about machines or vendors which makes
         # the data file distinguished and collect them.
         self.bias_spect_dict: NestedDict_t = {}
-        self.raw_file: str = file_name
+        self.raw_file: str = file_name if isinstance(file_name, str) else str(file_name)
         self.extract_and_store_from_dat_file()
+        super().__init__(file_name)
 
     # pylint: disable=too-many-arguments
     def check_and_write_unit(

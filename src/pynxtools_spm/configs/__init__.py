@@ -29,7 +29,18 @@ pwd = os.path.dirname(__file__)
 
 
 def load_default_config(config_type):
-    """Load the default configuration file for a given config type."""
+    """Load the default configuration file for a given config type.
+
+    Note on 'bruker_flt_afm': a FLT file stores a single channel, so every
+    raw path is prefixed with the channel group name (e.g. '/Height/data'). The
+    config uses the literal placeholder '/CHANNEL/' for that prefix, which
+    BrukerFltAFM replaces with the actual channel name in
+    '_resolve_channel_placeholder', right after this function returns. The
+    substitution happens on the config rather than through the
+    'func_on_raw_key' argument of 'walk_though_config_nested_dict', because
+    that callable is not forwarded to '_nxdata_grp_from_conf_description' and
+    the NXdata signal path would stay unresolved.
+    """
 
     nanonis_dat_generic_sts = os.path.join(
         pwd, "nanonis", "nanonis_dat_generic_sts.json"
@@ -41,6 +52,7 @@ def load_default_config(config_type):
         pwd, "nanonis", "nanonis_sxm_generic_afm.json"
     )
     omicron_sm4_stm = os.path.join(pwd, "omicron", "omicron_sm4_stm.json")
+    bruker_flt_afm = os.path.join(pwd, "bruker", "bruker_flt_afm.json")
 
     config_file = None
     if config_type == "nanonis_dat_generic_sts":
@@ -51,6 +63,8 @@ def load_default_config(config_type):
         config_file = nanonis_sxm_generic_afm
     elif config_type == "omicron_sm4_stm":
         config_file = omicron_sm4_stm
+    elif config_type == "bruker_flt_afm":
+        config_file = bruker_flt_afm
     if config_file is not None:
         with open(config_file, encoding="utf-8") as f:
             return json.load(f)

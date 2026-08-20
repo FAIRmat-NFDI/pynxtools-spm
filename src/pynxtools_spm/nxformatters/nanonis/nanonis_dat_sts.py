@@ -86,7 +86,7 @@ class NanonisDatSTS(NanonisBase):
         config_file: str | Path | None = None,
         entry: str | None = None,
     ):
-        super().__init__(template, raw_file, eln_file, config_file, entry)
+        super().__init__(template, raw_file, eln_file, config_file, entry=entry)
 
     def _get_conf_dict(self, config_file: str | Path = None):
         if config_file:
