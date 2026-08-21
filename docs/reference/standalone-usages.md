@@ -25,9 +25,19 @@ $ pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml nanon
 
 Download and try with [STM example files](../assets/command_line_examples/stm.zip){:stm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/stm/version_gen_5_with_described_nxdata).
 
-__3.__ Command to convert a AFM raw data file into NeXus file
+__3.__ Command to convert a Nanonis AFM raw data file (`.sxm`, Nanonis generic version 4) into NeXus file
 ```bash
 $ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml nanonis_afm_file.sxm config.json
 ```
 
 Download and try with [AFM example files](../assets/command_line_examples/afm.zip){:afm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/afm/version_gen_4_with_described_nxdata).
+
+__4.__ Command to convert a Bruker AFM raw data file (`.FLT`, written by `SPMLab` version `1.00`) into NeXus file
+```bash
+$ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml bruker_afm_file.FLT config.json
+```
+
+Visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/flt_described_config) for an example `.FLT` file with its config and ELN file.
+
+!!! note
+    A Bruker `SPMLab` FLT file contains one channel of one scan direction (e.g. `B3320_13_061726074638.SIG_TOPO_FRW.FLT` is the forward height image), so each file is converted into its own NeXus file. The config file may be omitted, in which case the default config `configs/bruker/bruker_flt_afm.json` shipped with the package is used.

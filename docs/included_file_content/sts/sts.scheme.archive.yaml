@@ -1,7 +1,9 @@
 definitions:
-  name: An ELN example for STS (Scanning Tunneling Spectroscopy).
+  name: "STS_ELN_Example"
+  eln:
+    label: "STS ELN Example"
   sections:
-    sts:
+    ELN_for_STS:
       base_sections:
         - pynxtools.nomad.schema_packages.dataconverter.NexusDataConverter
         - nomad.datamodel.data.EntryData
@@ -11,6 +13,7 @@ definitions:
           nxdl: NXsts
         eln:
           hide: []
+          label: "ELN for STS"
       quantities:
         default:
           type: str
@@ -29,7 +32,7 @@ definitions:
             eln:
               component: EnumEditQuantity
           description: |
-            Name of the definitions from NeXus app def designed for STS experiments, one can use 
+            Name of the definitions from NeXus app def designed for STS experiments, one can use
             NXsts or NXspm, but NXsts is recommended.
         experiment_technique:
           type:
@@ -47,7 +50,7 @@ definitions:
             eln:
               component: RichTextEditQuantity
           description: |
-            Descriptive comments for this experiment, added by the experimenter in eln or 
+            Descriptive comments for this experiment, added by the experimenter in eln or
             coming from the output file, e.g. Comment01 SYNC & Filter LP 8order WITHDRAW
             600 steps, locked Au(111), 50pA, 100 mV set point, 1mV DCA, 973Hz,138
             1st H, -84 2nd H.
@@ -130,7 +133,7 @@ definitions:
                           component: StringEditQuantity
                       description: |
                         Version or model of the component named by the manufacturer (e.g. Generic 5e).
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -163,10 +166,10 @@ definitions:
                         eln:
                           component: StringEditQuantity
                       description: |
-                        Version or model, required to choose correct file parser, of the component named 
+                        Version or model, required to choose correct file parser, of the component named
                         by the manufacturer (e.g. Generic 5e).
                         Note that model should be exactly the same as the one in the experiment file.
-                    model/@version:
+                    model_version:
                       type: str
                       m_annotations:
                         eln:
@@ -194,9 +197,9 @@ definitions:
                       description: |
                         The sign (1 or -1) that defines the sign of the lock-in current.
                         The calibration procedure with retracted tip is normally performed
-                        to compensate for the signal phase delay in SPM. The procedure 
+                        to compensate for the signal phase delay in SPM. The procedure
                         yields two possible solutions, this number should be equal to 1 or -1
-                        depending on which solution is chosen (this concept mainly used in 
+                        depending on which solution is chosen (this concept mainly used in
                         STS experiments, e.g. in Nanonis machine).
               Scan_environment:
                 section:
@@ -222,7 +225,7 @@ definitions:
                           component: NumberEditQuantity
                           defaultDisplayUnit: K
                       description: |
-                        Temperature of the cold tail of the cryostat. Note: 
+                        Temperature of the cold tail of the cryostat. Note:
                         At least one field from head_temperature, cryo_bottom_temperature and cryo_shield_temperature must be provided.
                     cryo_shield_temperature:
                       type: np.float64
@@ -269,7 +272,7 @@ definitions:
 
                     - C, then H, then the other elements in alphabetical order of their symbol.
                     - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
-                    
+
                   * This is the *Hill* system used by Chemical Abstracts.
               description:
                 type: str
@@ -324,7 +327,7 @@ definitions:
 
                           - C, then H, then the other elements in alphabetical order of their symbol.
                           - If carbon is not present, the elements are listed purely in alphabetic order of their symbol.
-                          
+
                         * This is the *Hill* system used by Chemical Abstracts.
                     description:
                       type: str

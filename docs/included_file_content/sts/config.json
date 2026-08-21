@@ -697,7 +697,7 @@
       },
       {
         "data": {
-          "name": "Current_filter",
+          "name": "Current Filter",
           "raw_path": "/dat_mat_components/Current [filt]/value",
           "@units": "/dat_mat_components/Current [filt]/unit"
         },
@@ -715,11 +715,11 @@
           "axis_ind": 0
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
-        "grp_name": "Current_filter"
+        "grp_name": "current_filter"
       },
       {
         "data": {
-          "name": "Current_filter",
+          "name": "Current Filter",
           "raw_path": "/dat_mat_components/Current [filt]/value",
           "@units": "/dat_mat_components/Current [filt]/unit"
         },
@@ -736,11 +736,11 @@
           ]
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(filter)" },
-        "grp_name": "Current_filter"
+        "grp_name": "current_filter"
       },
       {
         "data": {
-          "name": "Current_backward",
+          "name": "Current Backward",
           "raw_path": "/dat_mat_components/Current [bwd]/value",
           "@units": "/dat_mat_components/Current [bwd]/unit"
         },
@@ -757,7 +757,7 @@
           ]
         },
         "title": { "raw_path": "@default:Bias Spectroscopy(Backward)" },
-        "grp_name": "Current_Backward"
+        "grp_name": "current_backward"
       }
     ],
     "reproducibility_indicators": {

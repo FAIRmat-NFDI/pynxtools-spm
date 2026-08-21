@@ -523,7 +523,7 @@
     "DATA[data]": [
       {
         "data": {
-          "name": "z",
+          "name": "Z",
           "raw_path": "/Z/forward",
           "@units": "/DATA/INFO/Z/Unit"
         },
@@ -534,7 +534,7 @@
       },
       {
         "data": {
-          "name": "z",
+          "name": "Z",
           "raw_path": "/Z/backward",
           "@units": "/DATA/INFO/Z/Unit"
         },
@@ -545,67 +545,67 @@
       },
       {
         "data": {
-          "name": "excitation",
+          "name": "Excitation",
           "raw_path": "/Excitation/forward",
           "@units": "/DATA/INFO/Excitation/Unit"
         },
         "title": {
-          "raw_path": "@default:Excitation Plot of AFM Experiment (Forward Direction)"
+          "raw_path": "@default:Excitation (Forward)"
         },
         "grp_name": "excitation_forward"
       },
       {
         "data": {
-          "name": "excitation",
+          "name": "Excitation",
           "raw_path": "/Excitation/backward",
           "@units": "/DATA/INFO/Excitation/Unit"
         },
         "title": {
-          "raw_path": "@default:Excitation Plot of AFM Experiment (Backward Direction)"
+          "raw_path": "@default:Excitation (Backward)"
         },
         "grp_name": "excitation_backward"
       },
       {
         "data": {
-          "name": "phase",
+          "name": "Phase",
           "raw_path": "/Phase/Forward",
           "@units": "/DATA/INFO/Phase/Unit"
         },
         "title": {
-          "raw_path": "@default:Phase Plot of AFM Experiment (Forward Direction)"
+          "raw_path": "@default:Phase (Forward)"
         },
         "grp_name": "phase_forward"
       },
       {
         "data": {
-          "name": "phase",
+          "name": "Phase",
           "raw_path": "/Phase/Backward",
           "@units": "/DATA/INFO/Phase/Unit"
         },
         "title": {
-          "raw_path": "@default:Phase Plot of AFM Experiment (Backward Direction)"
+          "raw_path": "@default:Phase (Backward)"
         },
         "grp_name": "phase_backward"
       },
       {
         "data": {
-          "name": "current",
+          "name": "Current",
           "raw_path": "/Current/forward",
           "@units": "/DATA/INFO/Current/Unit"
         },
         "title": {
-          "raw_path": "@default:Current Plot of AFM Experiment (Forward Direction)"
+          "raw_path": "@default:Current Topography (Forward)"
         },
         "grp_name": "current_forward"
       },
       {
         "data": {
-          "name": "current",
+          "name": "Current",
           "raw_path": "/Current/backward",
           "@units": "/DATA/INFO/Current/Unit"
         },
         "title": {
-          "raw_path": "@default:Current Plot of AFM Experiment (Backward Direction)"
+          "raw_path": "@default:Current Topography (Backward)"
         },
         "grp_name": "current_backward"
       }

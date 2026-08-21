@@ -1,4 +1,5 @@
 import json
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -31,13 +32,23 @@ def copy_config_and_plain_eln():
     shutil.copy(src_config, dst_config)
     shutil.copy(src_eln, dst_eln)
 
-    # AFM
+    # AFM (Nanonis)
     dst_config = "docs/included_file_content/afm/config.json"
     src_config = (
         "tests/data/nanonis/afm/version_gen_4_with_described_nxdata/config.json"
     )
     dst_eln = "docs/included_file_content/afm/eln_data.yaml"
     src_eln = "tests/data/nanonis/afm/version_gen_4_with_described_nxdata/eln_data.yaml"
+    dst_path = Path(dst_config)
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy(src_config, dst_config)
+    shutil.copy(src_eln, dst_eln)
+
+    # AFM (Bruker SPMLab FLT)
+    dst_config = "docs/included_file_content/bruker_afm/config.json"
+    src_config = "tests/data/bruker/afm/flt_described_config/config.json"
+    dst_eln = "docs/included_file_content/bruker_afm/eln_data.yaml"
+    src_eln = "tests/data/bruker/afm/flt_described_config/eln_data.yaml"
     dst_path = Path(dst_config)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src_config, dst_config)
@@ -86,6 +97,25 @@ def copy_miscellaneous_files():
         content = json.load(src_file)
         dst_path.write_text(json.dumps(content, indent=4))
 
+    # AFM Bruker FLT header. A FLT file is a binary file that starts with an
+    # INI style text header, so only the header (everything before the byte
+    # given by 'DataOffset') can be shown in the documentation. The header is
+    # written by Windows software and is therefore cp1252/'latin-1' encoded.
+    dst = "docs/included_file_content/bruker_afm/flt_header.txt"
+    src = "tests/data/bruker/afm/flt_described_config/B3320_13_061726074638.SIG_TOPO_FRW.FLT"
+    dst_path = Path(dst)
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(src, "rb") as src_file:
+        # Enough to cover the header (958 bytes in the reference file).
+        chunk = src_file.read(8192)
+    match = re.search(rb"^DataOffset\s*=\s*(?P<offset>\d+)\s*$", chunk, re.MULTILINE)
+    if match is None:
+        raise RuntimeError(f"No 'DataOffset' found in the FLT header of {src}.")
+    dst_path.write_text(
+        chunk[: int(match.group("offset"))].decode("latin-1"), encoding="utf-8"
+    )
+
 
 def generate_folder_structure():
     # Parsers
@@ -112,10 +142,15 @@ def generate_folder_structure():
         (nomad_path, nomad_output_path),
     )
 
+    # '-I __pycache__' keeps byte-code caches out of the rendered module
+    # structure, so that the output does not depend on whether the package has
+    # been imported before the documentation is built.
     cmd = [
         "tree",
         "-L",
         "2",
+        "-I",
+        "__pycache__",
     ]
 
     for input_path, output_file in command_input_tuple:
