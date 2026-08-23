@@ -40,6 +40,9 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 ### Reference
 
 - [Use Reader from Command Line](reference/standalone-usages.md)
+- [Data from Nanonis instruments](reference/nanonis.md)
+- [Data from Omicron instruments](reference/omicron.md)
+- [Data from Bruker instruments](reference/bruker.md)
 - Define [NOMAD](https://nomad-lab.eu/nomad-lab/) [ELN schema](https://nomad-lab.eu/prod/v1/staging/docs/howto/customization/elns.html#schemas-for-elns)
 - [NOMAD Glossary](https://nomad-lab.eu/prod/v1/staging/docs/reference/glossary.html)
 - [NeXus Format](https://www.nexusformat.org/)

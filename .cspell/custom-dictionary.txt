@@ -121,3 +121,5 @@ Yichen
 yreal
 zenodo
 pynx
+Finishup
+Scienta

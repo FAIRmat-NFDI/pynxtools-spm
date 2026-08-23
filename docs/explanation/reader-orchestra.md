@@ -39,11 +39,13 @@ Readers support the following vendor files and formats. The version column refer
 
 | Technique | Vendor | Instrument software (flavor) | Tested version | Extension |
 | --- | --- | --- | --- | --- |
-| `STS` | Nanonis | Nanonis SPM control software | Generic 5, Generic 5e | `.dat` |
-| `STM` | Nanonis | Nanonis SPM control software | Generic 5, Generic 5e | `.sxm` |
-| `STM` | Omicron | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
-| `AFM` | Nanonis | Nanonis SPM control software | Generic 4 | `.sxm` |
-| `AFM` | Bruker | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
+| `STS` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 5, Generic 5e | `.dat` |
+| `STM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 5, Generic 5e | `.sxm` |
+| `STM` | [Omicron](../reference/omicron.md) | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
+| `AFM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 4 | `.sxm` |
+| `AFM` | [Bruker](../reference/bruker.md) | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
+
+Each vendor has its own reference page with the supported formats, the default config file, and a runnable conversion command: [Nanonis](../reference/nanonis.md), [Omicron](../reference/omicron.md), and [Bruker](../reference/bruker.md).
 
 The version of a Bruker FLT file is stated in the `[Data Version]` section at the beginning of the file header (`Program=SPMLab` and `Version=1.00`), while the Nanonis generic version denotes the generation of the Nanonis control software, not the `:NANONIS_VERSION:` entry of the file header. The reader compares file extensions case-insensitively, so both `.flt` and `.FLT` are accepted.
 

@@ -6,3 +6,5 @@ This is an example of handling AFM data (using the AFM reader) in NOMAD. The pri
 - Can parse Atomic Force Microscopy (AFM) from
     - `.sxm` file format from Nanonis:
         - Versions: Generic 4
+    - `.flt` (written as `.FLT`) file format from Bruker:
+        - Versions: `SPMLab` 1.00

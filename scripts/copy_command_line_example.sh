@@ -49,3 +49,30 @@ rm -f $afm_dst/*.nxs
 # create zip file and remove the afm folder
 zip -jrm "$(dirname ${afm_dst})/afm.zip" ${afm_dst}
 rm -r ${afm_dst}
+# Copy Omicron STM file
+src_path="${this_file_path}/tests/data/omicron/stm/default_config"
+omicron_dst="./docs/assets/command_line_examples/omicron"
+mkdir -p $omicron_dst
+
+# remove all the files from dst folder if it has anything in it
+rm -rf ${omicron_dst}/*
+cp -r $src_path/* $omicron_dst/
+rm -f $omicron_dst/*.nxs
+
+# create zip file and remove the omicron folder
+zip -jrm "$(dirname ${omicron_dst})/omicron.zip" ${omicron_dst}
+rm -rf ${omicron_dst}
+
+# Copy Bruker AFM file
+src_path="${this_file_path}/tests/data/bruker/afm/flt_described_config"
+bruker_dst="./docs/assets/command_line_examples/bruker_afm"
+mkdir -p $bruker_dst
+
+# remove all the files from dst folder if it has anything in it
+rm -rf ${bruker_dst}/*
+cp -r $src_path/* $bruker_dst/
+rm -f $bruker_dst/*.nxs
+
+# create zip file and remove the bruker_afm folder
+zip -jrm "$(dirname ${bruker_dst})/bruker_afm.zip" ${bruker_dst}
+rm -rf ${bruker_dst}
