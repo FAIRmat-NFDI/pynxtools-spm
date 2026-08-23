@@ -32,11 +32,20 @@ from pynxtools_spm.parsers.helpers import UNIT_TO_SKIP
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 
 
+# A decimal number with an optional sign and exponent, e.g. '-3.5e-2'.
+NUMBER = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?"
+
 # Bruker SPMLab writes the unit as a trailing token of the value, e.g.
 # 'SetPoint=0.030000 V' or 'ScanningRate=1.0000 µm/s'.
-VALUE_WITH_UNIT = re.compile(
-    r"^(?P<value>[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)\s+(?P<unit>\S+)$"
-)
+VALUE_WITH_UNIT = re.compile(rf"^(?P<value>{NUMBER})\s+(?P<unit>\S+)$")
+
+# SPMLab appends a per feedback loop constant in parentheses to every PID gain,
+# e.g. 'GainP=0.800000 (1000.000000)'. Only the leading float is the gain the
+# operator set; the constant is the same for all three terms of a loop (1000.0
+# for the Z loop, 1200.0 for the X/Y linearization loops in the reference file)
+# and its meaning is undocumented, so it is dropped here. See
+# 'nxformatters/bruker/README.md' for the evidence behind that reading.
+GAIN_WITH_CONSTANT = re.compile(rf"^(?P<value>{NUMBER})\s*\((?P<constant>{NUMBER})\)$")
 
 # The FLT header is Windows written INI text: CRLF line endings and single byte
 # characters ('µ' is 0xB5, '°' is 0xB0), so it is cp1252. 'latin-1' agrees with
@@ -65,18 +74,25 @@ class FltBruker(SPMBase):
 
         Returns ``(value, None)`` when the value carries no unit, so that the
         caller only writes a '/@unit' entry when a unit is really present.
-        Values such as 'GainP=0.800000 (1000.000000)' (a second number rather
-        than a unit) or 'Leveling=1D Line Fit' are left untouched.
+        A PID gain such as 'GainP=0.800000 (1000.000000)' keeps only the gain
+        itself, so that the value stays a number; values that are plain text,
+        such as 'Leveling=1D Line Fit', are left untouched.
         """
         if not isinstance(value, str):
             return value, None
 
-        match = VALUE_WITH_UNIT.match(value.strip())
+        text = value.strip()
+        gain_match = GAIN_WITH_CONSTANT.match(text)
+        if gain_match is not None:
+            return gain_match.group("value"), None
+
+        match = VALUE_WITH_UNIT.match(text)
         if match is None:
             return value, None
 
         unit = match.group("unit")
-        # A parenthesised or numeric trailing token is not a unit.
+        # A numeric trailing token is not a unit, and neither is a parenthesised
+        # one that 'GAIN_WITH_CONSTANT' did not match because it is not a number.
         if unit.startswith("(") or _is_number(unit):
             return value, None
         if unit.lower() in UNIT_TO_SKIP:
