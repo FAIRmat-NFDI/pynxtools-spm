@@ -134,7 +134,7 @@ class TestFltBrukerSplitValueAndUnit:
             # not change which half is the gain.
             ("-1.5e-3 (1200.000000)", "-1.5e-3"),
             ("1.0(1200.0)", "1.0"),
-            # An unparseable parenthesis is left alone rather than guessed at.
+            # An unparsable parenthesis is left alone rather than guessed at.
             ("1.0 (auto)", "1.0 (auto)"),
             ("1.0 (1000.0", "1.0 (1000.0"),
         ],
