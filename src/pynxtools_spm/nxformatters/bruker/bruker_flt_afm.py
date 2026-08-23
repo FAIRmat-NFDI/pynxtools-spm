@@ -207,9 +207,14 @@ class BrukerFltAFM(BrukerBase):
         group_name: str = "scan_control",
         **kwarg,
     ):
-        scan_region_dict = partial_conf_dict.get("scan_region")
+        scan_region_grp = "scan_region"
+        scan_region_dict = partial_conf_dict.get(scan_region_grp)
         if scan_region_dict is not None:
-            self._collect_scan_geometry(scan_region_dict)
+            self.construct_scan_region_grp(
+                partial_conf_dict=scan_region_dict,
+                parent_path=f"{parent_path}/{group_name}",
+                group_name=scan_region_grp,
+            )
 
         scan_pattern_grp = "meshSCAN[mesh_scan]"
         scan_pattern_dict = partial_conf_dict.get(scan_pattern_grp)
@@ -250,20 +255,29 @@ class BrukerFltAFM(BrukerBase):
                 values[axis] = (data, unit)
         return values
 
-    def _collect_scan_geometry(self, partial_conf_dict: dict):
-        """Cache the scan_region geometry in ``self.scan_control``.
+    def construct_scan_region_grp(
+        self,
+        partial_conf_dict: dict,
+        parent_path: str,
+        group_name: str = "scan_region",
+    ):
+        """Construct the scan region group from the SPMLab header.
 
-        Deliberately writes nothing to the template: ``scan_offset_value``,
-        ``scan_range`` and ``scan_angle`` each map onto a single header key and
-        are written by the config walker. The cached values exist only for the
-        two derived quantities that need code — the mesh-scan step sizes and
-        the NXdata axis arrays.
+        ``scan_offset_value`` and ``scan_range`` each map onto a single header
+        key, but ``scan_start`` and ``scan_end`` are derived from both and have
+        no header key of their own, so the whole group is written here through
+        ``put_scan_2d_region_field_in_template``. The config marks the four
+        header-backed fields with '#note' to keep the config walker from
+        writing them a second time.
 
         ``scan_start``/``scan_end`` follow Gwyddion's reading of the SPMLab
         header, in which ``OffsetX``/``OffsetY`` is the origin (corner) of the
         frame, so that x runs from ``offset`` to ``offset + range``. Note this
         differs from NanoScope .spm, where Bruker documents the offset as the
-        *centre* of the scan. See ``parsers/bruker/README.md``.
+        *centre* of the scan. See ``nxformatters/bruker/README.md``.
+
+        The cached values are reused for the two derived quantities that need
+        code — the mesh-scan step sizes and the NXdata axis arrays.
         """
         offsets = self._read_xy_fields(
             partial_conf_dict, "scan_offset_valueN[scan_offset_value_n]"
@@ -306,6 +320,8 @@ class BrukerFltAFM(BrukerBase):
             setattr(self.scan_control, f"{axis}_start_unit", unit)
             setattr(self.scan_control, f"{axis}_end", offset + scan_range)
             setattr(self.scan_control, f"{axis}_end_unit", unit)
+
+        self.put_scan_2d_region_field_in_template(parent_path, group_name)
 
     def construct_scan_pattern_grp(
         self,

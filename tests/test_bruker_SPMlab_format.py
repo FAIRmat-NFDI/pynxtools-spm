@@ -123,12 +123,37 @@ class TestFltBrukerSplitValueAndUnit:
         assert FltBruker._split_value_and_unit(raw_value) == expected
 
     @pytest.mark.parametrize(
+        "raw_value, expected",
+        [
+            # The parenthesised constant of a PID gain is dropped, so that the
+            # gain stays a number. It carries no unit either.
+            ("0.800000 (1000.000000)", "0.800000"),
+            ("12.000000 (1200.000000)", "12.000000"),
+            ("0.000000 (1000.000000)", "0.000000"),
+            # Sign, exponent and a missing space in front of the parenthesis do
+            # not change which half is the gain.
+            ("-1.5e-3 (1200.000000)", "-1.5e-3"),
+            ("1.0(1200.0)", "1.0"),
+            # An unparsable parenthesis is left alone rather than guessed at.
+            ("1.0 (auto)", "1.0 (auto)"),
+            ("1.0 (1000.0", "1.0 (1000.0"),
+        ],
+    )
+    def test_gain_keeps_only_the_gain_itself(self, raw_value, expected):
+        """SPMLab appends a per loop constant to every gain, e.g.
+        'GainP=0.800000 (1000.000000)'.
+
+        Its meaning is undocumented (see 'nxformatters/bruker/README.md'), while
+        'K_p'/'K_i'/'K_d' are NX_NUMBER, so only the leading float is kept.
+        """
+        value, unit = FltBruker._split_value_and_unit(raw_value)
+        assert value == expected
+        assert unit is None, f"{raw_value!r} must not be read as carrying a unit"
+
+    @pytest.mark.parametrize(
         "raw_value",
         [
-            # A parenthesised second number is the gain range, not a unit.
-            "0.800000 (1000.000000)",
-            "12.000000 (1200.000000)",
-            # A second bare number is not a unit either.
+            # A second bare number is not a unit.
             "1.0 2.0",
             # Free text must survive untouched.
             "1D Line Fit",
@@ -284,9 +309,9 @@ SPMLAB_1_00_SYNTHETIC = FltHeaderFlavor(
             # blanked rather than stored as if it were a unit.
             "Feedback": "1.0",
             "Feedback/@unit": "",
-            # A parenthesised second number is the gain range, not a unit, so
-            # the value is left verbatim.
-            "GainP": "0.800000 (1000.000000)",
+            # The parenthesised constant of a gain is dropped, so that the
+            # gain stays a number.
+            "GainP": "0.800000",
             # Only the first '=' separates key from value.
             "Expression": "a=b=c",
             # Same key as in '[PreProcessing]' below; sections keep them apart.
@@ -342,15 +367,18 @@ SPMLAB_1_00_REFERENCE = FltHeaderFlavor(
             "Mode": "Peak Force Tapping",
             "SetPoint": "0.030000",
             "SetPoint/@unit": "V",
-            "GainP": "0.800000 (1000.000000)",
-            "GainI": "0.300000 (1000.000000)",
-            "GainD": "0.000000 (1000.000000)",
-            "XLinGainP": "1.000000 (1200.000000)",
-            "XLinGainI": "12.000000 (1200.000000)",
-            "XLinGainD": "0.000000 (1200.000000)",
-            "YLinGainP": "1.000000 (1200.000000)",
-            "YLinGainI": "12.000000 (1200.000000)",
-            "YLinGainD": "0.000000 (1200.000000)",
+            # The Z feedback loop and the two linearization loops each carry
+            # their own PID triplet; the per loop constant SPMLab appends to
+            # every gain (1000.0 and 1200.0 here) is dropped by the parser.
+            "GainP": "0.800000",
+            "GainI": "0.300000",
+            "GainD": "0.000000",
+            "XLinGainP": "1.000000",
+            "XLinGainI": "12.000000",
+            "XLinGainD": "0.000000",
+            "YLinGainP": "1.000000",
+            "YLinGainI": "12.000000",
+            "YLinGainD": "0.000000",
         },
         "Piezo Parameters": {
             "X Transfer Coefficient": "4.423937",
@@ -502,8 +530,9 @@ SPMLAB_1_00_FILE = FltFileFlavor(
         "meta/ScanningRate/@unit": "µm/s",
         "meta/Rotation": "0.0",
         "meta/Rotation/@unit": "°",
-        # A parenthesised range is not a unit, so the gain stays verbatim.
-        "meta/GainP": "0.800000 (1000.000000)",
+        # The per loop constant SPMLab appends to a gain is dropped, so that
+        # the gain reaches the 'K_p' (NX_NUMBER) field as a number.
+        "meta/GainP": "0.800000",
         # The raw header, nested below the channel it describes. These are the
         # keys gwyddionpy drops or merges, which is why it is read separately.
         "header/Data Parameters/OffsetX": "1.0000",
