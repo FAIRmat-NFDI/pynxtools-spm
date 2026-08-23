@@ -109,19 +109,25 @@
             "raw_path": "/CHANNEL/meta/DataID"
           },
           "scan_region": {
-            "scan_angleN[scan_angle_n]": {
-              "raw_path": "/CHANNEL/meta/Rotation",
-              "@units": "/CHANNEL/meta/Rotation/@unit"
-            },
+            "scan_angleN[scan_angle_n]": [
+              {
+                "x": {
+                  "raw_path": "/CHANNEL/meta/Rotation",
+                  "@units": "/CHANNEL/meta/Rotation/@unit"
+                }
+              }
+            ],
             "scan_rangeN[scan_range_n]": [
               {
                 "x": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
                   "raw_path": "/CHANNEL/header/Data Parameters/ScanRangeX",
                   "@units": "/CHANNEL/header/Data Parameters/ScanRangeX/@unit"
                 }
               },
               {
                 "y": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
                   "raw_path": "/CHANNEL/header/Data Parameters/ScanRangeY",
                   "@units": "/CHANNEL/header/Data Parameters/ScanRangeY/@unit"
                 }
@@ -130,17 +136,29 @@
             "scan_offset_valueN[scan_offset_value_n]": [
               {
                 "x": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
                   "raw_path": "/CHANNEL/header/Data Parameters/OffsetX",
                   "@units": "/CHANNEL/header/Data Parameters/OffsetX/@unit"
                 }
               },
               {
                 "y": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
                   "raw_path": "/CHANNEL/header/Data Parameters/OffsetY",
                   "@units": "/CHANNEL/header/Data Parameters/OffsetY/@unit"
                 }
               }
-            ]
+            ],
+            "scan_startN[scan_start_n]": {
+              "#note": "Derived in function 'construct_scan_region_grp'.",
+              "raw_path": "",
+              "@units": ""
+            },
+            "scan_endN[scan_end_n]": {
+              "#note": "Derived in function 'construct_scan_region_grp'.",
+              "raw_path": "",
+              "@units": ""
+            }
           },
           "meshSCAN[mesh_scan]": {
             "scan_pointsN[scan_points_n]": [
@@ -155,7 +173,6 @@
                 }
               }
             ],
-
             "forward_speedN[forward_speed_n]": {
               "#note": "Decided from ScanDirection and ScanningRate",
               "raw_path": "/CHANNEL/meta/ScanningRate",
