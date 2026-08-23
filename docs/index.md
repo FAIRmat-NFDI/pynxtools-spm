@@ -40,13 +40,18 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 ### Reference
 
 - [Use Reader from Command Line](reference/standalone-usages.md)
+- [Data from Nanonis instruments](reference/nanonis.md)
+- [Data from Omicron instruments](reference/omicron.md)
+- [Data from Bruker instruments](reference/bruker.md)
 - Define [NOMAD](https://nomad-lab.eu/nomad-lab/) [ELN schema](https://nomad-lab.eu/prod/v1/staging/docs/howto/customization/elns.html#schemas-for-elns)
 - [NOMAD Glossary](https://nomad-lab.eu/prod/v1/staging/docs/reference/glossary.html)
 - [NeXus Format](https://www.nexusformat.org/)
 - [NeXus application definition in Reader](reference/reference.md#nexus)
 - [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
+- [Supported vendor files and formats](explanation/reader-orchestra.md#supported-vendor-files-and-formats)
 - [nanonispy for reading Nanonis files (e.g., `.sxm`)](https://github.com/underchemist/nanonispy)
 - [spym for reading Omicron files (e.g., `.sm4`)](https://github.com/rescipy-project/spym)
+- [gwyddionpy for reading Bruker `SPMLab` files (e.g., `.flt`)](https://pypi.org/project/gwyddionpy/)
 - [Scanning Probe Microscopy (SPM) Application Definitions](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure)
 
 </div>

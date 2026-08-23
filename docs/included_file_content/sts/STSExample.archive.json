@@ -33,13 +33,13 @@
                 "name": "Nanonis",
                 "vendor": "Nanonis",
                 "model": "Generic5",
-                "model/@version": "5"
+                "model_version": "5"
             },
             "software": {
                 "vendor": "Nanonis",
                 "name": "Nanonis",
                 "model": "Generic5",
-                "model/@version": "5"
+                "model_version": "5"
             },
             "lockin_amplifier": {
                 "modulation_signal": "Current",

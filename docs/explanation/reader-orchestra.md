@@ -8,7 +8,7 @@ We have developed community driven standard application definition, using [NeXus
     One can use the supper application definition [NXspm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html) for any sub technique, but do not warranty the validation of the NeXus data file.
 
 ## __SPM Readers__
-The SPM reader is plugin of material science reader framework [pynxtools](https://github.com/FAIRmat-NFDI/pynxtools) and anchors a bundle of readers from STM, STS and AFM. The readers follow a [common structure](./reader-structure.md) that shall allow to extend the reader orchestra by including new readers for different SPM sub-techniques such as spin-polarized STM. For each type of techniques (e.g., STM, STS, and AFM), there might be multiple instruments providers (e.g., Nanonis, Omicron) and each vendor favors different data format and data model. Therefore, each reader is designed to be modular and configurable to work with different data formats and data models.
+The SPM reader is plugin of material science reader framework [pynxtools](https://github.com/FAIRmat-NFDI/pynxtools) and anchors a bundle of readers from STM, STS and AFM. The readers follow a [common structure](./reader-structure.md) that shall allow to extend the reader orchestra by including new readers for different SPM sub-techniques such as spin-polarized STM. For each type of techniques (e.g., STM, STS, and AFM), there might be multiple instruments providers (e.g., Nanonis, Omicron, Bruker) and each vendor favors different data format and data model. Therefore, each reader is designed to be modular and configurable to work with different data formats and data models.
 
 The prime purpose of the readers is to transform data from measurement files into NeXus file according to the SPM community supported schema (NeXus applications and base classes) which allows experimentalists to store, organize, search, analyze, and share experimental data in NOMAD (if plugin `pynxtools-spm` is integrated with [NOMAD](https://nomad-lab.eu/nomad-lab/)) research data management (RDM) platform. 
 
@@ -35,19 +35,24 @@ The `AFM` reader is also part of `pynxtools-spm` package and builds on the [NXaf
     The configuration file maps the NeXus data model corresponding application definition to the data model from raw file. This implies that raw files from different software versions or vendors require different configuration files. It is most likely that the path referring to the raw data in a input file needs to be updated in the configuration file for different type of instruments.
 
 ### __Supported Vendor Files and Formats__
-Readers support the following vendor files and formats.
+Readers support the following vendor files and formats. The version column refers to the version of the instrument software (or of the file format written by it) that the readers have been tested with; files written by neighboring versions usually work as well, but may need an adapted config file (see the warning above).
 
-- __STS__
-    - Nanonis `STS` files
-        - Extension: `.dat`
-- __STM__
-    - Nanonis `STM` files
-        - Extension: `.sxm`
-    - Omicron `STM` files
-        - Extension: `.sm4`
-- __AFM__
-    - Nanonis `AFM` files
-        - Extension: `.sxm`
+| Technique | Vendor | Instrument software (flavor) | Tested version | Extension |
+| --- | --- | --- | --- | --- |
+| `STS` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 5, Generic 5e | `.dat` |
+| `STM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 5, Generic 5e | `.sxm` |
+| `STM` | [Omicron](../reference/omicron.md) | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
+| `AFM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 4 | `.sxm` |
+| `AFM` | [Bruker](../reference/bruker.md) | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
+
+Each vendor has its own reference page with the supported formats, the default config file, and a runnable conversion command: [Nanonis](../reference/nanonis.md), [Omicron](../reference/omicron.md), and [Bruker](../reference/bruker.md).
+
+The version of a Bruker FLT file is stated in the `[Data Version]` section at the beginning of the file header (`Program=SPMLab` and `Version=1.00`), while the Nanonis generic version denotes the generation of the Nanonis control software, not the `:NANONIS_VERSION:` entry of the file header. The reader compares file extensions case-insensitively, so both `.flt` and `.FLT` are accepted.
+
+!!! note "One FLT file holds one channel"
+    A Bruker `SPMLab` FLT file stores a __single__ channel of a __single__ scan direction, e.g. `B3320_13_061726074638.SIG_TOPO_FRW.FLT` holds the forward (`FRW`) height (`SIG_TOPO`) image, while the backward scan (`BKW`) and the further channels (e.g. `SIG_USER2`) are written as separate files. Therefore one FLT file is converted into one NeXus file, and the channel name of the file (`DataName` in the header, e.g. `Height`) determines the name of the resulting `NXdata` group.
+
+    The FLT header is INI style text, and the image data that follows it is binary. `pynxtools-spm` reads it via the [gwyddionpy](https://pypi.org/project/gwyddionpy/) package (the `spmlabf` importer of [Gwyddion](http://gwyddion.net/)).
 
 ### __Input files__
 The readers mainly need three input files to transform the data into the `NXsts`, `NXstm`, and `NXafm` application definitions for `STS`, `STM`, and `AFM` techniques, respectively. The three input files are - 
@@ -82,6 +87,12 @@ The config file is a `json` file which maps between the data model (unstructured
     <div class="scrollable">
     ```json
     --8<-- "included_file_content/afm/config.json"
+    ```
+    </div>
+=== "Config File Bruker (AFM)"
+    <div class="scrollable">
+    ```json
+    --8<-- "included_file_content/bruker_afm/config.json"
     ```
     </div>
 
@@ -122,9 +133,15 @@ The ELN YAML file is a human created ELN and can be used to run reader in Jupyte
     --8<-- "included_file_content/stm/eln_data.yaml"
     ```
     </div>
-=== "Eln YAML File (AFM)"
+=== "Eln YAML File (AFM, Nanonis)"
     <div class="scrollable">
     ```yaml
     --8<-- "included_file_content/afm/eln_data.yaml"
+    ```
+    </div>
+=== "Eln YAML File (AFM, Bruker)"
+    <div class="scrollable">
+    ```yaml
+    --8<-- "included_file_content/bruker_afm/eln_data.yaml"
     ```
     </div>

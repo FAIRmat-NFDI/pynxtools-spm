@@ -5,4 +5,6 @@ This is an example of handling STM data (using the STM reader) in NOMAD. The pri
 
 - Can parse Scanning Tunneling Microscopy (STM) from
     - `.sxm` file format from Nanonis:
-        - Versions: Generic 5e, Generic 4.5
+        - Versions: Generic 5, Generic 5e
+    - `.sm4` file format from Omicron:
+        - Versions: not version specific

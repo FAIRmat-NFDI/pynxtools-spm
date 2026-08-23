@@ -19,6 +19,9 @@ nav:
       - explanation/reader-structure.md
   - Reference:
       - reference/standalone-usages.md
+      - reference/nanonis.md
+      - reference/omicron.md
+      - reference/bruker.md
 plugins:
   - search
   - macros:

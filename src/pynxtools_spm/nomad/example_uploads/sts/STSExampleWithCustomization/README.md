@@ -5,4 +5,4 @@ This is an example of handling STS data (using the STS reader) in NOMAD. The pri
 
 - Can parse Scanning Tunneling Spectroscopy (STS) from
     - `.dat` file format from Nanonis:
-        - Versions: Generic 5e, Generic 4.5
+        - Versions: Generic 5, Generic 5e

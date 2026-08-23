@@ -1,4 +1,6 @@
 pynxtools_spm/configs
+├── bruker
+│   └── bruker_flt_afm.json
 ├── __init__.py
 ├── nanonis
 │   ├── nanonis_dat_generic_sts.json
@@ -7,4 +9,4 @@ pynxtools_spm/configs
 └── omicron
     └── omicron_sm4_stm.json
 
-2 directories, 5 files
+3 directories, 6 files

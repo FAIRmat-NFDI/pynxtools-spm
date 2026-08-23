@@ -31,13 +31,23 @@ def copy_config_and_plain_eln():
     shutil.copy(src_config, dst_config)
     shutil.copy(src_eln, dst_eln)
 
-    # AFM
+    # AFM (Nanonis)
     dst_config = "docs/included_file_content/afm/config.json"
     src_config = (
         "tests/data/nanonis/afm/version_gen_4_with_described_nxdata/config.json"
     )
     dst_eln = "docs/included_file_content/afm/eln_data.yaml"
     src_eln = "tests/data/nanonis/afm/version_gen_4_with_described_nxdata/eln_data.yaml"
+    dst_path = Path(dst_config)
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy(src_config, dst_config)
+    shutil.copy(src_eln, dst_eln)
+
+    # AFM (Bruker SPMLab FLT)
+    dst_config = "docs/included_file_content/bruker_afm/config.json"
+    src_config = "tests/data/bruker/afm/flt_described_config/config.json"
+    dst_eln = "docs/included_file_content/bruker_afm/eln_data.yaml"
+    src_eln = "tests/data/bruker/afm/flt_described_config/eln_data.yaml"
     dst_path = Path(dst_config)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src_config, dst_config)
@@ -112,10 +122,15 @@ def generate_folder_structure():
         (nomad_path, nomad_output_path),
     )
 
+    # '-I __pycache__' keeps byte-code caches out of the rendered module
+    # structure, so that the output does not depend on whether the package has
+    # been imported before the documentation is built.
     cmd = [
         "tree",
         "-L",
         "2",
+        "-I",
+        "__pycache__",
     ]
 
     for input_path, output_file in command_input_tuple:
