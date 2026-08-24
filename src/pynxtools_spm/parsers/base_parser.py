@@ -35,6 +35,6 @@ class SPMBase(ABC):
             raise FileNotFoundError(f"File {file_path} not found.")
 
     @abstractmethod
-    def parse(self):
+    def parse(self, *args, **kwargs):
         """Parse the file and return the parsed data."""
         pass

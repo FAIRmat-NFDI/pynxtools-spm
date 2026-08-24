@@ -68,7 +68,13 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
         config_file: str = None,  # In case it is not provided by users
         entry: str | None = None,
     ):
-        super().__init__(template, raw_file, eln_file, config_file, entry=entry)
+        super().__init__(
+            template,
+            raw_file,
+            eln_file,
+            config_file,
+            entry=entry,
+        )
         # # self.config_dict: Dict = self._get_conf_dict(config_file)
         # self.nanonis_sxm_stm = NanonisSxmSTM(self.template, self.raw_file, eln_file)
         # # Use AFM specific config file and the resulting dict

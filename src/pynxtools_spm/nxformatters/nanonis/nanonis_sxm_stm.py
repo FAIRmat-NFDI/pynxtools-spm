@@ -82,7 +82,13 @@ class NanonisSxmSTM(NanonisBase):
         config_file: str | Path = None,  # In case it is not provided by users
         entry: str | None = None,
     ):
-        super().__init__(template, raw_file, eln_file, config_file, entry=entry)
+        super().__init__(
+            template,
+            raw_file,
+            eln_file,
+            config_file,
+            entry=entry,
+        )
 
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
@@ -456,9 +462,7 @@ class NanonisSxmSTM(NanonisBase):
             concept_field=independent_axes,
         )
         direction = self._arange_axes(direction.strip())
-        self.template[f"{parent_path}/{group_name}/independent_scan_axes"] = str(
-            direction
-        )
+        self.template[f"{parent_path}/{group_name}/{independent_axes}"] = str(direction)
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp, None)
         # Intended order: construct_scan_region_grp

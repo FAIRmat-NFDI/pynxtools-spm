@@ -194,14 +194,14 @@ class SPMformatter(ABC):
         self,
         template: Template,
         raw_file: str | Path,
-        eln_file: str | Path,
+        eln_file: str | Path | None = None,
         config_file: None | (str | Path) = None,  # In case it is not provided by users
         auxiliary_files: list[str | Path] | None = None,
         entry: str | None = None,
     ):
 
-        self.scan_control: NXScanControl | None = NXScanControl()
-        self.bias_sweep: BiasSweep | None = BiasSweep()
+        self.scan_control: NXScanControl = NXScanControl()
+        self.bias_sweep: BiasSweep = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
@@ -484,7 +484,6 @@ class SPMformatter(ABC):
                 func_to_raw_key=func_to_raw_key,
             )
 
-    # TODO move this function to the base_formatter.py
     def walk_through_config_by_modified_raw_data_key(
         self,
         partial_conf_dict: dict,
