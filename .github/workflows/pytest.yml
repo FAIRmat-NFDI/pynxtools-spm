@@ -27,9 +27,12 @@ jobs:
         run: |
           uv pip install ".[dev]"
           uv pip install coverage coveralls
-      - name: Install pynxtools master branch
+      - name: Install pynxtools publish_0_15_1 branch
         run: |
-          uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools
+          uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools@publish_0_15_1
+      # - name: Install pynxtools master branch
+        # run: |
+          # uv pip install pynxtools@git+https://github.com/FAIRmat-NFDI/pynxtools
       - name: Test with pytest
         run: |
           coverage run -m pytest -sv --show-capture=no tests
