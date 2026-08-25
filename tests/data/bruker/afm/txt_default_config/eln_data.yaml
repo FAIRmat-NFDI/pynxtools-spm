@@ -21,7 +21,7 @@ default: deflection_retrace
 experiment_description: A demo experiment description
 identifier_collection: Afm_single_point_spectroscopy_SB03-MG1.0_00000.spm.txt
 identifier_experiment: SB03-MG1.0_00000.spm.txt
-scan_mode: non-contact mode
+scan_mode: peak force tapping mode
 User:
   email:
     - mozumder@physik.hu-berlin.de

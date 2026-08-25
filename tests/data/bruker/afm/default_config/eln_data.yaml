@@ -24,7 +24,7 @@ experiment_description:
 experiment_technique: AFM
 identifier_collection: Afm_image_with_taping_mode_VGEP-15m-.0_00000.spm
 identifier_experiment: VGEP-15m-.0_00000.spm
-scan_mode: taping mode
+scan_mode: tapping mode
 User:
   email:
     - mozumder@physik.hu-berlin.de
