@@ -98,6 +98,7 @@ class SPMReader(BaseReader):
                     raise ValueError("Experiment technique is not defined in ELN file.")
             else:
                 auxiliary_files.append(file)
+        raw_file_ext = raw_file_ext.lower() if raw_file_ext else None
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:
@@ -163,18 +164,18 @@ class SPMReader(BaseReader):
                     eln_file=eln_file,
                     config_file=config_file,
                 )
-            # nsa.get_nxformatted_template()
-        elif experiment_technique == "AFM" and raw_file_ext == "flt":
-            from pynxtools_spm.nxformatters.bruker.bruker_flt_afm import (
-                BrukerFltAFM,
-            )
+            elif raw_file_ext == "flt":
+                from pynxtools_spm.nxformatters.bruker.bruker_flt_afm import (
+                    BrukerFltAFM,
+                )
 
-            formatter_obj = BrukerFltAFM(
-                template=template,
-                raw_file=data_file,
-                eln_file=eln_file,
-                config_file=config_file,
-            )
+                formatter_obj = BrukerFltAFM(
+                    template=template,
+                    raw_file=data_file,
+                    eln_file=eln_file,
+                    config_file=config_file,
+                )
+            # nsa.get_nxformatted_template()
         elif experiment_technique == "STS" and raw_file_ext == "dat":
             from pynxtools_spm.nxformatters.nanonis.nanonis_dat_sts import NanonisDatSTS
 
