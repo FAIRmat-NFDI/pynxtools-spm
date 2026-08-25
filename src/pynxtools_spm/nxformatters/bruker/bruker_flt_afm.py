@@ -345,6 +345,11 @@ class BrukerFltAFM(BrukerBase):
         self.scan_control.fast_axis = "x"
         self.scan_control.slow_axis = "y"
 
+        # The raster ordering would be carried by 'independent_scan_axes' of
+        # 'NXspm_scan_control' (written on 'parent_path', not under the mesh
+        # scan). It is left unwritten until the axis order has been verified
+        # against the raw files.
+
         for axis in ("x", "y"):
             scan_range = getattr(self.scan_control, f"{axis}_range")
             n_points = getattr(self.scan_control, f"{axis}_points")

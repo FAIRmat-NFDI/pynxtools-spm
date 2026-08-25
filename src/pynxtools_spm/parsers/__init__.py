@@ -21,12 +21,14 @@ Choose the appropriate parser based on the file extension and the ELN data.
 # limitations under the License.
 #
 
-from typing import Dict, Union, Optional, Any
+from typing import Union, Any
 from collections.abc import Callable, Iterable
 from pynxtools_spm.parsers.nanonis_sxm import SxmGenericNanonis
 from pynxtools_spm.parsers.nanonis_dat import DatGenericNanonis
 from pynxtools_spm.parsers.omicron_sm4 import Sm4Omicron
 from pynxtools_spm.parsers.bruker_flt import FltBruker
+from pynxtools_spm.parsers.bruker_spm import SpmBruker
+from pynxtools_spm.parsers.bruker_txt import TxtBruker
 import pynxtools_spm.parsers.helpers as phs
 import logging
 from pathlib import Path, PosixPath
@@ -83,6 +85,16 @@ class SPMParser:
                 "spmlab1.0": FltBruker,
                 "spmlab": FltBruker,
                 "1.00": FltBruker,
+            },
+        },
+        "spm": {
+            "bruker": {
+                "9.64": SpmBruker,
+            }
+        },
+        "txt": {
+            "bruker": {
+                "nanoscope": TxtBruker,
             }
         },
     }

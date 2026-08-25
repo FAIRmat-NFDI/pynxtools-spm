@@ -65,7 +65,9 @@ Mformatter
 miscellaneous
 Mozumder
 MPES
+Mbruker
 multilines
+Mlab
 nanonis
 Nanonis
 NANONIS
@@ -91,6 +93,7 @@ piezo
 Piezo
 plottable
 pynxtools
+pynx
 regrex
 rhksm
 Sandor
@@ -123,3 +126,7 @@ zenodo
 pynx
 Finishup
 Scienta
+nanoscope
+NanoScope
+samps
+coeff

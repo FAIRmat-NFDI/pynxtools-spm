@@ -67,7 +67,13 @@ class OmicronSM4STM(OmicronBase):
         config_file: str | Path = None,  # In case it is not provided by users
         entry: str | None = None,
     ):
-        super().__init__(template, raw_file, eln_file, config_file, entry=entry)
+        super().__init__(
+            template,
+            raw_file,
+            eln_file,
+            config_file,
+            entry=entry,
+        )
 
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, parent_path="")

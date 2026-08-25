@@ -50,3 +50,13 @@ find ${flt_dir} -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --read
 echo " !!! Converting Bruker SPMLab AFM (.FLT) data with a described config !!! "
 flt_desc_dir=${root_dir}/tests/data/bruker/afm/flt_described_config
 find ${flt_desc_dir} -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output ${flt_desc_dir}/afm_flt_described_config.nxs
+
+# AFM Bruker
+echo " !!! Converting Bruker AFM data !!! "
+find ${root_dir}/tests/data/bruker/afm/default_config -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output afm_default_config.nxs
+find ${root_dir}/tests/data/bruker/afm/default_config -type f -name '*.nxs' | xargs mv afm_default_config.nxs
+
+# AFM single point spectroscopy
+echo " !!! Converting Bruker AFM single point spectroscopy data !!! "
+find ${root_dir}/tests/data/bruker/afm/txt_default_config -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output afm_txt_default_config.nxs
+find ${root_dir}/tests/data/bruker/afm/txt_default_config -type f -name '*.nxs' | xargs mv afm_txt_default_config.nxs

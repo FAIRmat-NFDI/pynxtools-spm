@@ -82,7 +82,13 @@ class NanonisSxmSTM(NanonisBase):
         config_file: str | Path = None,  # In case it is not provided by users
         entry: str | None = None,
     ):
-        super().__init__(template, raw_file, eln_file, config_file, entry=entry)
+        super().__init__(
+            template,
+            raw_file,
+            eln_file,
+            config_file,
+            entry=entry,
+        )
 
     def get_nxformatted_template(self):
         self.walk_though_config_nested_dict(self.config_dict, "")
@@ -447,18 +453,17 @@ class NanonisSxmSTM(NanonisBase):
         """Constructs Scan Control group from the scan environment group.
         Where, a scan control group contains scan region and scan pattern groups."""
 
-        # find independent_scan_axes
-        # independent_axes = "/ENTRY[entry]/INSTRUMENT[instrument]/SCAN_ENVIRONMENT/SCAN_CONTROL[scan_control]/independent_scan_axes"
+        # The scan direction is still read here because '_arange_axes' sets
+        # 'scan_control.fast_axis'/'slow_axis', which orient the raster later.
+        # Writing it out as 'independent_scan_axes' is disabled until the axis
+        # order has been verified against the raw files; re-enable it here.
         independent_axes = "independent_scan_axes"
         direction, _, _ = _get_data_unit_and_others(
             data_dict=self.raw_data,
             partial_conf_dict=partial_conf_dict,
             concept_field=independent_axes,
         )
-        direction = self._arange_axes(direction.strip())
-        self.template[f"{parent_path}/{group_name}/independent_scan_axes"] = str(
-            direction
-        )
+        self._arange_axes(direction.strip())
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp, None)
         # Intended order: construct_scan_region_grp

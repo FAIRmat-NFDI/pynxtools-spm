@@ -62,7 +62,6 @@ CONVERT_DICT = {
     "version": "@version",
     "default": "@default",
     "Sample": "SAMPLE[sample]",
-    "History": "HISTORY[history]",
     "User": "USER[user]",
     "Data": "DATA[data]",
     "Source": "SOURCE[source]",
@@ -194,23 +193,22 @@ class SPMformatter(ABC):
         self,
         template: Template,
         raw_file: str | Path,
-        eln_file: str | Path,
+        eln_file: str | Path | None = None,
         config_file: None | (str | Path) = None,  # In case it is not provided by users
         auxiliary_files: list[str | Path] | None = None,
         entry: str | None = None,
     ):
 
-        self.scan_control: NXScanControl | None = NXScanControl()
-        self.bias_sweep: BiasSweep | None = BiasSweep()
+        self.scan_control: NXScanControl = NXScanControl()
+        self.bias_sweep: BiasSweep = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
         self.raw_data: dict = self.get_raw_data_dict()
         self.entry: str = entry
         self.config_dict = self._get_conf_dict(config_file) or None  # Placeholder
-        if auxiliary_files is not None:
-            self.auxiliary_files = auxiliary_files
-        else:
+        self.auxiliary_files = auxiliary_files or []
+        if not self.auxiliary_files:
             pynx_logger.info(
                 "No auxiliary files provided. If there are auxiliary files, please"
                 " provide them as a list of file paths to the formatter."
@@ -484,7 +482,6 @@ class SPMformatter(ABC):
                 func_to_raw_key=func_to_raw_key,
             )
 
-    # TODO move this function to the base_formatter.py
     def walk_through_config_by_modified_raw_data_key(
         self,
         partial_conf_dict: dict,
@@ -853,16 +850,19 @@ class SPMformatter(ABC):
         )
 
     def put_scan_pattern_field_in_template(self, parent_path, group_name):
-        """Puts the scan pattern field into the template"""
+        """Puts the scan pattern field into the template.
+
+        Only 'scan_pointsN' is written here. 'fast_axis' and 'slow_axis' are not
+        concepts of 'NXspm_scan_pattern' — the raster ordering is expressed by
+        'independent_scan_axes' of 'NXspm_scan_control', whose elements run from
+        the fastest to the slowest axis. That field sits on the scan control
+        group (the parent of the mesh scan), so it is written by the caller,
+        which knows that path. ``NXScanControl.fast_axis``/``slow_axis`` are kept
+        as internal state (Nanonis uses them to orient the raster).
+        """
         self.template[f"{parent_path}/{group_name}/scan_points_x"] = (
             self.scan_control.x_points
         )
         self.template[f"{parent_path}/{group_name}/scan_points_y"] = (
             self.scan_control.y_points
-        )
-        self.template[f"{parent_path}/{group_name}/fast_axis"] = (
-            self.scan_control.fast_axis
-        )
-        self.template[f"{parent_path}/{group_name}/slow_axis"] = (
-            self.scan_control.slow_axis
         )

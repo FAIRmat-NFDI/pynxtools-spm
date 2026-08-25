@@ -10,7 +10,7 @@ Instrument:
     name: Nanonis
     vendor: Nanonis
 Sample:
-  History:
+  history:
     Note:
       description: "Demo description: This sample is used in Palma's lab."
   Sample_component:
