@@ -67,7 +67,6 @@ Mozumder
 MPES
 Mbruker
 multilines
-Mbruker
 Mlab
 nanonis
 Nanonis

@@ -62,7 +62,6 @@ CONVERT_DICT = {
     "version": "@version",
     "default": "@default",
     "Sample": "SAMPLE[sample]",
-    # "History": "HISTORY[history]",
     "User": "USER[user]",
     "Data": "DATA[data]",
     "Source": "SOURCE[source]",
@@ -208,9 +207,8 @@ class SPMformatter(ABC):
         self.raw_data: dict = self.get_raw_data_dict()
         self.entry: str = entry
         self.config_dict = self._get_conf_dict(config_file) or None  # Placeholder
-        if auxiliary_files is not None:
-            self.auxiliary_files = auxiliary_files
-        else:
+        self.auxiliary_files = auxiliary_files or []
+        if not self.auxiliary_files:
             pynx_logger.info(
                 "No auxiliary files provided. If there are auxiliary files, please"
                 " provide them as a list of file paths to the formatter."
