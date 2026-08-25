@@ -852,16 +852,19 @@ class SPMformatter(ABC):
         )
 
     def put_scan_pattern_field_in_template(self, parent_path, group_name):
-        """Puts the scan pattern field into the template"""
+        """Puts the scan pattern field into the template.
+
+        Only 'scan_pointsN' is written here. 'fast_axis' and 'slow_axis' are not
+        concepts of 'NXspm_scan_pattern' — the raster ordering is expressed by
+        'independent_scan_axes' of 'NXspm_scan_control', whose elements run from
+        the fastest to the slowest axis. That field sits on the scan control
+        group (the parent of the mesh scan), so it is written by the caller,
+        which knows that path. ``NXScanControl.fast_axis``/``slow_axis`` are kept
+        as internal state (Nanonis uses them to orient the raster).
+        """
         self.template[f"{parent_path}/{group_name}/scan_points_x"] = (
             self.scan_control.x_points
         )
         self.template[f"{parent_path}/{group_name}/scan_points_y"] = (
             self.scan_control.y_points
-        )
-        self.template[f"{parent_path}/{group_name}/fast_axis"] = (
-            self.scan_control.fast_axis
-        )
-        self.template[f"{parent_path}/{group_name}/slow_axis"] = (
-            self.scan_control.slow_axis
         )

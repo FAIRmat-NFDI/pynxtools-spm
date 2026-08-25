@@ -1,7 +1,7 @@
 {
   "ENTRY[entry]": {
     "@default": {
-      "raw_path": "@default:height_sensor_forward"
+      "raw_path": "@default:z_forward"
     },
     "start_time": {
       "#note": "Handled in function _set_start_end_time"

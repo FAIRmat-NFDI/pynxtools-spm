@@ -10,7 +10,7 @@ Instrument:
     name: bruker
     vendor: bruker
 # Sample:
-#   History:
+#   history:
 #     Note:
 #       description: "<p>Demo description: This sample is used in from Tamash.</p>"
 #   Sample_component:
@@ -18,7 +18,7 @@ Instrument:
 #     description: <p>Unknow sample.</p>
 #     name: Unknow
 #   name: Unknow
-default: deflection_extension
+default: z_forward
 definition: NXafm
 experiment_description:
 experiment_technique: AFM
