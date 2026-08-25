@@ -13,7 +13,7 @@ Instrument:
     name: Nanonis
     vendor: Nanonis
 Sample:
-  History:
+  history:
     Note:
       description: The experiment was run in Carlos' Lab.
   Sample_component:

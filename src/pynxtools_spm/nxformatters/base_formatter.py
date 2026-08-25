@@ -62,7 +62,7 @@ CONVERT_DICT = {
     "version": "@version",
     "default": "@default",
     "Sample": "SAMPLE[sample]",
-    "History": "HISTORY[history]",
+    # "History": "HISTORY[history]",
     "User": "USER[user]",
     "Data": "DATA[data]",
     "Source": "SOURCE[source]",
