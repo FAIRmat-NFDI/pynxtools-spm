@@ -44,7 +44,7 @@ Readers support the following vendor files and formats. The version column refer
 | `STM` | [Omicron](../reference/omicron.md) | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
 | `AFM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 4 | `.sxm` |
 | `AFM` | [Bruker](../reference/bruker.md) | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
-| `AFM` | [Bruker](../reference/bruker.md) | Bruker `NanoScope` (read with [pySPM](https://github.com/scholi/pySPM)) | `9.x` (Dimension Icon) | `.spm` |
+| `AFM` | [Bruker](../reference/bruker.md) | Bruker `NanoScope` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `9.x` (Dimension Icon) | `.spm` |
 | `AFM (force curve)` | [Bruker](../reference/bruker.md) | Bruker `NanoScope` ASCII export | `9.x` (Dimension Icon) | `.spm.txt` |
 
 Each vendor has its own reference page with the supported formats, the default config file, and a runnable conversion command: [Nanonis](../reference/nanonis.md), [Omicron](../reference/omicron.md), and [Bruker](../reference/bruker.md).
@@ -61,7 +61,7 @@ The version of a Bruker `NanoScope` file is stated by the `\Version` key at the 
 !!! note "One `.spm` file holds many channels"
     A Bruker `NanoScope` `.spm` file behaves the other way around: it stores __every__ recorded channel in __both__ scan directions. The parser exposes them as `/<Channel>/forward` and `/<Channel>/backward` (e.g. `/Height_Sensor/forward`, `/Phase/backward`) and lists the available combinations under `/Scan_list`, so one `.spm` file is converted into one NeXus file that contains several `NXdata` groups.
 
-    The `.spm` header is ASCII (the `\Key: value` lines up to `\*File list end`) and the image block that follows it is binary. `pynxtools-spm` reads it via the [pySPM](https://github.com/scholi/pySPM) package.
+    The `.spm` header is ASCII (the `\Key: value` lines up to `\*File list end`) and the image block that follows it is binary. `pynxtools-spm` reads it via the [gwyddionpy](https://pypi.org/project/gwyddionpy/) package (the `nanoscope` importer of [Gwyddion](http://gwyddion.net/)), the same package it uses for the `.flt` format.
 
 !!! note "A `.spm.txt` file holds one force curve"
     The NanoScope ASCII export stores the extend (`_Ex`) and retract (`_Rt`) halves of a single force ramp as tab-separated columns behind a quoted `"\Key: value"` header. It needs no external reader, and it is curated into a `point_force_scan` group instead of the `mesh_scan` group used for images.
