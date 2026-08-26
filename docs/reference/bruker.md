@@ -16,7 +16,7 @@ application definition. They come from two different instrument lineages:
 | Technique | Extension | Software | Tested versions | Formatter | Default config |
 | --- | --- | --- | --- | --- | --- |
 | `AFM` | `.flt`, `.FLT` | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `BrukerFltAFM` | `configs/bruker/bruker_flt_afm.json` |
-| `AFM` | `.spm` | Bruker `NanoScope` (read with [pySPM](https://github.com/scholi/pySPM)) | `9.x` (Dimension Icon) | `BrukerSpmAFM` | `configs/bruker/bruker_spm_afm.json` |
+| `AFM` | `.spm` | Bruker `NanoScope` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `9.x` (Dimension Icon) | `BrukerSpmAFM` | `configs/bruker/bruker_spm_afm.json` |
 | `AFM (force curve)` | `.spm.txt` | Bruker `NanoScope` ASCII export | `9.x` (Dimension Icon) | `BrukerTxtAFM` | `configs/bruker/bruker_txt_afm.json` |
 
 If no config file is passed on the command line, the default config shipped with the package
@@ -79,17 +79,13 @@ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml B3320_1
 
 A `.spm` file starts with an ASCII header (the `\Key: value` lines up to `\*File list end`)
 followed by the binary image block of every recorded channel. It is read with the
-[pySPM](https://github.com/scholi/pySPM) package in
+[gwyddionpy](https://pypi.org/project/gwyddionpy/) package (the `nanoscope` importer of
+[Gwyddion](http://gwyddion.net/)) in
 [`src/pynxtools_spm/parsers/bruker_spm.py`](https://github.com/FAIRmat-NFDI/pynxtools-spm/blob/main/src/pynxtools_spm/parsers/bruker_spm.py)
-(class `SpmBruker`, which extends pySPM's `Bruker` class in
-[`parsers/bruker/pySPMbruker.py`](https://github.com/FAIRmat-NFDI/pynxtools-spm/blob/main/src/pynxtools_spm/parsers/bruker/pySPMbruker.py)
-so that the `*File list` and `*Equipment list` sections are read as well).
-
-!!! warning "pySPM is currently installed from a fork"
-    `pyproject.toml` pins `pySPM` to [a fork](https://github.com/RubelMozumder/pySPM) rather than
-    the release on PyPI, because the upstream package still carries a dependency pin that
-    conflicts with this plugin. The pin will be reverted to `pySPM>=0.6.3` once that relaxation
-    is released upstream.
+(class `SpmBruker`), which is the same package the `.flt` format is read with. The image arrays
+come from gwyddionpy, while the ASCII header is read by the parser itself, because gwyddionpy
+merges all header sections into a single flat dictionary and the section a key belongs to is part
+of the key path the parser exposes.
 
 ```console
 pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml VGEP-15m-.0_00000.spm
@@ -188,5 +184,4 @@ or visit the
 - [Supported vendor files and formats](../explanation/reader-orchestra.md#supported-vendor-files-and-formats)
 - [Work with Reader](../how-to-guides/work-with-reader.md)
 - [Use Reader from Command Line](standalone-usages.md)
-- [gwyddionpy](https://pypi.org/project/gwyddionpy/) — reads the `SPMLab` `.flt` format
-- [pySPM](https://github.com/scholi/pySPM) — reads the NanoScope `.spm` format
+- [gwyddionpy](https://pypi.org/project/gwyddionpy/) — reads both the `SPMLab` `.flt` and the NanoScope `.spm` formats

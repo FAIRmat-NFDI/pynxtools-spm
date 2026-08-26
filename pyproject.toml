@@ -24,9 +24,6 @@ dependencies = [
     "pynxtools>=0.15.1",
     # "pynxtools @ git+https://github.com/FAIRmat-NFDI/pynxtools.git@publish_0_15_1",  
     "findiff>=0.11.1",
-    # Revert to "pySPM>=0.6.3"
-    # once that relaxation is released upstream (scholi/pySPM).
-    "pySPM @ git+https://github.com/RubelMozumder/pySPM.git@main",
     "matplotlib",
     "scipy",
     "hvplot",
