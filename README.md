@@ -23,8 +23,10 @@ This `pynxtools` plugin was generated with [`cookiecutter`](https://github.com/c
 | STM | Omicron | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
 | AFM | Nanonis | Nanonis SPM control software | Generic 4 | `.sxm` |
 | AFM | Bruker | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
+| AFM | Bruker | Bruker `NanoScope` (read with [pySPM](https://github.com/scholi/pySPM)) | `9.x` (Dimension Icon) | `.spm` |
+| AFM (force curve) | Bruker | Bruker `NanoScope` ASCII export | `9.x` (Dimension Icon) | `.spm.txt` |
 
-See [supported vendor files and formats](https://fairmat-nfdi.github.io/pynxtools-spm/explanation/reader-orchestra.html#supported-vendor-files-and-formats) for details, e.g. that one Bruker `SPMLab` FLT file holds a single channel of a single scan direction and is therefore converted into its own NeXus file.
+See [supported vendor files and formats](https://fairmat-nfdi.github.io/pynxtools-spm/explanation/reader-orchestra.html#supported-vendor-files-and-formats) for details, e.g. that one Bruker `SPMLab` FLT file holds a single channel of a single scan direction and is therefore converted into its own NeXus file, whereas one Bruker `NanoScope` `.spm` file holds every channel in both scan directions and yields a single NeXus file with several `NXdata` groups. The `.spm.txt` export is a force ramp (force-distance curve) rather than an image.
 
 ## Installation
 

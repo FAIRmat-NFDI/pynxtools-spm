@@ -76,3 +76,40 @@ rm -f $bruker_dst/*.nxs
 # create zip file and remove the bruker_afm folder
 zip -jrm "$(dirname ${bruker_dst})/bruker_afm.zip" ${bruker_dst}
 rm -rf ${bruker_dst}
+
+# Copy Bruker NanoScope force-curve (.spm.txt) file. The export is pure ASCII,
+# so the bundle is complete and the documented command runs straight from it.
+src_path="${this_file_path}/tests/data/bruker/afm/txt_default_config"
+bruker_txt_dst="./docs/assets/command_line_examples/bruker_txt"
+mkdir -p $bruker_txt_dst
+
+# remove all the files from dst folder if it has anything in it
+rm -rf ${bruker_txt_dst}/*
+cp -r $src_path/* $bruker_txt_dst/
+rm -f $bruker_txt_dst/*.nxs
+
+# create zip file and remove the bruker_txt folder
+zip -jrm "$(dirname ${bruker_txt_dst})/bruker_txt.zip" ${bruker_txt_dst}
+rm -rf ${bruker_txt_dst}
+
+# Copy Bruker NanoScope (.spm) metadata. A .spm file is dominated by its binary
+# image block (16 MB for this one), so the binary part is deliberately excluded:
+# only the human-readable ASCII header (up to and including '\*File list end')
+# is shipped, as a preview of the metadata the reader sees.
+src_path="${this_file_path}/tests/data/bruker/afm/default_config"
+bruker_spm_dst="./docs/assets/command_line_examples/bruker_spm"
+mkdir -p $bruker_spm_dst
+
+# remove all the files from dst folder if it has anything in it
+rm -rf ${bruker_spm_dst}/*
+cp $src_path/eln_data.yaml $bruker_spm_dst/
+
+for spm_file in "$src_path"/*.spm; do
+    header_file="${bruker_spm_dst}/$(basename "$spm_file").header.txt"
+    # Everything before the binary block; '\*File list end' terminates the header.
+    sed -n '1,/^\\\*File list end/p' "$spm_file" > "$header_file"
+done
+
+# create zip file and remove the bruker_spm folder
+zip -jrm "$(dirname ${bruker_spm_dst})/bruker_spm.zip" ${bruker_spm_dst}
+rm -rf ${bruker_spm_dst}

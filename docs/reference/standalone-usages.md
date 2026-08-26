@@ -50,3 +50,23 @@ Download and try with [Bruker AFM example files](../assets/command_line_examples
 
 !!! note
     A Bruker `SPMLab` FLT file contains one channel of one scan direction (e.g. `B3320_13_061726074638.SIG_TOPO_FRW.FLT` is the forward height image), so each file is converted into its own NeXus file. The config file may be omitted, in which case the default config `configs/bruker/bruker_flt_afm.json` shipped with the package is used.
+
+__6.__ Command to convert a Bruker NanoScope AFM raw data file (`.spm`, written by `NanoScope` 9.x) into NeXus file
+```bash
+$ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml bruker_afm_file.spm
+```
+
+Download the [Bruker NanoScope metadata example](../assets/command_line_examples/bruker_spm.zip){:bruker_spm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/default_config). This example uses the default config `configs/bruker/bruker_spm_afm.json` shipped with the package; pass your own `config.json` as a further input file to override it.
+
+!!! note
+    A `.spm` file is dominated by its binary image block (16 MB for the reference file), so the download above contains only the human-readable ASCII header (`VGEP-15m-.0_00000.spm.header.txt`) together with `eln_data.yaml`, as a preview of the metadata the reader sees. Take the complete `.spm` file from the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/default_config) to run the command above. One `.spm` file holds every channel in both scan directions and is therefore converted into a single NeXus file with several `NXdata` groups.
+
+__7.__ Command to convert a Bruker NanoScope AFM force-curve export (`.spm.txt`) into NeXus file
+```bash
+$ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml bruker_force_curve.spm.txt
+```
+
+Download and try with the [Bruker NanoScope force-curve example files](../assets/command_line_examples/bruker_txt.zip){:bruker_txt} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_default_config). This example uses the default config `configs/bruker/bruker_txt_afm.json` shipped with the package; pass your own `config.json` as a further input file to override it.
+
+!!! note
+    The `.spm.txt` file is the ASCII export of a force ramp, not of an image: the extend (`_Ex`) and retract (`_Rt`) halves of the ramp become the `NXdata` groups `deflection_extension`, `height_sensor_extension`, `deflection_retrace` and `height_sensor_retrace`. Because the reader dispatches on the file extension, __every__ `.txt` file passed with `experiment_technique: AFM` is routed to this handler.

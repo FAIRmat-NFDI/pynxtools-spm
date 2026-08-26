@@ -130,3 +130,9 @@ nanoscope
 NanoScope
 samps
 coeff
+Defl
+Innova
+linspace
+Metrix
+Veeco
+VGEP

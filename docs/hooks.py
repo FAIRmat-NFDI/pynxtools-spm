@@ -53,6 +53,27 @@ def copy_config_and_plain_eln():
     shutil.copy(src_config, dst_config)
     shutil.copy(src_eln, dst_eln)
 
+    # AFM (Bruker NanoScope .spm). The test folder runs on the packaged
+    # default config, so the config is taken from the package itself.
+    dst_config = "docs/included_file_content/bruker_spm_afm/config.json"
+    src_config = "src/pynxtools_spm/configs/bruker/bruker_spm_afm.json"
+    dst_eln = "docs/included_file_content/bruker_spm_afm/eln_data.yaml"
+    src_eln = "tests/data/bruker/afm/default_config/eln_data.yaml"
+    dst_path = Path(dst_config)
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy(src_config, dst_config)
+    shutil.copy(src_eln, dst_eln)
+
+    # AFM force curve (Bruker NanoScope .spm.txt), packaged default config too.
+    dst_config = "docs/included_file_content/bruker_txt_afm/config.json"
+    src_config = "src/pynxtools_spm/configs/bruker/bruker_txt_afm.json"
+    dst_eln = "docs/included_file_content/bruker_txt_afm/eln_data.yaml"
+    src_eln = "tests/data/bruker/afm/txt_default_config/eln_data.yaml"
+    dst_path = Path(dst_config)
+    dst_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy(src_config, dst_config)
+    shutil.copy(src_eln, dst_eln)
+
 
 def copy_eln_schema():
     # STS
@@ -77,13 +98,51 @@ def copy_eln_schema():
     shutil.copy(src, dst)
 
 
+def copy_dat_file_excerpt(src, dst, data_rows=10):
+    """Copy a Nanonis `.dat` file, keeping the header and only the first data rows.
+
+    The measurement block of a `.dat` file is thousands of numeric rows long and
+    every row has the same shape, so rendering it in full only makes the page
+    long. The informative part is the metadata header, the `[DATA]` marker and
+    the column names that follow it; the numeric block is therefore cut after
+    `data_rows` rows and the number of omitted rows is stated in its place.
+
+    Falls back to a verbatim copy when the file carries no `[DATA]` marker.
+    """
+    # newline="" keeps the CRLF line endings that Nanonis writes.
+    with open(src, encoding="utf-8", newline="") as src_file:
+        lines = src_file.readlines()
+
+    data_marker = next(
+        (i for i, line in enumerate(lines) if line.strip() == "[DATA]"), None
+    )
+    if data_marker is None:
+        shutil.copy(src, dst)
+        return
+
+    # Keep the header, the marker, the column-name line and the first data rows.
+    first_data_row = data_marker + 2
+    kept = lines[: first_data_row + data_rows]
+    omitted = len(lines) - len(kept)
+
+    if omitted > 0:
+        line_end = "\r\n" if kept[0].endswith("\r\n") else "\n"
+        kept.append(
+            f"... {omitted} further data rows are omitted in this documentation "
+            f"excerpt; the complete file is in the repository.{line_end}"
+        )
+
+    with open(dst, "w", encoding="utf-8", newline="") as dst_file:
+        dst_file.writelines(kept)
+
+
 def copy_miscellaneous_files():
-    # STS nanonis dat file
+    # STS nanonis dat file, shortened to header + a few data rows
     dst = "docs/included_file_content/sts/Bias-Spectroscopy00015_20230420.dat"
     src = "tests/data/nanonis/sts/version_gen_5_with_described_nxdata/Bias-Spectroscopy00015_20230420.dat"
     dst_path = Path(dst)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy(src, dst)
+    copy_dat_file_excerpt(src, dst)
 
     # STS nomad archive file
     dst = "docs/included_file_content/sts/STSExample.archive.json"
