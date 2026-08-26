@@ -2,6 +2,7 @@
   "version": "0.2",
   "ignorePaths": [
     "./tests/data/*",
+    "./docs/included_file_content/*",
     "*.toml",
     "Makefile",
     "*.bat",

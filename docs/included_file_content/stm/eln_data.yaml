@@ -8,7 +8,7 @@ Instrument:
     name: Nanonis
     vendor: Nanonis
 Sample:
-  chemical_formula: C40H18N2
+  chemical_formula: C40​H18​N2​
   description: |
     Stack of two layers Au(111) diaza-HBC
     (diaza-hexabenzocoronene) derivative

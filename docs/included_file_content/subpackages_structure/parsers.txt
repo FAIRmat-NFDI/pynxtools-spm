@@ -1,7 +1,11 @@
 pynxtools_spm/parsers
 ├── base_parser.py
 ├── bruker
+│   ├── __init__.py
+│   └── pySPMbruker.py
 ├── bruker_flt.py
+├── bruker_spm.py
+├── bruker_txt.py
 ├── helpers.py
 ├── __init__.py
 ├── nanonis_dat.py
@@ -14,4 +18,4 @@ pynxtools_spm/parsers
 ├── nanonis_sxm.py
 └── omicron_sm4.py
 
-2 directories, 12 files
+2 directories, 16 files

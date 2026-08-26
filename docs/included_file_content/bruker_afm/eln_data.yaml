@@ -1,7 +1,7 @@
 Instrument:
   hardware:
     model:
-    model_version:
+    model/@version:
     name: bruker
     vendor: bruker
   software:

@@ -14,7 +14,7 @@ Sample:
     chemical_formula: ' KAl₂(AlSi₃O₁₀)(OH)₂)'
     description: <p>Gold on Mica.</p>
     name: Au(Mica)
-  History:
+  history:
     Note:
       description: "Demo description: This sample is used in Palma's lab."
   name: diPAMY
