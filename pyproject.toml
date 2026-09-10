@@ -29,10 +29,7 @@ dependencies = [
     "hvplot",
     "tzlocal",
     "gwyddionpy[converter]",
-    "nomad-lab>=0.4.1",
 ]
-
-[project.urls]
 "Homepage" = "https://github.com/FAIRmat-NFDI/pynxtools-spm"
 "Parent Project" = "https://github.com/FAIRmat-NFDI"
 
