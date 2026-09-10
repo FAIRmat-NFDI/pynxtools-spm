@@ -20,6 +20,15 @@
 - **Primary SPM technique**: AFM (Atomic Force Microscopy) — Peak Force Tapping in liquid
 - **Instrument**: Bruker Multimode V, OTR8 cantilever
 
+## Sample
+
+- **Material / chemical formula**: isolated human blood **coagulation factor Va (FVa)** — a large
+  multidomain glycoprotein (~330 kDa; A trimer + two C domains). As a **protein it has no single
+  small-molecule chemical formula**, so `chemical_formula` is left empty (noted in the ELN).
+- **Conditions**: imaged in liquid (1.5 nM FVa, MgCl₂), 1 × 1 µm², 1024 × 1024 px, PeakForce
+  Tapping (OTR8 cantilever, Bruker Multimode V). Used to assemble the FVa A-trimer + two C
+  domains via the AFMAssembly pipeline (Chaves et al., 2014).
+
 ## Dataset Contents
 
 Single AFM image (1×1 µm², 1024×1024 px) of isolated coagulation factor Va (FVa) acquired in liquid with Peak Force Tapping. Includes raw `.spm` file and processed Gwyddion `.gwy` file.
@@ -41,10 +50,10 @@ Single AFM image (1×1 µm², 1024×1024 px) of isolated coagulation factor Va (
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `11s4_fva_e6_1,5nM_mgcl2_liquid_otr8_z1_1um.003.spm` | AFM | 1 | `zenodo/11234725/FVa/11s4_fva_e6_1,5nM_mgcl2_liquid_otr8_z1_1um.003.spm/` | — | — |
-| `*.gwy` | AFM | 1 | `zenodo/11234725/FVa/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `11s4_fva_e6_1,5nM_mgcl2_liquid_otr8_z1_1um.003.spm` | AFM | Coagulation factor Va (FVa) protein | — | 1 | `zenodo/11234725/FVa/11s4_fva_e6_1,5nM_mgcl2_liquid_otr8_z1_1um.003.spm/` | True | True |
+| `*.gwy` | AFM | Coagulation factor Va (FVa) protein | — | 1 | `zenodo/11234725/FVa/` | — | — |
 
 ## Information Files
 
@@ -55,8 +64,18 @@ Single AFM image (1×1 µm², 1024×1024 px) of isolated coagulation factor Va (
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-08 with `pynxtools-spm` 0.2.5 / `pySPM` 0.6.3. License **`cc-by-4.0`** passes
+the open-license gate. **The 1 native Bruker `.spm` converted, validated, and uploaded**
+(`PS = True`, `Uploaded = True`) with `eln_data.yaml` + `config.json` + `.nxs` in its S3 folder.
+PeakForce QNM (PeakForce config, scientific titles); 4 NXdata groups (Topography, Peak Force
+Error × fwd/bwd), default `height_forward`; short units, no shape mismatch. The corrected
+Gwyddion `.gwy` file is out of scope (not a native Bruker file). `citeID.description` carries the
+full Zenodo description.
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 1/1 `.spm` converted (`PS = True`)
+- [x] Reference .nxs file generated and uploaded
