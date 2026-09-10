@@ -26,8 +26,13 @@
 
 ## File Format
 
-- **Format**: Nanonis `.dat` (STM images and STS spectra)
-- **Parsability**: Parsable by `NanonisDatSTS` for spectroscopy files. STM image `.dat` files may use a different Nanonis sub-format.
+- **Format**: **`Paramco32`** STM images (NOT Nanonis). Despite the `.dat` extension, all 78
+  files have the header `[Paramco32]` (a German STM control-software format) and store 2D STM
+  scan images (`Num.X`/`Num.Y = 256`). This is **not** the Nanonis `.dat` spectroscopy format
+  (which begins `Experiment<TAB>bias spectroscopy`).
+- **Parsability**: **Not supported** — `Paramco32` is out of scope for the current
+  `pynxtools-spm` parsers (like `.jpk`). `NanonisDatSTS` only handles genuine Nanonis STS `.dat`.
+  `PS = —` (n/a) for all `.dat`; not attempted.
 
 ## S3 Upload
 

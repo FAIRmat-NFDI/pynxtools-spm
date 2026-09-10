@@ -17,8 +17,17 @@
 
 ## Technique
 
-- **Primary SPM technique**: AFM (Atomic Force Microscopy) + XPS + LEED + Optical Microscopy
+- **Primary SPM technique**: AFM (Atomic Force Microscopy, TappingMode) + XPS + LEED + Optical Microscopy
 - **Instrument**: Bruker AFM (NanoScope format, `.spm`)
+
+## Sample
+
+- **Material / chemical formula**: **WSe₂** (tungsten diselenide), a 2D semiconducting transition
+  metal dichalcogenide → `WSe2`.
+- **Substrate**: silver (**Ag**); the AFM file `Figure4b_WSe2-Ag-S1` is WSe₂ on Ag.
+- **Preparation**: large-area WSe₂ exfoliated in situ from a bulk crystal by the KISS
+  ("Kinetic in situ single-layer synthesis") method. Study also includes XPS, LEED, and optical
+  microscopy (measured at the Zernike Institute, Groningen; room temperature).
 
 ## Dataset Contents
 
@@ -41,24 +50,24 @@
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `Figure4b_WSe2-Ag-S1.0_00000.spm` | AFM | 1 | `zenodo/14537302/Figure4b_WSe2-Ag-S1.0_00000.spm/` | — | — |
-| `*.txt` | AFM | 1 | `zenodo/14537302/230418BD WSe2_Se3p_Figure5c.txt/` | — | — |
-| `*.txt` | AFM | 1 | `zenodo/14537302/230418BD WSe2_W4f_Figure5b.txt/` | — | — |
-| `*.txt` | AFM | 1 | `zenodo/14537302/230418BD_WSe2_Au_Survey_Figure5a.txt/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure1f.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample1.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample2.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample3.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2a_Sample4.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample1.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample2.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample3.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure2b_Sample4.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure3a.jpg/` | — | — |
-| `*.jpg` | AFM | 1 | `zenodo/14537302/Figure3b.jpg/` | — | — |
-| `*.png` | AFM | 1 | `zenodo/14537302/Figure4a.png/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `Figure4b_WSe2-Ag-S1.0_00000.spm` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure4b_WSe2-Ag-S1.0_00000.spm/` | True | True |
+| `*.txt` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/230418BD WSe2_Se3p_Figure5c.txt/` | — | — |
+| `*.txt` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/230418BD WSe2_W4f_Figure5b.txt/` | — | — |
+| `*.txt` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/230418BD_WSe2_Au_Survey_Figure5a.txt/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure1f.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2a_Sample1.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2a_Sample2.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2a_Sample3.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2a_Sample4.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2b_Sample1.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2b_Sample2.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2b_Sample3.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure2b_Sample4.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure3a.jpg/` | — | — |
+| `*.jpg` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure3b.jpg/` | — | — |
+| `*.png` | AFM | WSe2 (2D TMD, on Ag) | WSe2 | 1 | `zenodo/14537302/Figure4a.png/` | — | — |
 
 ## Information Files
 
@@ -69,8 +78,17 @@
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-08 with `pynxtools-spm` 0.2.5 / `pySPM` 0.6.3. License **`cc-by-4.0`** passes
+the open-license gate. **The 1 native Bruker `.spm` converted, validated, and uploaded**
+(`PS = True`, `Uploaded = True`) with `eln_data.yaml` + `config.json` + `.nxs` in its S3 folder.
+TappingMode (default config, scientific titles); 6 NXdata groups (Topography, Amplitude Error,
+Phase × fwd/bwd), default `z_forward`; short units, no shape mismatch. The XPS `.txt` and
+optical `.jpg` files are out of scope. `citeID.description` carries the full Zenodo description.
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 1/1 `.spm` converted (`PS = True`)
+- [x] Reference .nxs file generated and uploaded

@@ -62,6 +62,26 @@ class pySPMBruker(Bruker):
                         elif mode == "Equipment":
                             self.equipment[-1][args[0]] = args[1]
 
+    def _get_layer_val(self, index: int, name: str, first=True):
+        """Fetch a layer value, raising ``KeyError`` when the key is absent.
+
+        Overrides ``pySPM.Bruker._get_layer_val``, which leaves its ``val`` local
+        unbound (and thus raises ``UnboundLocalError``) when a layer does not hold
+        the requested key. Callers such as ``Bruker.get_channel`` rely on a
+        ``KeyError`` to skip layers whose image data lives under a different tag
+        (e.g. ``@3:Image Data`` for KPFM / LockIn2 channels). Without this,
+        multi-channel files with any ``@3`` layer abort the whole parse.
+        """
+        layer = self.layers[index]
+        lname = name.lower()
+        lname2 = name[0] + lname[1:]
+        for candidate in (name, lname, lname2):
+            key = candidate.encode()
+            if key in layer:
+                val = layer[key]
+                return val[0] if first else val
+        raise KeyError(name)
+
     @property
     def channels(self):
         return self.get_list_of_channels(encoding=self.encoding)

@@ -26,8 +26,12 @@
 
 ## File Format
 
-- **Format**: Nanonis `.dat` (STM images), `.VERT` (STS spectra), `.jpeg` (reference images)
-- **Parsability**: Nanonis `.dat` files parsable by `NanonisDatSTS` (for spectroscopy). `.VERT` files are Nanonis vertical spectroscopy — may need format investigation.
+- **Format**: **`Paramco32`** STM images (NOT Nanonis) as `.dat` (header `[Paramco32]`,
+  `Num.X`/`Num.Y = 256`); `.VERT` (spectroscopy, also a non-Nanonis proprietary format);
+  `.jpeg` (reference images). None are Nanonis format.
+- **Parsability**: **Not supported.** The `.dat` are `Paramco32` STM images (out of scope, like
+  `.jpk`), not Nanonis `.dat` STS (which begins `Experiment<TAB>bias spectroscopy`). `.VERT`
+  spectroscopy is likewise unsupported. `PS = —` (n/a); not attempted.
 
 ## S3 Upload
 

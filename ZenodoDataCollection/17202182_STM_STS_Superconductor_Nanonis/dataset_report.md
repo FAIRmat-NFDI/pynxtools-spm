@@ -20,6 +20,12 @@
 - **Primary SPM technique**: STM/STS (Scanning Tunneling Microscopy/Spectroscopy) — quasiparticle interference maps
 - **Instrument**: Nanonis (`.sxm` format inferred from folder structure)
 
+## Sample
+
+- **Material / chemical formula**: surface of a **superconductor with spin-orbit coupling**
+  (study of band-hybrid Cooper pairs by STM/STS). The exact material is **not stated in the
+  Zenodo metadata**, so `chemical_formula` is left empty (`—`).
+
 ## Dataset Contents
 
 20 objects for a QPI (Quasiparticle Interference) study on a superconductor with spin-orbit coupling. Data organised in Fig2-QPI, Fig3-BQPI, Fig4-FFT folders plus PDF manuscript and supplemental. Readable with Gwyddion.
@@ -41,15 +47,15 @@
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `T190613_004.sxm` | STS | 1 | `zenodo/17202182/Fig2-QPI/T190613_004.sxm/` | — | — |
-| `T180729_002.sxm` | STS | 2 | `zenodo/17202182/Fig3-BQPI/T180729_002.sxm/` | — | — |
-| `T180817_001.sxm` | STS | 3 | `zenodo/17202182/Fig3-BQPI/T180817_001.sxm/` | — | — |
-| `T190202_007.sxm` | STS | 4 | `zenodo/17202182/Fig3-BQPI/T190202_007.sxm/` | — | — |
-| `T190322_005.sxm` | STS | 5 | `zenodo/17202182/Fig4-FFT/T190322_005.sxm/` | — | — |
-| `*.stp` | STS | 9 | `zenodo/17202182/Fig2-QPI/` | — | — |
-| `*.stp` | STS | 3 | `zenodo/17202182/Fig4-FFT/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `T190613_004.sxm` | STS | Superconductor surface (spin-orbit coupled) | — | 1 | `zenodo/17202182/Fig2-QPI/T190613_004.sxm/` | True | True |
+| `T180729_002.sxm` | STS | Superconductor surface (spin-orbit coupled) | — | 2 | `zenodo/17202182/Fig3-BQPI/T180729_002.sxm/` | True | True |
+| `T180817_001.sxm` | STS | Superconductor surface (spin-orbit coupled) | — | 3 | `zenodo/17202182/Fig3-BQPI/T180817_001.sxm/` | True | True |
+| `T190202_007.sxm` | STS | Superconductor surface (spin-orbit coupled) | — | 4 | `zenodo/17202182/Fig3-BQPI/T190202_007.sxm/` | True | True |
+| `T190322_005.sxm` | STS | Superconductor surface (spin-orbit coupled) | — | 5 | `zenodo/17202182/Fig4-FFT/T190322_005.sxm/` | True | True |
+| `*.stp` | STS | Superconductor surface (spin-orbit coupled) | — | 9 | `zenodo/17202182/Fig2-QPI/` | — | — |
+| `*.stp` | STS | Superconductor surface (spin-orbit coupled) | — | 3 | `zenodo/17202182/Fig4-FFT/` | — | — |
 
 ## Information Files
 
@@ -63,8 +69,21 @@
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-08/09 with `pynxtools-spm` 0.2.5. License **`cc-by-4.0`** passes the
+open-license gate. **All 5 `.sxm` files converted, validated, and uploaded** (`PS = True`).
+`T190613_004` is single-pass (default `current_forward`); the other 4 are **multi-pass** files
+whose channels are named `[P1]_Current`/`[P1]_Z`/`[P2]_…` (two measurement passes). These were
+recovered by a **per-dataset `config.json`** (copied from `ElnExamples/nanonis_sxm_stm` and
+edited to add `[P1]_`/`[P2]_` channel groups — the src default config was not touched), giving
+8 NXdata groups (current/z × P1/P2 × fwd/bwd), default `current_p1_forward`; short units, no
+shape mismatch. Output `.nxs` named `SOCsuperconductor_<raw_stem>.nxs`. This record has **no
+`.dat`** — the STS spectroscopy is embedded in the `.sxm` (`.stp` files are Gwyddion exports,
+grouped rows).
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 5/5 `.sxm` converted (`PS = True`; 4 multi-pass via edited config)
+- [x] Reference .nxs files generated and uploaded for all 5 files
