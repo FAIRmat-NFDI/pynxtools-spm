@@ -141,7 +141,23 @@ def write_multiple_concepts_instance(
 ):
     """Write multiple concepts for variadic name in eln dict if there are multiple
     instances are requested in eln archive.json file.
+
+    Note
+    ----
+    ``convert_mapping`` is modified **in place** and the caller depends on it: the
+    singular mapping of an expanded concept (``citeID -> citeID[cite_id]``) is
+    deleted and replaced by one mapping per instance (``cite_id_1``, ``cite_id_2``,
+    ...), which ``flatten_and_replace`` then consumes. It must therefore be a
+    private copy, never the module-level ``CONVERT_DICT`` -- that is a
+    process-wide singleton, so a deletion there would stay lost for every later
+    conversion in the same process.
     """
+    if convert_mapping is CONVERT_DICT:
+        raise ValueError(
+            "write_multiple_concepts_instance() mutates 'convert_mapping' in place. "
+            "Pass a private copy (e.g. copy.deepcopy(CONVERT_DICT)), not the "
+            "module-level CONVERT_DICT."
+        )
     new_dict = {}
     if not isinstance(eln_dict, dict):
         return eln_dict

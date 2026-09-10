@@ -71,7 +71,7 @@ class BrukerSpmAFM(BrukerBase):
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp)
         if scan_region_dict is not None:
-            self.construct_region_region_grp(
+            self.construct_scan_region_grp(
                 partial_conf_dict=scan_region_dict,
                 parent_path=f"{parent_path}/{group_name}",
             )
@@ -93,15 +93,31 @@ class BrukerSpmAFM(BrukerBase):
         unit-bearing strings such as ``"-3750 nm"``, whereas older files store a
         bare number together with a unit taken from the config. ``pint`` is used
         to split an embedded unit off the value and, when a ``fallback_unit`` is
-        given, to express the magnitude in that unit. Non-string or
-        non-parsable values are returned unchanged alongside ``fallback_unit``.
+        given, to express the magnitude in that unit. Non-string values are
+        returned unchanged alongside ``fallback_unit``.
+
+        The returned magnitude is always numeric or ``None``: the callers do
+        arithmetic on it (``start = stage + offset``) and write it into numeric
+        NeXus fields, so a string that cannot be resolved to a number is
+        reported as ``None`` -- the callers already treat ``None`` as "not
+        available" -- rather than being passed through.
         """
         if not isinstance(value, str):
             return value, fallback_unit
         try:
             quantity = ureg.Quantity(value)
         except Exception:  # noqa: BLE001 - pint raises several error types
-            return value, fallback_unit
+            # pint could not tokenize the string at all (e.g. '', '  ', 'abc').
+            # Retry with the reader's own string->scalar coercion before giving up.
+            numeric = fhs.to_intended_t(value)
+            if isinstance(numeric, (int, float)) and not isinstance(numeric, bool):
+                return numeric, fallback_unit
+            pynx_logger.warning(
+                "Could not read a scalar scan-geometry value from %r; "
+                "treating it as unavailable.",
+                value,
+            )
+            return None, fallback_unit
         if quantity.dimensionless:
             return quantity.magnitude, fallback_unit
         if fallback_unit:
@@ -112,7 +128,7 @@ class BrukerSpmAFM(BrukerBase):
                 pass
         return quantity.magnitude, str(quantity.units)
 
-    def construct_region_region_grp(
+    def construct_scan_region_grp(
         self, partial_conf_dict, parent_path, group_name="scan_region"
     ):
         """To construct the scan region.
