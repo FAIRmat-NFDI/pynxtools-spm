@@ -17,8 +17,22 @@
 
 ## Technique
 
-- **Primary SPM technique**: AFM (Atomic Force Microscopy)
-- **Instrument**: Bruker AFM (`.spm` format)
+- **Primary SPM technique**: AFM (Atomic Force Microscopy) — TappingMode imaging
+- **Instrument**: Bruker AFM (NanoScope `.spm`, firmware `0x09700105` ≈ v9.7)
+
+## Sample (from the linked publication)
+
+Researched 2026-07-07 (the Zenodo record carries no sample chemistry). From *Living Fiber
+Dispersions from Mycelium as a New Sustainable Platform for Advanced Materials* (Sinha et al.,
+Advanced Materials 2025, [DOI 10.1002/adma.202418464](https://doi.org/10.1002/adma.202418464);
+Nyström group, Empa/ETH):
+
+- **Material / chemical formula**: living fungal **mycelium fibres** — cell walls composed
+  chiefly of **chitin** and β-glucans (plus proteins). Closest representative formula = chitin
+  repeat unit **`C8H13NO5`**.
+- **Preparation**: mycelium grown by industrial liquid culture (fermentation) and mechanically
+  defibrillated (three-roll milling) into a well-dispersed living fibre dispersion (LFD).
+- **Sample variants** (from file names): `HPB`, `SPG`, `SPG+HPB` (Figure 2).
 
 ## Dataset Contents
 
@@ -43,9 +57,9 @@
 
 | file | experiment | count | S3 key | PS | Uploaded |
 |------|------------|-------|--------|----|----------|
-| `Fig2_HPB.spm` | AFM | 1 | `zenodo/17831280/Fig2_HPB.spm/` | — | — |
-| `Fig2_SPG+HPB.spm` | AFM | 2 | `zenodo/17831280/Fig2_SPG+HPB.spm/` | — | — |
-| `Fig2_SPG.spm` | AFM | 3 | `zenodo/17831280/Fig2_SPG.spm/` | — | — |
+| `Fig2_HPB.spm` | AFM | 1 | `zenodo/17831280/Fig2_HPB.spm/` | True | True |
+| `Fig2_SPG+HPB.spm` | AFM | 2 | `zenodo/17831280/Fig2_SPG+HPB.spm/` | True | True |
+| `Fig2_SPG.spm` | AFM | 3 | `zenodo/17831280/Fig2_SPG.spm/` | True | True |
 | `*.opju` | AFM | 1 | `zenodo/17831280/Fig2_PhaseSeparationAnalysis.opju/` | — | — |
 | `*.opju` | AFM | 1 | `zenodo/17831280/Fig3_ GrowthVNoGrowthVsAligned_Final.opju/` | — | — |
 | `*.opju` | AFM | 1 | `zenodo/17831280/Fig3_DVS.opju/` | — | — |
@@ -71,8 +85,25 @@
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-07 with `pynxtools-spm` 0.2.5 / `pySPM` 0.6.3. **All 3 `.spm` files converted,
+validated, and uploaded (`PS = True`, `Uploaded = True`).** TappingMode files — the default
+Bruker config already maps the channels, so only scientific NXdata titles were applied (no
+PeakForce extension needed). Each file's `eln_data.yaml`, `config.json`, and `<stem>.nxs` were
+uploaded into its S3 folder. NXdata shape-check passed (0 mismatches). Default plot = `z_forward`
+(Topography). See `conversion.log`.
+
+- `Fig2_HPB.spm` (4096×4096) → 8 NXdata groups (Topography, Amplitude, Amplitude Error, Phase ×
+  fwd/bwd).
+- `Fig2_SPG.spm` (1504×1504) → 8 NXdata groups.
+- `Fig2_SPG+HPB.spm` (412×412) → 2 NXdata groups (Topography fwd/bwd; only Height Sensor
+  channel present).
+
+The 15 Origin `.opju` files are out of scope (grouped rows).
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — all 3 `.spm` converted (`PS = True`)
+- [x] Reference .nxs files generated and uploaded for all 3 files

@@ -20,6 +20,12 @@
 - **Primary SPM technique**: STM (Scanning Tunneling Microscopy) — topography + dI/dV + current channels
 - **Instrument**: Nanonis (`.sxm` format)
 
+## Sample
+
+- **Material / chemical formula**: **twisted bilayer graphene** → `C` (carbon).
+- **Study**: STM imaging of quasiparticle interference (QPI) near a defect; each `.sxm` holds
+  topography (z), current and dI/dV channels (forward and backward), with acquisition metadata.
+
 ## Dataset Contents
 
 15 objects: Nanonis `.sxm` STM images extracted from `STM_images.zip`. Each image contains three channels (topography, dI/dV, current — forward and backward) with acquisition metadata.
@@ -41,23 +47,23 @@
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `SiCCAO#C012_300mV.sxm` | STM | 1 | `zenodo/17360113/STM_images/SiCCAO#C012_300mV.sxm/` | — | — |
-| `SiCCAO#C013_500mV.sxm` | STM | 2 | `zenodo/17360113/STM_images/SiCCAO#C013_500mV.sxm/` | — | — |
-| `SiCCAO#C014_350mV.sxm` | STM | 3 | `zenodo/17360113/STM_images/SiCCAO#C014_350mV.sxm/` | — | — |
-| `SiCCAO#C015_425mV.sxm` | STM | 4 | `zenodo/17360113/STM_images/SiCCAO#C015_425mV.sxm/` | — | — |
-| `SiCCAO#C016_325.sxm` | STM | 5 | `zenodo/17360113/STM_images/SiCCAO#C016_325.sxm/` | — | — |
-| `SiCCAO#C017_400mV.sxm` | STM | 6 | `zenodo/17360113/STM_images/SiCCAO#C017_400mV.sxm/` | — | — |
-| `SiCCAO#C018_275mV.sxm` | STM | 7 | `zenodo/17360113/STM_images/SiCCAO#C018_275mV.sxm/` | — | — |
-| `SiCCAO#C019_375.sxm` | STM | 8 | `zenodo/17360113/STM_images/SiCCAO#C019_375.sxm/` | — | — |
-| `SiCCAO#C020_200mV.sxm` | STM | 9 | `zenodo/17360113/STM_images/SiCCAO#C020_200mV.sxm/` | — | — |
-| `SiCCAO#C021_450mV.sxm` | STM | 10 | `zenodo/17360113/STM_images/SiCCAO#C021_450mV.sxm/` | — | — |
-| `SiCCAO#C022_362mV.sxm` | STM | 11 | `zenodo/17360113/STM_images/SiCCAO#C022_362mV.sxm/` | — | — |
-| `SiCCAO#C023_388mV.sxm` | STM | 12 | `zenodo/17360113/STM_images/SiCCAO#C023_388mV.sxm/` | — | — |
-| `SiCCAO#C024_300mV.sxm` | STM | 13 | `zenodo/17360113/STM_images/SiCCAO#C024_300mV.sxm/` | — | — |
-| `SiCCAO#C025_475mV.sxm` | STM | 14 | `zenodo/17360113/STM_images/SiCCAO#C025_475mV.sxm/` | — | — |
-| `SiCCAO#C031_150mV.sxm` | STM | 15 | `zenodo/17360113/STM_images/SiCCAO#C031_150mV.sxm/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `SiCCAO#C012_300mV.sxm` | STM | Twisted bilayer graphene | C | 1 | `zenodo/17360113/STM_images/SiCCAO#C012_300mV.sxm/` | True | True |
+| `SiCCAO#C013_500mV.sxm` | STM | Twisted bilayer graphene | C | 2 | `zenodo/17360113/STM_images/SiCCAO#C013_500mV.sxm/` | True | True |
+| `SiCCAO#C014_350mV.sxm` | STM | Twisted bilayer graphene | C | 3 | `zenodo/17360113/STM_images/SiCCAO#C014_350mV.sxm/` | True | True |
+| `SiCCAO#C015_425mV.sxm` | STM | Twisted bilayer graphene | C | 4 | `zenodo/17360113/STM_images/SiCCAO#C015_425mV.sxm/` | True | True |
+| `SiCCAO#C016_325.sxm` | STM | Twisted bilayer graphene | C | 5 | `zenodo/17360113/STM_images/SiCCAO#C016_325.sxm/` | True | True |
+| `SiCCAO#C017_400mV.sxm` | STM | Twisted bilayer graphene | C | 6 | `zenodo/17360113/STM_images/SiCCAO#C017_400mV.sxm/` | True | True |
+| `SiCCAO#C018_275mV.sxm` | STM | Twisted bilayer graphene | C | 7 | `zenodo/17360113/STM_images/SiCCAO#C018_275mV.sxm/` | True | True |
+| `SiCCAO#C019_375.sxm` | STM | Twisted bilayer graphene | C | 8 | `zenodo/17360113/STM_images/SiCCAO#C019_375.sxm/` | True | True |
+| `SiCCAO#C020_200mV.sxm` | STM | Twisted bilayer graphene | C | 9 | `zenodo/17360113/STM_images/SiCCAO#C020_200mV.sxm/` | True | True |
+| `SiCCAO#C021_450mV.sxm` | STM | Twisted bilayer graphene | C | 10 | `zenodo/17360113/STM_images/SiCCAO#C021_450mV.sxm/` | True | True |
+| `SiCCAO#C022_362mV.sxm` | STM | Twisted bilayer graphene | C | 11 | `zenodo/17360113/STM_images/SiCCAO#C022_362mV.sxm/` | True | True |
+| `SiCCAO#C023_388mV.sxm` | STM | Twisted bilayer graphene | C | 12 | `zenodo/17360113/STM_images/SiCCAO#C023_388mV.sxm/` | True | True |
+| `SiCCAO#C024_300mV.sxm` | STM | Twisted bilayer graphene | C | 13 | `zenodo/17360113/STM_images/SiCCAO#C024_300mV.sxm/` | True | True |
+| `SiCCAO#C025_475mV.sxm` | STM | Twisted bilayer graphene | C | 14 | `zenodo/17360113/STM_images/SiCCAO#C025_475mV.sxm/` | True | True |
+| `SiCCAO#C031_150mV.sxm` | STM | Twisted bilayer graphene | C | 15 | `zenodo/17360113/STM_images/SiCCAO#C031_150mV.sxm/` | True | True |
 
 ## Information Files
 
@@ -68,8 +74,19 @@
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-08 with `pynxtools-spm` 0.2.5. License **`cc-by-4.0`** passes the open-license
+gate. **All 15 Nanonis `.sxm` STM files converted, validated, and uploaded** (`PS = True`,
+`Uploaded = True`); `eln_data.yaml` + `config.json` + `.nxs` in each file's S3 folder. 4 NXdata
+groups per file (current, z × forward/backward), default `current_forward`; short units
+(`A, V, m, s, °`); 0 shape mismatches. `citeID.description` carries the full Zenodo description.
+Required a small `pynxtools-spm` fix — `NanonisDatSTS._construct_linear_sweep_grp` (borrowed by
+the sxm STM formatter) now guards against `None` bias-sweep values so STM images without bias
+spectroscopy no longer crash on `None - None`.
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 15/15 `.sxm` converted (`PS = True`)
+- [x] Reference .nxs files generated and uploaded for all 15 files

@@ -17,8 +17,16 @@
 
 ## Technique
 
-- **Primary SPM technique**: AFM (Atomic Force Microscopy) — multiple modes including dimensional, electrical, Kelvin probe
-- **Instrument**: Multiple instruments (Bruker .spm confirmed for some files)
+- **Primary SPM technique**: AFM (Atomic Force Microscopy) — PeakForce QNM + KPFM, multi-instrument "multimetrological" study
+- **Instrument**: Multiple instruments (Bruker `.spm` for the AFM subset)
+
+## Sample
+
+- **Material / chemical formula**: **GaAs** nanowires (non-passivated, sample C3275) → `GaAs`.
+- **Conditions**: imaged by PeakForce QNM AFM under different illumination (dark, camera light
+  up/down), part of a multi-instrument "multimetrological" SPM platform study.
+- **Note**: the Bruker files also contain KPFM/LockIn2 channels (`Potential`, `Amplitude2`,
+  `Phase2`) that pySPM 0.6.3 cannot scale; those are skipped (see Conversion).
 
 ## Dataset Contents
 
@@ -41,18 +49,18 @@ Raw SPM data collected with different instruments for a multimetrological AFM st
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `NW_GaAs_non-passive_C3275_00000.0_00009.spm` | AFM | 1 | `zenodo/14271622/NW_GaAs_non-passive_C3275_00000.0_00009.spm/` | — | — |
-| `NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm` | AFM | 2 | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm/` | — | — |
-| `NW_GaAs_non-passive_C3275_camLight-Up_00008.spm` | AFM | 3 | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-Up_00008.spm/` | — | — |
-| `NW_GaAs_non-passive_C3275_dark UP_00006.spm` | AFM | 4 | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark UP_00006.spm/` | — | — |
-| `NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm` | AFM | 5 | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm/` | — | — |
-| `*.zip` | AFM | 1 | `zenodo/14271622/04-14-23_Vendredi.zip/` | — | — |
-| `*.zip` | AFM | 1 | `zenodo/14271622/04_13_23_Jeudi.zip/` | — | — |
-| `*.svg` | AFM | 1 | `zenodo/14271622/Fig. 4/` | — | — |
-| `*.tiff` | AFM | 8 | `zenodo/14271622/Fig. 4/` | — | — |
-| `*.tiff` | AFM | 12 | `zenodo/14271622/Fig. 5/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `NW_GaAs_non-passive_C3275_00000.0_00009.spm` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 1 | `zenodo/14271622/NW_GaAs_non-passive_C3275_00000.0_00009.spm/` | True | True |
+| `NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 2 | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-DOWN_00007.spm/` | True | True |
+| `NW_GaAs_non-passive_C3275_camLight-Up_00008.spm` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 3 | `zenodo/14271622/NW_GaAs_non-passive_C3275_camLight-Up_00008.spm/` | True | True |
+| `NW_GaAs_non-passive_C3275_dark UP_00006.spm` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 4 | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark UP_00006.spm/` | True | True |
+| `NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 5 | `zenodo/14271622/NW_GaAs_non-passive_C3275_dark_DOWN_00005.spm/` | True | True |
+| `*.zip` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 1 | `zenodo/14271622/04-14-23_Vendredi.zip/` | — | — |
+| `*.zip` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 1 | `zenodo/14271622/04_13_23_Jeudi.zip/` | — | — |
+| `*.svg` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 1 | `zenodo/14271622/Fig. 4/` | — | — |
+| `*.tiff` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 8 | `zenodo/14271622/Fig. 4/` | — | — |
+| `*.tiff` | AFM | GaAs nanowires (non-passivated, C3275) | GaAs | 12 | `zenodo/14271622/Fig. 5/` | — | — |
 
 ## Information Files
 
@@ -63,8 +71,21 @@ Raw SPM data collected with different instruments for a multimetrological AFM st
 
 **Datasets of Interest**
 
+## Conversion (CONTEXT 2)
+
+Processed 2026-07-08 with `pynxtools-spm` 0.2.5 / `pySPM` 0.6.3. License **`cc-by-4.0`** passes
+the open-license gate. **All 5 native Bruker `.spm` converted, validated, and uploaded**
+(`PS = True`, `Uploaded = True`). These PeakForce QNM files carry KPFM/LockIn2 channels
+(`Potential`, `Amplitude2`, `Phase2`) stored under `@3:Image Data` that pySPM 0.6.3 cannot
+scale — previously this aborted the whole parse. A fix in the pynxtools-spm Bruker parser
+(override `pySPMBruker._get_layer_val` to raise `KeyError` for missing keys + per-channel guard)
+now recovers the 5 usable `@2` channels (Topography, Peak Force Error, DMT Modulus, Adhesion,
+Deformation) and skips the 3 KPFM channels. 10 NXdata groups, default `z_forward`; post-audit:
+0 long units, 0 shape mismatches, 0 bad defaults. `citeID.description` carries the full Zenodo
+description.
+
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 5/5 `.spm` converted (`PS = True`)
+- [x] Reference .nxs files generated and uploaded for all 5 files

@@ -17,9 +17,19 @@
 
 ## Technique
 
-- **Primary SPM technique**: Atomic Force Microscopy (AFM)
-- **Instrument vendor**: Bruker (NanoScope raw data format)
+- **Primary SPM technique**: Atomic Force Microscopy (AFM, PeakForce Tapping)
+- **Instrument vendor**: Bruker (NanoScope raw format, firmware `0x05120000` ≈ v5.12; files have
+  **no extension**)
 - **Additional techniques in dataset**: EDX, XPS, XRD, SECCM
+
+## Sample
+
+- **Material / chemical formula**: **Au-Ir-Rh** ternary thin-film **materials library**
+  (composition-spread) → `Au-Ir-Rh` (no single fixed stoichiometry; three regions: Au-rich,
+  Ir-rich, Rh-rich).
+- **Substrate / preparation**: fabricated by **magnetron co-sputtering** onto a 100 mm sapphire
+  wafer; a composition-spread library screened for the hydrogen evolution reaction by autonomous
+  SECCM (+ AFM, EDX, XPS, XRD).
 
 ## Dataset Contents
 
@@ -41,27 +51,27 @@ Files use Bruker NanoScope raw format without `.spm` extension.
 
 `PS` = pynxtools-spm parse succeeded (`—` = not yet attempted); `Uploaded` = ELN+config+`.nxs` uploaded next to the raw file (`—` = not yet).
 
-| file | experiment | count | S3 key | PS | Uploaded |
-|------|------------|-------|--------|----|----------|
-| `Au-Ir-Rh_Au-rich_AFM_area_168.002` | AFM | 1 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_168.002/` | — | — |
-| `Au-Ir-Rh_Au-rich_AFM_area_178.004` | AFM | 2 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_178.004/` | — | — |
-| `Au-Ir-Rh_Au-rich_AFM_area_20.003` | AFM | 3 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_20.003/` | — | — |
-| `Au-Ir-Rh_Au-rich_AFM_area_313.000` | AFM | 4 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_313.000/` | — | — |
-| `Au-Ir-Rh_Au-rich_AFM_area_55.005` | AFM | 5 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_55.005/` | — | — |
-| `Au-Ir-Rh_Ir-rich_AFM_area_13.000` | AFM | 6 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_13.000/` | — | — |
-| `Au-Ir-Rh_Ir-rich_AFM_area_168.001` | AFM | 7 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_168.001/` | — | — |
-| `Au-Ir-Rh_Ir-rich_AFM_area_178.002` | AFM | 8 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_178.002/` | — | — |
-| `Au-Ir-Rh_Ir-rich_AFM_area_315.003` | AFM | 9 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_315.003/` | — | — |
-| `Au-Ir-Rh_Ir-rich_AFM_area_342.004` | AFM | 10 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_342.004/` | — | — |
-| `Au-Ir-Rh_Rh-rich_AFM_area_16.005` | AFM | 11 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_16.005/` | — | — |
-| `Au-Ir-Rh_Rh-rich_AFM_area_168.008` | AFM | 12 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_168.008/` | — | — |
-| `Au-Ir-Rh_Rh-rich_AFM_area_200.010` | AFM | 13 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_200.010/` | — | — |
-| `Au-Ir-Rh_Rh-rich_AFM_area_240.006` | AFM | 14 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_240.006/` | — | — |
-| `Au-Ir-Rh_Rh-rich_AFM_area_297.009` | AFM | 15 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_297.009/` | — | — |
-| `*.csv` | EDX | 3 | `zenodo/20439519/EDX_dataset/` | — | — |
-| `*.csv` | SECCM | 966 | `zenodo/20439519/SECCM_dataset/` | — | — |
-| `*.csv` | XPS | 6 | `zenodo/20439519/XPS_dataset/` | — | — |
-| `*.xy` | XRD | 1026 | `zenodo/20439519/XRD_dataset/` | — | — |
+| file | experiment | sample | chemical_formula | count | S3 key | PS | Uploaded |
+|------|------------|--------|------------------|-------|--------|----|----------|
+| `Au-Ir-Rh_Au-rich_AFM_area_168.002` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 1 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_168.002/` | True | True |
+| `Au-Ir-Rh_Au-rich_AFM_area_178.004` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 2 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_178.004/` | True | True |
+| `Au-Ir-Rh_Au-rich_AFM_area_20.003` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 3 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_20.003/` | True | True |
+| `Au-Ir-Rh_Au-rich_AFM_area_313.000` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 4 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_313.000/` | True | True |
+| `Au-Ir-Rh_Au-rich_AFM_area_55.005` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 5 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Au-rich_AFM_area_55.005/` | True | True |
+| `Au-Ir-Rh_Ir-rich_AFM_area_13.000` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 6 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_13.000/` | True | True |
+| `Au-Ir-Rh_Ir-rich_AFM_area_168.001` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 7 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_168.001/` | True | True |
+| `Au-Ir-Rh_Ir-rich_AFM_area_178.002` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 8 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_178.002/` | True | True |
+| `Au-Ir-Rh_Ir-rich_AFM_area_315.003` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 9 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_315.003/` | True | True |
+| `Au-Ir-Rh_Ir-rich_AFM_area_342.004` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 10 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Ir-rich_AFM_area_342.004/` | True | True |
+| `Au-Ir-Rh_Rh-rich_AFM_area_16.005` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 11 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_16.005/` | True | True |
+| `Au-Ir-Rh_Rh-rich_AFM_area_168.008` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 12 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_168.008/` | True | True |
+| `Au-Ir-Rh_Rh-rich_AFM_area_200.010` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 13 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_200.010/` | True | True |
+| `Au-Ir-Rh_Rh-rich_AFM_area_240.006` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 14 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_240.006/` | True | True |
+| `Au-Ir-Rh_Rh-rich_AFM_area_297.009` | AFM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 15 | `zenodo/20439519/AFM_dataset/Au-Ir-Rh_Rh-rich_AFM_area_297.009/` | True | True |
+| `*.csv` | EDX | Au-Ir-Rh thin-film library | Au-Ir-Rh | 3 | `zenodo/20439519/EDX_dataset/` | — | — |
+| `*.csv` | SECCM | Au-Ir-Rh thin-film library | Au-Ir-Rh | 966 | `zenodo/20439519/SECCM_dataset/` | — | — |
+| `*.csv` | XPS | Au-Ir-Rh thin-film library | Au-Ir-Rh | 6 | `zenodo/20439519/XPS_dataset/` | — | — |
+| `*.xy` | XRD | Au-Ir-Rh thin-film library | Au-Ir-Rh | 1026 | `zenodo/20439519/XRD_dataset/` | — | — |
 
 ## Information Files
 
@@ -70,17 +80,20 @@ Files use Bruker NanoScope raw format without `.spm` extension.
 | `DataSetnote.txt` | AFM | 1 | `zenodo/20439519/AFM_dataset/DataSetnote.txt/` |
 | `LSV_fit_parameters.csv` | SECCM | 2 | `zenodo/20439519/SECCM_dataset/LSV_fit_parameters.csv/` |
 
-## Parsability Assessment
+## Conversion (CONTEXT 2)
 
-- **Current parser compatibility**: Potentially parsable by the Bruker AFM parser (`BrukerSpmAFM`).
-- **Complication**: AFM files have no `.spm` extension (named e.g. `Au-Ir-Rh_Au-rich_AFM_area_168.002`).
-  The `SPMParser` dispatches on file extension, so these files would need to be renamed or
-  the parser given an explicit format hint.
-- **Next step**: Attempt to parse one file by renaming it with `.spm` and running
-  `write_spm_raw_file_data()` to inspect the raw key-value dump.
+Processed 2026-07-08 with `pynxtools-spm` 0.2.5 / `pySPM` 0.6.3. License **`cc-by-4.0`** passes
+the open-license gate. The 15 AFM files have **no extension**, so each was copied to a temporary
+`.spm`-named file so the reader could classify it, then converted; the `eln_data.yaml`,
+`config.json`, and `.nxs` were uploaded into each file's **original** (extensionless) S3 folder.
+**All 15 converted, validated, and uploaded** (`PS = True`, `Uploaded = True`). PeakForce QNM
+(PeakForce config, scientific titles); 4 NXdata groups (Topography, Peak Force Error × fwd/bwd),
+default `z_forward`; post-audit: **0 long units, 0 shape mismatches, 0 bad defaults**.
+`citeID.description` carries the full Zenodo description. The EDX/XPS/SECCM/XRD files are other
+techniques (grouped rows, not converted).
 
 ## Status
 
 - [x] Files uploaded to S3
-- [ ] Parser test not yet attempted        ← CONTEXT 2 flips this
-- [ ] Reference .nxs file not yet generated ← CONTEXT 2 flips this
+- [x] Parser test attempted — 15/15 AFM files converted (`PS = True`)
+- [x] Reference .nxs files generated and uploaded for all 15 AFM files
