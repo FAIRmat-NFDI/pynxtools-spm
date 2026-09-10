@@ -71,7 +71,7 @@ class BrukerSpmAFM(BrukerBase):
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp)
         if scan_region_dict is not None:
-            self.construct_region_region_grp(
+            self.construct_scan_region_grp(
                 partial_conf_dict=scan_region_dict,
                 parent_path=f"{parent_path}/{group_name}",
             )
@@ -85,7 +85,50 @@ class BrukerSpmAFM(BrukerBase):
                 group_name=scan_pattern_grp,
             )
 
-    def construct_region_region_grp(
+    @staticmethod
+    def _scalar_with_unit(value, fallback_unit):
+        """Normalize a scan-geometry value to a numeric magnitude and a unit.
+
+        Newer NanoScope (v9.x) ``.spm`` files store some geometry values as
+        unit-bearing strings such as ``"-3750 nm"``, whereas older files store a
+        bare number together with a unit taken from the config. ``pint`` is used
+        to split an embedded unit off the value and, when a ``fallback_unit`` is
+        given, to express the magnitude in that unit. Non-string values are
+        returned unchanged alongside ``fallback_unit``.
+
+        The returned magnitude is always numeric or ``None``: the callers do
+        arithmetic on it (``start = stage + offset``) and write it into numeric
+        NeXus fields, so a string that cannot be resolved to a number is
+        reported as ``None`` -- the callers already treat ``None`` as "not
+        available" -- rather than being passed through.
+        """
+        if not isinstance(value, str):
+            return value, fallback_unit
+        try:
+            quantity = ureg.Quantity(value)
+        except Exception:  # noqa: BLE001 - pint raises several error types
+            # pint could not tokenize the string at all (e.g. '', '  ', 'abc').
+            # Retry with the reader's own string->scalar coercion before giving up.
+            numeric = fhs.to_intended_t(value)
+            if isinstance(numeric, (int, float)) and not isinstance(numeric, bool):
+                return numeric, fallback_unit
+            pynx_logger.warning(
+                "Could not read a scalar scan-geometry value from %r; "
+                "treating it as unavailable.",
+                value,
+            )
+            return None, fallback_unit
+        if quantity.dimensionless:
+            return quantity.magnitude, fallback_unit
+        if fallback_unit:
+            try:
+                quantity = quantity.to(fallback_unit)
+                return quantity.magnitude, fallback_unit
+            except Exception:  # noqa: BLE001 - incompatible/unknown unit
+                pass
+        return quantity.magnitude, str(quantity.units)
+
+    def construct_scan_region_grp(
         self, partial_conf_dict, parent_path, group_name="scan_region"
     ):
         """To construct the scan region.
@@ -96,7 +139,16 @@ class BrukerSpmAFM(BrukerBase):
         /Scanner_list/0/Y_Position : 0
         /Scanner_list/0/X_Offset : 0
         /Scanner_list/0/Y_Offset : 0
+        /Scanner_list/0/Stage_X : 0
+        /Scanner_list/0/Stage_Y : 0
         /Scanner_list/0/Aspect_Ratio : 1:1
+
+        Scan origin (start):
+        - ``start = position`` when the absolute ``X_Position``/``Y_Position``
+          is available.
+        - ``start = stage + offset`` otherwise (e.g. NanoScope v9.x ``.spm``
+          files, which do not store an absolute position), using the stage
+          position ``Stage_X``/``Stage_Y`` and the scan offset.
         """
         offset_fld = "scan_offset_valueN[scan_offset_value_n]"
         offset_fld_list = partial_conf_dict.get(offset_fld, None)
@@ -108,6 +160,8 @@ class BrukerSpmAFM(BrukerBase):
                 data, unit, _ = _get_data_unit_and_others(
                     data_dict=self.raw_data, end_dict=end_dict
                 )
+                data, unit = self._scalar_with_unit(data, unit)
+                unit = fhs.unit_short(unit)
                 if key_ext.endswith("x"):
                     self.scan_control.x_offset = data
                     self.scan_control.x_offset_unit = unit
@@ -123,12 +177,29 @@ class BrukerSpmAFM(BrukerBase):
                 data, unit, _ = _get_data_unit_and_others(
                     data_dict=self.raw_data, end_dict=end_dict
                 )
-                if key_ext.endswith("x"):
-                    self.scan_control.x_start = data + self.scan_control.x_offset
-                    self.scan_control.x_start_unit = unit
-                elif key_ext.endswith("y"):
-                    self.scan_control.y_start = data + self.scan_control.y_offset
-                    self.scan_control.y_start_unit = unit
+                data, unit = self._scalar_with_unit(data, unit)
+                axis = "x" if key_ext.endswith("x") else "y"
+                offset = getattr(self.scan_control, f"{axis}_offset")
+                offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
+                if data is not None:
+                    # Absolute position is available; it already is the origin.
+                    start, start_unit = data, unit
+                else:
+                    # NanoScope v9.x has no absolute position field: derive the
+                    # scan origin from the stage position, start = stage + offset.
+                    stage_data = self.raw_data.get(
+                        f"/Scanner_list/0/Stage_{axis.upper()}"
+                    )
+                    stage, stage_unit = self._scalar_with_unit(
+                        stage_data, unit or offset_unit
+                    )
+                    stage = 0 if stage is None else stage
+                    start = stage + (0 if offset is None else offset)
+                    start_unit = stage_unit or offset_unit
+                setattr(self.scan_control, f"{axis}_start", start)
+                setattr(
+                    self.scan_control, f"{axis}_start_unit", fhs.unit_short(start_unit)
+                )
 
         range_fld = "scan_rangeN[scan_range_n]"
         range_fld_dict = partial_conf_dict.get(range_fld)
@@ -154,8 +225,8 @@ class BrukerSpmAFM(BrukerBase):
             range_val = ureg.Quantity(data, unit).to(self.scan_control.x_start_unit)
             self.scan_control.x_range = range_val.magnitude
             self.scan_control.y_range = range_val.magnitude / aspect_ratio_val
-            self.scan_control.x_range_unit = str(range_val.units)
-            self.scan_control.y_range_unit = str(range_val.units)
+            self.scan_control.x_range_unit = fhs.unit_short(range_val.units)
+            self.scan_control.y_range_unit = fhs.unit_short(range_val.units)
             self.scan_control.x_end = (
                 self.scan_control.x_start + self.scan_control.x_range
             )
@@ -263,8 +334,13 @@ class BrukerSpmAFM(BrukerBase):
             axes_data = self.template.get(axes_path, [])
 
             if isinstance(signal_data, np.ndarray) and signal_data.ndim == 2:
-                expected_x_points = signal_data.shape[0]
-                expected_y_points = signal_data.shape[1]
+                # NeXus @axes for a 2D image is [slow, fast] == ['y', 'x']:
+                # signal dim 0 is the slow (y) axis and dim 1 the fast (x) axis.
+                # Size each axis from its own signal dimension so that
+                # non-square or partial (interrupted) scans stay aligned with
+                # @axes instead of having x/y lengths swapped.
+                expected_y_points = signal_data.shape[0]
+                expected_x_points = signal_data.shape[1]
 
                 x_points_match = isinstance(axis_x_data, np.ndarray) and (
                     axis_x_data.size == expected_x_points
@@ -293,7 +369,9 @@ class BrukerSpmAFM(BrukerBase):
                         expected_x_points,
                     )
                 self.template[f"{axis_x_key}"] = axis_x_data
-                self.template[f"{axis_x_key}/@units"] = self.scan_control.x_start_unit
+                self.template[f"{axis_x_key}/@units"] = fhs.unit_short(
+                    self.scan_control.x_start_unit
+                )
 
                 if not y_points_match:
                     axis_y_data = np.linspace(
@@ -303,7 +381,9 @@ class BrukerSpmAFM(BrukerBase):
                     )
                 self.template[f"{axis_y_key}"] = axis_y_data
 
-                self.template[f"{axis_y_key}/@units"] = self.scan_control.y_start_unit
+                self.template[f"{axis_y_key}/@units"] = fhs.unit_short(
+                    self.scan_control.y_start_unit
+                )
 
                 if not axes_data:
                     self.template[f"{axes_path}"] = [

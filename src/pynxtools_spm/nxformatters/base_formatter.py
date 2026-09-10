@@ -72,6 +72,7 @@ CONVERT_DICT = {
     "Sample_component": "SAMPLE_COMPONENT[sample_component]",
     "Sample_environment": "SAMPLE_ENVIRONMENT[sample_environment]",
     "model_version": "model/@version",
+    "citeID": "citeID[cite_id]",
 }
 
 PINT_QUANTITY_MAPPING = {
@@ -140,7 +141,23 @@ def write_multiple_concepts_instance(
 ):
     """Write multiple concepts for variadic name in eln dict if there are multiple
     instances are requested in eln archive.json file.
+
+    Note
+    ----
+    ``convert_mapping`` is modified **in place** and the caller depends on it: the
+    singular mapping of an expanded concept (``citeID -> citeID[cite_id]``) is
+    deleted and replaced by one mapping per instance (``cite_id_1``, ``cite_id_2``,
+    ...), which ``flatten_and_replace`` then consumes. It must therefore be a
+    private copy, never the module-level ``CONVERT_DICT`` -- that is a
+    process-wide singleton, so a deletion there would stay lost for every later
+    conversion in the same process.
     """
+    if convert_mapping is CONVERT_DICT:
+        raise ValueError(
+            "write_multiple_concepts_instance() mutates 'convert_mapping' in place. "
+            "Pass a private copy (e.g. copy.deepcopy(CONVERT_DICT)), not the "
+            "module-level CONVERT_DICT."
+        )
     new_dict = {}
     if not isinstance(eln_dict, dict):
         return eln_dict
@@ -151,7 +168,7 @@ def write_multiple_concepts_instance(
                 cls_name = nx_grp_name.split("[")[0]
                 del convert_mapping[key]
             else:
-                cls_name = key.upper()
+                continue
 
             if not isinstance(val, list):
                 # NXsample has a filed of sample_component, to skip the name conflict
@@ -164,7 +181,12 @@ def write_multiple_concepts_instance(
                 continue
 
             for i, item in enumerate(val, 1):
-                new_key = f"{key.lower()}_{i}"
+                # handles cases: USER[user], NOTE[note]
+                if cls_name.isupper():
+                    new_key = f"{key.lower()}_{i}"
+                # Handles cases: citeID[cite_id]
+                else:
+                    new_key = replace_variadic_name_part(name=key, part_to_embed=f"{i}")
                 convert_mapping.update({new_key: f"{cls_name}[{new_key}]"})
                 new_dict[new_key] = write_multiple_concepts_instance(
                     item, list_of_concept, convert_mapping
@@ -667,11 +689,9 @@ class SPMformatter(ABC):
             axis_variadic = f"AXISNAME[{axis_fit}]"
             self.template[f"{dt_path}/@AXISNAME_indices[{axis_fit}_indices]"] = index
             self.template[f"{dt_path}/{axis_variadic}"] = axdata_unit_other_list[ind][0]
-            unit = axdata_unit_other_list[ind][1]
+            unit = unit_short(axdata_unit_other_list[ind][1])
             self.template[f"{dt_path}/{axis_variadic}/@units"] = unit
-            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = (
-                f"{axis} ({unit_short(unit)})"
-            )
+            self.template[f"{dt_path}/{axis_variadic}/@long_name"] = f"{axis} ({unit})"
             if axdata_unit_other_list[ind][2]:  # Other attributes
                 for k, v in axdata_unit_other_list[ind][2].items():
                     k = k if k.startswith("@") else f"@{k}"
