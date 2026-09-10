@@ -169,7 +169,6 @@ def write_multiple_concepts_instance(
                 del convert_mapping[key]
             else:
                 continue
-                # cls_name = key.upper()
 
             if not isinstance(val, list):
                 # NXsample has a filed of sample_component, to skip the name conflict
