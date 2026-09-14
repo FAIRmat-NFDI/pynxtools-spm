@@ -34,7 +34,7 @@ package is used.
 
 Download and try with the [STS example files](../assets/command_line_examples/sts.zip){:sts},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/sts/version_gen_5_with_described_nxdata).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/sts/v_gen_5_descrb_nx_dt).
 
 ```console
 pynx convert --nxdl NXsts --reader spm --output output.nxs eln_data.yaml Bias-Spectroscopy00015_20230420.dat config.json
@@ -44,7 +44,7 @@ pynx convert --nxdl NXsts --reader spm --output output.nxs eln_data.yaml Bias-Sp
 
 Download and try with the [STM example files](../assets/command_line_examples/stm.zip){:stm},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/stm/version_gen_5_with_described_nxdata).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/stm/v_gen_5_descrb_nx_dt_down).
 
 ```console
 pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml Au_mica_2023_Y_A_diPAMY_195.sxm config.json
@@ -54,7 +54,7 @@ pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml Au_mica
 
 Download and try with the [AFM example files](../assets/command_line_examples/afm.zip){:afm},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/afm/version_gen_4_with_described_nxdata).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/nanonis/afm/v_gen_4_descrb_nx_dt_up).
 
 ```console
 pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml A151216.123306-02602.sxm config.json

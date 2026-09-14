@@ -45,7 +45,7 @@ importer of [Gwyddion](http://gwyddion.net/)) in
 
 Download and try with the [Bruker AFM example files](../assets/command_line_examples/bruker_afm.zip){:bruker},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/flt_described_config).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/flt_descrb_nx_dt).
 
 ```console
 pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml B3320_13_061726074638.SIG_TOPO_FRW.FLT config.json
@@ -93,14 +93,14 @@ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml VGEP-15
 
 Download and try with the [Bruker NanoScope metadata example](../assets/command_line_examples/bruker_spm.zip){:bruker_spm},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/default_config).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_dflt_conf_down).
 
 !!! warning "The download contains the readable header only"
     A `.spm` file is dominated by its binary image block (16 MB for the reference file), so the
     downloadable bundle contains only the human-readable ASCII header
     (`VGEP-15m-.0_00000.spm.header.txt`) together with `eln_data.yaml`, as a preview of the
     metadata that the reader sees. To run the command above, take the complete `.spm` file from
-    the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/default_config)
+    the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_dflt_conf_down)
     or use your own.
 
 ### Behaviors specific to the `.spm` format
@@ -142,7 +142,7 @@ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml SB04-MG
 
 Download and try with the [Bruker NanoScope force-curve example files](../assets/command_line_examples/bruker_txt.zip){:bruker_txt},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_default_config).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_dflt_conf_up).
 
 ### Behaviors specific to the `.spm.txt` format
 

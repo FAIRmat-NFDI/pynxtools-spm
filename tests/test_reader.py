@@ -25,17 +25,17 @@ ignore_sections = {
         (
             "NXsts",
             "spm",
-            f"{module_dir}/data/nanonis/sts/version_gen_5e_with_described_nxdata",
+            f"{module_dir}/data/nanonis/sts/v_gen_5e_descrb_nx_dt",
         ),
         (
             "NXsts",
             "spm",
-            f"{module_dir}/data/nanonis/sts/version_gen_5_with_described_nxdata",
+            f"{module_dir}/data/nanonis/sts/v_gen_5_descrb_nx_dt",
         ),
         (
             "NXsts",
             "spm",
-            f"{module_dir}/data/nanonis/sts/version_gen_5e_default_config",
+            f"{module_dir}/data/nanonis/sts/v_gen_5e_dflt_conf",
         ),
     ],
 )
@@ -56,22 +56,22 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
         (
             "NXstm",
             "spm",
-            f"{module_dir}/data/nanonis/stm/version_gen_5_with_default_config",
+            f"{module_dir}/data/nanonis/stm/v_gen_5_dflt_conf_down",
         ),
         (
             "NXstm",
             "spm",
-            f"{module_dir}/data/nanonis/stm/version_gen_5e_with_described_nxdata",
+            f"{module_dir}/data/nanonis/stm/v_gen_5e_descrb_nx_dt_down",
         ),
         (
             "NXstm",
             "spm",
-            f"{module_dir}/data/nanonis/stm/version_gen_5_with_described_nxdata",
+            f"{module_dir}/data/nanonis/stm/v_gen_5_descrb_nx_dt_down",
         ),
         (
             "NXstm",
             "spm",
-            f"{module_dir}/data/omicron/stm/default_config",
+            f"{module_dir}/data/omicron/stm/sm4_dflt_conf",
         ),
     ],
 )
@@ -92,32 +92,32 @@ def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
         (
             "NXafm",
             "spm",
-            f"{module_dir}/data/nanonis/afm/version_gen_4_with_described_nxdata",
+            f"{module_dir}/data/nanonis/afm/v_gen_4_descrb_nx_dt_up",
         ),
         (
             "NXafm",
             "spm",
-            f"{module_dir}/data/nanonis/afm/version_gen_4_default_config",
+            f"{module_dir}/data/nanonis/afm/v_gen_4_dflt_conf_up",
         ),
         (
             "NXafm",
             "spm",
-            f"{module_dir}/data/bruker/afm/flt_default_config",
+            f"{module_dir}/data/bruker/afm/flt_dflt_conf",
         ),
         (
             "NXafm",
             "spm",
-            f"{module_dir}/data/bruker/afm/flt_described_config",
+            f"{module_dir}/data/bruker/afm/flt_descrb_nx_dt",
         ),
         (
             "NXafm",
             "spm",
-            f"{module_dir}/data/bruker/afm/default_config",
+            f"{module_dir}/data/bruker/afm/spm_dflt_conf_down",
         ),
         (
             "NXafm",
             "spm",
-            f"{module_dir}/data/bruker/afm/txt_default_config",
+            f"{module_dir}/data/bruker/afm/txt_dflt_conf_up",
         ),
     ],
 )
