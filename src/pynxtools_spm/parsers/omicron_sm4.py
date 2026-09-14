@@ -1,6 +1,10 @@
-from spym.io.rhksm4 import load
-from pynxtools_spm.parsers.base_parser import SPMBase
 import re
+
+import numpy as np
+from pynxtools import logger as pynx_logger
+from spym.io.rhksm4 import load
+
+from pynxtools_spm.parsers.base_parser import SPMBase
 
 
 class Sm4Omicron(SPMBase):
@@ -45,9 +49,35 @@ class Sm4Omicron(SPMBase):
                     pattern=r"(unit|units)$", repl=r"/@unit", string=coord, flags=re.I
                 )
                 sm4_data_dict[f"/{label}/coords/{coord}"] = arr
-            sm4_data_dict[f"/{label}/data"] = page.data
+            sm4_data_dict[f"/{label}/data"] = self._calibrated_z(page)
 
         return sm4_data_dict
+
+    @staticmethod
+    def _calibrated_z(page) -> np.ndarray:
+        """Convert the raw counts of a page into the physical values of 'RHK_Zunits'.
+
+        'spym' hands back the image as the signed integers written by the ADC and
+        leaves 'RHK_Zscale'/'RHK_Zoffset' in the page attributes, so the array is
+        several orders of magnitude away from the unit it is labelled with, and
+        carries the wrong sign whenever the scale is negative. Gwyddion applies
+        the same affine conversion when it reads an SM4 file.
+        """
+        data = np.asarray(page.data)
+        z_scale = page.attrs.get("RHK_Zscale")
+        z_offset = page.attrs.get("RHK_Zoffset", 0.0)
+
+        if z_scale in (None, 0):
+            # Without a scale the counts cannot be converted, so they are passed
+            # through unchanged rather than dropping the page altogether.
+            pynx_logger.warning(
+                "No usable 'RHK_Zscale' on page '%s'; its data stays in raw counts "
+                "and will not match the unit it is labelled with.",
+                page.label,
+            )
+            return data
+
+        return data * z_scale + (0.0 if z_offset is None else z_offset)
 
     # def get_stm_raw_file_info(self):
     #     return self.parse()
