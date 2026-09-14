@@ -139,3 +139,8 @@ VGEP
 MILLI
 Zsens
 REPEATEABLE
+Zscale
+Zoffset
+Zunits
+allclose
+rtol
