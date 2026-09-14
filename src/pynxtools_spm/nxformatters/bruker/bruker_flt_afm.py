@@ -376,7 +376,7 @@ class BrukerFltAFM(BrukerBase):
         group_name: str,
         group_index=0,
         is_forward: bool | None = None,
-        rearrange_2d_data: bool = False,
+        rearrange_2d_data: bool = True,
     ):
         """Attach physical x and y axes to the NXdata group.
 
@@ -418,11 +418,11 @@ class BrukerFltAFM(BrukerBase):
             return nxdata_group
 
         # The raster is stored row by row: the first index runs along the slow
-        # (y) axis and the second along the fast (x) axis. Row 0 holds the
-        # lowest y, so y ascends with the row index.
+        # (y) axis and the second along the fast (x) axis. Row 0 is the top row
+        # of the image, so y descends with the row index and 'y_end' labels it.
         n_y, n_x = signal_data.shape
         axis_to_data = {
-            "y": np.linspace(scan_control.y_start, scan_control.y_end, n_y),
+            "y": np.linspace(scan_control.y_end, scan_control.y_start, n_y),
             "x": np.linspace(scan_control.x_start, scan_control.x_end, n_x),
         }
 
