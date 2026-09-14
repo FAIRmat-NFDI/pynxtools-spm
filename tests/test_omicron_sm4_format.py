@@ -99,7 +99,7 @@ class TestZCalibration:
 
 
 class TestZCalibrationEdgeCases:
-    """A page whose scale is unusable still has to convert."""
+    """A page whose scale is unusable falls back to raw counts with a warning."""
 
     class _Page:
         """A stand-in for an ``spym`` page, holding only what the parser reads."""

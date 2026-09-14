@@ -10,14 +10,14 @@ Nanonis:
         - Folder: version_gen_4_default_config: Image Orientation is correct
         - Folder: Version_gen_5_with_described_nxdata: Image Orientation is correct
     STM: 
-        - Forder: version_gen_5e_with_described_nxdata: Image Orientation is correct#
+        - Folder: version_gen_5e_with_described_nxdata: Image Orientation is correct
         - Folder: Version_gen_5_with_default_config: Image Orientation is correct
         - Folder: Version_gen_5_with_described_nxdata: Image Orientation is correct
     STS:
         - All STS datasets are correct
 Omicron:
-    AFM:
-        - Folder: default_config: Image Orientation **is not correct** i.e., the origin starts at (0,0) at the bottom left corner of the image.
+    STM:
+        - Folder: default_config: Image Orientation is correct (was bottom-left origin before the fix, see Status below)
 ---
 
 ## The convention
@@ -47,7 +47,7 @@ the two in all four flip orientations; the right one scores 1.0000 and the
 others score near zero.
 
 Each vendor puts its own flip in `rearrange_data_according_to_axes`, overridden
-in its base formatter (`NanonisBase`, `OmicronBase`, `BrukerBase`). The
+in its base formatter (`NanonisBase`, `OmicronBase`). The
 convention is shared; the flip that reaches it is vendor knowledge and stays
 with the vendor.
 
@@ -59,4 +59,3 @@ with the vendor.
   channel was stored as counts under a physical unit, and topography carried the
   wrong sign because that scale is negative.
 - Bruker SPMLab .FLT: still open, same fix via `BrukerBase`.
-- Note: the Omicron folder is `tests/data/omicron/stm/`, so it is STM, not AFM.
