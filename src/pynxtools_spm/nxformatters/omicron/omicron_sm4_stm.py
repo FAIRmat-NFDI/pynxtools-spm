@@ -507,8 +507,8 @@ class OmicronSM4STM(OmicronBase):
     def _reverse_slow_axis(self, nxdata_path: str):
         """Make the slow axis descend, so that its first value labels row 0.
 
-        The config maps the slow axis straight onto the coordinate array of
-        'spym', which ascends with the row index. 'OmicronBase' flips the image
+        The config maps the slow axis straight onto the coordinate array built by
+        'Sm4Omicron', which ascends with the row index. 'OmicronBase' flips the image
         so that row 0 is the top row, which leaves the axis running the opposite
         way to the rows it describes, so it is reversed here to match.
         """
