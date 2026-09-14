@@ -133,9 +133,13 @@ class SpmBruker(SPMBase):
                     self._prefixed(entries, f"Scan/{channel_name}/{direction}")
                 )
                 scan_list.append(f"{channel_name}/{direction}")
-                channel_data.setdefault(channel_name, {})[direction] = np.flipud(
-                    channels[image_index - 1].data
-                ) * self._scale_factor(entries, sections)
+                # The rows are left in the order 'gwyddionpy' returns them.
+                # Orienting the image is the job of
+                # 'BrukerBase.rearrange_data_according_to_axes', so that both
+                # Bruker formats are flipped in one place.
+                channel_data.setdefault(channel_name, {})[direction] = channels[
+                    image_index - 1
+                ].data * self._scale_factor(entries, sections)
 
         for channel_name, per_direction in channel_data.items():
             for direction in DIRECTIONS.values():

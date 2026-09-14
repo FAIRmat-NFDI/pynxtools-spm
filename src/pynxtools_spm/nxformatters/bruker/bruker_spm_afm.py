@@ -290,7 +290,7 @@ class BrukerSpmAFM(BrukerBase):
         group_name: str,
         group_index=0,
         is_forward: bool | None = None,
-        rearrange_2d_data: bool = False,
+        rearrange_2d_data: bool = True,
     ):
         """Determine the nxdata group name from the config description and construct the nxdata group in the template if possible. This is to handle the case when there are multiple data groups of the same type (e.g. forward and backward scan) and the group name in the config file does not explicitly indicate which one is forward or backward scan. The function will try to determine which one is forward or backward scan based on the raw data path provided in the config file. If it can determine which one is forward or backward scan, it will construct the nxdata group accordingly. If it cannot determine, it will return None and skip constructing the nxdata group for that data group. The function also handles rearranging 2D data if needed based on the scan pattern (e.g. for line scan, the data needs to be rearranged to have x and y axes). The function also adds axis information to the nxdata group based on the scan pattern and scan region information provided in the config file."""
         nxdata_group = super()._nxdata_grp_from_conf_description(
