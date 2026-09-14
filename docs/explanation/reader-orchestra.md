@@ -41,7 +41,7 @@ Readers support the following vendor files and formats. The version column refer
 | --- | --- | --- | --- | --- |
 | `STS` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 5, Generic 5e | `.dat` |
 | `STM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 5, Generic 5e | `.sxm` |
-| `STM` | [Omicron](../reference/omicron.md) | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
+| `STM` | [Omicron](../reference/omicron.md) | SM4 (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | not version specific | `.sm4` |
 | `AFM` | [Nanonis](../reference/nanonis.md) | Nanonis SPM control software | Generic 4 | `.sxm` |
 | `AFM` | [Bruker](../reference/bruker.md) | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
 | `AFM` | [Bruker](../reference/bruker.md) | Bruker `NanoScope` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `9.x` (Dimension Icon) | `.spm` |

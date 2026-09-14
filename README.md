@@ -20,7 +20,7 @@ This `pynxtools` plugin was generated with [`cookiecutter`](https://github.com/c
 | --- | --- | --- | --- | --- |
 | STS | Nanonis | Nanonis SPM control software | Generic 5, Generic 5e | `.dat` |
 | STM | Nanonis | Nanonis SPM control software | Generic 5, Generic 5e | `.sxm` |
-| STM | Omicron | SM4 (read with [spym](https://github.com/rescipy-project/spym)) | not version specific | `.sm4` |
+| STM | Omicron | SM4 (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | not version specific | `.sm4` |
 | AFM | Nanonis | Nanonis SPM control software | Generic 4 | `.sxm` |
 | AFM | Bruker | Bruker `SPMLab` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `1.00` | `.flt`, written by the instrument as `.FLT` |
 | AFM | Bruker | Bruker `NanoScope` (read with [gwyddionpy](https://pypi.org/project/gwyddionpy/)) | `9.x` (Dimension Icon) | `.spm` |

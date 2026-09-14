@@ -1,21 +1,33 @@
 """Tests for the Omicron RHK SM4 STM format.
 
-Covers the two properties that decide whether an SM4 image is usable: the Z
-calibration applied by ``Sm4Omicron``, which turns the raw ADC counts of
-``spym`` into the physical values the field is labelled with, and the row
-orientation applied by ``OmicronBase``, which puts row 0 of the image at the
-top so that it is not shown upside down.
+Covers the properties that decide whether an SM4 image is usable: the page
+metadata read by ``read_sm4_pages``, which keeps the typed 'RHK_*' attributes
+the config addresses; the image read by ``Sm4Omicron`` with ``gwyddionpy``,
+which holds physical values rather than raw ADC counts; and the row orientation
+applied by ``OmicronBase``, which puts row 0 of the image at the top so that it
+is not shown upside down.
 """
 
+import struct
+import zlib
 from pathlib import Path
 
 import numpy as np
 import pytest
+from gwyddionpy import load
 from pynxtools.dataconverter.template import Template
-from spym.io.rhksm4 import load
 
 from pynxtools_spm.nxformatters.omicron.omicron_base import OmicronBase
+from pynxtools_spm.parsers import omicron_sm4
 from pynxtools_spm.parsers.omicron_sm4 import Sm4Omicron
+from pynxtools_spm.parsers.rhk_sm4_metadata import (
+    OBJECT_PRM,
+    Sm4Object,
+    _ByteReader,
+    _enum_name,
+    _Sm4MetadataReader,
+    read_sm4_pages,
+)
 from pynxtools_spm.reader import SPMReader
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
@@ -27,13 +39,20 @@ assert SM4_RAW_FILE is not None, f"no .sm4 file found in {SM4_DATA_DIR}"
 SM4_ELN_FILE = SM4_DATA_DIR / "eln_data.yaml"
 
 ENTRY = "/ENTRY[entry]"
-# The four pages of the reference file, as ``spym`` labels them, paired with the
-# NXdata group each one ends up in.
+# The four pages of the reference file, by label, paired with the NXdata group
+# each one ends up in.
 PAGE_TO_GROUP = {
     "Topography_Forward": "z_forward",
     "Topography_Backward": "z_backward",
     "Current_Forward": "current_forward",
     "Current_Backward": "current_backward",
+}
+# The same pages as gwyddionpy names them: a forward scan runs to the right.
+PAGE_TO_CHANNEL = {
+    "Topography_Forward": "Topography [Right]",
+    "Topography_Backward": "Topography [Left]",
+    "Current_Forward": "Current [Right]",
+    "Current_Backward": "Current [Left]",
 }
 
 
@@ -49,10 +68,20 @@ def _slow_axis(template, group):
     return template[f"{ENTRY}/DATA[{group}]/AXISNAME[{axes[0]}]"]
 
 
+def _sm4_string(text: str) -> bytes:
+    """Encode a string the way SM4 stores it: a uint16 length, then UTF-16."""
+    return struct.pack("<H", len(text)) + text.encode("utf-16-le")
+
+
 @pytest.fixture(scope="module")
-def spym_pages():
-    """The raw pages as ``spym`` returns them, before any of our handling."""
-    return {page.label: page for page in load(str(SM4_RAW_FILE))}
+def pages():
+    return {page.label: page for page in read_sm4_pages(SM4_RAW_FILE)}
+
+
+@pytest.fixture(scope="module")
+def gwy_channels():
+    """The channels as gwyddionpy returns them, before any of our handling."""
+    return load(str(SM4_RAW_FILE)).channels
 
 
 @pytest.fixture(scope="module")
@@ -68,65 +97,191 @@ def template():
     )
 
 
-class TestZCalibration:
-    """``spym`` returns ADC counts and leaves the scale in the page attributes.
+class TestMetadata:
+    """The page metadata keeps the names and dtypes the config is written for."""
 
-    Without applying it the field holds numbers many orders of magnitude away
-    from the unit it is labelled with, and with the wrong sign whenever the
-    scale is negative, which is the case for topography in the reference file.
+    def test_every_page_is_read_in_file_order(self):
+        labels = [page.label for page in read_sm4_pages(SM4_RAW_FILE)]
+        assert sorted(labels) == sorted(PAGE_TO_GROUP)
+
+    @pytest.mark.parametrize("label", sorted(PAGE_TO_GROUP))
+    def test_page_id_pairs_the_page_with_its_gwyddion_channel(
+        self, pages, gwy_channels, label
+    ):
+        channel = gwy_channels[PAGE_TO_CHANNEL[label]]
+        assert pages[label].page_id == channel.meta["Page ID"]
+
+    @pytest.mark.parametrize(
+        "key,dtype",
+        [
+            ("RHK_Xsize", np.uint32),
+            ("RHK_ScanType", np.uint32),
+            ("RHK_Zscale", np.float32),
+            ("RHK_Xoffset", np.float32),
+            ("RHK_PiezoSensitivity_TubeX", np.float64),
+            ("RHK_ZPI_SetPoint", np.float64),
+            ("RHK_ImageDrift_Time", np.float32),
+            ("RHK_ImageDrift_Filetime", np.uint64),
+        ],
+    )
+    def test_binary_values_keep_their_stored_dtype(self, pages, key, dtype):
+        assert type(pages["Topography_Forward"].attrs[key]) is dtype
+
+    def test_strings_and_derived_values(self, pages):
+        attrs = pages["Topography_Forward"].attrs
+        assert attrs["RHK_Label"] == "Topography"
+        assert attrs["RHK_ScanTypeName"] == "RHK_SCAN_RIGHT"
+        assert attrs["RHK_DateTime"] == "2022-01-20T16:07:09.000"
+        assert attrs["RHK_CompletedLineCount"] == 512
+        assert attrs["RHK_CH1DriveValue"] == -1.0
+        assert attrs["RHK_CH1DriveValueUnits"] == "V"
+        assert attrs["RHK_LowPassFilter1_CutoffFrequency"] == 100.0
+        assert attrs["RHK_LowPassFilter1_CutoffFrequencyUnits"] == "kHz"
+
+    def test_file_name_is_the_path_the_file_is_read_from(self, pages):
+        assert pages["Current_Backward"].attrs["RHK_FileName"] == str(SM4_RAW_FILE)
+
+    def test_units_become_unit_attributes(self, parsed):
+        assert parsed["/Topography_Forward/RHK_Z/@unit"] == "m"
+        assert parsed["/Current_Forward/RHK_Z/@unit"] == "A"
+        assert parsed["/Topography_Forward/RHK_PiezoSensitivity_TubeX/@unit"] == "m/V"
+        assert "/Topography_Forward/RHK_Zunits" not in parsed
+
+
+class TestMetadataEdgeCases:
+    """The reader fails loudly on broken files and names odd pages sensibly."""
+
+    def test_empty_file_raises(self, tmp_path):
+        empty = tmp_path / "empty.sm4"
+        empty.write_bytes(b"")
+        with pytest.raises(ValueError, match="ends at byte 0"):
+            read_sm4_pages(empty)
+
+    @pytest.mark.parametrize("size", [1, 60, 4096])
+    def test_truncated_file_raises(self, tmp_path, size):
+        truncated = tmp_path / "truncated.sm4"
+        truncated.write_bytes(SM4_RAW_FILE.read_bytes()[:size])
+        with pytest.raises(ValueError):
+            read_sm4_pages(truncated)
+
+    def test_missing_object_raises(self):
+        with pytest.raises(ValueError, match="no object with id 2"):
+            _Sm4MetadataReader._offset_of([Sm4Object(1, 10, 20)], 2)
+
+    @pytest.mark.parametrize(
+        "scan_type,suffix",
+        [(0, "_Forward"), (1, "_Backward"), (2, "_Up"), (3, "_Down"), (7, "")],
+    )
+    def test_image_label_carries_the_scan_direction(self, scan_type, suffix):
+        attrs = {
+            "RHK_Label": "Topography",
+            "RHK_PageID": np.uint16(1),
+            "RHK_PageDataType": np.uint32(0),
+            "RHK_ScanType": np.uint32(scan_type),
+        }
+        assert _Sm4MetadataReader._page_label(attrs) == f"Topography{suffix}"
+
+    @pytest.mark.parametrize(
+        "label,expected", [("-dI dV", "dI_dV"), (" LIA Current", "LIA_Current")]
+    )
+    def test_non_image_label_is_sanitized_without_direction(self, label, expected):
+        attrs = {"RHK_Label": label, "RHK_PageDataType": np.uint32(1)}
+        assert _Sm4MetadataReader._page_label(attrs) == expected
+
+    @pytest.mark.parametrize("attrs", [{}, {"RHK_Label": ""}])
+    def test_page_without_label_is_named_after_its_id(self, attrs):
+        attrs = {**attrs, "RHK_PageID": np.uint16(4162)}
+        assert _Sm4MetadataReader._page_label(attrs) == "ID4162"
+
+    @pytest.mark.parametrize(
+        "value,expected", [(1, "B"), (2, "UNKNOWN"), (-1, "UNKNOWN")]
+    )
+    def test_enum_value_outside_the_format_is_unknown(self, value, expected):
+        assert _enum_name(("A", "B"), value, "UNKNOWN") == expected
+
+    def test_string_strips_trailing_nul_characters(self):
+        reader = _ByteReader(_sm4_string("kHz\x00\x00"))
+        assert reader.string() == "kHz"
+
+    def test_empty_string(self):
+        assert _ByteReader(_sm4_string("")).string() == ""
+
+    def test_string_with_a_lone_surrogate_is_empty(self):
+        reader = _ByteReader(struct.pack("<HH", 1, 0xD800))
+        assert reader.string() == ""
+        assert reader.position == 4
+
+    @pytest.mark.parametrize("compressed", [False, True])
+    def test_prm_data_is_read_plain_or_zlib_compressed(self, compressed):
+        text = "[Scan]\nSpeed=1.0\n"
+        payload = zlib.compress(text.encode("cp437")) if compressed else text.encode()
+        prm_header = struct.pack("<III", int(compressed), len(text), len(payload))
+        reader = _Sm4MetadataReader(prm_header + payload, "file.sm4")
+        reader._file_objects = [Sm4Object(OBJECT_PRM, len(prm_header), len(payload))]
+        attrs = {}
+        reader._read_prm(attrs)
+        assert attrs["RHK_PRMdata"] == text
+
+
+class TestImageData:
+    """gwyddionpy applies the Z scale, so the image holds physical values.
+
+    The raw ADC counts are several orders of magnitude away from the unit the
+    field is labelled with, and carry the wrong sign whenever the scale is
+    negative, which is the case for topography in the reference file.
     """
 
     @pytest.mark.parametrize("label", sorted(PAGE_TO_GROUP))
-    def test_counts_are_converted_to_physical_values(self, parsed, spym_pages, label):
-        page = spym_pages[label]
-        expected = np.asarray(page.data) * page.attrs["RHK_Zscale"] + page.attrs.get(
-            "RHK_Zoffset", 0.0
+    def test_image_is_the_gwyddion_channel(self, parsed, gwy_channels, label):
+        np.testing.assert_array_equal(
+            parsed[f"/{label}/data"], gwy_channels[PAGE_TO_CHANNEL[label]].data
         )
-        np.testing.assert_allclose(parsed[f"/{label}/data"], expected, rtol=0, atol=0)
 
-    def test_topography_sign_follows_a_negative_scale(self, parsed, spym_pages):
-        """The scale of this file is negative, so the counts must change sign."""
-        page = spym_pages["Topography_Forward"]
-        assert page.attrs["RHK_Zscale"] < 0
-        assert np.all(np.asarray(page.data) > 0)
+    def test_topography_sign_follows_a_negative_scale(self, parsed, pages):
+        assert pages["Topography_Forward"].attrs["RHK_Zscale"] < 0
         assert np.all(parsed["/Topography_Forward/data"] < 0)
 
-    def test_page_attributes_are_left_untouched(self, parsed, spym_pages):
+    @pytest.mark.parametrize(
+        "label,limit", [("Topography_Forward", 1e-5), ("Current_Forward", 1e-7)]
+    )
+    def test_values_are_physical_not_counts(self, parsed, label, limit):
+        """Counts reach ~1e9; topography in m and current in A stay far below."""
+        assert np.max(np.abs(parsed[f"/{label}/data"])) < limit
+
+    def test_page_attributes_are_left_untouched(self, parsed, pages):
         """Only the image is converted; the scale stays readable by a config."""
-        page = spym_pages["Topography_Forward"]
-        assert parsed["/Topography_Forward/RHK_Zscale"] == page.attrs["RHK_Zscale"]
-        assert parsed["/Topography_Forward/RHK_Zoffset"] == page.attrs["RHK_Zoffset"]
+        attrs = pages["Topography_Forward"].attrs
+        assert parsed["/Topography_Forward/RHK_Zscale"] == attrs["RHK_Zscale"]
+        assert parsed["/Topography_Forward/RHK_Zoffset"] == attrs["RHK_Zoffset"]
 
-
-class TestZCalibrationEdgeCases:
-    """A page whose scale is unusable falls back to raw counts with a warning."""
-
-    class _Page:
-        """A stand-in for an ``spym`` page, holding only what the parser reads."""
-
-        def __init__(self, z_scale, z_offset=0.0):
-            self.label = "Stub_Page"
-            self.data = np.array([[1.0, 2.0], [3.0, 4.0]])
-            self.attrs = {"RHK_Zscale": z_scale, "RHK_Zoffset": z_offset}
-
-    @pytest.mark.parametrize("z_scale", [None, 0])
-    def test_unusable_scale_passes_counts_through(self, z_scale, caplog):
-        page = self._Page(z_scale)
-        with caplog.at_level("WARNING"):
-            result = Sm4Omicron._calibrated_z(page)
-        np.testing.assert_array_equal(result, page.data)
-        assert "RHK_Zscale" in caplog.text
-
-    def test_missing_offset_defaults_to_zero(self):
-        page = self._Page(z_scale=2.0)
-        del page.attrs["RHK_Zoffset"]
-        np.testing.assert_array_equal(Sm4Omicron._calibrated_z(page), page.data * 2.0)
-
-    def test_offset_is_added(self):
-        page = self._Page(z_scale=2.0, z_offset=10.0)
-        np.testing.assert_array_equal(
-            Sm4Omicron._calibrated_z(page), page.data * 2.0 + 10.0
+    @pytest.mark.parametrize("axis", ["x", "y"])
+    def test_coords_ascend_from_zero_in_steps_of_the_scale(self, parsed, pages, axis):
+        attrs = pages["Topography_Forward"].attrs
+        coords = parsed[f"/Topography_Forward/coords/Topography_Forward_{axis}"]
+        assert coords.dtype == np.float64
+        assert len(coords) == attrs[f"RHK_{axis.upper()}size"]
+        assert coords[0] == 0.0
+        np.testing.assert_allclose(
+            np.diff(coords), abs(attrs[f"RHK_{axis.upper()}scale"]), rtol=1e-12
         )
+
+    def test_page_without_gwyddion_channel_keeps_metadata_only(
+        self, monkeypatch, caplog
+    ):
+        # 'gwyddionpy.load' is replaced by a fake returning no channels: no SM4
+        # file exists whose pages Gwyddion cannot read, so this is the only way
+        # to reach the branch that guards against such a file.
+        class _NoChannels:
+            channels: dict = {}
+
+        monkeypatch.setattr(omicron_sm4, "load", lambda _: _NoChannels())
+        with caplog.at_level("WARNING"):
+            result = Sm4Omicron(str(SM4_RAW_FILE)).parse()
+
+        assert not [key for key in result if key.endswith("/data")]
+        assert "/Topography_Forward/RHK_Zscale" in result
+        assert "/Topography_Forward/coords/Topography_Forward_x" in result
+        assert "no matching channel" in caplog.text
 
 
 class TestImageOrientation:
@@ -145,7 +300,7 @@ class TestImageOrientation:
 
     @pytest.mark.parametrize("is_forward", [True, False, None])
     def test_scan_direction_causes_no_lateral_flip(self, is_forward):
-        """``spym`` already returns both directions in the right x order."""
+        """``gwyddionpy`` already returns both directions in the right x order."""
         data = np.arange(6).reshape(3, 2)
         np.testing.assert_array_equal(
             OmicronBase.rearrange_data_according_to_axes(None, data, is_forward),

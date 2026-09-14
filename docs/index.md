@@ -50,8 +50,7 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 - [NeXus-FAIRmat](https://fairmat-nfdi.github.io/nexus_definitions/index.html)
 - [Supported vendor files and formats](explanation/reader-orchestra.md#supported-vendor-files-and-formats)
 - [nanonispy for reading Nanonis files (e.g., `.sxm`)](https://github.com/underchemist/nanonispy)
-- [spym for reading Omicron files (e.g., `.sm4`)](https://github.com/rescipy-project/spym)
-- [gwyddionpy for reading Bruker `SPMLab` (`.flt`) and `NanoScope` (`.spm`) files](https://pypi.org/project/gwyddionpy/)
+- [gwyddionpy for reading Omicron (`.sm4`), Bruker `SPMLab` (`.flt`) and `NanoScope` (`.spm`) files](https://pypi.org/project/gwyddionpy/)
 - [Scanning Probe Microscopy (SPM) Application Definitions](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/spm-structure.html#spm-structure)
 
 </div>

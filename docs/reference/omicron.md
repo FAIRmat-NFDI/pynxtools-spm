@@ -5,9 +5,14 @@ instruments. The files are converted into the
 [NXstm](https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html)
 application definition.
 
-The `.sm4` file is read with the [spym](https://github.com/rescipy-project/spym) package in
+The `.sm4` file is read in
 [`src/pynxtools_spm/parsers/omicron_sm4.py`](https://github.com/FAIRmat-NFDI/pynxtools-spm/blob/main/src/pynxtools_spm/parsers/omicron_sm4.py)
-(class `Sm4Omicron`).
+(class `Sm4Omicron`). The image data is read with [gwyddionpy](https://pypi.org/project/gwyddionpy/),
+which applies the Z calibration of each page. The page metadata (e.g. piezo sensitivity,
+feedback loop, bias drive) is read from the binary page headers by
+[`src/pynxtools_spm/parsers/rhk_sm4_metadata.py`](https://github.com/FAIRmat-NFDI/pynxtools-spm/blob/main/src/pynxtools_spm/parsers/rhk_sm4_metadata.py),
+because gwyddionpy exposes only part of it. Its attribute names (`RHK_*`) follow the SM4
+reader of [spym](https://github.com/rescipy-project/spym).
 
 ## Supported formats and versions
 
