@@ -71,6 +71,26 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
         (
             "NXstm",
             "spm",
+            f"{module_dir}/data/nanonis/stm/v_gen_4_dflt_conf_up",
+        ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/nanonis/stm/v_gen_4_dflt_conf_down",
+        ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/nanonis/stm/v_gen_4_descrb_nx_dt_up",
+        ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/nanonis/stm/v_gen_4_descrb_nx_dt_down",
+        ),
+        (
+            "NXstm",
+            "spm",
             f"{module_dir}/data/omicron/stm/sm4_dflt_conf",
         ),
     ],

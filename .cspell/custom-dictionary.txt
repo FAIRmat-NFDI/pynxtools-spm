@@ -172,3 +172,5 @@ rtol
 Zvalue
 dflt
 descrb
+keepdims
+corrcoef

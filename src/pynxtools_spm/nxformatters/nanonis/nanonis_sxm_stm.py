@@ -365,6 +365,9 @@ class NanonisSxmSTM(NanonisBase):
             "Offset",
         ]
         plot_data_list: list[dict[str, Any]] = []
+        # Both axes ascend: row 0 and column 0 are the bottom-left corner.
+        x_axis = self._pixel_centres("x")
+        y_axis = self._pixel_centres("y")
         for ind, row in enumerate(data_headers):
             if ind == 0 and expected_keys != row:
                 raise ValueError(
@@ -381,17 +384,9 @@ class NanonisSxmSTM(NanonisBase):
                                 "units": row[2],
                                 "calibration": row[4],
                                 "offset": row[5],
-                                "x_axis": np.linspace(
-                                    self.scan_control.x_start,
-                                    self.scan_control.x_end,
-                                    int(self.scan_control.x_points),
-                                ),
+                                "x_axis": x_axis,
                                 "x_units": row[2],
-                                "y_axis": np.linspace(
-                                    self.scan_control.y_start,
-                                    self.scan_control.y_end,
-                                    int(self.scan_control.y_points),
-                                ),
+                                "y_axis": y_axis,
                                 "y_units": row[2],
                             },
                             {
@@ -399,17 +394,9 @@ class NanonisSxmSTM(NanonisBase):
                                 "units": row[2],
                                 "calibration": row[4],
                                 "offset": row[5],
-                                "x_axis": np.linspace(
-                                    self.scan_control.x_start,
-                                    self.scan_control.x_end,
-                                    int(self.scan_control.x_points),
-                                ),
+                                "x_axis": x_axis,
                                 "x_units": row[2],
-                                "y_axis": np.linspace(
-                                    self.scan_control.y_start,
-                                    self.scan_control.y_end,
-                                    int(self.scan_control.y_points),
-                                ),
+                                "y_axis": y_axis,
                                 "y_units": row[2],
                             },
                         ]
@@ -422,17 +409,9 @@ class NanonisSxmSTM(NanonisBase):
                             "units": row[2],
                             "calibration": row[4],
                             "offset": row[5],
-                            "x_axis": np.linspace(
-                                self.scan_control.x_start,
-                                self.scan_control.x_end,
-                                int(self.scan_control.x_points),
-                            ),
+                            "x_axis": x_axis,
                             "x_units": row[2],
-                            "y_axis": np.linspace(
-                                self.scan_control.y_start,
-                                self.scan_control.y_end,
-                                int(self.scan_control.y_points),
-                            ),
+                            "y_axis": y_axis,
                             "y_units": row[2],
                         }
                     )
@@ -519,12 +498,9 @@ class NanonisSxmSTM(NanonisBase):
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_x}_indices]"
             ] = 1
+            # Both axes ascend: row 0 and column 0 are the bottom-left corner.
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
-                np.linspace(
-                    self.scan_control.x_start,
-                    self.scan_control.x_end,
-                    int(self.scan_control.x_points),
-                )
+                self._pixel_centres("x")
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@units"
@@ -535,11 +511,7 @@ class NanonisSxmSTM(NanonisBase):
             ] = 0
 
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
-                np.linspace(
-                    self.scan_control.y_end,
-                    self.scan_control.y_start,
-                    int(self.scan_control.y_points),
-                )
+                self._pixel_centres("y")
             )
 
             self.template[
