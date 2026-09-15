@@ -79,7 +79,7 @@ rm -rf ${bruker_dst}
 
 # Copy Bruker NanoScope force-curve (.spm.txt) file. The export is pure ASCII,
 # so the bundle is complete and the documented command runs straight from it.
-src_path="${this_file_path}/tests/data/bruker/afm/txt_dflt_conf_up"
+src_path="${this_file_path}/tests/data/bruker/afm/txt_dflt_conf"
 bruker_txt_dst="./docs/assets/command_line_examples/bruker_txt"
 mkdir -p $bruker_txt_dst
 

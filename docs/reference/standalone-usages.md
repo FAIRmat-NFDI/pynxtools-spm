@@ -66,7 +66,7 @@ __7.__ Command to convert a Bruker NanoScope AFM force-curve export (`.spm.txt`)
 $ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml bruker_force_curve.spm.txt
 ```
 
-Download and try with the [Bruker NanoScope force-curve example files](../assets/command_line_examples/bruker_txt.zip){:bruker_txt} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_dflt_conf_up). This example uses the default config `configs/bruker/bruker_txt_afm.json` shipped with the package; pass your own `config.json` as a further input file to override it.
+Download and try with the [Bruker NanoScope force-curve example files](../assets/command_line_examples/bruker_txt.zip){:bruker_txt} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_dflt_conf). This example uses the default config `configs/bruker/bruker_txt_afm.json` shipped with the package; pass your own `config.json` as a further input file to override it.
 
 !!! note
     The `.spm.txt` file is the ASCII export of a force ramp, not of an image: the extend (`_Ex`) and retract (`_Rt`) halves of the ramp become the `NXdata` groups `deflection_extension`, `height_sensor_extension`, `deflection_retrace` and `height_sensor_retrace`. Because the reader dispatches on the file extension, __every__ `.txt` file passed with `experiment_technique: AFM` is routed to this handler.

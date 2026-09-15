@@ -142,7 +142,7 @@ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml SB04-MG
 
 Download and try with the [Bruker NanoScope force-curve example files](../assets/command_line_examples/bruker_txt.zip){:bruker_txt},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_dflt_conf_up).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/txt_dflt_conf).
 
 ### Behaviors specific to the `.spm.txt` format
 
