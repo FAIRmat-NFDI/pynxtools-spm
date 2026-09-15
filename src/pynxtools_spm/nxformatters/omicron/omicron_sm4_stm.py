@@ -493,10 +493,14 @@ class OmicronSM4STM(OmicronBase):
                     continue
 
                 for scan_tag in self._scan_list:
+                    # A page that the config maps to no NXdata group (e.g. a
+                    # channel labelled 'Current ' with a trailing space) has
+                    # no data group to link.
+                    data_group = self._scan_tag_to_data_group.get(scan_tag)
+                    if data_group is None:
+                        continue
                     if scan_tag.lower() in scn_ctl_grp:
-                        template_links[f"{full_match}/DATA[scan_data]"] = (
-                            self._scan_tag_to_data_group[scan_tag]
-                        )
+                        template_links[f"{full_match}/DATA[scan_data]"] = data_group
                         completed_group.append(scn_ctl_grp)
 
         for template_key, link in template_links.items():
