@@ -1,13 +1,14 @@
-"""Tests for the image orientation of Bruker NanoScope '.spm' scans.
+"""Tests for the image orientation of Bruker NanoScope '.spm' and SPMLab '.FLT' scans.
 
 The convention of this plugin is the one of a scientific plot: the origin of an
 image is its bottom-left corner. Row 0 of a stored signal is the bottom row,
 column 0 is the left column, and both axes ascend.
 
-A NanoScope file stores the rows in a fixed order, bottom row first, for a
-'Frame direction' of Up and of Down alike. Gwyddion turns every NanoScope image
-upside down once and never reads the frame direction, so for either direction
-a correctly stored signal is 'np.flipud' of the Gwyddion channel.
+Both formats store the rows in a fixed order, bottom row first: a NanoScope
+file for a 'Frame direction' of Up and of Down alike, and an SPMLab file, which
+records no slow scan direction at all. Gwyddion turns every image of either
+format upside down once, so a correctly stored signal is 'np.flipud' of the
+Gwyddion channel.
 """
 
 import re
@@ -155,3 +156,72 @@ class TestStoredImages:
                 assert axis[-1] - axis[0] == pytest.approx(scan_size), (
                     f"{group} axis {dim}"
                 )
+
+
+# SPMLab '.FLT' stores no slow scan direction; Gwyddion turns every image upside
+# down once as well, so the same flip applies.
+FLT_FOLDERS = ["flt_dflt_conf", "flt_descrb_nx_dt"]
+
+
+def _flt_header(raw_file: Path) -> dict[str, str]:
+    """The 'key=value' lines of the ASCII header of an SPMLab '.FLT' file."""
+    with open(raw_file, "rb") as file_obj:
+        header = file_obj.read(4000).decode("latin-1")
+    return {
+        key: value.strip()
+        for key, value in re.findall(r"^(\w+)=([^\r\n]*)", header, re.MULTILINE)
+    }
+
+
+def _flt_template(folder: str) -> Template:
+    directory = SPM_DATA_DIR / folder
+    files = [next(directory.glob("*.FLT")), directory / "eln_data.yaml"]
+    if (directory / "config.json").is_file():
+        files.append(directory / "config.json")
+    return SPMReader().read(
+        template=Template(),
+        file_paths=tuple(str(file) for file in files),  # type: ignore[arg-type]
+    )
+
+
+def _all_2d_groups(template) -> list[str]:
+    """Paths of every NXdata group with a two dimensional signal."""
+    return sorted(
+        {
+            key.rsplit("/@signal", 1)[0]
+            for key in template
+            if key.endswith("/@signal")
+            and np.ndim(
+                template[f"{key.rsplit('/@signal', 1)[0]}/DATA[{template[key]}]"]
+            )
+            == 2
+        }
+    )
+
+
+@pytest.mark.parametrize("folder", FLT_FOLDERS)
+class TestStoredFltImages:
+    """Every SPMLab image follows the bottom-left convention."""
+
+    def test_signal_is_the_gwyddion_channel_turned_upside_down(self, folder):
+        template = _flt_template(folder)
+        raw_file = next((SPM_DATA_DIR / folder).glob("*.FLT"))
+        (channel,) = load(str(raw_file)).channels.values()
+        groups = _all_2d_groups(template)
+        assert groups, "no two dimensional NXdata group was written"
+        for group in groups:
+            signal = template[f"{group}/DATA[{template[f'{group}/@signal']}]"]
+            assert _correlation(signal, np.flipud(channel.data)) > 0.9999, group
+
+    def test_axes_ascend_and_span_the_scan_range(self, folder):
+        template = _flt_template(folder)
+        header = _flt_header(next((SPM_DATA_DIR / folder).glob("*.FLT")))
+        for group in _all_2d_groups(template):
+            signal = template[f"{group}/DATA[{template[f'{group}/@signal']}]"]
+            axes = template[f"{group}/@axes"]
+            for dim, key in ((0, "ScanRangeY"), (1, "ScanRangeX")):
+                axis = template[f"{group}/AXISNAME[{axes[dim]}]"]
+                scan_range = float(header[key].split()[0])
+                assert len(axis) == np.shape(signal)[dim], group
+                assert np.all(np.diff(axis) > 0), f"{group}: axis {dim} must ascend"
+                assert axis[-1] - axis[0] == pytest.approx(scan_range), group

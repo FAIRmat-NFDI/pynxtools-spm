@@ -122,8 +122,25 @@ independence rests on the Gwyddion module above.
 
 ### Bruker SPMLab (`.FLT`)
 
-`ScanDirection=FORWARD|BACKWARD` only; no slow scan direction is stored. To be
-completed when the FLT flavour is handled.
+| Header key (`[Data Parameters]`) | Meaning |
+|---|---|
+| `ScanDirection` | `FORWARD` or `BACKWARD`: the fast (line) direction of this file. No slow scan direction is stored. |
+| `OffsetX`, `OffsetY` | origin (corner) of the scan frame. |
+| `ScanRangeX`, `ScanRangeY` | width and height of the scan frame. |
+| `ResolutionX`, `ResolutionY` | pixels per line and number of lines. |
+| `Rotation` | rotation of the scan frame (deg); not applied. |
+
+The rows are stored bottom row first, so the image gets one `np.flipud` against
+gwyddionpy, like a NanoScope `.spm` file. The test folders carry no up/down
+suffix because the format records no slow scan direction.
+
+Evidence:
+
+- Gwyddion SPMLab import module `modules/file/spmlabf.c`: turns every image
+  upside down once (`gwy_data_field_invert(dfield, TRUE, FALSE, FALSE)`), sets
+  the origin from `OffsetX`/`OffsetY`, and keeps `ScanDirection` and `Rotation`
+  as metadata only.
+  <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/spmlabf.c>
 
 ### Omicron / RHK (`.sm4`)
 
