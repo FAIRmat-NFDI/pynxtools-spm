@@ -93,14 +93,14 @@ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml VGEP-15
 
 Download and try with the [Bruker NanoScope metadata example](../assets/command_line_examples/bruker_spm.zip){:bruker_spm},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_dflt_conf_down).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down).
 
 !!! warning "The download contains the readable header only"
     A `.spm` file is dominated by its binary image block (16 MB for the reference file), so the
     downloadable bundle contains only the human-readable ASCII header
     (`VGEP-15m-.0_00000.spm.header.txt`) together with `eln_data.yaml`, as a preview of the
     metadata that the reader sees. To run the command above, take the complete `.spm` file from
-    the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_dflt_conf_down)
+    the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down)
     or use your own.
 
 ### Behaviors specific to the `.spm` format

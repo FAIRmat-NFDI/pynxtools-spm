@@ -56,10 +56,10 @@ __6.__ Command to convert a Bruker NanoScope AFM raw data file (`.spm`, written 
 $ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml bruker_afm_file.spm
 ```
 
-Download the [Bruker NanoScope metadata example](../assets/command_line_examples/bruker_spm.zip){:bruker_spm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_dflt_conf_down). This example uses the default config `configs/bruker/bruker_spm_afm.json` shipped with the package; pass your own `config.json` as a further input file to override it.
+Download the [Bruker NanoScope metadata example](../assets/command_line_examples/bruker_spm.zip){:bruker_spm} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down). This example uses the default config `configs/bruker/bruker_spm_afm.json` shipped with the package; pass your own `config.json` as a further input file to override it.
 
 !!! note
-    A `.spm` file is dominated by its binary image block (16 MB for the reference file), so the download above contains only the human-readable ASCII header (`VGEP-15m-.0_00000.spm.header.txt`) together with `eln_data.yaml`, as a preview of the metadata the reader sees. Take the complete `.spm` file from the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_dflt_conf_down) to run the command above. One `.spm` file holds every channel in both scan directions and is therefore converted into a single NeXus file with several `NXdata` groups.
+    A `.spm` file is dominated by its binary image block (16 MB for the reference file), so the download above contains only the human-readable ASCII header (`VGEP-15m-.0_00000.spm.header.txt`) together with `eln_data.yaml`, as a preview of the metadata the reader sees. Take the complete `.spm` file from the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down) to run the command above. One `.spm` file holds every channel in both scan directions and is therefore converted into a single NeXus file with several `NXdata` groups.
 
 __7.__ Command to convert a Bruker NanoScope AFM force-curve export (`.spm.txt`) into NeXus file
 ```bash

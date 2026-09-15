@@ -96,7 +96,7 @@ rm -rf ${bruker_txt_dst}
 # image block (16 MB for this one), so the binary part is deliberately excluded:
 # only the human-readable ASCII header (up to and including '\*File list end')
 # is shipped, as a preview of the metadata the reader sees.
-src_path="${this_file_path}/tests/data/bruker/afm/spm_dflt_conf_down"
+src_path="${this_file_path}/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down"
 bruker_spm_dst="./docs/assets/command_line_examples/bruker_spm"
 mkdir -p $bruker_spm_dst
 

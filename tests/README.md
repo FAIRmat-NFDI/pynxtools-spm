@@ -107,7 +107,7 @@ Sources:
 
 - Nanonis: `v_gen_<version>_<config>[_<direction>]`, with `<version>` taken from
   the header tag `NanonisMain>SW Version` (e.g. `Generic 5e` → `5e`).
-- Other vendors: `<format>_<config>[_<direction>]`, e.g. `spm_dflt_conf_down`.
+- Other vendors: `<format>_<config>[_<direction>]`, e.g. `spm_v_9_4_dflt_conf_down`.
 
 | Part | Values |
 |---|---|

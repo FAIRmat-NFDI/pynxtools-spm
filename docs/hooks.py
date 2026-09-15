@@ -58,7 +58,7 @@ def copy_config_and_plain_eln():
     dst_config = "docs/included_file_content/bruker_spm_afm/config.json"
     src_config = "src/pynxtools_spm/configs/bruker/bruker_spm_afm.json"
     dst_eln = "docs/included_file_content/bruker_spm_afm/eln_data.yaml"
-    src_eln = "tests/data/bruker/afm/spm_dflt_conf_down/eln_data.yaml"
+    src_eln = "tests/data/bruker/afm/spm_v_9_4_dflt_conf_down/eln_data.yaml"
     dst_path = Path(dst_config)
     dst_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(src_config, dst_config)
