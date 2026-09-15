@@ -36,11 +36,10 @@ class NanonisBase(SPMformatter):
         Every line is recorded along x, and 'SCAN_DIR' is 'up' or 'down': the
         lines advance along +y for an 'up' scan and along -y for a 'down' scan.
         """
-        self.scan_control.fast_axis = "x"
-        self.scan_control.slow_axis = (
-            "-y" if direction.strip().lower() == "down" else "y"
-        )
-        return [self.scan_control.fast_axis, self.scan_control.slow_axis]
+        fast_slow = ["X", "-Y"] if direction.strip().lower() == "down" else ["X", "Y"]
+        self.scan_control.fast_axis = fast_slow[0].lower()
+        self.scan_control.slow_axis = fast_slow[1].lower()
+        return fast_slow
 
     def rearrange_data_according_to_axes(self, data, is_forward: bool | None = None):
         """Put the origin of an image at its bottom-left corner.
