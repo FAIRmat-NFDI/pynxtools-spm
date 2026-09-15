@@ -31,6 +31,8 @@ and where that knowledge comes from. Add to them when a vendor is handled.
 
 ### Nanonis (`.sxm`)
 
+The same rules apply to STM and AFM scans; both are read by `NanonisBase`.
+
 | Header tag | Meaning |
 |---|---|
 | `SCAN_DIR` | `up` or `down`: the slow scan direction. |
@@ -111,6 +113,12 @@ Sources:
 |---|---|
 | `<config>` | `dflt_conf`: the default config shipped with the package; `descrb_nx_dt`: a `config.json` in the folder that describes the NXdata groups. |
 | `<direction>` | `up` or `down`, the slow scan direction from the raw header. Left out when the data is not an image (STS) or the format stores no slow direction. |
+
+### Missing scan directions
+
+- `nanonis/afm`: only an `up` scan. No openly licensed Nanonis AFM `down` scan
+  was found (S3 Zenodo mirror, Zenodo, Figshare, GitHub); the `down` flip is
+  covered by the `nanonis/stm` down scans, which use the same code path.
 
 ### Provenance of data taken from public datasets
 

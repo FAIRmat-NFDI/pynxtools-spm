@@ -21,7 +21,6 @@ Base formatter for Nanonis SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from __future__ import annotations
-from typing import List, Optional
 import numpy as np
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
@@ -31,22 +30,14 @@ class NanonisBase(SPMformatter):
     """Base class for Nanonis SPM data formatters."""
 
     def _arange_axes(self, direction="down"):
-        """Arrange fast and slow axes according to the scan direction."""
+        """Record the fast and slow scan axes from the SXM scan direction.
 
-        fast_slow: list[str]
-        if direction.lower() == "down":
-            fast_slow = ["-Y", "X"]
-        elif direction.lower() == "up":
-            fast_slow = ["Y", "X"]
-        elif direction.lower() == "right":
-            fast_slow = ["X", "Y"]
-        elif direction.lower() == "left":
-            fast_slow = ["-X", "Y"]
-        else:
-            fast_slow = ["X", "Y"]
+        Every line is recorded along x, and 'SCAN_DIR' is 'up' or 'down': the
+        lines advance along +y for an 'up' scan and along -y for a 'down' scan.
+        """
+        fast_slow = ["X", "-Y"] if direction.strip().lower() == "down" else ["X", "Y"]
         self.scan_control.fast_axis = fast_slow[0].lower()
         self.scan_control.slow_axis = fast_slow[1].lower()
-
         return fast_slow
 
     def rearrange_data_according_to_axes(self, data, is_forward: bool | None = None):
@@ -64,8 +55,6 @@ class NanonisBase(SPMformatter):
 
         Nanonis SXM format: https://sourceforge.net/p/gxsm/plugin-requests/3/
 
-        '_arange_axes' records a 'down' scan as fast axis '-y'.
-
         Parameters
         ----------
         data : np.ndarray
@@ -73,11 +62,11 @@ class NanonisBase(SPMformatter):
         is_forward : bool, optional
             False for the backward image of a channel.
         """
-        fast_axis = getattr(self.scan_control, "fast_axis", None)
+        slow_axis = getattr(self.scan_control, "slow_axis", None)
         # No scan axes (e.g. bias spectroscopy) or no image: nothing to orient.
-        if fast_axis is None or not isinstance(data, np.ndarray) or data.ndim != 2:
+        if slow_axis is None or not isinstance(data, np.ndarray) or data.ndim != 2:
             return data
-        if fast_axis == "-y":
+        if slow_axis == "-y":
             data = np.flipud(data)
         if is_forward is False:
             data = np.fliplr(data)

@@ -1,4 +1,4 @@
-"""Tests for the image orientation of Nanonis SXM scans.
+"""Tests for the image orientation of Nanonis SXM scans (STM and AFM).
 
 The convention of this plugin is the one of a scientific plot: the origin of an
 image is its bottom-left corner. Row 0 of a stored signal is the bottom row,
@@ -30,20 +30,23 @@ from pynxtools_spm.nxformatters.nanonis.nanonis_base import NanonisBase
 from pynxtools_spm.parsers.nanonispy.read import Scan
 from pynxtools_spm.reader import SPMReader
 
-STM_DATA_DIR = Path(__file__).parent / "data" / "nanonis" / "stm"
-STM_FOLDERS = [
-    "v_gen_4_dflt_conf_up",
-    "v_gen_4_dflt_conf_down",
-    "v_gen_4_descrb_nx_dt_up",
-    "v_gen_4_descrb_nx_dt_down",
-    "v_gen_5_dflt_conf_down",
-    "v_gen_5_descrb_nx_dt_down",
-    "v_gen_5e_descrb_nx_dt_down",
+NANONIS_DATA_DIR = Path(__file__).parent / "data" / "nanonis"
+# Folders relative to NANONIS_DATA_DIR, as '<technique>/<folder>'.
+IMAGE_FOLDERS = [
+    "stm/v_gen_4_dflt_conf_up",
+    "stm/v_gen_4_dflt_conf_down",
+    "stm/v_gen_4_descrb_nx_dt_up",
+    "stm/v_gen_4_descrb_nx_dt_down",
+    "stm/v_gen_5_dflt_conf_down",
+    "stm/v_gen_5_descrb_nx_dt_down",
+    "stm/v_gen_5e_descrb_nx_dt_down",
+    "afm/v_gen_4_dflt_conf_up",
+    "afm/v_gen_4_descrb_nx_dt_up",
 ]
 # Consecutive scans of the same area, recorded in opposite slow directions.
 SAME_AREA_PAIRS = [
-    ("v_gen_4_dflt_conf_up", "v_gen_4_dflt_conf_down"),
-    ("v_gen_4_descrb_nx_dt_up", "v_gen_4_descrb_nx_dt_down"),
+    ("stm/v_gen_4_dflt_conf_up", "stm/v_gen_4_dflt_conf_down"),
+    ("stm/v_gen_4_descrb_nx_dt_up", "stm/v_gen_4_descrb_nx_dt_down"),
 ]
 ENTRY = "/ENTRY[entry]"
 FLIPS = {
@@ -55,7 +58,7 @@ FLIPS = {
 
 
 def _raw_file(folder: str) -> Path:
-    return next((STM_DATA_DIR / folder).glob("*.sxm"))
+    return next((NANONIS_DATA_DIR / folder).glob("*.sxm"))
 
 
 def _groups(template) -> list[str]:
@@ -110,7 +113,7 @@ def templates():
 
     def build(folder: str) -> Template:
         if folder not in cache:
-            directory = STM_DATA_DIR / folder
+            directory = NANONIS_DATA_DIR / folder
             files = [_raw_file(folder), directory / "eln_data.yaml"]
             if (directory / "config.json").is_file():
                 files.append(directory / "config.json")
@@ -142,11 +145,15 @@ class TestScanAxes:
     """'_arange_axes' records the SXM scan direction for the orientation hook."""
 
     @pytest.mark.parametrize(
-        "direction,fast_axis",
-        [("up", "y"), ("down", "-y"), ("UP", "y"), ("Down", "-y")],
+        "direction,slow_axis",
+        [("up", "y"), ("down", "-y"), ("UP", "y"), (" Down ", "-y")],
     )
-    def test_scan_direction_is_recorded_case_insensitively(self, direction, fast_axis):
-        assert _scanner(direction).scan_control.fast_axis == fast_axis
+    def test_lines_run_along_x_and_advance_along_the_scan_direction(
+        self, direction, slow_axis
+    ):
+        scan_control = _scanner(direction).scan_control
+        assert scan_control.fast_axis == "x"
+        assert scan_control.slow_axis == slow_axis
 
     @pytest.mark.parametrize("direction", ["", "sideways"])
     def test_unknown_direction_keeps_the_recorded_order(self, direction):
@@ -208,7 +215,7 @@ class TestOrientationHook:
         )
 
 
-@pytest.mark.parametrize("folder", STM_FOLDERS)
+@pytest.mark.parametrize("folder", IMAGE_FOLDERS)
 class TestStoredImages:
     """Every image of a converted scan follows the bottom-left convention."""
 

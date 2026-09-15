@@ -209,12 +209,9 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_x}_indices]"
             ] = 1
+            # Both axes ascend: row 0 and column 0 are the bottom-left corner.
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]"] = (
-                np.linspace(
-                    self.scan_control.x_start,
-                    self.scan_control.x_end,
-                    int(self.scan_control.x_points),
-                )
+                self._pixel_centres("x")
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_x}]/@units"
@@ -224,11 +221,7 @@ class NanonisSxmAFM(NanonisSxmSTM, NanonisBase):
                 f"{parent_path}/{nxdata_group_nm}/@AXISNAME_indices[{axis_y}_indices]"
             ] = 0
             self.template[f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]"] = (
-                np.linspace(
-                    self.scan_control.y_end,
-                    self.scan_control.y_start,
-                    int(self.scan_control.y_points),
-                )
+                self._pixel_centres("y")
             )
             self.template[
                 f"{parent_path}/{nxdata_group_nm}/AXISNAME[{axis_y}]/@units"
