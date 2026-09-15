@@ -508,23 +508,6 @@ class OmicronSM4STM(OmicronBase):
                 "link": convert_data_dict_path_to_hdf5_path(link)
             }
 
-    def _reverse_slow_axis(self, nxdata_path: str):
-        """Make the slow axis descend, so that its first value labels row 0.
-
-        The config maps the slow axis straight onto the coordinate array built by
-        'Sm4Omicron', which ascends with the row index. 'OmicronBase' flips the image
-        so that row 0 is the top row, which leaves the axis running the opposite
-        way to the rows it describes, so it is reversed here to match.
-        """
-        axes = self.template.get(f"{nxdata_path}/@axes")
-        if not axes:
-            return
-        # '@axes' is ordered by dimension, so entry 0 names the axis of the rows.
-        slow_axis = f"{nxdata_path}/AXISNAME[{axes[0]}]"
-        axis_data = self.template.get(slow_axis)
-        if isinstance(axis_data, np.ndarray) and axis_data.ndim == 1:
-            self.template[slow_axis] = axis_data[::-1]
-
     def _nxdata_grp_from_conf_description(
         self,
         partial_conf_dict,
@@ -549,7 +532,6 @@ class OmicronSM4STM(OmicronBase):
         )
         if not group_name:
             return
-        self._reverse_slow_axis(f"{parent_path}/{group_name}")
         # Find the scan name from the given raw path "raw_path"
         # the scan tag comes in the name of scan_control
         for key, val in conf_dict.items():

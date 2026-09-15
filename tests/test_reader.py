@@ -93,6 +93,11 @@ def test_sts_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
             "spm",
             f"{module_dir}/data/omicron/stm/sm4_dflt_conf_up",
         ),
+        (
+            "NXstm",
+            "spm",
+            f"{module_dir}/data/omicron/stm/sm4_dflt_conf_down",
+        ),
     ],
 )
 def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):

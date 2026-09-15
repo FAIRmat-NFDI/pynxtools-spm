@@ -144,16 +144,37 @@ Evidence:
 
 ### Omicron / RHK (`.sm4`)
 
-`RHK_ScanType` enumerates `RIGHT=0, LEFT=1, UP=2, DOWN=3`; Gwyddion decides the
-vertical orientation from the sign of the page's `y_scale`. To be completed when
-the SM4 flavour is handled.
+| Page header field | Meaning |
+|---|---|
+| `RHK_ScanType` | `RIGHT`/`LEFT` for the forward/backward image: the fast (line) direction. |
+| `RHK_Yscale` | step between rows; row i sits at y = `RHK_Yoffset` + i × `RHK_Yscale`. Its sign is the slow scan direction: > 0 up, < 0 down. |
+| `RHK_Xscale` | step between columns; negative in every file seen so far. |
+| `RHK_Xsize`, `RHK_Ysize` | pixels per line and number of lines. |
 
-Sources:
+Test folders take `up`/`down` from the sign of `RHK_Yscale`.
 
-- Gwyddion forum, "rhk-sm4: additional metadata and upward flipping" (2021).
+| `RHK_Yscale` | raw row 0 is | gwyddionpy returns | to get row 0 = bottom |
+|---|---|---|---|
+| > 0 (up) | bottom | raw flipped in rows and columns | `np.flipud` |
+| < 0 (down) | top | raw flipped in columns | `np.flipud` |
+
+Evidence:
+
+- Gwyddion RHK SM4 import module `modules/file/rhk-sm4.c`:
+  `/* Correct flipping of up images */ gwy_data_field_invert(dfield, page->y_scale > 0.0, TRUE, FALSE);`
+  i.e. rows are flipped for `y_scale > 0` and columns always; the offsets are
+  kept as metadata only.
+  <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c>
+- Gwyddion forum, "rhk-sm4: additional metadata and upward flipping" (2021):
+  the sign of `y_scale` indicates the scan direction.
   <https://sourceforge.net/p/gwyddion/discussion/fileformats/thread/3377ed98fa/>
 - RHK SM4 reader derived from Gwyddion (`RHKScanType` enum).
   <https://github.com/caldarolamartin/read_sm4_files/blob/master/devel_files/rhk-sm4.c>
+
+Verified by reading each raw page (object id 4, int32) and comparing it with
+gwyddionpy: every image page of an up file (`sm4_dflt_conf_up`) is flipped in
+rows and columns, every image page of a down file (`sm4_dflt_conf_down`) in
+columns only, as the table states.
 
 ## Test data
 
@@ -187,4 +208,5 @@ Sources:
 | `nanonis/stm/v_gen_4_dflt_conf_down` | `STM_WTip_WSe2-SL445_056.sxm` | as above; recorded directly after `_055` over the same area | CC BY 4.0 |
 | `nanonis/stm/v_gen_4_descrb_nx_dt_up` | `const_dos_No14_003.sxm` | L. M. Rütten et al., *Data underlying the paper "Direct signatures of d-level hybridization and dimerization in magnetic adatom chains on a superconductor"*, [10.5281/zenodo.17533355](https://doi.org/10.5281/zenodo.17533355) | CC BY 4.0 |
 | `nanonis/stm/v_gen_4_descrb_nx_dt_down` | `const_dos_No14_002.sxm` | as above; recorded directly before `_003` over the same area (non-square 48 × 72 px, scan angle 108.5°) | CC BY 4.0 |
+| `omicron/stm/sm4_dflt_conf_down` | `Figure_6c.SM4` (original name `Figure 6(c).SM4`) | A. Shrestha, *Accommodating a Hexagonal Zeta-phase Mn2N Film on a Cubic MgO (001) Substrate*, [10.5281/zenodo.11043571](https://doi.org/10.5281/zenodo.11043571) | CC BY 4.0 |
 | `bruker/afm/spm_v_9_4_dflt_conf_up` | `tecky.0_00002.spm` | J. Vymazal et al., *Dataset for 'Layer-dependent oxidation spreading in multilayer graphene during AFM local anodic oxidation'*, [10.5281/zenodo.19707666](https://doi.org/10.5281/zenodo.19707666) (folder `Data/Figure 7`) | CC BY 4.0 |
