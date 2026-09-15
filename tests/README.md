@@ -53,6 +53,12 @@ Consequence for the bottom-left convention:
 
 Sources:
 
+- Nanonis SXM file format description, posted by M. Schmotz (2006) on the GXSM
+  plugin tracker: "The data is stored chronologically as it is recorded. On an
+  up-scan, the first point corresponds to the lower left corner of the scanfield
+  (forward scan). On a down-scan, it is the upper left corner of the scanfield.
+  Hence, backward scan data start on the right side of the scanfield."
+  <https://sourceforge.net/p/gxsm/plugin-requests/3/>
 - Gwyddion Nanonis import module `modules/file/nanonis.c`: flips vertically
   depending on `SCAN_DIR`, flips backward channels horizontally, and sets the
   frame origin to `SCAN_OFFSET - 0.5 * SCAN_RANGE`, i.e. `SCAN_OFFSET` is the

@@ -55,9 +55,14 @@ class NanonisBase(SPMformatter):
         An SXM file stores the lines in the order they were recorded, and each
         backward line in the order the tip traveled, from right to left. A
         'down' scan starts at the top, so its rows are flipped to put the bottom
-        row first; an 'up' scan already starts at the bottom. Gwyddion's Nanonis
-        module applies the same two flips, from 'SCAN_DIR' and the channel
-        direction (see 'tests/README.md').
+        row first; an 'up' scan already starts at the bottom:
+
+        | SCAN_DIR | raw row 0 is | to get row 0 = bottom | backward image  |
+        |----------|--------------|-----------------------|-----------------|
+        | up       | bottom       | nothing               | fliplr          |
+        | down     | top          | flipud                | flipud + fliplr |
+
+        Nanonis SXM format: https://sourceforge.net/p/gxsm/plugin-requests/3/
 
         '_arange_axes' records a 'down' scan as fast axis '-y'.
 
