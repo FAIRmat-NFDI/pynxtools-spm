@@ -170,3 +170,7 @@ Zunits
 allclose
 rtol
 Zvalue
+dflt
+descrb
+keepdims
+corrcoef

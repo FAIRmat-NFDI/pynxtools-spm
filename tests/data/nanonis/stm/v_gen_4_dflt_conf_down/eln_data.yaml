@@ -1,0 +1,46 @@
+Instrument:
+  hardware:
+    model: Generic 4
+    model/@version: "4"
+    name: Nanonis
+    vendor: Nanonis
+  software:
+    model: Generic 4
+    model/@version: "4"
+    name: Nanonis
+    vendor: Nanonis
+Sample:
+  History:
+    Note:
+      description: "Single-crystal WSe2; STM images acquired in constant-current mode from a low-temperature STM and a room-temperature STM; a subset carries atomic-defect bounding-box / mask labels."
+  Sample_component:
+    chemical_formula: WSe2
+    description: "Single-crystal tungsten diselenide (WSe2) from the Hone-Barmak group; STM images of atomic-scale defects acquired in constant-current mode on LT-STM and RT-STM systems."
+    name: "WSe2 single crystal"
+  name: "Tungsten diselenide (WSe2) single crystal"
+default: current_forward
+definition: NXstm
+experiment_description: "Constant-current STM imaging of atomic-scale defects in single-crystal WSe2 (LT-STM and RT-STM), various sizes and resolutions."
+experiment_technique: STM
+identifier_collection: https://zenodo.org/records/10443995
+identifier_experiment: "STM_WTip_WSe2-SL445_056.sxm"
+scan_mode: constant current
+User:
+  email:
+    - mozumder@physik.hu-berlin.de
+  name:
+    - Rubel Mozumder
+citeID:
+  author:
+    - Smalley, Darian
+  url:
+    - https://zenodo.org/records/10443995
+  doi:
+    - 10.5281/zenodo.10443995
+  description:
+    - |
+      This dataset contains scanning tunneling microscope (STM) data of single crystal tungsten diselenide (WSe2) provided by the Hone-Barmak Group acquired in constant current mode from two STM systems: a Low Temperature STM (LT-STM) and a room temperature STM (RT-STM). The images are of various sizes and resolutions. 136 of the STM images have associated labels of atomic-scale defects in the form of bouding boxes and image label masks. 38 annotated images were selected to construct an augmented training dataset of images and label masks saved as numpy files for convientent model training. Original, raw STM data of WSe2 is also inculded.
+
+      Code on GitHub: <https://github.com/darianSmalley/ML-STM>
+
+      Note - original raw file name is `STM_WTip_WSe2-SL445_056.sxm`

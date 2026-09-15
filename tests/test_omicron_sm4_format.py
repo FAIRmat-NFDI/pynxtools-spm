@@ -4,8 +4,8 @@ Covers the properties that decide whether an SM4 image is usable: the page
 metadata read by ``read_sm4_pages``, which keeps the typed 'RHK_*' attributes
 the config addresses; the image read by ``Sm4Omicron`` with ``gwyddionpy``,
 which holds physical values rather than raw ADC counts; and the row orientation
-applied by ``OmicronBase``, which puts row 0 of the image at the top so that it
-is not shown upside down.
+applied by ``OmicronBase``, which puts row 0 of the image at the bottom, the
+origin of a scientific plot.
 """
 
 import struct
@@ -31,7 +31,7 @@ from pynxtools_spm.parsers.rhk_sm4_metadata import (
 from pynxtools_spm.reader import SPMReader
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
-SM4_DATA_DIR = TEST_DATA_DIR / "omicron" / "stm" / "default_config"
+SM4_DATA_DIR = TEST_DATA_DIR / "omicron" / "stm" / "sm4_dflt_conf_up"
 SM4_RAW_FILE = next(SM4_DATA_DIR.glob("*.sm4"), None) or next(
     SM4_DATA_DIR.glob("*.SM4"), None
 )
@@ -285,7 +285,7 @@ class TestImageData:
 
 
 class TestImageOrientation:
-    """Row 0 of the stored signal must be the top row of the image.
+    """Row 0 of the stored signal must be the bottom row of the image.
 
     The hook is called through the class with ``None`` in place of ``self``:
     it reads nothing off the instance, and building one would need a raw file
@@ -322,11 +322,11 @@ class TestImageOrientation:
         )
 
     @pytest.mark.parametrize("group", sorted(PAGE_TO_GROUP.values()))
-    def test_slow_axis_descends_so_its_first_value_labels_row_zero(
+    def test_slow_axis_ascends_so_its_first_value_labels_row_zero(
         self, template, group
     ):
-        assert np.all(np.diff(_slow_axis(template, group)) < 0), (
-            "the slow axis must descend with the row index"
+        assert np.all(np.diff(_slow_axis(template, group)) > 0), (
+            "the slow axis must ascend with the row index"
         )
 
     @pytest.mark.parametrize("group", sorted(PAGE_TO_GROUP.values()))

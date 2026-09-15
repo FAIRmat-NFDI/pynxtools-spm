@@ -7,7 +7,7 @@ set -e
 this_file_path=$(dirname $(dirname $(realpath "$0")))
 
 # Copy STS file
-src_path="${this_file_path}/tests/data/nanonis/sts/version_gen_5_with_described_nxdata"
+src_path="${this_file_path}/tests/data/nanonis/sts/v_gen_5_descrb_nx_dt"
 sts_dst="./docs/assets/command_line_examples/sts"
 mkdir -p $sts_dst
 
@@ -23,7 +23,7 @@ zip -jrm "$(dirname ${sts_dst})/sts.zip" "${sts_dst}/"
 rm -r ${sts_dst}
 
 # Copy STM file
-src_path="${this_file_path}/tests/data/nanonis/stm/version_gen_5_with_described_nxdata"
+src_path="${this_file_path}/tests/data/nanonis/stm/v_gen_5_descrb_nx_dt_down"
 stm_dst="./docs/assets/command_line_examples/stm"
 mkdir -p $stm_dst
 
@@ -37,7 +37,7 @@ zip -jrm "$(dirname ${stm_dst})/stm.zip" "${stm_dst}/"
 rm -rf ${stm_dst}
 
 # Copy AFM file
-src_path="${this_file_path}/tests/data/nanonis/afm/version_gen_4_with_described_nxdata"
+src_path="${this_file_path}/tests/data/nanonis/afm/v_gen_4_descrb_nx_dt_up"
 afm_dst="./docs/assets/command_line_examples/afm"
 mkdir -p $afm_dst
 
@@ -50,7 +50,7 @@ rm -f $afm_dst/*.nxs
 zip -jrm "$(dirname ${afm_dst})/afm.zip" ${afm_dst}
 rm -r ${afm_dst}
 # Copy Omicron STM file
-src_path="${this_file_path}/tests/data/omicron/stm/default_config"
+src_path="${this_file_path}/tests/data/omicron/stm/sm4_dflt_conf_up"
 omicron_dst="./docs/assets/command_line_examples/omicron"
 mkdir -p $omicron_dst
 
@@ -64,7 +64,7 @@ zip -jrm "$(dirname ${omicron_dst})/omicron.zip" ${omicron_dst}
 rm -rf ${omicron_dst}
 
 # Copy Bruker AFM file
-src_path="${this_file_path}/tests/data/bruker/afm/flt_described_config"
+src_path="${this_file_path}/tests/data/bruker/afm/flt_descrb_nx_dt"
 bruker_dst="./docs/assets/command_line_examples/bruker_afm"
 mkdir -p $bruker_dst
 
@@ -79,7 +79,7 @@ rm -rf ${bruker_dst}
 
 # Copy Bruker NanoScope force-curve (.spm.txt) file. The export is pure ASCII,
 # so the bundle is complete and the documented command runs straight from it.
-src_path="${this_file_path}/tests/data/bruker/afm/txt_default_config"
+src_path="${this_file_path}/tests/data/bruker/afm/txt_dflt_conf"
 bruker_txt_dst="./docs/assets/command_line_examples/bruker_txt"
 mkdir -p $bruker_txt_dst
 
@@ -96,7 +96,7 @@ rm -rf ${bruker_txt_dst}
 # image block (16 MB for this one), so the binary part is deliberately excluded:
 # only the human-readable ASCII header (up to and including '\*File list end')
 # is shipped, as a preview of the metadata the reader sees.
-src_path="${this_file_path}/tests/data/bruker/afm/default_config"
+src_path="${this_file_path}/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down"
 bruker_spm_dst="./docs/assets/command_line_examples/bruker_spm"
 mkdir -p $bruker_spm_dst
 

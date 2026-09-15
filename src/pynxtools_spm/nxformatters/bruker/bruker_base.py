@@ -29,12 +29,20 @@ class BrukerBase(SPMformatter):
     _grp_to_func = {}
 
     def rearrange_data_according_to_axes(self, data, is_forward: bool | None = None):
-        """Put row 0 of the image at the top, which is the convention of this plugin.
+        """Put the origin of an image at its bottom-left corner.
 
-        Both Bruker formats are read through ``gwyddionpy``, which orders the
-        rows the other way round, so the first row it returns is the bottom one.
-        A viewer draws row 0 at the top, so a Bruker image would otherwise be
-        shown upside down.
+        A NanoScope '.spm' file stores the image rows in a fixed order, bottom
+        row first, whatever its 'Frame direction' (Up or Down). Gwyddion, which
+        ``gwyddionpy`` runs, turns every NanoScope image upside down once to
+        put row 0 at the top, and never reads 'Frame direction':
+        https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/nanoscope.c
+
+        | Frame direction | gwyddionpy row 0 is | to get row 0 = bottom |
+        |-----------------|---------------------|-----------------------|
+        | Up              | top                 | flipud                |
+        | Down            | top                 | flipud                |
+
+        SPMLab '.FLT' images, also read through ``gwyddionpy``, get the same flip.
 
         ``is_forward`` is accepted for the signature of the hook but not used:
         ``gwyddionpy`` already returns each scan direction in the right x order,

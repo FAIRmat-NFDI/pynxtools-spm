@@ -28,7 +28,7 @@ on the command line, the default config shipped with the package is used.
 
 Download and try with the [Omicron STM example files](../assets/command_line_examples/omicron.zip){:omicron},
 or visit the
-[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/omicron/stm/default_config).
+[GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/omicron/stm/sm4_dflt_conf_up).
 
 ```console
 pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml VT220120_A2_0001.sm4

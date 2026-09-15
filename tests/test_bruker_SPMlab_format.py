@@ -24,7 +24,7 @@ from pynxtools_spm.parsers.bruker_flt import (
 # ---------------------------------------------------------------------------
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
-FLT_DATA_DIR = TEST_DATA_DIR / "bruker" / "afm" / "flt_default_config"
+FLT_DATA_DIR = TEST_DATA_DIR / "bruker" / "afm" / "flt_dflt_conf"
 FLT_RAW_FILE = next(FLT_DATA_DIR.glob("*.flt"), None) or next(
     FLT_DATA_DIR.glob("*.FLT"), None
 )
