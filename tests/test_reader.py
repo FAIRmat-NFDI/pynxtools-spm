@@ -137,6 +137,11 @@ def test_stm_reader(nxdl, reader_name, files_or_dir, tmp_path, caplog):
         (
             "NXafm",
             "spm",
+            f"{module_dir}/data/bruker/afm/spm_v_9_4_dflt_conf_up",
+        ),
+        (
+            "NXafm",
+            "spm",
             f"{module_dir}/data/bruker/afm/txt_dflt_conf_up",
         ),
     ],

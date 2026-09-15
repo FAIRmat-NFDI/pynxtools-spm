@@ -321,9 +321,10 @@ class BrukerSpmAFM(BrukerBase):
                 self.scan_control.x_end,
                 int(self.scan_control.x_points),
             )
+            # Both axes ascend: row 0 and column 0 are the bottom-left corner.
             axis_y_data = np.linspace(
-                self.scan_control.y_end,
                 self.scan_control.y_start,
+                self.scan_control.y_end,
                 int(self.scan_control.y_points),
             )
             nxdata_path = f"{parent_path}/{nxdata_group}"
@@ -375,8 +376,8 @@ class BrukerSpmAFM(BrukerBase):
 
                 if not y_points_match:
                     axis_y_data = np.linspace(
-                        self.scan_control.y_end,
                         self.scan_control.y_start,
+                        self.scan_control.y_end,
                         expected_y_points,
                     )
                 self.template[f"{axis_y_key}"] = axis_y_data

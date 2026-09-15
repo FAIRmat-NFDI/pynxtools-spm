@@ -78,8 +78,47 @@ oriented raw image equals `np.flipud` of the Gwyddion channel exactly.
 
 ### Bruker NanoScope (`.spm`, `.spm.txt`)
 
-`\Frame direction: Up|Down` in the image list header. To be completed when the
-Bruker flavour is handled.
+| Header key | Meaning |
+|---|---|
+| `\Frame direction` | `Up` or `Down`: where the slow scan starts. Frame Up restarts the scan at the bottom of the frame, Frame Down at the top. |
+| `\Line Direction` | `Trace` (forward) or `Retrace` (backward) for one image layer. |
+| `\Scan Size` | edge length of the scan frame. |
+| `\X Offset`, `\Y Offset` | offsets that use the sample as position reference; a more negative Y Offset moves a feature down on the image display. |
+
+The rows are stored in a fixed order, bottom row first, whatever the frame
+direction:
+
+| `Frame direction` | gwyddionpy row 0 is | to get row 0 = bottom |
+|---|---|---|
+| `Up` | top | `np.flipud` |
+| `Down` | top | `np.flipud` |
+
+Evidence:
+
+- Gwyddion NanoScope import module `modules/file/nanoscope.c`: turns every image
+  upside down once (`gwy_data_field_invert(dfield, TRUE, FALSE, FALSE)`, where
+  the first flag flips the rows) and never reads `Frame direction`.
+  <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/nanoscope.c>
+- Gwyddion `libprocess/datafield.c`, `gwy_data_field_invert`: "yflipped: TRUE
+  to reflect Y, i.e. rows within the XY plane. The image will be flipped upside
+  down."
+  <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/libprocess/datafield.c>
+- Bruker help, Frame Commands: Frame Up restarts the scan at the bottom of the
+  frame, Frame Down at the top.
+  <https://www.nanophys.kth.se/nanolab/afm/icon/bruker-help/Content/SoftwareGuide/Realtime/Tips/FrameCommands.htm>
+- Bruker help, Scan View Parameters Tips: X/Y Offset use the sample as position
+  reference; a more negative Y Offset moves a feature down on the display.
+  <https://www.nanophys.kth.se/nanolab/afm/icon/bruker-help/Content/SoftwareGuide/Realtime/Tips/ScanViewParametersTips.htm>
+
+Verified on the test data: reading each raw image block at `Data offset`
+(bytes per pixel = `Data length` / (`Samps/line` × `Number of lines`)) gives
+exactly `np.flipud` of the Gwyddion channel for every layer, Trace and Retrace:
+8 of 8 layers of the Down file and 6 of 6 layers of the Up file.
+
+Not yet verified: no Bruker document states the stored row order, and no
+openly licensed Up and Down scan of the same area was found (all Bruker `.spm`
+files up to 25 MB in the S3 Zenodo mirror were checked), so direction
+independence rests on the Gwyddion module above.
 
 ### Bruker SPMLab (`.FLT`)
 
@@ -107,7 +146,10 @@ Sources:
 
 - Nanonis: `v_gen_<version>_<config>[_<direction>]`, with `<version>` taken from
   the header tag `NanonisMain>SW Version` (e.g. `Generic 5e` → `5e`).
-- Other vendors: `<format>_<config>[_<direction>]`, e.g. `spm_v_9_4_dflt_conf_down`.
+- Bruker NanoScope: `spm_v_<version>_<config>[_<direction>]`, with `<version>`
+  the major and minor version of the header key `\Version` (e.g. `0x09400202`
+  → `9_4`).
+- Other vendors: `<format>_<config>[_<direction>]`, e.g. `flt_dflt_conf`.
 
 | Part | Values |
 |---|---|
@@ -128,3 +170,4 @@ Sources:
 | `nanonis/stm/v_gen_4_dflt_conf_down` | `STM_WTip_WSe2-SL445_056.sxm` | as above; recorded directly after `_055` over the same area | CC BY 4.0 |
 | `nanonis/stm/v_gen_4_descrb_nx_dt_up` | `const_dos_No14_003.sxm` | L. M. Rütten et al., *Data underlying the paper "Direct signatures of d-level hybridization and dimerization in magnetic adatom chains on a superconductor"*, [10.5281/zenodo.17533355](https://doi.org/10.5281/zenodo.17533355) | CC BY 4.0 |
 | `nanonis/stm/v_gen_4_descrb_nx_dt_down` | `const_dos_No14_002.sxm` | as above; recorded directly before `_003` over the same area (non-square 48 × 72 px, scan angle 108.5°) | CC BY 4.0 |
+| `bruker/afm/spm_v_9_4_dflt_conf_up` | `tecky.0_00002.spm` | J. Vymazal et al., *Dataset for 'Layer-dependent oxidation spreading in multilayer graphene during AFM local anodic oxidation'*, [10.5281/zenodo.19707666](https://doi.org/10.5281/zenodo.19707666) (folder `Data/Figure 7`) | CC BY 4.0 |
