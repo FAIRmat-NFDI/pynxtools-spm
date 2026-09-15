@@ -31,8 +31,8 @@ find ${root_dir}/tests/data/nanonis/stm/v_gen_5_dflt_conf_down -type f -name '*.
 
 # STM Omicron
 echo " !!! Converting Omicron STM data !!! "
-find ${root_dir}/tests/data/omicron/stm/sm4_dflt_conf -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXstm --reader spm --output omicron_stm_default_config.nxs
-find ${root_dir}/tests/data/omicron/stm/sm4_dflt_conf -type f -name '*.nxs' | xargs mv omicron_stm_default_config.nxs
+find ${root_dir}/tests/data/omicron/stm/sm4_dflt_conf_up -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXstm --reader spm --output omicron_stm_default_config.nxs
+find ${root_dir}/tests/data/omicron/stm/sm4_dflt_conf_up -type f -name '*.nxs' | xargs mv omicron_stm_default_config.nxs
 
 # AFM Nanonis 4
 echo " !!! Converting Nanonis AFM data !!! "

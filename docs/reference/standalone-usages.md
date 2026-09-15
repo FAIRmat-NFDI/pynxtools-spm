@@ -32,7 +32,7 @@ __3.__ Command to convert an Omicron STM raw data file (`.sm4`) into NeXus file
 $ pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml omicron_stm_file.sm4
 ```
 
-Download and try with [Omicron STM example files](../assets/command_line_examples/omicron.zip){:omicron} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/omicron/stm/sm4_dflt_conf). This example uses the default config shipped with the package; pass your own `config.json` as a further input file to override it.
+Download and try with [Omicron STM example files](../assets/command_line_examples/omicron.zip){:omicron} or visit the [GitHub folder](https://github.com/FAIRmat-NFDI/pynxtools-spm/tree/main/tests/data/omicron/stm/sm4_dflt_conf_up). This example uses the default config shipped with the package; pass your own `config.json` as a further input file to override it.
 
 __4.__ Command to convert a Nanonis AFM raw data file (`.sxm`, Nanonis generic version 4) into NeXus file
 ```bash

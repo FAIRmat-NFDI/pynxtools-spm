@@ -50,7 +50,7 @@ rm -f $afm_dst/*.nxs
 zip -jrm "$(dirname ${afm_dst})/afm.zip" ${afm_dst}
 rm -r ${afm_dst}
 # Copy Omicron STM file
-src_path="${this_file_path}/tests/data/omicron/stm/sm4_dflt_conf"
+src_path="${this_file_path}/tests/data/omicron/stm/sm4_dflt_conf_up"
 omicron_dst="./docs/assets/command_line_examples/omicron"
 mkdir -p $omicron_dst
 

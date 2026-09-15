@@ -31,7 +31,7 @@ from pynxtools_spm.parsers.rhk_sm4_metadata import (
 from pynxtools_spm.reader import SPMReader
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
-SM4_DATA_DIR = TEST_DATA_DIR / "omicron" / "stm" / "sm4_dflt_conf"
+SM4_DATA_DIR = TEST_DATA_DIR / "omicron" / "stm" / "sm4_dflt_conf_up"
 SM4_RAW_FILE = next(SM4_DATA_DIR.glob("*.sm4"), None) or next(
     SM4_DATA_DIR.glob("*.SM4"), None
 )
