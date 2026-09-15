@@ -21,7 +21,6 @@ Base formatter for Nanonis SPM data.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from __future__ import annotations
-from typing import List, Optional
 import numpy as np
 
 from pynxtools_spm.nxformatters.base_formatter import SPMformatter
