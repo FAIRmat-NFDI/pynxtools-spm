@@ -1,0 +1,47 @@
+Instrument:
+  hardware:
+    model:
+    model/@version:
+    name: bruker
+    vendor: bruker
+  software:
+    model:
+    model/@version:
+    name: bruker
+    vendor: bruker
+Sample:
+  History:
+    Note:
+      description: "Graphene exfoliated from a graphite crystal, transferred via PDMS onto a SiO2/gold-electrode platform, grounded via a copper wire and silver paste; local anodic oxidation at oxidizing voltage -9 V, load 5-9 nN, tip velocity 1 um/s."
+  Sample_component:
+    chemical_formula: C
+    description: "Mechanically exfoliated multilayer graphene (1-6 layers, up to ~50 nm) on 285 nm thermally-grown SiO2/Si, partially covering a gold electrode; locally oxidized toward graphene oxide by AFM local anodic oxidation (LAO). Pristine formula C."
+    name: "Multilayer graphene"
+  name: "Multilayer graphene on SiO2/Si"
+default: z_forward
+definition: NXafm
+experiment_description: "AFM imaging of multilayer graphene during/after local anodic oxidation (LAO), recorded with Frame direction Up."
+experiment_technique: AFM
+identifier_collection: https://zenodo.org/records/19707666
+identifier_experiment: "tecky.0_00002.spm"
+scan_mode: PeakForce Tapping
+User:
+  email:
+    - mozumder@physik.hu-berlin.de
+  name:
+    - Rubel Mozumder
+citeID:
+  author:
+    - Vymazal, Jan
+    - Bartošík, Miroslav
+    - Konečný, Martin
+    - Piastek, Jakub
+  url:
+    - https://zenodo.org/records/19707666
+  doi:
+    - 10.5281/zenodo.19707666
+  description:
+    - |
+      Individual files used for Figures 2-12 are assembled in the folders. The COMSOL Multiphysics files are provided in the folder "COMSOL Simulations".
+
+      Note - original raw file name is `tecky.0_00002.spm`

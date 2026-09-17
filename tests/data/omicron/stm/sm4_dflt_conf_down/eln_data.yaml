@@ -1,0 +1,44 @@
+Instrument:
+  hardware:
+    model:
+    model/@version:
+    name: omicron
+    vendor: omicron
+  software:
+    model:
+    model/@version:
+    name: omicron
+    vendor: omicron
+Sample:
+  history:
+    Note:
+      description: "Zeta-phase Mn2N film grown on a MgO (001) substrate."
+  Sample_component:
+    chemical_formula: Mn2N
+    description: "Hexagonal zeta-phase Mn2N thin film on a cubic MgO (001) substrate."
+    name: "Mn2N film"
+  name: "Mn2N film on MgO (001)"
+default: z_forward
+definition: NXstm
+experiment_description: "STM image of a zeta-phase Mn2N film on MgO (001), recorded as a down scan (RHK_Yscale < 0); not drift or scale corrected."
+experiment_technique: STM
+identifier_collection: https://zenodo.org/records/11043571
+identifier_experiment: "Figure 6(c).SM4"
+scan_mode:
+User:
+  email:
+    - mozumder@physik.hu-berlin.de
+  name:
+    - Rubel Mozumder
+citeID:
+  author:
+    - Shrestha, Ashok
+  url:
+    - https://zenodo.org/records/11043571
+  doi:
+    - 10.5281/zenodo.11043571
+  description:
+    - |
+      Raw data for 'Accommodating a Hexagonal Zeta-phase Mn2N Film on a Cubic MgO (001) Substrate'. The raw data for the STM images shown in Fig. 6 are given in the .SM4 format; these files are not drift and scale corrected.
+
+      Note - original raw file name is `Figure 6(c).SM4`

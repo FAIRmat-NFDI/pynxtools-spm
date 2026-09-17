@@ -418,11 +418,11 @@ class BrukerFltAFM(BrukerBase):
             return nxdata_group
 
         # The raster is stored row by row: the first index runs along the slow
-        # (y) axis and the second along the fast (x) axis. Row 0 is the top row
-        # of the image, so y descends with the row index and 'y_end' labels it.
+        # (y) axis and the second along the fast (x) axis. Row 0 is the bottom
+        # row of the image, so both axes ascend from the scan origin.
         n_y, n_x = signal_data.shape
         axis_to_data = {
-            "y": np.linspace(scan_control.y_end, scan_control.y_start, n_y),
+            "y": np.linspace(scan_control.y_start, scan_control.y_end, n_y),
             "x": np.linspace(scan_control.x_start, scan_control.x_end, n_x),
         }
 

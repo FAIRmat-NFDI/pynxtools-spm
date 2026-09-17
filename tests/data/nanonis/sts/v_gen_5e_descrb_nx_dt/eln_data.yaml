@@ -1,0 +1,43 @@
+Instrument:
+  hardware:
+    model: Generic 5e
+    model/@version: 5e
+    name: Nanonis
+    vendor: Nanonis
+  lockin_amplifier:
+    flip_sign: -1.0
+    modulation_signal: Current
+  software:
+    model: Generic 5e
+    model/@version: 5e
+    name: Nanonis
+    vendor: Nanonis
+Sample:
+  history:
+    Note:
+      description: The experiment was run in Carlos' Lab.
+  Sample_component:
+    chemical_formula: ' KAl₂(AlSi₃O₁₀)(OH)₂)'
+    description: 'Substrate:
+      two-layer stack: Au-Mica.'
+    name: Au(Mica)
+  description: A demo example experiment run in a Lab.
+  name: diPAMY
+default: current_grad
+scan_mode: constant height
+definition: NXsts
+experiment_description: 'A demo example for NeXus STS experiment.
+  Bias: -50mA
+  Setpoints: 25pA'
+experiment_technique: STS
+identifier_collection: D://Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_
+identifier_experiment: D://Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_20230420
+User:
+  affiliation:
+  - Dr. Carlos-Andres Palma (HU)
+  - Dr. Cojal González (HU)
+  email:
+  - mozumder@physik.hu-berlin.de
+  - cojal@physik.hu-berlin.de
+  - palma@physik.hu-berlin.de
+  name: Rubel Mozumder

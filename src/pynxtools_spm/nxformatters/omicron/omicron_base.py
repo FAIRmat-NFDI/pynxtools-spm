@@ -31,12 +31,19 @@ class OmicronBase(SPMformatter):
     """Base class for Omicron SPM data formatters."""
 
     def rearrange_data_according_to_axes(self, data, is_forward: bool | None = None):
-        """Put row 0 of the image at the top, which is the convention of this plugin.
+        """Put the origin of an image at its bottom-left corner.
 
-        'gwyddionpy' orders the rows of an SM4 image the other way round, so the first
-        row it returns is the bottom one. Every other vendor already hands over,
-        or is flipped into, top-row-first order, and a viewer draws row 0 at the
-        top, so an SM4 image would otherwise be shown upside down.
+        An SM4 page stores row i at y = 'RHK_Yoffset' + i * 'RHK_Yscale', so the
+        sign of 'RHK_Yscale' tells the slow scan direction: > 0 is an up scan
+        (row 0 at the bottom), < 0 a down scan (row 0 at the top). Gwyddion,
+        which 'gwyddionpy' runs, flips the rows of an up scan and always flips
+        the columns, so every image it returns has row 0 at the top:
+        https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c
+
+        | RHK_Yscale | raw row 0 is | gwyddionpy row 0 is | to get row 0 = bottom |
+        |------------|--------------|---------------------|-----------------------|
+        | > 0 (up)   | bottom       | top                 | flipud                |
+        | < 0 (down) | top          | top                 | flipud                |
 
         'is_forward' is accepted for the signature of the hook but not used:
         'gwyddionpy' already returns each scan direction in the right x order, so the

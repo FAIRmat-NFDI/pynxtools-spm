@@ -4,8 +4,8 @@ Covers the properties that decide whether an SM4 image is usable: the page
 metadata read by ``read_sm4_pages``, which keeps the typed 'RHK_*' attributes
 the config addresses; the image read by ``Sm4Omicron`` with ``gwyddionpy``,
 which holds physical values rather than raw ADC counts; and the row orientation
-applied by ``OmicronBase``, which puts row 0 of the image at the top so that it
-is not shown upside down.
+applied by ``OmicronBase``, which puts row 0 of the image at the bottom, the
+origin of a scientific plot.
 """
 
 import struct
@@ -31,7 +31,7 @@ from pynxtools_spm.parsers.rhk_sm4_metadata import (
 from pynxtools_spm.reader import SPMReader
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
-SM4_DATA_DIR = TEST_DATA_DIR / "omicron" / "stm" / "default_config"
+SM4_DATA_DIR = TEST_DATA_DIR / "omicron" / "stm" / "sm4_dflt_conf_up"
 SM4_RAW_FILE = next(SM4_DATA_DIR.glob("*.sm4"), None) or next(
     SM4_DATA_DIR.glob("*.SM4"), None
 )
@@ -255,15 +255,24 @@ class TestImageData:
         assert parsed["/Topography_Forward/RHK_Zoffset"] == attrs["RHK_Zoffset"]
 
     @pytest.mark.parametrize("axis", ["x", "y"])
-    def test_coords_ascend_from_zero_in_steps_of_the_scale(self, parsed, pages, axis):
+    def test_coords_ascend_from_the_offset_in_steps_of_the_scale(
+        self, parsed, pages, axis
+    ):
+        """Index i of a page sits at 'offset' + i * 'scale', ascending."""
         attrs = pages["Topography_Forward"].attrs
+        key = f"RHK_{axis.upper()}"
         coords = parsed[f"/Topography_Forward/coords/Topography_Forward_{axis}"]
-        assert coords.dtype == np.float64
-        assert len(coords) == attrs[f"RHK_{axis.upper()}size"]
-        assert coords[0] == 0.0
-        np.testing.assert_allclose(
-            np.diff(coords), abs(attrs[f"RHK_{axis.upper()}scale"]), rtol=1e-12
+        size, scale, offset = (
+            attrs[f"{key}size"],
+            attrs[f"{key}scale"],
+            attrs[f"{key}offset"],
         )
+        assert coords.dtype == np.float64
+        assert len(coords) == size
+        np.testing.assert_allclose(
+            coords, np.sort(offset + scale * np.arange(size)), rtol=1e-12
+        )
+        np.testing.assert_allclose(np.diff(coords), abs(scale), rtol=1e-12)
 
     def test_page_without_gwyddion_channel_keeps_metadata_only(
         self, monkeypatch, caplog
@@ -285,7 +294,7 @@ class TestImageData:
 
 
 class TestImageOrientation:
-    """Row 0 of the stored signal must be the top row of the image.
+    """Row 0 of the stored signal must be the bottom row of the image.
 
     The hook is called through the class with ``None`` in place of ``self``:
     it reads nothing off the instance, and building one would need a raw file
@@ -322,11 +331,11 @@ class TestImageOrientation:
         )
 
     @pytest.mark.parametrize("group", sorted(PAGE_TO_GROUP.values()))
-    def test_slow_axis_descends_so_its_first_value_labels_row_zero(
+    def test_slow_axis_ascends_so_its_first_value_labels_row_zero(
         self, template, group
     ):
-        assert np.all(np.diff(_slow_axis(template, group)) < 0), (
-            "the slow axis must descend with the row index"
+        assert np.all(np.diff(_slow_axis(template, group)) > 0), (
+            "the slow axis must ascend with the row index"
         )
 
     @pytest.mark.parametrize("group", sorted(PAGE_TO_GROUP.values()))

@@ -493,33 +493,20 @@ class OmicronSM4STM(OmicronBase):
                     continue
 
                 for scan_tag in self._scan_list:
+                    # A page that the config maps to no NXdata group (e.g. a
+                    # channel labelled 'Current ' with a trailing space) has
+                    # no data group to link.
+                    data_group = self._scan_tag_to_data_group.get(scan_tag)
+                    if data_group is None:
+                        continue
                     if scan_tag.lower() in scn_ctl_grp:
-                        template_links[f"{full_match}/DATA[scan_data]"] = (
-                            self._scan_tag_to_data_group[scan_tag]
-                        )
+                        template_links[f"{full_match}/DATA[scan_data]"] = data_group
                         completed_group.append(scn_ctl_grp)
 
         for template_key, link in template_links.items():
             self.template[template_key] = {
                 "link": convert_data_dict_path_to_hdf5_path(link)
             }
-
-    def _reverse_slow_axis(self, nxdata_path: str):
-        """Make the slow axis descend, so that its first value labels row 0.
-
-        The config maps the slow axis straight onto the coordinate array built by
-        'Sm4Omicron', which ascends with the row index. 'OmicronBase' flips the image
-        so that row 0 is the top row, which leaves the axis running the opposite
-        way to the rows it describes, so it is reversed here to match.
-        """
-        axes = self.template.get(f"{nxdata_path}/@axes")
-        if not axes:
-            return
-        # '@axes' is ordered by dimension, so entry 0 names the axis of the rows.
-        slow_axis = f"{nxdata_path}/AXISNAME[{axes[0]}]"
-        axis_data = self.template.get(slow_axis)
-        if isinstance(axis_data, np.ndarray) and axis_data.ndim == 1:
-            self.template[slow_axis] = axis_data[::-1]
 
     def _nxdata_grp_from_conf_description(
         self,
@@ -545,7 +532,6 @@ class OmicronSM4STM(OmicronBase):
         )
         if not group_name:
             return
-        self._reverse_slow_axis(f"{parent_path}/{group_name}")
         # Find the scan name from the given raw path "raw_path"
         # the scan tag comes in the name of scan_control
         for key, val in conf_dict.items():
