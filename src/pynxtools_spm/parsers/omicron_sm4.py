@@ -49,8 +49,9 @@ class Sm4Omicron(SPMBase):
         }
 
         sm4_data_dict: dict[str, Any] = {}
+        taken_labels: set[str] = set()
         for page in pages:
-            label = page.label
+            label = self._unique_label(page, taken_labels)
             for key, val in page.attrs.items():
                 sm4_data_dict[f"/{label}/{UNIT_SUFFIX.sub('/@unit', key)}"] = val
 
@@ -62,7 +63,7 @@ class Sm4Omicron(SPMBase):
                 )
                 continue
 
-            for coord, arr in self._image_coords(page):
+            for coord, arr in self._image_coords(page, label):
                 sm4_data_dict[f"/{label}/coords/{coord}"] = arr
 
             channel = channels.get(page.page_id)
@@ -78,19 +79,53 @@ class Sm4Omicron(SPMBase):
 
         return sm4_data_dict
 
-    @staticmethod
-    def _image_coords(page: Sm4Page) -> list[tuple[str, np.ndarray]]:
-        """The x and y coordinates of an image page, starting at 0.
+    def _unique_label(self, page: Sm4Page, taken: set[str]) -> str:
+        """The label of a page, kept apart from a page already named that way.
 
-        The step is the magnitude of the scale stored in the page header, so the
-        coordinates ascend regardless of the scan direction.
+        A label is the channel name and the scan direction, so a file that holds
+        both a raw and a processed copy of one image has the same label twice
+        (e.g. 'Topography_Forward'). The later page is named after its source,
+        'Topography_Forward_Processed', instead of replacing the earlier one.
+        """
+        label = page.label
+        if label not in taken:
+            taken.add(label)
+            return label
+
+        # 'RHK_SOURCE_PROCESSED' -> 'Processed'.
+        source = str(page.attrs.get("RHK_PageSourceTypeName", "")).rsplit("_", 1)[-1]
+        candidate = f"{label}_{source.capitalize()}" if source else label
+        index = 2
+        while candidate in taken:
+            candidate = f"{label}_{index}" if not source else f"{label}_{source}{index}"
+            index += 1
+        pynx_logger.warning(
+            "Page label '%s' of %s is used by more than one page; "
+            "this page is named '%s'.",
+            label,
+            self.file_path,
+            candidate,
+        )
+        taken.add(candidate)
+        return candidate
+
+    @staticmethod
+    def _image_coords(page: Sm4Page, label: str) -> list[tuple[str, np.ndarray]]:
+        """The x and y coordinates of an image page, ascending.
+
+        Index i of a page sits at 'RHK_Xoffset' + i * 'RHK_Xscale' along x and
+        at 'RHK_Yoffset' + i * 'RHK_Yscale' along y, so a negative scale runs
+        from the offset backwards. The image is stored with its origin at the
+        bottom-left corner, so the coordinates are returned in ascending order.
         """
         attrs = page.attrs
-        return [
-            (
-                f"{page.label}_{axis}",
-                abs(attrs[f"RHK_{axis.upper()}scale"])
-                * np.arange(attrs[f"RHK_{axis.upper()}size"], dtype=np.float64),
-            )
-            for axis in ("x", "y")
-        ]
+        coords = []
+        for axis in ("x", "y"):
+            key = f"RHK_{axis.upper()}"
+            positions = float(attrs[f"{key}offset"]) + float(
+                attrs[f"{key}scale"]
+            ) * np.arange(int(attrs[f"{key}size"]), dtype=np.float64)
+            if positions[-1] < positions[0]:
+                positions = positions[::-1]
+            coords.append((f"{label}_{axis}", positions))
+        return coords

@@ -398,7 +398,9 @@ class _Sm4MetadataReader:
         label = attrs.get("RHK_Label", "")
         if not label:
             return f"ID{attrs['RHK_PageID']}"
-        label = label.replace(" ", "_").replace("-", "_")
+        # Instruments pad a label, e.g. 'Current ', and the padding would
+        # otherwise become part of the name ('Current__Forward').
+        label = label.strip().replace(" ", "_").replace("-", "_")
         if label.startswith("_"):
             label = label[1:]
         if attrs["RHK_PageDataType"] == PAGE_DATA_IMAGE:
