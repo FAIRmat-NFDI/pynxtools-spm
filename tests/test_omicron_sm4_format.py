@@ -255,15 +255,24 @@ class TestImageData:
         assert parsed["/Topography_Forward/RHK_Zoffset"] == attrs["RHK_Zoffset"]
 
     @pytest.mark.parametrize("axis", ["x", "y"])
-    def test_coords_ascend_from_zero_in_steps_of_the_scale(self, parsed, pages, axis):
+    def test_coords_ascend_from_the_offset_in_steps_of_the_scale(
+        self, parsed, pages, axis
+    ):
+        """Index i of a page sits at 'offset' + i * 'scale', ascending."""
         attrs = pages["Topography_Forward"].attrs
+        key = f"RHK_{axis.upper()}"
         coords = parsed[f"/Topography_Forward/coords/Topography_Forward_{axis}"]
-        assert coords.dtype == np.float64
-        assert len(coords) == attrs[f"RHK_{axis.upper()}size"]
-        assert coords[0] == 0.0
-        np.testing.assert_allclose(
-            np.diff(coords), abs(attrs[f"RHK_{axis.upper()}scale"]), rtol=1e-12
+        size, scale, offset = (
+            attrs[f"{key}size"],
+            attrs[f"{key}scale"],
+            attrs[f"{key}offset"],
         )
+        assert coords.dtype == np.float64
+        assert len(coords) == size
+        np.testing.assert_allclose(
+            coords, np.sort(offset + scale * np.arange(size)), rtol=1e-12
+        )
+        np.testing.assert_allclose(np.diff(coords), abs(scale), rtol=1e-12)
 
     def test_page_without_gwyddion_channel_keeps_metadata_only(
         self, monkeypatch, caplog
