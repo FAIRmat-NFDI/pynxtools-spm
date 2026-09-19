@@ -3,6 +3,7 @@
   "ignorePaths": [
     "./tests/data/*",
     "./docs/included_file_content/*",
+    "./docs/assets/empirical_offset_test/*",
     "*.toml",
     "Makefile",
     "*.bat",

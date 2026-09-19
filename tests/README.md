@@ -21,8 +21,33 @@ plot: the origin is the **bottom-left** corner.
   angle is stored separately in `scan_region/scan_angle_*`.
 
 Gwyddion is used as an independent reference because it reads every raw format
-in this test set. It stores row 0 at the **top** (left-handed coordinates), so a
+in this test set. It stores row 0 at the **top** , so a
 correctly oriented signal equals `np.flipud` of the matching Gwyddion channel.
+
+## Scan region: offset, start and end
+
+`scan_start_*` and `scan_end_*` are not independent of `scan_offset_value_*`
+and `scan_range_*`. `NXspm_scan_region` defines `scan_offset_valueN` as "the
+offset of center of the scan region from the origin along the specific scan
+axis", and notes under `scan_endN` that "the scan_offset and scan_range are
+equivalent to the scan_start and scan_end".
+
+Convention used throughout this repo, for every flavour:
+
+- `scan_offset_value_*` is the **centre** of the scan area.
+- `scan_start_n = offset_n - range_n / 2` and `scan_end_n = offset_n + range_n / 2`.
+- Axis values are the pixel centres `offset - range/2 + (i + 0.5) * range/N`
+  (see the section above), so the offset is the midpoint of every axis.
+
+`scan_start = offset` with `scan_end = offset + range` is never used. If a raw
+file stores a corner instead of the centre, the offset is first shifted to the
+centre, `offset = corner + range/2`, and the relations above are applied to it.
+Start and end are always derived from offset and range, even where a file has
+a start-like key (Bruker `\X Position`).
+
+All offsets are in the scanner (piezo) frame, measured from the centre of the
+scanner's range. A stage position such as Bruker `\Stage X` is the coarse
+position of the head, a different frame, and is not combined with the offset.
 
 ## Where each vendor stores the scan direction
 
@@ -36,7 +61,7 @@ The same rules apply to STM and AFM scans; both are read by `NanonisBase`.
 | Header tag | Meaning |
 |---|---|
 | `SCAN_DIR` | `up` or `down`: the slow scan direction. |
-| `SCAN_OFFSET` | x and y of the **centre** of the scan frame (m). |
+| `SCAN_OFFSET` | x and y of the **centre** of the scan frame (m); [evidence](#nanonis-sxm-centre-vendor-file-content-and-third-party-readers). |
 | `SCAN_RANGE` | width and height of the scan frame (m). |
 | `SCAN_PIXELS` | number of pixels per line (x) and number of lines (y). |
 | `SCAN_ANGLE` | rotation of the scan frame (deg). |
@@ -62,9 +87,7 @@ Sources:
   Hence, backward scan data start on the right side of the scanfield."
   <https://sourceforge.net/p/gxsm/plugin-requests/3/>
 - Gwyddion Nanonis import module `modules/file/nanonis.c`: flips vertically
-  depending on `SCAN_DIR`, flips backward channels horizontally, and sets the
-  frame origin to `SCAN_OFFSET - 0.5 * SCAN_RANGE`, i.e. `SCAN_OFFSET` is the
-  frame centre.
+  depending on `SCAN_DIR` and flips backward channels horizontally.
   <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/nanonis.c>
 - Gwyddion forum, "Nanonis .sxm file orientation" (2018): Nanonis uses
   right-handed coordinates (y grows upwards), Gwyddion left-handed ones, and
@@ -83,7 +106,7 @@ oriented raw image equals `np.flipud` of the Gwyddion channel exactly.
 | `\Frame direction` | `Up` or `Down`: where the slow scan starts. Frame Up restarts the scan at the bottom of the frame, Frame Down at the top. |
 | `\Line Direction` | `Trace` (forward) or `Retrace` (backward) for one image layer. |
 | `\Scan Size` | edge length of the scan frame. |
-| `\X Offset`, `\Y Offset` | offsets that use the sample as position reference; a more negative Y Offset moves a feature down on the image display. |
+| `\X Offset`, `\Y Offset` | **centre** of the scan frame; [evidence](#bruker-nanoscope-spm-centre-vendor-manual). A more negative Y Offset moves a feature down on the image display. |
 
 The rows are stored in a fixed order, bottom row first, whatever the frame
 direction:
@@ -117,18 +140,22 @@ exactly `np.flipud` of the Gwyddion channel for every layer, Trace and Retrace:
 
 Not yet verified: no Bruker document states the stored row order, and no
 openly licensed Up and Down scan of the same area was found (all Bruker `.spm`
-files up to 25 MB in the S3 Zenodo mirror were checked), so direction
-independence rests on the Gwyddion module above.
+files up to 25 MB on Zenodo were checked), so direction independence rests on
+the Gwyddion module above.
 
 ### Bruker SPMLab (`.FLT`)
 
 | Header key (`[Data Parameters]`) | Meaning |
 |---|---|
 | `ScanDirection` | `FORWARD` or `BACKWARD`: the fast (line) direction of this file. No slow scan direction is stored. |
-| `OffsetX`, `OffsetY` | origin (corner) of the scan frame. |
+| `OffsetX`, `OffsetY` | **centre** of the scan frame; [evidence](#bruker-spmlab-flt-centre-empirical-test-on-vendor-data). |
 | `ScanRangeX`, `ScanRangeY` | width and height of the scan frame. |
 | `ResolutionX`, `ResolutionY` | pixels per line and number of lines. |
 | `Rotation` | rotation of the scan frame (deg); not applied. |
+
+The `[Data]` section holds only the height values, `ResolutionX ×
+ResolutionY` 32-bit floats; axis coordinates are not stored and follow from
+offset and range.
 
 The rows are stored bottom row first, so the image gets one `np.flipud` against
 gwyddionpy, like a NanoScope `.spm` file. The test folders carry no up/down
@@ -137,9 +164,8 @@ suffix because the format records no slow scan direction.
 Evidence:
 
 - Gwyddion SPMLab import module `modules/file/spmlabf.c`: turns every image
-  upside down once (`gwy_data_field_invert(dfield, TRUE, FALSE, FALSE)`), sets
-  the origin from `OffsetX`/`OffsetY`, and keeps `ScanDirection` and `Rotation`
-  as metadata only.
+  upside down once (`gwy_data_field_invert(dfield, TRUE, FALSE, FALSE)`) and
+  keeps `ScanDirection` and `Rotation` as metadata only.
   <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/spmlabf.c>
 
 ### Omicron / RHK (`.sm4`)
@@ -147,9 +173,14 @@ Evidence:
 | Page header field | Meaning |
 |---|---|
 | `RHK_ScanType` | `RIGHT`/`LEFT` for the forward/backward image: the fast (line) direction. |
-| `RHK_Yscale` | step between rows; row i sits at y = `RHK_Yoffset` + i × `RHK_Yscale`. Its sign is the slow scan direction: > 0 up, < 0 down. |
+| `RHK_Yscale` | step between rows. Its sign is the slow scan direction: > 0 up, < 0 down. |
 | `RHK_Xscale` | step between columns; negative in every file seen so far. |
 | `RHK_Xsize`, `RHK_Ysize` | pixels per line and number of lines. |
+| `RHK_Xoffset`, `RHK_Yoffset` | **centre** of the scan area; [evidence](#omicron--rhk-sm4-centre-vendor-manual-and-empirical-test-on-vendor-data). |
+
+The range is not stored; it is `range = N × |RHK_Xscale|` for `N =
+RHK_Xsize` pixels (and the same for y), so `|RHK_Xscale|` is the pixel pitch.
+This is also how Gwyddion sizes the image.
 
 Test folders take `up`/`down` from the sign of `RHK_Yscale`.
 
@@ -162,8 +193,7 @@ Evidence:
 
 - Gwyddion RHK SM4 import module `modules/file/rhk-sm4.c`:
   `/* Correct flipping of up images */ gwy_data_field_invert(dfield, page->y_scale > 0.0, TRUE, FALSE);`
-  i.e. rows are flipped for `y_scale > 0` and columns always; the offsets are
-  kept as metadata only.
+  i.e. rows are flipped for `y_scale > 0` and columns always.
   <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c>
 - Gwyddion forum, "rhk-sm4: additional metadata and upward flipping" (2021):
   the sign of `y_scale` indicates the scan direction.
@@ -175,6 +205,179 @@ Verified by reading each raw page (object id 4, int32) and comparing it with
 gwyddionpy: every image page of an up file (`sm4_dflt_conf_up`) is flipped in
 rows and columns, every image page of a down file (`sm4_dflt_conf_down`) in
 columns only, as the table states.
+
+## Scan region across the flavours
+
+| Flavour | Offset keyword | Range keyword | Vendor meaning of the offset | [Evidence](#how-the-vendor-meaning-of-the-offset-was-resolved) |
+|---|---|---|---|---|
+| Nanonis `.sxm` STM, AFM | `:SCAN_OFFSET:` | `:SCAN_RANGE:` | centre | vendor file content, third-party readers |
+| Omicron `.sm4` | `RHK_Xoffset`, `RHK_Yoffset` | none; `RHK_Xsize × \|RHK_Xscale\|` | centre | vendor manual, empirical test on vendor data |
+| Bruker NanoScope `.spm` | `\X Offset`, `\Y Offset` | `\Scan Size` (x), `\Scan Size` / `\Aspect Ratio` (y) | centre | vendor manual |
+| Bruker SPMLab `.FLT` | `OffsetX`, `OffsetY` | `ScanRangeX`, `ScanRangeY` | centre | empirical test on vendor data |
+| Nanonis `.dat` STS | `Bias>Offset (V)` | none | bias sweep, no lateral frame | start and end read from `Bias Spectroscopy>Sweep Start (V)`, `>Sweep End (V)` |
+| Bruker `.spm.txt` | `\X Offset`, `\Y Offset` | none | force ramp, no lateral frame | not applicable |
+
+### How the vendor meaning of the offset was resolved
+
+Each meaning carries one of five evidence grades, strongest first:
+
+1. **vendor manual**: a document published by the instrument maker that
+   defines the parameter.
+2. **empirical test on vendor data**: raw files from the vendor's software
+   where the scan geometry can be measured, and only one reading fits.
+3. **vendor file content**: something the vendor's software writes into the
+   raw file that only fits one reading.
+4. **third-party reader**: an independent open-source reader that handles the
+   format, e.g. Gwyddion; it shows how the community reads the value, not how
+   the vendor defines it.
+5. **none**: no source found.
+
+The empirical tests locate a small scan inside a larger scan of the same area:
+the small image is resampled to the pixel size of the large one, both are
+line- and plane-levelled, and the small image is found by normalised
+cross-correlation (`skimage.feature.match_template`). A centre offset and a
+corner offset predict different positions; the pairs quoted below have
+identical offsets, so the centre reading predicts the small scan in the middle
+of the large one, whatever the axis directions.
+
+#### Bruker NanoScope `.spm`: centre, vendor manual
+
+- NanoScope Software 6.13 User Guide (Rev. D), Scan Controls panel, p. 60:
+  "X offset, Y offset: Controls the center position of the scan in the X and Y
+  directions, respectively. Range or Settings: ±220V; ± XXµm (dependent on Scan
+  size and scanner)."
+  <https://afmhelp.com/docs/manuals/Nanoscope6.13UserGuide.pdf>
+- Same guide, "Optimizing the X Offset, Y Offset Parameter", p. 85: "Non-zero X
+  and Y offsets reduce the maximum Scan size. Each volt of X or Y offset
+  reduces the maximum scan size by 2V." Only a centred frame loses 2 V of size
+  per volt of offset: both edges have to stay inside the piezo range. A corner
+  offset would lose 1 V.
+- Bruker help, Zoom and Offset Buttons: the Offset button "allows you to center
+  the scan at the region of interest" and "updates the X and Y Offset
+  parameters".
+  <https://www.nanophys.kth.se/nanolab/afm/icon/bruker-help/Content/SoftwareGuide/Realtime/Tips/ZoomAndOffsetButtons.htm>
+
+The ±220 V range places the offset in the scanner (piezo) frame. The guide is
+for v6.13 while the test files are v9.4; the header key (`\X Offset` in
+`\*Ciao scan list`) is unchanged, and no later Bruker page defines it
+differently. Gwyddion's `nanoscope.c` ignores the offsets.
+
+#### Nanonis `.sxm`: centre, vendor file content and third-party readers
+
+- Vendor file content: every test `.sxm` (v4, v5 and v5e) carries the key
+  `:Scan>Scanfield:`, written by the Nanonis Scan module, as
+  `x;y;width;height;angle`, the order in which Nanonis defines a scan frame
+  (centre, size, angle). Its `x;y` equals `:SCAN_OFFSET:`, e.g.
+  `-235.464E-9;126.748E-9;5E-9;5E-9;0E+0` in `STM_nanonis_generic_5e.sxm`.
+- `nanonis_control`, a Python client of the Nanonis TCP interface, documents
+  `ScanFrameGet` as returning "centre: [float, float] - x and y value of the
+  centre of the scan frame (m); size: [float, float] - width and height of the
+  scan frame (m); angle: float - angle of the scan frame (°)".
+  <https://github.com/dilwong/nanonis_control>
+- Gwyddion `modules/file/nanonis.c`: frame origin set to
+  `SCAN_OFFSET - 0.5 * SCAN_RANGE`.
+  <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/nanonis.c>
+
+Not first-party: the SPECS SXM format description only says "Offset in x and y
+for the scan. Unit is meters [m]"
+(<https://sourceforge.net/p/gxsm/plugin-requests/3/>). The defining SPECS
+document, the Nanonis *TCP Protocol Document* (`Scan.FrameSet`,
+`Scan.FrameGet`), is available only through a MySPECS account and was not
+checked.
+
+#### Bruker SPMLab `.FLT`: centre, empirical test on vendor data
+
+No vendor document defining `OffsetX` was found, so the meaning was measured on
+A. James et al., *PiF-IR data of PMIS-C8 monolayer films on nanostructured and
+planar Au substrates…*, [10.5281/zenodo.18060234](https://doi.org/10.5281/zenodo.18060234)
+(CC BY 4.0, `AFM.zip`): SPMLab `.FLT` files (`Program=SPMLab`, `Version=1.00`,
+closed-loop scanner linearisation on, `XLinOn=TRUE`, `YLinOn=TRUE`).
+
+| 5 µm scan in 20 µm scan, `SIG_HEIGHT_SENSOR_FRW` | Offsets (µm) | NCC peak / next | Found at (µm) | Centre predicts | Corner predicts |
+|---|---|---|---|---|---|
+| `PMIS2-C8_ML2_p1_5__040925135420` in `PMIS2-C8_ML2_p1_20__040925132340` | (−33.59, 24.45), both | 0.54 / 0.10 | (10.00, 10.04) | (10.00, 10.00) | (2.50, 2.50) |
+
+Positions are measured from the lower-left edge of the 20 µm scan. The 5 µm
+scan sits in the middle of the 20 µm one, one pixel (39 nm) from the centre
+prediction and 10.6 µm from the corner prediction. Three pairs of the same
+record with different offsets agree (0.02, 0.05 and 0.7 µm from the centre
+prediction). The match is found only with rows read bottom row first,
+which also confirms the orientation above.
+
+Other sources:
+
+- Gwyddion `modules/file/spmlabf.c` passes `OffsetX`/`OffsetY` straight to
+  `gwy_data_field_set_xoffset`/`set_yoffset`, i.e. reads a corner, without a
+  cited source; the test contradicts it.
+  <https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/spmlabf.c>
+- SPMLab descends from Park Scientific's ProScan. The *User's Guide to
+  AutoProbe CP, Part I* (Park Scientific Instruments, 48-101-1121 Rev. A,
+  ProScan 1.5, 1998), p. 4-17: "The scanner coordinates are referenced to the
+  scanner's undeflected, or home, position"; p. 4-18: the green cursor box
+  updates "the scanner coordinates displayed in X Offset and Y Offset". It
+  fixes the frame, not the reference point.
+  <https://utw10193.utweb.utexas.edu/InstrumentManuals/micro-nano-afm-cp%20auto-prob-user-manual.pdf>
+  (scanned; PDF pages 150 to 152)
+- Not found: an SPMLab, ThermoMicroscopes or Veeco/Bruker Innova document
+  defining `OffsetX`.
+
+#### Omicron / RHK `.sm4`: centre, vendor manual and empirical test on vendor data
+
+The `.sm4` files come from Omicron microscopes (e.g. the VT-STM) run by an RHK
+R9 controller, so the file format and the offset are RHK's. No Scienta Omicron
+document on the SM4 offset was found.
+
+- RHK Technology, *R9 User Manual*, Appendix K, Scan Area Window, p. 195:
+  "Move to Center: moves the Scan Area to the center of the Scan Range by
+  setting the XY Offsets to 0." p. 197: "The Square button centers the Scan
+  Area in the middle of the Scan Range."
+  <https://www.manualslib.com/manual/2808818/Rhk-Technology-R9.html?page=195>
+
+  The XY offset is the position of the scan-area centre, measured from the
+  centre of the scanner range, and can take any value inside that range. An
+  offset of 0 is the one case where the scan area is centred in the range,
+  which is what "Move to Center" sets.
+
+That defines the R9 software parameter; the page header stores the same thing:
+
+- **Vendor file content.** `tests/data/omicron/stm/sm4_dflt_conf_down/Figure_6c.SM4`
+  also carries the R9 parameter block (`RHK_PRMdata`): `X offset ::1.5773e-007 m`,
+  `Y offset ::-2.7522e-008 m`, `Scan size ::1.0000e-007 m`. Its page header has
+  `RHK_Xoffset = 1.6301e-07 m`, `RHK_Yoffset = -1.8566e-08 m`, within 5 to 9 nm
+  of the software offsets, where a first-pixel reading would put them about
+  50 nm (half the scan) apart.
+- **Empirical test on vendor data.** P. M. Leidinger, *Influence of zinc oxide
+  nanoparticles on the carbon accumulation on silver…*,
+  [10.5281/zenodo.14268803](https://doi.org/10.5281/zenodo.14268803) (CC BY 4.0):
+  STM topographs (`Topography_Forward`) from an Omicron VT-STM with an RHK
+  controller.
+
+| Scan pair, identical offsets | NCC peak / best elsewhere | Measured shift (nm) | Centre predicts | First pixel predicts |
+|---|---|---|---|---|
+| `VT231211_A1_0064` (10 nm) in `VT231211_A1_0065` (30 nm) | 0.71 / 0.54 | (0.53, 0.41) | (0.00, 0.00) | (9.96, 9.96) |
+| `VT231205_A1_0064` (up) and `VT231205_A1_0063` (down), 20 nm | 0.44 / 0.38 | (0.94, 4.26) | (0.00, 0.00) | (0.00, 19.96) |
+
+The 10 nm scan sits in the middle of the 30 nm one. The up and down scans
+overlap, where a first-pixel reading, with `RHK_Yscale` of opposite sign, would
+put them on `[Yoff - 20, Yoff]` and `[Yoff, Yoff + 20]` nm with no overlap. Three
+pairs of the same record with different offsets agree as well. The residual few
+nm are expected from piezo creep and drift of an open-loop STM scanner.
+
+Other sources: Gwyddion `rhk-sm4.c` reads the offsets and never applies them;
+spym (`rhksm4`, <https://github.com/rescipy-project/spym>) drops them for image
+pages. RHK's "SM4 Data File Format for R9" and "Parsing an SM4 file", which
+would define the header fields directly, are not publicly available.
+
+### Axes
+
+- **Plot axes.** Every 2D image uses the axis names `X` and `Y`, upper case,
+  with `@axes = [Y, X]`: `@axes` names the axis of each data dimension in
+  order, and dimension 0 is the slow axis. One-dimensional data (STS bias
+  sweep, force ramp) keeps its own single axis name.
+- **Scan pattern axes.** Every 2D scan writes `independent_scan_axes =
+  [X, Y]` in `NXspm_scan_control`, whose elements are "in the order of axes of
+  the scan from the fastest to the slowest". It describes how the raster was
+  driven and is independent of `@axes`.
 
 ## Test data
 
@@ -197,7 +400,7 @@ columns only, as the table states.
 ### Missing scan directions
 
 - `nanonis/afm`: only an `up` scan. No openly licensed Nanonis AFM `down` scan
-  was found (S3 Zenodo mirror, Zenodo, Figshare, GitHub); the `down` flip is
+  was found (Zenodo, Figshare, GitHub); the `down` flip is
   covered by the `nanonis/stm` down scans, which use the same code path.
 
 ### Provenance of data taken from public datasets
