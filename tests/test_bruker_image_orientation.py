@@ -147,13 +147,23 @@ class TestStoredImages:
             assert len(axis) == np.shape(_signal(template, group))[dim], group
             assert np.all(np.diff(axis) > 0), f"{group}: axis {dim} must ascend"
 
-    def test_axes_span_the_scan_size(self, templates, folder):
-        scan_size = float(_header_values(_raw_file(folder), "Scan Size")[0].split()[0])
+    def test_axes_are_pixel_centres_around_the_scan_offset(self, templates, folder):
+        """'\\X Offset'/'\\Y Offset' is the centre of the scan, so the axes are
+        the pixel centres of 'offset - size/2 … offset + size/2' and their
+        midpoint is the offset."""
+        raw_file = _raw_file(folder)
+        scan_size = float(_header_values(raw_file, "Scan Size")[0].split()[0])
         template = templates(folder)
         for group in _groups(template):
-            for dim in (0, 1):
+            assert list(template[f"{ENTRY}/DATA[{group}]/@axes"]) == ["Y", "X"], group
+            for dim, key in ((0, "Y Offset"), (1, "X Offset")):
                 axis = _axis(template, group, dim)
-                assert axis[-1] - axis[0] == pytest.approx(scan_size), (
+                offset = float(_header_values(raw_file, key)[0].split()[0])
+                step = scan_size / len(axis)
+                assert axis[-1] - axis[0] == pytest.approx(scan_size - step), (
+                    f"{group} axis {dim}"
+                )
+                assert (axis[0] + axis[-1]) / 2 == pytest.approx(offset), (
                     f"{group} axis {dim}"
                 )
 

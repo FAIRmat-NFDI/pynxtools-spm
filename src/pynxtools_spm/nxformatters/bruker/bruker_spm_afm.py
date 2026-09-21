@@ -135,20 +135,15 @@ class BrukerSpmAFM(BrukerBase):
 
         Raw data needed to calculate the scan region:
         /Scanner_list/0/Scan_Size : 20000 nm;
-        /Scanner_list/0/X_Position : 0
-        /Scanner_list/0/Y_Position : 0
         /Scanner_list/0/X_Offset : 0
         /Scanner_list/0/Y_Offset : 0
-        /Scanner_list/0/Stage_X : 0
-        /Scanner_list/0/Stage_Y : 0
         /Scanner_list/0/Aspect_Ratio : 1:1
 
-        Scan origin (start):
-        - ``start = position`` when the absolute ``X_Position``/``Y_Position``
-          is available.
-        - ``start = stage + offset`` otherwise (e.g. NanoScope v9.x ``.spm``
-          files, which do not store an absolute position), using the stage
-          position ``Stage_X``/``Stage_Y`` and the scan offset.
+        Bruker documents ``X Offset``/``Y Offset`` as the centre position of the
+        scan, in the scanner (piezo) frame, so the area runs from
+        ``offset - range/2`` to ``offset + range/2``. ``X_Position`` and the
+        coarse stage ``Stage_X`` are not used: the stage is a different frame
+        of reference. See 'tests/README.md'.
         """
         offset_fld = "scan_offset_valueN[scan_offset_value_n]"
         offset_fld_list = partial_conf_dict.get(offset_fld, None)
@@ -168,38 +163,6 @@ class BrukerSpmAFM(BrukerBase):
                 elif key_ext.endswith("y"):
                     self.scan_control.y_offset = data
                     self.scan_control.y_offset_unit = unit
-
-        start_fld = "scan_startN[scan_start_n]"
-        start_fld_list = partial_conf_dict.get(start_fld)
-        if isinstance(start_fld_list, list) and isinstance(start_fld_list[0], dict):
-            for start_field in start_fld_list:
-                key_ext, end_dict = start_field.popitem()
-                data, unit, _ = _get_data_unit_and_others(
-                    data_dict=self.raw_data, end_dict=end_dict
-                )
-                data, unit = self._scalar_with_unit(data, unit)
-                axis = "x" if key_ext.endswith("x") else "y"
-                offset = getattr(self.scan_control, f"{axis}_offset")
-                offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
-                if data is not None:
-                    # Absolute position is available; it already is the origin.
-                    start, start_unit = data, unit
-                else:
-                    # NanoScope v9.x has no absolute position field: derive the
-                    # scan origin from the stage position, start = stage + offset.
-                    stage_data = self.raw_data.get(
-                        f"/Scanner_list/0/Stage_{axis.upper()}"
-                    )
-                    stage, stage_unit = self._scalar_with_unit(
-                        stage_data, unit or offset_unit
-                    )
-                    stage = 0 if stage is None else stage
-                    start = stage + (0 if offset is None else offset)
-                    start_unit = stage_unit or offset_unit
-                setattr(self.scan_control, f"{axis}_start", start)
-                setattr(
-                    self.scan_control, f"{axis}_start_unit", fhs.unit_short(start_unit)
-                )
 
         range_fld = "scan_rangeN[scan_range_n]"
         range_fld_dict = partial_conf_dict.get(range_fld)
@@ -222,19 +185,13 @@ class BrukerSpmAFM(BrukerBase):
                         "Aspect ratio value is not found in expected format, defaulting to 1:1. Aspect ratio value: %s",
                         aspect_ratio,
                     )
-            range_val = ureg.Quantity(data, unit).to(self.scan_control.x_start_unit)
+            range_val = ureg.Quantity(data, unit).to(self.scan_control.x_offset_unit)
             self.scan_control.x_range = range_val.magnitude
             self.scan_control.y_range = range_val.magnitude / aspect_ratio_val
             self.scan_control.x_range_unit = fhs.unit_short(range_val.units)
             self.scan_control.y_range_unit = fhs.unit_short(range_val.units)
-            self.scan_control.x_end = (
-                self.scan_control.x_start + self.scan_control.x_range
-            )
-            self.scan_control.x_end_unit = self.scan_control.x_range_unit
-            self.scan_control.y_end = (
-                self.scan_control.y_start + self.scan_control.y_range
-            )
-            self.scan_control.y_end_unit = self.scan_control.y_range_unit
+
+        self.derive_scan_2d_start_end()
         self.put_scan_2d_region_field_in_template(
             parent_path=parent_path, group_name=group_name
         )
@@ -265,15 +222,19 @@ class BrukerSpmAFM(BrukerBase):
                 "Scan points information is missing or not in expected format. "
                 "Please check config file and raw data."
             )
-        # Calculate step size from scan range and scan points
+        # 'independent_scan_axes' sits on the scan control group, the parent of
+        # the mesh scan.
+        self.put_independent_scan_axes_in_template(parent_path)
+
+        # The step is the pixel pitch, so the axis values are pixel centres.
         self.template[f"{parent_path}/{group_name}/step_size_x"] = (
-            self.scan_control.x_range / (self.scan_control.x_points - 1)
+            self.scan_control.x_range / self.scan_control.x_points
         )
         self.template[f"{parent_path}/{group_name}/step_size_x/@units"] = (
             self.scan_control.x_range_unit
         )
         self.template[f"{parent_path}/{group_name}/step_size_y"] = (
-            self.scan_control.y_range / (self.scan_control.y_points - 1)
+            self.scan_control.y_range / self.scan_control.y_points
         )
         self.template[f"{parent_path}/{group_name}/step_size_y/@units"] = (
             self.scan_control.y_range_unit
@@ -312,79 +273,46 @@ class BrukerSpmAFM(BrukerBase):
             self.template[f"{parent_path}/{nxdata_group}/title"] = title
 
         if "0" not in partial_conf_dict and "1" not in partial_conf_dict:
-            axis_x = "x"
-            axis_x_key = f"{parent_path}/{nxdata_group}/AXISNAME[{axis_x}]"
-            axis_y = "y"
-            axis_y_key = f"{parent_path}/{nxdata_group}/AXISNAME[{axis_y}]"
-            axis_x_data = np.linspace(
-                self.scan_control.x_start,
-                self.scan_control.x_end,
-                int(self.scan_control.x_points),
-            )
-            # Both axes ascend: row 0 and column 0 are the bottom-left corner.
-            axis_y_data = np.linspace(
-                self.scan_control.y_start,
-                self.scan_control.y_end,
-                int(self.scan_control.y_points),
-            )
+            axis_x = "X"
+            axis_y = "Y"
             nxdata_path = f"{parent_path}/{nxdata_group}"
             signal_name = self.template[f"{nxdata_path}/@signal"]
-            signal_path = f"{nxdata_path}/DATA[{signal_name}]"
-            signal_data = self.template[signal_path]
+            signal_data = self.template[f"{nxdata_path}/DATA[{signal_name}]"]
             axes_path = f"{nxdata_path}/@axes"
             axes_data = self.template.get(axes_path, [])
 
             if isinstance(signal_data, np.ndarray) and signal_data.ndim == 2:
-                # NeXus @axes for a 2D image is [slow, fast] == ['y', 'x']:
+                # NeXus @axes for a 2D image is [slow, fast] == ['Y', 'X']:
                 # signal dim 0 is the slow (y) axis and dim 1 the fast (x) axis.
                 # Size each axis from its own signal dimension so that
                 # non-square or partial (interrupted) scans stay aligned with
                 # @axes instead of having x/y lengths swapped.
-                expected_y_points = signal_data.shape[0]
-                expected_x_points = signal_data.shape[1]
-
-                x_points_match = isinstance(axis_x_data, np.ndarray) and (
-                    axis_x_data.size == expected_x_points
-                )
-                y_points_match = isinstance(axis_y_data, np.ndarray) and (
-                    axis_y_data.size == expected_y_points
-                )
-                if not (x_points_match and y_points_match):
+                expected_y_points, expected_x_points = signal_data.shape
+                if (
+                    self.scan_control.x_points,
+                    self.scan_control.y_points,
+                ) != (expected_x_points, expected_y_points):
                     pynx_logger.warning(
-                        "The signal data is 2D with shape (%s, %s)."
-                        "Scan region data has %s x points and %s y points.",
+                        "The signal data is 2D with shape (%s, %s), while the scan "
+                        "region has %s x points and %s y points. The axes are "
+                        "rebuilt from the shape of the signal data.",
                         expected_x_points,
                         expected_y_points,
                         self.scan_control.x_points,
                         self.scan_control.y_points,
                     )
-                    pynx_logger.warning(
-                        f"Recreating 'X' and 'Y' axis data based on the shape of the signal data."
-                        f"{expected_x_points} x points and {expected_y_points} y points"
-                    )
+                    self.scan_control.x_points = expected_x_points
+                    self.scan_control.y_points = expected_y_points
 
-                if not x_points_match:
-                    axis_x_data = np.linspace(
-                        self.scan_control.x_start,
-                        self.scan_control.x_end,
-                        expected_x_points,
+                # Both axes ascend: row 0 and column 0 are the bottom-left
+                # corner. The values are the pixel centres around the scan
+                # offset, which is the centre of the scanned area.
+                for axis in (axis_x, axis_y):
+                    axis_key = f"{nxdata_path}/AXISNAME[{axis}]"
+                    self.template[axis_key] = self._pixel_centres(axis.lower())
+                    self.template[f"{axis_key}/@units"] = fhs.unit_short(
+                        getattr(self.scan_control, f"{axis.lower()}_start_unit")
                     )
-                self.template[f"{axis_x_key}"] = axis_x_data
-                self.template[f"{axis_x_key}/@units"] = fhs.unit_short(
-                    self.scan_control.x_start_unit
-                )
-
-                if not y_points_match:
-                    axis_y_data = np.linspace(
-                        self.scan_control.y_start,
-                        self.scan_control.y_end,
-                        expected_y_points,
-                    )
-                self.template[f"{axis_y_key}"] = axis_y_data
-
-                self.template[f"{axis_y_key}/@units"] = fhs.unit_short(
-                    self.scan_control.y_start_unit
-                )
 
                 if not axes_data:
                     self.template[f"{axes_path}"] = [
