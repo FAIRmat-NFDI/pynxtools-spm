@@ -312,12 +312,31 @@ class BrukerFltAFM(BrukerBase):
         # SPMLab records the raster orientation in 'Rotation', which is 0 in
         # every file seen so far. A rotated frame would make 'x' and 'y' the
         # wrong names for the fast and slow axis.
-        self.scan_control.fast_axis = "x"
+        #
+        # A .FLT holds one channel recorded in one direction, so 'ScanDirection'
+        # signs the fast axis. The slow axis stays unsigned: SPMLab stores no
+        # slow scan direction, so a bare 'Y' means unknown, not upward.
+        direction = next(
+            (
+                str(val).strip().lower()
+                for key, val in self.raw_data.items()
+                if key.endswith("/meta/ScanDirection")
+            ),
+            "",
+        )
+        fast_axis = {"forward": "+x", "backward": "-x"}.get(direction, "x")
+        if fast_axis == "x" and direction:
+            pynx_logger.warning(
+                "Unknown SPMLab 'ScanDirection' value '%s', so the fast scan "
+                "direction is left unspecified.",
+                direction,
+            )
+        self.scan_control.fast_axis = fast_axis
         self.scan_control.slow_axis = "y"
 
         # 'independent_scan_axes' sits on the scan control group, the parent of
         # the mesh scan.
-        self.put_independent_scan_axes_in_template(parent_path)
+        self.put_independent_scan_axes_in_template(parent_path, axes=(fast_axis, "y"))
 
         for axis in ("x", "y"):
             scan_range = getattr(self.scan_control, f"{axis}_range")
