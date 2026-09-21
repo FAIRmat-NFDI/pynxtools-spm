@@ -1,0 +1,88 @@
+name: Challenge a scan-region convention
+description: Report evidence that the scan offset, range, axes or scan direction is read wrongly
+title: "[convention] "
+labels: ["scan-region", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Some of the conventions in
+        [Scan region, axes and scan direction](https://fairmat-nfdi.github.io/pynxtools-spm/explanation/scan-region-conventions.html)
+        rest on measurements or on third-party readers rather than on a vendor
+        document. If one of them is wrong, the reader should change. Thank you
+        for taking the time.
+  - type: dropdown
+    id: flavour
+    attributes:
+      label: Flavour
+      description: Which file format does this concern?
+      options:
+        - Nanonis .sxm (STM, AFM)
+        - Nanonis .dat (STS)
+        - Bruker NanoScope .spm
+        - Bruker NanoScope .spm.txt
+        - Bruker SPMLab .FLT
+        - Omicron / RHK .sm4
+        - Other or several
+    validations:
+      required: true
+  - type: dropdown
+    id: claim
+    attributes:
+      label: Claim being challenged
+      options:
+        - The scan offset is the centre of the scan area
+        - scan_start and scan_end are offset -/+ range/2
+        - Axis values are pixel centres, step = range / points
+        - The scan range is points x pitch
+        - The scan direction, the sign in independent_scan_axes
+        - The image orientation, bottom-left origin
+        - The unit of the scan region
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: Kind of evidence
+      options:
+        - Vendor document (manual, application note, format specification)
+        - Raw file the current reading gets wrong
+        - Another reader that disagrees
+        - Measurement on a known sample, e.g. a calibration grating
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: The evidence
+      description: |
+        For a vendor document, give the title, version, page and a quote. For a
+        raw file, attach it or link it, and say what the values should be. A
+        file under an open license is especially useful, because it can join the
+        test set.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What the reader should write instead
+      description: The values you expect, with the raw keys they come from.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: |
+        The command you ran and the values you saw, for example the output of
+        `pynx convert --nxdl NXstm --reader spm ...` and the fields you read back.
+      render: console
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: pynxtools-spm version
+    validations:
+      required: false

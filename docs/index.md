@@ -33,6 +33,7 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 ### Explanation
 - [Reader Structure](explanation/reader-structure.md)
 - [Reader Orchestra](explanation/reader-orchestra.md)
+- [Scan region, axes and scan direction](explanation/scan-region-conventions.md)
 
 </div>
 <div markdown="block">
