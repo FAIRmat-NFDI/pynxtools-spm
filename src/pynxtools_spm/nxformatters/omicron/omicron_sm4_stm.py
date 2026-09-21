@@ -276,10 +276,20 @@ class OmicronSM4STM(OmicronBase):
             points = self.raw_data.get(f"{key}size")
             if offset is None or scale is None or points is None:
                 continue
+            unit = self.raw_data.get(f"{key}/@unit")
+            if unit is None:
+                unit = "m"
+                SPM_LOGGER.warning(
+                    "No unit for the %s axis of page '%s' ('%s/@unit' is "
+                    "missing), so the scan region is read as metres.",
+                    axis,
+                    scan_tag,
+                    key,
+                )
             setattr(self.scan_control, f"{axis}_offset", float(offset))
-            setattr(self.scan_control, f"{axis}_offset_unit", "m")
+            setattr(self.scan_control, f"{axis}_offset_unit", unit)
             setattr(self.scan_control, f"{axis}_range", abs(float(scale)) * int(points))
-            setattr(self.scan_control, f"{axis}_range_unit", "m")
+            setattr(self.scan_control, f"{axis}_range_unit", unit)
 
         self.derive_scan_2d_start_end()
 
@@ -292,7 +302,6 @@ class OmicronSM4STM(OmicronBase):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
                 ] = self.scan_control.x_range
-                # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
                 ] = self.scan_control.x_start_unit
@@ -309,7 +318,6 @@ class OmicronSM4STM(OmicronBase):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
                 ] = self.scan_control.x_start
-                # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
                 ] = self.scan_control.x_start_unit
@@ -326,7 +334,6 @@ class OmicronSM4STM(OmicronBase):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
                 ] = self.scan_control.x_end
-                # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
                 ] = self.scan_control.x_start_unit
