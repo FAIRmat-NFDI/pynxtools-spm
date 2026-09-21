@@ -113,19 +113,26 @@ class Sm4Omicron(SPMBase):
     def _image_coords(page: Sm4Page, label: str) -> list[tuple[str, np.ndarray]]:
         """The x and y coordinates of an image page, ascending.
 
-        Index i of a page sits at 'RHK_Xoffset' + i * 'RHK_Xscale' along x and
-        at 'RHK_Yoffset' + i * 'RHK_Yscale' along y, so a negative scale runs
-        from the offset backwards. The image is stored with its origin at the
-        bottom-left corner, so the coordinates are returned in ascending order.
+        'RHK_Xoffset'/'RHK_Yoffset' is the centre of the scan area and
+        '|RHK_Xscale|' the pixel pitch, so the area spans 'offset - range/2' to
+        'offset + range/2' for 'range' = 'RHK_Xsize' * '|RHK_Xscale|' and pixel
+        i of n sits at its centre, 'offset - range/2 + (i + 0.5) * |scale|'.
+        The image is stored with its origin at the bottom-left corner, so the
+        coordinates ascend. The evidence for the centre reading is in
+        'tests/README.md'.
         """
         attrs = page.attrs
         coords = []
         for axis in ("x", "y"):
             key = f"RHK_{axis.upper()}"
-            positions = float(attrs[f"{key}offset"]) + float(
-                attrs[f"{key}scale"]
-            ) * np.arange(int(attrs[f"{key}size"]), dtype=np.float64)
-            if positions[-1] < positions[0]:
-                positions = positions[::-1]
+            offset = float(attrs[f"{key}offset"])
+            step = abs(float(attrs[f"{key}scale"]))
+            points = int(attrs[f"{key}size"])
+            scan_range = step * points
+            positions = (
+                offset
+                - scan_range / 2
+                + (np.arange(points, dtype=np.float64) + 0.5) * step
+            )
             coords.append((f"{label}_{axis}", positions))
         return coords
