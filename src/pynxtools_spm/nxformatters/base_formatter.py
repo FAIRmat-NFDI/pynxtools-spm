@@ -38,6 +38,7 @@ from pynxtools import logger as pynx_logger
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
+from pynxtools.units import ureg
 
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
@@ -817,6 +818,44 @@ class SPMformatter(ABC):
         if other_attrs:
             for k, v in other_attrs.items():
                 self.template[f"{temp_key}/@{k}"] = v
+
+    def derive_scan_2d_start_end(self, axes: Sequence[str] = ("x", "y")):
+        """Derives scan_start and scan_end from the scan offset and the scan range.
+
+        The offset of a scan region is the centre of the scanned area, so the
+        area runs from ``offset - range/2`` to ``offset + range/2``. A vendor
+        that stores a corner instead has to shift it to the centre before
+        calling this. The convention and the evidence for it per vendor are in
+        'tests/README.md'.
+        """
+        for axis in axes:
+            offset = getattr(self.scan_control, f"{axis}_offset")
+            scan_range = getattr(self.scan_control, f"{axis}_range")
+            if offset in (None, "") or scan_range in (None, ""):
+                continue
+            offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
+            range_unit = getattr(self.scan_control, f"{axis}_range_unit")
+            if offset_unit and range_unit and offset_unit != range_unit:
+                scan_range = (
+                    ureg.Quantity(scan_range, range_unit).to(offset_unit).magnitude
+                )
+            unit = offset_unit or range_unit
+            half = scan_range / 2
+            setattr(self.scan_control, f"{axis}_start", offset - half)
+            setattr(self.scan_control, f"{axis}_start_unit", unit)
+            setattr(self.scan_control, f"{axis}_end", offset + half)
+            setattr(self.scan_control, f"{axis}_end_unit", unit)
+
+    def put_independent_scan_axes_in_template(
+        self, parent_path, group_name, axes: Sequence[str] = ("X", "Y")
+    ):
+        """Writes 'independent_scan_axes' of 'NXspm_scan_control'.
+
+        Its elements run from the fastest to the slowest scan axis, so a mesh
+        scan of an image gives ['X', 'Y']. It describes the raster, not the
+        plot, and is unrelated to the '@axes' of an NXdata group.
+        """
+        self.template[f"{parent_path}/{group_name}/independent_scan_axes"] = list(axes)
 
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""

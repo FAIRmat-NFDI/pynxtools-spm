@@ -218,22 +218,16 @@ class NanonisSxmSTM(NanonisBase):
             partial_conf_dict=partial_conf_dict,
             concept_field=scan_offset,
         )
-        # TODO add a check it scan_start is provided by config dict
+        # 'SCAN_OFFSET' is the centre of the scan frame, so scan_start and
+        # scan_end are derived from it and the range by 'derive_scan_2d_start_end'.
         scan_offsets = to_intended_t(re.findall(_SCIENTIFIC_NUM_PATTERN, scan_offsets))
         for ind, offset in enumerate(scan_offsets):
-            # off_key = f"{parent_path}/{group_name}/scan_offset_valueN[scan_offset_value_{self._axes[ind]}]"
-            # self.template[off_key] = offset
-            # self.template[f"{off_key}/@units"] = unit
             if self._axes[ind] == "x":
                 self.scan_control.x_offset = offset  # type: ignore
                 self.scan_control.x_offset_unit = unit
-                self.scan_control.x_start = offset  # type: ignore
-                self.scan_control.x_start_unit = unit
             elif self._axes[ind] == "y":
                 self.scan_control.y_offset = offset  # type: ignore
                 self.scan_control.y_offset_unit = unit
-                self.scan_control.y_start = offset  # type: ignore
-                self.scan_control.y_start_unit = unit
 
         # Scan Angle
         scan_angle = "scan_angleN[scan_angle_n]"
@@ -271,16 +265,11 @@ class NanonisSxmSTM(NanonisBase):
             if self._axes[ind] == "x":
                 self.scan_control.x_range = rng
                 self.scan_control.x_range_unit = unit
-                if self.scan_control.x_start not in (None, ""):
-                    self.scan_control.x_end = rng + self.scan_control.x_start
-                    self.scan_control.x_end_unit = unit
             elif self._axes[ind] == "y":
                 self.scan_control.y_range = rng
                 self.scan_control.y_range_unit = unit
-                if self.scan_control.y_start not in (None, ""):
-                    self.scan_control.y_end = rng + self.scan_control.y_start
-                    self.scan_control.y_end_unit = unit
 
+        self.derive_scan_2d_start_end()
         self.put_scan_2d_region_field_in_template(parent_path, group_name)
 
     def construct_single_scan_data_grp(self, parent_path, plot_data_info, group_name):
@@ -432,10 +421,9 @@ class NanonisSxmSTM(NanonisBase):
         """Constructs Scan Control group from the scan environment group.
         Where, a scan control group contains scan region and scan pattern groups."""
 
-        # The scan direction is still read here because '_arange_axes' sets
-        # 'scan_control.fast_axis'/'slow_axis', which orient the raster later.
-        # Writing it out as 'independent_scan_axes' is disabled until the axis
-        # order has been verified against the raw files; re-enable it here.
+        # '/SCAN/DIR' sets 'scan_control.fast_axis'/'slow_axis', which orient the
+        # raster later. 'independent_scan_axes' itself lists the scan axes from
+        # the fastest to the slowest, which is ['X', 'Y'] for a mesh scan.
         independent_axes = "independent_scan_axes"
         direction, _, _ = _get_data_unit_and_others(
             data_dict=self.raw_data,
@@ -443,6 +431,7 @@ class NanonisSxmSTM(NanonisBase):
             concept_field=independent_axes,
         )
         self._arange_axes(direction.strip())
+        self.put_independent_scan_axes_in_template(parent_path, group_name)
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp, None)
         # Intended order: construct_scan_region_grp
