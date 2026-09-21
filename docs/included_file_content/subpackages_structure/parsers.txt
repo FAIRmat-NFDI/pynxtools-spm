@@ -13,6 +13,7 @@ pynxtools_spm/parsers
 │   ├── read.py
 │   └── utils.py
 ├── nanonis_sxm.py
-└── omicron_sm4.py
+├── omicron_sm4.py
+└── rhk_sm4_metadata.py
 
-1 directory, 14 files
+1 directory, 15 files
