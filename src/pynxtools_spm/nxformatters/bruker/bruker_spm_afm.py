@@ -222,9 +222,30 @@ class BrukerSpmAFM(BrukerBase):
                 "Scan points information is missing or not in expected format. "
                 "Please check config file and raw data."
             )
+        # '\\Frame direction' is the slow scan direction: 'Up' restarts the
+        # scan at the bottom of the frame, 'Down' at the top. The fast axis
+        # stays unsigned because Trace and Retrace layers are both stored.
+        directions = {
+            str(val).strip().lower()
+            for key, val in self.raw_data.items()
+            if key.endswith("/Frame_direction")
+        }
+        slow_axis = "y"
+        if directions == {"up"}:
+            slow_axis = "+y"
+        elif directions == {"down"}:
+            slow_axis = "-y"
+        elif len(directions) > 1:
+            pynx_logger.warning(
+                "The image layers disagree on '\\Frame direction' (%s), so the "
+                "slow scan direction is left unspecified.",
+                ", ".join(sorted(directions)),
+            )
+        self.scan_control.fast_axis = "x"
+        self.scan_control.slow_axis = slow_axis
         # 'independent_scan_axes' sits on the scan control group, the parent of
         # the mesh scan.
-        self.put_independent_scan_axes_in_template(parent_path)
+        self.put_independent_scan_axes_in_template(parent_path, axes=("x", slow_axis))
 
         # The step is the pixel pitch, so the axis values are pixel centres.
         self.template[f"{parent_path}/{group_name}/step_size_x"] = (
