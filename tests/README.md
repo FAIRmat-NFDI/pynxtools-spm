@@ -396,11 +396,10 @@ name:
 | `-Y` | the axis was travelled towards decreasing Y |
 | `Y` | no single direction is asserted |
 
-An axis is signed when exactly one pass along it exists in the entry, and left
-bare otherwise. Bare therefore covers two cases, which the file itself tells
-apart: a bidirectional axis has both a forward and a backward `NXdata` group,
-while an axis whose direction the format never records has only one channel
-(Bruker `.FLT`).
+An axis is signed when the entry holds exactly one pass along it and the format
+records which way that pass ran. It is left bare otherwise, which covers two
+cases: a bidirectional axis, which has both a forward and a backward `NXdata`
+group, and an axis whose direction the format never records.
 
 `X` and `Y` are the axes of the **scan frame**, the fast and the slow axis. When
 `scan_region/scan_angle_*` is not zero the scan frame is rotated against the
@@ -412,7 +411,7 @@ Where each sign comes from:
 |---|---|---|
 | Nanonis `.sxm` | `X`: `DATA_INFO` `Direction` is `both`, so forward and backward are stored | `+Y` / `-Y` from `SCAN_DIR` (`up` / `down`); bare when the tag is missing or empty |
 | Bruker NanoScope `.spm` | `X`: Trace and Retrace layers are both stored | `+Y` / `-Y` from `\Frame direction` (`Up` / `Down`) |
-| Omicron `.sm4` | `+X` / `-X` from `RHK_ScanType`: each scan control group describes one page, Forward or Backward | `+Y` / `-Y` from the sign of `RHK_Yscale` |
+| Omicron `.sm4` | `X`: `RHK_ScanType` names the two passes, Forward and Backward, but neither it nor `RHK_Xscale`, whose sign is the same on both pages, says which way the tip ran along a line | `+Y` / `-Y` from the sign of `RHK_Yscale` |
 | Bruker SPMLab `.FLT` | `+X` / `-X` from `ScanDirection` (`FORWARD` / `BACKWARD`): one channel per file | `Y`: SPMLab stores no slow scan direction |
 
 Bruker `.FLT` is the mirror image of the others: it is the one format whose

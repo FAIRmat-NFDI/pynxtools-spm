@@ -403,7 +403,18 @@ class OmicronSM4STM(OmicronBase):
                 scan_tag=scan_tag, k=k, all_tags=self._scan_list
             )
 
-            self.put_independent_scan_axes_in_template(parent_path_mod)
+            # The sign of 'RHK_Yscale' is the slow scan direction, > 0 up and
+            # < 0 down. The fast axis stays unsigned: 'RHK_ScanType' names the
+            # Forward and Backward pass but neither it nor 'RHK_Xscale', which
+            # has the same sign on both pages, says which way the tip ran along
+            # a line.
+            y_scale = self._scan_tag_raw_data[scan_tag].get(f"/{scan_tag}/RHK_Yscale")
+            slow_axis = "y" if y_scale is None else ("+y" if y_scale > 0 else "-y")
+            self.scan_control.fast_axis = "x"
+            self.scan_control.slow_axis = slow_axis
+            self.put_independent_scan_axes_in_template(
+                parent_path_mod, axes=("x", slow_axis)
+            )
 
             # Data from scan_region group will be used later
             for key, val in partial_conf_dict.items():
