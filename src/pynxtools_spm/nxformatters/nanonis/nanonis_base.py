@@ -32,10 +32,14 @@ class NanonisBase(SPMformatter):
     def _arange_axes(self, direction="down"):
         """Record the fast and slow scan axes from the SXM scan direction.
 
-        Every line is recorded along x, and 'SCAN_DIR' is 'up' or 'down': the
-        lines advance along +y for an 'up' scan and along -y for a 'down' scan.
+        Every line is recorded along x, forward and backward, so the fast axis
+        keeps no sign. 'SCAN_DIR' is 'up' or 'down': the lines advance along +y
+        for an 'up' scan and along -y for a 'down' scan. A missing or empty tag
+        leaves the slow axis unsigned, meaning the direction is unknown, and
+        the image keeps the order in which its lines were recorded.
         """
-        fast_slow = ["X", "-Y"] if direction.strip().lower() == "down" else ["X", "Y"]
+        slow = {"up": "+Y", "down": "-Y"}.get(direction.strip().lower(), "Y")
+        fast_slow = ["X", slow]
         self.scan_control.fast_axis = fast_slow[0].lower()
         self.scan_control.slow_axis = fast_slow[1].lower()
         return fast_slow

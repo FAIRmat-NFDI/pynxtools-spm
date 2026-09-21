@@ -870,16 +870,31 @@ class SPMformatter(ABC):
         step = scan_range / points
         return offset - scan_range / 2 + (np.arange(points) + 0.5) * step
 
+    @staticmethod
+    def _format_scan_axis(axis: str) -> str:
+        """'-y' -> '-Y': upper case, keeping the sign of the scan direction."""
+        axis = str(axis).strip()
+        sign = ""
+        if axis[:1] in ("+", "-"):
+            sign, axis = axis[0], axis[1:]
+        return f"{sign}{axis.upper()}"
+
     def put_independent_scan_axes_in_template(
         self, scan_control_path: str, axes: Sequence[str] = ("X", "Y")
     ):
         """Writes 'independent_scan_axes' of 'NXspm_scan_control'.
 
         Its elements run from the fastest to the slowest scan axis, so a mesh
-        scan of an image gives ['X', 'Y']. It describes the raster, not the
-        plot, and is unrelated to the '@axes' of an NXdata group.
+        scan of an image gives the fast axis first. The sign of an axis is the
+        direction the tip travelled along it: '+Y' towards increasing Y, '-Y'
+        towards decreasing Y, and a bare 'Y' when no single direction applies,
+        because both passes are stored or the format does not record it. The
+        field describes the scan, not the image, so it is unaffected by the
+        flips that orient an NXdata group. See 'tests/README.md'.
         """
-        self.template[f"{scan_control_path}/independent_scan_axes"] = list(axes)
+        self.template[f"{scan_control_path}/independent_scan_axes"] = [
+            self._format_scan_axis(axis) for axis in axes
+        ]
 
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""

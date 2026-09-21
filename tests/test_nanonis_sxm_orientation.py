@@ -146,7 +146,15 @@ class TestScanAxes:
 
     @pytest.mark.parametrize(
         "direction,slow_axis",
-        [("up", "y"), ("down", "-y"), ("UP", "y"), (" Down ", "-y")],
+        [
+            ("up", "+y"),
+            ("down", "-y"),
+            ("UP", "+y"),
+            (" Down ", "-y"),
+            # An empty tag, as in the v4 files, leaves the direction unknown.
+            ("", "y"),
+            ("sideways", "y"),
+        ],
     )
     def test_lines_run_along_x_and_advance_along_the_scan_direction(
         self, direction, slow_axis
