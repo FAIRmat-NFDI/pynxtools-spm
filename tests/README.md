@@ -370,14 +370,54 @@ would define the header fields directly, are not publicly available.
 
 ### Axes
 
-- **Plot axes.** Every 2D image uses the axis names `X` and `Y`, upper case,
-  with `@axes = [Y, X]`: `@axes` names the axis of each data dimension in
-  order, and dimension 0 is the slow axis. One-dimensional data (STS bias
-  sweep, force ramp) keeps its own single axis name.
-- **Scan pattern axes.** Every 2D scan writes `independent_scan_axes =
-  [X, Y]` in `NXspm_scan_control`, whose elements are "in the order of axes of
-  the scan from the fastest to the slowest". It describes how the raster was
-  driven and is independent of `@axes`.
+Two groups answer two different questions, and they are written independently
+of each other.
+
+- **`NXdata` shows the image.** It is the picture as it should be displayed:
+  normalised to the bottom-left convention above, both axes ascending, the scan
+  angle not applied. Every 2D image uses the axis names `X` and `Y`, upper
+  case, with `@axes = [Y, X]`, because `@axes` names the axis of each data
+  dimension in order and dimension 0 is the slow axis. One-dimensional data
+  (STS bias sweep, force ramp) keeps its own single axis name.
+- **`NXspm_scan_control` records how the scan was performed.** It describes the
+  movement of the tip over the sample, not the picture, so the flips applied to
+  the image never change it.
+
+#### `independent_scan_axes` and the scan direction
+
+`independent_scan_axes` lists the scan axes "in the order of axes of the scan
+from the fastest to the slowest", so a mesh scan gives the fast axis first. The
+direction the tip travelled along each axis is kept as the sign of the axis
+name:
+
+| Value | Meaning |
+|---|---|
+| `+Y` | the axis was travelled towards increasing Y |
+| `-Y` | the axis was travelled towards decreasing Y |
+| `Y` | no single direction is asserted |
+
+An axis is signed when exactly one pass along it exists in the entry, and left
+bare otherwise. Bare therefore covers two cases, which the file itself tells
+apart: a bidirectional axis has both a forward and a backward `NXdata` group,
+while an axis whose direction the format never records has only one channel
+(Bruker `.FLT`).
+
+`X` and `Y` are the axes of the **scan frame**, the fast and the slow axis. When
+`scan_region/scan_angle_*` is not zero the scan frame is rotated against the
+sample, so they are not the x and y of the sample.
+
+Where each sign comes from:
+
+| Flavour | Fast axis | Slow axis |
+|---|---|---|
+| Nanonis `.sxm` | `X`: `DATA_INFO` `Direction` is `both`, so forward and backward are stored | `+Y` / `-Y` from `SCAN_DIR` (`up` / `down`); bare when the tag is missing or empty |
+| Bruker NanoScope `.spm` | `X`: Trace and Retrace layers are both stored | `+Y` / `-Y` from `\Frame direction` (`Up` / `Down`) |
+| Omicron `.sm4` | `+X` / `-X` from `RHK_ScanType`: each scan control group describes one page, Forward or Backward | `+Y` / `-Y` from the sign of `RHK_Yscale` |
+| Bruker SPMLab `.FLT` | `+X` / `-X` from `ScanDirection` (`FORWARD` / `BACKWARD`): one channel per file | `Y`: SPMLab stores no slow scan direction |
+
+Bruker `.FLT` is the mirror image of the others: it is the one format whose
+fast direction is known per file and whose slow direction is not recorded at
+all. A bare `Y` there means unknown, not upward.
 
 ## Test data
 
