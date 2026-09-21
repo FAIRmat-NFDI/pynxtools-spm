@@ -71,16 +71,3 @@ class NanonisBase(SPMformatter):
         if is_forward is False:
             data = np.fliplr(data)
         return data
-
-    def _pixel_centres(self, axis: str) -> np.ndarray:
-        """Ascending positions of the pixel centres along 'x' or 'y'.
-
-        'SCAN_OFFSET' is the centre of the scan frame, so the frame spans
-        'offset - range/2' to 'offset + range/2' and pixel 'i' of 'n' sits at
-        'offset - range/2 + (i + 0.5) * range/n'.
-        """
-        offset = getattr(self.scan_control, f"{axis}_offset")
-        scan_range = getattr(self.scan_control, f"{axis}_range")
-        points = int(getattr(self.scan_control, f"{axis}_points"))
-        step = scan_range / points
-        return offset - scan_range / 2 + (np.arange(points) + 0.5) * step

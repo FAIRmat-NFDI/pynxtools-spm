@@ -18,18 +18,19 @@ the gain defaults of the [Innova operating notes][innova] match those in the
 reference file. Its own manual (*Veeco DiInnova User Manual-B*, 004-1005-000) is
 not publicly retrievable, so it could not be consulted.
 
-### Y axis — offset treated as the **origin** (corner)
+### Y axis — offset is the **centre** of the scan
 
 ```python
-y = linspace(OffsetY, OffsetY + ScanRangeY, ResolutionY)
+y = OffsetY - ScanRangeY / 2 + (arange(ResolutionY) + 0.5) * ScanRangeY / ResolutionY
 ```
 
 Units come from `XYUnit` when present, otherwise they are parsed from the trailing text of
 `ScanRangeY`.
 
-> ⚠️ Unverified. In the sample files here `OffsetX == ScanRangeX == 1.0000` with no unit
-> suffix, which looks more like a placeholder than a physical offset. Confirm against a
-> file captured with a deliberately offset scan before relying on this.
+> Verified on scans of the same sample where a 5 µm scan was taken inside a 20 µm scan:
+> the small scan sits where a centre offset predicts, to within one pixel. Gwyddion's
+> SPMLab module reads the offset as a corner instead. See the "Scan region" sections of
+> `tests/README.md`.
 
 ### Z axis — single float multiply
 

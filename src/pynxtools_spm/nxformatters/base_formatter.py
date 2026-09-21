@@ -836,9 +836,20 @@ class SPMformatter(ABC):
             offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
             range_unit = getattr(self.scan_control, f"{axis}_range_unit")
             if offset_unit and range_unit and offset_unit != range_unit:
-                scan_range = (
-                    ureg.Quantity(scan_range, range_unit).to(offset_unit).magnitude
-                )
+                try:
+                    scan_range = (
+                        ureg.Quantity(scan_range, range_unit).to(offset_unit).magnitude
+                    )
+                except Exception as error:
+                    pynx_logger.warning(
+                        "Could not convert %s scan range from '%s' to '%s': %s. "
+                        "Scan start and end are skipped for this axis.",
+                        axis,
+                        range_unit,
+                        offset_unit,
+                        error,
+                    )
+                    continue
             unit = offset_unit or range_unit
             half = scan_range / 2
             setattr(self.scan_control, f"{axis}_start", offset - half)
@@ -846,8 +857,21 @@ class SPMformatter(ABC):
             setattr(self.scan_control, f"{axis}_end", offset + half)
             setattr(self.scan_control, f"{axis}_end_unit", unit)
 
+    def _pixel_centres(self, axis: str) -> np.ndarray:
+        """Ascending positions of the pixel centres along 'x' or 'y'.
+
+        The scan offset is the centre of the scan frame, so the frame spans
+        'offset - range/2' to 'offset + range/2' and pixel 'i' of 'n' sits at
+        'offset - range/2 + (i + 0.5) * range/n'.
+        """
+        offset = getattr(self.scan_control, f"{axis}_offset")
+        scan_range = getattr(self.scan_control, f"{axis}_range")
+        points = int(getattr(self.scan_control, f"{axis}_points"))
+        step = scan_range / points
+        return offset - scan_range / 2 + (np.arange(points) + 0.5) * step
+
     def put_independent_scan_axes_in_template(
-        self, parent_path, group_name, axes: Sequence[str] = ("X", "Y")
+        self, scan_control_path: str, axes: Sequence[str] = ("X", "Y")
     ):
         """Writes 'independent_scan_axes' of 'NXspm_scan_control'.
 
@@ -855,7 +879,7 @@ class SPMformatter(ABC):
         scan of an image gives ['X', 'Y']. It describes the raster, not the
         plot, and is unrelated to the '@axes' of an NXdata group.
         """
-        self.template[f"{parent_path}/{group_name}/independent_scan_axes"] = list(axes)
+        self.template[f"{scan_control_path}/independent_scan_axes"] = list(axes)
 
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""
