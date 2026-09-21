@@ -178,9 +178,39 @@ Evidence:
 | `RHK_Xsize`, `RHK_Ysize` | pixels per line and number of lines. |
 | `RHK_Xoffset`, `RHK_Yoffset` | **centre** of the scan area; [evidence](#omicron--rhk-sm4-centre-vendor-manual-and-empirical-test-on-vendor-data). |
 
-The range is not stored; it is `range = N × |RHK_Xscale|` for `N =
-RHK_Xsize` pixels (and the same for y), so `|RHK_Xscale|` is the pixel pitch.
-This is also how Gwyddion sizes the image.
+#### How the geometry is read
+
+An SM4 page header stores no step size, no range and no scan direction as such.
+All three are read out of `RHK_Xscale`, `RHK_Yscale` and the two sizes:
+
+- **Step (pixel pitch)** `= |RHK_Xscale|` along x and `|RHK_Yscale|` along y.
+  The scale is the distance between two neighbouring pixels and is signed; its
+  magnitude is the pitch. Gwyddion reads it the same way, sizing a page as
+  `xres * fabs(x_scale)`
+  ([`rhk-sm4.c`](https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c)),
+  as does the MATLAB `sm4reader`, `width = abs(XScale * points)`
+  ([File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/62561-sm4reader-fileid)).
+- **Scan range** `= N × |RHK_Xscale|` for `N = RHK_Xsize` pixels, and the same
+  for y with `RHK_Ysize`. It is the full width of the scanned area, edge to
+  edge, so it counts `N` pitches and not `N - 1`, matching the same two readers.
+- **Scan direction** comes from the **sign** of the scale. A positive
+  `RHK_Yscale` means the rows advance towards increasing y, an upward scan, and
+  a negative one a downward scan
+  ([Gwyddion forum](https://sourceforge.net/p/gwyddion/discussion/fileformats/thread/3377ed98fa/),
+  where the module author states that the sign indicates the direction, and
+  [`rhk-sm4.c`](https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c),
+  which flips a page's rows exactly when `y_scale > 0`). The sign of
+  `RHK_Xscale` does **not** give the fast direction: it is the same on the
+  Forward and the Backward page of every file checked, so it describes the
+  coordinate mapping of the stored array, not the way the tip ran along a line.
+
+The pixel positions themselves are centred on `RHK_Xoffset`, which is the
+centre of the scanned area
+([evidence](#omicron--rhk-sm4-centre-vendor-manual-and-empirical-test-on-vendor-data)),
+so pixel `i` of `N` sits at `offset - range/2 + (i + 0.5) * |scale|`. Placing a
+coordinate at the centre of its pixel rather than at its edge is this reader's
+convention, stated in the image orientation section above; RHK does not
+prescribe it.
 
 Test folders take `up`/`down` from the sign of `RHK_Yscale`.
 
