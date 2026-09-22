@@ -18,6 +18,11 @@ nav:
       - explanation/reader-orchestra.md
       - explanation/reader-structure.md
       - explanation/scan-region-conventions.md
+      - Scan region per flavour:
+          - explanation/scan-region/nanonis-sxm.md
+          - explanation/scan-region/bruker-spm.md
+          - explanation/scan-region/bruker-flt.md
+          - explanation/scan-region/omicron-sm4.md
   - Reference:
       - reference/standalone-usages.md
       - reference/nanonis.md

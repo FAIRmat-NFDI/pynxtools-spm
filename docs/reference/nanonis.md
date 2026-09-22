@@ -63,6 +63,7 @@ pynx convert --nxdl NXafm --reader spm --output output.nxs eln_data.yaml A151216
 ## Further reading
 
 - [Scan region, axes and scan direction](../explanation/scan-region-conventions.md)
+- [Scan region in Nanonis `.sxm`](../explanation/scan-region/nanonis-sxm.md)
 - [Supported vendor files and formats](../explanation/reader-orchestra.md#supported-vendor-files-and-formats)
 - [Work with Reader](../how-to-guides/work-with-reader.md)
 - [Use Reader from Command Line](standalone-usages.md)

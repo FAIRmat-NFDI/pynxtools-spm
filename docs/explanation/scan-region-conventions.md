@@ -119,95 +119,16 @@ A bare axis covers two different situations, which the file itself tells apart:
 
 ## Raw-file elements per flavour
 
+Each flavour has its own section with the full key table, how its scan direction
+is decided and what it leaves unrecorded. Click a flavour to open it.
+
 | Flavour | Extension | Offset | Range | Points | Direction | Unit | Angle |
 |---|---|---|---|---|---|---|---|
-| [Nanonis](#nanonis-sxm-stm-afm) | `.sxm` | `:SCAN_OFFSET:` | `:SCAN_RANGE:` | `:SCAN_PIXELS:` | `:SCAN_DIR:` | `/Z-Controller/Z` unit | `:SCAN_ANGLE:` |
-| [Bruker NanoScope](#bruker-nanoscope-spm) | `.spm` | `\X Offset`, `\Y Offset` | `\Scan Size`, `\Aspect Ratio` | `\Samps/line`, `\Lines` | `\Frame direction` | In the value, e.g. `20000 nm` | `\Rotate Ang.` |
-| [Bruker SPMLab](#bruker-spmlab-flt) | `.FLT` | `OffsetX`, `OffsetY` | `ScanRangeX`, `ScanRangeY` | `ResolutionX`, `ResolutionY` | `ScanDirection` | Suffix of the value, e.g. `1.0000 µm` | `Rotation` |
-| [Omicron / RHK](#omicron-rhk-sm4) | `.sm4` | `RHK_Xoffset`, `RHK_Yoffset` | not stored | `RHK_Xsize`, `RHK_Ysize` | sign of `RHK_Yscale` | `RHK_X/@unit`, `RHK_Y/@unit` | `RHK_Angle` |
+| [Nanonis](scan-region/nanonis-sxm.md) | `.sxm` | `:SCAN_OFFSET:` | `:SCAN_RANGE:` | `:SCAN_PIXELS:` | `:SCAN_DIR:` | `/Z-Controller/Z` unit | `:SCAN_ANGLE:` |
+| [Bruker NanoScope](scan-region/bruker-spm.md) | `.spm` | `\X Offset`, `\Y Offset` | `\Scan Size`, `\Aspect Ratio` | `\Samps/line`, `\Lines` | `\Frame direction` | In the value, e.g. `20000 nm` | `\Rotate Ang.` |
+| [Bruker SPMLab](scan-region/bruker-flt.md) | `.FLT` | `OffsetX`, `OffsetY` | `ScanRangeX`, `ScanRangeY` | `ResolutionX`, `ResolutionY` | `ScanDirection` | Suffix of the value, e.g. `1.0000 µm` | `Rotation` |
+| [Omicron / RHK](scan-region/omicron-sm4.md) | `.sm4` | `RHK_Xoffset`, `RHK_Yoffset` | not stored | `RHK_Xsize`, `RHK_Ysize` | sign of `RHK_Yscale` | `RHK_X/@unit`, `RHK_Y/@unit` | `RHK_Angle` |
 | [No raster](#no-raster-nanonis-dat-sts-and-bruker-spmtxt) | `.dat`, `.spm.txt` | — | — | — | — | — | — |
-
-### Nanonis `.sxm` (STM, AFM)
-
-| Raw key | Meaning | How the reader uses it |
-|---|---|---|
-| `:SCAN_OFFSET:` | Centre of the scan frame, x and y | `scan_offset_value_x`, `_y` |
-| `:SCAN_RANGE:` | Width and height | `scan_range_x`, `_y` |
-| `:SCAN_PIXELS:` | Pixels per line, number of lines | `scan_points_x`, `_y` |
-| `:SCAN_DIR:` | `up` or `down`, the slow direction | Sign of the slow axis; orients the image |
-| `:SCAN_ANGLE:` | Rotation of the frame | `scan_angle_x`, `_y`, not applied |
-
-Both passes of the fast axis are stored (`DATA_INFO` `Direction` is `both`), so
-the fast axis stays unsigned. The header repeats the same geometry in
-`:Scan>Scanfield:` as `centre_x;centre_y;width;height;angle`; the reader does not
-read that key.
-
-**Open question.** That `SCAN_OFFSET` is the centre follows from what Nanonis
-writes into the file and from how other readers treat it, not from a statement by
-SPECS. The Nanonis TCP Protocol Document, which defines the scan frame directly,
-needs a MySPECS account and has not been checked.
-
-### Bruker NanoScope `.spm`
-
-| Raw key | Meaning | How the reader uses it |
-|---|---|---|
-| `\X Offset`, `\Y Offset` | Centre position of the scan | `scan_offset_value_x`, `_y` |
-| `\Scan Size` | Edge length of the frame | `scan_range_x`; y is divided by `\Aspect Ratio` |
-| `\Aspect Ratio` | Ratio of x to y range | Malformed values fall back to `1:1` with a warning |
-| `\Samps/line`, `\Lines` | Pixels per line, number of lines | `scan_points_x`, `_y` |
-| `\Frame direction` | `Up` or `Down`, the slow direction | Sign of the slow axis |
-| `\Rotate Ang.` | Rotation of the frame | `scan_angle_x`, not applied |
-
-Trace and Retrace layers are both stored, so the fast axis stays unsigned.
-`\X Position` and the coarse stage `\Stage X` are **not** used for the scan
-region: the stage is a different frame of reference.
-
-**Open question.** No Bruker document states the order in which the rows are
-stored, so the image orientation rests on how Gwyddion reads the format. A
-document stating the row order, or an openly licensed Up and Down scan of one
-area, would settle it.
-
-### Bruker SPMLab `.FLT`
-
-| Raw key | Meaning | How the reader uses it |
-|---|---|---|
-| `OffsetX`, `OffsetY` | Centre of the scan frame | `scan_offset_value_x`, `_y` |
-| `ScanRangeX`, `ScanRangeY` | Width and height | `scan_range_x`, `_y` |
-| `ResolutionX`, `ResolutionY` | Pixels per line, number of lines | `scan_points_x`, `_y` |
-| `ScanDirection` | `FORWARD` or `BACKWARD`, the fast direction | Sign of the fast axis |
-| `Rotation` | Rotation of the frame | `scan_angle_x`, not applied |
-
-A `.FLT` holds a single channel recorded in one direction, so the fast axis is
-signed. The format records **no slow scan direction**, so the slow axis stays
-bare. The `[Data]` block holds only the height values, `ResolutionX ×
-ResolutionY` 32-bit floats; no axis coordinates are stored.
-
-**Open question.** Because the slow direction is absent from the header, a bare
-`Y` here states ignorance rather than an upward scan. An SPMLab or Innova manual,
-or a pair of up and down scans of the same area, would settle it.
-
-### Omicron / RHK `.sm4`
-
-| Raw key | Meaning | How the reader uses it |
-|---|---|---|
-| `RHK_Xoffset`, `RHK_Yoffset` | Centre of the scan area | `scan_offset_value_x`, `_y` |
-| `RHK_Xscale`, `RHK_Yscale` | Signed distance between adjacent pixels | `\|scale\|` is the pixel pitch; the sign of `RHK_Yscale` is the slow direction |
-| `RHK_Xsize`, `RHK_Ysize` | Pixels per line, number of lines | `scan_points_x`, `_y` |
-| `RHK_X/@unit`, `RHK_Y/@unit` | Unit of the lateral axes | Unit of offset, range, start, end and step |
-| `RHK_ScanType` | Names the Forward and Backward pass | Channel naming; one scan control group per page |
-| `RHK_Angle` | Rotation of the frame | `scan_angle_x`, `_y`, not applied |
-
-No range is stored: it is `range = N × |scale|`, the edge-to-edge width, counting
-`N` pitches and not `N - 1`.
-
-**How the scan direction was decided.** The slow direction comes from the sign of
-`RHK_Yscale`, positive for an upward scan and negative for a downward one. The
-fast axis stays unsigned: `RHK_ScanType` names the Forward and the Backward pass,
-but it does not say which way either ran, and `RHK_Xscale` carries the same sign
-on both pages, so it describes the coordinate mapping of the stored array rather
-than the travel of the tip. An RHK document defining `RHK_ScanType`, or two scans
-of one area with opposite `RHK_ScanType` and a feature that fixes the direction,
-would settle it.
 
 ### No raster: Nanonis `.dat` STS and Bruker `.spm.txt`
 
@@ -236,9 +157,9 @@ Neither flavour rasters an area, so neither writes a 2D scan region or
 | Claim | Flavour | Grade | Source |
 |---|---|---|---|
 | Offset is the centre | Bruker `.spm` | Vendor manual | [NanoScope 6.13 User Guide](https://afmhelp.com/docs/manuals/Nanoscope6.13UserGuide.pdf), p. 60 |
-| Offset is the centre | Omicron `.sm4` | Vendor manual + empirical test | [RHK R9 User Manual](https://www.manualslib.com/manual/2808818/Rhk-Technology-R9.html?page=195), p. 195 |
+| Offset is the centre | Omicron `.sm4` | Vendor manual + empirical test | [RHK R9 User Manual](https://www.manualslib.com/manual/2808818/Rhk-Technology-R9.html?page=195), p. 195, and the [measurement](scan-region/omicron-sm4.md#evidence) |
 | Offset is the centre | Nanonis `.sxm` | Vendor file content + third-party readers | `:Scan>Scanfield:` in the files; [Gwyddion `nanonis.c`](https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/nanonis.c) |
-| Offset is the centre | Bruker `.FLT` | Empirical test | [Measurement below](#how-the-empirical-test-works) |
+| Offset is the centre | Bruker `.FLT` | Empirical test | [Measurement](scan-region/bruker-flt.md#evidence) |
 | Pitch is `\|scale\|`, range is `N × \|scale\|` | Omicron `.sm4` | Third-party readers | [Gwyddion `rhk-sm4.c`](https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c); [MATLAB `sm4reader`](https://www.mathworks.com/matlabcentral/fileexchange/62561-sm4reader-fileid) |
 | Sign of `RHK_Yscale` is the slow direction | Omicron `.sm4` | Third-party reader | [Gwyddion forum](https://sourceforge.net/p/gwyddion/discussion/fileformats/thread/3377ed98fa/) |
 | Row order and image flips | All image flavours | Third-party reader | Gwyddion import modules, verified against every test file |
@@ -261,14 +182,9 @@ In the results below, **Measured** is where the small scan was found, while
 raw offsets under each reading. Whichever prediction the measurement matches is
 the reading the file follows.
 
-| Pair | Flavour | Correlation peak / next | Measured | Centre predicts | Corner predicts |
-|---|---|---|---|---|---|
-| `PMIS2-C8_ML2_p1_5` in `…_p1_20`, identical offsets | `.FLT` | 0.54 / 0.10 | (10.00, 10.04) µm | (10.00, 10.00) µm | (2.50, 2.50) µm |
-| `VT231211_A1_0064` (10 nm) in `_0065` (30 nm), identical offsets | `.sm4` | 0.71 / 0.54 | (0.53, 0.41) nm | (0.00, 0.00) nm | (9.96, 9.96) nm |
-| `VT231205_A1_0064` (up) and `_0063` (down), identical offsets | `.sm4` | 0.44 / 0.38 | (0.94, 4.26) nm | (0.00, 0.00) nm | (0.00, 19.96) nm |
-
-The last pair also rules the corner reading out on its own: under it the up and
-the down scan would cover adjacent, non-overlapping strips, yet they overlap.
+The measured results are shown with the flavour they concern:
+[Bruker SPMLab `.FLT`](scan-region/bruker-flt.md#evidence) and
+[Omicron / RHK `.sm4`](scan-region/omicron-sm4.md#evidence).
 
 ### Data used
 
@@ -285,10 +201,10 @@ should change.
 
 | Claim | Evidence that would overturn it |
 |---|---|
-| The `.FLT` offset is the centre | A Veeco, ThermoMicroscopes or Bruker Innova document defining `OffsetX`, or scans of one area that the centre reading misplaces |
-| The `.sm4` range is `N × \|scale\|` | The RHK "SM4 Data File Format" document, or a calibration grating measured against the written range |
-| The `.sm4` fast axis has no recorded direction | A field in the page header, or the RHK format document, that gives it |
-| Nanonis `SCAN_OFFSET` is the centre | The SPECS TCP Protocol Document, if it says otherwise |
+| The [`.FLT` offset is the centre](scan-region/bruker-flt.md) | A Veeco, ThermoMicroscopes or Bruker Innova document defining `OffsetX`, or scans of one area that the centre reading misplaces |
+| The [`.sm4` range is `N × \|scale\|`](scan-region/omicron-sm4.md) | The RHK "SM4 Data File Format" document, or a calibration grating measured against the written range |
+| The [`.sm4` fast axis has no recorded direction](scan-region/omicron-sm4.md) | A field in the page header, or the RHK format document, that gives it |
+| [Nanonis `SCAN_OFFSET` is the centre](scan-region/nanonis-sxm.md) | The SPECS TCP Protocol Document, if it says otherwise |
 
 Please open an issue with the
 [Challenge a scan-region convention](https://github.com/FAIRmat-NFDI/pynxtools-spm/issues/new?template=challenge-a-convention.yml)
