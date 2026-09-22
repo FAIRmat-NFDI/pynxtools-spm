@@ -21,7 +21,7 @@ plot: the origin is the **bottom-left** corner.
   angle is stored separately in `scan_region/scan_angle_*`.
 
 Gwyddion is used as an independent reference because it reads every raw format
-in this test set. It stores row 0 at the **top** , so a
+in this test set. It stores row 0 at the **top**, so a
 correctly oriented signal equals `np.flipud` of the matching Gwyddion channel.
 
 ## Scan region: offset, start and end

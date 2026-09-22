@@ -332,20 +332,11 @@
                 }
               }
             ],
-            "scan_startN[scan_start_n]": [
-              {
-                "x": {
-                  "raw_path": "/Scanner_list/0/X_Position",
-                  "@units": "@default:nm"
-                }
-              },
-              {
-                "y": {
-                  "raw_path": "/Scanner_list/0/Y_Position",
-                  "@units": "@default:nm"
-                }
-              }
-            ],
+            "scan_startN[scan_start_n]": {
+              "#note": "Derived in function 'construct_scan_region_grp' from the centre offset and the scan range; '/Scanner_list/0/X_Position' is not used.",
+              "raw_path": "",
+              "@units": ""
+            },
             "scan_rangeN[scan_range_n]": {
               "#note": "Aspect_Ratio is also needed to calculate the scan range",
               "raw_path": "/Scanner_list/0/Scan_Size",

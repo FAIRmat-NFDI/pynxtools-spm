@@ -29,7 +29,7 @@ def _text(value):
 
 
 def _scan_regions(h5_file):
-    """Every group holding a 2D scan region, as {field: value} dicts."""
+    """Every group holding a 2D scan region, keyed by the group path."""
     fields = ("scan_offset_value", "scan_range", "scan_start", "scan_end")
     groups: dict[str, dict[str, float]] = {}
 
@@ -39,11 +39,35 @@ def _scan_regions(h5_file):
             groups.setdefault(parent, {})[field] = float(obj[()])
 
     h5_file.visititems(visit)
-    return [
-        values
-        for values in groups.values()
+    return {
+        path: values
+        for path, values in groups.items()
         if {"scan_offset_value_x", "scan_range_x"} <= values.keys()
-    ]
+    }
+
+
+def _region_of(image_path: str, regions: dict[str, dict[str, float]]):
+    """The scan region that describes one NXdata group.
+
+    An image nested under a scan control group takes that group's region. An
+    image written at entry level is not tied to a region by the file, so the
+    regions must agree on the offsets; that is asserted here rather than
+    assumed, because a file whose regions disagree would otherwise be compared
+    against an arbitrary one of them.
+    """
+    for path, values in regions.items():
+        scan_control = path.rsplit("/", 1)[0]
+        if image_path.startswith(f"{scan_control}/"):
+            return values
+
+    for axis in ("x", "y"):
+        offsets = [values[f"scan_offset_value_{axis}"] for values in regions.values()]
+        assert max(offsets) == pytest.approx(min(offsets)), (
+            f"{image_path}: the file holds scan regions with different "
+            f"{axis} offsets ({min(offsets)} to {max(offsets)}), so no single "
+            "region describes this image"
+        )
+    return next(iter(regions.values()))
 
 
 def _images(h5_file):
@@ -86,7 +110,7 @@ def image_file(request):
 
 def test_start_and_end_bracket_the_offset(image_file):
     """scan_start/scan_end are offset -/+ range/2 on both axes."""
-    for region in _scan_regions(image_file):
+    for region in _scan_regions(image_file).values():
         for axis in ("x", "y"):
             offset = region[f"scan_offset_value_{axis}"]
             half = region[f"scan_range_{axis}"] / 2
@@ -96,20 +120,18 @@ def test_start_and_end_bracket_the_offset(image_file):
 
 def test_axes_are_upper_case_and_centred_on_the_offset(image_file):
     """'@axes' is [Y, X], both ascend, and their midpoint is the scan offset."""
-    offsets = {
-        axis: region[f"scan_offset_value_{axis}"]
-        for region in _scan_regions(image_file)
-        for axis in ("x", "y")
-    }
+    regions = _scan_regions(image_file)
     images = _images(image_file)
     assert images, "a 2D scan must write at least one NXdata group with two axes"
     for path, names, group in images:
         assert names == ["Y", "X"], path
+        region = _region_of(path, regions)
         for name in names:
             values = group[name][()]
             assert np.all(np.diff(values) > 0), f"{path}: {name} must ascend"
             midpoint = (values[0] + values[-1]) / 2
-            assert midpoint == pytest.approx(offsets[name.lower()]), f"{path}: {name}"
+            offset = region[f"scan_offset_value_{name.lower()}"]
+            assert midpoint == pytest.approx(offset), f"{path}: {name}"
 
 
 def test_independent_scan_axes_runs_fast_to_slow(image_file):
