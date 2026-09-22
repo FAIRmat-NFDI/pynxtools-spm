@@ -1,8 +1,8 @@
 # Scan region, axes and scan direction
 
 Every SPM vendor writes the geometry of a scan differently: some store a centre,
-some a corner, some no range at all and some no scan direction. This page states
-the single convention `pynxtools-spm` writes into NeXus, which raw element of
+some a corner, some no range at all and some no scan direction. This section
+states the single convention `pynxtools-spm` writes into NeXus, which raw element of
 each format it comes from, and how strong the evidence for each reading is.
 
 Where a vendor documents the meaning, the vendor is cited. Where no document was
@@ -10,7 +10,7 @@ found, the meaning was measured on published data and the measurement is shown,
 so that anyone can repeat it or overturn it — see
 [Challenge these findings](#challenge-these-findings).
 
-## What this page answers
+## What you will find here
 
 | Question | Short answer | Section |
 |---|---|---|
@@ -18,7 +18,7 @@ so that anyone can repeat it or overturn it — see
 | How are `scan_start` and `scan_end` obtained? | `offset ∓ range/2`; never `offset` and `offset + range` | [The convention](#the-convention) |
 | What do the axis values mean? | Pixel centres, `step = range / N` | [The convention](#the-convention) |
 | Why are there two lists of axes? | `@axes` describes the image, `independent_scan_axes` the movement of the tip | [Two kinds of axes](#two-kinds-of-axes) |
-| Where is the scan direction? | In the sign of `independent_scan_axes`, e.g. `-Y` | [Scan direction as a sign](#scan-direction-as-a-sign) |
+| Where is the scan direction? | In the sign of `independent_scan_axes`, e.g. `-Y`; a bare `X` means unknown, or scanned both forward and backward | [Scan direction as a sign](#scan-direction-as-a-sign) |
 | Which raw key does a value come from? | Per-flavour tables | [Raw-file elements per flavour](#raw-file-elements-per-flavour) |
 | How certain is all this? | Graded per claim, vendor manual down to none | [Evidence and confidence](#evidence-and-confidence) |
 
@@ -35,7 +35,7 @@ so that anyone can repeat it or overturn it — see
 | `step_size_x`, `_y` | `NXspm_scan_pattern` | Pixel pitch | `range / points` |
 | `AXISNAME` (`X`, `Y`) | `NXdata` | Position of each pixel centre | `offset - range/2 + (i + 0.5) × step` |
 | `@axes` | `NXdata` | Axis of each data dimension | `[Y, X]`, dimension 0 first |
-| `independent_scan_axes` | `NXspm_scan_control` | Scan axes, fastest to slowest, signed with the direction | Vendor direction key |
+| `independent_scan_axes` | `NXspm_scan_control` | Scan axes, fastest to slowest; signed with the scan direction, or bare when that is unknown or both passes were scanned | Vendor direction key |
 
 ## The convention
 
@@ -72,7 +72,7 @@ pixel centre is this reader's choice; no vendor prescribes it.
 
 | Frame | What it is | Fields in it |
 |---|---|---|
-| Scanner (piezo) | Position within the scanner range, measured from its undeflected centre | `scan_offset_value_*`, `scan_start_*`, `scan_end_*`, `AXISNAME` |
+| Scanner (piezo) | Position within the scanner range, measured from its undeflected centre | `scan_offset_value_*`, `scan_start_*`, `scan_end_*` |
 | Stage | Coarse position of the head or sample holder | Vendor stage keys, e.g. Bruker `\Stage X`; never combined with the offset |
 | Sample | Where a feature physically sits | Can be reconstructed only by combining the stage position with the scanner frame |
 
@@ -85,8 +85,6 @@ sample. The angle is recorded but never applied to the data.
 Images follow the bottom-left convention: row 0 is the bottom row, column 0 the
 left column, and both axes ascend. An up scan and a down scan of the same area
 give the same image; only the order in which the lines were recorded differs.
-See [Reader Orchestra](reader-orchestra.md) for the reader pipeline that applies
-this.
 
 ## Two kinds of axes
 
@@ -96,7 +94,7 @@ independently of each other.
 | | `@axes` (`NXdata`) | `independent_scan_axes` (`NXspm_scan_control`) |
 |---|---|---|
 | Question answered | How should the image be displayed? | How did the tip move over the sample? |
-| Order | Dimension order, `[slow, fast]` = `[Y, X]` | Fastest to slowest, `[X, Y]` |
+| Order | Dimension order, `[slow, fast]` = `[Y, X]` | Fastest to slowest, `[±X, ±Y]` |
 | Case | Upper case | Upper case |
 | Sign | Never signed | Signed with the scan direction where known |
 | Affected by the image flips | Yes, it describes the stored image | No, it describes the measurement |
@@ -107,7 +105,7 @@ independently of each other.
 |---|---|
 | `+Y` | The axis was traveled towards increasing Y |
 | `-Y` | The axis was traveled towards decreasing Y |
-| `Y` | No single direction is asserted |
+| `Y` | No single direction is asserted, or the direction is unknown |
 
 An axis is signed when the entry holds exactly one pass along it **and** the
 format records which way that pass ran.
@@ -144,6 +142,11 @@ the fast axis stays unsigned. The header repeats the same geometry in
 `:Scan>Scanfield:` as `centre_x;centre_y;width;height;angle`; the reader does not
 read that key.
 
+**Open question.** That `SCAN_OFFSET` is the centre follows from what Nanonis
+writes into the file and from how other readers treat it, not from a statement by
+SPECS. The Nanonis TCP Protocol Document, which defines the scan frame directly,
+needs a MySPECS account and has not been checked.
+
 ### Bruker NanoScope `.spm`
 
 | Raw key | Meaning | How the reader uses it |
@@ -158,6 +161,11 @@ read that key.
 Trace and Retrace layers are both stored, so the fast axis stays unsigned.
 `\X Position` and the coarse stage `\Stage X` are **not** used for the scan
 region: the stage is a different frame of reference.
+
+**Open question.** No Bruker document states the order in which the rows are
+stored, so the image orientation rests on how Gwyddion reads the format. A
+document stating the row order, or an openly licensed Up and Down scan of one
+area, would settle it.
 
 ### Bruker SPMLab `.FLT`
 
@@ -174,6 +182,10 @@ signed. The format records **no slow scan direction**, so the slow axis stays
 bare. The `[Data]` block holds only the height values, `ResolutionX ×
 ResolutionY` 32-bit floats; no axis coordinates are stored.
 
+**Open question.** Because the slow direction is absent from the header, a bare
+`Y` here states ignorance rather than an upward scan. An SPMLab or Innova manual,
+or a pair of up and down scans of the same area, would settle it.
+
 ### Omicron / RHK `.sm4`
 
 | Raw key | Meaning | How the reader uses it |
@@ -186,9 +198,16 @@ ResolutionY` 32-bit floats; no axis coordinates are stored.
 | `RHK_Angle` | Rotation of the frame | `scan_angle_x`, `_y`, not applied |
 
 No range is stored: it is `range = N × |scale|`, the edge-to-edge width, counting
-`N` pitches and not `N - 1`. The fast axis stays unsigned, because neither
-`RHK_ScanType` nor `RHK_Xscale`, whose sign is the same on the Forward and the
-Backward page, says which way the tip ran along a line.
+`N` pitches and not `N - 1`.
+
+**How the scan direction was decided.** The slow direction comes from the sign of
+`RHK_Yscale`, positive for an upward scan and negative for a downward one. The
+fast axis stays unsigned: `RHK_ScanType` names the Forward and the Backward pass,
+but it does not say which way either ran, and `RHK_Xscale` carries the same sign
+on both pages, so it describes the coordinate mapping of the stored array rather
+than the travel of the tip. An RHK document defining `RHK_ScanType`, or two scans
+of one area with opposite `RHK_ScanType` and a feature that fixes the direction,
+would settle it.
 
 ### No raster: Nanonis `.dat` STS and Bruker `.spm.txt`
 
@@ -237,6 +256,11 @@ Pairs whose two scans share the same offset are the clearest: a centre reading
 puts the small scan in the middle of the large one, a corner reading in a corner,
 and that holds whatever the axis directions are.
 
+In the results below, **Measured** is where the small scan was found, while
+**Centre predicts** and **Corner predicts** are the positions computed from the
+raw offsets under each reading. Whichever prediction the measurement matches is
+the reading the file follows.
+
 | Pair | Flavour | Correlation peak / next | Measured | Centre predicts | Corner predicts |
 |---|---|---|---|---|---|
 | `PMIS2-C8_ML2_p1_5` in `…_p1_20`, identical offsets | `.FLT` | 0.54 / 0.10 | (10.00, 10.04) µm | (10.00, 10.00) µm | (2.50, 2.50) µm |
@@ -245,9 +269,6 @@ and that holds whatever the axis directions are.
 
 The last pair also rules the corner reading out on its own: under it the up and
 the down scan would cover adjacent, non-overlapping strips, yet they overlap.
-The few-nm residuals of the `.sm4` pairs are expected from creep and drift of an
-open-loop STM scanner; the `.FLT` files were recorded with closed-loop
-linearization, which is why they agree to one pixel.
 
 ### Data used
 
@@ -255,15 +276,6 @@ linearization, which is why they agree to one pixel.
 |---|---|---|---|
 | Bruker `.FLT` | `PMIS2-C8_ML2_p1_5__040925135420.SIG_HEIGHT_SENSOR_FRW.FLT`, `PMIS2-C8_ML2_p1_20__040925132340.SIG_HEIGHT_SENSOR_FRW.FLT` | [In this repository](../assets/empirical_offset_test/README.md), and in `AFM.zip` of [10.5281/zenodo.18060234](https://doi.org/10.5281/zenodo.18060234) | CC BY 4.0 |
 | Omicron `.sm4` | `VT231211_A1_0064.sm4`, `VT231211_A1_0065.sm4`, `VT231205_A1_0063.sm4`, `VT231205_A1_0064.sm4` | [10.5281/zenodo.14268803](https://doi.org/10.5281/zenodo.14268803); the record holds many more files, so take these four by name | CC BY 4.0 |
-
-### Still unverified
-
-| Open question | What would settle it |
-|---|---|
-| Which way the tip runs along a line in `.sm4` | An RHK document defining `RHK_ScanType`, or two scans of one area with opposite `RHK_ScanType` and a feature that fixes the direction |
-| The slow scan direction of a `.FLT` | An SPMLab or Innova manual, or a pair of up and down scans of the same area |
-| Whether Nanonis `SCAN_OFFSET` is the centre per SPECS itself | The Nanonis TCP Protocol Document, which needs a MySPECS account |
-| The stored row order of a `.spm` | A Bruker document stating it, or an openly licensed Up and Down scan of one area |
 
 ## Challenge these findings
 
