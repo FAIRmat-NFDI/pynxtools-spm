@@ -1,0 +1,1496 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="The documentation for pynxtools-spm plugin.
+" name="description"/>
+<meta content="The NOMAD Authors" name="author"/>
+<link href="https://fairmat-nfdi.github.io/pynxtools-spm/explanation/scan-region-conventions.html" rel="canonical"/>
+<link href="reader-structure.html" rel="prev"/>
+<link href="scan-region/nanonis-sxm.html" rel="next"/>
+<link href="../assets/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
+<title>Scan region, axes and scan direction - Documentation</title>
+<link href="../assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Titillium Web";--md-code-font:"Roboto Mono"}</style>
+<link href="../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#scan-region-axes-and-scan-direction">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Documentation" class="md-header__button md-logo" data-md-component="logo" href="https://fairmat-nfdi.github.io/pynxtools-spm/" title="Documentation">
+<img alt="logo" src="../assets/nomad-plugin-logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Documentation
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Scan region, axes and scan direction
+            
+          </span>
+</div>
+</div>
+</div>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/FAIRmat-NFDI/pynxtools-spm" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Documentation" class="md-nav__button md-logo" data-md-component="logo" href="https://fairmat-nfdi.github.io/pynxtools-spm/" title="Documentation">
+<img alt="logo" src="../assets/nomad-plugin-logo.png"/>
+</a>
+    Documentation
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/FAIRmat-NFDI/pynxtools-spm" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../index.html">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorial
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/installation.html">
+<span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tutorials/use-reader-in-nomad.html">
+<span class="md-ellipsis">
+    
+  
+    Use Reader in NOMAD
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    How-To Guides
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    How-To Guides
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../how-to-guides/work-with-reader.html">
+<span class="md-ellipsis">
+    
+  
+    How to Use the Reader
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../how-to-guides/how-to-extend-readers.html">
+<span class="md-ellipsis">
+    
+  
+    How to Extend Readers
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Explanation
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Explanation
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="reader-orchestra.html">
+<span class="md-ellipsis">
+    
+  
+    Scanning Probe Microscopy (SPM)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="reader-structure.html">
+<span class="md-ellipsis">
+    
+  
+    Reader Structure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Scan region, axes and scan direction
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="scan-region-conventions.html">
+<span class="md-ellipsis">
+    
+  
+    Scan region, axes and scan direction
+  
+
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-will-find-here">
+<span class="md-ellipsis">
+      
+        What you will find here
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fields-the-reader-writes">
+<span class="md-ellipsis">
+      
+        Fields the reader writes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-convention">
+<span class="md-ellipsis">
+      
+        The convention
+      
+    </span>
+</a>
+<nav aria-label="The convention" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offset-is-the-centre-of-the-scan-area">
+<span class="md-ellipsis">
+      
+        Offset is the centre of the scan area
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#axis-values-are-pixel-centres">
+<span class="md-ellipsis">
+      
+        Axis values are pixel centres
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#frames-of-reference">
+<span class="md-ellipsis">
+      
+        Frames of reference
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-orientation">
+<span class="md-ellipsis">
+      
+        Image orientation
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#two-kinds-of-axes">
+<span class="md-ellipsis">
+      
+        Two kinds of axes
+      
+    </span>
+</a>
+<nav aria-label="Two kinds of axes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scan-direction-as-a-sign">
+<span class="md-ellipsis">
+      
+        Scan direction as a sign
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#raw-file-elements-per-flavour">
+<span class="md-ellipsis">
+      
+        Raw-file elements per flavour
+      
+    </span>
+</a>
+<nav aria-label="Raw-file elements per flavour" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#no-raster-nanonis-dat-sts-and-bruker-spmtxt">
+<span class="md-ellipsis">
+      
+        No raster: Nanonis .dat STS and Bruker .spm.txt
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evidence-and-confidence">
+<span class="md-ellipsis">
+      
+        Evidence and confidence
+      
+    </span>
+</a>
+<nav aria-label="Evidence and confidence" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grades">
+<span class="md-ellipsis">
+      
+        Grades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-each-claim-rests-on">
+<span class="md-ellipsis">
+      
+        What each claim rests on
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-the-empirical-test-works">
+<span class="md-ellipsis">
+      
+        How the empirical test works
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-used">
+<span class="md-ellipsis">
+      
+        Data used
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#challenge-these-findings">
+<span class="md-ellipsis">
+      
+        Challenge these findings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#references">
+<span class="md-ellipsis">
+      
+        References
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Scan region per flavour
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Scan region per flavour
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="scan-region/nanonis-sxm.html">
+<span class="md-ellipsis">
+    
+  
+    Scan region in Nanonis .sxm
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="scan-region/bruker-spm.html">
+<span class="md-ellipsis">
+    
+  
+    Scan region in Bruker NanoScope .spm
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="scan-region/bruker-flt.html">
+<span class="md-ellipsis">
+    
+  
+    Scan region in Bruker SPMLab .FLT
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="scan-region/omicron-sm4.html">
+<span class="md-ellipsis">
+    
+  
+    Scan region in Omicron / RHK .sm4
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reference/standalone-usages.html">
+<span class="md-ellipsis">
+    
+  
+    Standalone Usages
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reference/nanonis.html">
+<span class="md-ellipsis">
+    
+  
+    Data from Nanonis instruments
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reference/omicron.html">
+<span class="md-ellipsis">
+    
+  
+    Data from Omicron instruments
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reference/bruker.html">
+<span class="md-ellipsis">
+    
+  
+    Data from Bruker instruments
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-will-find-here">
+<span class="md-ellipsis">
+      
+        What you will find here
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fields-the-reader-writes">
+<span class="md-ellipsis">
+      
+        Fields the reader writes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-convention">
+<span class="md-ellipsis">
+      
+        The convention
+      
+    </span>
+</a>
+<nav aria-label="The convention" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#offset-is-the-centre-of-the-scan-area">
+<span class="md-ellipsis">
+      
+        Offset is the centre of the scan area
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#axis-values-are-pixel-centres">
+<span class="md-ellipsis">
+      
+        Axis values are pixel centres
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#frames-of-reference">
+<span class="md-ellipsis">
+      
+        Frames of reference
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#image-orientation">
+<span class="md-ellipsis">
+      
+        Image orientation
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#two-kinds-of-axes">
+<span class="md-ellipsis">
+      
+        Two kinds of axes
+      
+    </span>
+</a>
+<nav aria-label="Two kinds of axes" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scan-direction-as-a-sign">
+<span class="md-ellipsis">
+      
+        Scan direction as a sign
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#raw-file-elements-per-flavour">
+<span class="md-ellipsis">
+      
+        Raw-file elements per flavour
+      
+    </span>
+</a>
+<nav aria-label="Raw-file elements per flavour" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#no-raster-nanonis-dat-sts-and-bruker-spmtxt">
+<span class="md-ellipsis">
+      
+        No raster: Nanonis .dat STS and Bruker .spm.txt
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#evidence-and-confidence">
+<span class="md-ellipsis">
+      
+        Evidence and confidence
+      
+    </span>
+</a>
+<nav aria-label="Evidence and confidence" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#grades">
+<span class="md-ellipsis">
+      
+        Grades
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-each-claim-rests-on">
+<span class="md-ellipsis">
+      
+        What each claim rests on
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#how-the-empirical-test-works">
+<span class="md-ellipsis">
+      
+        How the empirical test works
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-used">
+<span class="md-ellipsis">
+      
+        Data used
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#challenge-these-findings">
+<span class="md-ellipsis">
+      
+        Challenge these findings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#references">
+<span class="md-ellipsis">
+      
+        References
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<nav aria-label="Navigation" class="md-path">
+<ol class="md-path__list">
+<li class="md-path__item">
+<a class="md-path__link" href="../index.html">
+<span class="md-ellipsis">
+    Home
+  </span>
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="reader-orchestra.html">
+<span class="md-ellipsis">
+    Explanation
+  </span>
+</a>
+</li>
+</ol>
+</nav>
+<article class="md-content__inner md-typeset">
+<h1 id="scan-region-axes-and-scan-direction">Scan region, axes and scan direction<a class="headerlink" href="#scan-region-axes-and-scan-direction" title="Permanent link">¶</a></h1>
+<p>Every SPM vendor writes the geometry of a scan differently: some store a centre,
+some a corner, some no range at all and some no scan direction. This section
+states the single convention <code>pynxtools-spm</code> writes into NeXus, which raw element of
+each format it comes from, and how strong the evidence for each reading is.</p>
+<p>Where a vendor documents the meaning, the vendor is cited. Where no document was
+found, the meaning was measured on published data and the measurement is shown,
+so that anyone can repeat it or overturn it — see
+<a href="#challenge-these-findings">Challenge these findings</a>.</p>
+<h2 id="what-you-will-find-here">What you will find here<a class="headerlink" href="#what-you-will-find-here" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Short answer</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What does the scan offset point at?</td>
+<td>The centre of the scanned area, for every flavour</td>
+<td><a href="#the-convention">The convention</a></td>
+</tr>
+<tr>
+<td>How are <code>scan_start</code> and <code>scan_end</code> obtained?</td>
+<td><code>offset ∓ range/2</code>; never <code>offset</code> and <code>offset + range</code></td>
+<td><a href="#the-convention">The convention</a></td>
+</tr>
+<tr>
+<td>What do the axis values mean?</td>
+<td>Pixel centres, <code>step = range / N</code></td>
+<td><a href="#the-convention">The convention</a></td>
+</tr>
+<tr>
+<td>Why are there two lists of axes?</td>
+<td><code>@axes</code> describes the image, <code>independent_scan_axes</code> the movement of the tip</td>
+<td><a href="#two-kinds-of-axes">Two kinds of axes</a></td>
+</tr>
+<tr>
+<td>Where is the scan direction?</td>
+<td>In the sign of <code>independent_scan_axes</code>, e.g. <code>-Y</code>; a bare <code>X</code> means unknown, or scanned both forward and backward</td>
+<td><a href="#scan-direction-as-a-sign">Scan direction as a sign</a></td>
+</tr>
+<tr>
+<td>Which raw key does a value come from?</td>
+<td>Per-flavour tables</td>
+<td><a href="#raw-file-elements-per-flavour">Raw-file elements per flavour</a></td>
+</tr>
+<tr>
+<td>How certain is all this?</td>
+<td>Graded per claim, vendor manual down to none</td>
+<td><a href="#evidence-and-confidence">Evidence and confidence</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields-the-reader-writes">Fields the reader writes<a class="headerlink" href="#fields-the-reader-writes" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>NeXus field</th>
+<th>Group</th>
+<th>Meaning</th>
+<th>Derived from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scan_offset_value_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_region</code></td>
+<td>Centre of the scanned area</td>
+<td>Vendor key, converted to a centre if the vendor stores a corner</td>
+</tr>
+<tr>
+<td><code>scan_range_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_region</code></td>
+<td>Width and height of the area</td>
+<td>Vendor key, or <code>points × pitch</code> when not stored</td>
+</tr>
+<tr>
+<td><code>scan_start_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_region</code></td>
+<td>Low edge of the area</td>
+<td><code>offset - range/2</code></td>
+</tr>
+<tr>
+<td><code>scan_end_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_region</code></td>
+<td>High edge of the area</td>
+<td><code>offset + range/2</code></td>
+</tr>
+<tr>
+<td><code>scan_angle_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_region</code></td>
+<td>Rotation of the scan frame</td>
+<td>Vendor key; not applied to the data</td>
+</tr>
+<tr>
+<td><code>scan_points_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_pattern</code></td>
+<td>Pixels per line, number of lines</td>
+<td>Vendor key</td>
+</tr>
+<tr>
+<td><code>step_size_x</code>, <code>_y</code></td>
+<td><code>NXspm_scan_pattern</code></td>
+<td>Pixel pitch</td>
+<td><code>range / points</code></td>
+</tr>
+<tr>
+<td><code>AXISNAME</code> (<code>X</code>, <code>Y</code>)</td>
+<td><code>NXdata</code></td>
+<td>Position of each pixel centre</td>
+<td><code>offset - range/2 + (i + 0.5) × step</code></td>
+</tr>
+<tr>
+<td><code>@axes</code></td>
+<td><code>NXdata</code></td>
+<td>Axis of each data dimension</td>
+<td><code>[Y, X]</code>, dimension 0 first</td>
+</tr>
+<tr>
+<td><code>independent_scan_axes</code></td>
+<td><code>NXspm_scan_control</code></td>
+<td>Scan axes, fastest to slowest; signed with the scan direction, or bare when that is unknown or both passes were scanned</td>
+<td>Vendor direction key</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-convention">The convention<a class="headerlink" href="#the-convention" title="Permanent link">¶</a></h2>
+<h3 id="offset-is-the-centre-of-the-scan-area">Offset is the centre of the scan area<a class="headerlink" href="#offset-is-the-centre-of-the-scan-area" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>scan_start_n = offset_n - range_n / 2
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>scan_end_n   = offset_n + range_n / 2
+</code></pre></div>
+<p><code>scan_start = offset</code> with <code>scan_end = offset + range</code> is never used. When a
+format stores a corner instead of a centre, the corner is shifted first,
+<code>offset = corner + range/2</code>, and the relations above are applied to it. Start and
+end are always derived, even where a format has a start-like key of its own.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["offset<br/>(centre)"] --- B["range"]
+    B --&gt; C["scan_start = offset - range/2"]
+    B --&gt; D["scan_end = offset + range/2"]
+    C --&gt; E["axis[0] = scan_start + step/2"]
+    D --&gt; F["axis[-1] = scan_end - step/2"]
+</code></pre>
+<h3 id="axis-values-are-pixel-centres">Axis values are pixel centres<a class="headerlink" href="#axis-values-are-pixel-centres" title="Permanent link">¶</a></h3>
+<p>An axis value is the centre of its pixel, not its edge, so pixel <code>i</code> of <code>N</code> sits
+at <code>offset - range/2 + (i + 0.5) × step</code> with <code>step = range / N</code>. The first and
+last axis values are therefore half a pixel inside the scan region, and the
+midpoint of any axis is exactly the scan offset. Placing the coordinate at the
+pixel centre is this reader's choice; no vendor prescribes it.</p>
+<h3 id="frames-of-reference">Frames of reference<a class="headerlink" href="#frames-of-reference" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Frame</th>
+<th>What it is</th>
+<th>Fields in it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scanner (piezo)</td>
+<td>Position within the scanner range, measured from its undeflected centre</td>
+<td><code>scan_offset_value_*</code>, <code>scan_start_*</code>, <code>scan_end_*</code></td>
+</tr>
+<tr>
+<td>Stage</td>
+<td>Coarse position of the head or sample holder</td>
+<td>Vendor stage keys, e.g. Bruker <code>\Stage X</code>; never combined with the offset</td>
+</tr>
+<tr>
+<td>Sample</td>
+<td>Where a feature physically sits</td>
+<td>Can be reconstructed only by combining the stage position with the scanner frame</td>
+</tr>
+</tbody>
+</table>
+<p>A non-zero <code>scan_angle_*</code> rotates the scan frame against the sample, so <code>X</code> and
+<code>Y</code> are the fast and the slow axis of the <strong>scan frame</strong>, not the x and y of the
+sample. The angle is recorded but never applied to the data.</p>
+<h3 id="image-orientation">Image orientation<a class="headerlink" href="#image-orientation" title="Permanent link">¶</a></h3>
+<p>Images follow the bottom-left convention: row 0 is the bottom row, column 0 the
+left column, and both axes ascend. An up scan and a down scan of the same area
+give the same image; only the order in which the lines were recorded differs.</p>
+<h2 id="two-kinds-of-axes">Two kinds of axes<a class="headerlink" href="#two-kinds-of-axes" title="Permanent link">¶</a></h2>
+<p><code>@axes</code> and <code>independent_scan_axes</code> answer different questions and are written
+independently of each other.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>@axes</code> (<code>NXdata</code>)</th>
+<th><code>independent_scan_axes</code> (<code>NXspm_scan_control</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Question answered</td>
+<td>How should the image be displayed?</td>
+<td>How did the tip move over the sample?</td>
+</tr>
+<tr>
+<td>Order</td>
+<td>Dimension order, <code>[slow, fast]</code> = <code>[Y, X]</code></td>
+<td>Fastest to slowest, <code>[±X, ±Y]</code></td>
+</tr>
+<tr>
+<td>Case</td>
+<td>Upper case</td>
+<td>Upper case</td>
+</tr>
+<tr>
+<td>Sign</td>
+<td>Never signed</td>
+<td>Signed with the scan direction where known</td>
+</tr>
+<tr>
+<td>Affected by the image flips</td>
+<td>Yes, it describes the stored image</td>
+<td>No, it describes the measurement</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scan-direction-as-a-sign">Scan direction as a sign<a class="headerlink" href="#scan-direction-as-a-sign" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+Y</code></td>
+<td>The axis was traveled towards increasing Y</td>
+</tr>
+<tr>
+<td><code>-Y</code></td>
+<td>The axis was traveled towards decreasing Y</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>No single direction is asserted, or the direction is unknown</td>
+</tr>
+</tbody>
+</table>
+<p>An axis is signed when the entry holds exactly one pass along it <strong>and</strong> the
+format records which way that pass ran.</p>
+<p>A bare axis covers two different situations, which the file itself tells apart:</p>
+<ul>
+<li><strong>Both passes are stored.</strong> The entry has a forward and a backward <code>NXdata</code>
+  group, so no single direction applies to the fast axis.</li>
+<li><strong>The format never records it.</strong> Bruker <code>.FLT</code> stores one channel and no slow
+  scan direction, so its <code>Y</code> means unknown, not upward.</li>
+</ul>
+<h2 id="raw-file-elements-per-flavour">Raw-file elements per flavour<a class="headerlink" href="#raw-file-elements-per-flavour" title="Permanent link">¶</a></h2>
+<p>Each flavour has its own section with the full key table, how its scan direction
+is decided and what it leaves unrecorded. Click a flavour to open it.</p>
+<table>
+<thead>
+<tr>
+<th>Flavour</th>
+<th>Extension</th>
+<th>Offset</th>
+<th>Range</th>
+<th>Points</th>
+<th>Direction</th>
+<th>Unit</th>
+<th>Angle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="scan-region/nanonis-sxm.html">Nanonis</a></td>
+<td><code>.sxm</code></td>
+<td><code>:SCAN_OFFSET:</code></td>
+<td><code>:SCAN_RANGE:</code></td>
+<td><code>:SCAN_PIXELS:</code></td>
+<td><code>:SCAN_DIR:</code></td>
+<td><code>/Z-Controller/Z</code> unit</td>
+<td><code>:SCAN_ANGLE:</code></td>
+</tr>
+<tr>
+<td><a href="scan-region/bruker-spm.html">Bruker NanoScope</a></td>
+<td><code>.spm</code></td>
+<td><code>\X Offset</code>, <code>\Y Offset</code></td>
+<td><code>\Scan Size</code>, <code>\Aspect Ratio</code></td>
+<td><code>\Samps/line</code>, <code>\Lines</code></td>
+<td><code>\Frame direction</code></td>
+<td>In the value, e.g. <code>20000 nm</code></td>
+<td><code>\Rotate Ang.</code></td>
+</tr>
+<tr>
+<td><a href="scan-region/bruker-flt.html">Bruker SPMLab</a></td>
+<td><code>.FLT</code></td>
+<td><code>OffsetX</code>, <code>OffsetY</code></td>
+<td><code>ScanRangeX</code>, <code>ScanRangeY</code></td>
+<td><code>ResolutionX</code>, <code>ResolutionY</code></td>
+<td><code>ScanDirection</code></td>
+<td>Suffix of the value, e.g. <code>1.0000 µm</code></td>
+<td><code>Rotation</code></td>
+</tr>
+<tr>
+<td><a href="scan-region/omicron-sm4.html">Omicron / RHK</a></td>
+<td><code>.sm4</code></td>
+<td><code>RHK_Xoffset</code>, <code>RHK_Yoffset</code></td>
+<td>not stored</td>
+<td><code>RHK_Xsize</code>, <code>RHK_Ysize</code></td>
+<td>sign of <code>RHK_Yscale</code></td>
+<td><code>RHK_X/@unit</code>, <code>RHK_Y/@unit</code></td>
+<td><code>RHK_Angle</code></td>
+</tr>
+<tr>
+<td><a href="#no-raster-nanonis-dat-sts-and-bruker-spmtxt">No raster</a></td>
+<td><code>.dat</code>, <code>.spm.txt</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="no-raster-nanonis-dat-sts-and-bruker-spmtxt">No raster: Nanonis <code>.dat</code> STS and Bruker <code>.spm.txt</code><a class="headerlink" href="#no-raster-nanonis-dat-sts-and-bruker-spmtxt" title="Permanent link">¶</a></h3>
+<p>Neither flavour rasters an area, so neither writes a 2D scan region or
+<code>independent_scan_axes</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Flavour</th>
+<th>What is written instead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nanonis <code>.dat</code> STS</td>
+<td><code>scan_start_bias</code>, <code>scan_end_bias</code> and <code>scan_offset_bias</code>, read directly from <code>Bias Spectroscopy&gt;Sweep Start (V)</code>, <code>&gt;Sweep End (V)</code> and <code>Bias&gt;Offset (V)</code></td>
+</tr>
+<tr>
+<td>Bruker <code>.spm.txt</code></td>
+<td>A <code>point_forceSCAN</code> group; start, end and range of both halves of the ramp come from the first and last element of <code>/Calc_Ramp_Ex_nm</code> and <code>/Calc_Ramp_Rt_nm</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-and-confidence">Evidence and confidence<a class="headerlink" href="#evidence-and-confidence" title="Permanent link">¶</a></h2>
+<h3 id="grades">Grades<a class="headerlink" href="#grades" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Grade</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vendor manual</td>
+<td>A document published by the instrument maker defines the parameter</td>
+</tr>
+<tr>
+<td>Empirical test</td>
+<td>Raw files from the vendor's software where the geometry can be measured, and only one reading fits</td>
+</tr>
+<tr>
+<td>Vendor file content</td>
+<td>Something the vendor's software writes into the file that fits only one reading</td>
+</tr>
+<tr>
+<td>Third-party reader</td>
+<td>An independent open-source reader, e.g. Gwyddion; how the community reads the value, not how the vendor defines it</td>
+</tr>
+<tr>
+<td>None</td>
+<td>No source found</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-each-claim-rests-on">What each claim rests on<a class="headerlink" href="#what-each-claim-rests-on" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Flavour</th>
+<th>Grade</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Offset is the centre</td>
+<td>Bruker <code>.spm</code></td>
+<td>Vendor manual</td>
+<td><a href="https://afmhelp.com/docs/manuals/Nanoscope6.13UserGuide.pdf">NanoScope 6.13 User Guide</a>, p. 60</td>
+</tr>
+<tr>
+<td>Offset is the centre</td>
+<td>Omicron <code>.sm4</code></td>
+<td>Vendor manual + empirical test</td>
+<td><a href="https://www.manualslib.com/manual/2808818/Rhk-Technology-R9.html?page=195">RHK R9 User Manual</a>, p. 195, and the <a href="scan-region/omicron-sm4.html#evidence">measurement</a></td>
+</tr>
+<tr>
+<td>Offset is the centre</td>
+<td>Nanonis <code>.sxm</code></td>
+<td>Vendor file content + third-party readers</td>
+<td><code>:Scan&gt;Scanfield:</code> in the files; <a href="https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/nanonis.c">Gwyddion <code>nanonis.c</code></a></td>
+</tr>
+<tr>
+<td>Offset is the centre</td>
+<td>Bruker <code>.FLT</code></td>
+<td>Empirical test</td>
+<td><a href="scan-region/bruker-flt.html#evidence">Measurement</a></td>
+</tr>
+<tr>
+<td>Pitch is <code>\|scale\|</code>, range is <code>N × \|scale\|</code></td>
+<td>Omicron <code>.sm4</code></td>
+<td>Third-party readers</td>
+<td><a href="https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/rhk-sm4.c">Gwyddion <code>rhk-sm4.c</code></a>; <a href="https://www.mathworks.com/matlabcentral/fileexchange/62561-sm4reader-fileid">MATLAB <code>sm4reader</code></a></td>
+</tr>
+<tr>
+<td>Sign of <code>RHK_Yscale</code> is the slow direction</td>
+<td>Omicron <code>.sm4</code></td>
+<td>Third-party reader</td>
+<td><a href="https://sourceforge.net/p/gwyddion/discussion/fileformats/thread/3377ed98fa/">Gwyddion forum</a></td>
+</tr>
+<tr>
+<td>Row order and image flips</td>
+<td>All image flavours</td>
+<td>Third-party reader</td>
+<td>Gwyddion import modules, verified against every test file</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-the-empirical-test-works">How the empirical test works<a class="headerlink" href="#how-the-empirical-test-works" title="Permanent link">¶</a></h3>
+<p>A small scan taken inside a larger scan of the same area shows up as a patch of
+the large image. Where the patch is <strong>found</strong> is a measurement; where each
+reading of the offset <strong>predicts</strong> it differs by <code>(range_big - range_small) / 2</code>
+per axis. The small image is resampled to the pixel size of the large one, both
+are line- and plane-levelled, and the patch is located by normalized
+cross-correlation.</p>
+<p>Pairs whose two scans share the same offset are the clearest: a centre reading
+puts the small scan in the middle of the large one, a corner reading in a corner,
+and that holds whatever the axis directions are.</p>
+<p>In the results below, <strong>Measured</strong> is where the small scan was found, while
+<strong>Centre predicts</strong> and <strong>Corner predicts</strong> are the positions computed from the
+raw offsets under each reading. Whichever prediction the measurement matches is
+the reading the file follows.</p>
+<p>The measured results are shown with the flavour they concern:
+<a href="scan-region/bruker-flt.html#evidence">Bruker SPMLab <code>.FLT</code></a> and
+<a href="scan-region/omicron-sm4.html#evidence">Omicron / RHK <code>.sm4</code></a>.</p>
+<h3 id="data-used">Data used<a class="headerlink" href="#data-used" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flavour</th>
+<th>Files</th>
+<th>Where</th>
+<th>License</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bruker <code>.FLT</code></td>
+<td><code>PMIS2-C8_ML2_p1_5__040925135420.SIG_HEIGHT_SENSOR_FRW.FLT</code>, <code>PMIS2-C8_ML2_p1_20__040925132340.SIG_HEIGHT_SENSOR_FRW.FLT</code></td>
+<td><a href="../assets/empirical_offset_test/index.html">In this repository</a>, and in <code>AFM.zip</code> of <a href="https://doi.org/10.5281/zenodo.18060234">10.5281/zenodo.18060234</a></td>
+<td>CC BY 4.0</td>
+</tr>
+<tr>
+<td>Omicron <code>.sm4</code></td>
+<td><code>VT231211_A1_0064.sm4</code>, <code>VT231211_A1_0065.sm4</code>, <code>VT231205_A1_0063.sm4</code>, <code>VT231205_A1_0064.sm4</code></td>
+<td><a href="https://doi.org/10.5281/zenodo.14268803">10.5281/zenodo.14268803</a>; the record holds many more files, so take these four by name</td>
+<td>CC BY 4.0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="challenge-these-findings">Challenge these findings<a class="headerlink" href="#challenge-these-findings" title="Permanent link">¶</a></h2>
+<p>Four of the claims above rest on measurement or on third-party readers rather
+than on a vendor document. If you can show one of them is wrong, the reader
+should change.</p>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Evidence that would overturn it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The <a href="scan-region/bruker-flt.html"><code>.FLT</code> offset is the centre</a></td>
+<td>A Veeco, ThermoMicroscopes or Bruker Innova document defining <code>OffsetX</code>, or scans of one area that the centre reading misplaces</td>
+</tr>
+<tr>
+<td>The <a href="scan-region/omicron-sm4.html"><code>.sm4</code> range is <code>N × \|scale\|</code></a></td>
+<td>The RHK "SM4 Data File Format" document, or a calibration grating measured against the written range</td>
+</tr>
+<tr>
+<td>The <a href="scan-region/omicron-sm4.html"><code>.sm4</code> fast axis has no recorded direction</a></td>
+<td>A field in the page header, or the RHK format document, that gives it</td>
+</tr>
+<tr>
+<td><a href="scan-region/nanonis-sxm.html">Nanonis <code>SCAN_OFFSET</code> is the centre</a></td>
+<td>The SPECS TCP Protocol Document, if it says otherwise</td>
+</tr>
+</tbody>
+</table>
+<p>Please open an issue with the
+<a href="https://github.com/FAIRmat-NFDI/pynxtools-spm/issues/new?template=challenge-a-convention.yml">Challenge a scan-region convention</a>
+template. A vendor document is the strongest evidence; an openly licensed raw
+file that the current reading gets wrong is just as welcome, because it can be
+added to the test set.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What it establishes</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NanoScope 6.13 User Guide, pp. 60, 85</td>
+<td>Bruker <code>.spm</code> offset is the centre position of the scan</td>
+<td><a href="https://afmhelp.com/docs/manuals/Nanoscope6.13UserGuide.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Bruker help, Zoom and Offset Buttons</td>
+<td>The Offset command centres the scan and updates X/Y Offset</td>
+<td><a href="https://www.nanophys.kth.se/nanolab/afm/icon/bruker-help/Content/SoftwareGuide/Realtime/Tips/ZoomAndOffsetButtons.htm">Page</a></td>
+</tr>
+<tr>
+<td>Bruker help, Scan View Parameters Tips</td>
+<td>X/Y Offset use the sample as position reference</td>
+<td><a href="https://www.nanophys.kth.se/nanolab/afm/icon/bruker-help/Content/SoftwareGuide/Realtime/Tips/ScanViewParametersTips.htm">Page</a></td>
+</tr>
+<tr>
+<td>Bruker help, Frame Commands</td>
+<td>Frame Up and Frame Down restart the scan at the bottom and the top</td>
+<td><a href="https://www.nanophys.kth.se/nanolab/afm/icon/bruker-help/Content/SoftwareGuide/Realtime/Tips/FrameCommands.htm">Page</a></td>
+</tr>
+<tr>
+<td>RHK R9 User Manual, pp. 59, 195, 197</td>
+<td>XY Offsets of 0 centre the scan area in the scan range</td>
+<td><a href="https://www.manualslib.com/manual/2808818/Rhk-Technology-R9.html?page=195">Manual</a></td>
+</tr>
+<tr>
+<td>Park Scientific, User's Guide to AutoProbe CP, pp. 4-17 f.</td>
+<td>SPMLab's ancestor keeps the offset in scanner coordinates, referenced to the undeflected scanner</td>
+<td><a href="https://utw10193.utweb.utexas.edu/InstrumentManuals/micro-nano-afm-cp%20auto-prob-user-manual.pdf">Scan</a></td>
+</tr>
+<tr>
+<td>Nanonis SXM format description</td>
+<td>The SXM header tags and the data block layout</td>
+<td><a href="https://sourceforge.net/p/gxsm/plugin-requests/3/">GXSM tracker</a></td>
+</tr>
+<tr>
+<td><code>nanonis_control</code></td>
+<td>Documents the Nanonis scan frame as centre, size and angle</td>
+<td><a href="https://github.com/dilwong/nanonis_control">Repository</a></td>
+</tr>
+<tr>
+<td>Gwyddion <code>nanonis.c</code>, <code>nanoscope.c</code>, <code>spmlabf.c</code>, <code>rhk-sm4.c</code></td>
+<td>Community reading of each format, including the image flips</td>
+<td><a href="https://sourceforge.net/p/gwyddion/code/HEAD/tree/trunk/gwyddion/modules/file/">Source tree</a></td>
+</tr>
+<tr>
+<td>spym</td>
+<td>Reference Python reader for RHK SM4</td>
+<td><a href="https://github.com/rescipy-project/spym">Repository</a></td>
+</tr>
+<tr>
+<td>MATLAB <code>sm4reader</code></td>
+<td>Computes the SM4 scan size as <code>\|scale\| × points</code></td>
+<td><a href="https://www.mathworks.com/matlabcentral/fileexchange/62561-sm4reader-fileid">File Exchange</a></td>
+</tr>
+</tbody>
+</table>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Reader Structure" class="md-footer__link md-footer__link--prev" href="reader-structure.html">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                Reader Structure
+              </div>
+</div>
+</a>
+<a aria-label="Next: Scan region in Nanonis .sxm" class="md-footer__link md-footer__link--next" href="scan-region/nanonis-sxm.html">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                Scan region in Nanonis .sxm
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.path", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+<script src="../javascript.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>
