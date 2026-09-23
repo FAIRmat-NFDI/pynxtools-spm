@@ -115,18 +115,17 @@ or visit the
     `amplitude_error_backward`, `phase_forward`, `phase_backward`, `amplitude_forward`,
     `amplitude_backward`, `tm_deflection_forward` and `tm_deflection_backward`.
 
-!!! note "Scan region from `Scan Size` and `Aspect Ratio`"
-    The header states one scan size and an aspect ratio rather than an explicit X and Y range.
-    `BrukerSpmAFM` therefore builds the scan region from `/Scanner_list/0/Scan_Size`,
-    `/Scanner_list/0/X_Offset`, `/Scanner_list/0/Y_Offset` and `/Scanner_list/0/Aspect_Ratio`:
-    the Y range is the X range divided by the aspect ratio. A malformed aspect ratio falls back
-    to `1:1` and is reported as a warning.
+!!! note "Scan region, axes and scan direction"
+    The header states one scan size and an aspect ratio rather than an explicit X and Y range, so
+    the Y range is the X range divided by `/Scanner_list/0/Aspect_Ratio`; a malformed ratio falls
+    back to `1:1` with a warning. Which raw keys build the scan region, what `\X Offset` points at
+    and how the axes and the scan direction follow from it are described in
+    [Scan region in Bruker NanoScope `.spm`](../explanation/scan-region/bruker-spm.md).
 
 !!! note "Axis values are rebuilt when the header disagrees with the image"
-    The `x` and `y` axes are computed with `numpy.linspace` from the scan region and the point
-    counts in the header. If those counts do not match the shape of the image actually stored in
-    the file, the axes are regenerated from the image shape instead and a warning naming both
-    shapes is logged, so that signal and axes always stay consistent.
+    If the point counts in the header do not match the shape of the image actually stored in the
+    file, the axes are regenerated from the image shape instead and a warning naming both shapes
+    is logged, so that signal and axes always stay consistent.
 
 ## `.spm.txt` data (AFM force curve, NanoScope)
 
@@ -181,6 +180,9 @@ or visit the
 
 ## Further reading
 
+- [Scan region, axes and scan direction](../explanation/scan-region-conventions.md)
+- [Scan region in Bruker NanoScope `.spm`](../explanation/scan-region/bruker-spm.md)
+- [Scan region in Bruker SPMLab `.FLT`](../explanation/scan-region/bruker-flt.md)
 - [Supported vendor files and formats](../explanation/reader-orchestra.md#supported-vendor-files-and-formats)
 - [Work with Reader](../how-to-guides/work-with-reader.md)
 - [Use Reader from Command Line](standalone-usages.md)

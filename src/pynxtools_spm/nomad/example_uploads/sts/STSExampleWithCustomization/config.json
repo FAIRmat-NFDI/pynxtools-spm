@@ -238,7 +238,7 @@
                     "@long_name": "Lockin Demod 1X"
                   },
                   "0": {
-                    "name": "voltage",
+                    "name": "Bias_Voltage",
                     "raw_path": [
                       "/dat_mat_components/Bias calc/value",
                       "/dat_mat_components/Bias/value"

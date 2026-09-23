@@ -17,6 +17,12 @@ nav:
   - Explanation:
       - explanation/reader-orchestra.md
       - explanation/reader-structure.md
+      - explanation/scan-region-conventions.md
+      - Scan region per flavour:
+          - explanation/scan-region/nanonis-sxm.md
+          - explanation/scan-region/bruker-spm.md
+          - explanation/scan-region/bruker-flt.md
+          - explanation/scan-region/omicron-sm4.md
   - Reference:
       - reference/standalone-usages.md
       - reference/nanonis.md
@@ -24,6 +30,7 @@ nav:
       - reference/bruker.md
 plugins:
   - search
+  - mermaid2
   - macros:
       module_name: docs/macros
   - mkdocs-simple-hooks:
@@ -47,6 +54,10 @@ markdown_extensions:
   - pymdownx.emoji
   - pymdownx.extra
   - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.tabbed:
       alternate_style: true
 theme:

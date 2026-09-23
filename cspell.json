@@ -3,6 +3,7 @@
   "ignorePaths": [
     "./tests/data/*",
     "./docs/included_file_content/*",
+    "./docs/assets/empirical_offset_test/*",
     "*.toml",
     "Makefile",
     "*.bat",
@@ -22,7 +23,7 @@
   ],
   "import": ["@cspell/dict-scientific-terms-us/cspell-ext.json"],
   "dictionaries": ["custom-dictionary", "scientific_terms_US", "python"],
-  "words": [],
+  "words": ["atleast", "GXSM", "PMIS", "undeflected", "visititems", "Xsize", "Ysize"],
   "ignoreWords": [],
   "ignoreRegExpList": ["\\bNX\\w*\\b", "https?://[\\S]+"],
   "import": [],

@@ -258,37 +258,40 @@ class OmicronSM4STM(OmicronBase):
         scan_tag: str,
         func_on_raw_key: Callable,
     ):
-        """Constructs Scan Region group from the scan control group."""
-        x_arr = None
-        y_arr = None
+        """Constructs Scan Region group from the scan control group.
 
+        'RHK_Xoffset'/'RHK_Yoffset' is the centre of the scan area and
+        '|RHK_Xscale|' the pixel pitch, so the range is
+        'RHK_Xsize * |RHK_Xscale|' and scan_start/scan_end follow from the
+        centre. See 'tests/README.md' for the evidence.
+        """
         # Store full raw_data_dict and fill scan_region group according to the scan name
         raw_data = self.raw_data
         self.raw_data = self._scan_tag_raw_data[scan_tag]
-        # Calculate the start of the x_axis and y_axis from the coordinate matrix.
-        for k, v in self.raw_data.items():
-            m = re.match(
-                pattern=rf"/{scan_tag}/[\w/]*coords/[\w]+(x|y)", string=k, flags=re.I
-            )
-            if m and m.groups()[0] == "x":
-                x_arr = v
-            elif m and m.groups()[0] == "y":
-                y_arr = v
 
-        if isinstance(x_arr, np.ndarray):
-            self.scan_control.x_end = x_arr[-1]
-            self.scan_control.x_start = x_arr[0]
-            self.scan_control.x_range = (
-                self.scan_control.x_end - self.scan_control.x_start
-            )
-            self.scan_control.x_start_unit = "m"
-        if isinstance(y_arr, np.ndarray):
-            self.scan_control.y_end = y_arr[-1]
-            self.scan_control.y_start = y_arr[0]
-            self.scan_control.y_range = (
-                self.scan_control.y_end - self.scan_control.y_start
-            )
-            self.scan_control.y_start_unit = "m"
+        for axis in ("x", "y"):
+            key = f"/{scan_tag}/RHK_{axis.upper()}"
+            offset = self.raw_data.get(f"{key}offset")
+            scale = self.raw_data.get(f"{key}scale")
+            points = self.raw_data.get(f"{key}size")
+            if offset is None or scale is None or points is None:
+                continue
+            unit = self.raw_data.get(f"{key}/@unit")
+            if unit is None:
+                unit = "m"
+                SPM_LOGGER.warning(
+                    "No unit for the %s axis of page '%s' ('%s/@unit' is "
+                    "missing), so the scan region is read as metres.",
+                    axis,
+                    scan_tag,
+                    key,
+                )
+            setattr(self.scan_control, f"{axis}_offset", float(offset))
+            setattr(self.scan_control, f"{axis}_offset_unit", unit)
+            setattr(self.scan_control, f"{axis}_range", abs(float(scale)) * int(points))
+            setattr(self.scan_control, f"{axis}_range_unit", unit)
+
+        self.derive_scan_2d_start_end()
 
         # handle fields
         for key, val in partial_conf_dict.items():
@@ -299,7 +302,6 @@ class OmicronSM4STM(OmicronBase):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
                 ] = self.scan_control.x_range
-                # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
                 ] = self.scan_control.x_start_unit
@@ -316,7 +318,6 @@ class OmicronSM4STM(OmicronBase):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
                 ] = self.scan_control.x_start
-                # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
                 ] = self.scan_control.x_start_unit
@@ -333,7 +334,6 @@ class OmicronSM4STM(OmicronBase):
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}"
                 ] = self.scan_control.x_end
-                # TODO collect unit from raw data dict
                 self.template[
                     f"{parent_path}/{group_name}/{replace_variadic_name_part(key, part_to_embed='x')}/@units"
                 ] = self.scan_control.x_start_unit
@@ -408,6 +408,19 @@ class OmicronSM4STM(OmicronBase):
 
             func_on_raw_key = lambda k: func_on_raw_key_with(
                 scan_tag=scan_tag, k=k, all_tags=self._scan_list
+            )
+
+            # The sign of 'RHK_Yscale' is the slow scan direction, > 0 up and
+            # < 0 down. The fast axis stays unsigned: 'RHK_ScanType' names the
+            # Forward and Backward pass but neither it nor 'RHK_Xscale', which
+            # has the same sign on both pages, says which way the tip ran along
+            # a line.
+            y_scale = self._scan_tag_raw_data[scan_tag].get(f"/{scan_tag}/RHK_Yscale")
+            slow_axis = "y" if y_scale is None else ("+y" if y_scale > 0 else "-y")
+            self.scan_control.fast_axis = "x"
+            self.scan_control.slow_axis = slow_axis
+            self.put_independent_scan_axes_in_template(
+                parent_path_mod, axes=("x", slow_axis)
             )
 
             # Data from scan_region group will be used later

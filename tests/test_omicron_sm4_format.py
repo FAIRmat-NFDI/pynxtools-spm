@@ -255,24 +255,27 @@ class TestImageData:
         assert parsed["/Topography_Forward/RHK_Zoffset"] == attrs["RHK_Zoffset"]
 
     @pytest.mark.parametrize("axis", ["x", "y"])
-    def test_coords_ascend_from_the_offset_in_steps_of_the_scale(
-        self, parsed, pages, axis
-    ):
-        """Index i of a page sits at 'offset' + i * 'scale', ascending."""
+    def test_coords_are_pixel_centres_around_the_offset(self, parsed, pages, axis):
+        """'RHK_Xoffset' is the centre of the scan area and '|RHK_Xscale|' the
+        pixel pitch, so index i of 'n' sits at
+        'offset - n * |scale| / 2 + (i + 0.5) * |scale|', ascending."""
         attrs = pages["Topography_Forward"].attrs
         key = f"RHK_{axis.upper()}"
         coords = parsed[f"/Topography_Forward/coords/Topography_Forward_{axis}"]
         size, scale, offset = (
             attrs[f"{key}size"],
-            attrs[f"{key}scale"],
+            abs(attrs[f"{key}scale"]),
             attrs[f"{key}offset"],
         )
         assert coords.dtype == np.float64
         assert len(coords) == size
         np.testing.assert_allclose(
-            coords, np.sort(offset + scale * np.arange(size)), rtol=1e-12
+            coords,
+            offset - size * scale / 2 + (np.arange(size) + 0.5) * scale,
+            rtol=1e-12,
         )
-        np.testing.assert_allclose(np.diff(coords), abs(scale), rtol=1e-12)
+        np.testing.assert_allclose(np.diff(coords), scale, rtol=1e-12)
+        assert (coords[0] + coords[-1]) / 2 == pytest.approx(offset)
 
     def test_page_without_gwyddion_channel_keeps_metadata_only(
         self, monkeypatch, caplog

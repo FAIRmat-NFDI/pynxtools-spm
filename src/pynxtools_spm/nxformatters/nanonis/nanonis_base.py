@@ -32,10 +32,14 @@ class NanonisBase(SPMformatter):
     def _arange_axes(self, direction="down"):
         """Record the fast and slow scan axes from the SXM scan direction.
 
-        Every line is recorded along x, and 'SCAN_DIR' is 'up' or 'down': the
-        lines advance along +y for an 'up' scan and along -y for a 'down' scan.
+        Every line is recorded along x, forward and backward, so the fast axis
+        keeps no sign. 'SCAN_DIR' is 'up' or 'down': the lines advance along +y
+        for an 'up' scan and along -y for a 'down' scan. A missing or empty tag
+        leaves the slow axis unsigned, meaning the direction is unknown, and
+        the image keeps the order in which its lines were recorded.
         """
-        fast_slow = ["X", "-Y"] if direction.strip().lower() == "down" else ["X", "Y"]
+        slow = {"up": "+Y", "down": "-Y"}.get(direction.strip().lower(), "Y")
+        fast_slow = ["X", slow]
         self.scan_control.fast_axis = fast_slow[0].lower()
         self.scan_control.slow_axis = fast_slow[1].lower()
         return fast_slow
@@ -71,16 +75,3 @@ class NanonisBase(SPMformatter):
         if is_forward is False:
             data = np.fliplr(data)
         return data
-
-    def _pixel_centres(self, axis: str) -> np.ndarray:
-        """Ascending positions of the pixel centres along 'x' or 'y'.
-
-        'SCAN_OFFSET' is the centre of the scan frame, so the frame spans
-        'offset - range/2' to 'offset + range/2' and pixel 'i' of 'n' sits at
-        'offset - range/2 + (i + 0.5) * range/n'.
-        """
-        offset = getattr(self.scan_control, f"{axis}_offset")
-        scan_range = getattr(self.scan_control, f"{axis}_range")
-        points = int(getattr(self.scan_control, f"{axis}_points"))
-        step = scan_range / points
-        return offset - scan_range / 2 + (np.arange(points) + 0.5) * step

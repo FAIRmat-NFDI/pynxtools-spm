@@ -38,6 +38,7 @@ from pynxtools import logger as pynx_logger
 from pynxtools.dataconverter.helpers import convert_data_dict_path_to_hdf5_path
 from pynxtools.dataconverter.readers.utils import FlattenSettings, flatten_and_replace
 from pynxtools.dataconverter.template import Template
+from pynxtools.units import ureg
 
 from pynxtools_spm.nxformatters.helpers import (
     _get_data_unit_and_others,
@@ -817,6 +818,83 @@ class SPMformatter(ABC):
         if other_attrs:
             for k, v in other_attrs.items():
                 self.template[f"{temp_key}/@{k}"] = v
+
+    def derive_scan_2d_start_end(self, axes: Sequence[str] = ("x", "y")):
+        """Derives scan_start and scan_end from the scan offset and the scan range.
+
+        The offset of a scan region is the centre of the scanned area, so the
+        area runs from ``offset - range/2`` to ``offset + range/2``. A vendor
+        that stores a corner instead has to shift it to the centre before
+        calling this. The convention and the evidence for it per vendor are in
+        'tests/README.md'.
+        """
+        for axis in axes:
+            offset = getattr(self.scan_control, f"{axis}_offset")
+            scan_range = getattr(self.scan_control, f"{axis}_range")
+            if offset in (None, "") or scan_range in (None, ""):
+                continue
+            offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
+            range_unit = getattr(self.scan_control, f"{axis}_range_unit")
+            if offset_unit and range_unit and offset_unit != range_unit:
+                try:
+                    scan_range = (
+                        ureg.Quantity(scan_range, range_unit).to(offset_unit).magnitude
+                    )
+                except Exception as error:
+                    pynx_logger.warning(
+                        "Could not convert %s scan range from '%s' to '%s': %s. "
+                        "Scan start and end are skipped for this axis.",
+                        axis,
+                        range_unit,
+                        offset_unit,
+                        error,
+                    )
+                    continue
+            unit = offset_unit or range_unit
+            half = scan_range / 2
+            setattr(self.scan_control, f"{axis}_start", offset - half)
+            setattr(self.scan_control, f"{axis}_start_unit", unit)
+            setattr(self.scan_control, f"{axis}_end", offset + half)
+            setattr(self.scan_control, f"{axis}_end_unit", unit)
+
+    def _pixel_centres(self, axis: str) -> np.ndarray:
+        """Ascending positions of the pixel centres along 'x' or 'y'.
+
+        The scan offset is the centre of the scan frame, so the frame spans
+        'offset - range/2' to 'offset + range/2' and pixel 'i' of 'n' sits at
+        'offset - range/2 + (i + 0.5) * range/n'.
+        """
+        offset = getattr(self.scan_control, f"{axis}_offset")
+        scan_range = getattr(self.scan_control, f"{axis}_range")
+        points = int(getattr(self.scan_control, f"{axis}_points"))
+        step = scan_range / points
+        return offset - scan_range / 2 + (np.arange(points) + 0.5) * step
+
+    @staticmethod
+    def _format_scan_axis(axis: str) -> str:
+        """'-y' -> '-Y': upper case, keeping the sign of the scan direction."""
+        axis = str(axis).strip()
+        sign = ""
+        if axis[:1] in ("+", "-"):
+            sign, axis = axis[0], axis[1:]
+        return f"{sign}{axis.upper()}"
+
+    def put_independent_scan_axes_in_template(
+        self, scan_control_path: str, axes: Sequence[str] = ("X", "Y")
+    ):
+        """Writes 'independent_scan_axes' of 'NXspm_scan_control'.
+
+        Its elements run from the fastest to the slowest scan axis, so a mesh
+        scan of an image gives the fast axis first. The sign of an axis is the
+        direction the tip travelled along it: '+Y' towards increasing Y, '-Y'
+        towards decreasing Y, and a bare 'Y' when no single direction applies,
+        because both passes are stored or the format does not record it. The
+        field describes the scan, not the image, so it is unaffected by the
+        flips that orient an NXdata group. See 'tests/README.md'.
+        """
+        self.template[f"{scan_control_path}/independent_scan_axes"] = [
+            self._format_scan_axis(axis) for axis in axes
+        ]
 
     def put_scan_2d_region_field_in_template(self, parent_path, group_name):
         """Puts the scan region fields into the template"""

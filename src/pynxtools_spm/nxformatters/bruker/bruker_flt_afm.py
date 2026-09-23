@@ -26,7 +26,6 @@ from pathlib import Path
 import numpy as np
 from pynxtools import logger as pynx_logger
 from pynxtools.dataconverter.template import Template
-from pynxtools.units import ureg
 
 from pynxtools_spm.configs import load_default_config
 from pynxtools_spm.nxformatters.bruker.bruker_base import BrukerBase
@@ -270,11 +269,11 @@ class BrukerFltAFM(BrukerBase):
         header-backed fields with '#note' to keep the config walker from
         writing them a second time.
 
-        ``scan_start``/``scan_end`` follow Gwyddion's reading of the SPMLab
-        header, in which ``OffsetX``/``OffsetY`` is the origin (corner) of the
-        frame, so that x runs from ``offset`` to ``offset + range``. Note this
-        differs from NanoScope .spm, where Bruker documents the offset as the
-        *centre* of the scan. See ``nxformatters/bruker/README.md``.
+        ``OffsetX``/``OffsetY`` is the centre of the scan frame, as for
+        NanoScope .spm, so x runs from ``offset - range/2`` to
+        ``offset + range/2``. Gwyddion's SPMLab module reads the offset as a
+        corner instead; locating a 5 um scan inside a 20 um scan of the same
+        sample shows the centre reading, see 'tests/README.md'.
 
         The cached values are reused for the two derived quantities that need
         code — the mesh-scan step sizes and the NXdata axis arrays.
@@ -291,36 +290,7 @@ class BrukerFltAFM(BrukerBase):
             setattr(self.scan_control, f"{axis}_range", scan_range)
             setattr(self.scan_control, f"{axis}_range_unit", unit)
 
-        for axis in ("x", "y"):
-            offset = getattr(self.scan_control, f"{axis}_offset")
-            offset_unit = getattr(self.scan_control, f"{axis}_offset_unit")
-            scan_range = getattr(self.scan_control, f"{axis}_range")
-            range_unit = getattr(self.scan_control, f"{axis}_range_unit")
-            if offset is None or scan_range is None:
-                continue
-
-            if offset_unit and range_unit and offset_unit != range_unit:
-                try:
-                    scan_range = (
-                        ureg.Quantity(scan_range, range_unit).to(offset_unit).magnitude
-                    )
-                except Exception as error:
-                    pynx_logger.warning(
-                        "Could not convert %s scan range from '%s' to '%s': %s. "
-                        "Scan start and end are skipped for this axis.",
-                        axis,
-                        range_unit,
-                        offset_unit,
-                        error,
-                    )
-                    continue
-
-            unit = offset_unit or range_unit
-            setattr(self.scan_control, f"{axis}_start", offset)
-            setattr(self.scan_control, f"{axis}_start_unit", unit)
-            setattr(self.scan_control, f"{axis}_end", offset + scan_range)
-            setattr(self.scan_control, f"{axis}_end_unit", unit)
-
+        self.derive_scan_2d_start_end()
         self.put_scan_2d_region_field_in_template(parent_path, group_name)
 
     def construct_scan_pattern_grp(
@@ -342,13 +312,31 @@ class BrukerFltAFM(BrukerBase):
         # SPMLab records the raster orientation in 'Rotation', which is 0 in
         # every file seen so far. A rotated frame would make 'x' and 'y' the
         # wrong names for the fast and slow axis.
-        self.scan_control.fast_axis = "x"
+        #
+        # A .FLT holds one channel recorded in one direction, so 'ScanDirection'
+        # signs the fast axis. The slow axis stays unsigned: SPMLab stores no
+        # slow scan direction, so a bare 'Y' means unknown, not upward.
+        direction = next(
+            (
+                str(val).strip().lower()
+                for key, val in self.raw_data.items()
+                if key.endswith("/meta/ScanDirection")
+            ),
+            "",
+        )
+        fast_axis = {"forward": "+x", "backward": "-x"}.get(direction, "x")
+        if fast_axis == "x" and direction:
+            pynx_logger.warning(
+                "Unknown SPMLab 'ScanDirection' value '%s', so the fast scan "
+                "direction is left unspecified.",
+                direction,
+            )
+        self.scan_control.fast_axis = fast_axis
         self.scan_control.slow_axis = "y"
 
-        # The raster ordering would be carried by 'independent_scan_axes' of
-        # 'NXspm_scan_control' (written on 'parent_path', not under the mesh
-        # scan). It is left unwritten until the axis order has been verified
-        # against the raw files.
+        # 'independent_scan_axes' sits on the scan control group, the parent of
+        # the mesh scan.
+        self.put_independent_scan_axes_in_template(parent_path, axes=(fast_axis, "y"))
 
         for axis in ("x", "y"):
             scan_range = getattr(self.scan_control, f"{axis}_range")
@@ -356,7 +344,8 @@ class BrukerFltAFM(BrukerBase):
             if scan_range is None or not n_points or int(n_points) < 2:
                 continue
             step_key = f"{parent_path}/{group_name}/step_sizeN[step_size_{axis}]"
-            self.template[step_key] = scan_range / (int(n_points) - 1)
+            # The step is the pixel pitch, so the axis values are pixel centres.
+            self.template[step_key] = scan_range / int(n_points)
             self.template[f"{step_key}/@units"] = getattr(
                 self.scan_control, f"{axis}_range_unit"
             )
@@ -419,16 +408,19 @@ class BrukerFltAFM(BrukerBase):
 
         # The raster is stored row by row: the first index runs along the slow
         # (y) axis and the second along the fast (x) axis. Row 0 is the bottom
-        # row of the image, so both axes ascend from the scan origin.
+        # row of the image, so both axes ascend from the scan origin. The values
+        # are the pixel centres around the scan offset.
         n_y, n_x = signal_data.shape
+        scan_control.y_points = n_y
+        scan_control.x_points = n_x
         axis_to_data = {
-            "y": np.linspace(scan_control.y_start, scan_control.y_end, n_y),
-            "x": np.linspace(scan_control.x_start, scan_control.x_end, n_x),
+            "Y": self._pixel_centres("y"),
+            "X": self._pixel_centres("x"),
         }
 
         for index, (axis, axis_data) in enumerate(axis_to_data.items()):
             axis_key = f"{nxdata_path}/AXISNAME[{axis}]"
-            unit = getattr(scan_control, f"{axis}_start_unit")
+            unit = getattr(scan_control, f"{axis.lower()}_start_unit")
             self.template[axis_key] = axis_data
             self.template[f"{axis_key}/@units"] = unit
             if unit:

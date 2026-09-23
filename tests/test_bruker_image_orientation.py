@@ -147,13 +147,23 @@ class TestStoredImages:
             assert len(axis) == np.shape(_signal(template, group))[dim], group
             assert np.all(np.diff(axis) > 0), f"{group}: axis {dim} must ascend"
 
-    def test_axes_span_the_scan_size(self, templates, folder):
-        scan_size = float(_header_values(_raw_file(folder), "Scan Size")[0].split()[0])
+    def test_axes_are_pixel_centres_around_the_scan_offset(self, templates, folder):
+        """'\\X Offset'/'\\Y Offset' is the centre of the scan, so the axes are
+        the pixel centres of 'offset - size/2 … offset + size/2' and their
+        midpoint is the offset."""
+        raw_file = _raw_file(folder)
+        scan_size = float(_header_values(raw_file, "Scan Size")[0].split()[0])
         template = templates(folder)
         for group in _groups(template):
-            for dim in (0, 1):
+            assert list(template[f"{ENTRY}/DATA[{group}]/@axes"]) == ["Y", "X"], group
+            for dim, key in ((0, "Y Offset"), (1, "X Offset")):
                 axis = _axis(template, group, dim)
-                assert axis[-1] - axis[0] == pytest.approx(scan_size), (
+                offset = float(_header_values(raw_file, key)[0].split()[0])
+                step = scan_size / len(axis)
+                assert axis[-1] - axis[0] == pytest.approx(scan_size - step), (
+                    f"{group} axis {dim}"
+                )
+                assert (axis[0] + axis[-1]) / 2 == pytest.approx(offset), (
                     f"{group} axis {dim}"
                 )
 
@@ -213,15 +223,26 @@ class TestStoredFltImages:
             signal = template[f"{group}/DATA[{template[f'{group}/@signal']}]"]
             assert _correlation(signal, np.flipud(channel.data)) > 0.9999, group
 
-    def test_axes_ascend_and_span_the_scan_range(self, folder):
+    def test_axes_are_pixel_centres_around_the_scan_offset(self, folder):
+        """'OffsetX'/'OffsetY' is the centre of the scan, so the axes are the
+        pixel centres of 'offset - range/2 … offset + range/2' and their
+        midpoint is the offset."""
         template = _flt_template(folder)
         header = _flt_header(next((SPM_DATA_DIR / folder).glob("*.FLT")))
         for group in _all_2d_groups(template):
             signal = template[f"{group}/DATA[{template[f'{group}/@signal']}]"]
             axes = template[f"{group}/@axes"]
-            for dim, key in ((0, "ScanRangeY"), (1, "ScanRangeX")):
+            assert list(axes) == ["Y", "X"], group
+            for dim, (range_key, offset_key) in enumerate(
+                ((("ScanRangeY"), ("OffsetY")), (("ScanRangeX"), ("OffsetX")))
+            ):
                 axis = template[f"{group}/AXISNAME[{axes[dim]}]"]
-                scan_range = float(header[key].split()[0])
-                assert len(axis) == np.shape(signal)[dim], group
+                scan_range = float(header[range_key].split()[0])
+                offset = float(header[offset_key].split()[0])
+                points = np.shape(signal)[dim]
+                step = scan_range / points
+                assert len(axis) == points, group
                 assert np.all(np.diff(axis) > 0), f"{group}: axis {dim} must ascend"
-                assert axis[-1] - axis[0] == pytest.approx(scan_range), group
+                assert axis[0] == pytest.approx(offset - scan_range / 2 + step / 2)
+                assert axis[-1] == pytest.approx(offset + scan_range / 2 - step / 2)
+                assert (axis[0] + axis[-1]) / 2 == pytest.approx(offset), group
