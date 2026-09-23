@@ -46,7 +46,7 @@
       "description": "<p>We used the diPAMY sample used in this demo example.</p>",
       "Sample_component": {
         "name": "Au(Mica)",
-        "chemical_formula": " KAl₂(AlSi₃O₁₀)(OH)₂)",
+        "chemical_formula": "KAl2(AlSi3O10)(OH)2",
         "description": "<p>Gold on Mica.</p>"
       }
     }
