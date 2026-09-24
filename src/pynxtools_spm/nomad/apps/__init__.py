@@ -16,88 +16,156 @@
 # limitations under the License.
 #
 
+"""
+SPM app backed by the generated Python metainfo (nexus_parser_v2).
+
+The app targets the ``Spm`` application definition. ``Afm``, ``Stm`` and ``Sts``
+entries derive from it, so they are matched through the inheritance mechanism.
+
+Search depth
+------------
+NOMAD registers dynamically mapped quantities only down to a fixed sub-section
+depth for allow-listed NeXus AppDefs.
+
+- Topographic scan (``instrument.scan_environment.spm_scan_control.*``)
+- Bias spectroscopy sweep (``instrument.bias_spectroscopy_environment.*``)
+- Cantilever oscillator (``instrument.spm_cantilever.cantilever_oscillator.*``)
+- Z controller (``instrument.*piezo_sensor.spm_positioner.z_controller.*``)
+"""
+
 from nomad.config.models.plugins import AppEntryPoint
 from nomad.config.models.ui import (
     App,
     Column,
     Menu,
-    MenuSizeEnum,
-    MenuItemTerms,
-    MenuItemPeriodicTable,
     MenuItemHistogram,
+    MenuItemPeriodicTable,
+    MenuItemTerms,
+    MenuSizeEnum,
     SearchQuantities,
 )
 
-
-schema = "pynxtools.nomad.schema.Root"
+schema = "pynxtools.nomad.metainfo.applications.Spm"
 
 map_concept_to_full_quantities = {
-    "Start Time": f"data.datetime#{schema}#datetime",
+    # Entry level
     "Entry Type": "entry_type",
-    "Definition": f"data.ENTRY.definition__field#{schema}#str",
+    "Definition": f"data.definition#{schema}",
+    "Technique": f"data.experiment_technique#{schema}",
+    "Scan Mode": f"data.scan_mode#{schema}",
+    "Start Time": f"data.start_time#{schema}",
+    "End Time": f"data.end_time#{schema}",
+    "Experiment Description": f"data.experiment_description#{schema}",
     "Periodic Table": "results.material.elements",
+    # Sample
+    "Sample Name": f"data.sample.name#{schema}",
+    "Sample Chemical Formula": f"data.sample.chemical_formula#{schema}",
+    # User
+    "User Name": f"data.user.name#{schema}",
+    "User Affiliation": f"data.user.affiliation#{schema}",
     # Scan Environment
-    "Scan Mode": f"data.ENTRY.scan_mode__field#{schema}#str",
-    "Head Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.head_temperature__field#{schema}#float",
-    "Cryo Bottom Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.cryo_bottom_temperature__field#{schema}#float",
-    "Cryo Shield Temperature (Scan Environment)": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.cryo_shield_temperature__field#{schema}#float",
-    # Scan Environment->Topographic scan
-    "offset x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_offset_value_x__field#{schema}#float",
-    "offset y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_offset_value_y__field#{schema}#float",
-    "scan points x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.scan_points_x__field#{schema}#float",
-    "scan points y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.scan_points_y__field#{schema}#float",
-    "step size x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.step_size_x__field#{schema}#float",
-    "step size y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.meshSCAN.step_size_y__field#{schema}#float",
-    "scan range x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_range_x__field#{schema}#float",
-    "scan range y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_range_y__field#{schema}#float",
-    "scan angle x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_angle_x__field#{schema}#float",
-    "scan angle y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_angle_y__field#{schema}#float",
-    "scan start x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_start_x__field#{schema}#float",
-    "scan start y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_start_y__field#{schema}#float",
-    "scan end x": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_end_x__field#{schema}#float",
-    "scan end y": f"data.ENTRY.INSTRUMENT.SCAN_ENVIRONMENT.SPM_SCAN_CONTROL.scan_region.scan_end_y__field#{schema}#float",
-    # Scan Environment -> Bias Scan
-    "Bias Start (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_start_bias__field#{schema}#float",
-    "Bias End (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_end_bias__field#{schema}#float",
-    "Bias Offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_offset_bias__field#{schema}#float",
-    "Bias Range (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.scan_region.scan_range_bias__field#{schema}#float",
-    "Scan Points (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.linear_sweep.scan_points_bias__field#{schema}#float",
-    "Step Size (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.BIAS_SWEEP.linear_sweep.step_size_bias__field#{schema}#float",
-    "z_offset (Bias Spectroscopy)": f"data.ENTRY.INSTRUMENT.bias_spectroscopy_environment.SPM_BIAS_SPECTROSCOPY.SPM_POSITIONER.z_controller.z_offset_value__field#{schema}#float",
+    "Head Temperature (Scan Environment)": (
+        f"data.instrument.scan_environment.head_temperature#{schema}"
+    ),
+    "Cryo Bottom Temperature (Scan Environment)": (
+        f"data.instrument.scan_environment.cryo_bottom_temperature#{schema}"
+    ),
+    "Cryo Shield Temperature (Scan Environment)": (
+        f"data.instrument.scan_environment.cryo_shield_temperature#{schema}"
+    ),
     # Instrument -> Hardware
-    "Name (Hardware)": f"data.ENTRY.INSTRUMENT.hardware.name__field#{schema}#str",
-    "Model (Hardware)": f"data.ENTRY.INSTRUMENT.hardware.model__field#{schema}#str",
+    "Name (Hardware)": f"data.instrument.hardware.name#{schema}",
+    "Model (Hardware)": f"data.instrument.hardware.model#{schema}",
+    "Vendor (Hardware)": f"data.instrument.hardware.vendor#{schema}",
     # Instrument -> Software
-    "Name (Software)": f"data.ENTRY.INSTRUMENT.software.name__field#{schema}#str",
-    "Model (Software)": f"data.ENTRY.INSTRUMENT.software.model__field#{schema}#str",
-    # Instrument -> current_sensor
-    "Current (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensorTAG.current__field#{schema}#float",
-    "Current Offset (Current Sensor)": f"data.ENTRY.INSTRUMENT.current_sensorTAG.offset_value__field#{schema}#float",
-    # Instrument -> voltage_sensor
-    "Voltage (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensorTAG.voltage__field#{schema}#float",
-    "Voltage Offset (Voltage Sensor)": f"data.ENTRY.INSTRUMENT.voltage_sensorTAG.offset_value__field#{schema}#float",
+    "Name (Software)": f"data.instrument.software.name#{schema}",
+    "Model (Software)": f"data.instrument.software.model#{schema}",
+    # Instrument -> Current Sensor
+    "Current (Current Sensor)": f"data.instrument.current_sensorTAG.current#{schema}",
+    "Current Offset (Current Sensor)": (
+        f"data.instrument.current_sensorTAG.offset_value#{schema}"
+    ),
     # Instrument -> Sample Bias Voltage
-    "Bias voltage (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_voltage__field#{schema}#float",
-    "Bias offset (Sample Bias Voltage)": f"data.ENTRY.INSTRUMENT.sample_bias_voltage.bias_offset_value__field#{schema}#float",
+    "Bias voltage (Sample Bias Voltage)": (
+        f"data.instrument.sample_bias_voltage.bias_voltage#{schema}"
+    ),
+    "Bias offset (Sample Bias Voltage)": (
+        f"data.instrument.sample_bias_voltage.bias_offset_value#{schema}"
+    ),
     # Instrument -> Piezo sensor
-    "Piezo X (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.x__field#{schema}#float",
-    "Piezo Y (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.y__field#{schema}#float",
-    "Piezo Z (Piezo Sensor XYZ)": f"data.ENTRY.INSTRUMENT.piezo_sensor.z__field#{schema}#float",
-    # Instrument -> Piezo Sensor -> SPM Positioner
-    "controller label": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.controller_label__field#{schema}#str",
-    "Z controller Set Point (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.z_controller.set_point__field#{schema}#float",
-    "Z controller Z (Piezo Sensor)": f"data.ENTRY.INSTRUMENT.piezo_sensor.SPM_POSITIONER.z_controller.z__field#{schema}#float",
+    "Piezo X (Piezo Sensor XYZ)": f"data.instrument.piezo_sensor.x#{schema}",
+    "Piezo Y (Piezo Sensor XYZ)": f"data.instrument.piezo_sensor.y#{schema}",
+    "Piezo Z (Piezo Sensor XYZ)": f"data.instrument.piezo_sensor.z#{schema}",
     # Instrument -> Lockin Amplifier
-    "Reference Frequency (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_frequency__field#{schema}#float",
-    "Reference Phase (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_phase__field#{schema}#float",
-    "Reference Amplitude (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.reference_amplitude__field#{schema}#float",
-    "Demodulated signal (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.demodulated_signal__field#{schema}#str",
-    "Lockin Current Flip Sign (Lockin Amplifier)": f"data.ENTRY.INSTRUMENT.lockin_amplifier.flip_sign__field#{schema}#float",
-    # AFM: Instrument -> Cantilever SPM
-    "Reference Amplitude (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_amplitude__field#{schema}#float",
-    "Reference Frequency (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_frequency__field#{schema}#float",
-    "Reference Phase (Oscillator)": f"data.ENTRY.INSTRUMENT.SPM_CANTILEVER.cantilever_oscillator.reference_phase__field#{schema}#float",
+    "Reference Frequency (Lockin Amplifier)": (
+        f"data.instrument.lockin_amplifier.reference_frequency#{schema}"
+    ),
+    "Reference Phase (Lockin Amplifier)": (
+        f"data.instrument.lockin_amplifier.reference_phase#{schema}"
+    ),
+    "Reference Amplitude (Lockin Amplifier)": (
+        f"data.instrument.lockin_amplifier.reference_amplitude#{schema}"
+    ),
+    "Demodulated signal (Lockin Amplifier)": (
+        f"data.instrument.lockin_amplifier.demodulated_signal#{schema}"
+    ),
+    "Lockin Current Flip Sign (Lockin Amplifier)": (
+        f"data.instrument.lockin_amplifier.flip_sign#{schema}"
+    ),
 }
+
+
+# Sub-sections that repeat, i.e. that the archive stores as a list. Only these
+# take a JMESPath projection in a column; the rest must not, or the cell
+# resolves to null. Listed here rather than read from the section definitions,
+# because importing the schema package from an app module is circular: the
+# plugin machinery loads app entry points while the schema is still
+# initialising. `test_as_column_matches_metainfo_repeats` asserts that this
+# stays in sync with the generated metainfo.
+REPEATING_SUB_SECTIONS = frozenset(
+    {
+        "instrument",
+        "sample",
+        "user",
+        "scan_environment",
+        "current_sensorTAG",
+    }
+)
+
+
+def as_column(quantity: str) -> str:
+    """Turn a filter quantity name into one usable as a results table column.
+
+    Menu items aggregate over the search index and address a quantity by its
+    plain name. Table cells instead extract a value from the returned archive
+    data with JMESPath, which cannot step into a list implicitly. The projection
+    must therefore match the schema exactly, in both directions::
+
+        data.sample.name        -> null   (sample repeats, so it is a list)
+        data.sample[*].name     -> ["..."]
+        data.instrument.hardware[*].name -> null   (hardware does not repeat)
+
+    Only some sub-sections repeat - ``instrument``, ``sample``, ``user``,
+    ``scan_environment`` and ``current_sensorTAG`` do, while ``hardware``,
+    ``software``, ``lockin_amplifier``, ``piezo_sensor`` and
+    ``sample_bias_voltage`` do not. A projection is therefore inserted at every
+    segment named in `REPEATING_SUB_SECTIONS` and nowhere else, at whatever
+    depth it occurs.
+
+    The projection is dropped again when the name is turned into an API request
+    (``parseJMESPath`` in the GUI keeps only the field names), so filtering and
+    sorting are unaffected. Names without a schema are returned unchanged.
+    """
+    path, separator, schema_suffix = quantity.partition("#")
+    if not separator or not path.startswith("data."):
+        return quantity
+
+    segments = [
+        f"{part}[*]" if part in REPEATING_SUB_SECTIONS else part
+        for part in path.split(".")
+    ]
+    return f"{'.'.join(segments)}{separator}{schema_suffix}"
+
 
 spm_app: AppEntryPoint = AppEntryPoint(
     name="SpmApp",
@@ -112,44 +180,53 @@ spm_app: AppEntryPoint = AppEntryPoint(
         # Brief description used in the app menu
         description="A simple search app customized for SPM experimental technique.",
         # Longer description that can also use markdown
-        readme="This is a simple App to support basic search for NeXus based SPM Experiment Entries.",
-        # If you want to use quantities from a custom schema, you need to load
-        # the search quantities from it first here. Note that you can use a glob
-        # syntax to load the entire package, or just a single schema from a
-        # package.
+        readme=(
+            "Search app for SPM entries parsed by the annotation-based parser "
+            "(nexus_parser_v2). Covers NXafm, NXstm and NXsts entries through "
+            "their shared NXspm application definition."
+        ),
+        # Load the search quantities of the SPM application definition. The glob
+        # syntax pulls in every quantity registered for this schema.
         search_quantities=SearchQuantities(
             include=[f"*#{schema}"],
         ),
         # Controls which columns are shown in the results table
         columns=[
-            Column(quantity="entry_id", selected=True),
-            Column(quantity="entry_type", selected=True),
+            Column(search_quantity="entry_id", selected=True),
             Column(
-                title="definition",
-                quantity=f"data.ENTRY[*].definition__field#{schema}",
+                search_quantity=map_concept_to_full_quantities["Entry Type"],
+                selected=True,
+            ),
+            Column(
+                title="Definition",
+                search_quantity=as_column(map_concept_to_full_quantities["Definition"]),
+                selected=True,
+            ),
+            Column(
+                title="Technique",
+                search_quantity=as_column(map_concept_to_full_quantities["Technique"]),
                 selected=True,
             ),
             Column(
                 title="Start Time",
-                search_quantity=f"data.datetime#{schema}",
+                search_quantity=as_column(map_concept_to_full_quantities["Start Time"]),
                 selected=True,
             ),
             Column(
-                title="Start Times by Entry",
-                search_quantity=f"data.ENTRY[*].start_time__field#{schema}",
+                title="Sample",
+                search_quantity=as_column(
+                    map_concept_to_full_quantities["Sample Name"]
+                ),
+                selected=True,
+            ),
+            Column(
+                title="Author",
+                search_quantity=as_column(map_concept_to_full_quantities["User Name"]),
                 selected=False,
             ),
-            Column(
-                title="title",
-                quantity=f"data.ENTRY[*].title__field#{schema}",
-                selected=True,
-            ),
         ],
-        # Dictionary of search filters that are always enabled for queries made
-        # within this app. This is especially important to narrow down the
-        # results to the wanted subset. Any available search filter can be
-        # targeted here. This example makes sure that only entries that use
-        # MySchema are included.
+        # Only entries that use the SPM application definition are shown. Afm,
+        # Stm and Sts derive from Spm, so they are included as well.
         filters_locked={"section_defs.definition_qualified_name": [schema]},
         # Controls the menu shown on the left
         menu=Menu(
@@ -163,20 +240,46 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     show_header=True,
                     items=[
                         MenuItemPeriodicTable(
-                            quantity="results.material.elements",
+                            search_quantity="results.material.elements",
                         ),
                         MenuItemTerms(
-                            quantity="results.material.chemical_formula_hill",
+                            search_quantity="results.material.chemical_formula_hill",
                             width=6,
                             options=0,
                         ),
                         MenuItemTerms(
-                            quantity="results.material.chemical_formula_iupac",
+                            search_quantity="results.material.chemical_formula_iupac",
                             width=6,
                             options=0,
                         ),
                         MenuItemHistogram(
                             x="results.material.n_elements",
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Experiment",
+                    show_header=True,
+                    items=[
+                        MenuItemTerms(
+                            title="Definition",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Definition"
+                            ],
+                        ),
+                        MenuItemTerms(
+                            title="Technique",
+                            search_quantity=map_concept_to_full_quantities["Technique"],
+                        ),
+                        MenuItemTerms(
+                            title="Scan Mode",
+                            search_quantity=map_concept_to_full_quantities["Scan Mode"],
+                        ),
+                        MenuItemTerms(
+                            title="Entry Type",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Entry Type"
+                            ],
                         ),
                     ],
                 ),
@@ -189,7 +292,7 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     show_header=True,
                     items=[
                         MenuItemHistogram(
-                            title="Tip Temperature",
+                            title="Head Temperature",
                             x=map_concept_to_full_quantities[
                                 "Head Temperature (Scan Environment)"
                             ],
@@ -209,160 +312,7 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     ],
                 ),
                 Menu(
-                    title="Scan Mode",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemTerms(
-                            title="Scan Mode",
-                            quantity=map_concept_to_full_quantities["Scan Mode"],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Topographic Scan",
-                    indentation=1,
-                    show_header=True,
-                    # ),
-                    # Menu(
-                    #     title="Scan Region",
-                    #     show_header=True,
-                    #     indentation=2,
-                    items=[
-                        MenuItemHistogram(
-                            title="Offset x",
-                            x=map_concept_to_full_quantities["offset x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Offset y",
-                            x=map_concept_to_full_quantities["offset y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Range x",
-                            x=map_concept_to_full_quantities["scan range x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Range y",
-                            x=map_concept_to_full_quantities["scan range y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Angle x",
-                            x=map_concept_to_full_quantities["scan angle x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Angle y",
-                            x=map_concept_to_full_quantities["scan angle y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Points x",
-                            x=map_concept_to_full_quantities["scan points x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Points y",
-                            x=map_concept_to_full_quantities["scan points y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Step Size x",
-                            x=map_concept_to_full_quantities["step size x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Step Size y",
-                            x=map_concept_to_full_quantities["step size y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Start x",
-                            x=map_concept_to_full_quantities["scan start x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Start y",
-                            x=map_concept_to_full_quantities["scan start y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan End x",
-                            x=map_concept_to_full_quantities["scan end x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan End y",
-                            x=map_concept_to_full_quantities["scan end y"],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Bias Scan (Bias Spectroscopy)",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Bias Start",
-                            x=map_concept_to_full_quantities[
-                                "Bias Start (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Bias End",
-                            x=map_concept_to_full_quantities[
-                                "Bias End (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Bias Offset",
-                            x=map_concept_to_full_quantities[
-                                "Bias Offset (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Bias Range",
-                            x=map_concept_to_full_quantities[
-                                "Bias Range (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Points",
-                            x=map_concept_to_full_quantities[
-                                "Scan Points (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Step Size",
-                            x=map_concept_to_full_quantities[
-                                "Step Size (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="z_offset",
-                            x=map_concept_to_full_quantities[
-                                "z_offset (Bias Spectroscopy)"
-                            ],
-                        ),
-                    ],
-                ),
-                Menu(
                     title="Instrument",
-                ),
-                Menu(
-                    title="Cantilever SPM",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Reference Amplitude (Oscillator)",
-                            x=map_concept_to_full_quantities[
-                                "Reference Amplitude (Oscillator)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Reference Frequency (Oscillator)",
-                            x=map_concept_to_full_quantities[
-                                "Reference Frequency (Oscillator)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Reference Phase (Oscillator)",
-                            x=map_concept_to_full_quantities[
-                                "Reference Phase (Oscillator)"
-                            ],
-                        ),
-                    ],
                 ),
                 Menu(
                     title="Hardware",
@@ -370,12 +320,22 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     show_header=True,
                     items=[
                         MenuItemTerms(
-                            title="Name (Hardware)",
-                            quantity=map_concept_to_full_quantities["Name (Hardware)"],
+                            title="Name",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Name (Hardware)"
+                            ],
                         ),
                         MenuItemTerms(
-                            title="Model (Hardware)",
-                            quantity=map_concept_to_full_quantities["Model (Hardware)"],
+                            title="Model",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Model (Hardware)"
+                            ],
+                        ),
+                        MenuItemTerms(
+                            title="Vendor",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Vendor (Hardware)"
+                            ],
                         ),
                     ],
                 ),
@@ -385,12 +345,16 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     show_header=True,
                     items=[
                         MenuItemTerms(
-                            title="Name (Software)",
-                            quantity=map_concept_to_full_quantities["Name (Software)"],
+                            title="Name",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Name (Software)"
+                            ],
                         ),
                         MenuItemTerms(
-                            title="Model (Software)",
-                            quantity=map_concept_to_full_quantities["Model (Software)"],
+                            title="Model",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Model (Software)"
+                            ],
                         ),
                     ],
                 ),
@@ -409,6 +373,50 @@ spm_app: AppEntryPoint = AppEntryPoint(
                             title="Current Offset",
                             x=map_concept_to_full_quantities[
                                 "Current Offset (Current Sensor)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Sample Bias Voltage",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="Bias Voltage",
+                            x=map_concept_to_full_quantities[
+                                "Bias voltage (Sample Bias Voltage)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="Bias Offset",
+                            x=map_concept_to_full_quantities[
+                                "Bias offset (Sample Bias Voltage)"
+                            ],
+                        ),
+                    ],
+                ),
+                Menu(
+                    title="Piezo Sensor",
+                    indentation=1,
+                    show_header=True,
+                    items=[
+                        MenuItemHistogram(
+                            title="x",
+                            x=map_concept_to_full_quantities[
+                                "Piezo X (Piezo Sensor XYZ)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="y",
+                            x=map_concept_to_full_quantities[
+                                "Piezo Y (Piezo Sensor XYZ)"
+                            ],
+                        ),
+                        MenuItemHistogram(
+                            title="z",
+                            x=map_concept_to_full_quantities[
+                                "Piezo Z (Piezo Sensor XYZ)"
                             ],
                         ),
                     ],
@@ -438,7 +446,7 @@ spm_app: AppEntryPoint = AppEntryPoint(
                         ),
                         MenuItemTerms(
                             title="Demodulated signal",
-                            quantity=map_concept_to_full_quantities[
+                            search_quantity=map_concept_to_full_quantities[
                                 "Demodulated signal (Lockin Amplifier)"
                             ],
                         ),
@@ -451,271 +459,40 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     ],
                 ),
                 Menu(
-                    title="Voltage Sensor",
-                    indentation=1,
+                    title="Sample",
                     show_header=True,
                     items=[
-                        MenuItemHistogram(
-                            title="Voltage",
-                            x=map_concept_to_full_quantities[
-                                "Voltage (Voltage Sensor)"
+                        MenuItemTerms(
+                            title="Name",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Sample Name"
                             ],
                         ),
-                        MenuItemHistogram(
-                            title="Voltage Offset",
-                            x=map_concept_to_full_quantities[
-                                "Voltage Offset (Voltage Sensor)"
+                        MenuItemTerms(
+                            title="Chemical Formula",
+                            search_quantity=map_concept_to_full_quantities[
+                                "Sample Chemical Formula"
                             ],
                         ),
                     ],
                 ),
                 Menu(
-                    title="Sample Bias Voltage",
-                    indentation=1,
+                    title="Author",
                     show_header=True,
                     items=[
-                        MenuItemHistogram(
-                            title="Bias Voltage",
-                            x=map_concept_to_full_quantities[
-                                "Bias voltage (Sample Bias Voltage)"
+                        MenuItemTerms(
+                            title="Name",
+                            search_quantity=map_concept_to_full_quantities["User Name"],
+                        ),
+                        MenuItemTerms(
+                            title="Affiliation",
+                            search_quantity=map_concept_to_full_quantities[
+                                "User Affiliation"
                             ],
                         ),
-                        MenuItemHistogram(
-                            title="Bias Offset",
-                            x=map_concept_to_full_quantities[
-                                "Bias offset (Sample Bias Voltage)"
-                            ],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Piezo Sensor",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        Menu(
-                            title="SPM Positioner",
-                            show_header=True,
-                            items=[
-                                MenuItemTerms(
-                                    title="controller label",
-                                    quantity=map_concept_to_full_quantities[
-                                        "controller label"
-                                    ],
-                                ),
-                                MenuItemHistogram(
-                                    title="Set Point (Z controller)",
-                                    x=map_concept_to_full_quantities[
-                                        "Z controller Set Point (Piezo Sensor)"
-                                    ],
-                                ),
-                                MenuItemHistogram(
-                                    title="Z (Z controller)",
-                                    x=map_concept_to_full_quantities[
-                                        "Z controller Z (Piezo Sensor)"
-                                    ],
-                                ),
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="x",
-                            x=map_concept_to_full_quantities[
-                                "Piezo X (Piezo Sensor XYZ)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="y",
-                            x=map_concept_to_full_quantities[
-                                "Piezo Y (Piezo Sensor XYZ)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="z",
-                            x=map_concept_to_full_quantities[
-                                "Piezo Z (Piezo Sensor XYZ)"
-                            ],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Reproducibility & Resolution Indicators",
-                ),
-                Menu(
-                    title="Temperature",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Cantilever Tip Temperature",
-                            x=map_concept_to_full_quantities[
-                                "Head Temperature (Scan Environment)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Cryo Bottom Temperature",
-                            x=map_concept_to_full_quantities[
-                                "Cryo Bottom Temperature (Scan Environment)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Cryo Shield Temperature",
-                            x=map_concept_to_full_quantities[
-                                "Cryo Shield Temperature (Scan Environment)"
-                            ],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Cantilever SPM",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Cantilever Oscillator -> Reference Amplitude",
-                            x=map_concept_to_full_quantities[
-                                "Reference Amplitude (Oscillator)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Cantilever Oscillator -> Reference Frequency",
-                            x=map_concept_to_full_quantities[
-                                "Reference Frequency (Oscillator)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Cantilever Oscillator -> Reference Phase",
-                            x=map_concept_to_full_quantities[
-                                "Reference Phase (Oscillator)"
-                            ],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Lockin Amplifier & Current Sensor",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Reference Frequency",
-                            x=map_concept_to_full_quantities[
-                                "Reference Frequency (Lockin Amplifier)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Current",
-                            x=map_concept_to_full_quantities[
-                                "Current (Current Sensor)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Current Offset",
-                            x=map_concept_to_full_quantities[
-                                "Current Offset (Current Sensor)"
-                            ],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Scan",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Offset x",
-                            x=map_concept_to_full_quantities["offset x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Offset y",
-                            x=map_concept_to_full_quantities["offset y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Range x",
-                            x=map_concept_to_full_quantities["scan range x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Range y",
-                            x=map_concept_to_full_quantities["scan range y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Points x",
-                            x=map_concept_to_full_quantities["scan points x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Points y",
-                            x=map_concept_to_full_quantities["scan points y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Step Size x",
-                            x=map_concept_to_full_quantities["step size x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Step Size y",
-                            x=map_concept_to_full_quantities["step size y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Start x",
-                            x=map_concept_to_full_quantities["scan start x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Start y",
-                            x=map_concept_to_full_quantities["scan start y"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan End x",
-                            x=map_concept_to_full_quantities["scan end x"],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan End y",
-                            x=map_concept_to_full_quantities["scan end y"],
-                        ),
-                    ],
-                ),
-                Menu(
-                    title="Bias Spectroscopy",
-                    indentation=1,
-                    show_header=True,
-                    items=[
-                        MenuItemHistogram(
-                            title="Bias Start (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "Bias Start (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Bias End (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "Bias End (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Bias Offset (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "Bias Offset (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Bias Range (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "Bias Range (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Scan Points (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "Scan Points (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="Step Size (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "Step Size (Bias Spectroscopy)"
-                            ],
-                        ),
-                        MenuItemHistogram(
-                            title="z_offset (Bias Spectroscopy)",
-                            x=map_concept_to_full_quantities[
-                                "z_offset (Bias Spectroscopy)"
-                            ],
+                        MenuItemTerms(
+                            title="Uploader",
+                            search_quantity="authors.name",
                         ),
                     ],
                 ),
@@ -750,28 +527,28 @@ spm_app: AppEntryPoint = AppEntryPoint(
                     "type": "terms",
                     "show_input": False,
                     "scale": "linear",
-                    "title": "Entry Type",
-                    "quantity": map_concept_to_full_quantities["Entry Type"],
-                    "layout": {
-                        "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 32},
-                        "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
-                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 12},
-                        "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
-                        "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 46, "x": 0},
-                    },
-                },
-                {
-                    "type": "terms",
-                    "show_input": False,
-                    "scale": "linear",
                     "title": "Definition",
-                    "quantity": "data.ENTRY.definition__field#pynxtools.nomad.schema.Root#str",
+                    "quantity": map_concept_to_full_quantities["Definition"],
                     "layout": {
                         "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 32},
                         "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 16},
                         "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 16},
                         "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 38, "x": 0},
                         "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 38, "x": 0},
+                    },
+                },
+                {
+                    "type": "terms",
+                    "show_input": False,
+                    "scale": "linear",
+                    "title": "Scan Mode",
+                    "quantity": map_concept_to_full_quantities["Scan Mode"],
+                    "layout": {
+                        "xxl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 32},
+                        "xl": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
+                        "lg": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 8, "x": 12},
+                        "md": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 0, "x": 12},
+                        "sm": {"minH": 3, "minW": 3, "h": 8, "w": 4, "y": 46, "x": 0},
                     },
                 },
                 {
