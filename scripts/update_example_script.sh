@@ -53,7 +53,6 @@ find ${flt_desc_dir} -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm -
 
 # AFM Bruker
 echo " !!! Converting Bruker AFM data !!! "
-<<<<<<< HEAD
 find ${root_dir}/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output afm_default_config.nxs
 find ${root_dir}/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down -type f -name '*.nxs' | xargs mv afm_default_config.nxs
 
@@ -61,7 +60,3 @@ find ${root_dir}/tests/data/bruker/afm/spm_v_9_4_dflt_conf_down -type f -name '*
 echo " !!! Converting Bruker AFM single point spectroscopy data !!! "
 find ${root_dir}/tests/data/bruker/afm/txt_dflt_conf -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output afm_txt_default_config.nxs
 find ${root_dir}/tests/data/bruker/afm/txt_dflt_conf -type f -name '*.nxs' | xargs mv afm_txt_default_config.nxs
-=======
-find ${root_dir}/tests/data/bruker/afm/default_config -type f ! -name '*.nxs' | xargs pynx convert --nxdl NXafm --reader spm --output afm_default_config.nxs
-find ${root_dir}/tests/data/bruker/afm/default_config -type f -name '*.nxs' | xargs mv afm_default_config.nxs
->>>>>>> c8f8d34 (Rebse on main branch-1.)
