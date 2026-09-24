@@ -337,6 +337,34 @@
               "raw_path": "",
               "@units": ""
             },
+            "scan_offset_valueN[scan_offset_value_n]": [
+              {
+                "x": {
+                  "raw_path": "/Scanner_list/0/X_Offset",
+                  "@units": "@default:nm"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Scanner_list/0/Y_Offset",
+                  "@units": "@default:nm"
+                }
+              }
+            ],
+            "scan_startN[scan_start_n]": [
+              {
+                "x": {
+                  "raw_path": "/Scanner_list/0/X_Position",
+                  "@units": "@default:nm"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Scanner_list/0/Y_Position",
+                  "@units": "@default:nm"
+                }
+              }
+            ],
             "scan_rangeN[scan_range_n]": {
               "#note": "Aspect_Ratio is also needed to calculate the scan range",
               "raw_path": "/Scanner_list/0/Scan_Size",
