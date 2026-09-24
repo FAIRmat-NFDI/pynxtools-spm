@@ -26,7 +26,7 @@ import re
 from pySPM import Bruker
 
 
-class SPMBruker(Bruker):
+class pySPMBruker(Bruker):
     """
     Extended class to handle additional features of Bruker SPM images
     """
