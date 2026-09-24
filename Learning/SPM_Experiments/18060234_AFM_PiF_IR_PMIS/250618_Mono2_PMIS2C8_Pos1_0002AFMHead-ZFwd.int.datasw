@@ -1,0 +1,5 @@
+<datasw type="image">
+  <subcontents item="functions_data" initialized="true">
+    <function name="field_crop" left="0" bottom="0" right="0.984375" top="0.96875"/>
+  </subcontents>
+</datasw>
