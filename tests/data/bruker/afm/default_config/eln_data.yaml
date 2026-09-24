@@ -1,0 +1,33 @@
+Instrument:
+  hardware:
+    model:
+    model/@version:
+    name: bruker
+    vendor: bruker
+  software:
+    model:
+    model/@version:
+    name: bruker
+    vendor: bruker
+Sample:
+  History:
+    Note:
+      description: "<p>Demo description: This sample is used in from Tamash.</p>"
+  Sample_component:
+    chemical_formula:
+    description: <p>Unknow sample.</p>
+    name: Unknow
+  name: Unknow
+default: current_forward
+definition: NXafm
+experiment_description:
+experiment_technique:
+identifier_collection: D:\\DATA\\nanonis V45_sessions\\Zurich PLL\\2023-03-31
+identifier_experiment: D:\\DATA\\nanonis V45_sessions\\Zurich PLL\\2023-03-31\\2023_03_31_oAu(111)__FeBr2_EP1_018.sxm
+scan_mode: taping mode
+User:
+  affiliation:
+    - Rubel
+  email:
+    - mozumder@physik.hu-berlin.de
+  name: Rubel Mozumder

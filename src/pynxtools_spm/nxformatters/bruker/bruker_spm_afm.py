@@ -16,6 +16,7 @@
 # limitations under the License.
 
 from __future__ import annotations
+<<<<<<< HEAD
 from pathlib import Path
 
 import numpy as np
@@ -24,6 +25,8 @@ import numpy as np
 =======
 from typing import Optional, Union
 >>>>>>> e7ff512 (parser.)
+=======
+>>>>>>> 03fa66e (Formater)
 from pynxtools import logger as pynx_logger
 
 from pynxtools_spm.nxformatters.bruker.bruker_base import BrukerBase
@@ -35,8 +38,13 @@ from pynxtools_spm.nxformatters.helpers import _get_data_unit_and_others
 from pynxtools.units import ureg
 =======
 from pathlib import Path
+<<<<<<< HEAD
 from pynxtools_spm.parsers import SPMParser
 >>>>>>> e7ff512 (parser.)
+=======
+from pynxtools_spm.nxformatters.helpers import _get_data_unit_and_others
+from pynxtools.units import ureg
+>>>>>>> 03fa66e (Formater)
 
 
 class BrukerSpmAFM(BrukerBase):
@@ -82,39 +90,48 @@ class BrukerSpmAFM(BrukerBase):
 
         return load_default_config(config_type="bruker_spm_afm")
 
-    def get_raw_data_dict(self):
-        data_dict = {}
-        data_dict_raw_data = SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
-        data_dict_raw_data.update(data_dict_raw_data)
-        if self.auxilary_files is not None:
-            for aux_file in self.auxilary_files:
-                aux_data_dict = SPMParser().get_raw_data_dict(aux_file, eln=self.eln)
-                data_dict.update(aux_data_dict)
-        else:
-            pynx_logger.error(
-                "No auxilary file of .txt is provided for Bruker AFM data. " \
-                "To parse a Bruker AFM .spm file, an auxilary .txt file containing experiment metadata is required. "
-            )
-            raise ValueError(
-                "An ausilary .txt file is required for Bruker AFM data for experiment matadata."
-                "Please provide the path to the .txt file as an auxiliary file when initializing the formatter."
-            )
+    # def get_raw_data_dict(self):
+    #     data_dict = {}
+    #     data_dict_raw_data = SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
+    #     data_dict_raw_data.update(data_dict_raw_data)
+    #     # if self.auxilary_files is not None:
+    #     #     for aux_file in self.auxilary_files:
+    #     #         aux_data_dict = SPMParser().get_raw_data_dict(aux_file, eln=self.eln)
+    #     #         data_dict.update(aux_data_dict)
+    #     # else:
+    #     #     pynx_logger.error(
+    #     #         "No auxilary file of .txt is provided for Bruker AFM data. "
+    #     #         "To parse a Bruker AFM .spm file, an auxilary .txt file containing experiment metadata is required. "
+    #     #     )
+    #     #     raise ValueError(
+    #     #         "An ausilary .txt file is required for Bruker AFM data for experiment matadata."
+    #     #         "Please provide the path to the .txt file as an auxiliary file when initializing the formatter."
+    #     #     )
 
-       return data_dict
+    #     return data_dict
 
     def _construct_nxscan_controllers(
         self, partial_conf_dict, parent_path, group_name="scan_control", **kwarg
     ):
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp)
+<<<<<<< HEAD
         if scan_region_dict is not None:
             self.construct_scan_region_grp(
+=======
+        if scan_region_dict:
+            self.construct_region_region_grp(
+>>>>>>> 03fa66e (Formater)
                 partial_conf_dict=scan_region_dict,
                 parent_path=f"{parent_path}/{group_name}",
             )
 
         scan_pattern_grp = "meshSCAN[mesh_scan]"
+<<<<<<< HEAD
         scan_pattern_dict = partial_conf_dict.get(scan_pattern_grp)
+=======
+        scan_pattern_dict = partial_conf_dict.get(scan_pattern_grp, None)
+>>>>>>> 03fa66e (Formater)
         if scan_pattern_dict is not None:
             self.construct_scan_pattern_grp(
                 partial_conf_dict=scan_pattern_dict,
@@ -122,6 +139,7 @@ class BrukerSpmAFM(BrukerBase):
                 group_name=scan_pattern_grp,
             )
 
+<<<<<<< HEAD
     @staticmethod
     def _scalar_with_unit(value, fallback_unit):
         """Normalize a scan-geometry value to a numeric magnitude and a unit.
@@ -172,15 +190,28 @@ class BrukerSpmAFM(BrukerBase):
 
         Raw data needed to calculate the scan region:
         /Scanner_list/0/Scan_Size : 20000 nm;
+=======
+    def construct_region_region_grp(
+        self, partial_conf_dict, parent_path, group_name="scan_region"
+    ):
+        """To construct the scan region.
+        Raw data needed to calculate the scan region:
+        /Scanner_list/0/Scan_Size : 20000 nm;
+        /Scanner_list/0/X_Position : 0
+        /Scanner_list/0/Y_Position : 0
+>>>>>>> 03fa66e (Formater)
         /Scanner_list/0/X_Offset : 0
         /Scanner_list/0/Y_Offset : 0
         /Scanner_list/0/Aspect_Ratio : 1:1
 
+<<<<<<< HEAD
         Bruker documents ``X Offset``/``Y Offset`` as the centre position of the
         scan, in the scanner (piezo) frame, so the area runs from
         ``offset - range/2`` to ``offset + range/2``. ``X_Position`` and the
         coarse stage ``Stage_X`` are not used: the stage is a different frame
         of reference. See 'tests/README.md'.
+=======
+>>>>>>> 03fa66e (Formater)
         """
         offset_fld = "scan_offset_valueN[scan_offset_value_n]"
         offset_fld_list = partial_conf_dict.get(offset_fld, None)
@@ -192,6 +223,7 @@ class BrukerSpmAFM(BrukerBase):
                 data, unit, _ = _get_data_unit_and_others(
                     data_dict=self.raw_data, end_dict=end_dict
                 )
+<<<<<<< HEAD
                 data, unit = self._scalar_with_unit(data, unit)
                 unit = fhs.unit_short(unit)
                 if key_ext.endswith("x"):
@@ -200,6 +232,29 @@ class BrukerSpmAFM(BrukerBase):
                 elif key_ext.endswith("y"):
                     self.scan_control.y_offset = data
                     self.scan_control.y_offset_unit = unit
+=======
+                if key_ext.endswith("x"):
+                    self.NXScanControl.x_offset = data
+                    self.NXScanControl.x_offset_unit = unit
+                elif key_ext.endswith("y"):
+                    self.NXScanControl.y_offset = data
+                    self.NXScanControl.y_offset_unit = unit
+
+        start_fld = "scan_startN[scan_start_n]"
+        start_fld_list = partial_conf_dict.get(start_fld)
+        if isinstance(start_fld_list, list) and isinstance(start_fld_list[0], dict):
+            for start_field in start_fld_list:
+                key_ext, end_dict = start_field.popitem()
+                data, unit, _ = _get_data_unit_and_others(
+                    data_dict=self.raw_data, end_dict=end_dict
+                )
+                if key_ext.endswith("x"):
+                    self.NXScanControl.x_start = data + self.NXScanControl.x_offset
+                    self.NXScanControl.x_start_unit = unit
+                elif key_ext.endswith("y"):
+                    self.NXScanControl.y_start = data + self.NXScanControl.y_offset
+                    self.NXScanControl.y_start_unit = unit
+>>>>>>> 03fa66e (Formater)
 
         range_fld = "scan_rangeN[scan_range_n]"
         range_fld_dict = partial_conf_dict.get(range_fld)
@@ -219,6 +274,7 @@ class BrukerSpmAFM(BrukerBase):
                     )
                 else:
                     pynx_logger.warning(
+<<<<<<< HEAD
                         "Aspect ratio value is not found in expected format, defaulting to 1:1. Aspect ratio value: %s",
                         aspect_ratio,
                     )
@@ -231,6 +287,63 @@ class BrukerSpmAFM(BrukerBase):
         self.derive_scan_2d_start_end()
         self.put_scan_2d_region_field_in_template(
             parent_path=parent_path, group_name=group_name
+=======
+                        "Aspect ratio value is not in expected format, defaulting to 1:1. Aspect ratio value: %s",
+                        aspect_ratio,
+                    )
+            range_val = ureg.Quantity(data, unit).to(self.NXScanControl.x_start_unit)
+            self.NXScanControl.x_range = range_val.magnitude
+            self.NXScanControl.y_range = range_val.magnitude / aspect_ratio_val
+            self.NXScanControl.x_range_unit = str(range_val.units)
+            self.NXScanControl.y_range_unit = str(range_val.units)
+            self.NXScanControl.x_end = (
+                self.NXScanControl.x_start + self.NXScanControl.x_range
+            )
+            self.NXScanControl.y_end = (
+                self.NXScanControl.y_start + self.NXScanControl.y_range
+            )
+
+    def construct_scan_pattern_grp(
+        self,
+        partial_conf_dict,
+        parent_path: str,
+        group_name="scan_mesh",
+    ):
+        """Construct data scan pattern for group "meshSCAN[mesh_scan]"."""
+
+        scan_points_fld = "scan_pointsN[scan_points_n]"
+        scan_points_fld_list = partial_conf_dict.get(scan_points_fld)
+        if isinstance(scan_points_fld_list, list) and isinstance(
+            scan_points_fld_list[0], dict
+        ):
+            for scan_points_field in scan_points_fld_list:
+                key_ext, end_dict = scan_points_field.popitem()
+                data, _, _ = _get_data_unit_and_others(
+                    data_dict=self.raw_data, end_dict=end_dict
+                )
+                if key_ext.endswith("x"):
+                    self.NXScanControl.x_points = data
+                elif key_ext.endswith("y"):
+                    self.NXScanControl.y_points = data
+        else:
+            pynx_logger.warning(
+                "Scan points information is missing or not in expected format. "
+                "Please check config file and raw data."
+            )
+
+        # Calculate step size from scan range and scan points
+        self.template[f"{parent_path}/{group_name}/step_size_x"] = (
+            self.NXScanControl.x_range / (self.NXScanControl.x_points - 1)
+        )
+        self.template[f"{parent_path}/{group_name}/step_size_x/@units"] = (
+            self.NXScanControl.x_range_unit
+        )
+        self.template[f"{parent_path}/{group_name}/step_size_y"] = (
+            self.NXScanControl.y_range / (self.NXScanControl.y_points - 1)
+        )
+        self.template[f"{parent_path}/{group_name}/step_size_y/@units"] = (
+            self.NXScanControl.y_range_unit
+>>>>>>> 03fa66e (Formater)
         )
 
     def construct_scan_pattern_grp(

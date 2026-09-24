@@ -317,6 +317,7 @@
             "scan_angleN[scan_angle_n]": {
               "raw_path": "/Scanner_list/0/Rotate_Ang.",
               "@units": "@default:deg"
+<<<<<<< HEAD
             },
             "scan_offset_valueN[scan_offset_value_n]": [
               {
@@ -336,23 +337,41 @@
               "#note": "Derived in function 'construct_scan_region_grp' from the centre offset and the scan range; '/Scanner_list/0/X_Position' is not used.",
               "raw_path": "",
               "@units": ""
+=======
+>>>>>>> 03fa66e (Formater)
             },
             "scan_offset_valueN[scan_offset_value_n]": [
               {
                 "x": {
-                  "raw_path": "/X_Offset",
-                  "@units": "/X Offset/unit"
+                  "raw_path": "/Scanner_list/0/X_Offset",
+                  "@units": "@default:nm"
                 }
               },
               {
                 "y": {
-                  "raw_path": "/Y_Offset",
-                  "@units": "/Y Offset/unit"
+                  "raw_path": "/Scanner_list/0/Y_Offset",
+                  "@units": "@default:nm"
                 }
               }
             ],
+            "scan_startN[scan_start_n]": [
+              {
+                "x": {"raw_path": "/Scanner_list/0/X_Position",
+              "@units": "@default:nm"
+              }
+                },
+             {
+              "y": {
+              "raw_path": "/Scanner_list/0/Y_Position",
+              "@units": "@default:nm"
+            }}
+            ],
             "scan_rangeN[scan_range_n]": {
+<<<<<<< HEAD
               "#note": "Aspect_Ratio is also needed to calculate the scan range",
+=======
+              "#note: Aspect_Ratio is also needed to calculate the scan range",
+>>>>>>> 03fa66e (Formater)
               "raw_path": "/Scanner_list/0/Scan_Size",
               "@units": "@default:nm"
             }
@@ -372,11 +391,17 @@
               {
                 "x": {
                   "raw_path": "/Scanner_list/0/Samps/line"
+<<<<<<< HEAD
                 }
               },
               {
                 "y": {
                   "raw_path": "/Scanner_list/0/Lines"
+=======
+                },
+                "y": {
+                   "raw_path": "/Scanner_list/0/Lines"
+>>>>>>> 03fa66e (Formater)
                 }
               }
             ],

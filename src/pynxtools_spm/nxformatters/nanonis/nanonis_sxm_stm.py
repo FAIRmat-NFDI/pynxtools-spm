@@ -430,11 +430,16 @@ class NanonisSxmSTM(NanonisBase):
             partial_conf_dict=partial_conf_dict,
             concept_field=independent_axes,
         )
+<<<<<<< HEAD
         self._arange_axes(direction.strip())
         self.put_independent_scan_axes_in_template(
             f"{parent_path}/{group_name}",
             axes=(self.scan_control.fast_axis, self.scan_control.slow_axis),
         )
+=======
+        direction = self._arange_axes(direction.strip())
+        self.template[f"{parent_path}/{group_name}/{independent_axes}"] = str(direction)
+>>>>>>> 03fa66e (Formater)
         scan_region_grp = "scan_region"
         scan_region_dict = partial_conf_dict.get(scan_region_grp, None)
         # Intended order: construct_scan_region_grp
