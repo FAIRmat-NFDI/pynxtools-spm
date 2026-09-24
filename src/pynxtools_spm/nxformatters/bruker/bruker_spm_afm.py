@@ -103,6 +103,7 @@ class BrukerSpmAFM(BrukerBase):
                 parent_path=f"{parent_path}/{group_name}",
                 group_name=scan_pattern_grp,
             )
+        print("scan_control group after construction:", self.scan_control)
 
     @staticmethod
     def _scalar_with_unit(value, fallback_unit):

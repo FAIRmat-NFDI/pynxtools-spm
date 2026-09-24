@@ -280,7 +280,7 @@
 /Scan/TM_Deflection/backward/@Z_magnify: C [2:Z scale] 0.5399135
 /Scan/TM_Deflection/backward/@2:Z_scale: V [Sens. TM Deflection] (0.0003750000 V/LSB) 0.01852148 V
 /Scan/TM_Deflection/backward/@2:Z_offset: V [Sens. TM Deflection] (0.0003750000 V/LSB)       0 V
-/Scan_list: <array data>
+/Scan_list: ['Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward']
 /Scanner_list/0/Scanner_type: Dim 4000
 /Scanner_list/0/Head_Type: SG
 /Scanner_list/0/Serial_Number: 1b818
@@ -1337,13 +1337,133 @@
 /Scanner_list/0/Contact_Maximum_Scan_Rate: 4
 /Scanner_list/0/Determine_Contact_Gain: Enabled
 /Scanner_list/0/Check_for_active_tip: Enabled
-/Height_Sensor/backward: <array data>
-/Height_Sensor/forward: <array data>
-/Amplitude_Error/backward: <array data>
-/Amplitude_Error/forward: <array data>
-/Phase/backward: <array data>
-/Phase/forward: <array data>
-/Amplitude/backward: <array data>
-/Amplitude/forward: <array data>
-/TM_Deflection/backward: <array data>
-/TM_Deflection/forward: <array data>
+/Height_Sensor/backward: [[   0.            0.            0.         ... -145.36143119
+  -145.36037403 -234.10827283]
+ [  94.70829516  -36.89021694 -145.35625383 ...  -98.15159327
+  -150.31783548 -150.31784995]
+ [ -95.8826534  -145.35930821 -150.31782898 ...  -36.89021694
+   -37.63478857 -106.57156303]
+ ...
+ [-150.31785306 -150.31784373 -150.31785306 ...   15.29539993
+  -150.31785035   15.29539993]
+ [-150.31785414   15.29539993 -150.31784116 ...   22.81118749
+   -36.89021694   30.52203781]
+ [-145.3616446    22.8083829  -150.31785143 ...   31.17797898
+  -150.31785319   31.17797898]]
+/Height_Sensor/forward: [[ 1.06030393e+03  0.00000000e+00  2.33123904e+02 ... -2.98694716e+03
+  -3.08890330e+03  8.33716049e-06]
+ [ 1.11162140e-05  2.77905350e-06  8.33716049e-06 ... -7.58062523e+02
+   3.59542547e+00  3.64256100e-01]
+ [ 9.10640250e-01  2.00340855e+00 -2.98708215e+03 ...  1.42287539e-03
+   7.82581465e-03 -3.08890382e+03]
+ ...
+ [-7.73180708e+02 -2.98694716e+03 -3.08890330e+03 ... -7.58062523e+02
+  -2.98694716e+03 -3.08890330e+03]
+ [-7.58062523e+02 -2.98694716e+03 -3.08890330e+03 ... -7.58062523e+02
+  -7.92304153e+02 -2.98694716e+03]
+ [-3.08890330e+03 -7.58062523e+02 -2.98694716e+03 ... -2.98694716e+03
+  -3.08890330e+03 -3.08890347e+03]]
+/Amplitude_Error/backward: [[-8.47703094e+08  5.14748239e+08  2.93949948e+08 ... -3.39201325e+09
+  -8.68540286e+08  4.26934824e+09]
+ [-3.39201325e+09 -8.68556232e+08  3.02974824e+09 ... -8.67851761e+08
+  -3.28005176e+09  4.26160995e+09]
+ [ 6.52349948e+08 -3.28007281e+09 -3.28019005e+09 ... -3.39201323e+09
+  -8.52585135e+08 -2.55845176e+09]
+ ...
+ [ 2.34375000e+03  4.68750000e+03  7.81250000e+02 ...  2.56000000e+08
+   5.12000000e+07  2.04800000e+08]
+ [ 0.00000000e+00  0.00000000e+00  7.68000000e+08 ...  4.48303223e+03
+  -3.39201328e+09 -8.32450052e+08]
+ [-3.28005176e+09  6.04553223e+03  9.37500000e+03 ...  0.00000000e+00
+   2.20000000e+06  6.00000000e+05]]
+/Amplitude_Error/forward: [[-8.32450052e+08 -3.28005176e+09 -3.39201270e+09 ... -8.32450052e+08
+  -3.28005176e+09 -3.39201270e+09]
+ [-8.32450052e+08 -3.28005176e+09 -3.28012911e+09 ... -3.28005176e+09
+  -3.39201270e+09 -3.39201318e+09]
+ [-8.32450052e+08 -3.28005176e+09 -3.39201270e+09 ... -3.39201270e+09
+  -8.32450052e+08 -3.28005176e+09]
+ ...
+ [-3.39201270e+09 -8.32450052e+08 -8.48851761e+08 ... -3.28005176e+09
+  -3.28014864e+09 -3.39201270e+09]
+ [-8.32450052e+08 -3.28005176e+09 -3.39201270e+09 ... -3.39201270e+09
+  -8.32450052e+08 -3.28005176e+09]
+ [-3.28016349e+09 -3.39201270e+09  5.72114995e+09 ...  5.87474995e+09
+  -8.32450052e+08 -3.28005176e+09]]
+/Phase/backward: [[ 7.20000000e+02 -5.90436000e+06 -6.10562287e+06 ...  1.47456000e+06
+   5.52960000e+05  4.60800000e+05]
+ [ 0.00000000e+00  3.68640000e+05  3.68640000e+05 ... -6.10562287e+06
+   8.23974609e-02  5.49316406e-03]
+ [ 1.41339111e+01  0.00000000e+00  1.54687500e+01 ...  1.80000000e+03
+   3.96000000e+03  0.00000000e+00]
+ ...
+ [ 2.88000000e+03 -5.90436000e+06 -6.10562287e+06 ...  1.17422991e+06
+  -1.56672000e+06 -5.90409317e+06]
+ [-6.10562287e+06  1.60469907e+05  4.60800000e+05 ... -5.90409317e+06
+  -6.10562287e+06  1.17422991e+06]
+ [ 3.68640000e+05  6.45120000e+05  7.37280000e+05 ... -1.56672000e+06
+  -5.90409317e+06 -6.10562287e+06]]
+/Phase/forward: [[-5904335.05554199 -6105622.86804199  7717589.90661621 ...
+  -6105622.86804199 -1498410.09338379 -1533693.16955566]
+ [-5904093.16955566 -6105622.86804199 -6105623.80187988 ...
+  -5904093.16955566 -6105622.86804199 -1498410.09338379]
+ [-5904093.16955566 -6105622.86804199 -1498410.09338379 ...
+  -1498410.09338379 -1557093.16955566 -5904093.16955566]
+ ...
+ [ 2037146.83044434 -6105623.45031738 -5904328.90869141 ...
+  -1540045.21179199 -5904093.16955566  1689874.78820801]
+ [ 2280149.90661621 -6105623.69750977  2280149.90661621 ...
+  -1557231.36108398 -5904093.16955566  9409810.41320801]
+ [-1557227.35107422 -5904093.16955566 -1557228.18054199 ...
+  -1557634.58679199  5565146.83044434 -6105623.7689209 ]]
+/Amplitude/backward: [[ 4.57625697e+08  4.45605210e+08 -5.07485880e+08 ... -4.26990224e+08
+  -1.26928422e+08 -4.90735104e+08]
+ [-4.90754858e+08  1.57296650e+08 -2.85407340e+08 ... -5.07485844e+08
+  -5.07485881e+08  5.67776764e+06]
+ [-5.07485881e+08 -1.29563825e+08 -4.90735104e+08 ... -5.07485805e+08
+  -4.90752012e+08 -5.07485805e+08]
+ ...
+ [-5.07485805e+08 -1.24544517e+08 -4.90735104e+08 ... -1.24544517e+08
+  -4.90735104e+08 -5.07485805e+08]
+ [-1.24544517e+08 -4.90735104e+08  3.00829790e+05 ... -4.90735104e+08
+  -5.07485805e+08 -1.24544517e+08]
+ [-4.90735104e+08 -5.07485805e+08  5.92987084e+07 ... -5.07485805e+08
+  -1.24544517e+08 -4.90735104e+08]]
+/Amplitude/forward: [[ 4.57625697e+08  4.45605210e+08 -5.07485880e+08 ... -4.26990224e+08
+  -1.26928422e+08 -4.90735104e+08]
+ [-4.90754858e+08  1.57296650e+08 -2.85407340e+08 ... -5.07485844e+08
+  -5.07485881e+08  5.67776764e+06]
+ [-5.07485881e+08 -1.29563825e+08 -4.90735104e+08 ... -5.07485805e+08
+  -4.90752012e+08 -5.07485805e+08]
+ ...
+ [-5.07485805e+08 -1.24544517e+08 -4.90735104e+08 ... -1.24544517e+08
+  -4.90735104e+08 -5.07485805e+08]
+ [-1.24544517e+08 -4.90735104e+08  3.00829790e+05 ... -4.90735104e+08
+  -5.07485805e+08 -1.24544517e+08]
+ [-4.90735104e+08 -5.07485805e+08  5.92987084e+07 ... -5.07485805e+08
+  -1.24544517e+08 -4.90735104e+08]]
+/TM_Deflection/backward: [[-3.14125477e+04 -7.70910349e+03 -3.03757065e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [-7.70910349e+03 -3.03757065e+04 -3.14125477e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 2.82615356e-05 -7.70910349e+03 -3.03757065e+04 ... -3.14125477e+04
+  -7.70910349e+03 -3.03757065e+04]
+ ...
+ [-3.03757065e+04 -3.14125477e+04 -7.70910349e+03 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 1.77389427e+03 -8.06054810e+03 -3.03757065e+04 ... -3.14125477e+04
+   0.00000000e+00 -7.70910349e+03]
+ [-3.03757065e+04 -3.14125477e+04  2.82615356e-05 ... -3.14125531e+04
+  -7.70910349e+03 -3.03757065e+04]]
+/TM_Deflection/forward: [[-3.14125477e+04 -7.70910349e+03 -3.03757065e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [-7.70910349e+03 -3.03757065e+04 -3.14125477e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 2.82615356e-05 -7.70910349e+03 -3.03757065e+04 ... -3.14125477e+04
+  -7.70910349e+03 -3.03757065e+04]
+ ...
+ [-3.03757065e+04 -3.14125477e+04 -7.70910349e+03 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 1.77389427e+03 -8.06054810e+03 -3.03757065e+04 ... -3.14125477e+04
+   0.00000000e+00 -7.70910349e+03]
+ [-3.03757065e+04 -3.14125477e+04  2.82615356e-05 ... -3.14125531e+04
+  -7.70910349e+03 -3.03757065e+04]]

@@ -13,24 +13,16 @@
     "markdown": true,
     "scminput": false,
     "python": true,
-<<<<<<< HEAD
     "json": true,
     "shell": true
-=======
-    "json": true
->>>>>>> 136f0f0 (Paarsing the raw data.)
   },
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,
   "CRS.OnSaveAlFileAction": "Reorganize",
-<<<<<<< HEAD
-  "yaml.format.singleQuote": true
-=======
-  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "yaml.format.singleQuote": true,
   "workbench.preferredDarkColorTheme": "Monokai",
   "workbench.preferredHighContrastColorTheme": "Monokai",
   "workbench.preferredHighContrastLightColorTheme": "Monokai",
   "workbench.preferredLightColorTheme": "Monokai",
   "json.format.keepLines": true
->>>>>>> 136f0f0 (Paarsing the raw data.)
 }
