@@ -96,8 +96,8 @@ Only `_00000` is present in the test data folder; the existence of the remaining
 | 170 | `Y Position` | 0 | Scan centre Y |
 | 171 | `X Offset` | −2000 nm | Actual X of this grid point |
 | 172 | `Y Offset` | −2000 nm | Actual Y of this grid point |
-| 174 | `Stage X` | −9797.5 µm | Absolute motor encoder position |
-| 175 | `Stage Y` | −42233.8 µm | Absolute motor encoder position |
+<!-- | 174 | `Stage X` | −9797.5 µm | Absolute motor encoder position |
+| 175 | `Stage Y` | −42233.8 µm | Absolute motor encoder position | -->
 
 `X Offset` and `Y Offset` are the fields that change between files. The stage coordinates give the absolute position on the sample in the lab frame.
 
@@ -108,7 +108,7 @@ X = −2000 + (column_index × 1000) nm
 Y = −2000 + (row_index    × 1000) nm
 ```
 
-| File | Col | Row | X (nm) | Y (nm) |
+<!-- | File | Col | Row | X (nm) | Y (nm) |
 |---|---|---|---|---|
 | `_00000` | 0 | 0 | −2000 | −2000 |
 | `_00001` | 1 | 0 | −1000 | −2000 |
@@ -134,7 +134,7 @@ Y = −2000 + (row_index    × 1000) nm
 | `_00021` | 1 | 4 | −1000 | +2000 |
 | `_00022` | 2 | 4 | 0 | +2000 |
 | `_00023` | 3 | 4 | +1000 | +2000 |
-| `_00024` | 4 | 4 | +2000 | +2000 |
+| `_00024` | 4 | 4 | +2000 | +2000 | -->
 
 ### Force curve parameters (per grid point)
 
