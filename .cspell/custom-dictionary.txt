@@ -62,6 +62,7 @@ José
 keywith
 Kpage
 Kühbach
+KPFM
 levelname
 linearization
 localzone
