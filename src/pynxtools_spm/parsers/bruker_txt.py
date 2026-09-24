@@ -1,6 +1,8 @@
 """Parser for Bruker force-curve TXT export files."""
 
 import re
+
+import numpy as np
 from pynxtools import logger as pynx_logger
 
 import numpy as np

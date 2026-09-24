@@ -76,11 +76,6 @@ Mirco
 miscellaneous
 Mozumder
 MPES
-<<<<<<< HEAD
-=======
-Mbruker
-multilines
->>>>>>> 20b78a2 (Rebase-3)
 Mbruker
 multilines
 Mlab
