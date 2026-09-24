@@ -337,6 +337,20 @@
               "raw_path": "",
               "@units": ""
             },
+            "scan_offset_valueN[scan_offset_value_n]": [
+              {
+                "x": {
+                  "raw_path": "/X_Offset",
+                  "@units": "/X Offset/unit"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Y_Offset",
+                  "@units": "/Y Offset/unit"
+                }
+              }
+            ],
             "scan_rangeN[scan_range_n]": {
               "#note": "Aspect_Ratio is also needed to calculate the scan range",
               "raw_path": "/Scanner_list/0/Scan_Size",
