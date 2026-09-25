@@ -52,10 +52,6 @@ uv pip install pynxtools-spm[nomad]
 
 More information about this pynxtools plugin is available in the [documentation](https://fairmat-nfdi.github.io/pynxtools-spm/). You will find information about getting started, how-to guides, the supported file formats, how to get involved, and much more there.
 
-## Contributing
-
-Development happens on the `develop` branch; please open pull requests against `develop`. The `main` branch contains released versions only and receives changes exclusively from `release/<version>` branches, which are created from `develop`. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full development and release workflow.
-
 ## Contact person in FAIRmat for this reader
 
 Rubel Mozumder
