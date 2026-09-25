@@ -22,6 +22,6 @@ __4.__ Run the converter to test your development. If the raw data is not proper
 
 __5.__ Write test cases for your new parser and formatter modules. This is an easy but important part of the contribution process. Add your test cases to the `test_reader` module in `tests` and include only the necessary input files in the subdirectory of the `data` sub-directory of `tests` directory.
 
-__6.__ Create a pull request (PR) to include your contributions in the main branch of the `pynxtools-spm` repository. You may create the PR as a draft while development is ongoing and keep us in the discussion loop.
+__6.__ Create a pull request (PR) against the `develop` branch of the `pynxtools-spm` repository (see the [development guide](../tutorials/development-guide.md#branching-model) for the branching model). You may create the PR as a draft while development is ongoing and keep us in the discussion loop.
 
-__7.__ We will review your code and provide feedback. Once all changes are finalized, we will merge your code into the main branch of the `pynxtools-spm` repository and release a new version of the package, including your contributions.
+__7.__ We will review your code and provide feedback. Once all changes are finalized, we will merge your code into the `develop` branch. Your contribution will then be shipped with the next release, which is prepared on a `release/<version>` branch and merged into `main`.
