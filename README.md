@@ -46,13 +46,15 @@ for the latest released version.
 
 More information about this pynxtools plugin is available in the [documentation](https://fairmat-nfdi.github.io/pynxtools-spm/). You will find information about getting started, how-to guides, the supported file formats, how to get involved, and much more there.
 
-## Contributing
-
-Development happens on the `develop` branch; please open pull requests against `develop`. The `main` branch contains released versions only and receives changes exclusively from `release/<version>` branches, which are created from `develop`. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full development and release workflow.
-
 ## Contact person in FAIRmat for this reader
 
 Rubel Mozumder
 
 
 **Note**: This repository is an upgraded and renamed version of [pynxtools-stm](https://github.com/FAIRmat-NFDI/pynxtools-stm), which is now archived. In addition to the integration of new readers (e.g., `AFM`), all functionalities of `pynxtools-stm` remain available in this repository.
+
+## Contributing
+
+Create your branch from `develop` and open your pull request against `develop`. Never open a pull request against `main`: it receives only `release/*` branches.
+
+See the [development guide](https://fairmat-nfdi.github.io/pynxtools-spm/tutorials/development-guide.html).

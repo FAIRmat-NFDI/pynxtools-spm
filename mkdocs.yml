@@ -11,6 +11,7 @@ nav:
   - Tutorial:
       - tutorials/installation.md
       - tutorials/use-reader-in-nomad.md
+      - tutorials/development-guide.md
   - How-To Guides:
       - how-to-guides/work-with-reader.md
       - how-to-guides/how-to-extend-readers.md
