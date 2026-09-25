@@ -1,4 +1,4 @@
-name: Check source branch for main
+name: Check if source is release/*
 
 # `main` holds released versions only, so only `release/*` branches may be merged into it.
 # Make this job a required status check in the `main` branch protection rule.
