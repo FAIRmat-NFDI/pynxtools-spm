@@ -106,7 +106,7 @@ You can also install the latest _development_ version directly from GitHub:
 !!! note
     Every installation method also installs `pynxtools` as a dependency with a suitable version (`pynxtools>=0.15.0`).
 
-### __3. Install in development mode (optional)__
+### __3. Install in development mode (optional)__ { #install-in-development-mode }
 
 If you want to contribute to the code repository, e.g. to [extend the reader orchestra](../how-to-guides/how-to-extend-readers.md) with a new vendor file format, clone the repository and install it in editable mode together with the `dev` and `docs` extras:
 
@@ -176,6 +176,7 @@ pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml nanonis
 ## __Further reading__
 
 - [Use Reader in NOMAD](use-reader-in-nomad.md)
+- [Development guide](development-guide.md)
 - [Use Reader from Command Line](../reference/standalone-usages.md)
 - [Work with Reader](../how-to-guides/work-with-reader.md)
 - [Supported vendor files and formats](../explanation/reader-orchestra.md#supported-vendor-files-and-formats)
