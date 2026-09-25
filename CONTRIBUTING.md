@@ -57,8 +57,7 @@ for `main`.
    New features keep going into `develop`.
 3. Bump `version` in `CITATION.cff` to `x.y.z`. The publish workflow fails if it differs from the tag.
 4. Open a PR from `release/x.y.z` into `main` and merge it once CI passes.
-5. Create a GitHub release with the tag `vx.y.z` **on `main`**. The publish workflow refuses to upload
-   to PyPI if the tagged commit is not on `main`.
+5. Create a GitHub release with the tag `vx.y.z` **on `main`**.
 6. If you fixed anything directly on the release branch, open a PR from `release/x.y.z` into `develop`
    so the fixes are not lost in ongoing development.
 7. Delete the `release/x.y.z` branch.
