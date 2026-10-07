@@ -92,8 +92,23 @@ default `z_forward`; post-audit: **0 long units, 0 shape mismatches, 0 bad defau
 `citeID.description` carries the full Zenodo description. The EDX/XPS/SECCM/XRD files are other
 techniques (grouped rows, not converted).
 
+## NOMAD Publication
+
+| Version | Date | NOMAD project | Application definition | Licence |
+|---------|------|---------------|------------------------|---------|
+| v1 | 2026-10-07 | [odu8bKETSJePvY5u7ChD3g](https://nomad-lab.eu/prod/v1/gui/v2/projects/odu8bKETSJePvY5u7ChD3g) | Current `NXafm` | CC BY 4.0 (same as Zenodo) |
+
+- **Project name**: Au-Ir-Rh Thin-Film Library AFM (Zenodo 20439519)
+- **Credit**: original authors and DOI `10.5281/zenodo.20439519` cited in the project
+  description; NeXus conversion and curation noted as a change (CC BY 4.0 attribution).
+- **Planned v2**: the SPM application definitions (`NXspm` / `NXafm`) are being upgraded. After
+  the upgrade, re-convert the AFM files with the updated `pynxtools-spm` and publish a **new
+  version** of this dataset in NOMAD, then add a v2 row to the table above.
+
 ## Status
 
 - [x] Files uploaded to S3
 - [x] Parser test attempted — 15/15 AFM files converted (`PS = True`)
 - [x] Reference .nxs files generated and uploaded for all 15 AFM files
+- [x] Published in NOMAD (v1, 2026-10-07)
+- [ ] Re-convert with upgraded SPM application definitions and publish v2 in NOMAD
