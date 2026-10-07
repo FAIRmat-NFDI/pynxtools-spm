@@ -38,7 +38,7 @@ Every frame is right-handed and Cartesian.
 | Lifetime | Fixed for an instrument and scanner. Changes only on recalibration or a scanner swap |
 | Units | Length. Some vendors store offsets in volts (Bruker: ±220 V), which must be converted with the scanner calibration |
 
-Decisions: [D1](#d1), [D3](#d3), [D4](#d4), [D5](#d5).
+Decisions: [D1](#d1), [D3](#d3), [D4](#d4), [D5](#d5), [D22](#d22), [D23](#d23), [D24](#d24), [D25](#d25), [D26](#d26), [D27](#d27).
 
 ### 2. Scan frame (one per image)
 
@@ -279,8 +279,11 @@ From [`docs/explanation/scan-region-conventions.md`][repo-scan]:
       same sign.
     - **Nanonis `Z (m)`: open.** The headers and the accessible SPECS documents do
       not state the sign. A height-skewness test on the test images was
-      inconclusive. A Nanonis Z-spectroscopy file (approach curve) would settle
-      it, in the same way as the Bruker ramp.
+      inconclusive. One test file has a negative Z calibration
+      (`Calib. Z (m/V)` = `-871E-12`, [R1]), which suggests that the sign of
+      Nanonis `Z` is set per instrument through the calibration. A Nanonis
+      Z-spectroscopy file (approach curve) would settle it, in the same way as
+      the Bruker ramp.
 6. **Stage direction and unit.** The direction `vᵢ` of each stage axis depends on
    the instrument. The unit of Bruker `\Stage X/Y/Z` is not given in the header
    (µm assumed).
@@ -323,6 +326,12 @@ listed under [Sources](#sources), each with the decisions it supports.
 | <a id="d19"></a>D19 | Bruker height sensor in force ramps increases towards the sample (opposite to scanner `z`) | During extend, `Height_Sensor_nm` rises from −1576 to +925 nm while the deflection jumps from about −51 to +22 nm at contact | Raw data | [R3] | open question 5 |
 | <a id="d20"></a>D20 | Nanonis `Z (m)` sign stays open | Headers and accessible SPECS documents do not state it. A height-skewness test on the test images gave mixed signs and is not evidence | Raw data, Vendor | [R1], [V6] | open question 5 |
 | <a id="d21"></a>D21 | Sample chain: `mount_rotation` → `mount_translation_x` → `_y` → `_z` → stage; no surface tilt | Kept simple; the rotation and translation are found from fiducials | Team | [P3] | `NXspm/ENTRY/SAMPLE/transformations` |
+| <a id="d22"></a>D22 | Piezo sensor `x`, `y`, `z` are the position of the tip relative to the sample in the scanner frame; the group names the frame with its inherited `depends_on` | The scanner frame is the relative tip–sample displacement measured from the piezo zero (see [scanner frame](#1-scanner-frame-central)), so piezo readings are scanner-frame coordinates without a transformation. `NXspm_piezo_sensor` extends `NXsensor`, which already has `depends_on`, but its doc is still a `.. todo::` | Standard, Derived | [S8] | `NXspm_piezo_sensor`, `NXspm/ENTRY/INSTRUMENT/piezo_sensor` |
+| <a id="d23"></a>D23 | Piezo sensor `z` is positive away from the sample; a vendor value that increases as the tip approaches the sample is stored with the opposite sign | Follows from the scanner frame's `z` (from the sample towards the probe). The Bruker height sensor in force ramps increases towards the sample ([D19](#d19)), so the rule is needed in practice | Derived, Raw data | [R3] | `NXspm_piezo_sensor/z` |
+| <a id="d24"></a>D24 | `NXspm_piezo_config` gets its own `depends_on`; `tiltAXIS` is the instrument's slope-compensation angle, with the instrument's sign | `NXspm_piezo_config` extends `NXobject` and had no `depends_on`. Nanonis stores the tilt in the piezo configuration (`:Piezo Configuration>Tilt X (deg):` = `0.678395`). No source found for its sign | Raw data | [R1] | `NXspm_piezo_config/depends_on`, `tiltAXIS` |
+| <a id="d25"></a>D25 | `spatial_location` in `NXspm_bias_spectroscopy` is an `NXspm_piezo_sensor` (a tip position), not an `NXcoordinate_system` | In `NXcoordinate_system`, `x`, `y`, `z` are basis vectors, not a position. Nanonis STS headers store the spectrum position as `X (m)`, `Y (m)`, `Z (m)`: `X`/`Y` share the origin of the scan offset (e.g. `X` = 153.514 nm inside a 4 nm scan field centred at 153.414 nm) and `Z (m)` equals `Z-Controller>Z (m)` (62.880 vs 62.850 nm). The reader already maps them to `piezo_sensor/x, y, z`. As a result, `scanner_frame` is the only `NXcoordinate_system` in all SPM definitions ([D1](#d1)) | Standard, Raw data, Code | [S1], [R4], [C4] | `NXspm_bias_spectroscopy/BIAS_SWEEP/spatial_location` |
+| <a id="d26"></a>D26 | `scanner_frame/x_direction` and `y_direction` are recommended, not required | They are free text that readers rarely provide; making them required would reject otherwise complete files | Team | — | `NXspm/ENTRY/scanner_frame` |
+| <a id="d27"></a>D27 | `calibratedAXIS`, `hv_gainAXIS` and `driftAXIS` describe the stored values instead of software behaviour ("automatically updated"); `driftAXIS` keeps `units="NX_ANY"` with the unit (m/s) in the doc | Nanonis stores `Calib. X (m/V)`, `HV Gain X` and `Drift X (m/s)` with `Drift correction status (on/off)` in the piezo configuration. No `Range` key exists in any test file, so no formula is stated, only that two of the three values determine the third. NeXus has no velocity unit category (no `NX_VELOCITY` in `nxdlTypes.xsd`); speeds such as `scan_speedAXIS` use `NX_ANY` | Raw data, Standard | [R1], [S9] | `NXspm_piezo_config/calibration` |
 
 ## Sources
 
@@ -330,12 +339,14 @@ Each source lists what we learned from it and the decisions (D…) it supports.
 
 ### NeXus definitions (read in the `nexus_definitions` repository)
 
-- **[S1]** `base_classes/NXcoordinate_system.nxdl.xml`, lines 43 and 81. Fallback to a single `NXcoordinate_system`; advice on using one versus several. → [D1](#d1). [Manual][nx-cs]
+- **[S1]** `base_classes/NXcoordinate_system.nxdl.xml`, lines 43 and 81. Fallback to a single `NXcoordinate_system`; advice on using one versus several. → [D1](#d1), [D25](#d25). [Manual][nx-cs]
 - **[S2]** `base_classes/NXtransformations.nxdl.xml`: chain composition `T_f = T₃ T₂ T₁` (line 71), unit-length `vector` (line 153), right-hand rotation rule (line 175), targets of the `depends_on` attribute (line 202). → [D5](#d5), [D7](#d7), [D8](#d8), [D9](#d9). [Manual][nx-tr]
 - **[S3]** `base_classes/NXcomponent.nxdl.xml`, lines 66 and 80. Provides `depends_on` and `NXtransformations` to every component. → [D13](#d13)
 - **[S4]** `base_classes/NXmanipulator.nxdl.xml`, lines 26 and 221. "Base class to describe the use of manipulators and sample stages"; `NXpositioner` subgroups for its motors. → [D14](#d14)
 - **[S5]** `base_classes/NXpositioner.nxdl.xml`, line 34. "A generic positioner such as a motor or piezo-electric transducer". → [D14](#d14)
 - **[S6]** `base_classes/NXem_instrument.nxdl.xml`, line 162, and `applications/NXem.nxdl.xml`, line 964. Stage values should be described with `NXtransformations`; `stageID` is an `NXmanipulator`. → [D14](#d14), [D15](#d15)
+- **[S8]** `base_classes/NXsensor.nxdl.xml`, line 161. `depends_on` exists (inherited by `NXspm_piezo_sensor`), but its doc is a `.. todo::` "Add a definition for the reference point of a sensor". → [D22](#d22)
+- **[S9]** `nxdlTypes.xsd`. The list of NeXus unit categories; it has `NX_LENGTH`, `NX_TIME`, `NX_ANY`, but no velocity category. → [D27](#d27)
 - **[S7]** `applications/NXxps.nxdl.xml`, line 52. One `xps_coordinate_system` under `NXentry`, chains in the component groups. → [D2](#d2)
 
 ### Vendor documentation
@@ -360,12 +371,14 @@ Each source lists what we learned from it and the decisions (D…) it supports.
 - **[C1]** rusty-tip PR #29 (Nanonis control software). The coarse-motor approach direction is configured per instrument (`motor_z_approach`: `plus` or `minus`). → [D16](#d16). [Link][rusty-tip]
 - **[C2]** pynxtools-spm, `src/pynxtools_spm/nxformatters/nanonis/nanonis_sxm_stm.py`, line 248. Writes one scan angle per axis. → [D6](#d6)
 - **[C3]** pynxtools-spm, *Scan region, axes and scan direction*. Offset = centre of the scan area; stage keys never combined with the offset. [Link][repo-scan]
+- **[C4]** pynxtools-spm, `src/pynxtools_spm/configs/nanonis/nanonis_dat_generic_sts.json`, lines 549–551. Maps the STS header keys `X (m)`, `Y (m)`, `Z (m)` to `piezo_sensor/x, y, z`. → [D25](#d25)
 
 ### Raw data (test files in this repository)
 
-- **[R1]** Nanonis headers, e.g. `tests/data/nanonis/stm/v_gen_5_dflt_conf_down/Au_mica_2023_Y_A_diPAMY_195.sxm`: one `:SCAN_ANGLE:` value, no stage or coarse-motor keys in any `.sxm` or `.dat` file. → [D6](#d6), [D17](#d17), [D20](#d20)
+- **[R1]** Nanonis headers, e.g. `tests/data/nanonis/stm/v_gen_5_dflt_conf_down/Au_mica_2023_Y_A_diPAMY_195.sxm`: one `:SCAN_ANGLE:` value, no stage or coarse-motor keys in any `.sxm` or `.dat` file., piezo tilt in `:Piezo Configuration>Tilt X (deg):`, calibration `Calib. X (m/V)`, `HV Gain X`, `Drift X (m/s)` and a negative `Calib. Z (m/V)` = `-871E-12` in `tests/data/nanonis/afm/v_gen_4_dflt_conf_up/A151216.123306-02602.sxm`. → [D6](#d6), [D17](#d17), [D20](#d20), [D24](#d24), [D27](#d27)
 - **[R2]** Bruker `.spm` headers, e.g. `tests/data/bruker/afm/spm_v_9_4_dflt_conf_up/tecky.0_00002.spm`: one `\Rotate Ang.`; `\Stage X/Y/Z` without a unit; `\Engage X Pos` in `um`; `\Scanner type: Dim 4000`; `\Cantilever Angle: 12` (two files) or `0` (one file). → [D6](#d6), [D12](#d12), [D18](#d18)
 - **[R3]** Bruker force ramp `tests/data/bruker/afm/txt_dflt_conf/SB04-MG1.0_00000.spm.txt`: `Height_Sensor_nm` and `Defl_nm` in the extend (`_Ex`) and retract (`_Rt`) halves. → [D19](#d19)
+- **[R4]** Nanonis STS files `tests/data/nanonis/sts/v_gen_5_descrb_nx_dt/Bias-Spectroscopy00015_20230420.dat` and `tests/data/nanonis/sts/v_gen_5e_dflt_conf/STS_nanonis_generic_5e_1.dat`: `X (m)`, `Y (m)`, `Z (m)`, `Scan>Scanfield`, `Z-Controller>Z (m)`. → [D25](#d25)
 
 ### Not yet read in full (seen only in search summaries)
 
