@@ -1,0 +1,28 @@
+experiment_technique: AFM
+definition: NXafm
+Instrument:
+  hardware:
+    model: NanoScope
+    name: Bruker
+    vendor: Bruker
+  software:
+    model: NanoScope
+    vendor: Bruker
+# Sample:
+#   History:
+#     Note:
+#       description: "<p>Demo description: This sample is used in from Tamash.</p>"
+#   Sample_component:
+#     chemical_formula:
+#     description: <p>Unknow sample.</p>
+#     name: Unknow
+#   name: Unknow
+default: deflection_retrace
+experiment_description: A demo experiment description
+identifier_collection: Afm_single_point_spectroscopy_SB03-MG1.0_00000.spm.txt
+identifier_experiment: SB03-MG1.0_00000.spm.txt
+scan_mode: peak force tapping mode
+User:
+  email:
+    - mozumder@physik.hu-berlin.de
+  name: Rubel Mozumder
