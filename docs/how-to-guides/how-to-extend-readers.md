@@ -24,4 +24,4 @@ __5.__ Write test cases for your new parser and formatter modules. This is an ea
 
 __6.__ Create a pull request (PR) against the `develop` branch of the `pynxtools-spm` repository (see the [development guide](../tutorials/development-guide.md#branching-model) for the branching model). You may create the PR as a draft while development is ongoing and keep us in the discussion loop.
 
-__7.__ We will review your code and provide feedback. Once all changes are finalized, we will merge your code into the `develop` branch. Your contribution will then be shipped with the next release, which is prepared on a `release/<version>` branch and merged into `main`.
+__7.__ We will review your code and provide feedback. Once all changes are finalized, we will merge your code into the `develop` branch. Your contribution will then be shipped with the next release, which is prepared on a `release/v<version>` branch and merged into `main`.

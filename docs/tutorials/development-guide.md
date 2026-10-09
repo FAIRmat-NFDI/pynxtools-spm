@@ -34,16 +34,16 @@ Clone the repository and install it in editable mode together with the `dev` and
 |---|---|
 | `develop` | Default branch. All normal development PRs target this branch. |
 | `main` | Released versions only. Only `release/*` branches are merged here, so its history is the release history. |
-| `release/<version>` | Temporary release branch, created from `develop` and merged into `main`. |
+| `release/v<version>` | Temporary release branch, created from `develop` and merged into `main`. |
 
 | Activity | Branch |
 |---|---|
 | Feature development | `develop` |
 | PR review and integration | `develop` |
-| Selecting changes for a release | `release/x.y.z` |
-| Release-specific bug fixes | `release/x.y.z` |
+| Selecting changes for a release | `release/vx.y.z` |
+| Release-specific bug fixes | `release/vx.y.z` |
 | Published release history | `main` |
-| Porting release fixes back to ongoing development | Merge `release/x.y.z` back into `develop` |
+| Porting release fixes back to ongoing development | Merge `release/vx.y.z` back into `develop` |
 
 The `Check if source is release/*` workflow
 ([`.github/workflows/check-source-is-release.yml`](https://github.com/FAIRmat-NFDI/pynxtools-spm/blob/develop/.github/workflows/check-source-is-release.yml))
@@ -114,18 +114,20 @@ and open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser. The b
 
     ```bash
     git switch develop && git pull
-    git switch -c release/x.y.z
-    git push -u origin release/x.y.z
+    git switch -c release/vx.y.z
+    git push -u origin release/vx.y.z
     ```
 
 2. Commit only release-specific changes on this branch (version bumps, changelog, last-minute bug fixes).
    New features keep going into `develop`.
 3. Bump `version` in `CITATION.cff` to `x.y.z`. The publish workflow fails if it differs from the tag.
-4. Open a PR from `release/x.y.z` into `main` and merge it once CI passes.
-5. Create a GitHub release with the tag `vx.y.z` __on `main`__.
-6. If you fixed anything directly on the release branch, open a PR from `release/x.y.z` into `develop`
+4. Open a PR from `release/vx.y.z` into `main` and merge it once CI passes. Do not delete the release branch yet.
+5. Create a GitHub release with the tag `vx.y.z` and select `release/vx.y.z` as its target branch.
+   The publish workflow refuses to upload to PyPI if the release does not target `release/vx.y.z`
+   or if the tagged commit is not on that branch.
+6. If you fixed anything directly on the release branch, open a PR from `release/vx.y.z` into `develop`
    so the fixes are not lost in ongoing development.
-7. Delete the `release/x.y.z` branch.
+7. Delete the `release/vx.y.z` branch.
 
 ## __Developing pynxtools-spm as a NOMAD plugin__
 
