@@ -6,6 +6,7 @@ on:
 
 env:
   python-version: 3.12
+  head_ref: ${{ github.head_ref }}
 
 jobs:
   setup:
@@ -23,6 +24,12 @@ jobs:
         uses: astral-sh/setup-uv@v5
         with:
           python-version: ${{ env.python-version }}
+      - name: Check if publish is out from a release/v*.*.* branch
+        run: |
+          if [[ "${{env.head_ref}}" != release/v* ]]; then
+            echo "This workflow should only be triggered by a release/v*.*.* branch."
+            exit 1
+          fi
       - name: Git tag version
         id: git_tag_version
         run: |
