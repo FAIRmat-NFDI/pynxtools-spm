@@ -15,6 +15,7 @@ Data from __Scanning Probe Microscopy (SPM)__ techniques such as __Scanning Tunn
 ### Tutorial
 - [Installation](tutorials/installation.md)
 - [Use Reader in NOMAD](tutorials/use-reader-in-nomad.md)
+- [Development guide](tutorials/development-guide.md)
 
 </div>
 <!--
