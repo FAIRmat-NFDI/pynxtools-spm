@@ -176,7 +176,7 @@ pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml nanonis
 ## __Further reading__
 
 - [Use Reader in NOMAD](use-reader-in-nomad.md)
-- [Development guide](development-guide.md)
+- [Development guide](contributing.md)
 - [Use Reader from Command Line](../reference/standalone-usages.md)
 - [Work with Reader](../how-to-guides/work-with-reader.md)
 - [Supported vendor files and formats](../explanation/reader-orchestra.md#supported-vendor-files-and-formats)
