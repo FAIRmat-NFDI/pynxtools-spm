@@ -52,3 +52,9 @@ Rubel Mozumder
 
 
 **Note**: This repository is an upgraded and renamed version of [pynxtools-stm](https://github.com/FAIRmat-NFDI/pynxtools-stm), which is now archived. In addition to the integration of new readers (e.g., `AFM`), all functionalities of `pynxtools-stm` remain available in this repository.
+
+## Contributing
+
+Create your branch from `develop` and open your pull request against `develop`. Never open a pull request against `main`: it receives only `release/*` branches.
+
+See the [development guide](https://fairmat-nfdi.github.io/pynxtools-spm/tutorials/development-guide.html).

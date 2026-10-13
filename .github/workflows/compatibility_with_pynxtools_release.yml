@@ -2,9 +2,9 @@ name: Compatibility with pynxtools
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop, 'release/**']
   pull_request:
-    branches: [main]
+    branches: [main, develop, 'release/**']
 
 env:
   python-version: 3.12
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pynxtools-version: ['master', 'v0.16.0']
+        pynxtools-version: ['develop', 'v0.16.0']
 
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +38,10 @@ jobs:
           version="${{ matrix.pynxtools-version }}"
           if [[ "$version" == "latest" ]]; then
             uv pip install pynxtools
-          elif [[ "$version" == "master" ]]; then
-            uv pip install git+https://github.com/FAIRmat-NFDI/pynxtools.git@master
+          elif [[ "$version" == "develop" ]]; then
+            uv pip install git+https://github.com/FAIRmat-NFDI/pynxtools.git@develop
+          elif [[ "$version" == "main" ]]; then
+            uv pip install git+https://github.com/FAIRmat-NFDI/pynxtools.git@main            
           elif [[ "$version" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             uv pip install "pynxtools==${version#v}"
           else

@@ -1,14 +1,14 @@
 pynxtools_spm/nxformatters
+├── __init__.py
 ├── base_formatter.py
 ├── bruker
+│   ├── README.md
+│   ├── __init__.py
 │   ├── bruker_base.py
 │   ├── bruker_flt_afm.py
 │   ├── bruker_spm_afm.py
-│   ├── bruker_txt_afm.py
-│   ├── __init__.py
-│   └── README.md
+│   └── bruker_txt_afm.py
 ├── helpers.py
-├── __init__.py
 ├── nanonis
 │   ├── __init__.py
 │   ├── nanonis_base.py
@@ -20,4 +20,4 @@ pynxtools_spm/nxformatters
     ├── omicron_base.py
     └── omicron_sm4_stm.py
 
-3 directories, 17 files
+4 directories, 17 files
