@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/rubel/NOMAD-FAIRmat/GH/nexus_definitions/applications/**)",
+      "Read(//home/rubel/NOMAD-FAIRmat/GH/nexus_definitions/base_classes/**)",
+      "Read(//home/rubel/NOMAD-FAIRmat/GH/nexus_definitions/manual/source/classes/applications/**)",
+      "Read(//home/rubel/NOMAD-FAIRmat/GH/nexus_definitions/manual/source/classes/base_classes/**)",
+      "Bash(aws s3 *)",
+      "Bash(aws s3api *)",
+      "Bash(ps *)",
+      "Bash(grep *)",
+      "Bash(tail *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(bash ZenodoDataCollection/*)",
+      "Bash(bash /tmp/*)",
+      "Bash(mkdir *)",
+      "Bash(mv *)",
+      "Bash(cp *)",
+      "Bash(rm *)",
+      "Bash(cat *)"
+    ]
+  }
+}

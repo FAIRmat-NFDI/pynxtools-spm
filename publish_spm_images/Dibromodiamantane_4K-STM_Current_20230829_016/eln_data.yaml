@@ -1,0 +1,55 @@
+Instrument:
+  hardware:
+    model: Generic 5e
+    model/@version: 5e
+    name: Nanonis
+    vendor: Nanonis
+  software:
+    model: Generic 5e
+    model/@version: 5e
+    name: Nanonis
+    vendor: Nanonis
+Sample:
+  Sample_component:
+    chemical_formula: Au(C14​H18​Br2​)
+    description: Dibromodiamantane molecules on the Au(111)/mica surface.
+    name: Dibromodiamantane
+  name: Dibromodiamantane
+default: current_forward
+definition: NXstm
+experiment_description: |
+  Clean Au(111)/mica substrates were prepared by Ar⁺ sputtering (1 kV, 10 mA) and 
+  annealing at 723 K under UHV. 4,9-Dibromodiamantane molecules were deposited from a 
+  room-temperature glass crucible onto Au(111) held at 178 K. The molecular layer was 
+  subsequently irradiated with Al Kα X-rays (260 W, source–sample distance 1.5 cm) for 
+  cumulative exposure times of 1.5–10 h to induce C–Br bond dissociation and molecular 
+  coupling. STM measurements were performed under UHV using a CreaTec 1 K SPM at 77 K 
+  or 4 K with Pt/Ir tips, operating in constant-current
+experiment_technique: STM
+identifier_collection: 20230829_016
+identifier_experiment: Dibromodiamantane_4K-STM_Current_20230829_016.sxm
+scan_mode: constant current
+User:
+  - affiliation:
+      - Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China
+    email:
+      - yanwang@iphy.ac.cn
+    name: Yan Wang
+  - affiliation:
+      - Department of Physics& IRIS Adlershof, Humboldt-Universität zu Berlin, 12489 Berlin,
+        Germany
+    email:
+      - cojal@physik.hu-berlin.de
+    name: Cojal González, José David
+  - affiliation:
+      - FAIRmat, Humboldt-Universität zu Berlin, Berlin
+    email:
+      - rubel.mozumder@physik.hu-berlin.de
+    name: Rubel Mozumder
+  - affiliation:
+      - Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China
+      - Department of Physics& IRIS Adlershof, Humboldt-Universität zu Berlin, 12489 Berlin,
+        Germany
+    email:
+      - palma@iphy.ac.cn
+    name: Prof. Carlos-Andres Palma
