@@ -112,22 +112,19 @@ and open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your browser. The b
 
 1. Create the release branch from `develop`:
 
-    ```bash
+    ```console
     git switch develop && git pull
-    git switch -c release/vx.y.z
-    git push -u origin release/vx.y.z
+    git switch -c release/vX.Y.Z
+    git push -u origin release/vX.Y.Z
     ```
 
-2. Commit only release-specific changes on this branch (version bumps, changelog, last-minute bug fixes).
-   New features keep going into `develop`.
-3. Bump `version` in `CITATION.cff` to `x.y.z`. The publish workflow fails if it differs from the tag.
-4. Open a PR from `release/vx.y.z` into `main` and merge it once CI passes. Do not delete the release branch yet.
-5. Create a GitHub release with the tag `vx.y.z` and select `release/vx.y.z` as its target branch.
-   The publish workflow refuses to upload to PyPI if the release does not target `release/vx.y.z`
-   or if the tagged commit is not on that branch.
-6. If you fixed anything directly on the release branch, open a PR from `release/vx.y.z` into `develop`
-   so the fixes are not lost in ongoing development.
-7. Delete the `release/vx.y.z` branch.
+1. Commit only release-specific changes on this branch (version bumps, changelog, last-minute bug fixes). New features keep going into `develop`.
+1. Bump `version` in `CITATION.cff` to `X.Y.Z`, including any pre-release suffix (e.g. `0.1.2-rc1` for the tag `v0.1.2-rc1`). The publish workflow fails if it differs from the tag.
+1. Open a PR from `release/vX.Y.Z` into `main`. Do not merge yet!
+1. Create a GitHub release with the tag `vX.Y.Z` and select `release/vX.Y.Z` as its target branch. The publish workflow refuses to upload to PyPI if the release does not target `release/vX.Y.Z` or if the tagged commit is not on that branch.
+1. Once CI passes and the release is published to PyPI, merge the PR.
+1. If you fixed anything directly on the release branch, open a PR from `release/vX.Y.Z` into `develop` so the fixes are not lost in ongoing development.
+1. Delete the `release/vX.Y.Z` branch.
 
 ## __Developing pynxtools-spm as a NOMAD plugin__
 
