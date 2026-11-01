@@ -140,20 +140,18 @@ The `docs` extra installs [MkDocs](https://www.mkdocs.org/) and its plugins, so 
 
 To use `pynxtools-spm` in [NOMAD](https://nomad-lab.eu/nomad-lab/), install it into the same Python environment as the `nomad-lab` package. NOMAD discovers `pynxtools-spm` automatically through its Python entry points, so no further configuration is needed. It also picks up the three example uploads (STS, STM, and AFM) that the package ships.
 
-First install NOMAD (see the [NOMAD installation guide](https://nomad-lab.eu/prod/v1/docs/howto/programmatic/pythonlib.html)), then install `pynxtools-spm`:
+`nomad-lab` is an optional dependency. Install it together with `pynxtools-spm` through the `nomad` extra (see also the [NOMAD installation guide](https://nomad-lab.eu/prod/v1/docs/howto/programmatic/pythonlib.html)):
 
 === "uv"
 
     ```bash
-    uv pip install nomad-lab --extra-index-url https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple
-    uv pip install pynxtools[spm]
+    uv pip install pynxtools-spm[nomad]
     ```
 
 === "pip"
 
     ```bash
-    pip install nomad-lab --extra-index-url https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple
-    pip install pynxtools[spm]
+    pip install pynxtools-spm[nomad]
     ```
 
 !!! note
