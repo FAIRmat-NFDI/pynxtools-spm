@@ -29,7 +29,6 @@ dependencies = [
     "hvplot",
     "tzlocal",
     "gwyddionpy[converter]",
-    "nomad-lab>=0.4.1",
 ]
 
 [project.urls]
@@ -37,6 +36,10 @@ dependencies = [
 "Parent Project" = "https://github.com/FAIRmat-NFDI"
 
 [project.optional-dependencies]
+nomad = [
+    "nomad-lab[infrastructure]>=1.4.1",
+]
+
 dev = [
     "mypy",
     "ruff>=0.15.0",

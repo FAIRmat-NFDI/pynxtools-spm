@@ -64,12 +64,9 @@ jobs:
         uses: astral-sh/setup-uv@v5
         with:
           python-version: ${{ env.python-version }}
-      - name: Install latest nomad release
+      - name: Install pynxtools-spm with the latest nomad release
         run: |
-          uv pip install nomad-lab[infrastructure]
-      - name: Install pynxtools-spm
-        run: |
-          uv pip install -e ".[dev]"
+          uv pip install -e ".[dev,nomad]"
       - name: Test with pytest
         run: pytest tests/
 
