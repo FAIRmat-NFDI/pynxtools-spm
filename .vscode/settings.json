@@ -19,5 +19,10 @@
   "editor.defaultFormatter": "charliermarsh.ruff",
   "notebook.formatOnSave.enabled": false,
   "CRS.OnSaveAlFileAction": "Reorganize",
-  "yaml.format.singleQuote": true
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+  "workbench.preferredDarkColorTheme": "Monokai",
+  "workbench.preferredHighContrastColorTheme": "Monokai",
+  "workbench.preferredHighContrastLightColorTheme": "Monokai",
+  "workbench.preferredLightColorTheme": "Monokai",
+  "json.format.keepLines": true
 }
