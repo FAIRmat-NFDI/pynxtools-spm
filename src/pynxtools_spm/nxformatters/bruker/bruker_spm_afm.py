@@ -19,7 +19,6 @@ from __future__ import annotations
 from pathlib import Path
 
 import numpy as np
-
 from pynxtools import logger as pynx_logger
 
 from pynxtools_spm.nxformatters.bruker.bruker_base import BrukerBase
@@ -64,6 +63,26 @@ class BrukerSpmAFM(BrukerBase):
             return fhs.read_config_file(config_file)
 
         return load_default_config(config_type="bruker_spm_afm")
+
+    def get_raw_data_dict(self):
+        data_dict = {}
+        data_dict_raw_data = SPMParser().get_raw_data_dict(self.raw_file, eln=self.eln)
+        data_dict_raw_data.update(data_dict_raw_data)
+        if self.auxilary_files is not None:
+            for aux_file in self.auxilary_files:
+                aux_data_dict = SPMParser().get_raw_data_dict(aux_file, eln=self.eln)
+                data_dict.update(aux_data_dict)
+        else:
+            pynx_logger.error(
+                "No auxilary file of .txt is provided for Bruker AFM data. " \
+                "To parse a Bruker AFM .spm file, an auxilary .txt file containing experiment metadata is required. "
+            )
+            raise ValueError(
+                "An ausilary .txt file is required for Bruker AFM data for experiment matadata."
+                "Please provide the path to the .txt file as an auxiliary file when initializing the formatter."
+            )
+
+       return data_dict
 
     def _construct_nxscan_controllers(
         self, partial_conf_dict, parent_path, group_name="scan_control", **kwarg

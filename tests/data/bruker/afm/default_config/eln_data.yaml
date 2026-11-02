@@ -1,0 +1,32 @@
+Instrument:
+  hardware:
+    model:
+    model/@version:
+    name: bruker
+    vendor: bruker
+  software:
+    model:
+    model/@version:
+    name: bruker
+    vendor: bruker
+# Sample:
+#   History:
+#     Note:
+#       description: "<p>Demo description: This sample is used in from Tamash.</p>"
+#   Sample_component:
+#     chemical_formula:
+#     description: <p>Unknow sample.</p>
+#     name: Unknow
+#   name: Unknow
+default: deflection_extension
+definition: NXafm
+experiment_description:
+experiment_technique: AFM
+identifier_collection: Afm_image_with_taping_mode_VGEP-15m-.0_00000.spm
+identifier_experiment: VGEP-15m-.0_00000.spm
+scan_mode: taping mode
+User:
+  email:
+    - mozumder@physik.hu-berlin.de
+  name:
+    - Rubel Mozumder
