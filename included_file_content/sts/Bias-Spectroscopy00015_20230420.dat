@@ -1,0 +1,179 @@
+Experiment	bias spectroscopy	
+Saved Date	20.04.2023 14:55:09	
+User		
+Date		
+X (m)	153.514E-9	
+Y (m)	-93.4937E-9	
+Z (m)	62.8795E-9	
+Z offset (m)	0E+0	
+Settling time (s)	2E-3	
+Integration time (s)	1E-3	
+Z-Ctrl hold	TRUE	
+Final Z (m)	N/A	
+Start time	20.04.2023 14:53:33	
+Filter type	Gaussian	
+Order	15	
+Cutoff frq		
+Bias>Bias (V)	-50E-3	
+Bias>Calibration (V/V)	1E+0	
+Bias>Offset (V)	0E+0	
+Bias Spectroscopy>Sweep Start (V)	-50E-3	
+Bias Spectroscopy>Sweep End (V)	50E-3	
+Bias Spectroscopy>Num Pixel	2048	
+Bias Spectroscopy>Z Avg time (s)	50E-3	
+Bias Spectroscopy>Z offset (m)	0E+0	
+Bias Spectroscopy>1st Settling time (s)	5E-3	
+Bias Spectroscopy>Settling time (s)	2E-3	
+Bias Spectroscopy>Integration time (s)	1E-3	
+Bias Spectroscopy>End Settling time (s)	5E-3	
+Bias Spectroscopy>Z control time (s)	200E-3	
+Bias Spectroscopy>Max Slew rate (V/s)	Inf	
+Bias Spectroscopy>backward sweep	FALSE	
+Bias Spectroscopy>Z-controller hold	TRUE	
+Bias Spectroscopy>Number of sweeps	10	
+Bias Spectroscopy>Channels	Current (A);Temperature 1 (K);Bias (V);LI Demod 1 X (A);LI Demod 1 Y (A);LI Demod 2 X (A);LI Demod 2 Y (A)	
+Bias Spectroscopy>Reset Bias	TRUE	
+Bias Spectroscopy>Record final Z	FALSE	
+Bias Spectroscopy>Lock-In run	FALSE	
+Current>Current (A)	-266.337E-12	
+Current>Calibration (A/V)	1E-9	
+Current>Offset (A)	-113.25E-15	
+Current>Gain	LN 10^9	
+Kelvin Controller>Demodulation/Control signal	OC M1 Freq. Shift (Hz)	
+Kelvin Controller>AC mode	TRUE	
+Kelvin Controller>Bias modulation on/off	FALSE	
+Kelvin Controller>Bias modulation frequency (Hz)	938E+0	
+Kelvin Controller>Bias modulation phase (deg)	0E+0	
+Kelvin Controller>Bias modulation amplitude (V)	500E-3	
+Kelvin Controller>Setpoint	0E+0	
+Kelvin Controller>Demodulation/Control amplitude	0E+0	
+Kelvin Controller>Kelvin Controller on/off	FALSE	
+Kelvin Controller>Slope	-1	
+Kelvin Controller>P gain	100E-3	
+Kelvin Controller>Time constant (s)	10E-3	
+Kelvin Controller>Bias upper limit (V)	10E+0	
+Kelvin Controller>Bias lower limit (V)	-10E+0	
+Lock-in>Lock-in status	ON	
+Lock-in>Modulated signal	Bias (V)	
+Lock-in>Frequency (Hz)	1E+3	
+Lock-in>Amplitude	2E-3	
+Lock-in>Demodulated signal	Current (A)	
+Lock-in>HP Filter Cutoff D1 (Hz)	9.71405E+0	
+Lock-in>HP Filter Cutoff D2 (Hz)	9.71405E+0	
+Lock-in>HP Filter Order D1	OFF	
+Lock-in>HP Filter Order D2	OFF	
+Lock-in>Harmonic D1	1	
+Lock-in>Harmonic D2	2	
+Lock-in>Reference phase D1 (deg)	103.281E+0	
+Lock-in>Reference phase D2 (deg)	40.6287E+0	
+Lock-in>LP Filter Cutoff D1 (Hz)	621.699E+0	
+Lock-in>LP Filter Cutoff D2 (Hz)	621.699E+0	
+Lock-in>LP Filter Order D1	OFF	
+Lock-in>LP Filter Order D2	OFF	
+Lock-in>Sync Filter D1	ON	
+Lock-in>Sync Filter D2	ON	
+NanonisMain>Session Path	D:\Data\20230419	
+NanonisMain>SW Version	Generic 5	
+NanonisMain>UI Release	7856	
+NanonisMain>RT Release	7856	
+NanonisMain>RT Frequency (Hz)	20E+3	
+NanonisMain>Signals Oversampling	10	
+NanonisMain>Animations Period (s)	20E-3	
+NanonisMain>Indicators Period (s)	300E-3	
+NanonisMain>Measurements Period (s)	500E-3	
+Oscillation Control>differential input	TRUE	
+Oscillation Control>input 1/10	FALSE	
+Oscillation Control>Input Calibration (m/V)	120E-9	
+Oscillation Control>Input Range (m)	10.3268E-9	
+Oscillation Control>Center Frequency (Hz)	25.0228E+3	
+Oscillation Control>Range (Hz)	305.176E+0	
+Oscillation Control>Demod 1 Input	0	
+Oscillation Control>Demod 2 Input	0	
+Oscillation Control>Demod 3 Input	0	
+Oscillation Control>Demod 4 Input	0	
+Oscillation Control>Demod 1 Frequency	0	
+Oscillation Control>Demod 2 Frequency	0	
+Oscillation Control>Demod 3 Frequency	0	
+Oscillation Control>Demod 4 Frequency	0	
+Oscillation Control>Demod 1 Reference Phase (deg)	73.55E+0	
+Oscillation Control>Demod 2 Reference Phase (deg)	0E+0	
+Oscillation Control>Demod 3 Reference Phase (deg)	0E+0	
+Oscillation Control>Demod 4 Reference Phase (deg)	0E+0	
+Oscillation Control>Demod 1 Cut off frq (Hz)	777	
+Oscillation Control>Demod 2 Cut off frq (Hz)	1.55k	
+Oscillation Control>Demod 3 Cut off frq (Hz)	1.55k	
+Oscillation Control>Demod 4 Cut off frq (Hz)	1.55k	
+Oscillation Control>Demod 1 Harmonic	1	
+Oscillation Control>Demod 2 Harmonic	1	
+Oscillation Control>Demod 3 Harmonic	1	
+Oscillation Control>Demod 4 Harmonic	1	
+Oscillation Control>Demod 1 Filter Order	 2	
+Oscillation Control>Demod 2 Filter Order	 2	
+Oscillation Control>Demod 3 Filter Order	 2	
+Oscillation Control>Demod 4 Filter Order	 2	
+Oscillation Control>Phase P gain (Hz/rad)	1.74535E+0	
+Oscillation Control>Phase I gain (Hz/rad/s)	324.603E+0	
+Oscillation Control>Phase controller on	FALSE	
+Oscillation Control>FrequencyShift (Hz)	0E+0	
+Oscillation Control>Amplitude Setpoint (m)	300E-12	
+Oscillation Control>Amplitude P gain (V/nm)	421.415E+6	
+Oscillation Control>Amplitude I gain (V/nm/s)	78.3758E+9	
+Oscillation Control>Amplitude controller on	FALSE	
+Oscillation Control>Excitation (V)	200E-3	
+Oscillation Control>output divider	2	
+Oscillation Control>output off	FALSE	
+Oscillation Control>output add	FALSE	
+Oscillation Control>PLL-Setup Q-Factor	933E+0	
+Oscillation Control>PLL-Setup Demod. Bandwidth Amp (Hz)	50.9109E+0	
+Oscillation Control>PLL-Setup Demod. Bandwidth Pha (Hz)	100.001E+0	
+Oscillation Control>PLL-Setup amplitude/excitation (m/V)	9.009E-9	
+Piezo Configuration>Active Calib.	LHe	
+Piezo Configuration>Calib. X (m/V)	3.8E-9	
+Piezo Configuration>Calib. Y (m/V)	3.8E-9	
+Piezo Configuration>Calib. Z (m/V)	900E-12	
+Piezo Configuration>HV Gain X	10	
+Piezo Configuration>HV Gain Y	10	
+Piezo Configuration>HV Gain Z	10	
+Piezo Configuration>Tilt X (deg)	-1.59502	
+Piezo Configuration>Tilt Y (deg)	-1.86705	
+Piezo Configuration>Curvature radius X (m)	Inf	
+Piezo Configuration>Curvature radius Y (m)	Inf	
+Piezo Configuration>2nd order corr X (V/m^2)	0E+0	
+Piezo Configuration>2nd order corr Y (V/m^2)	0E+0	
+Piezo Configuration>Drift X (m/s)	0E+0	
+Piezo Configuration>Drift Y (m/s)	0E+0	
+Piezo Configuration>Drift Z (m/s)	0E+0	
+Piezo Configuration>Drift correction status (on/off)	FALSE	
+Scan>Scanfield	153.414E-9;-93.5414E-9;4E-9;4E-9;59E+0	
+Scan>series name	Au_mica_2023_Y_A_diPAMY_154-211C_370C_1min_385C_30min_400C_1min_400C_30min_415_30min_430_30min_11min_30min_30min_20230419_	
+Scan>channels	Current (A);Z (m);LI Demod 1 X (A);LI Demod 2 X (A);LI Demod 2 Y (A)	
+Scan>pixels/line	256	
+Scan>lines	256	
+Scan>speed forw. (m/s)	19.5312E-9	
+Scan>speed backw. (m/s)	19.5312E-9	
+Temperature 1>Temperature 1 (K)	2.4591E+0	
+Temperature 2>Temperature 2 (K)	518.113E+0	
+Z-Controller>Z (m)	62.8495E-9	
+Z-Controller>Controller name	log Current	
+Z-Controller>Controller status	OFF	
+Z-Controller>Setpoint	25E-12	
+Z-Controller>Setpoint unit	A	
+Z-Controller>P gain	3.514E-12	
+Z-Controller>I gain	34.7921E-9	
+Z-Controller>Time const (s)	101E-6	
+Z-Controller>TipLift (m)	0E+0	
+Z-Controller>Switch off delay (s)	50E-3	
+
+[DATA]
+Bias calc (V)	Current (A)	Temperature 1 (K)	Bias (V)	LI Demod 1 X (A)	LI Demod 1 Y (A)	LI Demod 2 X (A)	LI Demod 2 Y (A)	Current (A) [filt]	Temperature 1 (K) [filt]	Bias (V) [filt]	LI Demod 1 X (A) [filt]	LI Demod 1 Y (A) [filt]	LI Demod 2 X (A) [filt]	LI Demod 2 Y (A) [filt]
+-5.0000001E-2	-1.4288776E-10	1.6252118E+0	-5.0000001E-2	-2.9149552E-12	-2.4001521E-12	3.1361282E-13	-1.8262286E-13	-1.4288776E-10	1.6252118E+0	-5.0000001E-2	-2.9149552E-12	-2.4001521E-12	3.1361282E-13	-1.8262286E-13
+-4.9951147E-2	-1.4346191E-10	1.6252102E+0	-4.9951147E-2	-2.1446237E-12	-3.7221532E-12	2.7779610E-15	7.4294073E-14	-1.4283737E-10	1.6252118E+0	-4.9951147E-2	-2.8900049E-12	-2.4669932E-12	2.7973671E-13	-1.6016545E-13
+-4.9902298E-2	-1.4369876E-10	1.6252074E+0	-4.9902298E-2	-3.1126282E-12	-2.9193852E-12	3.3682909E-13	-1.6808104E-13	-1.4278936E-10	1.6252117E+0	-4.9902298E-2	-2.8549446E-12	-2.5168639E-12	2.4648721E-13	-1.4606629E-13
+-4.9853444E-2	-1.4269953E-10	1.6252105E+0	-4.9853444E-2	-2.4439749E-12	-3.6114013E-12	1.9321609E-13	3.9136714E-13	-1.4273145E-10	1.6252117E+0	-4.9853444E-2	-2.8326918E-12	-2.5816437E-12	2.0376618E-13	-1.2110958E-13
+-4.9804594E-2	-1.4261047E-10	1.6252066E+0	-4.9804594E-2	-2.6221989E-12	-3.9465770E-12	-9.4475019E-14	-1.0480260E-13	-1.4267816E-10	1.6252116E+0	-4.9804594E-2	-2.7935152E-12	-2.6488798E-12	1.6995072E-13	-9.7163427E-14
+-4.9755741E-2	-1.4316516E-10	1.6252112E+0	-4.9755741E-2	-2.4876841E-12	-2.9806431E-12	-2.7913430E-13	1.6931428E-13	-1.4260229E-10	1.6252116E+0	-4.9755741E-2	-2.7822991E-12	-2.6910390E-12	1.3847052E-13	-7.6341406E-14
+-4.9706887E-2	-1.4259369E-10	1.6252110E+0	-4.9706887E-2	-2.7327786E-12	-3.0913913E-12	-7.9897535E-14	3.1888492E-13	-1.4255383E-10	1.6252115E+0	-4.9706887E-2	-2.7431282E-12	-2.7671955E-12	1.0305365E-13	-6.5633967E-14
+-4.9658038E-2	-1.4291839E-10	1.6252106E+0	-4.9658038E-2	-3.0599520E-12	-3.5767652E-12	1.4754625E-13	2.2160633E-13	-1.4247856E-10	1.6252115E+0	-4.9658038E-2	-2.7447489E-12	-2.8158706E-12	6.9952826E-14	-5.2967010E-14
+-4.9609184E-2	-1.4325488E-10	1.6252133E+0	-4.9609184E-2	-2.1475129E-12	-3.0740519E-12	1.0480270E-14	-5.3811529E-13	-1.4240342E-10	1.6252115E+0	-4.9609184E-2	-2.7114001E-12	-2.8732819E-12	4.8344490E-14	-4.0015293E-14
+-4.9560335E-2	-1.4213530E-10	1.6252133E+0	-4.9560335E-2	-3.4582190E-12	-3.0836609E-12	-3.9569209E-14	-4.4774216E-14	-1.4231331E-10	1.6252114E+0	-4.9560335E-2	-2.7038020E-12	-2.9321107E-12	1.8490218E-14	-2.4028151E-14
+... 2038 further data rows are omitted in this documentation excerpt; the complete file is in the repository.

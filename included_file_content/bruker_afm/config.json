@@ -1,0 +1,253 @@
+{
+  "ENTRY[entry]": {
+    "@default": {
+      "raw_path": "@default:height"
+    },
+    "start_time": {
+      "#note": "Handled in function _set_start_end_time. SPMLab writes a non ISO8601 stamp, e.g. 'Jun.17.2026 08:03:43'.",
+      "raw_path": "/CHANNEL/meta/CreationTime"
+    },
+    "end_time": "",
+    "scan_mode": {
+      "raw_path": "@default:peak force tapping mode"
+    },
+    "scan_type": "",
+    "identifier_experiment": {
+      "identifier": ""
+    },
+    "experiment_description": "",
+    "INSTRUMENT[instrument]": {
+      "height_piezo_sensor": {
+        "piezo_configuration": {
+          "calibration": {
+            "calibration_type": {
+              "raw_path": "@default:active"
+            },
+            "calibration_parameters": {
+              "coefficientN[coefficient_n]": [
+                {
+                  "x": {
+                    "raw_path": "/CHANNEL/meta/X Transfer Coefficient",
+                    "@units": "/CHANNEL/meta/X Transfer Coefficient/@unit"
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "/CHANNEL/meta/Y Transfer Coefficient",
+                    "@units": "/CHANNEL/meta/Y Transfer Coefficient/@unit"
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "/CHANNEL/meta/Z Transfer Coefficient",
+                    "@units": "/CHANNEL/meta/Z Transfer Coefficient/@unit"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "SPM_POSITIONER[spm_positioner]": {
+          "z_controller": {
+            "K_p": {
+              "raw_path": "/CHANNEL/meta/GainP"
+            },
+            "K_i": {
+              "raw_path": "/CHANNEL/meta/GainI"
+            },
+            "K_d": {
+              "raw_path": "/CHANNEL/meta/GainD"
+            },
+            "set_point": {
+              "raw_path": "/CHANNEL/meta/SetPoint",
+              "@units": "/CHANNEL/meta/SetPoint/@unit"
+            },
+            "controller_label": {
+              "raw_path": "@default:z_controller"
+            }
+          }
+        }
+      },
+      "XYZpiezo_sensor[xy_piezo_sensor]": {
+        "SPM_POSITIONER[x_positioner]": {
+          "actuator": {
+            "feedback": {
+              "K_p": {
+                "raw_path": "/CHANNEL/meta/XLinGainP"
+              },
+              "K_i": {
+                "raw_path": "/CHANNEL/meta/XLinGainI"
+              },
+              "K_d": {
+                "raw_path": "/CHANNEL/meta/XLinGainD"
+              }
+            }
+          }
+        },
+        "SPM_POSITIONER[y_positioner]": {
+          "actuator": {
+            "feedback": {
+              "K_p": {
+                "raw_path": "/CHANNEL/meta/YLinGainP"
+              },
+              "K_i": {
+                "raw_path": "/CHANNEL/meta/YLinGainI"
+              },
+              "K_d": {
+                "raw_path": "/CHANNEL/meta/YLinGainD"
+              }
+            }
+          }
+        }
+      },
+      "SCAN_ENVIRONMENT[scan_environment]": {
+        "identifier_environment": {
+          "raw_path": "/CHANNEL/meta/DataID"
+        },
+        "SPM_SCAN_CONTROL[spm_scan_control]": {
+          "scanTAG[scan_name]": {
+            "raw_path": "/CHANNEL/meta/DataID"
+          },
+          "scan_region": {
+            "scan_angleN[scan_angle_n]": [
+              {
+                "x": {
+                  "raw_path": "/CHANNEL/meta/Rotation",
+                  "@units": "/CHANNEL/meta/Rotation/@unit"
+                }
+              }
+            ],
+            "scan_rangeN[scan_range_n]": [
+              {
+                "x": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
+                  "raw_path": "/CHANNEL/header/Data Parameters/ScanRangeX",
+                  "@units": "/CHANNEL/header/Data Parameters/ScanRangeX/@unit"
+                }
+              },
+              {
+                "y": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
+                  "raw_path": "/CHANNEL/header/Data Parameters/ScanRangeY",
+                  "@units": "/CHANNEL/header/Data Parameters/ScanRangeY/@unit"
+                }
+              }
+            ],
+            "scan_offset_valueN[scan_offset_value_n]": [
+              {
+                "x": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
+                  "raw_path": "/CHANNEL/header/Data Parameters/OffsetX",
+                  "@units": "/CHANNEL/header/Data Parameters/OffsetX/@unit"
+                }
+              },
+              {
+                "y": {
+                  "#note": "Derived in function 'construct_scan_region_grp'.",
+                  "raw_path": "/CHANNEL/header/Data Parameters/OffsetY",
+                  "@units": "/CHANNEL/header/Data Parameters/OffsetY/@unit"
+                }
+              }
+            ],
+            "scan_startN[scan_start_n]": {
+              "#note": "Derived in function 'construct_scan_region_grp'.",
+              "raw_path": "",
+              "@units": ""
+            },
+            "scan_endN[scan_end_n]": {
+              "#note": "Derived in function 'construct_scan_region_grp'.",
+              "raw_path": "",
+              "@units": ""
+            }
+          },
+          "meshSCAN[mesh_scan]": {
+            "scan_pointsN[scan_points_n]": [
+              {
+                "x": {
+                  "raw_path": "/CHANNEL/header/Data Parameters/ResolutionX"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/CHANNEL/header/Data Parameters/ResolutionY"
+                }
+              }
+            ],
+            "forward_speedN[forward_speed_n]": {
+              "#note": "Decided from ScanDirection and ScanningRate",
+              "raw_path": "/CHANNEL/meta/ScanningRate",
+              "@units": "/CHANNEL/meta/ScanningRate/@unit"
+            },
+            "backward_speedN[backward_speed_n]": {
+              "#note": "Decided from ScanDirection and ScanningRate",
+              "raw_path": "/CHANNEL/meta/ScanningRate",
+              "@units": "/CHANNEL/meta/ScanningRate/@unit"
+            },
+            "scan_speedN[scan_speed_n]": {
+              "raw_path": "/CHANNEL/meta/ScanningRate",
+              "@units": "/CHANNEL/meta/ScanningRate/@unit"
+            },
+            "steppingN[stepping_n]": [
+              {
+                "_x": {
+                  "raw_path": "@default:1",
+                  "@units": ""
+                }
+              },
+              {
+                "_y": {
+                  "raw_path": "@default:1",
+                  "@units": ""
+                }
+              }
+            ],
+            "scan_time": "",
+            "DATA[scan_data]": [
+              {
+                "data": {
+                  "name": "channel",
+                  "raw_path": "/CHANNEL/data",
+                  "@units": "/CHANNEL/data/@unit"
+                },
+                "title": {
+                  "raw_path": "@default:AFM Scan Image"
+                },
+                "grp_name": "scan_image"
+              }
+            ]
+          },
+          "scan_type": {
+            "raw_path": "@default:mesh"
+          },
+          "scan_control_type": {
+            "raw_path": "@default:continuous"
+          }
+        }
+      }
+    },
+    "DATA[data]": [
+      {
+        "data": {
+          "name": "height",
+          "raw_path": "/CHANNEL/data",
+          "@units": "/CHANNEL/data/@unit"
+        },
+        "title": {
+          "raw_path": "@default:AFM Scan Image"
+        },
+        "grp_name": "height"
+      }
+    ],
+    "SAMPLE[sample]": {
+      "name": ""
+    },
+    "USER[user]": {
+      "address": "",
+      "affiliation": "",
+      "email": "",
+      "name": "",
+      "orcid": "",
+      "telephone_number": ""
+    }
+  }
+}
