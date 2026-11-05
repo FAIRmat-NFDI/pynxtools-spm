@@ -42,6 +42,12 @@ uv pip install pynxtools[spm]
 
 for the latest released version.
 
+To use the plugin in [NOMAD](https://nomad-lab.eu/nomad-lab/), install it with the `nomad` extra:
+
+```shell
+uv pip install pynxtools-spm[nomad]
+```
+
 ## Docs
 
 More information about this pynxtools plugin is available in the [documentation](https://fairmat-nfdi.github.io/pynxtools-spm/). You will find information about getting started, how-to guides, the supported file formats, how to get involved, and much more there.
