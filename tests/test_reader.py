@@ -208,3 +208,23 @@ def test_config_from_user_input(monkeypatch, tmp_path):
         monkeypatch, (data, eln, config), some_other_option=True
     )
     assert found == config
+
+
+def test_two_data_files_are_rejected():
+    """
+    Only one data file can be converted at a time; a second one must not be
+    silently ignored
+    (Bug B17 in https://github.com/FAIRmat-NFDI/pynxtools-plugin-audit/blob/main/pynxtools-unification/FINDINGS.md).
+    """
+    folder = f"{module_dir}/data/nanonis/sts/v_gen_5e_descrb_nx_dt"
+    files = (f"{folder}/STS_nanonis_generic_5e_1.dat", "other_scan.sxm")
+    with pytest.raises(ValueError, match="Only one data file"):
+        SPMReader().read(template=Template(), file_paths=files)
+
+
+def test_two_config_files_are_rejected():
+    """Only one .json config can be given in the file list (Bug B17)."""
+    folder = f"{module_dir}/data/nanonis/sts/v_gen_5e_descrb_nx_dt"
+    files = (f"{folder}/config.json", "other_config.json")
+    with pytest.raises(ValueError, match="Only one config file"):
+        SPMReader().read(template=Template(), file_paths=files)
