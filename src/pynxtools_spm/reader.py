@@ -71,9 +71,35 @@ class SPMReader(BaseReader):
         """
         General read method to prepare the template.
 
-        The config file can be given as a .json in `file_paths` or as the
-        `config_file` keyword argument (`pynx convert -c <file>`). If both are
-        given, the keyword argument wins. Other keyword arguments are ignored.
+        Parameters
+        ----------
+        template : dict
+            The template to fill, as given by the converter.
+        file_paths : tuple[str]
+            The input files. The type of each file is chosen by its extension:
+            the raw data file (.sxm, .dat, .sm4, .spm, .txt or .flt), the ELN
+            file (.yaml or .yml, required, must define `experiment_technique`)
+            and, optionally, a config file (.json).
+        objects : tuple[Any], optional
+            Not used by this reader.
+        **kwargs
+            Extra keyword arguments from the converter. `config_file` (set by
+            `pynx convert -c <file>`) is used as the config file and takes
+            precedence over a .json in `file_paths`. All other keyword
+            arguments are ignored.
+
+        Returns
+        -------
+        dict
+            The filled template.
+
+        Raises
+        ------
+        ValueError
+            If the ELN file or the raw data file is missing, if the ELN file
+            does not define `experiment_technique`, if the combination of
+            technique and file extension is not supported, or if nothing could
+            be read.
         """
         filled_template: dict | None = Template()
         eln_file: str = None

@@ -181,7 +181,7 @@ def _config_given_to_formatter(monkeypatch, file_paths, **kwargs):
     return seen["config_file"]
 
 
-def test_config_file_can_be_given_as_keyword(monkeypatch, tmp_path):
+def test_config_from_user_input(monkeypatch, tmp_path):
     """
     read() must accept the config file as a keyword argument, as
     `pynx convert -c <file>` passes it, and use it
