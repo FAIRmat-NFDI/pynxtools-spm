@@ -66,9 +66,14 @@ class SPMReader(BaseReader):
         template: dict = None,
         file_paths: tuple[str] = None,
         objects: tuple[Any] = None,
+        **kwargs,
     ):
         """
         General read method to prepare the template.
+
+        The config file can be given as a .json in `file_paths` or as the
+        `config_file` keyword argument (`pynx convert -c <file>`). If both are
+        given, the keyword argument wins. Other keyword arguments are ignored.
         """
         filled_template: dict | None = Template()
         eln_file: str = None
@@ -99,6 +104,8 @@ class SPMReader(BaseReader):
             else:
                 auxiliary_files.append(file)
         raw_file_ext = raw_file_ext.lower() if raw_file_ext else None
+        if kwargs.get("config_file"):
+            config_file = kwargs["config_file"]
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:
