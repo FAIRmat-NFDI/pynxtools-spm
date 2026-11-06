@@ -203,7 +203,7 @@ def test_config_file_can_be_given_as_keyword(monkeypatch, tmp_path):
         monkeypatch, (data, eln, config), config_file=other_config
     )
     assert found == other_config
-        # other converter kwargs are accepted and ignored
+    # other converter kwargs are accepted and ignored
     found = _config_given_to_formatter(
         monkeypatch, (data, eln, config), some_other_option=True
     )
