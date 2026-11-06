@@ -175,14 +175,25 @@ class SPMParser:
             file=file, eln=eln or {}, file_ext=file_ext
         )
         raw_data_dict: dict[str, Any] | None = None
-        for parser in parsers:
+        errors: list[str] = []
+        last_error: Exception | None = None
+        # The same parser class is listed for several software versions, so
+        # each class is tried only once.
+        for parser in dict.fromkeys(parsers):
             try:
                 raw_data_dict = parser(file).parse()
-            except Exception:
-                pass
+            except Exception as exc:  # the parsers do not declare their errors
+                errors.append(f"{parser.__name__}: {type(exc).__name__}: {exc}")
+                last_error = exc
+                logger.debug(f"{parser.__name__} could not parse {file}: {exc}")
+                continue
             if raw_data_dict is not None:
                 return raw_data_dict
-        raise ValueError(f"No valid parser found to parse the file: {file}")
+            errors.append(f"{parser.__name__}: returned no data")
+        raise ValueError(
+            f"No valid parser found to parse the file: {file}. Tried: "
+            + "; ".join(errors)
+        ) from last_error
 
     def parse(self, file):
         return self.get_raw_data_dict(file)
