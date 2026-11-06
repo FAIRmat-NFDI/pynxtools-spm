@@ -66,9 +66,40 @@ class SPMReader(BaseReader):
         template: dict = None,
         file_paths: tuple[str] = None,
         objects: tuple[Any] = None,
+        **kwargs,
     ):
         """
         General read method to prepare the template.
+
+        Parameters
+        ----------
+        template : dict
+            The template to fill, as given by the converter.
+        file_paths : tuple[str]
+            The input files. The type of each file is chosen by its extension:
+            the raw data file (.sxm, .dat, .sm4, .spm, .txt or .flt), the ELN
+            file (.yaml or .yml, required, must define `experiment_technique`)
+            and, optionally, a config file (.json).
+        objects : tuple[Any], optional
+            Not used by this reader.
+        **kwargs
+            Extra keyword arguments from the converter. `config_file` (set by
+            `pynx convert -c <file>`) is used as the config file and takes
+            precedence over a .json in `file_paths`. All other keyword
+            arguments are ignored.
+
+        Returns
+        -------
+        dict
+            The filled template.
+
+        Raises
+        ------
+        ValueError
+            If the ELN file or the raw data file is missing, if the ELN file
+            does not define `experiment_technique`, if the combination of
+            technique and file extension is not supported, or if nothing could
+            be read.
         """
         filled_template: dict | None = Template()
         eln_file: str = None
@@ -99,6 +130,8 @@ class SPMReader(BaseReader):
             else:
                 auxiliary_files.append(file)
         raw_file_ext = raw_file_ext.lower() if raw_file_ext else None
+        if kwargs.get("config_file"):
+            config_file = kwargs["config_file"]
         if not eln_file:
             raise ValueError("ELN file is required for the reader to work.")
         if not data_file:
