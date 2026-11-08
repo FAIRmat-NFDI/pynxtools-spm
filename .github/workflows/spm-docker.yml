@@ -1,0 +1,132 @@
+name: SPM converter image
+
+# Builds the pynxtools-spm image (used e.g. by the Galaxy tool `pynxtools_dataconverter`).
+# - Push of CITATION.cff to release/*, PRs into release/*, manual run: build from this checkout, test.
+# - After "Upload Python Package" (publish.yml), or a manual run with `push`: build from PyPI, test,
+#   push ghcr.io/<owner>/pynxtools-spm:<version>. workflow_run needs this file on the default branch.
+on:
+  push:
+    branches: ['release/**']
+    paths: [CITATION.cff]
+  pull_request:
+    branches: ['release/**']
+  workflow_run:
+    workflows: [Upload Python Package]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      push:
+        description: Build from PyPI and push the image to ghcr.io
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  DOCKERFILE: src/pynxtools_spm/docker/Dockerfile
+  TEST_DATA: tests/data/nanonis/stm/v_gen_4_dflt_conf_down
+
+jobs:
+  image:
+    # A failed PyPI publish also triggers workflow_run; skip it.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    env:
+      PUBLISH: ${{ github.event_name == 'workflow_run' || inputs.push == true }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # workflow_run would check out the default branch; use the released commit.
+          ref: ${{ github.event.workflow_run.head_sha || '' }}
+
+      - name: Read CITATION.cff version and latest pynxtools
+        id: versions
+        env:
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          spm=$(sed -n 's/^version:[[:space:]]*//p' CITATION.cff | tr -d "\"'")
+          pypi_pynx=$(curl -fsS https://pypi.org/pypi/pynxtools/json | jq -r .info.version)
+          {
+            echo "spm=$spm"
+            echo "pypi_pynx=$pypi_pynx"
+            echo "source=$([[ "$PUBLISH" == true ]] && echo pypi || echo local)"
+            # Registry names must be lowercase.
+            echo "image=ghcr.io/${OWNER,,}/pynxtools-spm:${spm}"
+          } >> "$GITHUB_OUTPUT"
+
+      # PyPI can take a few minutes to list a new release.
+      - name: Wait for pynxtools-spm on PyPI
+        if: env.PUBLISH == 'true'
+        env:
+          SPM: ${{ steps.versions.outputs.spm }}
+        run: |
+          for _ in $(seq 30); do
+            curl -fsS -o /dev/null "https://pypi.org/pypi/pynxtools-spm/${SPM}/json" && exit 0
+            sleep 60
+          done
+          echo "::error::pynxtools-spm $SPM is not on PyPI after 30 minutes."
+          exit 1
+
+      - uses: docker/setup-buildx-action@v3
+
+      # pynxtools is pinned to the latest, so a new pynxtools that breaks the image fails here.
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE }}
+          build-args: |
+            PYNXTOOLS_SPM_SOURCE=${{ steps.versions.outputs.source }}
+            PYNXTOOLS_SPM_VERSION=${{ steps.versions.outputs.spm }}
+            PYNXTOOLS_VERSION=${{ steps.versions.outputs.pypi_pynx }}
+          tags: ${{ steps.versions.outputs.image }}
+          labels: io.github.fairmat-nfdi.pynxtools.version=${{ steps.versions.outputs.pypi_pynx }}
+          load: true
+
+      - name: Check latest versions
+        env:
+          IMAGE: ${{ steps.versions.outputs.image }}
+          SPM: ${{ steps.versions.outputs.spm }}
+          LATEST_PYNX: ${{ steps.versions.outputs.pypi_pynx }}
+        run: |
+          # CITATION.cff equal to PyPI (released) or newer (release branch before publishing).
+          pypi_spm=$(curl -fsS https://pypi.org/pypi/pynxtools-spm/json | jq -r .info.version)
+          if [[ "$(printf '%s\n' "$SPM" "$pypi_spm" | sort -V | tail -1)" != "$SPM" ]]; then
+            echo "::error::CITATION.cff has $SPM, but PyPI has the newer pynxtools-spm $pypi_spm."
+            exit 1
+          fi
+
+          pynx=$(docker run --rm "$IMAGE" python -c \
+            "from importlib.metadata import version; print(version('pynxtools'))")
+          if [[ "$pynx" != "$LATEST_PYNX" ]]; then
+            echo "::error::Image has pynxtools $pynx; PyPI has $LATEST_PYNX."
+            exit 1
+          fi
+
+      - name: Smoke test like Galaxy tool
+        env:
+          IMAGE: ${{ steps.versions.outputs.image }}
+        run: |
+          # A non-root --user and a program as the command, as Galaxy runs it.
+          docker run --rm --user 1001:1001 "$IMAGE" python -c "import yaml, pynxtools_spm"
+
+          # Options only: the entrypoint adds `pynx convert`; no config, so the default one is used.
+          work=$(mktemp -d) && cp "$TEST_DATA"/*.sxm "$TEST_DATA"/eln_data.yaml "$work" && chmod -R a+rwX "$work"
+          docker run --rm --user 1001:1001 -v "$work:/data" -w /data "$IMAGE" \
+            --nxdl NXstm --reader spm --output out.nxs eln_data.yaml "$(basename "$work"/*.sxm)"
+
+          # The conversion must write a non-empty file.
+          test -s "$work/out.nxs"
+
+      # Pushes the tested image; no rebuild.
+      - name: Log in to ghcr.io and push
+        if: env.PUBLISH == 'true'
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+          IMAGE: ${{ steps.versions.outputs.image }}
+        run: |
+          echo "$TOKEN" | docker login ghcr.io --username "$ACTOR" --password-stdin
+          docker push "$IMAGE"
