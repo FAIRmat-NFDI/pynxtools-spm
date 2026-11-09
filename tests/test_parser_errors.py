@@ -17,7 +17,6 @@
 #
 """
 Errors of the raw-file parsers must not be swallowed
-(Bug B10 in https://github.com/FAIRmat-NFDI/pynxtools-plugin-audit/blob/main/pynxtools-unification/FINDINGS.md).
 """
 
 import pytest
