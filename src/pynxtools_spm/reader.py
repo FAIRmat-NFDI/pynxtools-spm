@@ -115,11 +115,21 @@ class SPMReader(BaseReader):
             ext = file.rsplit(".", 1)[-1].lower()
             fl_obj: object
             if ext in ["sxm", "dat", "sm4", "spm", "txt", "flt"]:
+                if data_file and data_file != file:
+                    raise ValueError(
+                        "Only one data file per conversion is supported, "
+                        f"got {data_file} and {file}."
+                    )
                 data_file = file
                 raw_file_ext = ext
-            if ext == "json":
+            elif ext == "json":
+                if config_file and config_file != file:
+                    raise ValueError(
+                        "Only one config file (.json) per conversion is supported, "
+                        f"got {config_file} and {file}."
+                    )
                 config_file = file
-            if ext in ["yaml", "yml"]:
+            elif ext in ["yaml", "yml"]:
                 eln_file = file
                 with open(file, encoding="utf-8") as fl_obj:
                     eln_dict = yaml.safe_load(fl_obj)
