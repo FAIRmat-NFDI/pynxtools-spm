@@ -1,7 +1,7 @@
-name: SPM image build
+name: SPM image build and test
 
 # Builds, checks and tests the pynxtools-spm image; pushes it only when `push` is true.
-# Called by spm-docker-test.yml and spm-docker-publish.yml.
+# Called by spm-docker-check.yml and spm-docker-publish.yml.
 on:
   workflow_call:
     inputs:

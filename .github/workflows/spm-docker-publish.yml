@@ -52,7 +52,7 @@ jobs:
 
   image:
     needs: tag
-    uses: ./.github/workflows/spm-docker-build.yml
+    uses: ./.github/workflows/spm-docker-build-test.yml
     with:
       source: ${{ needs.tag.outputs.exists == 'true' && 'local' || 'pypi' }}
       ref: ${{ github.event.workflow_run.head_sha || '' }}

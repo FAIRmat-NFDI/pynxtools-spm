@@ -1,4 +1,4 @@
-name: SPM image test
+name: SPM image check
 
 # Builds the pynxtools-spm image from this checkout and tests it; never pushes.
 on:
@@ -14,6 +14,6 @@ permissions:
 
 jobs:
   image:
-    uses: ./.github/workflows/spm-docker-build.yml
+    uses: ./.github/workflows/spm-docker-build-test.yml
     with:
       source: local

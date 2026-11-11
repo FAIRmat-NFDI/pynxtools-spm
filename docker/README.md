@@ -41,14 +41,14 @@ Without a config `.json`, the reader uses its default config.
 
 ## Automatic build
 
-`.github/workflows/spm-docker-build.yml` builds and tests the image with the latest `pynxtools`
+`.github/workflows/spm-docker-build-test.yml` builds and tests the image with the latest `pynxtools`
 from PyPI. It stops if the image does not have it, if `CITATION.cff` is older than the newest
 `pynxtools-spm` on PyPI, or if the reader test output differs from the reference NeXus file.
 Two workflows call it:
 
 | Workflow | Event | Builds from | Pushes |
 |---|---|---|---|
-| `spm-docker-test.yml` | `CITATION.cff` changes on `release/*`; PR into `release/*`; manual run | This checkout | No |
+| `spm-docker-check.yml` | `CITATION.cff` changes on `release/*`; PR into `release/*`; manual run | This checkout | No |
 | `spm-docker-publish.yml` | `publish.yml` has published to PyPI; manual run | PyPI | `ghcr.io/fairmat-nfdi/pynxtools-spm:<version>` and `:latest` |
 
 The test builds find a break before the release. The publish run waits up to 30 minutes for PyPI to
