@@ -10,11 +10,11 @@ Run from the repo root. `PYNXTOOLS_SPM_VERSION` is required.
 
 ```bash
 # From this checkout (the version is given, because the build cannot read git tags)
-docker build -f src/pynxtools_spm/docker/Dockerfile \
+docker build -f docker/Dockerfile \
   --build-arg PYNXTOOLS_SPM_VERSION=0.4.2 -t pynxtools-spm:0.4.2 .
 
 # From PyPI (a released version)
-docker build -f src/pynxtools_spm/docker/Dockerfile --build-arg PYNXTOOLS_SPM_SOURCE=pypi \
+docker build -f docker/Dockerfile --build-arg PYNXTOOLS_SPM_SOURCE=pypi \
   --build-arg PYNXTOOLS_SPM_VERSION=0.4.2 -t pynxtools-spm:0.4.2 .
 ```
 

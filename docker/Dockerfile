@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Image with pynxtools and pynxtools-spm, e.g. for the Galaxy tool `pynxtools_dataconverter`.
-# Build from the repo root: docker build -f src/pynxtools_spm/docker/Dockerfile .
+# Build from the repo root: docker build -f docker/Dockerfile .
 ARG PYTHON_VERSION=3.12
 ARG UV_VERSION=0.9
 # local: pynxtools-spm from this checkout; pypi: the released PYNXTOOLS_SPM_VERSION.
@@ -53,7 +53,7 @@ RUN --mount=type=bind,from=uv_stage,source=/uv,target=/bin/uv \
 # Tools like Galaxy run the container with their own --user, which has no writable home.
 ENV MPLCONFIGDIR=/tmp/matplotlib
 
-COPY --chmod=0755 src/pynxtools_spm/docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --chmod=0755 docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 LABEL org.opencontainers.image.title="pynxtools-spm" \
       org.opencontainers.image.source="https://github.com/FAIRmat-NFDI/pynxtools-spm" \

@@ -3,6 +3,3 @@ exclude *
 recursive-include src *.py *.json *.md *.txt *.sxm *.nxs *.yaml *.dat *.yml *.sm4
 
 include pyproject.toml LICENSE README.md mkdocs.yml
-
-# The Docker image files are not part of the Python package.
-prune src/pynxtools_spm/docker

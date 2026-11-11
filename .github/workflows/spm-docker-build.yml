@@ -19,7 +19,7 @@ on:
         default: false
 
 env:
-  DOCKERFILE: src/pynxtools_spm/docker/Dockerfile
+  DOCKERFILE: docker/Dockerfile
 
 jobs:
   image:

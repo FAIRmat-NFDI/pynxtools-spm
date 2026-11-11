@@ -183,7 +183,7 @@ docker pull ghcr.io/fairmat-nfdi/pynxtools-spm:<version>   # or :latest
 You can also build the image from a clone of the repository:
 
 ```bash
-docker build -f src/pynxtools_spm/docker/Dockerfile \
+docker build -f docker/Dockerfile \
   --build-arg PYNXTOOLS_SPM_VERSION=<version> -t pynxtools-spm:<version> .
 ```
 
