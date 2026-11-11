@@ -41,13 +41,16 @@ Without a config `.json`, the reader uses its default config.
 
 ## Automatic build
 
-`.github/workflows/spm-docker.yml` always pins the latest `pynxtools` from PyPI. It stops if the
-image does not have it, or if `CITATION.cff` is older than the newest `pynxtools-spm` on PyPI.
+`.github/workflows/spm-docker-build.yml` builds and tests the image with the latest `pynxtools`
+from PyPI. It stops if the image does not have it, if `CITATION.cff` is older than the newest
+`pynxtools-spm` on PyPI, or if the reader test output differs from the reference NeXus file.
+Two workflows call it:
 
-| Event | Builds from | Pushes |
-|---|---|---|
-| `CITATION.cff` changes on `release/*`; PR into `release/*`; manual run | This checkout | No |
-| `publish.yml` has published to PyPI; manual run with `push` | PyPI | `ghcr.io/fairmat-nfdi/pynxtools-spm:<version>` and `:latest` |
+| Workflow | Event | Builds from | Pushes |
+|---|---|---|---|
+| `spm-docker-test.yml` | `CITATION.cff` changes on `release/*`; PR into `release/*`; manual run | This checkout | No |
+| `spm-docker-publish.yml` | `publish.yml` has published to PyPI; manual run | PyPI | `ghcr.io/fairmat-nfdi/pynxtools-spm:<version>` and `:latest` |
 
-The test builds find a break before the release. The push waits up to 30 minutes for PyPI to list
-the version and pushes the tested image.
+The test builds find a break before the release. The publish run waits up to 30 minutes for PyPI to
+list the version. If `:<version>` already exists, it only builds from the checkout and tests, so a
+published image never changes.
