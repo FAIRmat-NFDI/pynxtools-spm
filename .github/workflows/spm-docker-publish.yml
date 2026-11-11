@@ -1,0 +1,59 @@
+name: SPM image publish
+
+# After "Upload Python Package" (publish.yml): build pynxtools-spm from PyPI, test, and push
+# ghcr.io/<owner>/pynxtools-spm:<version> and :latest. If :<version> exists, only build from
+# the checkout and test, so a published image never changes. Needs this file on the default branch.
+on:
+  workflow_run:
+    workflows: [Upload Python Package]
+    types: [completed]
+  # Fallback if the automatic run was missed; run it on the release branch.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  tag:
+    # A failed PyPI publish also triggers workflow_run; skip it.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      exists: ${{ steps.check.outputs.exists }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # workflow_run would check out the default branch; use the released commit.
+          ref: ${{ github.event.workflow_run.head_sha || '' }}
+          sparse-checkout: CITATION.cff
+          sparse-checkout-cone-mode: false
+
+      - name: Check if the image tag exists
+        id: check
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          spm=$(sed -n 's/^version:[[:space:]]*//p' CITATION.cff | tr -d "\"'")
+          image="ghcr.io/${OWNER,,}/pynxtools-spm:${spm}"
+          echo "$TOKEN" | docker login ghcr.io --username "$ACTOR" --password-stdin
+          # GHCR answers "manifest unknown" for a missing tag or package; anything else is an error.
+          if out=$(docker manifest inspect "$image" 2>&1); then
+            echo "::notice::$image exists; build from the checkout and test only, no push."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          elif grep -q "manifest unknown" <<< "$out"; then
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Cannot check $image: $out"
+            exit 1
+          fi
+
+  image:
+    needs: tag
+    uses: ./.github/workflows/spm-docker-build-test.yml
+    with:
+      source: ${{ needs.tag.outputs.exists == 'true' && 'local' || 'pypi' }}
+      ref: ${{ github.event.workflow_run.head_sha || '' }}
+      push: ${{ needs.tag.outputs.exists == 'false' }}
