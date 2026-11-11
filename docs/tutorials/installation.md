@@ -26,7 +26,8 @@ You will know
 - how to install `pynxtools-spm`, either standalone or as a plugin of `pynxtools`,
 - how to install `pynxtools-spm` in development (editable) mode,
 - how to install `pynxtools-spm` together with NOMAD,
-- how to verify that the `spm` reader is available.
+- how to verify that the `spm` reader is available,
+- how to use the Docker image instead of a Python environment.
 
 ## __Steps__
 
@@ -170,6 +171,29 @@ The `--reader` option of the printed help lists the installed readers; `spm` mus
 ```bash
 pynx convert --nxdl NXstm --reader spm --output output.nxs eln_data.yaml nanonis_stm_file.sxm config.json
 ```
+
+### __6. Use the Docker image instead (optional)__ { #use-the-docker-image }
+
+If you do not want a Python environment, use the [Docker](https://docs.docker.com/get-started/) image. It contains `pynxtools` and `pynxtools-spm`; its tag is the `pynxtools-spm` version, and `latest` is the newest release.
+
+```bash
+docker pull ghcr.io/fairmat-nfdi/pynxtools-spm:<version>   # or :latest
+```
+
+You can also build the image from a clone of the repository:
+
+```bash
+docker build -f src/pynxtools_spm/docker/Dockerfile \
+  --build-arg PYNXTOOLS_SPM_VERSION=<version> -t pynxtools-spm:<version> .
+```
+
+Run the image without arguments to check it; it prints the help of `pynx convert`:
+
+```bash
+docker run --rm ghcr.io/fairmat-nfdi/pynxtools-spm:<version>
+```
+
+To convert files with the image, see [Run in Docker](../reference/standalone-usages.md#run-in-docker).
 
 ## __Further reading__
 

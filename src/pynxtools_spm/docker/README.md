@@ -47,7 +47,7 @@ image does not have it, or if `CITATION.cff` is older than the newest `pynxtools
 | Event | Builds from | Pushes |
 |---|---|---|
 | `CITATION.cff` changes on `release/*`; PR into `release/*`; manual run | This checkout | No |
-| `publish.yml` has published to PyPI; manual run with `push` | PyPI | `ghcr.io/fairmat-nfdi/pynxtools-spm:<version>` |
+| `publish.yml` has published to PyPI; manual run with `push` | PyPI | `ghcr.io/fairmat-nfdi/pynxtools-spm:<version>` and `:latest` |
 
 The test builds find a break before the release. The push waits up to 30 minutes for PyPI to list
 the version and pushes the tested image.

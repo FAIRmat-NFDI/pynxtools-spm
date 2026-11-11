@@ -1,7 +1,7 @@
 # Standalone Usages
 `pynxtools-spm` is a tool for converting content from a raw data file and user provided data to the NeXus file according to the NeXus application definitions for SPM techniques.
 
-One can use [NOMAD](https://nomad-lab.eu/) (see how to upload in NOMAD [documentation](../tutorials/use-reader-in-nomad.md)) research data management system (RMD) to upload the raw data files or command in terminal (needs `pynxtools-spm` installed in your local Python environment, see [installation guide](../tutorials/installation.md)) to convert the raw data files into NeXus file.
+One can use [NOMAD](https://nomad-lab.eu/) (see how to upload in NOMAD [documentation](../tutorials/use-reader-in-nomad.md)) research data management system (RMD) to upload the raw data files or command in terminal (needs `pynxtools-spm` installed in your local Python environment, see [installation guide](../tutorials/installation.md), or the [Docker image](#run-in-docker)) to convert the raw data files into NeXus file.
 
 For the formats, versions, and default config files of each vendor, see the reference pages [Nanonis](nanonis.md), [Omicron](omicron.md), and [Bruker](bruker.md).
 
@@ -10,9 +10,21 @@ After installing `pynxtools-spm` package, one can use the command line interface
 
 To convert the raw data files from various techniques, use a command similar to the following -
 
-```bash
-$ pynx convert --nxdl NXstm --reader SPM  --output output_file.nxs  <list of the input files>
-```
+=== "Python environment"
+
+    ```bash
+    $ pynx convert --nxdl NXstm --reader spm --output output_file.nxs <list of the input files>
+    ```
+
+=== "Docker"
+
+    ```bash
+    $ docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/data" -w /data \
+        ghcr.io/fairmat-nfdi/pynxtools-spm:<version> \
+        --nxdl NXstm --reader spm --output output_file.nxs <list of the input files>
+    ```
+
+    See [Run in Docker](#run-in-docker).
 
 __1.__ Command to convert a STS raw data file into NeXus file
 ```bash
@@ -70,3 +82,24 @@ Download and try with the [Bruker NanoScope force-curve example files](../assets
 
 !!! note
     The `.spm.txt` file is the ASCII export of a force ramp, not of an image: the extend (`_Ex`) and retract (`_Rt`) halves of the ramp become the `NXdata` groups `deflection_extension`, `height_sensor_extension`, `deflection_retrace` and `height_sensor_retrace`. Because the reader dispatches on the file extension, __every__ `.txt` file passed with `experiment_technique: AFM` is routed to this handler.
+
+## __Run in Docker__ { #run-in-docker }
+
+The [Docker image](../tutorials/installation.md#use-the-docker-image) runs `pynx convert` with the arguments you pass after the image name. So every command on this page works in Docker: drop `pynx convert` and put the rest after the image name.
+
+| Option | Meaning |
+|---|---|
+| `-v "$PWD:/data" -w /data` | Makes the current folder, with the input files, the working folder in the container |
+| `--user "$(id -u):$(id -g)"` | Writes the output file with your user, not with `root` |
+| `--rm` | Removes the container after the run |
+
+For example, the STS command in step 1 becomes:
+
+```bash
+$ docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/data" -w /data \
+    ghcr.io/fairmat-nfdi/pynxtools-spm:<version> \
+    --nxdl NXsts --reader spm --output output.nxs eln_data.yaml nanonis_sts_file.dat config.json
+```
+
+!!! note
+    The input files must be inside the mounted folder; paths outside it do not exist in the container.

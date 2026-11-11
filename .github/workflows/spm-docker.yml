@@ -3,7 +3,7 @@ name: SPM converter image
 # Builds the pynxtools-spm image (used e.g. by the Galaxy tool `pynxtools_dataconverter`).
 # - Push of CITATION.cff to release/*, PRs into release/*, manual run: build from this checkout, test.
 # - After "Upload Python Package" (publish.yml), or a manual run with `push`: build from PyPI, test,
-#   push ghcr.io/<owner>/pynxtools-spm:<version>. workflow_run needs this file on the default branch.
+#   push ghcr.io/<owner>/pynxtools-spm:<version> and :latest. workflow_run needs this file on the default branch.
 on:
   push:
     branches: ['release/**']
@@ -120,7 +120,7 @@ jobs:
           # The conversion must write a non-empty file.
           test -s "$work/out.nxs"
 
-      # Pushes the tested image; no rebuild.
+      # Pushes the tested image as :<version> and :latest (checked above to be the newest).
       - name: Log in to ghcr.io and push
         if: env.PUBLISH == 'true'
         env:
@@ -129,4 +129,7 @@ jobs:
           IMAGE: ${{ steps.versions.outputs.image }}
         run: |
           echo "$TOKEN" | docker login ghcr.io --username "$ACTOR" --password-stdin
+          latest="${IMAGE%:*}:latest"
+          docker tag "$IMAGE" "$latest"
           docker push "$IMAGE"
+          docker push "$latest"
