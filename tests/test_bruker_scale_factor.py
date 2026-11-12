@@ -34,7 +34,7 @@ def _scale_factor(sensitivity: str) -> float:
 
 
 def test_known_sensitivity_unit_scales_the_data():
-    """'nm/V' turns the SI values (metres) into nanometres."""
+    """'nm/V' scales the SI values from m to nm."""
     assert _scale_factor("V 485.6748 nm/V") == pytest.approx(1e9)
 
 
