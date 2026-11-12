@@ -1,0 +1,539 @@
+{
+  "ENTRY[entry]": {
+    "@default": {
+      "raw_path": "@default:height_sensor_forward"
+    },
+    "start_time": {
+      "#note": "Handled in function _set_start_end_time"
+    },
+    "end_time": {
+      "#note": "Handled in function _set_start_end_time"
+    },
+    "scan_mode": "",
+    "scan_type": "",
+    "identifier_experiment": { "identifier": "" },
+    "experiment_description": { "raw_path": "/Text" },
+    "INSTRUMENT[instrument]": {
+      "SPM_CANTILEVER[spm_cantilever]": {
+        "cantilever_oscillator": {
+          "reference_amplitude": {
+            "raw_path": "Free Amplitude * Setpoint/Amplitude Ratio * @Sens. AmplSens",
+            "@units": "Free Amplitide unit from @2:TMSetAmplitude:"
+          },
+          "reference_frequency": {
+            "raw_path": "@2:ReferenceFrequencyTappingMode if experiment in TM else @2:CantFrequencyContactMode",
+            "@units": "unit comes from raw_path"
+          },
+          "reference_phase": {
+            "raw_path": "@2:CantPhase",
+            "@units": "@default:deg"
+          },
+          "frequency_bandwidth": {
+            "raw_path": "@2:CantFrequency / Torsional Q",
+            "@units": "from @2:CantFrequency"
+          },
+          "frequency_harmonic": { "raw_path": "Harmonics To Correct" },
+          "frequency_shift": {
+            "raw_path": "/Phase Shift",
+            "@units": ""
+          },
+          "frequency_cutoff": {
+            "raw_path": "Adaptive x CutOffFreq",
+            "@units": "@default:Hz"
+          },
+          "target_amplitude": "",
+          "active_frequency": ""
+        },
+        "cantilever_config": {
+          "amplitude_excitation": {
+            "raw_path": "",
+            "@units": ""
+          },
+          "spring_constant": {
+            "raw_path": "",
+            "@units": ""
+          }
+        },
+        "phase_positioner": {
+          "actuator": {
+            "feedback": {
+              "K_p": {
+                "raw_path": ""
+              },
+              "K_i": {
+                "raw_path": ""
+              },
+              "K_d": "",
+              "D_t": ""
+            }
+          }
+        },
+        "amplitude_positioner": {
+          "actuator": {
+            "feedback": {
+              "K_p": {
+                "raw_path": "Tapping Engage Fast P Gain"
+              },
+              "K_i": {
+                "raw_path": "Tapping Engage Fast I Gain"
+              },
+              "K_d": "",
+              "D_t": ""
+            }
+          }
+        }
+      },
+      "phase_lock_loop": {
+        "loop_filter": {
+          "Kf_coefficient": {
+            "raw_path": "",
+            "@units": ""
+          }
+        },
+        "frequency_bandwidth": {
+          "raw_path": "",
+          "@units": ""
+        },
+        "phase_bandwidth": {
+          "raw_path": "@2:LockInBW1",
+          "@units": "@default:kHz"
+        },
+        "phase_detector": {
+          "reference_frequency": "dd"
+        }
+      },
+      "lockin_amplifier": {
+        "reference_frequency": {
+          "raw_path": "/Scanner_list/0/@2:ReferenceFrequencyTappingMode",
+          "@units": "@default:Hz"
+        },
+        "modulation_signal": {
+          "raw_path": ""
+        },
+        "demodulated_signal": {
+          "raw_path": ""
+        },
+        "modulation_status": { "raw_path": "" },
+        "demodulated_frequency": "",
+        "demodulated_amplitude": "",
+        "demodulator_channels": "",
+        "recorded_channels": "",
+        "ref_offset_phaseN[ref_offset_phase_n]": {
+          "raw_path": "",
+          "@units": ""
+        },
+        "harmonic_orderN[harmonic_order_n]": {
+          "raw_path": ""
+        }
+      },
+      "bias_spectroscopy_environment": {
+        "BIAS_SPECTROSCOPY[bias_spectroscopy]": {
+          "bias_sweep": {
+            "linear_sweep": {
+              "reset_bias": null,
+              "scan_points_bias": null,
+              "step_size_bias": { "@units": null }
+            },
+            "scan_region": {
+              "scan_end_bias": { "@units": null },
+              "scan_offset_bias": { "@units": null },
+              "scan_range_bias": { "@units": null },
+              "scan_start_bias": { "@units": null }
+            },
+            "settling_time": { "@units": null }
+          }
+        },
+        "independent_controllers": null,
+        "measurement_sensors": null
+      },
+      "head_temperature_sensor": null,
+      "cryo_shield_temperature_sensor": null,
+      "cryo_bottom_temperature_sensor": null,
+      "height_piezo_sensor": {
+        "piezo_configuration": {
+          "calibration": {
+            "calibration_type": {
+              "raw_path": "@default:active"
+            },
+            "calibration_date": {
+              "raw_path": ""
+            },
+            "calibration_parameters": {
+              "coefficientN[coefficient_n]": [
+                {
+                  "x": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                }
+              ],
+              "second_order_correctionN[second_order_correction_n]": [
+                {
+                  "x": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                },
+                {
+                  "y": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                },
+                {
+                  "z": {
+                    "raw_path": "",
+                    "@units": ""
+                  }
+                }
+              ]
+            },
+            "calibration_name": {
+              "raw_path": ""
+            },
+            "driftN[drift_n]": [
+              {
+                "x": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "z": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              }
+            ],
+            "drift_correction_status": {
+              "raw_path": ["", ""]
+            },
+            "hv_gainN[hv_gain_n]": [
+              { "x": { "raw_path": "" } },
+              { "y": { "raw_path": "" } },
+              { "z": { "raw_path": "" } }
+            ],
+            "tiltN[tilt_n]": [
+              {
+                "x": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              }
+            ]
+          },
+          "piezo_material": {
+            "curvature_radiusN": [
+              {
+                "x": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              }
+            ]
+          }
+        },
+        "SPM_POSITIONER[spm_positioner]": {
+          "z_controller": {
+            "K_i": { "raw_path": "" },
+            "K_p": { "raw_path": "" },
+            "set_point": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "D_t": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "tip_lift": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "z": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "feedback_on": {
+              "raw_path": ""
+            },
+            "switch_off_delay": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "controller_label": { "raw_path": "" }
+          },
+          "z_offset_value": "",
+          "tip_position_z": ""
+        },
+        "x": { "@units": null },
+        "y": { "@units": null },
+        "z": {
+          "raw_path": "",
+          "@units": ""
+        }
+      },
+      "SCAN_ENVIRONMENT[scan_environment]": {
+        "head_temperature": {
+          "raw_path": "",
+          "@units": ""
+        },
+        "cryo_bottom_temperature": null,
+        "cryo_shield_temperature": null,
+        "identifier_environment": { "raw_path": "" },
+        "SPM_SCAN_CONTROL[spm_scan_control]": {
+          "#note": "This entire group is handled in _construct_nxscan_controllers",
+          "scanTAG[scan_name]": { "raw_path": "" },
+          "scan_region": {
+            "scan_angleN[scan_angle_n]": {
+              "raw_path": "/Scanner_list/0/Rotate_Ang.",
+              "@units": "@default:deg"
+            },
+            "scan_offset_valueN[scan_offset_value_n]": [
+              {
+                "x": {
+                  "raw_path": "/Scanner_list/0/X_Offset",
+                  "@units": "@default:nm"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Scanner_list/0/Y_Offset",
+                  "@units": "@default:nm"
+                }
+              }
+            ],
+            "scan_startN[scan_start_n]": [
+              {
+                "x": {
+                  "raw_path": "/Scanner_list/0/X_Position",
+                  "@units": "@default:nm"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Scanner_list/0/Y_Position",
+                  "@units": "@default:nm"
+                }
+              }
+            ],
+            "scan_rangeN[scan_range_n]": {
+              "#note": "Aspect_Ratio is also needed to calculate the scan range",
+              "raw_path": "/Scanner_list/0/Scan_Size",
+              "@units": "@default:nm"
+            }
+          },
+          "meshSCAN[mesh_scan]": {
+            "backward_speedN[backward_speed_n]": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "forward_speedN[forward_speed_n]": {
+              "raw_path": "",
+              "@units": ""
+            },
+            "scan_speedN[scan_speed_n]": "",
+            "channelNAME[scan_name_n]": "",
+            "scan_pointsN[scan_points_n]": [
+              {
+                "x": {
+                  "raw_path": "/Scanner_list/0/Samps/line"
+                }
+              },
+              {
+                "y": {
+                  "raw_path": "/Scanner_list/0/Lines"
+                }
+              }
+            ],
+            "steppingN[stepping_n]": [
+              {
+                "_x": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              },
+              {
+                "_y": {
+                  "raw_path": "",
+                  "@units": ""
+                }
+              }
+            ],
+            "step_sizeN[step_size_n]": "",
+            "scan_time": "",
+            "DATA[scan_data]": [
+              {
+                "data": {
+                  "name": "",
+                  "raw_path": "",
+                  "@units": ""
+                },
+                "title": {
+                  "@default": ""
+                },
+                "grp_name": ""
+              }
+            ]
+          },
+          "independent_scan_axes": {
+            "#note": "",
+            "raw_path": "",
+            "@units": ""
+          },
+          "scan_resolutionN[scan_resolution_n]": "",
+          "accuracyN": "",
+          "scan_type": { "raw_path": "", "@units": "" },
+          "scan_control_type": {
+            "raw_path": "",
+            "@units": ""
+          }
+        },
+        "cryo_shield_temperature_sensor": "",
+        "cryo_bottom_temperature_sensor": "",
+        "head_temperature_sensor": ""
+      }
+    },
+    "DATA[data]": [
+      {
+        "data": {
+          "name": "z",
+          "raw_path": "/Height_Sensor/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Height Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "z_forward"
+      },
+      {
+        "data": {
+          "name": "z",
+          "raw_path": "/Height_Sensor/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Height Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "z_backward"
+      },
+      {
+        "data": {
+          "name": "amplitude_error",
+          "raw_path": "/Amplitude_Error/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Error Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "amplitude_error_forward"
+      },
+      {
+        "data": {
+          "name": "amplitude_error",
+          "raw_path": "/Amplitude_Error/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Error Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "amplitude_error_backward"
+      },
+      {
+        "data": {
+          "name": "phase",
+          "raw_path": "/Phase/forward",
+          "@units": "@default:deg"
+        },
+        "title": {
+          "raw_path": "@default:Phase Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "phase_forward"
+      },
+      {
+        "data": {
+          "name": "phase",
+          "raw_path": "/Phase/backward",
+          "@units": "@default:deg"
+        },
+        "title": {
+          "raw_path": "@default:Phase Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "phase_backward"
+      },
+      {
+        "data": {
+          "name": "amplitude",
+          "raw_path": "/Amplitude/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "amplitude_forward"
+      },
+      {
+        "data": {
+          "name": "amplitude",
+          "raw_path": "/Amplitude/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:Amplitude Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "amplitude_backward"
+      },
+      {
+        "data": {
+          "name": "tm_deflection",
+          "raw_path": "/TM_Deflection/forward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:TM Deflection Plot of AFM Experiment (Forward Direction)"
+        },
+        "grp_name": "tm_deflection_forward"
+      },
+      {
+        "data": {
+          "name": "tm_deflection",
+          "raw_path": "/TM_Deflection/backward",
+          "@units": "@default:nm"
+        },
+        "title": {
+          "raw_path": "@default:TM Deflection Plot of AFM Experiment (Backward Direction)"
+        },
+        "grp_name": "tm_deflection_backward"
+      }
+    ]
+  }
+}
