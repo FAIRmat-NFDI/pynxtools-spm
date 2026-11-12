@@ -24,6 +24,7 @@ from typing import Any
 
 import numpy as np
 from gwyddionpy import GwyData, load
+from pint.errors import PintError
 from pynxtools import logger as pynx_logger
 from pynxtools.units import ureg
 
@@ -244,7 +245,12 @@ class SpmBruker(SPMBase):
                 1.0
                 / ureg.Quantity(1.0, sens_match.group("unit")).to_base_units().magnitude
             )
-        except Exception:
+        except PintError:
+            pynx_logger.warning(
+                "Unknown unit %r in sensitivity %r: the data are not scaled.",
+                sens_match.group("unit"),
+                sensitivity,
+            )
             return 1.0
 
         if z_scale.group("unit") == "mV":
