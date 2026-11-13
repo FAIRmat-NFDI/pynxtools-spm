@@ -27,7 +27,6 @@ dependencies = [
     "matplotlib",
     "scipy",
     "hvplot",
-    "tzlocal",
     "gwyddionpy[converter]",
 ]
 
