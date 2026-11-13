@@ -29,7 +29,6 @@ from typing import Any, Dict, Optional, Tuple, Union, Type
 from collections.abc import Callable
 
 import numpy as np
-import tzlocal
 from findiff import Diff
 from pynxtools.units import ureg
 
@@ -50,8 +49,8 @@ def add_local_timezone(ts: str, tz: str | None = None) -> str:
         Input timestamp string.
     tz : str | None
         Optional timezone name (e.g. "Europe/Berlin").
-        If None, the system local timezone will be used.
-
+        If None or unknown, the timestamp is kept without a timezone. The
+        timezone of the machine running the conversion is never used.
     Returns
     -------
     str
@@ -68,15 +67,19 @@ def add_local_timezone(ts: str, tz: str | None = None) -> str:
         # Invalid input -> return as-is
         return ts
 
-    # Use provided timezone or system local
-    if tz:
-        try:
-            tzinfo = zoneinfo.ZoneInfo(tz)
-        except Exception:
-            # Invalid tz string -> fallback to local
-            tzinfo = tzlocal.get_localzone()
-    else:
-        tzinfo = tzlocal.get_localzone()
+    # Use provided timezone
+    if not tz:
+        logger.warning(
+            f"Timestamp {ts!r} has no time zone, so it is written without one."
+        )
+        return dt.isoformat()
+    try:
+        tzinfo = zoneinfo.ZoneInfo(tz)
+    except (zoneinfo.ZoneInfoNotFoundError, ValueError):
+        logger.warning(
+            f"Unknown time zone {tz!r}: timestamp {ts!r} is written without one."
+        )
+        return dt.isoformat()
 
     # Attach timezone
     dt = dt.replace(tzinfo=tzinfo)
