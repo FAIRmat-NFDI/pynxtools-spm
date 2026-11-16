@@ -472,7 +472,7 @@ class OmicronSM4STM(OmicronBase):
             if end_time_str not in completed_field and re.match(
                 pattern=rf"/ENTRY\[\w+\]/{start_time_str}$", string=template_key
             ):
-                self.template[template_key] = fhs.add_local_timezone(val)
+                self.template[template_key] = fhs.add_local_timezone(val, self.timezone)
                 end_time_k = template_key.replace(start_time_str, end_time_str)
                 end_dct = None
                 for k in end_time_k.split("/")[1:]:
@@ -489,7 +489,9 @@ class OmicronSM4STM(OmicronBase):
                                 start_time
                             ) + datetime.timedelta(float(data))
                             end_time = datetime.datetime.isoformat(end_time)
-                            self.template[end_time_k] = fhs.add_local_timezone(end_time)
+                            self.template[end_time_k] = fhs.add_local_timezone(
+                                end_time, self.timezone
+                            )
                             completed_field.append(end_time_str)
                         except (ValueError, TypeError):
                             pass
