@@ -38,8 +38,12 @@ def test_known_sensitivity_unit_scales_the_data():
     assert _scale_factor("V 485.6748 nm/V") == pytest.approx(1e9)
 
 
-def test_sensitivity_without_unit_leaves_the_data(caplog):
-    """A sensitivity without a unit keeps the values, as documented."""
+def test_sensitivity_without_unit_is_left_quietly(caplog):
+    """No unit is a normal case: the values are kept and nothing is logged.
+
+    It is handled before the unit conversion (the sensitivity pattern needs a
+    unit), so it never reaches the warning for unknown units.
+    """
     with caplog.at_level(logging.WARNING):
         assert _scale_factor("V 1.000000 ") == 1.0
     assert caplog.records == []
