@@ -21,6 +21,7 @@
 import logging
 import shutil
 import time
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -30,6 +31,7 @@ from pynxtools.dataconverter.template import Template
 from pynxtools_spm.nxformatters.helpers import add_local_timezone
 
 STM_DIR = Path(__file__).parent / "data" / "nanonis" / "stm" / "v_gen_4_dflt_conf_up"
+SM4_DIR = Path(__file__).parent / "data" / "omicron" / "stm" / "sm4_dflt_conf_up"
 
 
 @pytest.fixture
@@ -90,3 +92,21 @@ def test_timezone_from_the_eln_is_used(machine_in_tokyo, tmp_path):
 
     assert template["/ENTRY[entry]/start_time"] == "2021-11-22T01:48:07-05:00"
     assert not any("timezone" in key for key in template.keys())
+
+
+def test_omicron_end_time_adds_the_scan_time_in_seconds(tmp_path):
+    """end_time is start_time plus the scan time in seconds, not in days."""
+    for file in SM4_DIR.iterdir():
+        if file.suffix != ".nxs":
+            shutil.copy(file, tmp_path / file.name)
+    eln = tmp_path / "eln_data.yaml"
+    eln.write_text(eln.read_text() + "\ntimezone: Europe/Berlin\n")
+
+    template = get_reader("spm")().read(
+        template=Template(), file_paths=tuple(str(f) for f in tmp_path.iterdir())
+    )
+
+    start = datetime.fromisoformat(template["/ENTRY[entry]/start_time"])
+    end = datetime.fromisoformat(template["/ENTRY[entry]/end_time"])
+    assert start == datetime.fromisoformat("2022-01-20T16:07:09+01:00")
+    assert (end - start).total_seconds() == pytest.approx(86.13, abs=0.01)
