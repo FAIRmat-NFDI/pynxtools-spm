@@ -487,7 +487,7 @@ class OmicronSM4STM(OmicronBase):
                         try:
                             end_time = datetime.datetime.fromisoformat(
                                 start_time
-                            ) + datetime.timedelta(float(data))
+                            ) + datetime.timedelta(seconds=float(data))
                             end_time = datetime.datetime.isoformat(end_time)
                             self.template[end_time_k] = fhs.add_local_timezone(
                                 end_time, self.timezone
