@@ -226,6 +226,8 @@ class SPMformatter(ABC):
         self.bias_sweep: BiasSweep = BiasSweep()
         self.template: Template = template
         self.raw_file: str | Path = raw_file
+        # Time zone for timestamps without one, set by `timezone` in the ELN
+        self.timezone: str | None = None
         self.eln = self._get_eln_dict(eln_file)  # Placeholder
         self.raw_data: dict = self.get_raw_data_dict()
         self.entry: str = entry
@@ -243,6 +245,8 @@ class SPMformatter(ABC):
     def _get_eln_dict(self, eln_file: str | Path):
         with open(eln_file, encoding="utf-8") as fl_obj:
             eln_dict: dict = yaml.safe_load(fl_obj)
+            # `timezone` is a setting for the reader, not data for the template
+            self.timezone = eln_dict.pop("timezone", None)
             convert_mapping = copy.deepcopy(CONVERT_DICT)
             extended_eln: dict = write_multiple_concepts_instance(
                 eln_dict=eln_dict,
@@ -787,7 +791,7 @@ class SPMformatter(ABC):
                 continue
             if re.search(pattern=r"(\w*date|time)$", string=template_key):
                 try:
-                    t_with_zone = add_local_timezone(val)
+                    t_with_zone = add_local_timezone(val, self.timezone)
                     self.template[template_key] = t_with_zone
                 except Exception:
                     # Only consider the time or date that follows ISO 8601

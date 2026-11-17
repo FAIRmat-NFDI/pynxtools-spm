@@ -29,7 +29,6 @@ from typing import Any, Dict, Optional, Tuple, Union, Type
 from collections.abc import Callable
 
 import numpy as np
-import tzlocal
 from findiff import Diff
 from pynxtools.units import ureg
 
@@ -49,9 +48,9 @@ def add_local_timezone(ts: str, tz: str | None = None) -> str:
     ts : str
         Input timestamp string.
     tz : str | None
-        Optional timezone name (e.g. "Europe/Berlin").
-        If None, the system local timezone will be used.
-
+        Timezone name given by the user (e.g. "Europe/Berlin"), usually from
+        the `timezone` key of the ELN file. If None or unknown, the timezone of
+        the machine running the conversion is assumed, with a warning.
     Returns
     -------
     str
@@ -67,20 +66,21 @@ def add_local_timezone(ts: str, tz: str | None = None) -> str:
     except ValueError:
         # Invalid input -> return as-is
         return ts
-
-    # Use provided timezone or system local
+    # Use the timezone given by the user
     if tz:
         try:
-            tzinfo = zoneinfo.ZoneInfo(tz)
-        except Exception:
-            # Invalid tz string -> fallback to local
-            tzinfo = tzlocal.get_localzone()
-    else:
-        tzinfo = tzlocal.get_localzone()
+            return dt.replace(tzinfo=zoneinfo.ZoneInfo(tz)).isoformat()
+        except (zoneinfo.ZoneInfoNotFoundError, ValueError):
+            logger.warning(f"Unknown time zone {tz!r}.")
 
-    # Attach timezone
-    dt = dt.replace(tzinfo=tzinfo)
-    return dt.isoformat()
+    # Fall back to the timezone of the converting machine, but say so
+    local_dt = dt.astimezone()
+    logger.warning(
+        f"Timestamp {ts!r} has no time zone, so the time zone of the converting "
+        f"machine ({local_dt.tzname()}) was assumed. Set `timezone` in the ELN "
+        "file (e.g. 'Europe/Berlin') to give the right one."
+    )
+    return local_dt.isoformat()
 
 
 def read_config_file(config_file: str | Path) -> dict:
