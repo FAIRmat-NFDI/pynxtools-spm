@@ -1,0 +1,10 @@
+# Build context is the repo root; the image needs only the package source and the entrypoint.
+*
+!pyproject.toml
+!MANIFEST.in
+!README.md
+!LICENSE
+!src/
+!docker/entrypoint.sh
+src/**/__pycache__
+src/*.egg-info
