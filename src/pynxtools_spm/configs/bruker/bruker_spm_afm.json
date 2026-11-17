@@ -17,20 +17,17 @@
       "SPM_CANTILEVER[spm_cantilever]": {
         "cantilever_oscillator": {
           "reference_amplitude": {
-            "raw_path": "Free Amplitude * Setpoint/Amplitude Ratio * @Sens. AmplSens",
-            "@units": "Free Amplitide unit from @2:TMSetAmplitude:"
+            "#note": "Not written yet: would be Free Amplitude * Setpoint/Amplitude Ratio * @Sens. AmplSens, in the unit of @2:TMSetAmplitude."
           },
-          "reference_frequency": {
-            "raw_path": "@2:ReferenceFrequencyTappingMode if experiment in TM else @2:CantFrequencyContactMode",
-            "@units": "unit comes from raw_path"
+	  "reference_frequency": {
+            "#note": "Not written yet: would be @2:ReferenceFrequencyTappingMode in tapping mode, else @2:CantFrequencyContactMode, with the unit of that value."
           },
           "reference_phase": {
             "raw_path": "@2:CantPhase",
             "@units": "@default:deg"
           },
-          "frequency_bandwidth": {
-            "raw_path": "@2:CantFrequency / Torsional Q",
-            "@units": "from @2:CantFrequency"
+	  "frequency_bandwidth": {
+            "#note": "Not written yet: would be @2:CantFrequency / Torsional Q, in the unit of @2:CantFrequency."
           },
           "frequency_harmonic": { "raw_path": "Harmonics To Correct" },
           "frequency_shift": {
@@ -105,7 +102,7 @@
       "lockin_amplifier": {
         "reference_frequency": {
           "raw_path": "/Scanner_list/0/@2:ReferenceFrequencyTappingMode",
-          "@units": "@default:Hz"
+          "@units": "/Scanner_list/0/@2:ReferenceFrequencyTappingMode/@units"
         },
         "modulation_signal": {
           "raw_path": ""
