@@ -22,6 +22,7 @@ import logging
 
 import pytest
 
+from pynxtools import logger as pynx_logger
 from pynxtools_spm.parsers.bruker_spm import SpmBruker
 
 Z_SCALE = r"V [Sens. ZsensSens] (0.00000000572205 V/LSB) 1.195962 V"
@@ -33,25 +34,35 @@ def _scale_factor(sensitivity: str) -> float:
     return SpmBruker._scale_factor(entries, sections)
 
 
+@pytest.fixture
+def pynx_caplog(caplog):
+    """caplog that also sees the pynxtools logger, which does not propagate."""
+    pynx_logger.addHandler(caplog.handler)
+    try:
+        yield caplog
+    finally:
+        pynx_logger.removeHandler(caplog.handler)
+
+
 def test_known_sensitivity_unit_scales_the_data():
     """'nm/V' scales the SI values from m to nm."""
     assert _scale_factor("V 485.6748 nm/V") == pytest.approx(1e9)
 
 
-def test_sensitivity_without_unit_is_left_quietly(caplog):
+def test_sensitivity_without_unit_is_left_quietly(pynx_caplog):
     """No unit is a normal case: the values are kept and nothing is logged.
 
     It is handled before the unit conversion (the sensitivity pattern needs a
     unit), so it never reaches the warning for unknown units.
     """
-    with caplog.at_level(logging.WARNING):
+    with pynx_caplog.at_level(logging.WARNING):
         assert _scale_factor("V 1.000000 ") == 1.0
-    assert caplog.records == []
+    assert pynx_caplog.records == []
 
 
-def test_unknown_sensitivity_unit_logs_a_warning(caplog):
+def test_unknown_sensitivity_unit_logs_a_warning(pynx_caplog):
     """An unknown unit leaves the data unscaled, but says so."""
-    with caplog.at_level(logging.WARNING):
+    with pynx_caplog.at_level(logging.WARNING):
         assert _scale_factor("V 485.6748 xyz/V") == 1.0
-    assert "xyz" in caplog.text
-    assert "not scaled" in caplog.text
+    assert "xyz" in pynx_caplog.text
+    assert "not scaled" in pynx_caplog.text
