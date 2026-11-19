@@ -1,0 +1,1469 @@
+/File/Version: 0
+/File/Date: 0
+/File/Start_context: O
+/File/Data_length: 8
+/File/User_Rating: 0
+/File/Engage_X_Pos: -
+/File/Engage_Y_Pos: -
+/File/Description: D
+/File/Vision: u
+/File/Scanner_file: 1
+/Scan/Height_Sensor/backward/Data_offset: 80960
+/Scan/Height_Sensor/backward/Data_length: 1048576
+/Scan/Height_Sensor/backward/Bytes/pixel: 4
+/Scan/Height_Sensor/backward/Start_context: OL
+/Scan/Height_Sensor/backward/Data_type: AFM
+/Scan/Height_Sensor/backward/Plane_fit: 5.08645e+007 8.03764e+007 4.16626e+008 2
+/Scan/Height_Sensor/backward/Frame_direction: Down
+/Scan/Height_Sensor/backward/Capture_start_line: 0
+/Scan/Height_Sensor/backward/Color_Table_Index: 12
+/Scan/Height_Sensor/backward/Relative_frame_time: 5203.42
+/Scan/Height_Sensor/backward/Invalid_Data_Flag: None
+/Scan/Height_Sensor/backward/Invalid_Data_Fill: None
+/Scan/Height_Sensor/backward/Samps/line: 512
+/Scan/Height_Sensor/backward/Number_of_lines: 512
+/Scan/Height_Sensor/backward/Aspect_Ratio: 1:1
+/Scan/Height_Sensor/backward/Scan_Size: 20 20 ~m
+/Scan/Height_Sensor/backward/Scan_Line: Main
+/Scan/Height_Sensor/backward/Line_Direction: Retrace
+/Scan/Height_Sensor/backward/Highpass: 0
+/Scan/Height_Sensor/backward/Lowpass: 0
+/Scan/Height_Sensor/backward/Realtime_Planefit: Line
+/Scan/Height_Sensor/backward/Offline_Planefit: Full
+/Scan/Height_Sensor/backward/Valid_data_start_X: 0
+/Scan/Height_Sensor/backward/Valid_data_start_Y: 0
+/Scan/Height_Sensor/backward/Valid_data_len_X: 512
+/Scan/Height_Sensor/backward/Valid_data_len_Y: 512
+/Scan/Height_Sensor/backward/Tip_x_width_correction_factor: 1
+/Scan/Height_Sensor/backward/Tip_y_width_correction_factor: 1
+/Scan/Height_Sensor/backward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Height_Sensor/backward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Height_Sensor/backward/@2:Image_Data: S [ZSensor] "Height Sensor"
+/Scan/Height_Sensor/backward/@Z_magnify: C [2:Z scale] 1.032971
+/Scan/Height_Sensor/backward/@2:Z_scale: V [Sens. ZsensSens] (0.00000000572205 V/LSB) 1.195962 V
+/Scan/Height_Sensor/backward/@2:Z_offset: V [Sens. ZsensSens] (0.00000000572205 V/LSB) 0.6159906 V
+/Scan/Amplitude_Error/backward/Data_offset: 1129536
+/Scan/Amplitude_Error/backward/Data_length: 1048576
+/Scan/Amplitude_Error/backward/Bytes/pixel: 2
+/Scan/Amplitude_Error/backward/Start_context: OL
+/Scan/Amplitude_Error/backward/Data_type: AFM
+/Scan/Amplitude_Error/backward/Plane_fit: 0 0 0 5
+/Scan/Amplitude_Error/backward/Frame_direction: Down
+/Scan/Amplitude_Error/backward/Capture_start_line: 0
+/Scan/Amplitude_Error/backward/Color_Table_Index: 2
+/Scan/Amplitude_Error/backward/Relative_frame_time: 5203.42
+/Scan/Amplitude_Error/backward/Invalid_Data_Flag: None
+/Scan/Amplitude_Error/backward/Invalid_Data_Fill: None
+/Scan/Amplitude_Error/backward/Samps/line: 512
+/Scan/Amplitude_Error/backward/Number_of_lines: 512
+/Scan/Amplitude_Error/backward/Aspect_Ratio: 1:1
+/Scan/Amplitude_Error/backward/Scan_Size: 20 20 ~m
+/Scan/Amplitude_Error/backward/Scan_Line: Main
+/Scan/Amplitude_Error/backward/Line_Direction: Retrace
+/Scan/Amplitude_Error/backward/Highpass: 0
+/Scan/Amplitude_Error/backward/Lowpass: 0
+/Scan/Amplitude_Error/backward/Realtime_Planefit: Line
+/Scan/Amplitude_Error/backward/Offline_Planefit: None
+/Scan/Amplitude_Error/backward/Valid_data_start_X: 0
+/Scan/Amplitude_Error/backward/Valid_data_start_Y: 0
+/Scan/Amplitude_Error/backward/Valid_data_len_X: 512
+/Scan/Amplitude_Error/backward/Valid_data_len_Y: 512
+/Scan/Amplitude_Error/backward/Tip_x_width_correction_factor: 1
+/Scan/Amplitude_Error/backward/Tip_y_width_correction_factor: 1
+/Scan/Amplitude_Error/backward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Amplitude_Error/backward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Amplitude_Error/backward/@2:Image_Data: S [AmplitudeError] "Amplitude Error"
+/Scan/Amplitude_Error/backward/@Z_magnify: C [2:Z scale] 0.004750000
+/Scan/Amplitude_Error/backward/@2:Z_scale: V [Sens. Amplitude Error] (0.03051758 mV/LSB) 2000.000 mV
+/Scan/Amplitude_Error/backward/@2:Z_offset: V [Sens. Amplitude Error] (0.03051758 mV/LSB)       0 mV
+/Scan/Phase/backward/Data_offset: 2178112
+/Scan/Phase/backward/Data_length: 1048576
+/Scan/Phase/backward/Bytes/pixel: 2
+/Scan/Phase/backward/Start_context: OL
+/Scan/Phase/backward/Data_type: AFM
+/Scan/Phase/backward/Plane_fit: 0 0 0 5
+/Scan/Phase/backward/Frame_direction: Down
+/Scan/Phase/backward/Capture_start_line: 0
+/Scan/Phase/backward/Color_Table_Index: 12
+/Scan/Phase/backward/Relative_frame_time: 5203.42
+/Scan/Phase/backward/Invalid_Data_Flag: None
+/Scan/Phase/backward/Invalid_Data_Fill: None
+/Scan/Phase/backward/Samps/line: 512
+/Scan/Phase/backward/Number_of_lines: 512
+/Scan/Phase/backward/Aspect_Ratio: 1:1
+/Scan/Phase/backward/Scan_Size: 20 20 ~m
+/Scan/Phase/backward/Scan_Line: Main
+/Scan/Phase/backward/Line_Direction: Retrace
+/Scan/Phase/backward/Highpass: 0
+/Scan/Phase/backward/Lowpass: 0
+/Scan/Phase/backward/Realtime_Planefit: Line
+/Scan/Phase/backward/Offline_Planefit: None
+/Scan/Phase/backward/Valid_data_start_X: 0
+/Scan/Phase/backward/Valid_data_start_Y: 0
+/Scan/Phase/backward/Valid_data_len_X: 512
+/Scan/Phase/backward/Valid_data_len_Y: 512
+/Scan/Phase/backward/Tip_x_width_correction_factor: 1
+/Scan/Phase/backward/Tip_y_width_correction_factor: 1
+/Scan/Phase/backward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Phase/backward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Phase/backward/@2:Image_Data: S [Phase] "Phase"
+/Scan/Phase/backward/@Z_magnify: C [2:Z scale] 0.1083333
+/Scan/Phase/backward/@2:Z_scale: V [Sens. Phase] (0.005493164 ï¿½/LSB) 360.0000 ï¿½
+/Scan/Phase/backward/@2:Z_offset: V [Sens. Phase] (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scan/Height_Sensor/forward/Data_offset: 3226688
+/Scan/Height_Sensor/forward/Data_length: 1048576
+/Scan/Height_Sensor/forward/Bytes/pixel: 4
+/Scan/Height_Sensor/forward/Start_context: OL
+/Scan/Height_Sensor/forward/Data_type: AFM
+/Scan/Height_Sensor/forward/Plane_fit: 0 0 0 5
+/Scan/Height_Sensor/forward/Frame_direction: Down
+/Scan/Height_Sensor/forward/Capture_start_line: 0
+/Scan/Height_Sensor/forward/Color_Table_Index: 12
+/Scan/Height_Sensor/forward/Relative_frame_time: 5203.42
+/Scan/Height_Sensor/forward/Invalid_Data_Flag: None
+/Scan/Height_Sensor/forward/Invalid_Data_Fill: None
+/Scan/Height_Sensor/forward/Samps/line: 512
+/Scan/Height_Sensor/forward/Number_of_lines: 512
+/Scan/Height_Sensor/forward/Aspect_Ratio: 1:1
+/Scan/Height_Sensor/forward/Scan_Size: 20 20 ~m
+/Scan/Height_Sensor/forward/Scan_Line: Main
+/Scan/Height_Sensor/forward/Line_Direction: Trace
+/Scan/Height_Sensor/forward/Highpass: 0
+/Scan/Height_Sensor/forward/Lowpass: 0
+/Scan/Height_Sensor/forward/Realtime_Planefit: Line
+/Scan/Height_Sensor/forward/Offline_Planefit: None
+/Scan/Height_Sensor/forward/Valid_data_start_X: 0
+/Scan/Height_Sensor/forward/Valid_data_start_Y: 0
+/Scan/Height_Sensor/forward/Valid_data_len_X: 512
+/Scan/Height_Sensor/forward/Valid_data_len_Y: 512
+/Scan/Height_Sensor/forward/Tip_x_width_correction_factor: 1
+/Scan/Height_Sensor/forward/Tip_y_width_correction_factor: 1
+/Scan/Height_Sensor/forward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Height_Sensor/forward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Height_Sensor/forward/@2:Image_Data: S [ZSensor] "Height Sensor"
+/Scan/Height_Sensor/forward/@Z_magnify: C [2:Z scale] 0.03183661
+/Scan/Height_Sensor/forward/@2:Z_scale: V [Sens. ZsensSens] (0.00000000572205 V/LSB) 24.57600 V
+/Scan/Height_Sensor/forward/@2:Z_offset: V [Sens. ZsensSens] (0.00000000572205 V/LSB)       0 V
+/Scan/Amplitude_Error/forward/Data_offset: 4275264
+/Scan/Amplitude_Error/forward/Data_length: 1048576
+/Scan/Amplitude_Error/forward/Bytes/pixel: 2
+/Scan/Amplitude_Error/forward/Start_context: OL
+/Scan/Amplitude_Error/forward/Data_type: AFM
+/Scan/Amplitude_Error/forward/Plane_fit: 0 0 0 5
+/Scan/Amplitude_Error/forward/Frame_direction: Down
+/Scan/Amplitude_Error/forward/Capture_start_line: 0
+/Scan/Amplitude_Error/forward/Color_Table_Index: 12
+/Scan/Amplitude_Error/forward/Relative_frame_time: 5203.42
+/Scan/Amplitude_Error/forward/Invalid_Data_Flag: None
+/Scan/Amplitude_Error/forward/Invalid_Data_Fill: None
+/Scan/Amplitude_Error/forward/Samps/line: 512
+/Scan/Amplitude_Error/forward/Number_of_lines: 512
+/Scan/Amplitude_Error/forward/Aspect_Ratio: 1:1
+/Scan/Amplitude_Error/forward/Scan_Size: 20 20 ~m
+/Scan/Amplitude_Error/forward/Scan_Line: Main
+/Scan/Amplitude_Error/forward/Line_Direction: Trace
+/Scan/Amplitude_Error/forward/Highpass: 0
+/Scan/Amplitude_Error/forward/Lowpass: 0
+/Scan/Amplitude_Error/forward/Realtime_Planefit: None
+/Scan/Amplitude_Error/forward/Offline_Planefit: None
+/Scan/Amplitude_Error/forward/Valid_data_start_X: 0
+/Scan/Amplitude_Error/forward/Valid_data_start_Y: 0
+/Scan/Amplitude_Error/forward/Valid_data_len_X: 512
+/Scan/Amplitude_Error/forward/Valid_data_len_Y: 512
+/Scan/Amplitude_Error/forward/Tip_x_width_correction_factor: 1
+/Scan/Amplitude_Error/forward/Tip_y_width_correction_factor: 1
+/Scan/Amplitude_Error/forward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Amplitude_Error/forward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Amplitude_Error/forward/@2:Image_Data: S [AmplitudeError] "Amplitude Error"
+/Scan/Amplitude_Error/forward/@Z_magnify: C [2:Z scale] 0.005000000
+/Scan/Amplitude_Error/forward/@2:Z_scale: V [Sens. Amplitude Error] (0.03051758 mV/LSB) 2000.000 mV
+/Scan/Amplitude_Error/forward/@2:Z_offset: V [Sens. Amplitude Error] (0.03051758 mV/LSB) -0.6713867 mV
+/Scan/Phase/forward/Data_offset: 5323840
+/Scan/Phase/forward/Data_length: 1048576
+/Scan/Phase/forward/Bytes/pixel: 2
+/Scan/Phase/forward/Start_context: OL
+/Scan/Phase/forward/Data_type: AFM
+/Scan/Phase/forward/Plane_fit: 0 0 0 5
+/Scan/Phase/forward/Frame_direction: Down
+/Scan/Phase/forward/Capture_start_line: 0
+/Scan/Phase/forward/Color_Table_Index: 12
+/Scan/Phase/forward/Relative_frame_time: 5203.42
+/Scan/Phase/forward/Invalid_Data_Flag: None
+/Scan/Phase/forward/Invalid_Data_Fill: None
+/Scan/Phase/forward/Samps/line: 512
+/Scan/Phase/forward/Number_of_lines: 512
+/Scan/Phase/forward/Aspect_Ratio: 1:1
+/Scan/Phase/forward/Scan_Size: 20 20 ~m
+/Scan/Phase/forward/Scan_Line: Main
+/Scan/Phase/forward/Line_Direction: Trace
+/Scan/Phase/forward/Highpass: 0
+/Scan/Phase/forward/Lowpass: 0
+/Scan/Phase/forward/Realtime_Planefit: None
+/Scan/Phase/forward/Offline_Planefit: None
+/Scan/Phase/forward/Valid_data_start_X: 0
+/Scan/Phase/forward/Valid_data_start_Y: 0
+/Scan/Phase/forward/Valid_data_len_X: 512
+/Scan/Phase/forward/Valid_data_len_Y: 512
+/Scan/Phase/forward/Tip_x_width_correction_factor: 1
+/Scan/Phase/forward/Tip_y_width_correction_factor: 1
+/Scan/Phase/forward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Phase/forward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Phase/forward/@2:Image_Data: S [Phase] "Phase"
+/Scan/Phase/forward/@Z_magnify: C [2:Z scale] 0.09166667
+/Scan/Phase/forward/@2:Z_scale: V [Sens. Phase] (0.005493164 ï¿½/LSB) 360.0000 ï¿½
+/Scan/Phase/forward/@2:Z_offset: V [Sens. Phase] (0.005493164 ï¿½/LSB) -6.201782 ï¿½
+/Scan/Amplitude/backward/Data_offset: 6372416
+/Scan/Amplitude/backward/Data_length: 1048576
+/Scan/Amplitude/backward/Bytes/pixel: 2
+/Scan/Amplitude/backward/Start_context: OL
+/Scan/Amplitude/backward/Data_type: AFM
+/Scan/Amplitude/backward/Plane_fit: 18 0 12456.5 2
+/Scan/Amplitude/backward/Frame_direction: Down
+/Scan/Amplitude/backward/Capture_start_line: 0
+/Scan/Amplitude/backward/Color_Table_Index: 12
+/Scan/Amplitude/backward/Relative_frame_time: 5203.42
+/Scan/Amplitude/backward/Invalid_Data_Flag: None
+/Scan/Amplitude/backward/Invalid_Data_Fill: None
+/Scan/Amplitude/backward/Samps/line: 512
+/Scan/Amplitude/backward/Number_of_lines: 512
+/Scan/Amplitude/backward/Aspect_Ratio: 1:1
+/Scan/Amplitude/backward/Scan_Size: 20 20 ~m
+/Scan/Amplitude/backward/Scan_Line: Main
+/Scan/Amplitude/backward/Line_Direction: Retrace
+/Scan/Amplitude/backward/Highpass: 0
+/Scan/Amplitude/backward/Lowpass: 0
+/Scan/Amplitude/backward/Realtime_Planefit: Line
+/Scan/Amplitude/backward/Offline_Planefit: Full
+/Scan/Amplitude/backward/Valid_data_start_X: 0
+/Scan/Amplitude/backward/Valid_data_start_Y: 0
+/Scan/Amplitude/backward/Valid_data_len_X: 512
+/Scan/Amplitude/backward/Valid_data_len_Y: 512
+/Scan/Amplitude/backward/Tip_x_width_correction_factor: 1
+/Scan/Amplitude/backward/Tip_y_width_correction_factor: 1
+/Scan/Amplitude/backward/Tip_x_width_correction_factor_sigma: 1
+/Scan/Amplitude/backward/Tip_y_width_correction_factor_sigma: 1
+/Scan/Amplitude/backward/@2:Image_Data: S [AmplitudeActual] "Amplitude"
+/Scan/Amplitude/backward/@Z_magnify: C [2:Z scale] 0.9023340
+/Scan/Amplitude/backward/@2:Z_scale: V [Sens. AmplSens] (0.03051758 mV/LSB) 299.2240 mV
+/Scan/Amplitude/backward/@2:Z_offset: V [Sens. AmplSens] (0.03051758 mV/LSB)       0 mV
+/Scan/TM_Deflection/backward/Data_offset: 7420992
+/Scan/TM_Deflection/backward/Data_length: 1048576
+/Scan/TM_Deflection/backward/Bytes/pixel: 2
+/Scan/TM_Deflection/backward/Start_context: OL
+/Scan/TM_Deflection/backward/Data_type: AFM
+/Scan/TM_Deflection/backward/Plane_fit: 161 -43 14.25 2
+/Scan/TM_Deflection/backward/Frame_direction: Down
+/Scan/TM_Deflection/backward/Capture_start_line: 0
+/Scan/TM_Deflection/backward/Color_Table_Index: 12
+/Scan/TM_Deflection/backward/Relative_frame_time: 5203.42
+/Scan/TM_Deflection/backward/Invalid_Data_Flag: None
+/Scan/TM_Deflection/backward/Invalid_Data_Fill: None
+/Scan/TM_Deflection/backward/Samps/line: 512
+/Scan/TM_Deflection/backward/Number_of_lines: 512
+/Scan/TM_Deflection/backward/Aspect_Ratio: 1:1
+/Scan/TM_Deflection/backward/Scan_Size: 20 20 ~m
+/Scan/TM_Deflection/backward/Scan_Line: Main
+/Scan/TM_Deflection/backward/Line_Direction: Retrace
+/Scan/TM_Deflection/backward/Highpass: 0
+/Scan/TM_Deflection/backward/Lowpass: 0
+/Scan/TM_Deflection/backward/Realtime_Planefit: Line
+/Scan/TM_Deflection/backward/Offline_Planefit: Full
+/Scan/TM_Deflection/backward/Valid_data_start_X: 0
+/Scan/TM_Deflection/backward/Valid_data_start_Y: 0
+/Scan/TM_Deflection/backward/Valid_data_len_X: 512
+/Scan/TM_Deflection/backward/Valid_data_len_Y: 512
+/Scan/TM_Deflection/backward/Tip_x_width_correction_factor: 1
+/Scan/TM_Deflection/backward/Tip_y_width_correction_factor: 1
+/Scan/TM_Deflection/backward/Tip_x_width_correction_factor_sigma: 1
+/Scan/TM_Deflection/backward/Tip_y_width_correction_factor_sigma: 1
+/Scan/TM_Deflection/backward/@2:Image_Data: S [DeflectionActual] "TM Deflection"
+/Scan/TM_Deflection/backward/@Z_magnify: C [2:Z scale] 0.5399135
+/Scan/TM_Deflection/backward/@2:Z_scale: V [Sens. TM Deflection] (0.0003750000 V/LSB) 0.01852148 V
+/Scan/TM_Deflection/backward/@2:Z_offset: V [Sens. TM Deflection] (0.0003750000 V/LSB)       0 V
+/Scan_list: ['Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Height_Sensor/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Amplitude_Error/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Phase/backward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Height_Sensor/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Amplitude_Error/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Phase/forward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'Amplitude/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward', 'TM_Deflection/backward']
+/Scanner_list/0/Scanner_type: Dim 4000
+/Scanner_list/0/Head_Type: SG
+/Scanner_list/0/Serial_Number: 1b818
+/Scanner_list/0/Piezo_size: G
+/Scanner_list/0/File_name: 1b818.scn
+/Scanner_list/0/Retracted_offset_der: -3.6663
+/Scanner_list/0/Extended_offset_der: 4.0997
+/Scanner_list/0/Allow_rotation: Allow
+/Scanner_list/0/Piezo_cal: 440
+/Scanner_list/0/X_sensitivity: 144.78
+/Scanner_list/0/X_derate: 0.178
+/Scanner_list/0/X_mag: 0.95
+/Scanner_list/0/X_mag1: 0.75
+/Scanner_list/0/X_arg: 2.5
+/Scanner_list/0/Fast_arg_derate: 0
+/Scanner_list/0/Orthogonality: 0
+/Scanner_list/0/Y_sensitivity: 155.9
+/Scanner_list/0/Y_derate: 0.1425
+/Scanner_list/0/Y_mag: 0.77
+/Scanner_list/0/Y_mag1: 0.9
+/Scanner_list/0/Y_arg: 3.1
+/Scanner_list/0/Slow_arg_derate: 0.005
+/Scanner_list/0/X_slow_sensitivity: 151.62
+/Scanner_list/0/X_slow_derate: 0.182
+/Scanner_list/0/Y_fast_sensitivity: 142.952
+/Scanner_list/0/Y_fast_derate: 0.1842
+/Scanner_list/0/X_slow-fast_coupling: 0.318896
+/Scanner_list/0/X_slow-fast_coupling_derating: -9.86915e-005
+/Scanner_list/0/Y_slow-fast_coupling: 0.326021
+/Scanner_list/0/Y_slow-fast_coupling_derating: -0.000147779
+/Scanner_list/0/Fast_cal_freq: 2.44141
+/Scanner_list/0/Slow_cal_freq: 4.76838
+/Scanner_list/0/Xs-Yf_coupling: 0.0871558
+/Scanner_list/0/Xs-Yf_coupling_derating: -0
+/Scanner_list/0/Ys-Xf_coupling: 0.11307
+/Scanner_list/0/Ys-Xf_coupling_derating: -0
+/Scanner_list/0/X_offset_sens: 224.9
+/Scanner_list/0/Y_offset_sens: 223.9
+/Scanner_list/0/Max_scan_size: 93
+/Scanner_list/0/Z_min: -220
+/Scanner_list/0/Z_max: 110
+/Scanner_list/0/Z_engage_position: -55
+/Scanner_list/0/Z_to_X_coupling: 5
+/Scanner_list/0/Z_to_Y_coupling: 0
+/Scanner_list/0/Z_to_X_coupling_FF: 6
+/Scanner_list/0/Z_to_Y_coupling_FF: 3
+/Scanner_list/0/StrainXY_Scanner: Yes
+/Scanner_list/0/OptoXY_x_sensitivity: 350
+/Scanner_list/0/OptoXY_y_sensitivity: 355.1
+/Scanner_list/0/OptoXY_orthogonality: -0.00436332
+/Scanner_list/0/OptoXY_x_sens_fitted: 352.9
+/Scanner_list/0/OptoXY_y_sens_fitted: 350.3
+/Scanner_list/0/OptoXY_orthog_fitted: -0.00349066
+/Scanner_list/0/OptoXY_scan_angle_cor: 0
+/Scanner_list/0/OptoXY_pgain/igain: 0.05
+/Scanner_list/0/Optoxy_FitVersion: V1
+/Scanner_list/0/OptoXY_xsenscal_x: 0
+/Scanner_list/0/OptoXY_xsenscal_y: 0
+/Scanner_list/0/OptoXY_xsenscal_xy: 0
+/Scanner_list/0/OptoXY_xsenscal_xx: 0
+/Scanner_list/0/OptoXY_xsenscal_yy: 0
+/Scanner_list/0/OptoXY_xsenscal_xxy: 0
+/Scanner_list/0/OptoXY_xsenscal_xyy: 0
+/Scanner_list/0/OptoXY_xsenscal_xxx: 0
+/Scanner_list/0/OptoXY_xsenscal_yyy: 0
+/Scanner_list/0/OptoXY_xsenscal_xxyy: 0
+/Scanner_list/0/OptoXY_xsenscal_xxxy: 0
+/Scanner_list/0/OptoXY_xsenscal_xyyy: 0
+/Scanner_list/0/OptoXY_xsenscal_xxxx: 0
+/Scanner_list/0/OptoXY_xsenscal_yyyy: 0
+/Scanner_list/0/OptoXY_ysenscal_x: 0
+/Scanner_list/0/OptoXY_ysenscal_y: 0
+/Scanner_list/0/OptoXY_ysenscal_xy: 0
+/Scanner_list/0/OptoXY_ysenscal_xx: 0
+/Scanner_list/0/OptoXY_ysenscal_yy: 0
+/Scanner_list/0/OptoXY_ysenscal_xxy: 0
+/Scanner_list/0/OptoXY_ysenscal_xyy: 0
+/Scanner_list/0/OptoXY_ysenscal_xxx: 0
+/Scanner_list/0/OptoXY_ysenscal_yyy: 0
+/Scanner_list/0/OptoXY_ysenscal_xxyy: 0
+/Scanner_list/0/OptoXY_ysenscal_xxxy: 0
+/Scanner_list/0/OptoXY_ysenscal_xyyy: 0
+/Scanner_list/0/OptoXY_ysenscal_xxxx: 0
+/Scanner_list/0/OptoXY_ysenscal_yyyy: 0
+/Scanner_list/0/OptoXY_orthocal_x: 0
+/Scanner_list/0/OptoXY_orthocal_y: 0
+/Scanner_list/0/OptoXY_orthocal_xy: 0
+/Scanner_list/0/OptoXY_orthocal_xx: 0
+/Scanner_list/0/OptoXY_orthocal_yy: 0
+/Scanner_list/0/ClosedLoop_x_igain: 5
+/Scanner_list/0/ClosedLoop_y_igain: 5
+/Scanner_list/0/Offset_X_TC0: 18.2867
+/Scanner_list/0/Offset_X_TC1: 81.9093
+/Scanner_list/0/Offset_X_TC2: 495.856
+/Scanner_list/0/Offset_X_Gain0: 0.00178541
+/Scanner_list/0/Offset_X_Gain1: 0.00179373
+/Scanner_list/0/Offset_X_Gain2: 0.00516035
+/Scanner_list/0/Offset_Y_TC0: 97.4543
+/Scanner_list/0/Offset_Y_TC1: 1.0058
+/Scanner_list/0/Offset_Y_TC2: 349.488
+/Scanner_list/0/Offset_Y_Gain0: 0.00263142
+/Scanner_list/0/Offset_Y_Gain1: 0
+/Scanner_list/0/Offset_Y_Gain2: 0.0049999
+/Scanner_list/0/Z_Sensor_TC0: 1.27743
+/Scanner_list/0/Z_Sensor_TC1: 19.2371
+/Scanner_list/0/Z_Sensor_TC2: 174.883
+/Scanner_list/0/Z_Sensor_Gain0: 0.00251263
+/Scanner_list/0/Z_Sensor_Gain1: 0.00192592
+/Scanner_list/0/Z_Sensor_Gain2: 0.00318373
+/Scanner_list/0/Z_range_sens: 17.6756
+/Scanner_list/0/StrainZ_Scanner: Yes
+/Scanner_list/0/Z_sensor_sens: 474.99
+/Scanner_list/0/Z_sensor_gain_factor: 2
+/Scanner_list/0/Z_sensor_offset_gain: 3.4
+/Scanner_list/0/Full_Range_Sensor_Gain: 0.6
+/Scanner_list/0/Z_sensor_LinOC: 0.0168626
+/Scanner_list/0/Z_sensor_LinC1: 1
+/Scanner_list/0/Z_sensor_LinC2: 0.000704307
+/Scanner_list/0/Z_sensor_LinC3: -0.140429
+/Scanner_list/0/Z_sensor_LinC4: 0.4774
+/Scanner_list/0/Z_sensor_Linearization: Yes
+/Scanner_list/0/Has_I2C: Yes
+/Scanner_list/0/Adaptive_XY_Feedback_Scanner: Yes
+/Scanner_list/0/Adaptive_ScanSizeExpRatio: 0.5
+/Scanner_list/0/Adaptive_Minimal_Scan_Size: 10
+/Scanner_list/0/Adaptive_Minimal_Scan_Rate: 0.2
+/Scanner_list/0/Adaptive_x_RefPolarity: -1
+/Scanner_list/0/Adaptive_y_RefPolarity: -1
+/Scanner_list/0/Adaptive_x_PlantGain: 2
+/Scanner_list/0/Adaptive_y_PlantGain: 2
+/Scanner_list/0/Adaptive_x_SensorNoise: 320
+/Scanner_list/0/Adaptive_y_SensorNoise: 320
+/Scanner_list/0/Adaptive_x_CutOffFreq: 200
+/Scanner_list/0/Adaptive_y_CutOffFreq: 200
+/Scanner_list/0/Adaptive_x_Feedback_BW: 2
+/Scanner_list/0/Adaptive_y_Feedback_BW: 2
+/Scanner_list/0/Illumination_Scale_Factor: 0.15
+/Scanner_list/0/Illumination_Range: 1023
+/Scanner_list/0/XY_digital_CL_xIgain: 8
+/Scanner_list/0/XY_digital_CL_yIgain: 8
+/Scanner_list/0/@Sens._Zsens: V 17.82768 nm/V
+/Scanner_list/0/@Sens._CurrentSens: V 10.00000 nA/V
+/Scanner_list/0/@Sens._SECPMSens: V 100.0000 mV/V
+/Scanner_list/0/@Sens._Xsensor: V 6265.256 nm/V
+/Scanner_list/0/@Sens._Ysensor: V 6356.550 nm/V
+/Scanner_list/0/Parameter_select: Main
+/Scanner_list/0/Operating_mode: Image
+/Scanner_list/0/Tip_Scanned_Distance: 104112
+/Scanner_list/0/Tip_Frame_Count: 12
+/Scanner_list/0/Scan_Size: 20000
+/Scanner_list/0/Scan_Size/@unit: nm
+/Scanner_list/0/X_Position: 0
+/Scanner_list/0/Y_Position: 0
+/Scanner_list/0/X_Offset: 0
+/Scanner_list/0/X_Offset/@unit: nm
+/Scanner_list/0/Y_Offset: 0
+/Scanner_list/0/Y_Offset/@unit: nm
+/Scanner_list/0/Rotate_Ang.: 1.5708
+/Scanner_list/0/Stage_X: 4061.25
+/Scanner_list/0/Stage_Y: 19872.8
+/Scanner_list/0/Stage_Z: -16797.4
+/Scanner_list/0/Stage_Optics: -5488.69
+/Scanner_list/0/X_round: 0
+/Scanner_list/0/Tip_Offset_X: 0
+/Scanner_list/0/Tip_Offset_Y: 0
+/Scanner_list/0/NanoTrack_X_Offset_Set: 0
+/Scanner_list/0/NanoTrack_Y_Offset_Set: 0
+/Scanner_list/0/NanoTrack_X_Offset_Actual: 0
+/Scanner_list/0/NanoTrack_Y_Offset_Actual: 0
+/Scanner_list/0/Samps/line: 512
+/Scanner_list/0/Lines: 512
+/Scanner_list/0/Y_disable: Enabled
+/Scanner_list/0/Aspect_Ratio: 1:1
+/Scanner_list/0/bidirectional_scan: Disabled
+/Scanner_list/0/Rectilinear_Scan: Disabled
+/Scanner_list/0/Calibrate_Scan_Line_Shift: Off
+/Scanner_list/0/Scan_line_shift: 0
+/Scanner_list/0/QNM_scan_line_shift: 0
+/Scanner_list/0/Line_offset_factor: 0
+/Scanner_list/0/Line_average: No
+/Scanner_list/0/Scan_Rate: 0.1252
+/Scanner_list/0/Dark_Lift_Delay: 300
+/Scanner_list/0/Tip_Velocity: 5.00801
+/Scanner_list/0/Zoom_in_at_Constant: Scan Rate
+/Scanner_list/0/XY_Move_Tip_Pos: Surface
+/Scanner_list/0/Minimum_scan_rate: 0.1
+/Scanner_list/0/Lift_rate: 4
+/Scanner_list/0/X_drift: 0
+/Scanner_list/0/Y_drift: 0
+/Scanner_list/0/Step_XY_size: 300
+/Scanner_list/0/Cycles: 10
+/Scanner_list/0/Step_XY_period: 0.005
+/Scanner_list/0/Step_size: 3
+/Scanner_list/0/Units: Metric
+/Scanner_list/0/Setpoint_Units: nm
+/Scanner_list/0/Clear_Buffer_for_new_Scan_Area: No
+/Scanner_list/0/Color_table: 2
+/Scanner_list/0/Scope_dualtrace: Dual
+/Scanner_list/0/Auto_X_Sep: 0
+/Scanner_list/0/Auto_Y_Sep: 0
+/Scanner_list/0/Auto_pattern: Linear
+/Scanner_list/0/Auto_number: 2
+/Scanner_list/0/Capture_direction: Down
+/Scanner_list/0/Capture_prelines: 50
+/Scanner_list/0/Engage_Setpoint: 1.05
+/Scanner_list/0/Min_int._gain: 20
+/Scanner_list/0/Parameter_Update_Retract: Disabled
+/Scanner_list/0/Parameter_Update_FB: On
+/Scanner_list/0/Capture_mode_: Single
+/Scanner_list/0/Captured_Automatically: 0
+/Scanner_list/0/MIROView_Scan_Direction: 0
+/Scanner_list/0/Gain_Normalization: None
+/Scanner_list/0/Gain_Factor: 1
+/Scanner_list/0/Initial_Setpoint: 50
+/Scanner_list/0/Potential_Feedback: Off
+/Scanner_list/0/Potential_Feedback_Inter: Off
+/Scanner_list/0/Frequency_Feedback: Off
+/Scanner_list/0/Frequency_Feedback_Inter: Off
+/Scanner_list/0/Potential_Type: Off
+/Scanner_list/0/Potential_Type_Inter: Off
+/Scanner_list/0/Freq._Control: Automatic
+/Scanner_list/0/Freq._Control_Inter: Automatic
+/Scanner_list/0/Drive_feedback: Disabled
+/Scanner_list/0/Drive_time: 0
+/Scanner_list/0/Drive_setpoint: 1
+/Scanner_list/0/Drive_gain: 80
+/Scanner_list/0/Start_size: 13199.8
+/Scanner_list/0/Start_size/@unit: nm
+/Scanner_list/0/Pass_2_size: 10000
+/Scanner_list/0/Pass_2_size/@unit: nm
+/Scanner_list/0/Pass_3_size: 5000
+/Scanner_list/0/Pass_3_size/@unit: nm
+/Scanner_list/0/Pass_4_size: 2000
+/Scanner_list/0/Pass_4_size/@unit: nm
+/Scanner_list/0/Feature_scan_angle: 0
+/Scanner_list/0/Feature_Scan_rate: 1
+/Scanner_list/0/Feature_step_size: 0.138889
+/Scanner_list/0/Feature_setpoint: 0.8
+/Scanner_list/0/Feature_threshold: 2000
+/Scanner_list/0/Pass_delay: 5
+/Scanner_list/0/Z_offset: 0
+/Scanner_list/0/Z_tolerance: 304.438
+/Scanner_list/0/Engage_X_offset: 0
+/Scanner_list/0/Engage_X_offset/@unit: nm
+/Scanner_list/0/Engage_Y_offset: 0
+/Scanner_list/0/Engage_Y_offset/@unit: nm
+/Scanner_list/0/Engage_step_size: 0.138889
+/Scanner_list/0/Engage_Z_sens.: 12.5
+/Scanner_list/0/Engage_Z_avg.: 10
+/Scanner_list/0/Engage_Z_delay: 0.5
+/Scanner_list/0/Height_engage: Disabled
+/Scanner_list/0/Extended_Current_sens: 1 pA/V
+/Scanner_list/0/PF_Extended_Current_sens: 1 nA/V
+/Scanner_list/0/Bias_limit: 12
+/Scanner_list/0/Bias_limit/@unit: V
+/Scanner_list/0/AFM_Current_Sensitivity: 1 nA/V
+/Scanner_list/0/SECPM_sens: 100 mV/V
+/Scanner_list/0/Current_range: 200
+/Scanner_list/0/Current_range/@unit: nA
+/Scanner_list/0/Generic_amp_sens: 1 V/A
+/Scanner_list/0/Z_Range: 5.83295
+/Scanner_list/0/Strip_chart_: Disabled
+/Scanner_list/0/Strip_Chart_Rate: 500
+/Scanner_list/0/Strip_Chart_Size: 100
+/Scanner_list/0/XY_Closed_Loop: Off
+/Scanner_list/0/OptoXY_Do_Linear: Off
+/Scanner_list/0/Z_Closed_Loop: Off
+/Scanner_list/0/Analog2_High_Voltage: 0
+/Scanner_list/0/Analog22_High_Voltage: 0
+/Scanner_list/0/Output_1_Data_Type: Off
+/Scanner_list/0/Output_2_Data_Type: Off
+/Scanner_list/0/Meter_display_ctrl.: Hidden
+/Scanner_list/0/Meter_Display_Mode: Vertical/RMS
+/Scanner_list/0/Stop_motor: Disabled
+/Scanner_list/0/Display_level: 127
+/Scanner_list/0/XY_Feedback_Control: Digital
+/Scanner_list/0/Show_Thermal_Tune_Button: Both
+/Scanner_list/0/Show_HSDC_Button: Both
+/Scanner_list/0/Show_Point_&_Shoot_Button: Both
+/Scanner_list/0/Show_Potential_Controls: Neither
+/Scanner_list/0/Show_Frame_Rate_Control: Hidden
+/Scanner_list/0/Show_Repulsion_Time_Indicator: Hidden
+/Scanner_list/0/Enable_Optical_Image_Dewarping: Off
+/Scanner_list/0/Z_Sensor_Correction: Enabled
+/Scanner_list/0/XY_Drift_Correction: Enabled
+/Scanner_list/0/Torsional_Freq: 950
+/Scanner_list/0/Torsional_Q: 1000
+/Scanner_list/0/Sample_Rate: 10
+/Scanner_list/0/Sample_Points: 128
+/Scanner_list/0/Cycles_to_Average: 32
+/Scanner_list/0/Harmonics_To_Correct: 1
+/Scanner_list/0/Max_Harmonics: 20
+/Scanner_list/0/Force_Data_Points: 64
+/Scanner_list/0/Calculation_Period: 60
+/Scanner_list/0/Interaction_Time: 0.24
+/Scanner_list/0/Invert_Torsional: Yes
+/Scanner_list/0/Invert_Vertical: Yes
+/Scanner_list/0/Unload_Fit_Region: 0.7
+/Scanner_list/0/Lift_Height: 300
+/Scanner_list/0/Sync_Distance: 88
+/Scanner_list/0/Sync_Distance_New: 90
+/Scanner_list/0/Sync_Distance_QNM: 0
+/Scanner_list/0/Peak_Force_Engage_Amplitude: 100
+/Scanner_list/0/Peak_Force_Engage_Setpoint: 0.15
+/Scanner_list/0/Top_Fit_Region: 0.3
+/Scanner_list/0/Peak_Force_Amplitude: 100
+/Scanner_list/0/QNM_Calibration: DefaultByZ
+/Scanner_list/0/Adhesion_Algorithm: Threshold Crossing
+/Scanner_list/0/Adhesion_Fit_%: 0.1
+/Scanner_list/0/Cursor_A: 0
+/Scanner_list/0/Cursor_B: 200
+/Scanner_list/0/Live_Cell_Background_Removal: Off
+/Scanner_list/0/Dynamic_Sync_Distance: Off
+/Scanner_list/0/Force_Filter: Off
+/Scanner_list/0/Signal/Noise_Threshold: 2
+/Scanner_list/0/Cutoff_Modulus: 0.3
+/Scanner_list/0/Auto_Sync_Distance: On
+/Scanner_list/0/Auto_Sync_Distance_QNM: On
+/Scanner_list/0/Fluid_Cell: No
+/Scanner_list/0/Medium: Air
+/Scanner_list/0/Deformation_Fit_Region: 0.98
+/Scanner_list/0/Tip_Radius: 7
+/Scanner_list/0/Cantilever_Angle: 0
+/Scanner_list/0/Sample_Poisson's_Ratio: 0.3
+/Scanner_list/0/Tip_Half_Angle: 0.314159
+/Scanner_list/0/Include_Adhesion_Force: Yes
+/Scanner_list/0/Min_Force_Fit_Boundary: 20
+/Scanner_list/0/Max_Force_Fit_Boundary: 80
+/Scanner_list/0/Modulus_Fit_Model: Hertzian (Spherical)
+/Scanner_list/0/ScanAsyst_Setup: Allow
+/Scanner_list/0/ScanAsyst_Auto_Control: On
+/Scanner_list/0/ScanAsyst_Auto_Gain: On
+/Scanner_list/0/ScanAsyst_Auto_Setpoint: On
+/Scanner_list/0/ScanAsyst_Auto_Scan_Rate: On
+/Scanner_list/0/ScanAsyst_Auto_Z_Limit: On
+/Scanner_list/0/ScanAsyst_Noise_Threshold: 0.5
+/Scanner_list/0/ScanAsyst_AutoConfig_Frames: 1
+/Scanner_list/0/Scan_Target_Threshold: 0.005
+/Scanner_list/0/Scan_Acceptable_Threshold: 0.1
+/Scanner_list/0/Scan_Max_Optimizing_Time: 30
+/Scanner_list/0/Skip_Offset_Optimization: No
+/Scanner_list/0/FalseDefl_Scan_DitheringBits: 3
+/Scanner_list/0/Scan_Single_Frame_Number: 1
+/Scanner_list/0/Idle_Depolarize_Warning_Time: 7200
+/Scanner_list/0/Idle_Depolarize_Withdraw_Time: 18000
+/Scanner_list/0/Idle_Depolarize_Threshold: 0.05
+/Scanner_list/0/Auto_Adjust_Rounding: No
+/Scanner_list/0/Peak_Current_Average_Region: 1
+/Scanner_list/0/I2C_Test: Off
+/Scanner_list/0/PFT_Freq: 2
+/Scanner_list/0/PFT_Freq/@unit: kHz
+/Scanner_list/0/Tip_Drive_Noise_Threshold: 0.2
+/Scanner_list/0/Tip_Drive_PFT_Amplitude: 100
+/Scanner_list/0/SyncDistQNM_Filter_Factor: 1
+/Scanner_list/0/Use_Freq_Based_QNM_Calibration: Off
+/Scanner_list/0/Sync_Distance_QNM_8K: 0
+/Scanner_list/0/Sync_Distance_QNM_4K: 0
+/Scanner_list/0/Sync_Distance_QNM_2K: 0
+/Scanner_list/0/Sync_Distance_QNM_1K: 0
+/Scanner_list/0/Sync_Distance_QNM_0.5K: 0
+/Scanner_list/0/Sync_Distance_QNM_0.25K_: 0
+/Scanner_list/0/Sync_Distance_QNM_0.125K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_8K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_4K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_2K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_1K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_0.5K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_0.25K: 0
+/Scanner_list/0/PFT_Amplitude_Sens_0.125K: 0
+/Scanner_list/0/Auto_PFT_Ampl._Sens: On
+/Scanner_list/0/Apply_DDS3_Sens_Factor: Yes
+/Scanner_list/0/PFT_Ampl._Sens_Factor: 0.02
+/Scanner_list/0/SyncDistance_Display: Percentage
+/Scanner_list/0/ScanAsyst_Min._Setpoint: 0.02
+/Scanner_list/0/ScanAsyst_Max._Setpoint: 3
+/Scanner_list/0/ScanAsyst_Gain_Factor: 0
+/Scanner_list/0/ScanAsyst_Gain_Threshold: 100
+/Scanner_list/0/PeakForce_Capture: Never
+/Scanner_list/0/Reduced_Z_Delay: 2
+/Scanner_list/0/Z_Auto_Center_Boundary: 0
+/Scanner_list/0/EOL_Capture_Enable: Off
+/Scanner_list/0/EOL_Capture_Trigger_Position: End of Trace
+/Scanner_list/0/EOL_Capture_Time_Interval: 20
+/Scanner_list/0/EOL_Caputre_Ramp_Option: None
+/Scanner_list/0/EOL_Capture_Ramp_Delay: 0.8
+/Scanner_list/0/EOL_Capture_Camera_Source: Internal
+/Scanner_list/0/EOL_Capture_File_Reading_Timeout: 8
+/Scanner_list/0/EOL_Capture_Output: Show
+/Scanner_list/0/EOL_Send_Stop_Trigger: On
+/Scanner_list/0/NanoTrack_Path_Simulation: Off
+/Scanner_list/0/PseudoRT_Path_Simulation: Off
+/Scanner_list/0/NanoTrack_Max_Row_Shift: 10
+/Scanner_list/0/NanoTrack_Max_Col_Shift: 10
+/Scanner_list/0/NanoTrack_Channel: 1
+/Scanner_list/0/NanoTrack_Min_Correlation: 0.8
+/Scanner_list/0/Scan_Park_Lift_Height: 500
+/Scanner_list/0/Adaptive_Interleave: Never
+/Scanner_list/0/Z_Slew_Rate_Limit: 0
+/Scanner_list/0/Touch_Calibration_Sweep_Range: 400
+/Scanner_list/0/Touch_Calibration_Force_Setpoint: 0.2
+/Scanner_list/0/Auto_Amplitude_Setpoint: Off
+/Scanner_list/0/Free_Amplitude: 132.644
+/Scanner_list/0/Setpoint/Amplitude_Ratio: 0.9
+/Scanner_list/0/Amplitude_Lift_Height: 100
+/Scanner_list/0/Fast_Tapping: Off
+/Scanner_list/0/FF_Phase_Shift: 0
+/Scanner_list/0/FF_Use_Min._Trace_Retrace: On
+/Scanner_list/0/FF_Block_Converge_Data: Off
+/Scanner_list/0/Converge_Lines: 0
+/Scanner_list/0/FF_Use_Z_Sensor_Data: Off
+/Scanner_list/0/FF_Zin2Zout_Scale: 1
+/Scanner_list/0/FF_Defl2Z_Scale: 0
+/Scanner_list/0/LP_CutOff: 200
+/Scanner_list/0/Defl_HP_CutOff: 10
+/Scanner_list/0/FF_Use_Line_Tracking: On
+/Scanner_list/0/AmplitudeCutRatio: 0.4
+/Scanner_list/0/DeflectionCutRatioOfRMS: 5
+/Scanner_list/0/BadPointsLimitPercentage: 0.1
+/Scanner_list/0/AbsMDiffTraceRetrace2AbsMTrace: 0.5
+/Scanner_list/0/TraceRetraceDiffLimit: 1.5
+/Scanner_list/0/Max_Data_Points: 512
+/Scanner_list/0/@InterleaveList: S [InterleaveOffMode] "Disabled"
+/Scanner_list/0/@LinearizeList: S [LinearizeOffMode] "modeLinearizeOff"
+/Scanner_list/0/@DarkLiftList: S [DarkLiftOff] "Disabled"
+/Scanner_list/0/@FPGA_Z_Feedback: S [] "On"
+/Scanner_list/0/@MicroscopeList: S [TMMode] "Tapping"
+/Scanner_list/0/@LPDeflection: S [LPFilterOn] "Enabled"
+/Scanner_list/0/@LP_TM_Deflection: S [LPFilterOn] "Enabled"
+/Scanner_list/0/@LP_Current: S [LPFilterOn] "Enabled"
+/Scanner_list/0/@LP_Vertical_Deflection: S [LPFilterOn] "Enabled"
+/Scanner_list/0/@Low_Pass_Frequency: S [LPFilterOn] "Enabled"
+/Scanner_list/0/@LP_Friction: S [] "Enabled"
+/Scanner_list/0/@LP_TM_Friction: S [] "Enabled"
+/Scanner_list/0/@PicoAnglerPollOnOff: S [PicoAnglerPollOff] "Disabled"
+/Scanner_list/0/@ThermalTuneMaxFreq: S [ThermalTuneData500K] "1 - 100 KHz"
+/Scanner_list/0/@TipBiasCntrlList: S [TipBiasCntrlGround] "Ground"
+/Scanner_list/0/@Sample_Bias_Control: S [] "Ground"
+/Scanner_list/0/@HSADCMuxOnOff: S [HSADCMuxOff] "modeHSADCMuxOff"
+/Scanner_list/0/@HsdcChanADataType: S [HsdcDataTypeDeflection] "Vertical Deflection"
+/Scanner_list/0/@HsdcChanBDataType: S [HsdcDataTypeOff] "Off"
+/Scanner_list/0/@FastScan_List: S [FastScanOff] "Disabled"
+/Scanner_list/0/@FastZFeedback_List: S [DigitalZFastScan] "Digital"
+/Scanner_list/0/@TR_Mode: S [] "Disabled"
+/Scanner_list/0/@VerticalGainControlList: S [] "Disabled"
+/Scanner_list/0/@SCM_Feedback: S [] ""
+/Scanner_list/0/@2:HsdcChanCDataType: S [HsdcDataTypeOff] "Off"
+/Scanner_list/0/@3:HsdcChanCDataType: S [HsdcDataTypeOff] "Off"
+/Scanner_list/0/@2:HsdcChanDDataType: S [HsdcDataTypeOff] "Off"
+/Scanner_list/0/@3:HsdcChanDDataType: S [HsdcDataTypeOff] "Off"
+/Scanner_list/0/@2:HsdcTriggerChan: S [HsdcDataTypeHeight] "Height"
+/Scanner_list/0/@3:HsdcTriggerChan: S [HsdcDataTypeHeight] "Height"
+/Scanner_list/0/@2:SPMFeedbackList: S [SPMFb] "Amplitude"
+/Scanner_list/0/@3:SPMFeedbackList: S [SPMFb] "Amplitude"
+/Scanner_list/0/@2:DDS1RoutingTappingMode: S [DDS1ToTappingPiezo] "Tapping Piezo"
+/Scanner_list/0/@3:DDS1RoutingTappingMode: S [DDS1ToTappingPiezo] "Tapping Piezo"
+/Scanner_list/0/@4:DDS1RoutingFastScanAsystMode: S [DDS1ToTappingPiezo] "Tapping Piezo"
+/Scanner_list/0/@5:DDS1RoutingFastScanAsystMode: S [] ""
+/Scanner_list/0/@4:Drive1Routing: S [DDS1ToTappingPiezo] "Tapping Piezo"
+/Scanner_list/0/@5:Drive1Routing: S [] ""
+/Scanner_list/0/@2:Drive1Monitor: S [] "Not Available"
+/Scanner_list/0/@3:Drive1Monitor: S [] "Not Available"
+/Scanner_list/0/@4:MainLockInEnableContactMode: S [] ""
+/Scanner_list/0/@5:MainLockInEnableContactMode: S [] ""
+/Scanner_list/0/@4:MainLockInEnableFastScanAsystMode: S [] ""
+/Scanner_list/0/@5:MainLockInEnableFastScanAsystMode: S [] ""
+/Scanner_list/0/@2:MainLockInEnableNonContactMode: S [LockIn1Enabled] "Enabled"
+/Scanner_list/0/@3:MainLockInEnableNonContactMode: S [LockIn1Enabled] "Enabled"
+/Scanner_list/0/@2:LockIn1SourceTappingMode: S [] "Vertical"
+/Scanner_list/0/@3:LockIn1SourceTappingMode: S [] "Vertical"
+/Scanner_list/0/@4:LockIn1SourceFastScanAsystMode: S [] ""
+/Scanner_list/0/@5:LockIn1SourceFastScanAsystMode: S [] ""
+/Scanner_list/0/@4:MainLockInSource: S [] "Vertical"
+/Scanner_list/0/@5:MainLockInSource: S [] "Vertical"
+/Scanner_list/0/@2:Zmod: S [] "Disabled"
+/Scanner_list/0/@3:Zmod: S [] "Disabled"
+/Scanner_list/0/@2:LateralGainControl: S [LateralGainDisabled] "Disabled"
+/Scanner_list/0/@3:LateralGainControl: S [LateralGainDisabled] "Disabled"
+/Scanner_list/0/@2:InputFbList: S [InputFbOff] "Off"
+/Scanner_list/0/@3:InputFbList: S [InputFbOff] "Off"
+/Scanner_list/0/@4:TR_Mode: S [] "Disabled"
+/Scanner_list/0/@5:TR_Mode: S [] "Disabled"
+/Scanner_list/0/@4:TRCouplingCheck: S [] ""
+/Scanner_list/0/@5:TRCouplingCheck: S [] ""
+/Scanner_list/0/@2:LockIn2DDS2Enable: S [LockIn2Disabled] "Disabled"
+/Scanner_list/0/@3:LockIn2DDS2Enable: S [LockIn2Disabled] "Disabled"
+/Scanner_list/0/@4:DDS2HarmonicList: S [] "1"
+/Scanner_list/0/@5:DDS2HarmonicList: S [] "1"
+/Scanner_list/0/@2:LockIn2Source: S [] "Disabled"
+/Scanner_list/0/@3:LockIn2Source: S [] "Disabled"
+/Scanner_list/0/@2:Drive2Routing: S [] "Null"
+/Scanner_list/0/@3:Drive2Routing: S [] "Null"
+/Scanner_list/0/@2:Drive2Monitor: S [] "Not Available"
+/Scanner_list/0/@3:Drive2Monitor: S [] "Not Available"
+/Scanner_list/0/@4:PRLockInTypeList: S [] ""
+/Scanner_list/0/@5:PRLockInTypeList: S [] ""
+/Scanner_list/0/@4:PiezoACBiasCtrlList: S [] ""
+/Scanner_list/0/@5:PiezoACBiasCtrlList: S [] ""
+/Scanner_list/0/@4:VerticalGainControlList: S [] "Enabled"
+/Scanner_list/0/@5:VerticalGainControlList: S [] "Enabled"
+/Scanner_list/0/@4:SCM_Feedback: S [] ""
+/Scanner_list/0/@5:SCM_Feedback: S [] ""
+/Scanner_list/0/@4:TUNAList: S [TUNAOffMode] "Disabled"
+/Scanner_list/0/@5:TUNAList: S [TUNAOffMode] "Disabled"
+/Scanner_list/0/@4:Drive3RoutingSoftHarmoniX: S [] ""
+/Scanner_list/0/@5:Drive3RoutingSoftHarmoniX: S [] ""
+/Scanner_list/0/@4:Drive3RoutingSoftHarmoniXRamp: S [DDS3ToAppMod] "Application Module"
+/Scanner_list/0/@5:Drive3RoutingSoftHarmoniXRamp: S [DDS3ToAppMod] "Application Module"
+/Scanner_list/0/@2:Drive3Routing: S [] "Null"
+/Scanner_list/0/@3:Drive3Routing: S [] "Null"
+/Scanner_list/0/@2:Drive3Monitor: S [] "Not Available"
+/Scanner_list/0/@3:Drive3Monitor: S [] "Not Available"
+/Scanner_list/0/@2:LockIn3EnableList: S [LockIn3Enabled] "Enabled"
+/Scanner_list/0/@3:LockIn3EnableList: S [LockIn3Disabled] "Disabled"
+/Scanner_list/0/@4:LockIn3SourceSoftHarmoniX: S [] "Disabled"
+/Scanner_list/0/@5:LockIn3SourceSoftHarmoniX: S [] "Vertical"
+/Scanner_list/0/@2:LockIn3SourceNonSoftHarmoniX: S [] "Disabled"
+/Scanner_list/0/@3:LockIn3SourceNonSoftHarmoniX: S [] "Disabled"
+/Scanner_list/0/@Sens._DeflSens: V 100.0000 nm/V
+/Scanner_list/0/@Sens._AmplSens: V 100.0000 nm/V
+/Scanner_list/0/@Sens._DeflectionIn1BSens: V 1.000000
+/Scanner_list/0/@Sens._FVModulusSens: V 1.000000 Pa/Arb
+/Scanner_list/0/@Sens._FVLogModulusSens: V 1.000000 log(Pa)/log(Arb)
+/Scanner_list/0/@Sens._FVForceSens: V 1.000000 nN/Arb
+/Scanner_list/0/@Sens._FVStiffnessSens: V 1.000000 N/m*Arb
+/Scanner_list/0/@Sens._FVSweepF0Sens: V 1.000000 Hz/Arb
+/Scanner_list/0/@Sens._FVSweepQSens: V 1.000000 1/Arb
+/Scanner_list/0/@Sens._FVSweepAmpSens: V 1.000000 nm/Arb
+/Scanner_list/0/@Sens._FVSweepFitRSqSens: V 1.000000 1/Arb
+/Scanner_list/0/@Sens._FVCRNormContactStiffSens: V 1.000000 1/Arb
+/Scanner_list/0/@Sens._FVCRDampingCoeffSens: V 1.000000 1/Arb
+/Scanner_list/0/@Sens._FVCRRadiusSens: V 1.000000 nm/Arb
+/Scanner_list/0/@Sens._FVCRStorageModSens: V 1.000000 Pa/Arb
+/Scanner_list/0/@Sens._FVCRLossModSens: V 1.000000 Pa/Arb
+/Scanner_list/0/@Sens._FVCRLossTanSens: V 1.000000 1/Arb
+/Scanner_list/0/@Sens._ECBiasSens: V 1000.000 mV/V
+/Scanner_list/0/@Sens._AFMSetFastScanSens: V 1.000000 V/V
+/Scanner_list/0/@Sens._ZsensSens: V 485.6748 nm/V
+/Scanner_list/0/@Sens._ZPicoSens: V 1000.000 nm/V
+/Scanner_list/0/@Sens._LSPRDataSensitivity: V 1.000000
+/Scanner_list/0/@Sens._LSPRAmplitudeSensitivity: V 1.000000
+/Scanner_list/0/@Sens._HSPRDataSensitivity: V 1.000000
+/Scanner_list/0/@Sens._HSPRAmplitudeSensitivity: V 1.000000
+/Scanner_list/0/@Sens._tunaSens: V 0.01000000 nA/V
+/Scanner_list/0/@Sens._biassens: V 1.000000 V/V
+/Scanner_list/0/@Sens._testsens: V 1.000000 V/V
+/Scanner_list/0/@Sens._SecmEtipSens: V 1.000000 V/V
+/Scanner_list/0/@Sens._SecmItipSens: V 1.000000 nA/V
+/Scanner_list/0/@Sens._SecmISens: V 100.0000 uA/V
+/Scanner_list/0/@Sens._Amplitude_Error: V 100.0000 nm/V
+/Scanner_list/0/@Sens._Phase: V 1.000000
+/Scanner_list/0/@Sens._Phase_Error: V 1.000000
+/Scanner_list/0/@Sens._Friction: V 1.000000
+/Scanner_list/0/@Sens._TM_Deflection: V 100.0000 nm/V
+/Scanner_list/0/@Sens._TM_Friction: V 1.000000
+/Scanner_list/0/@Sens._Inphase: V 1.000000
+/Scanner_list/0/@Sens._Quadrature: V 1.000000
+/Scanner_list/0/@Sens._Amplitude1: V 1.000000
+/Scanner_list/0/@Sens._Raw_Deflection: V 1.000000
+/Scanner_list/0/@Sens._Raw_Deflection_Gain: V 1.000000
+/Scanner_list/0/@Sens._Counter_1: V 1.000000
+/Scanner_list/0/@Sens._Counter_2: V 1.000000
+/Scanner_list/0/@Sens._Freq._1: V 1.000000
+/Scanner_list/0/@Sens._Freq._2: V 1.000000
+/Scanner_list/0/@Sens._Fast_Z_Analog: V 1.000000
+/Scanner_list/0/@Sens._Fast_Z: V 1.000000
+/Scanner_list/0/@Sens._Fast_RMS: V 1.000000
+/Scanner_list/0/@Sens._Fast_Deflection_Analog: V 1.000000
+/Scanner_list/0/@Sens._Fast_Deflection_Error: V 1.000000
+/Scanner_list/0/@Sens._Frequency: V 1.000000
+/Scanner_list/0/@Sens._Potential: V 1.000000
+/Scanner_list/0/@Sens._Potential_(HV): V 1.000000
+/Scanner_list/0/@Sens._dCdZ: V 1.000000
+/Scanner_list/0/@Sens._TR_Amplitude: V 1.000000
+/Scanner_list/0/@Sens._TR_Amplitude_Error: V 1.000000
+/Scanner_list/0/@Sens._TR_Phase: V 1.000000
+/Scanner_list/0/@Sens._Amplitude2: V 1.000000
+/Scanner_list/0/@Sens._HS_PR_Phase: V 1.000000
+/Scanner_list/0/@Sens._MFM_Amplitude: V 1.000000
+/Scanner_list/0/@Sens._MFM_Phase: V 1.000000
+/Scanner_list/0/@Sens._dC/dV_Amplitude: V 1.000000
+/Scanner_list/0/@Sens._dC/dV_Amplitude_Error: V 1.000000
+/Scanner_list/0/@Sens._dC/dV_I: V 1.000000
+/Scanner_list/0/@Sens._dC/dV_Q: V 1.000000
+/Scanner_list/0/@Sens._dC/dV_Phase: V 1.000000
+/Scanner_list/0/@Sens._Feedback_Bias: V 1.000000
+/Scanner_list/0/@Sens._Log(Resistance): V 1.000000
+/Scanner_list/0/@Sens._Input1: V 1.000000
+/Scanner_list/0/@Sens._Input2: V 1.000000
+/Scanner_list/0/@Sens._Input3: V 1.000000
+/Scanner_list/0/@Sens._DriveAmplitude3Sens: V 630.3000 nm/V
+/Scanner_list/0/@Sens._ForceDeflSens: V 1.000000
+/Scanner_list/0/@Sens._ForceSens: V 1.000000
+/Scanner_list/0/@Sens._DissipationSens: V 1.000000
+/Scanner_list/0/@Sens._DeformationSens: V 3151.500 nm/V
+/Scanner_list/0/@Sens._StiffnessSens: V 1.000000
+/Scanner_list/0/@Sens._LogStiffnessSens: V 1.000000
+/Scanner_list/0/@Sens._SneddonModulusSens: V 1.000000
+/Scanner_list/0/@Sens._LogSneddonModulusSens: V 1.000000
+/Scanner_list/0/@Offset_PotentialInputOffset: V [Sens. Potential] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@Offset_SecmInputOffsetEtip: V [Sens. SecmEtipSens] (0.0003750000 V/LSB)      -0 V
+/Scanner_list/0/@Offset_SecmInputOffsetItip: V [Sens. SecmItipSens] (0.0003750000 V/LSB)       0 V
+/Scanner_list/0/@Offset_SecmInputOffsetI: V [Sens. SecmISens] (0.0003750000 V/LSB)      -0 V
+/Scanner_list/0/@Sample_period: 20.00000
+/Scanner_list/0/@Sample_period/@units: us
+/Scanner_list/0/@Z_center: V [Sens. Zsens] (0.006713867 V/LSB) 55.00000 V
+/Scanner_list/0/@1:ZLimit: V [Sens. Zsens] (0.006713867 V/LSB) 330.0000 V
+/Scanner_list/0/@1:ZLimitRamp: V [Sens. Zsens] (0.006713867 V/LSB) 330.0000 V
+/Scanner_list/0/@1:AmplitudeLimit1: 2000.000
+/Scanner_list/0/@1:AmplitudeLimit1/@units: mV
+/Scanner_list/0/@1:TRAmplitudeLimit: 2500.000
+/Scanner_list/0/@1:TRAmplitudeLimit/@units: mV
+/Scanner_list/0/@1:SCMAmplitudeLimit: 4000.000
+/Scanner_list/0/@1:SCMAmplitudeLimit/@units: mV
+/Scanner_list/0/@2:AmplitudeLimit1LockIn1and2: 4000.000
+/Scanner_list/0/@2:AmplitudeLimit1LockIn1and2/@units: mV
+/Scanner_list/0/@2:AmplitudeLimit1LockIn1: 4000.000
+/Scanner_list/0/@2:AmplitudeLimit1LockIn1/@units: mV
+/Scanner_list/0/@2:AmplitudeLimit1LockIn2: 4000.000
+/Scanner_list/0/@2:AmplitudeLimit1LockIn2/@units: mV
+/Scanner_list/0/@2:DeflectionLimitLockIn3LSADC1: 24.57600
+/Scanner_list/0/@2:DeflectionLimitLockIn3LSADC1/@units: V
+/Scanner_list/0/@2:DeflectionLimit: 24.57600
+/Scanner_list/0/@2:DeflectionLimit/@units: V
+/Scanner_list/0/@2:TMDeflectionLimitLockIn3LSADC1: 24.57600
+/Scanner_list/0/@2:TMDeflectionLimitLockIn3LSADC1/@units: V
+/Scanner_list/0/@2:TMDeflectionLimit: 24.57600
+/Scanner_list/0/@2:TMDeflectionLimit/@units: V
+/Scanner_list/0/@2:HSADC2GainLockIn2and1: 4000.000
+/Scanner_list/0/@2:HSADC2GainLockIn2and1/@units: mV
+/Scanner_list/0/@2:HSADC2GainLockIn2: 4000.000
+/Scanner_list/0/@2:HSADC2GainLockIn2/@units: mV
+/Scanner_list/0/@2:HSADC2GainLockIn1: 4000.000
+/Scanner_list/0/@2:HSADC2GainLockIn1/@units: mV
+/Scanner_list/0/@2:LSADC2Gain: 24.57600
+/Scanner_list/0/@2:LSADC2Gain/@units: V
+/Scanner_list/0/@2:LSADC9Gain: 24.57600
+/Scanner_list/0/@2:LSADC9Gain/@units: V
+/Scanner_list/0/@Lift_Start_Height: V [Sens. Zsens] (0.005035400 V/LSB)       0 V
+/Scanner_list/0/@Lift_Scan_Height: V [Sens. Zsens] (0.005035400 V/LSB) 4.506534 V
+/Scanner_list/0/@Drive_height: V [Sens. Zsens] (0.005035400 V/LSB)       0 V
+/Scanner_list/0/@2:SoftHarmoniXSetpoint: V [Sens. ForceDeflSens] (0.0003750000 V/LSB) 0.1000000 V
+/Scanner_list/0/@3:SoftHarmoniXSetpoint: V [Sens. ForceDeflSens] (0.0003750000 V/LSB)       0 V
+/Scanner_list/0/@2:AFMSetDeflection: V [Sens. DeflSens] (0.0003662109 V/LSB) 0.5000000 V
+/Scanner_list/0/@3:AFMSetDeflection: V [Sens. DeflSens] (0.0003662109 V/LSB) 0.5000000 V
+/Scanner_list/0/@2:TMSetAmplitude: V [Sens. AmplSens] (0.03051758 mV/LSB) 379.8828 mV
+/Scanner_list/0/@3:TMSetAmplitude: V [Sens. AmplSens] (0.03051758 mV/LSB)       0 mV
+/Scanner_list/0/@2:TMSetDeflection: V [Sens. DeflSens] (0.0003662109 V/LSB)       0 V
+/Scanner_list/0/@3:TMSetDeflection: V [Sens. DeflSens] (0.0003662109 V/LSB)       0 V
+/Scanner_list/0/@2:TMSetFastScan: 0
+/Scanner_list/0/@2:TMSetFastScan/@units: V
+/Scanner_list/0/@3:TMSetFastScan: 0
+/Scanner_list/0/@3:TMSetFastScan/@units: V
+/Scanner_list/0/@2:AFMSetFastScanAnalog: V [Sens. AFMSetFastScanSens] (0.0003662109 V/LSB)       0 V
+/Scanner_list/0/@3:AFMSetFastScanAnalog: V [Sens. AFMSetFastScanSens] (0.0003662109 V/LSB)       0 V
+/Scanner_list/0/@2:AFMSetFastScanDigital: V [Sens. AFMSetFastScanSens] (0.0003662109 V/LSB)       0 V
+/Scanner_list/0/@3:AFMSetFastScanDigital: V [Sens. AFMSetFastScanSens] (0.0003662109 V/LSB)       0 V
+/Scanner_list/0/@2:STMSetCurrent: V [Sens. CurrentSens] (0.0003750000 V/LSB) 0.1000000 V
+/Scanner_list/0/@3:STMSetCurrent: V [Sens. CurrentSens] (0.0003750000 V/LSB) 10.00000 V
+/Scanner_list/0/@2:TRSetAmplitude: 270.0000
+/Scanner_list/0/@2:TRSetAmplitude/@units: mV
+/Scanner_list/0/@3:TRSetAmplitude: 270.0000
+/Scanner_list/0/@3:TRSetAmplitude/@units: mV
+/Scanner_list/0/@2:SetTRVertDefl: 0
+/Scanner_list/0/@2:SetTRVertDefl/@units: V
+/Scanner_list/0/@3:SetTRVertDefl: 0
+/Scanner_list/0/@3:SetTRVertDefl/@units: V
+/Scanner_list/0/@2:SECPMSetPotential: V [Sens. SECPMSens] (0.0003750000 V/LSB) 2.000000 V
+/Scanner_list/0/@3:SECPMSetPotential: V [Sens. SECPMSens] (0.0003750000 V/LSB) 2.000000 V
+/Scanner_list/0/@2:TMSetPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:TMSetPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:DigitalSetPoint: V [Sens. DeflectionIn1BSens] (0.0003750000 V/LSB) 0.2500000 V
+/Scanner_list/0/@3:DigitalSetPoint: V [Sens. DeflectionIn1BSens] (0.0003750000 V/LSB) 0.2500000 V
+/Scanner_list/0/@2:TRSetPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:TRSetPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:NanoTrenchSetPoint: 0
+/Scanner_list/0/@2:NanoTrenchSetPoint/@units: V
+/Scanner_list/0/@3:NanoTrenchSetPoint: 0
+/Scanner_list/0/@3:NanoTrenchSetPoint/@units: V
+/Scanner_list/0/@2:AFMFbIgain2Factor: V (1.000000 1/LSB) 32.00000
+/Scanner_list/0/@3:AFMFbIgain2Factor: V (1.000000 1/LSB) 32.00000
+/Scanner_list/0/@2:AFMFbPgain2: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@3:AFMFbPgain2: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@2:Sample_Bias: 0
+/Scanner_list/0/@2:Sample_Bias/@units: mV
+/Scanner_list/0/@3:Sample_Bias: 0
+/Scanner_list/0/@3:Sample_Bias/@units: mV
+/Scanner_list/0/@2:Tip_Bias: 0
+/Scanner_list/0/@2:Tip_Bias/@units: V
+/Scanner_list/0/@3:Tip_Bias: 0
+/Scanner_list/0/@3:Tip_Bias/@units: V
+/Scanner_list/0/@2:Analog2: 0
+/Scanner_list/0/@2:Analog2/@units: V
+/Scanner_list/0/@3:Analog2: 0
+/Scanner_list/0/@3:Analog2/@units: V
+/Scanner_list/0/@2:CantFrequency: 172.0493
+/Scanner_list/0/@2:CantFrequency/@units: kHz
+/Scanner_list/0/@3:CantFrequency: 0.5000000
+/Scanner_list/0/@3:CantFrequency/@units: kHz
+/Scanner_list/0/@2:CantFrequencyContactMode: 0.5000000
+/Scanner_list/0/@2:CantFrequencyContactMode/@units: kHz
+/Scanner_list/0/@3:CantFrequencyContactMode: 0.5000000
+/Scanner_list/0/@3:CantFrequencyContactMode/@units: kHz
+/Scanner_list/0/@2:CantDrive: 162.6587
+/Scanner_list/0/@2:CantDrive/@units: mV
+/Scanner_list/0/@3:CantDrive: 0
+/Scanner_list/0/@3:CantDrive/@units: mV
+/Scanner_list/0/@2:CantDriveContactMode: 0
+/Scanner_list/0/@2:CantDriveContactMode/@units: mV
+/Scanner_list/0/@3:CantDriveContactMode: 0
+/Scanner_list/0/@3:CantDriveContactMode/@units: mV
+/Scanner_list/0/@2:CantDriveNulled: 0
+/Scanner_list/0/@2:CantDriveNulled/@units: mV
+/Scanner_list/0/@3:CantDriveNulled: 0
+/Scanner_list/0/@3:CantDriveNulled/@units: mV
+/Scanner_list/0/@2:DriveDCOffsetTappingMode: 0
+/Scanner_list/0/@2:DriveDCOffsetTappingMode/@units: V
+/Scanner_list/0/@3:DriveDCOffsetTappingMode: 0
+/Scanner_list/0/@3:DriveDCOffsetTappingMode/@units: V
+/Scanner_list/0/@2:DriveDCOffsetNonTapping: 0
+/Scanner_list/0/@2:DriveDCOffsetNonTapping/@units: V
+/Scanner_list/0/@3:DriveDCOffsetNonTapping: 0
+/Scanner_list/0/@3:DriveDCOffsetNonTapping/@units: V
+/Scanner_list/0/@2:DriveDCOffsetFastScanAsyst: 0
+/Scanner_list/0/@2:DriveDCOffsetFastScanAsyst/@units: V
+/Scanner_list/0/@3:DriveDCOffsetFastScanAsyst: 0
+/Scanner_list/0/@3:DriveDCOffsetFastScanAsyst/@units: V
+/Scanner_list/0/@2:ReferenceFrequencyTappingMode: 172.0493
+/Scanner_list/0/@2:ReferenceFrequencyTappingMode/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequencyTappingMode: 0.5000000
+/Scanner_list/0/@3:ReferenceFrequencyTappingMode/@units: kHz
+/Scanner_list/0/@2:ReferenceFrequency1: 0.5000000
+/Scanner_list/0/@2:ReferenceFrequency1/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequency1: 0.5000000
+/Scanner_list/0/@3:ReferenceFrequency1/@units: kHz
+/Scanner_list/0/@2:CantPhase: V (0.005493164 ï¿½/LSB) -1.093140 ï¿½
+/Scanner_list/0/@3:CantPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:CantPhaseContactMode: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:CantPhaseContactMode: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:LockInBW1: 12.10200
+/Scanner_list/0/@2:LockInBW1/@units: kHz
+/Scanner_list/0/@3:LockInBW1: 0.2120000
+/Scanner_list/0/@3:LockInBW1/@units: kHz
+/Scanner_list/0/@2:LockInBW1ContactMode: 0.5000000
+/Scanner_list/0/@2:LockInBW1ContactMode/@units: kHz
+/Scanner_list/0/@3:LockInBW1ContactMode: 0.5000000
+/Scanner_list/0/@3:LockInBW1ContactMode/@units: kHz
+/Scanner_list/0/@2:TRCantileverFrequency: 1000.000
+/Scanner_list/0/@2:TRCantileverFrequency/@units: kHz
+/Scanner_list/0/@3:TRCantileverFrequency: 1000.000
+/Scanner_list/0/@3:TRCantileverFrequency/@units: kHz
+/Scanner_list/0/@2:ReferenceFrequencyTRMode: 0.5000000
+/Scanner_list/0/@2:ReferenceFrequencyTRMode/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequencyTRMode: 0.5000000
+/Scanner_list/0/@3:ReferenceFrequencyTRMode/@units: kHz
+/Scanner_list/0/@2:TROnAnalog3: 10.00000
+/Scanner_list/0/@2:TROnAnalog3/@units: V
+/Scanner_list/0/@3:TROnAnalog3: 10.00000
+/Scanner_list/0/@3:TROnAnalog3/@units: V
+/Scanner_list/0/@2:ReferenceFrequency2: 0.5000000
+/Scanner_list/0/@2:ReferenceFrequency2/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequency2: 0.5000000
+/Scanner_list/0/@3:ReferenceFrequency2/@units: kHz
+/Scanner_list/0/@2:ReferenceFrequency2Harmonic: 0.5000000
+/Scanner_list/0/@2:ReferenceFrequency2Harmonic/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequency2Harmonic: 0.5000000
+/Scanner_list/0/@3:ReferenceFrequency2Harmonic/@units: kHz
+/Scanner_list/0/@2:DrivePhase2: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:DrivePhase2: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:LockIn2BW: 0.2120000
+/Scanner_list/0/@2:LockIn2BW/@units: kHz
+/Scanner_list/0/@3:LockIn2BW: 0.5000000
+/Scanner_list/0/@3:LockIn2BW/@units: kHz
+/Scanner_list/0/@2:LockIn2BWHarmonic: 0.2110000
+/Scanner_list/0/@2:LockIn2BWHarmonic/@units: kHz
+/Scanner_list/0/@3:LockIn2BWHarmonic: 0.2110000
+/Scanner_list/0/@3:LockIn2BWHarmonic/@units: kHz
+/Scanner_list/0/@2:DriveFrequency2: 0.5000000
+/Scanner_list/0/@2:DriveFrequency2/@units: kHz
+/Scanner_list/0/@3:DriveFrequency2: 0.5000000
+/Scanner_list/0/@3:DriveFrequency2/@units: kHz
+/Scanner_list/0/@2:DriveAmplitude2: 0
+/Scanner_list/0/@2:DriveAmplitude2/@units: mV
+/Scanner_list/0/@3:DriveAmplitude2: 0
+/Scanner_list/0/@3:DriveAmplitude2/@units: mV
+/Scanner_list/0/@2:Drive2_DC_Offset: 0
+/Scanner_list/0/@2:Drive2_DC_Offset/@units: V
+/Scanner_list/0/@3:Drive2_DC_Offset: 0
+/Scanner_list/0/@3:Drive2_DC_Offset/@units: V
+/Scanner_list/0/@2:PRLowSpeedLockinBW: 0.3000000
+/Scanner_list/0/@2:PRLowSpeedLockinBW/@units: kHz
+/Scanner_list/0/@3:PRLowSpeedLockinBW: 0.3000000
+/Scanner_list/0/@3:PRLowSpeedLockinBW/@units: kHz
+/Scanner_list/0/@2:PRLowSpeedDriveAmplitude: 2000.000
+/Scanner_list/0/@2:PRLowSpeedDriveAmplitude/@units: mV
+/Scanner_list/0/@3:PRLowSpeedDriveAmplitude: 2000.000
+/Scanner_list/0/@3:PRLowSpeedDriveAmplitude/@units: mV
+/Scanner_list/0/@2:PRLowSpeedDriveFrequency: 15.00000
+/Scanner_list/0/@2:PRLowSpeedDriveFrequency/@units: kHz
+/Scanner_list/0/@3:PRLowSpeedDriveFrequency: 15.00000
+/Scanner_list/0/@3:PRLowSpeedDriveFrequency/@units: kHz
+/Scanner_list/0/@2:PRLowSpeedDrivePhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:PRLowSpeedDrivePhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:PRHighSpeedLockinBW: 0.7500000
+/Scanner_list/0/@2:PRHighSpeedLockinBW/@units: kHz
+/Scanner_list/0/@3:PRHighSpeedLockinBW: 0.7500000
+/Scanner_list/0/@3:PRHighSpeedLockinBW/@units: kHz
+/Scanner_list/0/@2:PRHighSpeedDriveAmplitude: 2000.000
+/Scanner_list/0/@2:PRHighSpeedDriveAmplitude/@units: mV
+/Scanner_list/0/@3:PRHighSpeedDriveAmplitude: 2000.000
+/Scanner_list/0/@3:PRHighSpeedDriveAmplitude/@units: mV
+/Scanner_list/0/@2:PRHighSpeedDriveFrequency: 60.00000
+/Scanner_list/0/@2:PRHighSpeedDriveFrequency/@units: kHz
+/Scanner_list/0/@3:PRHighSpeedDriveFrequency: 60.00000
+/Scanner_list/0/@3:PRHighSpeedDriveFrequency/@units: kHz
+/Scanner_list/0/@2:PRHighSpeedDrivePhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:PRHighSpeedDrivePhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:MFMLockinBW: 0.2110000
+/Scanner_list/0/@2:MFMLockinBW/@units: kHz
+/Scanner_list/0/@3:MFMLockinBW: 0.2110000
+/Scanner_list/0/@3:MFMLockinBW/@units: kHz
+/Scanner_list/0/@2:MFMDriveAmplitude: 0
+/Scanner_list/0/@2:MFMDriveAmplitude/@units: mV
+/Scanner_list/0/@3:MFMDriveAmplitude: 0
+/Scanner_list/0/@3:MFMDriveAmplitude/@units: mV
+/Scanner_list/0/@2:MFMDriveFrequency: 0.5000000
+/Scanner_list/0/@2:MFMDriveFrequency/@units: kHz
+/Scanner_list/0/@3:MFMDriveFrequency: 0.5000000
+/Scanner_list/0/@3:MFMDriveFrequency/@units: kHz
+/Scanner_list/0/@2:MFMDrivePhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:MFMDrivePhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:MFMDriveDCOffset: 0
+/Scanner_list/0/@2:MFMDriveDCOffset/@units: V
+/Scanner_list/0/@3:MFMDriveDCOffset: 0
+/Scanner_list/0/@3:MFMDriveDCOffset/@units: V
+/Scanner_list/0/@2:ACBiasAmpl: 0
+/Scanner_list/0/@2:ACBiasAmpl/@units: mV
+/Scanner_list/0/@3:ACBiasAmpl: 0
+/Scanner_list/0/@3:ACBiasAmpl/@units: mV
+/Scanner_list/0/@2:BiasFrequency: 0.5000000
+/Scanner_list/0/@2:BiasFrequency/@units: kHz
+/Scanner_list/0/@3:BiasFrequency: 0.5000000
+/Scanner_list/0/@3:BiasFrequency/@units: kHz
+/Scanner_list/0/@2:SCMLockInBW: 0.5000000
+/Scanner_list/0/@2:SCMLockInBW/@units: kHz
+/Scanner_list/0/@3:SCMLockInBW: 0.5000000
+/Scanner_list/0/@3:SCMLockInBW/@units: kHz
+/Scanner_list/0/@2:SCMLockInPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:SCMLockInPhase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:DCBias: 0
+/Scanner_list/0/@2:DCBias/@units: V
+/Scanner_list/0/@3:DCBias: 0
+/Scanner_list/0/@3:DCBias/@units: V
+/Scanner_list/0/@2:Capacitance_Sensor_Frequency: 880.0000
+/Scanner_list/0/@2:Capacitance_Sensor_Frequency/@units: MHz
+/Scanner_list/0/@3:Capacitance_Sensor_Frequency: 880.0000
+/Scanner_list/0/@3:Capacitance_Sensor_Frequency/@units: MHz
+/Scanner_list/0/@2:SCMIgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@3:SCMIgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@2:SCMPgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@3:SCMPgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@2:SCMFeedbackSetpoint: 200.0000
+/Scanner_list/0/@2:SCMFeedbackSetpoint/@units: mV
+/Scanner_list/0/@3:SCMFeedbackSetpoint: 200.0000
+/Scanner_list/0/@3:SCMFeedbackSetpoint/@units: mV
+/Scanner_list/0/@2:SCMFeedbackUpperLimit: 6.000000
+/Scanner_list/0/@2:SCMFeedbackUpperLimit/@units: V
+/Scanner_list/0/@3:SCMFeedbackUpperLimit: 6.000000
+/Scanner_list/0/@3:SCMFeedbackUpperLimit/@units: V
+/Scanner_list/0/@2:DC_Test_Bias: V [Sens. testsens] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@3:DC_Test_Bias: V [Sens. testsens] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@2:DC_Sample_Bias: V [Sens. biassens] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@3:DC_Sample_Bias: V [Sens. biassens] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@2:SampleBiasWithPiezo: V [Sens. biassens] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@3:SampleBiasWithPiezo: V [Sens. biassens] (0.0003051758 V/LSB)       0 V
+/Scanner_list/0/@2:Bias_Upper_Limit: 0
+/Scanner_list/0/@2:Bias_Upper_Limit/@units: V
+/Scanner_list/0/@3:Bias_Upper_Limit: 0
+/Scanner_list/0/@3:Bias_Upper_Limit/@units: V
+/Scanner_list/0/@2:Bias_Lower_Limit: 0
+/Scanner_list/0/@2:Bias_Lower_Limit/@units: V
+/Scanner_list/0/@3:Bias_Lower_Limit: 0
+/Scanner_list/0/@3:Bias_Lower_Limit/@units: V
+/Scanner_list/0/@2:Feedback_Igain: V (0.01525879 1/LSB)       0
+/Scanner_list/0/@3:Feedback_Igain: V (0.01525879 1/LSB)       0
+/Scanner_list/0/@2:TunaFeedbackSetpoint: V [Sens. tunaSens] (0.0003750000 V/LSB)       0 V
+/Scanner_list/0/@3:TunaFeedbackSetpoint: V [Sens. tunaSens] (0.0003750000 V/LSB)       0 V
+/Scanner_list/0/@2:DriveFrequency3SoftHarmoniX: 1.953125
+/Scanner_list/0/@2:DriveFrequency3SoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:DriveFrequency3SoftHarmoniX: 0.005000000
+/Scanner_list/0/@3:DriveFrequency3SoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:DriveFrequency3NonSoftHarmoniX: 0.005000000
+/Scanner_list/0/@2:DriveFrequency3NonSoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:DriveFrequency3NonSoftHarmoniX: 0.005000000
+/Scanner_list/0/@3:DriveFrequency3NonSoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:DriveAmplitude3SoftHarmoniX: V [Sens. DriveAmplitude3Sens] (0.3051758 mV/LSB) 235.4344 mV
+/Scanner_list/0/@3:DriveAmplitude3SoftHarmoniX: V [Sens. DriveAmplitude3Sens] (0.3051758 mV/LSB)       0 mV
+/Scanner_list/0/@2:DriveAmplitude3NonSoftHarmoniX: 0
+/Scanner_list/0/@2:DriveAmplitude3NonSoftHarmoniX/@units: mV
+/Scanner_list/0/@3:DriveAmplitude3NonSoftHarmoniX: 0
+/Scanner_list/0/@3:DriveAmplitude3NonSoftHarmoniX/@units: mV
+/Scanner_list/0/@2:DriveAmplitude3NonSoftHarmoniX2X: 0
+/Scanner_list/0/@2:DriveAmplitude3NonSoftHarmoniX2X/@units: mV
+/Scanner_list/0/@3:DriveAmplitude3NonSoftHarmoniX2X: 0
+/Scanner_list/0/@3:DriveAmplitude3NonSoftHarmoniX2X/@units: mV
+/Scanner_list/0/@2:Drive3_DC_Offset: 0
+/Scanner_list/0/@2:Drive3_DC_Offset/@units: V
+/Scanner_list/0/@3:Drive3_DC_Offset: 0
+/Scanner_list/0/@3:Drive3_DC_Offset/@units: V
+/Scanner_list/0/@2:ReferenceFrequency3SoftHarmoniX: 1.953125
+/Scanner_list/0/@2:ReferenceFrequency3SoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequency3SoftHarmoniX: 0.005000000
+/Scanner_list/0/@3:ReferenceFrequency3SoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:ReferenceFrequency3NonSoftHarmoniX: 0.005000000
+/Scanner_list/0/@2:ReferenceFrequency3NonSoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:ReferenceFrequency3NonSoftHarmoniX: 0.005000000
+/Scanner_list/0/@3:ReferenceFrequency3NonSoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:LockIn3BWSoftHarmoniX: 0.005000000
+/Scanner_list/0/@2:LockIn3BWSoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:LockIn3BWSoftHarmoniX: 0.005000000
+/Scanner_list/0/@3:LockIn3BWSoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:LockIn3BWNonSoftHarmoniX: 0.005000000
+/Scanner_list/0/@2:LockIn3BWNonSoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:LockIn3BWNonSoftHarmoniX: 0.005000000
+/Scanner_list/0/@3:LockIn3BWNonSoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:Analog3: 0
+/Scanner_list/0/@2:Analog3/@units: V
+/Scanner_list/0/@3:Analog3: 0
+/Scanner_list/0/@3:Analog3/@units: V
+/Scanner_list/0/@2:Analog4: 0
+/Scanner_list/0/@2:Analog4/@units: V
+/Scanner_list/0/@3:Analog4: 0
+/Scanner_list/0/@3:Analog4/@units: V
+/Scanner_list/0/@2:TR_Drive_Amplitude: 0
+/Scanner_list/0/@2:TR_Drive_Amplitude/@units: mV
+/Scanner_list/0/@3:TR_Drive_Amplitude: 0
+/Scanner_list/0/@3:TR_Drive_Amplitude/@units: mV
+/Scanner_list/0/@2:TR_Lock-In_Phase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:TR_Lock-In_Phase: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:DrivePhase3NonSoftHarmoniX: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:DrivePhase3NonSoftHarmoniX: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:SSRMSampleBias: 0
+/Scanner_list/0/@2:SSRMSampleBias/@units: V
+/Scanner_list/0/@3:SSRMSampleBias: 0
+/Scanner_list/0/@3:SSRMSampleBias/@units: V
+/Scanner_list/0/@2:TMFbIgain: V (0.3125000 1/LSB) 1.000000
+/Scanner_list/0/@3:TMFbIgain: V (0.3125000 1/LSB) 0.5000000
+/Scanner_list/0/@2:TMFbPgain: V (0.3125000 1/LSB) 10.00000
+/Scanner_list/0/@3:TMFbPgain: V (0.3125000 1/LSB) 5.000000
+/Scanner_list/0/@2:AFMFbIgain: V (0.3125000 1/LSB) 2.000000
+/Scanner_list/0/@3:AFMFbIgain: V (0.3125000 1/LSB) 2.000000
+/Scanner_list/0/@2:AFMFbPgain: V (0.3125000 1/LSB) 5.000000
+/Scanner_list/0/@3:AFMFbPgain: V (0.3125000 1/LSB) 5.000000
+/Scanner_list/0/@2:SoftHarmoniXFbIgain: V (0.3125000 1/LSB) 5.000000
+/Scanner_list/0/@3:SoftHarmoniXFbIgain: V (0.3125000 1/LSB) 10.00000
+/Scanner_list/0/@2:SoftHarmoniXFbPgain: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@3:SoftHarmoniXFbPgain: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@2:STMFbIgain: V (0.3125000 1/LSB) 1.000000
+/Scanner_list/0/@3:STMFbIgain: V (0.3125000 1/LSB) 1.000000
+/Scanner_list/0/@2:STMFbPgain: V (0.3125000 1/LSB) 2.000000
+/Scanner_list/0/@3:STMFbPgain: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@2:STMESFbIgain: V (0.3125000 1/LSB) 10.00000
+/Scanner_list/0/@3:STMESFbIgain: V (0.3125000 1/LSB) 10.00000
+/Scanner_list/0/@2:STMESFbPgain: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@3:STMESFbPgain: V (0.3125000 1/LSB)       0
+/Scanner_list/0/@2:DriveAmplitude4SoftHarmoniX: 53.10059
+/Scanner_list/0/@2:DriveAmplitude4SoftHarmoniX/@units: mV
+/Scanner_list/0/@3:DriveAmplitude4SoftHarmoniX: 0
+/Scanner_list/0/@3:DriveAmplitude4SoftHarmoniX/@units: mV
+/Scanner_list/0/@2:BaselineAvgPtsSoftHarmoniX: V (1.000000 1/LSB) 17.00000
+/Scanner_list/0/@3:BaselineAvgPtsSoftHarmoniX: V (1.000000 1/LSB) 32.00000
+/Scanner_list/0/@2:DeflLowPassFrequency: 2.500000
+/Scanner_list/0/@2:DeflLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:DeflLowPassFrequency: 2.500000
+/Scanner_list/0/@3:DeflLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:DeflLowPassFrequencySoftHarmoniX: 40.00000
+/Scanner_list/0/@2:DeflLowPassFrequencySoftHarmoniX/@units: kHz
+/Scanner_list/0/@3:DeflLowPassFrequencySoftHarmoniX: 40.00000
+/Scanner_list/0/@3:DeflLowPassFrequencySoftHarmoniX/@units: kHz
+/Scanner_list/0/@2:FricLowPassFrequency: 2.000000
+/Scanner_list/0/@2:FricLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:FricLowPassFrequency: 2.000000
+/Scanner_list/0/@3:FricLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:TMDeflLowPassFrequency: 2.500000
+/Scanner_list/0/@2:TMDeflLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:TMDeflLowPassFrequency: 2.000000
+/Scanner_list/0/@3:TMDeflLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:CurrentLowPassFrequency: 10.00000
+/Scanner_list/0/@2:CurrentLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:CurrentLowPassFrequency: 10.00000
+/Scanner_list/0/@3:CurrentLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:OtherModesLowPassFrequency: 2.000000
+/Scanner_list/0/@2:OtherModesLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:OtherModesLowPassFrequency: 2.000000
+/Scanner_list/0/@3:OtherModesLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:TMFricLowPassFrequency: 2.500000
+/Scanner_list/0/@2:TMFricLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:TMFricLowPassFrequency: 10.00000
+/Scanner_list/0/@3:TMFricLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:FastZTMFbIgain: V (0.03125000 1/LSB) 1.000000
+/Scanner_list/0/@3:FastZTMFbIgain: V (0.03125000 1/LSB) 1.000000
+/Scanner_list/0/@2:FastZTMFbPgain: V (0.03125000 1/LSB) 1.000000
+/Scanner_list/0/@3:FastZTMFbPgain: V (0.03125000 1/LSB)       0
+/Scanner_list/0/@2:InputIgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@3:InputIgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@2:InputPgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@3:InputPgain: V (0.001525879 1/LSB) 10.00000
+/Scanner_list/0/@2:TRFbIgain: V (0.3125000 1/LSB) 0.5000000
+/Scanner_list/0/@3:TRFbIgain: V (0.3125000 1/LSB) 0.5000000
+/Scanner_list/0/@2:TRFbPgain: V (0.3125000 1/LSB) 5.000000
+/Scanner_list/0/@3:TRFbPgain: V (0.3125000 1/LSB) 5.000000
+/Scanner_list/0/@2:VertDeflLowPassFrequency: 10.00000
+/Scanner_list/0/@2:VertDeflLowPassFrequency/@units: kHz
+/Scanner_list/0/@3:VertDeflLowPassFrequency: 10.00000
+/Scanner_list/0/@3:VertDeflLowPassFrequency/@units: kHz
+/Scanner_list/0/@2:TRLockInBW1: 150.0000
+/Scanner_list/0/@2:TRLockInBW1/@units: kHz
+/Scanner_list/0/@3:TRLockInBW1: 150.0000
+/Scanner_list/0/@3:TRLockInBW1/@units: kHz
+/Scanner_list/0/@2:DrivePhase3SoftHarmoniX: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@3:DrivePhase3SoftHarmoniX: V (0.005493164 ï¿½/LSB)       0 ï¿½
+/Scanner_list/0/@2:Output_1_Input_Data: S [ImageOff] "Off"
+/Scanner_list/0/@2:Output_2_Input_Data: S [ImageOff] "Off"
+/Scanner_list/0/@2:Output_1_Output_Data: S [Analog3] "Analog3"
+/Scanner_list/0/@2:Output_2_Output_Data: S [Analog3] "Analog3"
+/Scanner_list/0/@LogStiffnessOffset: V [Sens. LogStiffnessSens] (0.0004882813 log(Arb)/LSB)       0 log(Arb)
+/Scanner_list/0/@LogSneddonModulusOffset: V [Sens. LogSneddonModulusSens] (0.0004882813 log(Arb)/LSB)       0 log(Arb)
+/Scanner_list/0/Phase_Shift: 508
+/Scanner_list/0/Fast_Integral_Gain: 20
+/Scanner_list/0/Fast_Proportional_Gain: 20
+/Scanner_list/0/Fast_Interleave_Igain: 0
+/Scanner_list/0/Fast_Interleave_Pgain: 0
+/Scanner_list/0/Contact_Gain: 123
+/Scanner_list/0/Q-Control_Gain: 0
+/Scanner_list/0/QC_Interleave_Gain: 0
+/Scanner_list/0/QC_Lift_Gain: 0
+/Scanner_list/0/Z_Sensor_Preamp_Gain: 0.978
+/Scanner_list/0/Z_Sensor_Preamp_Offset: 0.0581196
+/Scanner_list/0/High_Pass_Filter: 1
+/Scanner_list/0/Low_Pass_Filter: 1
+/Scanner_list/0/All_Pass_Filter: 1
+/Scanner_list/0/Interleave_Mode: Disabled
+/Scanner_list/0/Lift_Mode: Disabled
+/Scanner_list/0/QC_Interleave_Mode: Disabled
+/Scanner_list/0/QC_Lift_Mode: Disabled
+/Scanner_list/0/Tapping_Engage_Fast_I_Gain: 10
+/Scanner_list/0/Tapping_Engage_Fast_P_Gain: 10
+/Scanner_list/0/Contact_Engage_Fast_I_Gain: 5
+/Scanner_list/0/Contact_Engage_Fast_P_Gain: 5
+/Scanner_list/0/Tapping_Minimum_Scanning_I_Gain: 0.1
+/Scanner_list/0/Tapping_Minimum_Scanning_P_Gain: 0.1
+/Scanner_list/0/Contact_Minimum_Scanning_I_Gain: 0.1
+/Scanner_list/0/Contact_Minimum_Scanning_P_Gain: 0.1
+/Scanner_list/0/Tapping_Maximum_Scan_Rate: 3
+/Scanner_list/0/Contact_Maximum_Scan_Rate: 4
+/Scanner_list/0/Determine_Contact_Gain: Enabled
+/Scanner_list/0/Check_for_active_tip: Enabled
+/Height_Sensor/backward: [[   0.            0.            0.         ... -145.36143119
+  -145.36037403 -234.10827283]
+ [  94.70829516  -36.89021694 -145.35625383 ...  -98.15159327
+  -150.31783548 -150.31784995]
+ [ -95.8826534  -145.35930821 -150.31782898 ...  -36.89021694
+   -37.63478857 -106.57156303]
+ ...
+ [-150.31785306 -150.31784373 -150.31785306 ...   15.29539993
+  -150.31785035   15.29539993]
+ [-150.31785414   15.29539993 -150.31784116 ...   22.81118749
+   -36.89021694   30.52203781]
+ [-145.3616446    22.8083829  -150.31785143 ...   31.17797898
+  -150.31785319   31.17797898]]
+/Height_Sensor/forward: [[ 1.06030393e+03  0.00000000e+00  2.33123904e+02 ... -2.98694716e+03
+  -3.08890330e+03  8.33716049e-06]
+ [ 1.11162140e-05  2.77905350e-06  8.33716049e-06 ... -7.58062523e+02
+   3.59542547e+00  3.64256100e-01]
+ [ 9.10640250e-01  2.00340855e+00 -2.98708215e+03 ...  1.42287539e-03
+   7.82581465e-03 -3.08890382e+03]
+ ...
+ [-7.73180708e+02 -2.98694716e+03 -3.08890330e+03 ... -7.58062523e+02
+  -2.98694716e+03 -3.08890330e+03]
+ [-7.58062523e+02 -2.98694716e+03 -3.08890330e+03 ... -7.58062523e+02
+  -7.92304153e+02 -2.98694716e+03]
+ [-3.08890330e+03 -7.58062523e+02 -2.98694716e+03 ... -2.98694716e+03
+  -3.08890330e+03 -3.08890347e+03]]
+/Amplitude_Error/backward: [[-8.47703094e+08  5.14748239e+08  2.93949948e+08 ... -3.39201325e+09
+  -8.68540286e+08  4.26934824e+09]
+ [-3.39201325e+09 -8.68556232e+08  3.02974824e+09 ... -8.67851761e+08
+  -3.28005176e+09  4.26160995e+09]
+ [ 6.52349948e+08 -3.28007281e+09 -3.28019005e+09 ... -3.39201323e+09
+  -8.52585135e+08 -2.55845176e+09]
+ ...
+ [ 2.34375000e+03  4.68750000e+03  7.81250000e+02 ...  2.56000000e+08
+   5.12000000e+07  2.04800000e+08]
+ [ 0.00000000e+00  0.00000000e+00  7.68000000e+08 ...  4.48303223e+03
+  -3.39201328e+09 -8.32450052e+08]
+ [-3.28005176e+09  6.04553223e+03  9.37500000e+03 ...  0.00000000e+00
+   2.20000000e+06  6.00000000e+05]]
+/Amplitude_Error/forward: [[-8.32450052e+08 -3.28005176e+09 -3.39201270e+09 ... -8.32450052e+08
+  -3.28005176e+09 -3.39201270e+09]
+ [-8.32450052e+08 -3.28005176e+09 -3.28012911e+09 ... -3.28005176e+09
+  -3.39201270e+09 -3.39201318e+09]
+ [-8.32450052e+08 -3.28005176e+09 -3.39201270e+09 ... -3.39201270e+09
+  -8.32450052e+08 -3.28005176e+09]
+ ...
+ [-3.39201270e+09 -8.32450052e+08 -8.48851761e+08 ... -3.28005176e+09
+  -3.28014864e+09 -3.39201270e+09]
+ [-8.32450052e+08 -3.28005176e+09 -3.39201270e+09 ... -3.39201270e+09
+  -8.32450052e+08 -3.28005176e+09]
+ [-3.28016349e+09 -3.39201270e+09  5.72114995e+09 ...  5.87474995e+09
+  -8.32450052e+08 -3.28005176e+09]]
+/Phase/backward: [[ 7.20000000e+02 -5.90436000e+06 -6.10562287e+06 ...  1.47456000e+06
+   5.52960000e+05  4.60800000e+05]
+ [ 0.00000000e+00  3.68640000e+05  3.68640000e+05 ... -6.10562287e+06
+   8.23974609e-02  5.49316406e-03]
+ [ 1.41339111e+01  0.00000000e+00  1.54687500e+01 ...  1.80000000e+03
+   3.96000000e+03  0.00000000e+00]
+ ...
+ [ 2.88000000e+03 -5.90436000e+06 -6.10562287e+06 ...  1.17422991e+06
+  -1.56672000e+06 -5.90409317e+06]
+ [-6.10562287e+06  1.60469907e+05  4.60800000e+05 ... -5.90409317e+06
+  -6.10562287e+06  1.17422991e+06]
+ [ 3.68640000e+05  6.45120000e+05  7.37280000e+05 ... -1.56672000e+06
+  -5.90409317e+06 -6.10562287e+06]]
+/Phase/forward: [[-5904335.05554199 -6105622.86804199  7717589.90661621 ...
+  -6105622.86804199 -1498410.09338379 -1533693.16955566]
+ [-5904093.16955566 -6105622.86804199 -6105623.80187988 ...
+  -5904093.16955566 -6105622.86804199 -1498410.09338379]
+ [-5904093.16955566 -6105622.86804199 -1498410.09338379 ...
+  -1498410.09338379 -1557093.16955566 -5904093.16955566]
+ ...
+ [ 2037146.83044434 -6105623.45031738 -5904328.90869141 ...
+  -1540045.21179199 -5904093.16955566  1689874.78820801]
+ [ 2280149.90661621 -6105623.69750977  2280149.90661621 ...
+  -1557231.36108398 -5904093.16955566  9409810.41320801]
+ [-1557227.35107422 -5904093.16955566 -1557228.18054199 ...
+  -1557634.58679199  5565146.83044434 -6105623.7689209 ]]
+/Amplitude/backward: [[ 4.57625697e+08  4.45605210e+08 -5.07485880e+08 ... -4.26990224e+08
+  -1.26928422e+08 -4.90735104e+08]
+ [-4.90754858e+08  1.57296650e+08 -2.85407340e+08 ... -5.07485844e+08
+  -5.07485881e+08  5.67776764e+06]
+ [-5.07485881e+08 -1.29563825e+08 -4.90735104e+08 ... -5.07485805e+08
+  -4.90752012e+08 -5.07485805e+08]
+ ...
+ [-5.07485805e+08 -1.24544517e+08 -4.90735104e+08 ... -1.24544517e+08
+  -4.90735104e+08 -5.07485805e+08]
+ [-1.24544517e+08 -4.90735104e+08  3.00829790e+05 ... -4.90735104e+08
+  -5.07485805e+08 -1.24544517e+08]
+ [-4.90735104e+08 -5.07485805e+08  5.92987084e+07 ... -5.07485805e+08
+  -1.24544517e+08 -4.90735104e+08]]
+/Amplitude/forward: [[ 4.57625697e+08  4.45605210e+08 -5.07485880e+08 ... -4.26990224e+08
+  -1.26928422e+08 -4.90735104e+08]
+ [-4.90754858e+08  1.57296650e+08 -2.85407340e+08 ... -5.07485844e+08
+  -5.07485881e+08  5.67776764e+06]
+ [-5.07485881e+08 -1.29563825e+08 -4.90735104e+08 ... -5.07485805e+08
+  -4.90752012e+08 -5.07485805e+08]
+ ...
+ [-5.07485805e+08 -1.24544517e+08 -4.90735104e+08 ... -1.24544517e+08
+  -4.90735104e+08 -5.07485805e+08]
+ [-1.24544517e+08 -4.90735104e+08  3.00829790e+05 ... -4.90735104e+08
+  -5.07485805e+08 -1.24544517e+08]
+ [-4.90735104e+08 -5.07485805e+08  5.92987084e+07 ... -5.07485805e+08
+  -1.24544517e+08 -4.90735104e+08]]
+/TM_Deflection/backward: [[-3.14125477e+04 -7.70910349e+03 -3.03757065e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [-7.70910349e+03 -3.03757065e+04 -3.14125477e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 2.82615356e-05 -7.70910349e+03 -3.03757065e+04 ... -3.14125477e+04
+  -7.70910349e+03 -3.03757065e+04]
+ ...
+ [-3.03757065e+04 -3.14125477e+04 -7.70910349e+03 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 1.77389427e+03 -8.06054810e+03 -3.03757065e+04 ... -3.14125477e+04
+   0.00000000e+00 -7.70910349e+03]
+ [-3.03757065e+04 -3.14125477e+04  2.82615356e-05 ... -3.14125531e+04
+  -7.70910349e+03 -3.03757065e+04]]
+/TM_Deflection/forward: [[-3.14125477e+04 -7.70910349e+03 -3.03757065e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [-7.70910349e+03 -3.03757065e+04 -3.14125477e+04 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 2.82615356e-05 -7.70910349e+03 -3.03757065e+04 ... -3.14125477e+04
+  -7.70910349e+03 -3.03757065e+04]
+ ...
+ [-3.03757065e+04 -3.14125477e+04 -7.70910349e+03 ... -7.70910349e+03
+  -3.03757065e+04 -3.14125477e+04]
+ [ 1.77389427e+03 -8.06054810e+03 -3.03757065e+04 ... -3.14125477e+04
+   0.00000000e+00 -7.70910349e+03]
+ [-3.03757065e+04 -3.14125477e+04  2.82615356e-05 ... -3.14125531e+04
+  -7.70910349e+03 -3.03757065e+04]]
