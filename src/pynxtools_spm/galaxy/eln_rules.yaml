@@ -1,18 +1,22 @@
-# Rules for the LLM-written ELN of the Galaxy ELN tools (nexus_llm_input, nexus_eln_llm_merge):
+# Rules for the Galaxy ELN tools (nexus_eln_builder, nexus_llm_input, nexus_eln_llm_merge):
 # https://github.com/bgruening/galaxytools/pull/2118. scan_mode values: from the NeXus definitions
 # in pynxtools (contributed_definitions/NX*.nxdl.xml); update them, and eln_instructions/, with them.
 
 definitions:
   NXstm:
     technique: STM
+    # Raw file extensions of this technique, for the ELN builder (lower case).
+    extensions: [.sxm, .sm4]
     instructions: eln_instructions/NXstm.txt
     scan_mode: [constant height, constant current]
   NXsts:
     technique: STS
+    extensions: [.dat]
     instructions: eln_instructions/NXsts.txt
     scan_mode: [constant height, constant current, constant spacing]
   NXafm:
     technique: AFM
+    extensions: [.spm, .txt, .flt]
     instructions: eln_instructions/NXafm.txt
     scan_mode: [contact mode, tapping mode, non-contact mode, peak force tapping mode]
 
@@ -32,6 +36,14 @@ fill:
 # value stays the fallback (experiment_description: the record text, also in citeID.description).
 replace:
   - experiment_description
+
+# Fields that may be filled from the raw file header alone (check step); a value of another
+# field needs a quote from a context file.
+header:
+  - Instrument.hardware.model
+  - Instrument.hardware.model/@version
+  - Instrument.software.model
+  - scan_mode
 
 # Fields whose value must be one of the definition's allowed values (check step).
 exact:

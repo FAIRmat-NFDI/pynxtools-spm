@@ -23,3 +23,15 @@ def test_check_lists_are_fields_the_llm_may_write():
     writable = set(RULES["fill"]) | set(RULES["replace"])
     assert set(RULES["exact"]) <= writable
     assert set(RULES["literal"]) <= writable
+
+
+def test_header_fields_are_fields_the_llm_may_write():
+    assert set(RULES["header"]) <= set(RULES["fill"]) | set(RULES["replace"])
+
+
+def test_each_extension_names_one_technique():
+    """The ELN builder takes the technique from the raw file's extension."""
+    extensions = [ext for entry in RULES["definitions"].values() for ext in entry["extensions"]]
+    assert extensions, "no extensions"
+    assert len(extensions) == len(set(extensions))
+    assert all(ext.startswith(".") and ext == ext.lower() for ext in extensions)
