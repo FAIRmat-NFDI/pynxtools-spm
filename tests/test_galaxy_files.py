@@ -31,7 +31,9 @@ def test_header_fields_are_fields_the_llm_may_write():
 
 def test_each_extension_names_one_technique():
     """The ELN builder takes the technique from the raw file's extension."""
-    extensions = [ext for entry in RULES["definitions"].values() for ext in entry["extensions"]]
+    extensions = [
+        ext for entry in RULES["definitions"].values() for ext in entry["extensions"]
+    ]
     assert extensions, "no extensions"
     assert len(extensions) == len(set(extensions))
     assert all(ext.startswith(".") and ext == ext.lower() for ext in extensions)
