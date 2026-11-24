@@ -1,5 +1,6 @@
 pynxtools_spm/parsers
 ├── base_parser.py
+├── bruker
 ├── bruker_flt.py
 ├── bruker_spm.py
 ├── bruker_txt.py
@@ -16,4 +17,4 @@ pynxtools_spm/parsers
 ├── omicron_sm4.py
 └── rhk_sm4_metadata.py
 
-1 directory, 15 files
+2 directories, 15 files

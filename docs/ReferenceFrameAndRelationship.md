@@ -98,7 +98,7 @@ that a later correction of `φ` cannot corrupt the raw scan angle.
 | Sample holder | The holder is the plate or puck the sample is glued or clamped to. It sits on the stage and moves with it, so it is treated as part of the stage frame and adds no transform of its own |
 | Exception: removable holder | If the holder is taken out and put back between scans (e.g. a UHV transfer plate), it never lands in exactly the same place. Then define a separate **holder frame** between stage and sample, and measure its position again after every insertion |
 
-Decisions: [D14](#d14), [D15](#d15), [D16](#d16), [D17](#d17), [D18](#d18).
+Decisions: [D14](#d14), [D15](#d15), [D16](#d16), [D17](#d17), [D18](#d18), [D28](#d28).
 
 ### 5. Sample frame
 
@@ -206,15 +206,14 @@ ENTRY
     SPM_CANTILEVER: NXspm_cantilever (NXafm)       # probe frame, orientation only
       depends_on = "transformations/tilt"
       transformations: NXtransformations
-        tilt       = α    rotation     [0,1,0]  @depends_on=in_plane
-        in_plane   = φ    rotation     [0,0,1]  @depends_on=/ENTRY/scanner_frame
+        tilt           = α  rotation     [0,1,0]  @depends_on=in_plane_angle
+        in_plane_angle = φ  rotation     [0,0,1]  @depends_on=/ENTRY/scanner_frame
     stage: NXmanipulator                           # stage frame
       depends_on = "transformations/stage_z"
       transformations: NXtransformations
         stage_z    = s_z  translation  v_z      @depends_on=stage_y
         stage_y    = s_y  translation  v_y      @depends_on=stage_x
         stage_x    = s_x  translation  v_x      @depends_on=/ENTRY/scanner_frame
-      stage_motorAXIS: NXpositioner                # optional motor details; value links to stage_AXIS
   SAMPLE                                           # sample frame
     depends_on = "transformations/mount_rotation"
     transformations: NXtransformations
@@ -319,7 +318,7 @@ listed under [Sources](#sources), each with the decisions it supports.
 | <a id="d12"></a>D12 | Tilt `α` is a rotation about `+y` (`vector=[0,1,0]`); positive when the tip end is lower than the chip end | **Geometry:** "These cantilevers are inclined at small angles (usually around 10◦ –15◦ ) to allow the tips of the cantilevers to access the sample surface without the cantilever holder making contact", so the tip end is the lowest point. **Instrument:** Bruker stores this angle as a positive number (`\Cantilever Angle: 12`), and its help confirms "the cantilever is at an angle relative to the surface", typically 12°–25°. **Sign:** with `x` from the chip to the tip and the right-hand rule, `R_y(α)` maps `x` to `(cos α, 0, −sin α)`, so a positive `α` lowers the tip end, matching the positive vendor value | Paper, Raw data, Vendor, Derived | [P4], [R2], [V7], [S2] | `NXafm/.../SPM_CANTILEVER/transformations/tilt` |
 | <a id="d13"></a>D13 | `NXspm_cantilever` extends `NXcomponent` | `NXcomponent` provides `depends_on` and an `NXtransformations` group | Standard | [S3] | `NXspm_cantilever` |
 | <a id="d14"></a>D14 | The stage is an `NXmanipulator` named `stage`, not an `NXpositioner` | `NXmanipulator`: "Base class to describe the use of manipulators and sample stages", with `NXpositioner` subgroups for "the motors that are used in the manipulator". `NXpositioner`: "A generic positioner such as a motor or piezo-electric transducer" (one `value`). `NXem` uses `stageID: NXmanipulator` | Standard | [S4], [S5], [S6] | `NXspm/ENTRY/INSTRUMENT/stage` |
-| <a id="d15"></a>D15 | Stage positions are stored as `transformations/stage_x/y/z`; motor details in optional `stage_motorAXIS` | For stage values, "it is better to describe the reference frame … explicitly using instances of :ref:`NXtransformations` and respective instances of :ref:`NXcoordinate_system`" | Standard | [S6] | `stage/transformations`, `stage/stage_motorAXIS` |
+| <a id="d15"></a>D15 | Stage positions are stored as `transformations/stage_x/y/z` (see also [D28](#d28)) | For stage values, "it is better to describe the reference frame … explicitly using instances of :ref:`NXtransformations` and respective instances of :ref:`NXcoordinate_system`" | Standard | [S6] | `stage/transformations`, `stage/stage_motorAXIS` |
 | <a id="d16"></a>D16 | Stage `vector`s are not fixed; they depend on the instrument and the axis | Bruker Dimension Icon: "The XY stage permits micrometer-scale positioning of samples beneath the tip"; the motorized Z stage provides "tip engagement and approach". Nanonis: the coarse-motor approach direction is configured per instrument (`plus` or `minus`) | Vendor, Code | [V4], [C1] | `stage/transformations/*@vector` |
 | <a id="d17"></a>D17 | Without stage data, the stage frame coincides with the scanner frame | No Nanonis `.sxm` or `.dat` header in the test data has a stage or coarse-motor position | Raw data | [R1] | `stage` doc, overview |
 | <a id="d18"></a>D18 | Bruker stage values: unit assumed µm, open loop | `\Stage X/Y/Z` have no unit in the header, while `\Engage X Pos` is given in `um`. The stage "uses an open loop (unencoded) architecture" | Raw data, Vendor | [R2], [V5] | open question 6 |
@@ -332,6 +331,8 @@ listed under [Sources](#sources), each with the decisions it supports.
 | <a id="d25"></a>D25 | `spatial_location` in `NXspm_bias_spectroscopy` is an `NXspm_piezo_sensor` (a tip position), not an `NXcoordinate_system` | In `NXcoordinate_system`, `x`, `y`, `z` are basis vectors, not a position. Nanonis STS headers store the spectrum position as `X (m)`, `Y (m)`, `Z (m)`: `X`/`Y` share the origin of the scan offset (e.g. `X` = 153.514 nm inside a 4 nm scan field centred at 153.414 nm) and `Z (m)` equals `Z-Controller>Z (m)` (62.880 vs 62.850 nm). The reader already maps them to `piezo_sensor/x, y, z`. As a result, `scanner_frame` is the only `NXcoordinate_system` in all SPM definitions ([D1](#d1)) | Standard, Raw data, Code | [S1], [R4], [C4] | `NXspm_bias_spectroscopy/BIAS_SWEEP/spatial_location` |
 | <a id="d26"></a>D26 | `scanner_frame/x_direction` and `y_direction` are recommended, not required | They are free text that readers rarely provide; making them required would reject otherwise complete files | Team | — | `NXspm/ENTRY/scanner_frame` |
 | <a id="d27"></a>D27 | `calibratedAXIS`, `hv_gainAXIS` and `driftAXIS` describe the stored values instead of software behaviour ("automatically updated"); `driftAXIS` keeps `units="NX_ANY"` with the unit (m/s) in the doc | Nanonis stores `Calib. X (m/V)`, `HV Gain X` and `Drift X (m/s)` with `Drift correction status (on/off)` in the piezo configuration. No `Range` key exists in any test file, so no formula is stated, only that two of the three values determine the third. NeXus has no velocity unit category (no `NX_VELOCITY` in `nxdlTypes.xsd`); speeds such as `scan_speedAXIS` use `NX_ANY` | Raw data, Standard | [R1], [S9] | `NXspm_piezo_config/calibration` |
+| <a id="d28"></a>D28 | No separate stage-motor group: the stage `x`, `y`, `z` exist only in `stage/transformations/stage_x/y/z` | `NXpositioner` describes one degree of freedom ("A generic positioner such as a motor or piezo-electric transducer"); its `value` dimension `[n]` is for scanning ("need [n] as may be scanned"), not for axes, so one positioner with `x`, `y`, `z` would misuse it or need fields that `NXpositioner` does not define. `NXmanipulator` describes its motors as separate `NXpositioner` groups. The raw files hold no motor details (Bruker only `\Stage X/Y/Z`, Nanonis nothing), so a motor group would only repeat the transformation values. A per-axis `NXpositioner` can be added later if a vendor provides motor details | Standard, Raw data | [S4], [S5], [R1], [R2] | `NXspm/ENTRY/INSTRUMENT/stage` |
+| <a id="d29"></a>D29 | The probe in-plane rotation is named `in_plane_angle` (was `in_plane`) | The name says what the value is (an angle about scanner `z`), like `scan_angleAXIS`; `in_plane` alone could be read as a flag or a position. The name is free in `NXtransformations` (`AXISNAME` placeholder) | Team | [S1] | `NXafm/.../SPM_CANTILEVER/transformations/in_plane_angle` |
 
 ## Sources
 
@@ -343,7 +344,7 @@ Each source lists what we learned from it and the decisions (D…) it supports.
 - **[S2]** `base_classes/NXtransformations.nxdl.xml`: chain composition `T_f = T₃ T₂ T₁` (line 71), unit-length `vector` (line 153), right-hand rotation rule (line 175), targets of the `depends_on` attribute (line 202). → [D5](#d5), [D7](#d7), [D8](#d8), [D9](#d9). [Manual][nx-tr]
 - **[S3]** `base_classes/NXcomponent.nxdl.xml`, lines 66 and 80. Provides `depends_on` and `NXtransformations` to every component. → [D13](#d13)
 - **[S4]** `base_classes/NXmanipulator.nxdl.xml`, lines 26 and 221. "Base class to describe the use of manipulators and sample stages"; `NXpositioner` subgroups for its motors. → [D14](#d14)
-- **[S5]** `base_classes/NXpositioner.nxdl.xml`, line 34. "A generic positioner such as a motor or piezo-electric transducer". → [D14](#d14)
+- **[S5]** `base_classes/NXpositioner.nxdl.xml`, line 34. "A generic positioner such as a motor or piezo-electric transducer"; `value` has the dimension `[n]` "as may be scanned". → [D14](#d14), [D28](#d28)
 - **[S6]** `base_classes/NXem_instrument.nxdl.xml`, line 162, and `applications/NXem.nxdl.xml`, line 964. Stage values should be described with `NXtransformations`; `stageID` is an `NXmanipulator`. → [D14](#d14), [D15](#d15)
 - **[S8]** `base_classes/NXsensor.nxdl.xml`, line 161. `depends_on` exists (inherited by `NXspm_piezo_sensor`), but its doc is a `.. todo::` "Add a definition for the reference point of a sensor". → [D22](#d22)
 - **[S9]** `nxdlTypes.xsd`. The list of NeXus unit categories; it has `NX_LENGTH`, `NX_TIME`, `NX_ANY`, but no velocity category. → [D27](#d27)
