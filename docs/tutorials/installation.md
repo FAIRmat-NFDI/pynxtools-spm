@@ -33,7 +33,7 @@ You will know
 
 ### __1. Create and activate a virtual environment__
 
-`pynxtools-spm` requires Python `3.10` or newer (tested up to `3.13`); we recommend Python `3.12`. Create a dedicated virtual environment so that the installation does not interfere with other Python projects. We recommend [`uv`](https://docs.astral.sh/uv/getting-started/first-steps/), an extremely fast Python package and project manager, but the [`venv`](https://docs.python.org/3/library/venv.html) module of the standard library works as well.
+`pynxtools-spm` requires Python `3.11` or newer (tested up to `3.13`); we recommend Python `3.12`. Create a dedicated virtual environment so that the installation does not interfere with other Python projects. We recommend [`uv`](https://docs.astral.sh/uv/getting-started/first-steps/), an extremely fast Python package and project manager, but the [`venv`](https://docs.python.org/3/library/venv.html) module of the standard library works as well.
 
 === "uv"
 
