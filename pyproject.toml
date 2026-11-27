@@ -29,8 +29,6 @@ dependencies = [
     "hvplot",
     "gwyddionpy[converter]",
 ]
-
-[project.urls]
 "Homepage" = "https://github.com/FAIRmat-NFDI/pynxtools-spm"
 "Parent Project" = "https://github.com/FAIRmat-NFDI"
 
