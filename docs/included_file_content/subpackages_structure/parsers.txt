@@ -1,6 +1,7 @@
 pynxtools_spm/parsers
 ├── __init__.py
 ├── base_parser.py
+├── bruker
 ├── bruker_flt.py
 ├── bruker_spm.py
 ├── bruker_txt.py
